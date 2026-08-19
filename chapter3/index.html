@@ -19,6 +19,8 @@ img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
 img.zoomable:hover { opacity: 0.88; }
 .boximg { margin: 1.5em 0; text-align: center; }
 .boximg img { border: 1px solid #d8b4fe; }
+.intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
+.intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
 figure figcaption { font-size: 0.85em; color: #555; margin-top: 0.5em; text-align: justify; text-indent: 0; line-height: 1.5; }
 figure.table figcaption { text-align: left; }
 table.glossary { margin: 0.2em auto 0.6em auto; border-collapse: collapse; font-size: 0.65em; color: #888; }
@@ -36,6 +38,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <div class="boximg">
   <img class="zoomable" src="figures/box_G3-1_1.png" alt="G3-1" onclick="lightbox(this.src)">
 </div>
+<div class="intro-block"><span class="intro-title">第3章 蛋白质结构与功能</span>致病菌用来将蛋白质注入人体细胞以引发感染的蛋白质"针"的分子带状模型。许多致病菌——包括鼠伤寒沙门菌（食物中毒）和鼠疫耶尔森菌（腺鼠疫）——使用称为 III 型分泌系统的注射器样蛋白质复合物，将蛋白质注入其哺乳动物靶细胞。沙门菌所用注射器针头部分的结构，是利用核磁共振（NMR）、电子显微镜与计算方法相结合而测定的，它是一根长管，由许多 α 螺旋（绘制为盘绕的丝带）构成针管的壁。[Data from A. Loquet et al., 2012, Nature 486:276, PDB ID 2lpz.]</div>
 <p>蛋白质是氨基酸的聚合物，其大小和形状多种多样。它们在三维结构上的多样性，主要反映了长度和氨基酸序列的变化。一般来说，组成任一蛋白质的线性、不分枝的氨基酸聚合物，会折叠成仅一种或少数几种密切相关的三维形状——称为构象。蛋白质的构象，连同其氨基酸侧链独特的化学性质，共同决定了它的功能。在某些情况下，当蛋白质与其他分子发生非共价或共价结合时，其构象乃至功能都会发生变化。由于具有众多不同的形状和化学性质，蛋白质能在细胞内外执行令人眼花缭乱的多种功能，这些功能要么对生命至关重要，要么为含其所在的细胞或生物体提供选择性的进化优势。因此，表征蛋白质的结构与活性是理解细胞如何工作的基本前提，也就不足为奇。本书很大篇幅都致力于考察蛋白质如何协同作用，使细胞得以存活并正常行使其功能。</p>
 <p>尽管蛋白质结构多种多样，大多数蛋白质可归入少数几个宽泛的功能类别之一。例如，结构蛋白决定细胞及其胞外环境的形态，并作为导丝或轨道引导分子和细胞器在胞内移动。它们通常由多个蛋白质亚基组装成非常大的长形结构。骨架蛋白则将其他蛋白质聚集到有序的</p>
 <p>阵列中，使其能比各自分散时更高效地执行特定功能。酶是催化化学反应的蛋白质。膜运输蛋白允许离子和分子跨细胞膜流动。调节蛋白作为信号、传感器和开关，通过改变其他蛋白质和基因的功能来控制细胞的活动。调节蛋白包括信号蛋白，如将胞外信号传递到细胞内部的激素和细胞表面受体。马达蛋白负责移动其他蛋白质、细胞器、细胞乃至整个生物体。同一种蛋白质可同时属于多个功能类别，例如某些细胞表面信号受体既是酶又是调节蛋白，因为它们通过催化化学反应将信号从胞外传递到胞内。为高效完成多种使命，一些蛋白质组装成大型复合物，常称为分子机器。</p>
@@ -45,24 +48,31 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>本章中，我们开始研究蛋白质的结构如何产生其功能——这一主题贯穿全书（图 3-1）。第一节考察氨基酸构建块的线性链如何排列成三维结构层级。下一节讨论蛋白质如何折叠成这些结构。随后转向蛋白质功能，聚焦于催化化学反应的酶。细胞用来控制蛋白质活性和寿命的各种机制将在其后介绍。本章结尾讨论</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-1_1.png" alt="图 3-1" onclick="lightbox(this.src)">
-  <figcaption>图3-1 · 蛋白质结构与功能概述。(a) 蛋白质具有层级结构。多肽的氨基酸线性序列经肽键连接（一级结构）折叠成局部螺旋或折叠片（二级结构），后者再堆叠成复杂的三维形状（三级结构）。一些独立多肽缔合成多链复合物（四级结构），其中某些可非常大，由数十至数百个亚基组成（超分子复合物）。(b) 蛋白质执行众多功能，包括在三维空间中组织基因组、细胞器、细胞质、蛋白质复合物和膜（结构）；控制蛋白质活性（调控）；监视环境并传递信息（信号传导）；跨膜运输小分子和离子（运输）；催化化学反应（催化）；以及移动分子、细胞器、细胞乃至整个生物体（运动）。</figcaption>
+  <figcaption>图3-1 · 蛋白质结构与功能概述。(a) 蛋白质具有层级结构。多肽的氨基酸线性序列经肽键连接（一级结构）折叠成局部螺旋或片层（二级结构），后者堆积成复杂的三维形状（三级结构）。一些单独的多肽链可缔合成多链复合物（四级结构），在某些情况下这些复合物可以非常大，由数十到数百个亚基组成（超分子复合物）。(b) 蛋白质执行众多功能，包括在三维空间中组织基因组、细胞器、细胞质、蛋白质复合物和膜（结构）；控制蛋白质活性（调控）；监测环境并传递信息（信号传导）；跨膜运输小分子和离子（运输）；催化化学反应（通过酶）；以及产生运动所需的力（通过马达蛋白）。这些功能及其他功能均源于正确折叠蛋白质结构中的特异性结合相互作用和构象变化。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">MOLECULAR STRUCTURE</td><td class="gl-zh">分子结构</td></tr>
-  <tr><td class="gl-en">Primary (sequence)</td><td class="gl-zh">一级（序列）</td></tr>
-  <tr><td class="gl-en">Secondary (local folding)</td><td class="gl-zh">二级（局部折叠）</td></tr>
-  <tr><td class="gl-en">Tertiary</td><td class="gl-zh">三级</td></tr>
-  <tr><td class="gl-en">(overall conformation)</td><td class="gl-zh">（整体构象）</td></tr>
-  <tr><td class="gl-en">Quaternary</td><td class="gl-zh">四级</td></tr>
-  <tr><td class="gl-en">(multimeric structure)</td><td class="gl-zh">（多聚体结构）</td></tr>
-  <tr><td class="gl-en">Supramolecular</td><td class="gl-zh">超分子</td></tr>
-  <tr><td class="gl-en">(large-scale assembly)</td><td class="gl-zh">（大尺度组装）</td></tr>
-  <tr><td class="gl-en">FUNCTION</td><td class="gl-zh">功能</td></tr>
-  <tr><td class="gl-en">Signaling</td><td class="gl-zh">信号传导</td></tr>
-  <tr><td class="gl-en">Regulation</td><td class="gl-zh">调控</td></tr>
-  <tr><td class="gl-en">Catalysis</td><td class="gl-zh">催化</td></tr>
-  <tr><td class="gl-en">Structure</td><td class="gl-zh">结构</td></tr>
-  <tr><td class="gl-en">Movement</td><td class="gl-zh">运动</td></tr>
-  <tr><td class="gl-en">Transport</td><td class="gl-zh">运输</td></tr>
+  <tr><td class="gl-en">molecular structure</td><td class="gl-zh">分子结构</td></tr>
+  <tr><td class="gl-en">primary structure (sequence)</td><td class="gl-zh">一级结构（序列）</td></tr>
+  <tr><td class="gl-en">secondary structure (local folding)</td><td class="gl-zh">二级结构（局部折叠）</td></tr>
+  <tr><td class="gl-en">tertiary structure (overall conformation)</td><td class="gl-zh">三级结构（整体构象）</td></tr>
+  <tr><td class="gl-en">quaternary structure (multimeric structure)</td><td class="gl-zh">四级结构（多聚体结构）</td></tr>
+  <tr><td class="gl-en">supramolecular complex (large-scale assembly)</td><td class="gl-zh">超分子复合物（大尺度组装）</td></tr>
+  <tr><td class="gl-en">signaling</td><td class="gl-zh">信号传导</td></tr>
+  <tr><td class="gl-en">regulation</td><td class="gl-zh">调控</td></tr>
+  <tr><td class="gl-en">transport</td><td class="gl-zh">运输</td></tr>
+  <tr><td class="gl-en">structure</td><td class="gl-zh">结构</td></tr>
+  <tr><td class="gl-en">movement</td><td class="gl-zh">运动</td></tr>
+  <tr><td class="gl-en">catalysis</td><td class="gl-zh">催化</td></tr>
+  <tr><td class="gl-en">peptide bond</td><td class="gl-zh">肽键</td></tr>
+  <tr><td class="gl-en">polypeptide</td><td class="gl-zh">多肽</td></tr>
+  <tr><td class="gl-en">helix</td><td class="gl-zh">螺旋</td></tr>
+  <tr><td class="gl-en">sheet</td><td class="gl-zh">片层</td></tr>
+  <tr><td class="gl-en">conformation</td><td class="gl-zh">构象</td></tr>
+  <tr><td class="gl-en">motor protein</td><td class="gl-zh">马达蛋白</td></tr>
+  <tr><td class="gl-en">binding interaction</td><td class="gl-zh">结合相互作用</td></tr>
+  <tr><td class="gl-en">genome</td><td class="gl-zh">基因组</td></tr>
+  <tr><td class="gl-en">organelle</td><td class="gl-zh">细胞器</td></tr>
+  <tr><td class="gl-en">cytoplasm</td><td class="gl-zh">细胞质</td></tr>
+  <tr><td class="gl-en">membrane</td><td class="gl-zh">膜</td></tr>
   </table>
 </figure>
 <p>鉴定、分离和表征蛋白质的常用技术，以及蓬勃发展的蛋白质组学领域。</p>
@@ -70,26 +80,38 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>在许多蛋白质中，聚合物链折叠成独特的三维形状，这种形状主要由氨基酸线性序列中各区域之间的非共价相互作用所稳定。理解蛋白质如何工作的一个关键概念是：功能往往源自三维结构，而三维结构由蛋白质的氨基酸序列和分子内非共价相互作用共同决定。将生物结构与功能联系起来的原理，最初由生物学家约翰·冯·歌德（1749–1832）、恩斯特·海克尔（1834–1919）和达西·汤普森（1860–1948）所阐述，他们的工作在生物学乃至更广泛领域都产生了深远影响。事实上，他们的思想极大地影响了 20 世纪初由"有机"建筑学派所开创的理念，该学派的箴言"形式追随功能"（路易斯·沙利文）和"形式即功能"（弗兰克·劳埃德·赖特）正是其缩影。在此，我们从四个组织层级来考察蛋白质的建筑学：一级、二级、三级和四级（图 3-2）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-2_1.png" alt="图 3-2" onclick="lightbox(this.src)">
-  <figcaption>图3-2 · 蛋白质层级的四个层次。(a) 氨基酸经肽键连接成的线性序列是一级结构。(b) 多肽链折叠成局部螺旋或折叠片代表二级结构。(c) 二级结构元件连同单条多肽链中的各种环和转角，堆叠成更大的、独立稳定的三级结构，其中可含独特的结构域。(d) 某些蛋白质由不止一条多肽缔合在一起，形成四级结构。</figcaption>
+  <figcaption>图3-2 · 蛋白质层级的四个层次。(a) 由肽键连接在一起的氨基酸线性序列是一级结构。(b) 多肽链折叠成局部螺旋或片层代表二级结构。(c) 二级结构元件连同单条多肽链中的各种环和转角，堆积成更大的、独立稳定的三级结构，后者可包含不同的结构域。(d) 某些蛋白质由不止一条多肽链缔合在一起构成四级结构。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">(a) Primary structure</td><td class="gl-zh">(a) 一级结构</td></tr>
-  <tr><td class="gl-en">(b) Secondary structure</td><td class="gl-zh">(b) 二级结构</td></tr>
-  <tr><td class="gl-en">(c) Tertiary structure</td><td class="gl-zh">(c) 三级结构</td></tr>
-  <tr><td class="gl-en">(d) Quaternary structure</td><td class="gl-zh">(d) 四级结构</td></tr>
-  <tr><td class="gl-en">Domain</td><td class="gl-zh">结构域</td></tr>
+  <tr><td class="gl-en">primary structure</td><td class="gl-zh">一级结构</td></tr>
+  <tr><td class="gl-en">secondary structure</td><td class="gl-zh">二级结构</td></tr>
+  <tr><td class="gl-en">tertiary structure</td><td class="gl-zh">三级结构</td></tr>
+  <tr><td class="gl-en">quaternary structure</td><td class="gl-zh">四级结构</td></tr>
+  <tr><td class="gl-en">peptide bond</td><td class="gl-zh">肽键</td></tr>
+  <tr><td class="gl-en">polypeptide chain</td><td class="gl-zh">多肽链</td></tr>
   <tr><td class="gl-en">α helix</td><td class="gl-zh">α螺旋</td></tr>
-  <tr><td class="gl-en">β sheet</td><td class="gl-zh">β折叠</td></tr>
+  <tr><td class="gl-en">β sheet</td><td class="gl-zh">β片层</td></tr>
+  <tr><td class="gl-en">loop</td><td class="gl-zh">环</td></tr>
+  <tr><td class="gl-en">turn</td><td class="gl-zh">转角</td></tr>
+  <tr><td class="gl-en">domain</td><td class="gl-zh">结构域</td></tr>
   </table>
 </figure>
 <p>一级结构是蛋白质的氨基酸线性排列</p>
 <p>如第 2 章所述，蛋白质是由 20 种不同氨基酸构成的多聚物。各个氨基酸通过共价酰胺键（称为肽键）连接成线性、不分枝的链。一个氨基酸的氨基与另一个氨基酸的羧基之间形成肽键，净释放一分子水，因此属于脱水反应的一种（图 3-3a）。每个氨基酸残基中重复的酰胺 N、α 碳（Cα）、羰基 C 和氧原子构成蛋白质分子的主链，各种侧链基团从其上伸出（图 3-3b、c）。由于</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-3_1.png" alt="图 3-3" onclick="lightbox(this.src)">
-  <figcaption>图3-3 · 多肽的结构。(a) 各个氨基酸经肽键连接，肽键通过导致水丢失（脱水）的反应形成。R₁、R₂ 等代表氨基酸的侧链（“R 基”）。(b) 肽键连接的氨基酸线性多聚物称为多肽，它具有游离的氨基端（N 端）和游离的羧基端（C 端）。(c) 球棍模型显示肽键（黄色）将一个氨基酸（aa）的氨基氮原子（蓝色）与链中相邻氨基酸的羰基碳原子（灰色）相连。R 基（绿色）从氨基酸的 α 碳原子（黑色）伸出。这些侧链在很大程度上决定了各个蛋白质的独特性质。</figcaption>
+  <figcaption>图3-3 · 多肽的结构。(a) 各个氨基酸通过肽键连接在一起，肽键通过导致水丢失（脱水）的反应形成。R₁、R₂ 等代表氨基酸的侧链（"R 基"）。(b) 由肽键连接的氨基酸组成的线性聚合物称为多肽，多肽具有游离的氨基端（N 端）和游离的羧基端（C 端）。(c) 球棍模型显示肽键（黄色）将一个氨基酸（aa）的氨基氮原子（蓝色）与链中相邻氨基酸的羰基碳原子（灰色）连接起来。R 基（绿色）从氨基酸的 α 碳原子（黑色）伸出。这些侧链在很大程度上决定了各个蛋白质的独特性质。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Peptide bond</td><td class="gl-zh">肽键</td></tr>
-  <tr><td class="gl-en">Amino end (N-terminus)</td><td class="gl-zh">氨基端（N端）</td></tr>
-  <tr><td class="gl-en">Carboxyl end (C-terminus)</td><td class="gl-zh">羧基端（C端）</td></tr>
+  <tr><td class="gl-en">peptide bond</td><td class="gl-zh">肽键</td></tr>
+  <tr><td class="gl-en">dehydration</td><td class="gl-zh">脱水</td></tr>
+  <tr><td class="gl-en">side chain (R group)</td><td class="gl-zh">侧链（R基）</td></tr>
+  <tr><td class="gl-en">polypeptide</td><td class="gl-zh">多肽</td></tr>
+  <tr><td class="gl-en">N-terminus (amino end)</td><td class="gl-zh">N端（氨基端）</td></tr>
+  <tr><td class="gl-en">C-terminus (carboxyl end)</td><td class="gl-zh">C端（羧基端）</td></tr>
+  <tr><td class="gl-en">amino acid</td><td class="gl-zh">氨基酸</td></tr>
+  <tr><td class="gl-en">amino nitrogen atom</td><td class="gl-zh">氨基氮原子</td></tr>
+  <tr><td class="gl-en">carbonyl carbon atom</td><td class="gl-zh">羰基碳原子</td></tr>
+  <tr><td class="gl-en">α carbon</td><td class="gl-zh">α碳</td></tr>
+  <tr><td class="gl-en">ball-and-stick model</td><td class="gl-zh">球棍模型</td></tr>
   </table>
 </figure>
 <p>肽键的连接方式，主链表现出方向性，通常称为 N 端到 C 端取向，因为所有氨基都位于 Cα 原子的同一侧。因此，蛋白质的一端有一个游离（未连接）的氨基（N 端），另一端有一个游离的羧基（C 端）。蛋白质链的序列按惯例书写时，N 端氨基酸在左，C 端氨基酸在右，氨基酸从 N 端起依次编号。</p>
@@ -102,11 +124,15 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>α 螺旋 在折叠成 α 螺旋的多肽片段中，主链形成螺旋结构，其中每个肽键的羰基氧原子与朝 C 端方向再隔四个残基处的氨基酸的酰胺氢原子形成氢键（图 3-4）。在 α 螺旋内，所有主链氨基和羧基彼此形成氢键，仅在螺旋的极始端和极末端除外。这种周期性排列的键赋予螺旋从氨基到羧基端的</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-4_1.png" alt="图 3-4" onclick="lightbox(this.src)">
-  <figcaption>图3-4 · α 螺旋，蛋白质中常见的二级结构。多肽主链（以丝带表示）折叠成螺旋，由主链氧原子与氢原子之间的氢键固定。图中仅显示参与成键的氢。螺旋外表面被侧链 R 基（绿色）覆盖。</figcaption>
+  <figcaption>图3-4 · α 螺旋，蛋白质中常见的二级结构。多肽主链（以丝带表示）折叠成螺旋，由主链氧原子和氢原子之间的氢键固定其空间位置。图中仅显示参与成键的氢原子。螺旋的外表面被侧链 R 基（绿色）覆盖。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Amino terminus</td><td class="gl-zh">氨基端</td></tr>
-  <tr><td class="gl-en">Carboxyl terminus</td><td class="gl-zh">羧基端</td></tr>
-  <tr><td class="gl-en">3.6 residues/turn</td><td class="gl-zh">每圈3.6个残基</td></tr>
+  <tr><td class="gl-en">α helix</td><td class="gl-zh">α螺旋</td></tr>
+  <tr><td class="gl-en">secondary structure</td><td class="gl-zh">二级结构</td></tr>
+  <tr><td class="gl-en">polypeptide backbone</td><td class="gl-zh">多肽主链</td></tr>
+  <tr><td class="gl-en">hydrogen bond</td><td class="gl-zh">氢键</td></tr>
+  <tr><td class="gl-en">side chain R group</td><td class="gl-zh">侧链R基</td></tr>
+  <tr><td class="gl-en">ribbon</td><td class="gl-zh">丝带</td></tr>
+  <tr><td class="gl-en">residues/turn</td><td class="gl-zh">残基/圈</td></tr>
   </table>
 </figure>
 <p>方向性，因为所有氢键受体（即羰基）都具有相同取向（在图 3-4 中指向下方），由此形成一个每 3.6 个残基完成一整圈螺旋的结构。一条 36 个氨基酸长的 α 螺旋有 10 圈螺旋，长 5.4 nm（每圈 0.54 nm）。α 螺旋中氢键稳定的氨基酸排列将主链固定在一根笔直的杆状圆柱上，侧链向外伸出。某条特定螺旋在蛋白质内部的相对疏水或亲水性质，完全由侧链的特征决定。在水溶性蛋白质中，带有向外伸出的极性侧链的亲水螺旋倾向于位于外表面，在那里与水环境相互作用；而带有非极性疏水侧链的疏水螺旋则倾向于埋藏在折叠蛋白质的核心内。嵌入细胞膜疏水核心的蛋白质（见第 7 章）</p>
@@ -115,19 +141,34 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>β 转角 β 转角由四个残基组成，位于蛋白质表面，形成使多肽主链方向逆转的急转弯，常转向蛋白质内部。这些短的 U 形二级结构常通过其末端残基之间的氢键稳定（图 3-6）。甘氨酸和脯氨酸常见于 β 转角。甘氨酸缺乏大的侧链，脯氨酸具有内在的弯折，使多肽主链能折叠成紧密的 U 形。β 转角帮助长多肽折叠成高度紧凑的结构。多肽主链方向的反转也可由长于四个残基、形成弯曲或环的多肽片段介导。与仅有少数几种明确构象的紧凑 β 转角不同，较长的环可以有许多不同的构象。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-5_1.png" alt="图 3-5" onclick="lightbox(this.src)">
-  <figcaption>图3-5 · β 折叠，蛋白质中另一种常见的二级结构。(a) 三链 β 折叠的俯视图。每条链由一条带交替蓝绿段、呈箭头状、指向 N 端到 C 端取向的丝带突出显示，连接残基的环以粗黑线表示。在此反平行 β 折叠中，每条链（箭头）指向与相邻链相反的方向。β 链之间起稳定作用的氢键以绿色虚线表示。(b) 反平行 β 折叠的侧视图。R 基（绿色）在折叠片平面上下的伸出在此视图中显而易见。多肽主链中固定的键角产生折叠轮廓，在 (a) 中由交替的彩色段表示。(c) 两个 β 折叠的俯视图，其各条链的取向（以 N 端到 C 端表示）可为反平行或平行。</figcaption>
+  <figcaption>图3-5 · β 片层，蛋白质中另一种常见的二级结构。(a) 三链 β 片层的俯视图。每条链由一条带交替蓝色和绿色片段的带状箭头标示，箭头以 N 端到 C 端方向指向，连接残基的环以粗黑线表示。在此反平行 β 片层中，每条链（箭头）指向与相邻链相反的方向。β 链之间起稳定作用的氢键以绿色虚线表示。(b) 反平行 β 片层的侧视图。R 基（绿色）在片层平面上方和下方的突出在此视图中显而易见。多肽主链中固定的键角产生褶皱轮廓，在 (a) 面板中以交替的彩色片段表示。(c) 两个 β 片层的俯视图，其各条链（以箭头表示 N 端到 C 端方向）或为反平行，即链交替指向相反方向（左），或为平行，即所有链指向相同方向（右）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">(a) Top view</td><td class="gl-zh">(a) 俯视图</td></tr>
-  <tr><td class="gl-en">(b) Side view</td><td class="gl-zh">(b) 侧视图</td></tr>
-  <tr><td class="gl-en">Anti-parallel</td><td class="gl-zh">反平行</td></tr>
-  <tr><td class="gl-en">Parallel</td><td class="gl-zh">平行</td></tr>
+  <tr><td class="gl-en">β sheet</td><td class="gl-zh">β片层</td></tr>
+  <tr><td class="gl-en">secondary structure</td><td class="gl-zh">二级结构</td></tr>
+  <tr><td class="gl-en">strand</td><td class="gl-zh">链</td></tr>
+  <tr><td class="gl-en">antiparallel</td><td class="gl-zh">反平行</td></tr>
+  <tr><td class="gl-en">parallel</td><td class="gl-zh">平行</td></tr>
+  <tr><td class="gl-en">hydrogen bond</td><td class="gl-zh">氢键</td></tr>
+  <tr><td class="gl-en">R group</td><td class="gl-zh">R基</td></tr>
+  <tr><td class="gl-en">polypeptide backbone</td><td class="gl-zh">多肽主链</td></tr>
+  <tr><td class="gl-en">bond angle</td><td class="gl-zh">键角</td></tr>
+  <tr><td class="gl-en">pleated contour</td><td class="gl-zh">褶皱轮廓</td></tr>
+  <tr><td class="gl-en">top view</td><td class="gl-zh">俯视图</td></tr>
+  <tr><td class="gl-en">side view</td><td class="gl-zh">侧视图</td></tr>
   </table>
 </figure>
 <p>三级结构是多肽链的整体折叠</p>
 <p>三级结构指一条多肽链的整体构象——即其所有氨基酸残基的三维排列。与仅由氢键稳定的二级结构不同，三级结构主要由非极性侧链之间的疏水相互作用稳定，加上</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-6_1.png" alt="图 3-6" onclick="lightbox(this.src)">
-  <figcaption>图3-6 · β 转角的结构。β 转角由四个残基组成，使多肽链方向反转（形成 180° 的 U 形转弯）。第一和第四个残基的 Cα 碳通常相距不到 0.7 nm，这两个残基常由氢键连接。β 转角促进长多肽折叠成紧凑的结构。</figcaption>
+  <figcaption>图3-6 · β 转角的结构。β 转角由四个残基组成，使多肽链方向反转（形成 180° 的 U 形转弯）。第一个和第四个残基的 Cα 碳通常相距不到 0.7 nm，这两个残基通常由氢键连接。β 转角促进长多肽折叠成紧凑结构。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">β turn</td><td class="gl-zh">β转角</td></tr>
+  <tr><td class="gl-en">residue</td><td class="gl-zh">残基</td></tr>
+  <tr><td class="gl-en">polypeptide chain</td><td class="gl-zh">多肽链</td></tr>
+  <tr><td class="gl-en">Cα carbon</td><td class="gl-zh">Cα碳</td></tr>
+  <tr><td class="gl-en">hydrogen bond</td><td class="gl-zh">氢键</td></tr>
+  </table>
 </figure>
 <p>涉及极性侧链以及主链氨基和羧基的氢键。这些稳定力将二级结构元件——α 螺旋、β 链、转角和卷曲——维系在一起。然而，由于这些稳定相互作用往往较弱，蛋白质的三级结构并非刚性固定，而是不断发生微小波动，且三级结构内的某些片段可如此柔动以至于被视为无序——即缺乏明确、稳定的三维结构。这种结构上的变化对蛋白质的功能和调控具有重要影响。</p>
 <p>氨基酸侧链的化学性质有助于定义三级结构。在某些蛋白质中——例如从细胞分泌的蛋白质或面向胞外环境的细胞表面蛋白——半胱氨酸残基侧链之间的二硫键可共价连接蛋白质的不同区域，从而限制蛋白质的柔韧性并增强其三级结构的稳定性。带电荷的亲水极性侧链氨基酸倾向于位于蛋白质外表面；通过与水相互作用，它们有助于使蛋白质在水溶液中可溶，并能与其他水溶性分子（包括其他蛋白质）形成非共价相互作用。相反，疏水性非极性侧链氨基酸通常被隔离在蛋白质面向水的一侧之外，在许多情况下形成不溶于水的中心核心。这一观察引出了所谓的蛋白质构象"油滴模型"，因为蛋白质的核心相对疏水，即"油性"的（图 3-7）。不带电荷的亲水极性侧链则既见于蛋白质表面，也见于内部核心。</p>
@@ -135,16 +176,23 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>蛋白质通常根据其三级结构归入四大宽泛类别之一：球状蛋白、纤维状蛋白、跨膜蛋白和本征无序</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-7_1.png" alt="图 3-7" onclick="lightbox(this.src)">
-  <figcaption>图3-7 · 蛋白质折叠的油滴模型。多肽链的疏水和亲水残基可分布在其整个线性序列中，如未折叠蛋白（上）所示。色标表示从最亲水残基（蓝）到最疏水残基（黄）。当蛋白质折叠时（左下），亲水（带电和不带电极性）侧链常暴露在蛋白质表面，在那里与周围的水和离子形成稳定相互作用。相反，疏水残基倾向于在内核中聚集，有点像水溶液中的油滴，被疏水效应驱离水环境（见第 2 章）。移除若干表面残基后更易看到这些核心残基（右下）。[数据来自 M. C. Vaney et al., 1996, Acta Cryst. D52.]</figcaption>
+  <figcaption>图3-7 · 蛋白质折叠的油滴模型。多肽链的疏水和亲水残基可分布在其整个线性序列中，如未折叠蛋白（上方）所示。色标表示从最亲水的残基（蓝色）到最疏水的残基（黄色）。当蛋白质折叠时（左下），亲水（带电和不带电极性）侧链通常暴露在蛋白质表面，在那里它们可以与周围的水和离子形成稳定化相互作用。相反，疏水残基倾向于在内部核心聚集在一起，有点像水溶液中的油滴，被疏水效应驱离水环境（见第 2 章）。当移除若干表面残基后，这些核心残基更容易被看到（右下）。[数据来自 M. C. Vaney et al., 1996, Acta Crystallogr., Sect. D 52:505, PDB ID 193l.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Unfolded protein</td><td class="gl-zh">未折叠蛋白</td></tr>
-  <tr><td class="gl-en">Folded protein</td><td class="gl-zh">折叠蛋白</td></tr>
-  <tr><td class="gl-en">Most hydrophilic</td><td class="gl-zh">最亲水</td></tr>
-  <tr><td class="gl-en">Most hydrophobic</td><td class="gl-zh">最疏水</td></tr>
-  <tr><td class="gl-en">Core</td><td class="gl-zh">核心</td></tr>
-  <tr><td class="gl-en">Surface</td><td class="gl-zh">表面</td></tr>
-  <tr><td class="gl-en">Folding</td><td class="gl-zh">折叠</td></tr>
-  <tr><td class="gl-en">Unfolding</td><td class="gl-zh">去折叠</td></tr>
+  <tr><td class="gl-en">oil drop model</td><td class="gl-zh">油滴模型</td></tr>
+  <tr><td class="gl-en">hydrophobic</td><td class="gl-zh">疏水</td></tr>
+  <tr><td class="gl-en">hydrophilic</td><td class="gl-zh">亲水</td></tr>
+  <tr><td class="gl-en">residue</td><td class="gl-zh">残基</td></tr>
+  <tr><td class="gl-en">side chain</td><td class="gl-zh">侧链</td></tr>
+  <tr><td class="gl-en">conformation</td><td class="gl-zh">构象</td></tr>
+  <tr><td class="gl-en">hydrophobic effect</td><td class="gl-zh">疏水效应</td></tr>
+  <tr><td class="gl-en">core</td><td class="gl-zh">核心</td></tr>
+  <tr><td class="gl-en">surface</td><td class="gl-zh">表面</td></tr>
+  <tr><td class="gl-en">charged</td><td class="gl-zh">带电</td></tr>
+  <tr><td class="gl-en">uncharged polar</td><td class="gl-zh">不带电极性</td></tr>
+  <tr><td class="gl-en">unfolded protein</td><td class="gl-zh">未折叠蛋白</td></tr>
+  <tr><td class="gl-en">folded protein</td><td class="gl-zh">已折叠蛋白</td></tr>
+  <tr><td class="gl-en">folding</td><td class="gl-zh">折叠</td></tr>
+  <tr><td class="gl-en">unfolding</td><td class="gl-zh">去折叠</td></tr>
   </table>
 </figure>
 <p>蛋白。这四大类别并非互斥——有些蛋白质由落入两类或更多类的片段组合而成。球状蛋白通常水溶、折叠紧凑，常（但不 exclusively）呈球状，由多种二级结构混合构成[参见下文 ras（图 3-9）和肌红蛋白（图 3-14）的结构]。纤维状蛋白是大的、伸长的、常为坚硬的分子。有些纤维状蛋白由一条长多肽链组成，含许多串联重复的短氨基酸序列，形成单一重复的二级结构（参见哺乳动物中含量最丰富的蛋白质胶原蛋白的结构，图 20-25）。其他纤维状蛋白由重复的球状蛋白亚基组成，如 G-肌动蛋白单体螺旋排列形成 F-肌动蛋白微丝（见第 17 章）。纤维状蛋白常聚集成不易溶于水的大型多蛋白纤维，通常起结构作用或参与细胞运动。跨膜蛋白镶嵌在包围细胞和细胞器的膜的磷脂双层内，详见第 7 章。</p>
@@ -153,13 +201,22 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>本征无序蛋白可通过多种生化技术实验鉴定，如对蛋白酶消化的敏感性测试（无序区域通常对蛋白酶更敏感），以及包括光谱学在内的多种生物物理技术。这些蛋白质的本征无序性显然是由于其序列相对于有序蛋白质，更富含极性氨基酸、脯氨酸和净电荷，而疏水残基较少（图 3-8b）。主要基于氨基酸组成计算——尤其是净电荷和疏水性——的算法，被用于预测哪些蛋白质或蛋白质片段是本征无序的。据某些估计，30% 或以上的真核蛋白质被预测含至少一个长度为 50 个或更多连续残基的无序片段。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-8_1.png" alt="图 3-8" onclick="lightbox(this.src)">
-  <figcaption>图3-8 · 实验性图：本征无序蛋白与有序蛋白结合的机制，以及基于疏水性和净电荷的鉴定。(a) 本征无序蛋白（PUMA，蓝色）与有序蛋白（MCL1，灰色）结合，使先前无序的蛋白形成明确结构。PUMA 和 MCL1 是胞内蛋白，可影响称为细胞凋亡的受调控细胞死亡过程（见第 21 章）。已提出两种机制来生成两种蛋白均有结构的结合复合物：构象选择（上路径）和诱导契合（下路径）。在构象选择中，无序蛋白（PUMA）在溶液中偶尔且短暂地采取其在结合态会具有的结构；有序的结合伙伴（MCL1）随后可结合（选择）处于该短暂有序构象的 PUMA。在诱导契合中，无序 PUMA 首先与 MCL1 形成初始复合物，结合诱导 PUMA 采取结合态构象。(b) 275 种有序单体球状蛋白（灰色方块）和 91 种本征无序蛋白（黑圈和黄圈）的序列表明：本征无序蛋白通常具有低疏水性和高净电荷，而有序蛋白通常具有高疏水性和低净电荷。</figcaption>
+  <figcaption>图3-8 · 实验性图：内在无序蛋白与有序蛋白结合的机制，以及基于疏水性和净电荷的鉴定。(a) 内在无序蛋白（PUMA，蓝色）与有序蛋白（MCL1，灰色）的结合导致先前无序蛋白形成明确的结构。PUMA 和 MCL1 是胞内蛋白，可影响称为细胞凋亡的受调控细胞死亡过程（见第 21 章）。已提出两种机制来生成两种蛋白均有结构的结合复合物：构象选择（上路径）和诱导契合（下路径）。在构象选择中，无序蛋白（PUMA）在溶液中偶尔且瞬时地采取其在结合态将具有的结构。有序的结合伙伴（MCL1）随后可结合（选择）处于该瞬时有序构象的 PUMA，形成相对稳定的结合复合物。在诱导契合中，无序蛋白在仍处于无序状态时开始与有序伙伴结合，然后在结合状态下被诱导形成相对稳定的异二聚体复合物中存在的有序构象。最近的实验表明，诱导契合机制最能描述 PUMA 和 MCL1 的结合。(b) 利用 275 种有序单体球状蛋白（灰色方块）和 91 种内在无序蛋白（黑色和黄色圆圈）的序列，使用 0（最不疏水）到 1（最疏水）的标度计算每种蛋白每个残基的平均疏水性（x 轴），以及在 pH 7.0 下每个残基的平均净电荷（y 轴）。仅有三个例外（黑色圆圈），这些蛋白定义了两种不同的分布：低疏水性、高净电荷（内在无序，黄色圆圈）和高疏水性、低净电荷（有序，灰色方块）。与有序群体重叠的三个无序蛋白（黑色圆圈）各自包含被预测为无序的大段片段（低疏水性、高净电荷），这些片段显然压倒了蛋白序列中其余原本可能导致有序构象的部分。[部分 (a) 来自 Rogers, J. et al., "Folding and Binding of an Intrinsically Disordered Protein: Fast, but Not 'Diffusion-Limited,'" J. Am. Chem. Soc., 2013, 135 (4), pp1415-1422. http://pubs.acs.org/doi/pdf/10.1021/ja309527h. 部分 (b) 数据来自 V. N. Uversky, J. R. Gillespie, and A. L. Fink, 2000, Proteins 41:415–427.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Conformation selection</td><td class="gl-zh">构象选择</td></tr>
-  <tr><td class="gl-en">Induced fit</td><td class="gl-zh">诱导契合</td></tr>
-  <tr><td class="gl-en">Intrinsically disordered</td><td class="gl-zh">本征无序</td></tr>
-  <tr><td class="gl-en">Transiently ordered</td><td class="gl-zh">短暂有序</td></tr>
-  <tr><td class="gl-en">EXPERIMENTAL FIGURE</td><td class="gl-zh">实验性图</td></tr>
+  <tr><td class="gl-en">intrinsically disordered protein</td><td class="gl-zh">内在无序蛋白</td></tr>
+  <tr><td class="gl-en">conformational selection</td><td class="gl-zh">构象选择</td></tr>
+  <tr><td class="gl-en">induced fit</td><td class="gl-zh">诱导契合</td></tr>
+  <tr><td class="gl-en">apoptosis</td><td class="gl-zh">细胞凋亡</td></tr>
+  <tr><td class="gl-en">heterodimeric complex</td><td class="gl-zh">异二聚体复合物</td></tr>
+  <tr><td class="gl-en">hydrophobicity</td><td class="gl-zh">疏水性</td></tr>
+  <tr><td class="gl-en">net charge</td><td class="gl-zh">净电荷</td></tr>
+  <tr><td class="gl-en">monomeric globular protein</td><td class="gl-zh">单体球状蛋白</td></tr>
+  <tr><td class="gl-en">well-ordered protein</td><td class="gl-zh">有序蛋白</td></tr>
+  <tr><td class="gl-en">binding partner</td><td class="gl-zh">结合伙伴</td></tr>
+  <tr><td class="gl-en">transiently ordered</td><td class="gl-zh">瞬时有序</td></tr>
+  <tr><td class="gl-en">mean hydrophobicity</td><td class="gl-zh">平均疏水性</td></tr>
+  <tr><td class="gl-en">mean net charge</td><td class="gl-zh">平均净电荷</td></tr>
+  <tr><td class="gl-en">experimental figure</td><td class="gl-zh">实验性图</td></tr>
   </table>
 </figure>
 <p>描绘蛋白质构象的不同方式传达不同类型的信息</p>
@@ -168,13 +225,20 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>然而，这三种表示蛋白质结构的方式都不能传达多少关于位于蛋白质表面、与水环境接触的原子的信息。表面之所以重要，是因为它是其他分子通常与蛋白质结合之处。因此，一种有用的替代表示方式是仅显示水可及表面，并用颜色突出具有共同化学特征的区域，如疏水性或亲水性，以及电荷特征，如正（碱性）或负（酸性）侧链（图 3-9d）。此类模型揭示蛋白质表面的形貌</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-9_1.png" alt="图 3-9" onclick="lightbox(this.src)">
-  <figcaption>图3-9 · 可视化蛋白质 Ras 及其结合的 GDP 的五种方式。(a) Cα 主链追踪展示多肽如何紧密堆积在小的体积内。(b) 球棍表示揭示所有原子的位置。(c) 转角和环连接成对的螺旋与链。(d) 水可及表面揭示蛋白质表面众多的隆起、凸起和裂隙；正电荷区域以紫色着色，负电荷区域以红色着色。(e) 混合模型，将丝带模型与透明表面模型结合。[数据来自 E. F. Pai et al., 1990, EMBO J. 9:2351–2359, PDB ID 5p21.]</figcaption>
+  <figcaption>图3-9 · 可视化蛋白质 Ras 及其结合的 GDP 的五种方式。(a) Cα 主链追踪展示多肽如何紧密堆积在小的体积内。(b) 球棍表示揭示所有原子的位置。(c) 转角和环连接成对的螺旋与链。(d) 水可及表面揭示蛋白质表面众多的隆起、凸起和裂隙。正电荷区域以紫色着色；负电荷区域以红色着色。(e) 混合模型，将丝带模型与透明表面模型结合。[数据来自 E. F. Pai et al., 1990, EMBO J. 9:2351–2359, PDB ID 5p21.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">(a) Cα backbone trace</td><td class="gl-zh">(a) Cα主链追踪</td></tr>
-  <tr><td class="gl-en">(b) Ball-and-stick model</td><td class="gl-zh">(b) 球棍模型</td></tr>
-  <tr><td class="gl-en">(c) Ribbon diagram</td><td class="gl-zh">(c) 带状图</td></tr>
-  <tr><td class="gl-en">(d) Water-accessible surface</td><td class="gl-zh">(d) 水可及表面</td></tr>
-  <tr><td class="gl-en">(e) Hybrid model</td><td class="gl-zh">(e) 混合模型</td></tr>
+  <tr><td class="gl-en">Cα backbone trace</td><td class="gl-zh">Cα主链追踪</td></tr>
+  <tr><td class="gl-en">ball-and-stick model</td><td class="gl-zh">球棍模型</td></tr>
+  <tr><td class="gl-en">ribbon diagram</td><td class="gl-zh">带状图</td></tr>
+  <tr><td class="gl-en">water-accessible surface</td><td class="gl-zh">水可及表面</td></tr>
+  <tr><td class="gl-en">hybrid model</td><td class="gl-zh">混合模型</td></tr>
+  <tr><td class="gl-en">turn</td><td class="gl-zh">转角</td></tr>
+  <tr><td class="gl-en">loop</td><td class="gl-zh">环</td></tr>
+  <tr><td class="gl-en">helix</td><td class="gl-zh">螺旋</td></tr>
+  <tr><td class="gl-en">strand</td><td class="gl-zh">链</td></tr>
+  <tr><td class="gl-en">crevice</td><td class="gl-zh">裂隙</td></tr>
+  <tr><td class="gl-en">positive charge</td><td class="gl-zh">正电荷</td></tr>
+  <tr><td class="gl-en">negative charge</td><td class="gl-zh">负电荷</td></tr>
   </table>
 </figure>
 <p>和电荷分布，二者都是结合位点的重要特征，以及其他分子可能结合的表面裂隙。这种视图表示的是蛋白质被另一个分子所"看到"的样子。</p>
@@ -185,17 +249,29 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>许多其他结构基序含有 α 螺旋。一种常见的钙结合基序称为 EF 手，由一个环连接的两条短螺旋组成（图 3-10b）。这种结构基序——若干螺旋-转角-螺旋和螺旋-环-螺旋结构基序之一——存在于上百种蛋白质中，用于感知钙水平。Ca²⁺ 离子与环中保守残基的氧原子结合，取决于细胞内 Ca²⁺ 的浓度，有时会诱导蛋白质构象变化，改变其活性。因此钙浓度可直接控制蛋白质的结构和功能。略有不同的螺旋-转角-螺旋和碱性螺旋-环-螺旋</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-10_1.png" alt="图 3-10" onclick="lightbox(this.src)">
-  <figcaption>图3-10 · 蛋白质二级结构基序。(a) 左手平行双链卷曲螺旋基序（两条 α 螺旋相互缠绕）。螺旋堆叠由沿每条链以规则间隔出现、位于相互缠绕螺旋接缝处的疏水侧链（红与蓝）之间的相互作用所稳定。每个七联重复序列常（但不总是）在第 1 和第 4 位具有疏水残基。在含许多此类基序的长卷曲螺旋（右手）中，这种结构基序的卷曲螺旋特性更为明显。(b) EF 手，一种螺旋-环-螺旋基序，由一个以特定构象连接两条螺旋的短环组成。在钙结合蛋白（如钙调蛋白）中，富含谷氨酸和天冬氨酸的环中五个残基的氧原子与一个水分子共同与 Ca²⁺ 离子形成离子键。此结构基序常见于多种蛋白质，包括许多钙结合和 DNA 结合调节蛋白。(c) 锌指基序见于许多帮助调节转录的 DNA 结合蛋白中。一个 Zn²⁺ 离子被一对 β 链（蓝）和一条 α 螺旋（红）通过一对半胱氨酸残基和一对组氨酸残基所固定。[部分数据来自 L. Gonzalez, Jr., D. N. Woolfson, et al.]</figcaption>
+  <figcaption>图3-10 · 蛋白质二级结构基序。(a) 卷曲螺旋基序，由两条相互缠绕的平行 α 螺旋（左）构成。螺旋堆积由沿每条链以规则间隔出现、位于相互缠绕螺旋接缝处的疏水侧链（红色和蓝色）之间的相互作用所稳定。每条螺旋表现出特征的七联重复序列，疏水残基通常（但不总是）位于第 1 和第 4 位。在含许多此类基序的长卷曲螺旋（右）中，这种结构基序的卷曲螺旋特性更为明显。(b) EF 手，一种螺旋-环-螺旋基序，由两条螺旋经一个具有特定构象的短环连接而成。此结构基序常见于多种蛋白质，包括许多钙结合和 DNA 结合调节蛋白。在钙调蛋白等钙结合蛋白中，富含谷氨酸和天冬氨酸的环中五个残基的氧原子与一个水分子共同与一个 Ca²⁺ 离子形成离子键。(c) 锌指基序见于许多帮助调节转录的 DNA 结合蛋白中。一个 Zn²⁺ 离子被一对 β 链（蓝色）和一条 α 螺旋（红色）通过一对半胱氨酸残基和一对组氨酸残基所固定。两个不变半胱氨酸残基通常位于第 3 和第 6 位，两个不变组氨酸残基位于第 20 和第 24 位（在此 25 残基基序中）。[部分 (a) 数据来自 L. Gonzalez, Jr., D. N. Woolfson, and T. Alber, 1996, Nat. Struct. Biol. 3:1011–1018, PDB IDs 1zik and 2tma. 部分 (b) 数据来自 R. Chattopadhyaya et al., 1992, J. Mol. Biol. 228:1177–1192, PDB ID 1cll. 部分 (c) 数据来自 S. A. Wolfe, R. A. Grant, and C. O. Pabo, 2003, Biochemistry 42:13401–13409, PDB ID 1llm.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Coiled-coil motif</td><td class="gl-zh">卷曲螺旋基序</td></tr>
-  <tr><td class="gl-en">left parallel two-stranded</td><td class="gl-zh">左手平行双链</td></tr>
+  <tr><td class="gl-en">coiled-coil motif</td><td class="gl-zh">卷曲螺旋基序</td></tr>
   <tr><td class="gl-en">heptad repeat</td><td class="gl-zh">七联重复</td></tr>
-  <tr><td class="gl-en">EF hand/helix-loop-helix motif</td><td class="gl-zh">EF手/螺旋-环-螺旋基序</td></tr>
-  <tr><td class="gl-en">calcium-binding</td><td class="gl-zh">钙结合</td></tr>
+  <tr><td class="gl-en">helix-loop-helix motif</td><td class="gl-zh">螺旋-环-螺旋基序</td></tr>
+  <tr><td class="gl-en">EF hand</td><td class="gl-zh">EF手</td></tr>
+  <tr><td class="gl-en">calcium-binding protein</td><td class="gl-zh">钙结合蛋白</td></tr>
+  <tr><td class="gl-en">DNA-binding protein</td><td class="gl-zh">DNA结合蛋白</td></tr>
   <tr><td class="gl-en">zinc-finger motif</td><td class="gl-zh">锌指基序</td></tr>
-  <tr><td class="gl-en">Leu</td><td class="gl-zh">亮氨酸</td></tr>
-  <tr><td class="gl-en">Val</td><td class="gl-zh">缬氨酸</td></tr>
-  <tr><td class="gl-en">Asn</td><td class="gl-zh">天冬酰胺</td></tr>
+  <tr><td class="gl-en">transcription</td><td class="gl-zh">转录</td></tr>
+  <tr><td class="gl-en">Zn²⁺</td><td class="gl-zh">Zn²⁺</td></tr>
+  <tr><td class="gl-en">Ca²⁺</td><td class="gl-zh">Ca²⁺</td></tr>
+  <tr><td class="gl-en">cysteine residue</td><td class="gl-zh">半胱氨酸残基</td></tr>
+  <tr><td class="gl-en">histidine residue</td><td class="gl-zh">组氨酸残基</td></tr>
+  <tr><td class="gl-en">invariant residue</td><td class="gl-zh">不变残基</td></tr>
+  <tr><td class="gl-en">β strand</td><td class="gl-zh">β链</td></tr>
+  <tr><td class="gl-en">α helix</td><td class="gl-zh">α螺旋</td></tr>
+  <tr><td class="gl-en">calmodulin</td><td class="gl-zh">钙调蛋白</td></tr>
+  <tr><td class="gl-en">glutamate</td><td class="gl-zh">谷氨酸</td></tr>
+  <tr><td class="gl-en">aspartate</td><td class="gl-zh">天冬氨酸</td></tr>
+  <tr><td class="gl-en">Leu (leucine)</td><td class="gl-zh">Leu（亮氨酸）</td></tr>
+  <tr><td class="gl-en">Val (valine)</td><td class="gl-zh">Val（缬氨酸）</td></tr>
+  <tr><td class="gl-en">Asn (asparagine)</td><td class="gl-zh">Asn（天冬酰胺）</td></tr>
   </table>
 </figure>
 <p>（bHLH）结构基序用于蛋白质与 DNA 的结合，进而用于基因活性的调节（见第 9 章）。另一种常见于结合 RNA 或 DNA 的蛋白质中的结构基序是锌指，它含三种二级结构——一条 α 螺旋和两条反平行取向的 β 链——形成一个由锌离子维系的手指状束（图 3-10c）。</p>
@@ -209,28 +285,45 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>表皮生长因子（EGF）结构域是一种存在于多种蛋白质中的结构性结构域（图 3-12）。EGF</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-11_1.png" alt="图 3-11" onclick="lightbox(this.src)">
-  <figcaption>图3-11 · 三级和四级结构层次。此处所示的蛋白质--血凝素（HA）--见于流感病毒表面。这个长的多聚体分子有三个相同亚基，每个由 HA₁ 和 HA₂ 两条多肽链组成。(a) 每个 HA 亚基的三级结构包含其螺旋和链折叠成一个长 13.5 nm、分为两个结构域的紧凑结构。膜远侧结构域（银色）折叠成球状构象。膜近侧结构域（金色）由于 HA₂ 的 α 螺旋（圆柱）与 HA₁ 中 β 链的排列而呈纤维状茎样构象。短的转角和较长的环（许多位于分子表面）连接每条链中的螺旋和链。(b) HA 的四级结构由纤维状结构域中长螺旋（圆柱）之间的侧向相互作用所稳定。</figcaption>
+  <figcaption>图3-11 · 三级和四级结构层次。此处所示的蛋白质——血凝素（HA）——见于流感病毒表面。这个长的多聚体分子有三个相同的亚基，每个由 HA₁ 和 HA₂ 两条多肽链组成。(a) 每个 HA 亚基的三级结构包含其螺旋和链折叠成一个长 13.5 nm、分为两个结构域的紧凑结构。膜远侧结构域（银色）折叠成球状构象。膜近侧结构域（金色）由于 HA₂ 的 α 螺旋（圆柱）与 HA₁ 中 β 链的排列而呈纤维状茎样构象。短的转角和较长的环（许多位于分子表面）连接每条链中的螺旋和链。(b) HA 的四级结构由三个亚基（金色、蓝色和绿色）纤维状结构域中长螺旋（圆柱）之间的侧向相互作用所稳定，形成三链卷曲螺旋柄。HA 中每个远侧球状结构域结合靶细胞表面的唾液酸（红色）。与许多膜蛋白一样，HA 含有若干共价连接的糖链（未显示）。[数据来自 S. J. Gamblin et al., 2004, Science 303:1838–1842, PDB ID 1ruz.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Globular domain</td><td class="gl-zh">球状结构域</td></tr>
-  <tr><td class="gl-en">Fibrous domain</td><td class="gl-zh">纤维状结构域</td></tr>
-  <tr><td class="gl-en">PROXIMAL domain</td><td class="gl-zh">近侧结构域</td></tr>
-  <tr><td class="gl-en">DISTAL</td><td class="gl-zh">远侧</td></tr>
-  <tr><td class="gl-en">Viral membrane</td><td class="gl-zh">病毒膜</td></tr>
-  <tr><td class="gl-en">External</td><td class="gl-zh">外侧</td></tr>
-  <tr><td class="gl-en">Internal</td><td class="gl-zh">内侧</td></tr>
-  <tr><td class="gl-en">Sialic acid</td><td class="gl-zh">唾液酸</td></tr>
+  <tr><td class="gl-en">hemagglutinin (HA)</td><td class="gl-zh">血凝素（HA）</td></tr>
+  <tr><td class="gl-en">influenza virus</td><td class="gl-zh">流感病毒</td></tr>
+  <tr><td class="gl-en">tertiary structure</td><td class="gl-zh">三级结构</td></tr>
+  <tr><td class="gl-en">quaternary structure</td><td class="gl-zh">四级结构</td></tr>
+  <tr><td class="gl-en">subunit</td><td class="gl-zh">亚基</td></tr>
+  <tr><td class="gl-en">polypeptide chain</td><td class="gl-zh">多肽链</td></tr>
+  <tr><td class="gl-en">membrane-distal domain</td><td class="gl-zh">膜远侧结构域</td></tr>
+  <tr><td class="gl-en">membrane-proximal domain</td><td class="gl-zh">膜近侧结构域</td></tr>
+  <tr><td class="gl-en">globular conformation</td><td class="gl-zh">球状构象</td></tr>
+  <tr><td class="gl-en">fibrous conformation</td><td class="gl-zh">纤维状构象</td></tr>
+  <tr><td class="gl-en">stemlike conformation</td><td class="gl-zh">茎样构象</td></tr>
+  <tr><td class="gl-en">coiled-coil stalk</td><td class="gl-zh">卷曲螺旋柄</td></tr>
+  <tr><td class="gl-en">sialic acid</td><td class="gl-zh">唾液酸</td></tr>
+  <tr><td class="gl-en">carbohydrate chain</td><td class="gl-zh">糖链</td></tr>
+  <tr><td class="gl-en">viral membrane</td><td class="gl-zh">病毒膜</td></tr>
+  <tr><td class="gl-en">α helix</td><td class="gl-zh">α螺旋</td></tr>
+  <tr><td class="gl-en">β strand</td><td class="gl-zh">β链</td></tr>
+  <tr><td class="gl-en">globular domain</td><td class="gl-zh">球状结构域</td></tr>
+  <tr><td class="gl-en">fibrous domain</td><td class="gl-zh">纤维状结构域</td></tr>
+  <tr><td class="gl-en">distal domain</td><td class="gl-zh">远侧结构域</td></tr>
+  <tr><td class="gl-en">proximal domain</td><td class="gl-zh">近侧结构域</td></tr>
   </table>
 </figure>
 <p>是一种小的可溶性肽类激素，与胚胎细胞以及成体皮肤和结缔组织中的细胞结合，使之分裂。它由 EGF 前体蛋白中 EGF 结构域之间的蛋白水解切割（断开肽键）产生，前体蛋白通过一个跨膜结构域锚定在质膜上。与 EGF 肽类激素序列相似但不完全相同的 EGF 结构域存在于其他蛋白质中，并可通过蛋白水解释放。这些蛋白质包括组织型纤溶酶原激活剂（TPA）——一种用于溶解</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-12_1.png" alt="图 3-12" onclick="lightbox(this.src)">
-  <figcaption>图3-12 · 蛋白质结构域的模块性。表皮生长因子（EGF）由含多个 EGF 结构域（绿色）和一个跨膜结构域（蓝色）的前体蛋白经蛋白水解切割产生。Neu 蛋白和组织型纤溶酶原激活剂（TPA）中也存在 EGF 结构域。这些蛋白质还含有其他广泛分布的结构域，以形状和颜色表示。参见 I. D. Campbell and P. Bork, 1993, Curr. Opin. Struct. Biol. 3:385.</figcaption>
+  <figcaption>图3-12 · 蛋白质结构域的模块性。表皮生长因子（EGF）由含多个 EGF 结构域（绿色）和一个跨膜结构域（蓝色）的前体蛋白经蛋白水解切割产生。Neu 蛋白和组织型纤溶酶原激活剂（TPA）中也存在 EGF 结构域。这些蛋白质还含有其他广泛分布的结构域，以形状和颜色表示。参见 I. D. Campbell and P. Bork, 1993, Curr. Opin. Struc. Biol. 3:385.</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">EGF</td><td class="gl-zh">表皮生长因子</td></tr>
+  <tr><td class="gl-en">modular nature</td><td class="gl-zh">模块性</td></tr>
+  <tr><td class="gl-en">epidermal growth factor (EGF)</td><td class="gl-zh">表皮生长因子（EGF）</td></tr>
   <tr><td class="gl-en">EGF precursor</td><td class="gl-zh">EGF前体</td></tr>
-  <tr><td class="gl-en">Neu</td><td class="gl-zh">Neu蛋白</td></tr>
-  <tr><td class="gl-en">TPA</td><td class="gl-zh">组织型纤溶酶原激活剂</td></tr>
-  <tr><td class="gl-en">Modular nature</td><td class="gl-zh">模块性</td></tr>
+  <tr><td class="gl-en">proteolytic cleavage</td><td class="gl-zh">蛋白水解切割</td></tr>
+  <tr><td class="gl-en">EGF domain</td><td class="gl-zh">EGF结构域</td></tr>
+  <tr><td class="gl-en">membrane-spanning domain</td><td class="gl-zh">跨膜结构域</td></tr>
+  <tr><td class="gl-en">Neu protein</td><td class="gl-zh">Neu蛋白</td></tr>
+  <tr><td class="gl-en">tissue plasminogen activator (TPA)</td><td class="gl-zh">组织型纤溶酶原激活剂（TPA）</td></tr>
+  <tr><td class="gl-en">protein domain</td><td class="gl-zh">蛋白质结构域</td></tr>
   </table>
 </figure>
 <p>心脏病患者血栓的蛋白酶；Neu 蛋白——参与胚胎分化；以及 Notch 蛋白——一种在发育中重要信号传导中起作用的质膜受体蛋白（见第 16 章）。除 EGF 结构域外，这些蛋白质还与其他蛋白质共有其他结构域。例如，TPA 具有胰蛋白酶结构域，这是一种见于某些蛋白酶中的功能性结构域。据估计，所有蛋白质中约有 1000 种不同类型的结构性结构域。其中一些并不常见，而另一些见于许多不同蛋白质。事实上，据某些估计，仅 9 种主要类型的结构性结构域就占了所有蛋白质中结构域总数的三分之一。结构性结构域可通过 X 射线晶体学或核磁共振（NMR）分析测定结构的蛋白质，或电子显微镜捕获的图像来识别。</p>
@@ -243,11 +336,16 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
   <img class="zoomable" src="figures/fig_3-13_1.png" alt="图 3-13" onclick="lightbox(this.src)">
   <figcaption>图3-13 · 分子机器：转录起始复合物。核心 RNA 聚合酶、通用转录因子、含约 20 个亚基的中介体复合物，以及此处未描绘的其他蛋白质复合物，在 DNA 的启动子处组装。聚合酶执行 DNA 的转录；相关蛋白质是聚合酶初始结合到特定启动子所必需的。多个组分作为分子机器协同发挥作用。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">General transcription factors</td><td class="gl-zh">通用转录因子</td></tr>
-  <tr><td class="gl-en">Transcription preinitiation complex</td><td class="gl-zh">转录预起始复合物</td></tr>
-  <tr><td class="gl-en">Mediator complex</td><td class="gl-zh">中介体复合物</td></tr>
+  <tr><td class="gl-en">molecular machine</td><td class="gl-zh">分子机器</td></tr>
+  <tr><td class="gl-en">transcription initiation complex</td><td class="gl-zh">转录起始复合物</td></tr>
   <tr><td class="gl-en">RNA polymerase</td><td class="gl-zh">RNA聚合酶</td></tr>
-  <tr><td class="gl-en">Promoter</td><td class="gl-zh">启动子</td></tr>
+  <tr><td class="gl-en">general transcription factors</td><td class="gl-zh">通用转录因子</td></tr>
+  <tr><td class="gl-en">mediator complex</td><td class="gl-zh">中介体复合物</td></tr>
+  <tr><td class="gl-en">promoter</td><td class="gl-zh">启动子</td></tr>
+  <tr><td class="gl-en">transcription</td><td class="gl-zh">转录</td></tr>
+  <tr><td class="gl-en">DNA</td><td class="gl-zh">DNA</td></tr>
+  <tr><td class="gl-en">subunit</td><td class="gl-zh">亚基</td></tr>
+  <tr><td class="gl-en">preinitiation complex</td><td class="gl-zh">预起始复合物</td></tr>
   </table>
 </figure>
 <p>机器（其运作细节在第 5 章和第 9 章讨论）由 RNA 聚合酶（本身是多聚体蛋白）和至少 50 种其他组分组成，包括通用转录因子、启动子结合蛋白、解旋酶及其他蛋白质复合物（图 3-13）。核糖体（也在第 5 章讨论）是合成蛋白质的复杂多蛋白和多数酸机器。最复杂的组装体之一是核孔，一种允许大分子在细胞核与细胞质之间通讯和通过的结构（见第 14 章）。它由约 30 种不同蛋白质的多个拷贝组成，形成估计质量为 50 MDa 的组装体。上述脂肪酸合酶和聚酮合酶也是分子机器。</p>
@@ -255,19 +353,34 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>对多种不同蛋白质的分析已确凿地建立了蛋白质的氨基酸序列、三维结构和功能之间的关系。最早的例子之一涉及两种运氧蛋白的比较：肌肉中的肌红蛋白和红细胞中的血红蛋白。肌红蛋白——一种单体（由一条多肽链/一个蛋白质分子组成）——和血红蛋白——一种</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-14_1.png" alt="图 3-14" onclick="lightbox(this.src)">
-  <figcaption>图3-14 · 珠蛋白家族的进化。(a) 血红蛋白是由两条 α 和两条 β 亚基组成的四聚体；这些亚基与豆血红蛋白和肌红蛋白（二者均为单体）的结构相似性显而易见。与每条珠蛋白多肽非共价结合的血红素分子（红色）直接负责这些蛋白质中的氧结合。(b) 一种原始的单体运氧珠蛋白被认为是现代血液血红蛋白、肌肉肌红蛋白和植物豆血红蛋白的祖先。序列比较揭示，珠蛋白的进化与动植物的进化平行。主要变化发生于植物珠蛋白与动物珠蛋白分化、以及肌红蛋白与血红蛋白分化之时。随后基因复制产生了血红蛋白的 α 和 β 亚基。参见 R. C. Hardison, 1996, Proc. Natl. Acad. Sci. USA 93:5675.</figcaption>
+  <figcaption>图3-14 · 珠蛋白家族的进化。(a) 血红蛋白是由两条 α 和两条 β 亚基组成的四聚体。这些亚基与豆血红蛋白和肌红蛋白（二者均为单体）的结构相似性显而易见。与每条珠蛋白多肽非共价结合的血红素分子（红色）直接负责这些蛋白质中的氧结合。(b) 一种原始的单体运氧珠蛋白被认为是现代血液血红蛋白、肌肉肌红蛋白和植物豆血红蛋白的祖先。序列比较揭示，珠蛋白的进化与动植物的进化平行。主要变化发生于植物珠蛋白与动物珠蛋白分化、以及肌红蛋白与血红蛋白分化之时。随后基因复制产生了血红蛋白的 α 和 β 亚基。[部分 (a) 数据来自 G. Fermi et al., 1984, J. Mol. Biol. 175:159–174, PDB ID 2hbb（血红蛋白），H. C. Watson, 1969, Prog. Stereochem. 4:299, PDB ID 1mbn（肌红蛋白），以及 M. S. Hargrove et al., 1997, J. Mol. Biol. 266:1032–1042, PDB ID 1bin（豆血红蛋白）。] 参见 R. C. Hardison, 1996, P. Natl. Acad. Sci. USA 93:5675.</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Hemoglobin</td><td class="gl-zh">血红蛋白</td></tr>
-  <tr><td class="gl-en">Myoglobin</td><td class="gl-zh">肌红蛋白</td></tr>
-  <tr><td class="gl-en">LEGHEMOGLOBIN</td><td class="gl-zh">豆血红蛋白</td></tr>
-  <tr><td class="gl-en">Ancestral oxygen-binding</td><td class="gl-zh">祖先运氧</td></tr>
-  <tr><td class="gl-en">Vertebrate</td><td class="gl-zh">脊椎动物</td></tr>
-  <tr><td class="gl-en">Insect</td><td class="gl-zh">昆虫</td></tr>
-  <tr><td class="gl-en">Annelid</td><td class="gl-zh">环节动物</td></tr>
-  <tr><td class="gl-en">Nematode</td><td class="gl-zh">线虫</td></tr>
-  <tr><td class="gl-en">Fungal</td><td class="gl-zh">真菌</td></tr>
-  <tr><td class="gl-en">Dicot</td><td class="gl-zh">双子叶植物</td></tr>
-  <tr><td class="gl-en">Monocot</td><td class="gl-zh">单子叶植物</td></tr>
+  <tr><td class="gl-en">globin protein family</td><td class="gl-zh">珠蛋白家族</td></tr>
+  <tr><td class="gl-en">hemoglobin</td><td class="gl-zh">血红蛋白</td></tr>
+  <tr><td class="gl-en">myoglobin</td><td class="gl-zh">肌红蛋白</td></tr>
+  <tr><td class="gl-en">leghemoglobin</td><td class="gl-zh">豆血红蛋白</td></tr>
+  <tr><td class="gl-en">tetramer</td><td class="gl-zh">四聚体</td></tr>
+  <tr><td class="gl-en">monomer</td><td class="gl-zh">单体</td></tr>
+  <tr><td class="gl-en">heme molecule</td><td class="gl-zh">血红素分子</td></tr>
+  <tr><td class="gl-en">noncovalently associated</td><td class="gl-zh">非共价结合</td></tr>
+  <tr><td class="gl-en">oxygen binding</td><td class="gl-zh">氧结合</td></tr>
+  <tr><td class="gl-en">gene duplication</td><td class="gl-zh">基因复制</td></tr>
+  <tr><td class="gl-en">α subunit</td><td class="gl-zh">α亚基</td></tr>
+  <tr><td class="gl-en">β subunit</td><td class="gl-zh">β亚基</td></tr>
+  <tr><td class="gl-en">evolution</td><td class="gl-zh">进化</td></tr>
+  <tr><td class="gl-en">ancestral oxygen-binding protein</td><td class="gl-zh">祖先运氧蛋白</td></tr>
+  <tr><td class="gl-en">sequence comparison</td><td class="gl-zh">序列比较</td></tr>
+  <tr><td class="gl-en">divergence</td><td class="gl-zh">分化</td></tr>
+  <tr><td class="gl-en">vertebrate</td><td class="gl-zh">脊椎动物</td></tr>
+  <tr><td class="gl-en">insect</td><td class="gl-zh">昆虫</td></tr>
+  <tr><td class="gl-en">annelid</td><td class="gl-zh">环节动物</td></tr>
+  <tr><td class="gl-en">nematode</td><td class="gl-zh">线虫</td></tr>
+  <tr><td class="gl-en">fungal</td><td class="gl-zh">真菌</td></tr>
+  <tr><td class="gl-en">protozoan</td><td class="gl-zh">原生动物</td></tr>
+  <tr><td class="gl-en">algal</td><td class="gl-zh">藻类</td></tr>
+  <tr><td class="gl-en">bacterial</td><td class="gl-zh">细菌</td></tr>
+  <tr><td class="gl-en">dicot</td><td class="gl-zh">双子叶植物</td></tr>
+  <tr><td class="gl-en">monocot</td><td class="gl-zh">单子叶植物</td></tr>
   </table>
 </figure>
 <p>四聚体（由每个蛋白质两条 α 和两条 β 多肽即亚基组成）——都含非共价附着于每条多肽链的血红素基团（图 3-14a）。血红素基团结合氧。血红蛋白 β 链编码基因的一个突变导致谷氨酸被缬氨酸取代，扰乱了该蛋白质的折叠和功能，引起镰状细胞病（也称镰状细胞贫血）。141 个残基的肌红蛋白与 153 个残基的血红蛋白 β 亚基正确对齐的序列中，有 40 个残基在等价位置相同，另有 21 个具有化学上非常相似的侧链。这种高度的同一性和相似性（占肌红蛋白残基的 43%）与它们相似的运氧功能相符。X 射线晶体学分析表明，肌红蛋白以及血红蛋白 α 和 β 亚基的三维结构，以及进化上遥远的植物运氧蛋白豆血红蛋白的结构，都极为相似（见图 3-14a）。</p>
@@ -301,8 +414,15 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
   <img class="zoomable" src="figures/fig_3-15_1.png" alt="图 3-15" onclick="lightbox(this.src)">
   <figcaption>图3-15 · 蛋白质中平面肽基之间的旋转。绕 Cα-氨基氮键（Φ 角）和 Cα-羰基碳键（Ψ 角）的旋转，原则上使多肽主链能采取大量潜在构象。然而，由于多肽主链结构和氨基酸侧链性质造成的空间位阻，极大限制了任何给定蛋白质可采取的潜在构象。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Φ</td><td class="gl-zh">Φ角</td></tr>
-  <tr><td class="gl-en">Ψ</td><td class="gl-zh">Ψ角</td></tr>
+  <tr><td class="gl-en">planar peptide group</td><td class="gl-zh">平面肽基</td></tr>
+  <tr><td class="gl-en">Φ angle</td><td class="gl-zh">Φ角</td></tr>
+  <tr><td class="gl-en">Ψ angle</td><td class="gl-zh">Ψ角</td></tr>
+  <tr><td class="gl-en">Cα-amino nitrogen bond</td><td class="gl-zh">Cα-氨基氮键</td></tr>
+  <tr><td class="gl-en">Cα-carbonyl carbon bond</td><td class="gl-zh">Cα-羰基碳键</td></tr>
+  <tr><td class="gl-en">polypeptide backbone</td><td class="gl-zh">多肽主链</td></tr>
+  <tr><td class="gl-en">conformation</td><td class="gl-zh">构象</td></tr>
+  <tr><td class="gl-en">steric restraint</td><td class="gl-zh">空间位阻</td></tr>
+  <tr><td class="gl-en">amino acid side chain</td><td class="gl-zh">氨基酸侧链</td></tr>
   </table>
 </figure>
 <p>形状的--是相邻肽键的固定平面彼此间绕两个键的旋转：Cα-氨基氮键（旋转角称为 Φ）和 Cα-羰基碳键（旋转角称为 Ψ）。</p>
@@ -314,13 +434,15 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>在变性条件下蛋白质的自发展开并不令人惊讶，因为变性蛋白可采取许多非天然构象（无序度增加），熵显著增加。然而引人注目的是，当试管中单一类型未折叠蛋白的纯样品被非常小心地转回正常条件（体温、正常 pH、降低变性剂浓度）时，某些变性多肽能自发复性为其天然的有生物活性的状态，如 Anfinsen 的实验所示。这类复性实验，以及表明化学合成的蛋白质能正确折叠的研究，确立了蛋白质一级结构所含信息足以指导正确复性。新合成的蛋白质似乎正如变性蛋白质那样</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-16_1.png" alt="图 3-16" onclick="lightbox(this.src)">
-  <figcaption>图3-16 · 假设的蛋白质折叠途径。单体蛋白质的折叠遵循一级 (a) → 二级 (b–d) → 三级 (e) 结构的层级。小结构基序 (c) 的形成似乎先于结构域 (d) 和最终三级结构 (e) 的形成。</figcaption>
+  <figcaption>图3-16 · 假设的蛋白质折叠途径。单体蛋白质的折叠遵循一级 (a) -> 二级 (b–d) -> 三级 (e) 结构的层级。小结构基序 (c) 的形成似乎先于结构域 (d) 和最终三级结构 (e) 的形成。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">(a)</td><td class="gl-zh">(a) 一级</td></tr>
-  <tr><td class="gl-en">(b)</td><td class="gl-zh">(b) 二级</td></tr>
-  <tr><td class="gl-en">(c)</td><td class="gl-zh">(c) 基序</td></tr>
-  <tr><td class="gl-en">(d)</td><td class="gl-zh">(d) 结构域</td></tr>
-  <tr><td class="gl-en">(e)</td><td class="gl-zh">(e) 三级</td></tr>
+  <tr><td class="gl-en">protein-folding pathway</td><td class="gl-zh">蛋白质折叠途径</td></tr>
+  <tr><td class="gl-en">structural hierarchy</td><td class="gl-zh">结构层级</td></tr>
+  <tr><td class="gl-en">primary structure</td><td class="gl-zh">一级结构</td></tr>
+  <tr><td class="gl-en">secondary structure</td><td class="gl-zh">二级结构</td></tr>
+  <tr><td class="gl-en">tertiary structure</td><td class="gl-zh">三级结构</td></tr>
+  <tr><td class="gl-en">structural motif</td><td class="gl-zh">结构基序</td></tr>
+  <tr><td class="gl-en">domain</td><td class="gl-zh">结构域</td></tr>
   </table>
 </figure>
 <p>折叠成其正确构象。在 3.1 节中提到的、具有相似氨基酸序列的蛋白质在折叠三维结构上的相似性，提供了额外证据表明一级序列也决定体内（活体生物中）的蛋白质折叠。看来，二级结构和结构基序的形成发生在折叠过程早期，随后是更复杂结构性结构域的装配，它们再缔合成更复杂的三级和四级结构（图 3-16）。</p>
@@ -334,14 +456,33 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>分子伴侣 细胞质中的热激蛋白 Hsp70 及其同源物（线粒体基质中的 Hsp70、内质网中的 BiP、细菌中的 DnaK）是分子伴侣。它们最初因细胞受热激应激后迅速出现而被鉴定（Hsp 代表"热激蛋白"）。Hsp70 及其同源物是所有生物中使用依赖 ATP 的循环来折叠底物的主要分子伴侣（图 3-17a）。结合 ATP 时，单体 Hsp70 蛋白采取开放构象，其中暴露的疏水底物结合口袋瞬时结合未完全折叠或部分变性靶蛋白的暴露疏水区域，然后只要 ATP 结合着就迅速释放此底物（图 3-17a 步骤 1）。结合的 ATP 的水解使分子伴侣采取闭合形式，更紧密地结合其底物蛋白，这种更紧密的结合似乎促进靶蛋白折叠，部分是通过防止它与其他未折叠蛋白聚集（图 3-17a 步骤 2）。接着 ATP 交换伴侣结合的 ADP（步骤 3）引起伴侣构象变化，释放靶蛋白并再生一个"空的"、结合 ATP 的 Hsp70，准备帮助折叠另一个蛋白质（步骤 4）。如果靶蛋白现已正确折叠，它无法再结合 Hsp70。如果它仍至少部分未折叠，可再次结合以给伴侣另一次帮助其正确折叠的机会。如本章稍后所见，多种蛋白质使用三核苷酸水解为二核苷酸、随后二核苷酸/三核苷酸交换的循环来控制其活性。本章稍后，我们将讨论一组称为 GTP 酶的蛋白质，它们依赖 GTP（而非 ATP）交换结合的 GDP（而非 ADP）来诱导构象变化，这些变化极大影响蛋白质的活性，以及随后结合 GTP 水解为 GDP。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-17_1.png" alt="图 3-17" onclick="lightbox(this.src)">
-  <figcaption>图3-17 · 分子伴侣介导的蛋白质折叠。(a) Hsp70。许多蛋白质在 Hsp70 或几种 Hsp70 样蛋白之一的协助下折叠成正确的三维结构。这些分子伴侣瞬时结合从核糖体出来的新生多肽，或以其他方式未折叠的蛋白质。在 Hsp70 循环中，未折叠底物蛋白在 Hsp70 结合 ATP 时，以快速平衡结合（步骤 1）到其底物结合域（浅橙和深橙）开放构象中的底物结合位点（红）。ATP 水解使 Hsp70 转为紧密结合底物的闭合构象（步骤 2），促进底物折叠并防止聚集。ATP 交换 ADP（步骤 3）使 Hsp70 释放底物并回到开放构象（步骤 4），准备帮助折叠另一个蛋白质。(b) Hsp90。Hsp90 以二聚体发挥作用。当无核苷酸结合时，二聚体处于柔性的开放构象（步骤 1），可结合客户。ATP 结合引起构象变化（步骤 2），核苷酸结合域和底物结合域靠拢（步骤 3 中间体）形成闭合构象，核苷酸结合域二聚化（步骤 4）。ATP 水解导致 Hsp90 构象变化（步骤 5），可能包括高度紧凑的形式、客户的折叠和客户的释放。</figcaption>
+  <figcaption>图3-17 · 分子伴侣介导的蛋白质折叠。(a) Hsp70。许多蛋白质在 Hsp70 或几种 Hsp70 样蛋白之一的协助下折叠成正确的三维结构。这些分子伴侣瞬时结合从核糖体出来的新生多肽，或以其他方式未折叠的蛋白质。在 Hsp70 循环中，当 ATP（紫色）结合在 Hsp70 的核苷酸结合域（浅蓝色）时，未折叠底物蛋白以快速平衡结合（步骤 1）到 Hsp70 底物结合域（浅橙和深橙色）开放构象中的底物结合位点（红色）。底物结合域包含两个亚域（浅橙和深橙），在循环过程中改变相对位置和构象。共伴侣辅助蛋白（DnaJ/Hsp40）刺激 ATP 水解为 ADP（黄色），诱导底物结合域发生大的构象变化，导致闭合构象，其中底物被锁定在底物结合域中；此处促进正确折叠（步骤 2 和 3）。ATP 交换结合的 ADP，由其他辅助共伴侣蛋白（GrpE/BAG1）刺激，使 Hsp70 转回开放构象（步骤 4），释放正确折叠的底物（步骤 5），并再生开放构象，后者随后可与额外的底物相互作用。(b) Hsp90。二聚体 Hsp90 分子伴侣的三种构象状态，认为参与底物（也称为客户）重塑。客户蛋白结合在底物结合域（橙色）和 C 端二聚化域（白色）共享的底物结合位点（客户结合区域），并认为在 ATP 结合和水解时发生重塑。Hsp90 循环始于核苷酸结合域（浅蓝色）未结合核苷酸时，二聚体处于非常柔性的开放构型（步骤 1），可结合客户。快速 ATP 结合导致构象变化（步骤 2），核苷酸结合域和底物结合域靠拢（步骤 3 所示中间体）进入闭合构象，其中核苷酸结合域二聚化（步骤 4）。Hsp90 上客户结合的精确位置因不同客户而异，但结合表面（包括底物结合域和 C 端二聚化域的交界处，以红色着色突出显示）可结合多种客户。ATP 水解导致 Hsp90 构象变化（步骤 5），可能包括高度紧凑形式、客户的折叠和客户蛋白的释放。ADP 结合形式的 Hsp90 可采取多种构象，包括高度紧凑形式。ADP 的释放（步骤 6）再生初始柔性开放状态，后者随后可与额外客户相互作用。参见 E. D. Kirschke et al., 2014, Cell 157:1685 和 M. Taipale, D. F. Jarosz, and S. Lindquist, 2010, Nat. Rev. Mol. Cell Biol. 11:515。[HSP90 的溶剂可及表面模型由 Elaine Kirschke 和 David A. Agard（UCSF）提供。开放（ATP）PDB ID 2ior，闭合（ATP）PDB ID 2cg9，闭合（ADP）基于 PDB ID 2cg9。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">molecular chaperone</td><td class="gl-zh">分子伴侣</td></tr>
   <tr><td class="gl-en">Hsp70</td><td class="gl-zh">Hsp70</td></tr>
   <tr><td class="gl-en">Hsp90</td><td class="gl-zh">Hsp90</td></tr>
+  <tr><td class="gl-en">nascent polypeptide</td><td class="gl-zh">新生多肽</td></tr>
+  <tr><td class="gl-en">ribosome</td><td class="gl-zh">核糖体</td></tr>
   <tr><td class="gl-en">substrate-binding domain</td><td class="gl-zh">底物结合域</td></tr>
+  <tr><td class="gl-en">nucleotide-binding domain</td><td class="gl-zh">核苷酸结合域</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
   <tr><td class="gl-en">co-chaperone</td><td class="gl-zh">共伴侣</td></tr>
-  <tr><td class="gl-en">nucleotide exchange factor</td><td class="gl-zh">核苷酸交换因子</td></tr>
-  <tr><td class="gl-en">client</td><td class="gl-zh">客户蛋白</td></tr>
+  <tr><td class="gl-en">DnaJ/Hsp40</td><td class="gl-zh">DnaJ/Hsp40</td></tr>
+  <tr><td class="gl-en">GrpE/BAG1</td><td class="gl-zh">GrpE/BAG1</td></tr>
+  <tr><td class="gl-en">ATPase cycle</td><td class="gl-zh">ATP酶循环</td></tr>
+  <tr><td class="gl-en">open conformation</td><td class="gl-zh">开放构象</td></tr>
+  <tr><td class="gl-en">closed conformation</td><td class="gl-zh">闭合构象</td></tr>
+  <tr><td class="gl-en">conformational change</td><td class="gl-zh">构象变化</td></tr>
+  <tr><td class="gl-en">substrate</td><td class="gl-zh">底物</td></tr>
+  <tr><td class="gl-en">client protein</td><td class="gl-zh">客户蛋白</td></tr>
+  <tr><td class="gl-en">dimer</td><td class="gl-zh">二聚体</td></tr>
+  <tr><td class="gl-en">dimerization</td><td class="gl-zh">二聚化</td></tr>
+  <tr><td class="gl-en">C-terminal dimerization domain</td><td class="gl-zh">C端二聚化域</td></tr>
+  <tr><td class="gl-en">solvent-accessible surface model</td><td class="gl-zh">溶剂可及表面模型</td></tr>
+  <tr><td class="gl-en">ATP hydrolysis</td><td class="gl-zh">ATP水解</td></tr>
+  <tr><td class="gl-en">flexible open configuration</td><td class="gl-zh">柔性开放构型</td></tr>
+  <tr><td class="gl-en">heterodimer</td><td class="gl-zh">异二聚体</td></tr>
   </table>
 </figure>
 <p>额外的蛋白质，如真核生物中的共伴侣 Hsp40（细菌中的 DnaJ），不仅通过刺激底物结合，还通过将 ATP 水解速率提高 100 至 1000 倍，帮助提高许多蛋白质 Hsp70 介导折叠的效率（见图 3-17a 步骤 2）。四个不同家族的核苷酸交换因子成员（如细菌中的 GrpE；真核生物中的 BAG、HspBP 和 Hsp110）也与 Hsp70（或 DnaK）相互作用，促进 ATP 交换 ADP（见步骤 3）。据认为，多个分子伴侣在所有新生多肽链于核糖体上合成时与之结合。在细菌中，85% 的蛋白质从其分子伴侣释放并正常折叠；真核生物中更高比例的蛋白质遵循此途径。</p>
@@ -351,13 +492,26 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>图 3-18b 展示了 GroEL/GroES 的蛋白质折叠循环。质量小于 60 kDa 的部分折叠或错误折叠多肽被 GroEL 腔入口附近的疏水残基捕获，进入一个折叠腔（图 3-18b 上腔）。第二个腔被 GroES 盖封堵。GroEL 的 14 个亚基每个都能结合 ATP、水解它、随后释放 ADP。这些反应对单环中每组七个亚基是协同的，并导致重大构象变化。这些变化既控制封堵该腔的 GroES 盖的结合，也控制多肽折叠发生的腔环境。多肽留在被盖封顶的腔内。在那里它可以进行折叠，直到该腔中的 ATP 水解（循环中最慢的限速步骤，t½ 约 10 s）诱导 ATP 和另一个 GroES 结合到另一个环。这随后导致结合在含肽环上的 GroES 盖和 ADP 释放，打开腔并允许折叠好的蛋白质扩散出腔。如果多肽已正确折叠，它可继续在细胞中发挥功能。如果它仍部分折叠或错误折叠，可重新结合到一个空闲的 GroEL，循环可重复。一个 GroEL 复合物中两个环之间存在互反关系。GroES 封堵一个腔以允许在该腔中隔离底物折叠，伴随着第二个环腔中底物多肽的释放（第二个腔的同时结合、折叠和释放未在图 3-18b 中展示）。GroEL/GroES 的加盖桶状设计（蛋白质被隔离以</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-18_1.png" alt="图 3-18" onclick="lightbox(this.src)">
-  <figcaption>图3-18 · 伴侣蛋白介导的蛋白质折叠。某些蛋白质的折叠依赖于伴侣蛋白，如原核 I 组伴侣蛋白 GroEL。(a) GroEL 是一个桶形复合物，由十四个相同亚基组成两个各含七亚基的堆叠环（蓝），形成两个独立的内部多肽折叠腔。同源七聚体盖（10,000-MW 亚基）GroES（红）可结合到桶的任一端并封堵该侧的腔。(b) GroEL-GroES 折叠循环。部分折叠或错误折叠的多肽进入一个折叠腔（步骤 1）。第二个腔被阻挡。环控制 GroES 盖的结合以封堵腔（步骤 2）。多肽留在被盖封顶的腔内，可进行折叠直到 ATP 水解——循环中最慢的限速步骤（t½ 约 10 s）（步骤 3）——诱导 ATP 和另一个 GroES 结合到另一个环。此结合导致结合在含肽环上的 GroES 盖和 ADP 释放，打开腔使折叠好的蛋白质扩散出腔（步骤 4）。若多肽已正确折叠，它可继续在细胞中发挥功能；若仍部分折叠或错误折叠，可重新结合到空闲的 GroEL 并重复循环。参见 D. L. Nelson and M. M. Cox, 2013, Lehninger Principles of Biochemistry, 6th ed., Macmillan.</figcaption>
+  <figcaption>图3-18 · 伴侣蛋白介导的蛋白质折叠。某些蛋白质的折叠依赖于伴侣蛋白，如原核 I 组伴侣蛋白 GroEL。(a) GroEL 是一个桶形复合物，由十四个相同的 60,000 分子量亚基组成，排列成两个各含七亚基的堆叠环（蓝色），形成两个独立的内部多肽折叠腔。同源七聚体盖（10,000 分子量亚基）GroES（红色）可结合到桶的任一端并封堵该侧的腔。(b) GroEL-GroES 折叠循环。部分折叠或错误折叠的多肽进入一个折叠腔（步骤 1）。第二个腔被 GroES 盖阻挡。每环七个 GroEL 亚基结合七个 ATP，将其水解，然后以与 GroES 结合和释放、多肽结合、折叠和释放协调的固定顺序释放 ADP。GroEL 环中发生的主要构象变化控制 GroES 盖的结合以封堵腔（步骤 2）。多肽留在被盖封顶的腔内，可进行折叠直到 ATP 水解——循环中最慢的限速步骤（t½ 约 10 s）（步骤 3）——诱导 ATP 和另一个 GroES 结合到另一个环（方括号中所示瞬时中间体）。此结合随后导致结合在含肽环上的 GroES 盖和 ADP 释放，打开腔使折叠好的蛋白质扩散出腔（步骤 4）。若多肽已正确折叠，它可继续在细胞中发挥功能；若仍部分折叠或错误折叠，可重新结合到空闲的 GroEL 并重复循环。参见 D. L. Nelson and M. M. Cox, 2013, Lehninger Principles of Biochemistry, 6th ed., Macmillan。[部分 (a) 数据来自 Z. Xu, A. L. Horwich, and P. B. Siegler, 1997, Nature 388:741–750, PDB ID 1aon。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">chaperonin</td><td class="gl-zh">伴侣蛋白</td></tr>
   <tr><td class="gl-en">GroEL</td><td class="gl-zh">GroEL</td></tr>
   <tr><td class="gl-en">GroES</td><td class="gl-zh">GroES</td></tr>
-  <tr><td class="gl-en">chaperonin</td><td class="gl-zh">伴侣蛋白</td></tr>
+  <tr><td class="gl-en">prokaryotic group I chaperonin</td><td class="gl-zh">原核I组伴侣蛋白</td></tr>
+  <tr><td class="gl-en">barrel-shaped complex</td><td class="gl-zh">桶形复合物</td></tr>
+  <tr><td class="gl-en">subunit</td><td class="gl-zh">亚基</td></tr>
+  <tr><td class="gl-en">stacked rings</td><td class="gl-zh">堆叠环</td></tr>
   <tr><td class="gl-en">folding chamber</td><td class="gl-zh">折叠腔</td></tr>
-  <tr><td class="gl-en">lid</td><td class="gl-zh">盖</td></tr>
+  <tr><td class="gl-en">homoheptameric lid</td><td class="gl-zh">同源七聚体盖</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
+  <tr><td class="gl-en">polypeptide</td><td class="gl-zh">多肽</td></tr>
+  <tr><td class="gl-en">misfolded</td><td class="gl-zh">错误折叠</td></tr>
+  <tr><td class="gl-en">rate-limiting step</td><td class="gl-zh">限速步骤</td></tr>
+  <tr><td class="gl-en">t½ (half-time)</td><td class="gl-zh">t½（半时间）</td></tr>
+  <tr><td class="gl-en">conformational change</td><td class="gl-zh">构象变化</td></tr>
+  <tr><td class="gl-en">protein folding</td><td class="gl-zh">蛋白质折叠</td></tr>
+  <tr><td class="gl-en">properly folded</td><td class="gl-zh">正确折叠</td></tr>
   </table>
 </figure>
 <p>折叠）与参与蛋白质降解的 26S 蛋白酶体（在 3.4 节讨论）的结构之间有惊人相似。此外，AAA+ 家族 ATP 酶的一组蛋白质由具中央孔的六聚体环组成，底物可进入其中进行折叠或展开，或在某些情况下进行蛋白水解；这些例子将在 3.4 节和第 13 章讨论。</p>
@@ -365,11 +519,18 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>如前所学，肽键两侧的多肽链部分（P1 和 P2）几乎总是取反式构型（图 3-19a）。然而，当 P2 为脯氨酸时，反式构型在能量上并不比顺式构型明显更有利（图 3-19b）。在已测定结构的折叠蛋白质中，P2 为脯氨酸的肽键约 5% 表现顺式构型，而 P2 非脯氨酸的所有其他肽键仅 0.03% 表现顺式。由于顺式和反式构型之间的异构化速率相对慢，细胞使用脯氨酸异构酶蛋白来催化这些顺/反异构化，以促进以正确异构体折叠。脯氨酰异构化已被提出作为开关来改变已稳定折叠蛋白质的构象从而改变其活性。事实上，此类异构化可大幅改变某些蛋白质的结构（图 3-19c）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-19_1.png" alt="图 3-19" onclick="lightbox(this.src)">
-  <figcaption>图3-19 · 脯氨酸顺/反异构化影响蛋白质折叠和结构。(a) 肽键的平面、类双键特性导致其两侧多肽链部分（P1 和 P2）可能具有顺式或反式构型。当 P2 为非脯氨酸残基时，有序蛋白质中约 99.97% 的肽键呈反式构型。(b) 当 P2 为脯氨酸时，约 5% 的肽键呈顺式构型。脯氨酸异构酶催化顺/反异构化以促进蛋白质折叠。(c) 脯氨酰异构化可作为开关改变已折叠蛋白质的构象。</figcaption>
+  <figcaption>图3-19 · 脯氨酸顺/反异构化影响蛋白质折叠和结构。(a) 肽键的平面、类双键特性导致其两侧多肽链部分（P₁ 和 P₂）可能具有顺式或反式构型。当 P₂ 为非脯氨酸残基时，有序蛋白质中约 99.97% 的肽键呈反式构型。(b) 当 P₂ 为脯氨酸时，约 5% 的肽键呈顺式构型。脯氨酸异构酶催化顺/反异构化以促进蛋白质折叠。(c) 蛋白质一部分的结构（此处为 SH2 蛋白结构域，见第 16 章）可因单个脯氨酸的顺/反异构化而发生显著改变，这种结构变化可影响蛋白质的活性。[部分 (c) 反式数据来自 E. V. Pletneva et al., 2006, J. Mol. Biol. 357:550-561, PDB ID 2etz. 部分 (c) 顺式数据来自 R. J. Mallis et al., 2002, Nat. Struct. Biol. 9:900–905, PDB ID 1lui.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">cis</td><td class="gl-zh">顺式</td></tr>
-  <tr><td class="gl-en">trans</td><td class="gl-zh">反式</td></tr>
-  <tr><td class="gl-en">Proline isomerase</td><td class="gl-zh">脯氨酸异构酶</td></tr>
+  <tr><td class="gl-en">proline</td><td class="gl-zh">脯氨酸</td></tr>
+  <tr><td class="gl-en">cis/trans isomerization</td><td class="gl-zh">顺/反异构化</td></tr>
+  <tr><td class="gl-en">peptide bond</td><td class="gl-zh">肽键</td></tr>
+  <tr><td class="gl-en">planar</td><td class="gl-zh">平面</td></tr>
+  <tr><td class="gl-en">double bond-like character</td><td class="gl-zh">类双键特性</td></tr>
+  <tr><td class="gl-en">proline isomerase</td><td class="gl-zh">脯氨酸异构酶</td></tr>
+  <tr><td class="gl-en">SH2 domain</td><td class="gl-zh">SH2结构域</td></tr>
+  <tr><td class="gl-en">conformation</td><td class="gl-zh">构象</td></tr>
+  <tr><td class="gl-en">protein folding</td><td class="gl-zh">蛋白质折叠</td></tr>
+  <tr><td class="gl-en">protein structure</td><td class="gl-zh">蛋白质结构</td></tr>
   </table>
 </figure>
 <p>异常折叠的蛋白质可形成与疾病相关的淀粉样物</p>
@@ -377,14 +538,25 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>淀粉样物最早在沉积于组织中、抗酶降解、并与数十种称为淀粉样变性病的疾病相关的蛋白质聚集体中被认识到。这些疾病包括神经退行性疾病，如人类的阿尔茨海默病和帕金森病，以及牛和羊的可传播性海绵状脑病（"疯牛病"）。这些疾病各自的特征是退化大脑中存在丝状斑块（图 3-20b）。淀粉样变性病最常随衰老发生；然而，编码聚集蛋白的基因突变可导致早期淀粉样形成和疾病发作。组成斑块的淀粉样纤维源自丰富的天然蛋白质。例如，嵌入质膜的淀粉样前体蛋白的片段形成阿尔茨海默病患者大脑中的斑块；而朊蛋白--一种"感染性"蛋白质--在朊病毒病中形成纤维。在阿尔茨海默病中，过度磷酸化的 tau 蛋白（正常情况下是微管结合蛋白，见第 18 章）形式形成称为"缠结"的扭曲纤维。这些淀粉样物，无论是作为相对短、水溶性的原丝还是作为长、不溶的纤维，都被认为具有毒性并直接促成淀粉样变性病的病理。■</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-20_1.png" alt="图 3-20" onclick="lightbox(this.src)">
-  <figcaption>图3-20 · 错误折叠的蛋白质可形成基于交叉 β 折叠片结构的有序淀粉样聚集体。(a) 在蛋白质和多肽的未折叠片段中，暴露的长 6–12 残基片段（短扁箭头）可组装成折叠片（另见图 3-5），其中每条 β 链几乎垂直于所得淀粉样原丝的长轴（本图中为垂直方向），并与上下链氢键结合（浅色）。两个长而近乎平坦的折叠片紧密堆叠并相互扭转形成淀粉样原丝，原丝再组装成更粗的淀粉样纤维。(b) 淀粉样变性病中，淀粉样斑块沉积于退化大脑，如阿尔茨海默病（斑块和缠结）。</figcaption>
+  <figcaption>图3-20 · 错误折叠的蛋白质可形成基于交叉 β 片层结构的有序淀粉样聚集体。(a) 在蛋白质和多肽的未折叠片段中，暴露的长 6–12 残基片段（短扁箭头）可组装成 β 片层（另见图 3-5），其中每条 β 链几乎垂直于所得淀粉样原丝的长轴（本图中为垂直方向），并与上下链形成氢键（浅色）。两个长而近乎平坦的 β 片层紧密堆叠并相互扭转形成淀粉样原丝，原丝再组装成更粗的丝状结构，称为淀粉样纤维 (b)。淀粉样纤维可由不同数量的原丝组成。含四条原丝的纤维模型拟合到酸变性胰岛素纤维的电子密度中（左），以及 transthyretin 片段的含两条原丝纤维的冷冻电子显微图像与基于 NMR 的模型（黄色）。纤维可聚集成宏观的斑块和缠结，沉积在组织中，染色后足够大，可用光学显微镜观察。(c) 阿尔茨海默病患者人脑组织切片的显微视图，显示多个淀粉样斑块和纤维性缠结。[部分 (b, 左) 经 Elsevier 许可转载，来自 Dobson, C.M., "Protein misfolding, evolution and disease," Trends in Biochemical Sciences, 1999, 24(9):329-332. Fig. 3. 部分 (b, 右) 经 Macmillan Publishers Ltd 许可转载，来自 Knowles et al., Nat. Rev. Mol. Cell Biol. 2014, 15(6):384-396. Fig. 3a. 部分 (c) Thomas Deerinck, NCMIR/Science Source.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Plaques</td><td class="gl-zh">斑块</td></tr>
-  <tr><td class="gl-en">Tangles</td><td class="gl-zh">缠结</td></tr>
-  <tr><td class="gl-en">Amyloid</td><td class="gl-zh">淀粉样</td></tr>
-  <tr><td class="gl-en">protofilament</td><td class="gl-zh">原丝</td></tr>
-  <tr><td class="gl-en">Amyloid fibrils</td><td class="gl-zh">淀粉样纤维</td></tr>
-  <tr><td class="gl-en">cross-β sheet</td><td class="gl-zh">交叉β折叠片</td></tr>
+  <tr><td class="gl-en">misfolded protein</td><td class="gl-zh">错误折叠蛋白</td></tr>
+  <tr><td class="gl-en">amyloid aggregate</td><td class="gl-zh">淀粉样聚集体</td></tr>
+  <tr><td class="gl-en">cross-β sheet</td><td class="gl-zh">交叉β片层</td></tr>
+  <tr><td class="gl-en">β strand</td><td class="gl-zh">β链</td></tr>
+  <tr><td class="gl-en">hydrogen bond</td><td class="gl-zh">氢键</td></tr>
+  <tr><td class="gl-en">amyloid protofilament</td><td class="gl-zh">淀粉样原丝</td></tr>
+  <tr><td class="gl-en">amyloid fibril</td><td class="gl-zh">淀粉样纤维</td></tr>
+  <tr><td class="gl-en">plaque</td><td class="gl-zh">斑块</td></tr>
+  <tr><td class="gl-en">tangle</td><td class="gl-zh">缠结</td></tr>
+  <tr><td class="gl-en">light microscopy</td><td class="gl-zh">光学显微镜</td></tr>
+  <tr><td class="gl-en">Alzheimer's disease</td><td class="gl-zh">阿尔茨海默病</td></tr>
+  <tr><td class="gl-en">cryoelectron microscopy</td><td class="gl-zh">冷冻电子显微镜</td></tr>
+  <tr><td class="gl-en">NMR (nuclear magnetic resonance)</td><td class="gl-zh">核磁共振（NMR）</td></tr>
+  <tr><td class="gl-en">transthyretin</td><td class="gl-zh">transthyretin（转甲状腺素蛋白）</td></tr>
+  <tr><td class="gl-en">insulin</td><td class="gl-zh">胰岛素</td></tr>
+  <tr><td class="gl-en">electron density</td><td class="gl-zh">电子密度</td></tr>
+  <tr><td class="gl-en">acid-denatured</td><td class="gl-zh">酸变性</td></tr>
   </table>
 </figure>
 <p>第 3.2 节关键概念</p>
@@ -409,13 +581,21 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>我们将在全书看到许多蛋白质-配体结合的例子，包括激素与受体的结合（见第 15 章）、调节分子与 DNA 的结合（见第 9 章）、细胞黏附分子与细胞外基质的结合（见第 20 章）等等。此处我们聚焦于一类蛋白质--酶--与配体结合如何导致对细胞存活和功能至关重要的化学反应的催化。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-21_1.png" alt="图 3-21" onclick="lightbox(this.src)">
-  <figcaption>图3-21 · 蛋白质-配体结合：抗体。(a) 抗体的（表面和丝带）模型。免疫球蛋白 G（IgG）类的每个抗体分子由两条相同的重链（中蓝和深蓝）和两条相同的轻链（浅蓝）组成，由二硫键（黄）共价连接。定义抗原结合位点的互补决定区（CDR）以红色着色。(b) 卡通图显示整体结构，含两条重链（较长）和两条轻链（较短），黄条代表二硫键。(c) 抗体与其靶抗原上结合位点（表位）之间的“手入手套”式契合--此例为鸡蛋清溶菌酶。抗体以其 CDR 的残基接触抗原。[部分数据来自 L. J. Harris et al., 1997, Biochemistry 36:1581-1597, PDB ID 1igt; E. A. Padlan et al., 1989, PNAS 86:5938-5942, PDB ID 3hfm.]</figcaption>
+  <figcaption>图3-21 · 抗体的蛋白质-配体结合。(a) 抗体的（表面和丝带）模型。免疫球蛋白 G（IgG）类的每个抗体分子由两条相同的重链（中蓝和深蓝）和两条相同的轻链（浅蓝）组成，由二硫键（黄色）共价连接。定义抗原结合位点的互补决定区（CDR）以红色着色表示。(b) 卡通图显示整体结构，含两条重链（较长）和两条轻链（较短），黄色条代表二硫键。(c) 抗体与其靶抗原上结合位点（表位）之间的"手入式手套"契合——此例为鸡蛋清溶菌酶。抗体以其 CDR 的残基接触抗原。[部分 (a) 数据来自 L. J. Harris, et al., 1997, Biochemistry 36:1581-1597, PDB ID 1igt. 部分 (b) 数据来自 E. A. Padlan et al., 1989, P. Natl. Acad. Sci. USA 86:5938–5942, PDB ID 3hfm.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">antibody</td><td class="gl-zh">抗体</td></tr>
+  <tr><td class="gl-en">immunoglobulin G (IgG)</td><td class="gl-zh">免疫球蛋白G（IgG）</td></tr>
   <tr><td class="gl-en">heavy chain</td><td class="gl-zh">重链</td></tr>
   <tr><td class="gl-en">light chain</td><td class="gl-zh">轻链</td></tr>
-  <tr><td class="gl-en">CDR</td><td class="gl-zh">互补决定区</td></tr>
   <tr><td class="gl-en">disulfide bond</td><td class="gl-zh">二硫键</td></tr>
+  <tr><td class="gl-en">complementarity-determining region (CDR)</td><td class="gl-zh">互补决定区（CDR）</td></tr>
+  <tr><td class="gl-en">antigen-binding site</td><td class="gl-zh">抗原结合位点</td></tr>
   <tr><td class="gl-en">epitope</td><td class="gl-zh">表位</td></tr>
+  <tr><td class="gl-en">antigen</td><td class="gl-zh">抗原</td></tr>
+  <tr><td class="gl-en">surface and ribbon model</td><td class="gl-zh">表面和丝带模型</td></tr>
+  <tr><td class="gl-en">chicken egg-white lysozyme</td><td class="gl-zh">鸡蛋清溶菌酶</td></tr>
+  <tr><td class="gl-en">covalently linked</td><td class="gl-zh">共价连接</td></tr>
+  <tr><td class="gl-en">carbohydrate</td><td class="gl-zh">糖类</td></tr>
   </table>
 </figure>
 <p>酶是高效且特异的催化剂</p>
@@ -424,12 +604,20 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>与所有催化剂一样（见第 2 章），酶提高反应速率，但不影响反应的程度（由反应物与产物之间的自由能变化 ΔG 决定），且酶本身不因所催化的反应而发生永久性改变。酶通过降低过渡态的能量，从而降低达到过渡态所需的活化能来提高反应速率（图 3-22）。在试管中，木炭和铂等催化剂促进反应，但通常只在高温或高压、极端高或低 pH、或有机溶剂中进行。然而在细胞内，酶必须在 37 °C</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-22_1.png" alt="图 3-22" onclick="lightbox(this.src)">
-  <figcaption>图3-22 · 酶对化学反应活化能的影响。此假设反应路径描绘了反应进行时自由能 G 的变化。只有当产物的总 G 低于反应物（负 ΔG）时反应才自发进行。然而，所有化学反应都经过一个或多个高能过渡态，反应速率与活化能（ΔG‡）成反比，后者是反应物自由能与过渡态自由能之差。酶通过降低活化能（从 ΔG‡uncat 到 ΔG‡cat）来加速反应。</figcaption>
+  <figcaption>图3-22 · 酶对化学反应活化能的影响。此假设反应路径描绘了反应进行时自由能 G 的变化。只有当产物的总 G 低于反应物（负 ΔG）时反应才自发进行。然而，所有化学反应都经过一个或多个高能过渡态，反应速率与活化能（ΔG‡）成反比，后者是反应物与过渡态（路径上的最高点）之间的自由能差。酶和其他催化剂通过降低过渡态的自由能从而降低 ΔG‡ 来加速反应速率。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">enzyme</td><td class="gl-zh">酶</td></tr>
   <tr><td class="gl-en">activation energy</td><td class="gl-zh">活化能</td></tr>
+  <tr><td class="gl-en">chemical reaction</td><td class="gl-zh">化学反应</td></tr>
+  <tr><td class="gl-en">free energy (G)</td><td class="gl-zh">自由能（G）</td></tr>
   <tr><td class="gl-en">transition state</td><td class="gl-zh">过渡态</td></tr>
   <tr><td class="gl-en">reactants</td><td class="gl-zh">反应物</td></tr>
   <tr><td class="gl-en">products</td><td class="gl-zh">产物</td></tr>
+  <tr><td class="gl-en">ΔG</td><td class="gl-zh">ΔG</td></tr>
+  <tr><td class="gl-en">ΔG‡ (activation energy)</td><td class="gl-zh">ΔG‡（活化能）</td></tr>
+  <tr><td class="gl-en">catalyst</td><td class="gl-zh">催化剂</td></tr>
+  <tr><td class="gl-en">reaction pathway</td><td class="gl-zh">反应路径</td></tr>
+  <tr><td class="gl-en">spontaneous reaction</td><td class="gl-zh">自发反应</td></tr>
   </table>
 </figure>
 <p>和 1 个大气压、生理 pH 值（通常 6.5–7.5，有时更低）的水环境中有效发挥作用。引人注目的是，酶表现出巨大的催化能力，在某些情况下将反应速率加速到其他条件相似的对应非催化反应的 10⁶–10¹² 倍。</p>
@@ -439,22 +627,41 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>底物结合位点负责酶显著的特异性。仅改变酶底物结构中的一个或几个原子，或底物几何（如立体化学）的细微变化，就可产生不再是该酶底物的变体分子。如同上所述抗体对抗原的特异性，酶对底物的特异性是</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-23_1.png" alt="图 3-23" onclick="lightbox(this.src)">
-  <figcaption>图3-23 · 酶胰蛋白酶的活性位点。(a) 酶的活性位点（虚线勾勒）由底物结合位点（蓝，特异结合底物）和催化位点（紫，执行催化）组成。(b) 丝氨酸蛋白酶胰蛋白酶一部分的混合表面/丝带表示。可见含催化位点（紫，含 Ser-195、Asp-102、His-57 催化三联体，另见图 3-27）的活性位点裂隙和底物结合位点的一部分。</figcaption>
+  <figcaption>图3-23 · 酶胰蛋白酶的活性位点。(a) 酶的活性位点（以虚线勾勒）由底物结合位点（蓝色，特异结合底物）和催化位点（紫色，执行催化）组成。(b) 丝氨酸蛋白酶胰蛋白酶一部分的混合表面/丝带表示。可见含催化位点（紫色，包括关键催化三联体 Ser-195、Asp-102 和 His-57，另见图 3-27）的活性位点裂隙和底物结合位点中称为侧链特异性结合口袋的部分（蓝色）。[数据来自 B. Sandler, M. Murakami, and J. Clardy, 1998, J. Am. Chem. Soc. 120:595-596, PDB ID 1aq7.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">active site</td><td class="gl-zh">活性位点</td></tr>
   <tr><td class="gl-en">substrate-binding site</td><td class="gl-zh">底物结合位点</td></tr>
   <tr><td class="gl-en">catalytic site</td><td class="gl-zh">催化位点</td></tr>
+  <tr><td class="gl-en">serine protease</td><td class="gl-zh">丝氨酸蛋白酶</td></tr>
+  <tr><td class="gl-en">trypsin</td><td class="gl-zh">胰蛋白酶</td></tr>
   <tr><td class="gl-en">catalytic triad</td><td class="gl-zh">催化三联体</td></tr>
+  <tr><td class="gl-en">Ser-195</td><td class="gl-zh">Ser-195</td></tr>
+  <tr><td class="gl-en">Asp-102</td><td class="gl-zh">Asp-102</td></tr>
+  <tr><td class="gl-en">His-57</td><td class="gl-zh">His-57</td></tr>
+  <tr><td class="gl-en">side-chain-specificity binding pocket</td><td class="gl-zh">侧链特异性结合口袋</td></tr>
+  <tr><td class="gl-en">hybrid surface/ribbon representation</td><td class="gl-zh">混合表面/丝带表示</td></tr>
+  <tr><td class="gl-en">active-site cleft</td><td class="gl-zh">活性位点裂隙</td></tr>
   </table>
 </figure>
 <p>酶的底物结合位点与底物之间精确分子互补性的结果。通常只有一种或少数几种底物能精确嵌入结合位点。</p>
 <p>底物可能以钥匙插入锁的方式与酶结合的想法，最早由 Emil Fischer 于 1894 年提出。Daniel Koshland 于 1958 年对此提出修正，称为诱导契合，认为底物结合位点不像锁那样刚性，而是柔性的，当底物结合时被诱导改变形状以更优化催化。1913 年，Leonor Michaelis 和 Maud Leonora Menten 提供了支持酶-底物结合假说的关键证据。他们表明，在低底物浓度下酶促反应速率与底物浓度成正比，但随着底物浓度增加，速率达到平台即最大速度 Vmax，并变得与底物浓度无关，Vmax 的值与反应混合物中酶的量成正比（图 3-24）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-24_1.png" alt="图 3-24" onclick="lightbox(this.src)">
-  <figcaption>图3-24 · 酶催化反应的 Km 和 Vmax。Km 和 Vmax 由分析初始反应速率对底物浓度的依赖来确定。这些假设动力学曲线的形状是简单酶催化反应（一个底物 S 转化为产物 P）的特征。初始反应速度在酶加入底物后立即测量，此时底物浓度尚未明显变化。(a) 初始反应速度对底物浓度的图，显示 Vmax 随酶量 [E] 变化。</figcaption>
+  <figcaption>图3-24 · 酶催化反应的 Km 和 Vmax。Vmax 和 Km 由分析初始反应速率对底物浓度的依赖来确定。这些假设动力学曲线的形状是简单酶催化反应（一个底物 S 转化为产物 P）的特征。初始反应速度在酶加入底物后立即测量，此时底物浓度尚未明显变化。(a) 在两种不同酶浓度 [E] 下初始反应速度对底物浓度 [S] 的曲线。产生半最大反应速率的 [S] 即米氏常数 Km，是 E 将 S 转化为 P 的亲和力的量度。酶浓度增加四倍使反应速率成比例增加，因此最大速度 Vmax 也增加四倍；但 Km 不变。(b) 初始反应速度对底物浓度的曲线，分别使用酶对其具有高亲和力的底物 S 和酶对其具有较低亲和力的底物 S'。注意两种底物的 Vmax 相同，因为 [E] 相同，但 Km' 对于 S'（低亲和力底物）更高。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Vmax</td><td class="gl-zh">最大速度</td></tr>
-  <tr><td class="gl-en">Km</td><td class="gl-zh">米氏常数</td></tr>
+  <tr><td class="gl-en">Km (Michaelis constant)</td><td class="gl-zh">Km（米氏常数）</td></tr>
+  <tr><td class="gl-en">Vmax (maximal velocity)</td><td class="gl-zh">Vmax（最大速度）</td></tr>
+  <tr><td class="gl-en">enzyme-catalyzed reaction</td><td class="gl-zh">酶催化反应</td></tr>
+  <tr><td class="gl-en">initial reaction velocity</td><td class="gl-zh">初始反应速度</td></tr>
+  <tr><td class="gl-en">substrate concentration [S]</td><td class="gl-zh">底物浓度[S]</td></tr>
+  <tr><td class="gl-en">enzyme concentration [E]</td><td class="gl-zh">酶浓度[E]</td></tr>
+  <tr><td class="gl-en">half-maximal reaction rate</td><td class="gl-zh">半最大反应速率</td></tr>
+  <tr><td class="gl-en">affinity</td><td class="gl-zh">亲和力</td></tr>
+  <tr><td class="gl-en">high-affinity substrate</td><td class="gl-zh">高亲和力底物</td></tr>
+  <tr><td class="gl-en">low-affinity substrate</td><td class="gl-zh">低亲和力底物</td></tr>
+  <tr><td class="gl-en">kinetic curve</td><td class="gl-zh">动力学曲线</td></tr>
+  <tr><td class="gl-en">substrate (S)</td><td class="gl-zh">底物（S）</td></tr>
+  <tr><td class="gl-en">product (P)</td><td class="gl-zh">产物（P）</td></tr>
   </table>
 </figure>
 <p>Michaelis 和 Menten 推断，这些特性是由于底物分子（S）结合到酶（E）上固定且有限数目的位点上，他们称此结合物种为酶-底物（ES）复合物。在高底物浓度下，酶上所有结合位点都结合了底物，底物结合位点被称为底物饱和--无法再与活性位点结合，反应达到最大速度。Michaelis 和 Menten 提出，ES 复合物与未结合的酶和底物处于平衡，是底物最终不可逆转化为产物（P）的中间步骤（图 3-25）：</p>
@@ -463,12 +670,16 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>V0 = Vmax [S] / ([S] + Km)    (3-1)</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-25_1.png" alt="图 3-25" onclick="lightbox(this.src)">
-  <figcaption>图3-25 · 酶反应机制的示意模型。酶动力学表明酶（E）在固定且有限数目的位点--酶的活性位点--结合底物分子（S）。结合物种称为酶-底物（ES）复合物。ES 复合物与未结合的酶和底物处于平衡（双箭头），是底物转化为产物（P）的中间步骤。</figcaption>
+  <figcaption>图3-25 · 酶反应机制的示意模型。酶动力学表明酶（E）在固定且有限数目的位点--酶的活性位点--结合底物分子（S）。结合的物种称为酶-底物（ES）复合物。ES 复合物与未结合的酶和底物处于平衡（双箭头），是底物转化为产物（P）的中间步骤。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Enzyme (E)</td><td class="gl-zh">酶(E)</td></tr>
-  <tr><td class="gl-en">Substrate (S)</td><td class="gl-zh">底物(S)</td></tr>
-  <tr><td class="gl-en">Enzyme-substrate complex (ES)</td><td class="gl-zh">酶-底物复合物(ES)</td></tr>
-  <tr><td class="gl-en">Products (P)</td><td class="gl-zh">产物(P)</td></tr>
+  <tr><td class="gl-en">enzyme (E)</td><td class="gl-zh">酶（E）</td></tr>
+  <tr><td class="gl-en">substrate (S)</td><td class="gl-zh">底物（S）</td></tr>
+  <tr><td class="gl-en">enzyme-substrate (ES) complex</td><td class="gl-zh">酶-底物（ES）复合物</td></tr>
+  <tr><td class="gl-en">active site</td><td class="gl-zh">活性位点</td></tr>
+  <tr><td class="gl-en">equilibrium</td><td class="gl-zh">平衡</td></tr>
+  <tr><td class="gl-en">product (P)</td><td class="gl-zh">产物（P）</td></tr>
+  <tr><td class="gl-en">reaction mechanism</td><td class="gl-zh">反应机制</td></tr>
+  <tr><td class="gl-en">enzyme kinetics</td><td class="gl-zh">酶动力学</td></tr>
   </table>
 </figure>
 <div class="boximg">
@@ -485,8 +696,18 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
   <img class="zoomable" src="figures/fig_3-26_1.png" alt="图 3-26" onclick="lightbox(this.src)">
   <figcaption>图3-26 · 未催化和多步酶催化反应的自由能反应曲线。(a) 假设的简单未催化反应（底物 S 经单一高能过渡态转化为产物 P）的自由能反应曲线。(b) 许多酶通过将过程分为多个离散步骤来催化此类反应，此例中初始形成 ES 复合物，随后经单一过渡态（EX‡）转化为游离酶（E）和 P。这些步骤中每一步的活化能都显著低于未催化反应的活化能；因此酶极大增强反应速率。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">transition state</td><td class="gl-zh">过渡态</td></tr>
+  <tr><td class="gl-en">free-energy reaction profile</td><td class="gl-zh">自由能反应曲线</td></tr>
+  <tr><td class="gl-en">uncatalyzed reaction</td><td class="gl-zh">未催化反应</td></tr>
+  <tr><td class="gl-en">enzyme-catalyzed reaction</td><td class="gl-zh">酶催化反应</td></tr>
+  <tr><td class="gl-en">substrate (S)</td><td class="gl-zh">底物（S）</td></tr>
+  <tr><td class="gl-en">product (P)</td><td class="gl-zh">产物（P）</td></tr>
+  <tr><td class="gl-en">transition state (EX‡)</td><td class="gl-zh">过渡态（EX‡）</td></tr>
+  <tr><td class="gl-en">ES complex</td><td class="gl-zh">ES复合物</td></tr>
   <tr><td class="gl-en">activation energy</td><td class="gl-zh">活化能</td></tr>
+  <tr><td class="gl-en">reaction rate</td><td class="gl-zh">反应速率</td></tr>
+  <tr><td class="gl-en">enzyme-transition state complex</td><td class="gl-zh">酶-过渡态复合物</td></tr>
+  <tr><td class="gl-en">discrete step</td><td class="gl-zh">离散步骤</td></tr>
+  <tr><td class="gl-en">acyl enzyme (ES')</td><td class="gl-zh">酰基酶（ES'）</td></tr>
   </table>
 </figure>
 <p>其中 P1 是待切割肽键 N 端侧的蛋白质部分，P2 是 C 端侧的部分。我们首先考虑丝氨酸蛋白酶如何特异结合其底物，然后详细展示催化如何发生。</p>
@@ -494,27 +715,61 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <figure>
   <img class="zoomable" src="figures/fig_3-27_1.png" alt="图 3-27" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_3-27_2.png" alt="图 3-27" onclick="lightbox(this.src)">
-  <figcaption>图3-27 · 胰蛋白酶样丝氨酸蛋白酶活性位点中的底物结合。(a) 胰蛋白酶（紫和蓝分子）的活性位点与结合的底物（黑分子）。底物与胰蛋白酶的底物结合位点形成双链 β 折叠片，底物中精氨酸（R3）的侧链结合在结合位点的侧链特异性结合口袋中。其带正电的胍基被酶 Asp-189 侧链的负电荷稳定。</figcaption>
+  <figcaption>图3-27 · 胰蛋白酶样丝氨酸蛋白酶活性位点中的底物结合。(a) 胰蛋白酶（紫色和蓝色分子）的活性位点与结合的底物（黑色分子）。底物与胰蛋白酶的底物结合位点形成双链 β 片层，底物中精氨酸（R₃）的侧链结合在结合位点的侧链特异性结合口袋中。其带正电的胍基被酶 Asp-189 侧链的负电荷所稳定。此结合使精氨酸的肽键适当排列，以便被酶活性位点的催化三联体（Ser-195、His-57 和 Asp-102 的侧链）催化水解。(b) 衬于侧链特异性结合口袋的氨基酸决定其形状和电荷，从而决定其结合特性。胰蛋白酶容纳精氨酸和赖氨酸的带正电侧链；胰凝乳蛋白酶容纳大的疏水侧链如苯丙氨酸；弹性蛋白酶容纳小的侧链如甘氨酸和丙氨酸。参见 J. J. Perona and C. S. Craik, 1997, J. Biol. Chem. 272:29987–29990.</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Trypsin</td><td class="gl-zh">胰蛋白酶</td></tr>
-  <tr><td class="gl-en">Chymotrypsin</td><td class="gl-zh">胰凝乳蛋白酶</td></tr>
-  <tr><td class="gl-en">Elastase</td><td class="gl-zh">弹性蛋白酶</td></tr>
-  <tr><td class="gl-en">Guanidinium group</td><td class="gl-zh">胍基</td></tr>
+  <tr><td class="gl-en">trypsin-like serine protease</td><td class="gl-zh">胰蛋白酶样丝氨酸蛋白酶</td></tr>
+  <tr><td class="gl-en">active site</td><td class="gl-zh">活性位点</td></tr>
+  <tr><td class="gl-en">substrate</td><td class="gl-zh">底物</td></tr>
+  <tr><td class="gl-en">β sheet</td><td class="gl-zh">β片层</td></tr>
+  <tr><td class="gl-en">arginine (R₃)</td><td class="gl-zh">精氨酸（R₃）</td></tr>
+  <tr><td class="gl-en">guanidinium group</td><td class="gl-zh">胍基</td></tr>
   <tr><td class="gl-en">Asp-189</td><td class="gl-zh">Asp-189</td></tr>
-  <tr><td class="gl-en">Oxyanion hole</td><td class="gl-zh">氧负离子洞</td></tr>
-  <tr><td class="gl-en">Catalytic site</td><td class="gl-zh">催化位点</td></tr>
-  <tr><td class="gl-en">Binding site</td><td class="gl-zh">结合位点</td></tr>
+  <tr><td class="gl-en">side-chain-specificity binding pocket</td><td class="gl-zh">侧链特异性结合口袋</td></tr>
+  <tr><td class="gl-en">catalytic triad</td><td class="gl-zh">催化三联体</td></tr>
+  <tr><td class="gl-en">Ser-195</td><td class="gl-zh">Ser-195</td></tr>
+  <tr><td class="gl-en">His-57</td><td class="gl-zh">His-57</td></tr>
+  <tr><td class="gl-en">Asp-102</td><td class="gl-zh">Asp-102</td></tr>
+  <tr><td class="gl-en">chymotrypsin</td><td class="gl-zh">胰凝乳蛋白酶</td></tr>
+  <tr><td class="gl-en">elastase</td><td class="gl-zh">弹性蛋白酶</td></tr>
+  <tr><td class="gl-en">phenylalanine</td><td class="gl-zh">苯丙氨酸</td></tr>
+  <tr><td class="gl-en">glycine</td><td class="gl-zh">甘氨酸</td></tr>
+  <tr><td class="gl-en">alanine</td><td class="gl-zh">丙氨酸</td></tr>
+  <tr><td class="gl-en">lysine</td><td class="gl-zh">赖氨酸</td></tr>
+  <tr><td class="gl-en">hydrophobic side chain</td><td class="gl-zh">疏水侧链</td></tr>
+  <tr><td class="gl-en">peptide bond hydrolysis</td><td class="gl-zh">肽键水解</td></tr>
+  <tr><td class="gl-en">binding pocket</td><td class="gl-zh">结合口袋</td></tr>
+  <tr><td class="gl-en">Val-190</td><td class="gl-zh">Val-190</td></tr>
+  <tr><td class="gl-en">Val-216</td><td class="gl-zh">Val-216</td></tr>
+  <tr><td class="gl-en">Ser-189</td><td class="gl-zh">Ser-189</td></tr>
+  <tr><td class="gl-en">oxyanion hole</td><td class="gl-zh">氧负离子洞</td></tr>
   </table>
 </figure>
 <p>其他方面相似的结合口袋结构的细微差异，有助于解释与胰蛋白酶相关的两种丝氨酸蛋白酶的不同底物特异性：胰凝乳蛋白酶偏好大的芳香基团（如 Phe、Tyr、Trp），弹性蛋白酶偏好 Gly 和 Ala 的小侧链（图 3-27b）。胰凝乳蛋白酶中不带电的 Ser-189 允许大的、不带电的疏水侧链稳定地结合在口袋中。弹性蛋白酶的特异性受胰蛋白酶结合口袋侧面的甘氨酸被缬氨酸的分支脂肪族侧链（Val-216 和 Val-190）取代的影响，这些侧链阻塞结合口袋（见图 3-27b）。结果是，底物中的大侧链无法嵌入弹性蛋白酶的结合口袋，而在此位置具有短丙氨酸或甘氨酸侧链的底物能很好结合并被随后的切割。</p>
 <p>在催化位点，所有三种酶都使用 195 位丝氨酸侧链上的羟基来催化底物蛋白质中肽键的水解。由 Ser-195、His-57 和 Asp-102 三个侧链形成的催化三联体参与本质上是两步的水解反应。图 3-28 展示了</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-28_1.png" alt="图 3-28" onclick="lightbox(this.src)">
-  <figcaption>图3-28 · 丝氨酸蛋白酶介导的肽键水解机制。丝氨酸蛋白酶活性位点中 Ser-195、His-57、Asp-102 的催化三联体采用多步机制水解靶蛋白质中的肽键。(a) 多肽底物结合到活性位点（见图 3-27）形成 ES 复合物后，Ser-195 的羟基氧攻击底物靶肽键（黄）的羰基碳。电子移动以箭头表示。(b) 此攻击导致形成第一个四面体中间体。(c) 后续电子移动导致肽键断裂、释放一个反应产物（NH2−P2）并形成酰基酶（ES′复合物）。(d) 溶剂水分子的氧随后攻击酰基酶的羰基碳。(e) 此攻击导致形成第二个四面体中间体。(f) 额外的电子移动导致 Ser-195-底物键断裂（形成 EP 复合物）并释放最终反应产物（P1−COOH）。</figcaption>
+  <figcaption>图3-28 · 丝氨酸蛋白酶介导的肽键水解机制。丝氨酸蛋白酶活性位点中 Ser-195、His-57 和 Asp-102 的催化三联体采用多步机制水解靶蛋白质中的肽键。(a) 多肽底物结合到活性位点（见图 3-27）形成 ES 复合物后，Ser-195 的羟基氧攻击底物靶肽键（黄色）的羰基碳。电子移动以箭头表示。(b) 此攻击导致形成四面体中间体（过渡态），其中底物氧上的负电荷被酶氧负离子洞形成的氢键所稳定。(c) 后续电子移动导致肽键断裂、释放一个反应产物（NH₂−P₂），并形成酰基酶（ES' 复合物）。(d) 溶剂水分子的氧随后攻击酰基酶的羰基碳。(e) 此攻击导致形成第二个四面体中间体。(f) 额外的电子移动导致 Ser-195-底物键断裂（形成 EP 复合物）并释放最终反应产物（P₁−COOH）。His-57 的侧链通过与 Asp-102 侧链的氢键保持在正确取向，通过在整个反应中夺取和提供质子来促进催化（插图）。若 pH 过低且 His-57 侧链被质子化，则无法参与催化，酶无活性。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">serine protease</td><td class="gl-zh">丝氨酸蛋白酶</td></tr>
+  <tr><td class="gl-en">peptide bond hydrolysis</td><td class="gl-zh">肽键水解</td></tr>
   <tr><td class="gl-en">catalytic triad</td><td class="gl-zh">催化三联体</td></tr>
-  <tr><td class="gl-en">acyl enzyme</td><td class="gl-zh">酰基酶</td></tr>
-  <tr><td class="gl-en">tetrahedral intermediate</td><td class="gl-zh">四面体中间体</td></tr>
+  <tr><td class="gl-en">Ser-195</td><td class="gl-zh">Ser-195</td></tr>
+  <tr><td class="gl-en">His-57</td><td class="gl-zh">His-57</td></tr>
+  <tr><td class="gl-en">Asp-102</td><td class="gl-zh">Asp-102</td></tr>
+  <tr><td class="gl-en">ES complex</td><td class="gl-zh">ES复合物</td></tr>
+  <tr><td class="gl-en">tetrahedral intermediate (transition state)</td><td class="gl-zh">四面体中间体（过渡态）</td></tr>
+  <tr><td class="gl-en">oxyanion hole</td><td class="gl-zh">氧负离子洞</td></tr>
+  <tr><td class="gl-en">acyl enzyme (ES' complex)</td><td class="gl-zh">酰基酶（ES'复合物）</td></tr>
+  <tr><td class="gl-en">EP complex</td><td class="gl-zh">EP复合物</td></tr>
+  <tr><td class="gl-en">proton</td><td class="gl-zh">质子</td></tr>
+  <tr><td class="gl-en">protonated</td><td class="gl-zh">质子化</td></tr>
+  <tr><td class="gl-en">inactive</td><td class="gl-zh">无活性</td></tr>
+  <tr><td class="gl-en">carbonyl carbon</td><td class="gl-zh">羰基碳</td></tr>
+  <tr><td class="gl-en">solvent water molecule</td><td class="gl-zh">溶剂水分子</td></tr>
+  <tr><td class="gl-en">hydroxyl oxygen</td><td class="gl-zh">羟基氧</td></tr>
+  <tr><td class="gl-en">electron movement</td><td class="gl-zh">电子移动</td></tr>
+  <tr><td class="gl-en">His-57 side chain</td><td class="gl-zh">His-57侧链</td></tr>
+  <tr><td class="gl-en">hydrogen bonding</td><td class="gl-zh">氢键</td></tr>
   </table>
 </figure>
 <p>催化三联体如何协同断裂肽键，Asp-102 和 His-57 支持 Ser-195 羟基氧对底物羰基碳的攻击。此攻击最初形成碳上连接四个基团的不稳定过渡态（四面体中间体）。随后 C−N 肽键断裂释放底物蛋白质的一部分（NH3−P2），而另一部分通过酯键与丝氨酸的氧共价连接，形成相对稳定的酰基酶中间体。随后在涉及另一个不稳定四面体中间体的反应中，用来自水的氧替换此氧，导致最终产物（P1−COOH）的释放。四面体中间体过渡态通过与酶主链氨基基团的氢键被部分稳定，此处称为氧负离子洞。丝氨酸蛋白酶大家族及相关酶（都具有活性位点丝氨酸）说明，高效反应机制如何被不同酶反复用于催化相似反应。</p>
@@ -522,11 +777,26 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>第三，由一个或多个氨基酸侧链介导的酸碱催化常被酶使用，如丝氨酸蛋白酶中 His-57 的咪唑基作为碱去除 Ser-195 羟基的氢。结果是，催化位点中一个或多个氨基酸侧链的特定电离状态（质子化或非质子化）可能才与催化兼容，因此酶的活性可能依赖于 pH。例如，丝氨酸蛋白酶中 His-57 的咪唑基（pKa 约 6.8）只有在非质子化时才能帮助 Ser-195 羟基攻击底物。因此蛋白酶的活性在 pH < 6.8（咪唑基质子化）时低，pH 4–8 范围内的 pH 活性曲线形状与 His-57 侧链的滴定相符（由 Henderson-Hasselbalch 方程支配，在 pH 6.8 附近有转折点）（见胰凝乳蛋白酶数据，图 3-29，并见第 2 章）。在更高 pH 值下活性下降，产生钟形活性曲线，因为蛋白质氨基末端的氨基（pKa 约 9）</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-29_1.png" alt="图 3-29" onclick="lightbox(this.src)">
-  <figcaption>图3-29 · 酶活性的 pH 依赖性。在某些情况下，酶活性位点或其他部位的可电离（pH 可滴定）基团必须质子化或去质子化，以允许正确底物结合或催化，或允许酶采取正确构象。测量酶活性随 pH 的变化可鉴定这些基团的 pKa。胰腺丝氨酸蛋白酶（如胰凝乳蛋白酶）在 pH 约 8 处表现最大活性；而溶酶体水解酶在酸性 pH（约 4.5）下有活性，在胞质 pH（约 7）下相对无活性，保护细胞免于自我消化。</figcaption>
+  <figcaption>图3-29 · 酶活性的 pH 依赖性。在某些情况下，酶活性位点或其他部位的可电离（pH 可滴定）基团必须质子化或去质子化，以允许正确的底物结合或催化，或允许酶采取正确构象。测量酶活性随 pH 的变化可鉴定这些基团的 pKa。胰腺丝氨酸蛋白酶（如胰凝乳蛋白酶）在 pH 约 8 处表现最大活性，这是因为活性位点 His-57（催化所需，pKa 约 6.8）和蛋白质氨基端（正确构象所需，pKa 约 9）的滴定。许多溶酶体水解酶进化为具有较低的 pH 最适值（约 4.5），以匹配其发挥功能的溶酶体内的低 pH。[数据来自 P. Lozano, T. De Diego, and J. L. Iborra, 1997, Eur. J. Biochem. 248:80–85, 和 W. A. Judice et al., 2004, Eur. J. Biochem. 271:1046–1053.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Relative enzyme activity</td><td class="gl-zh">相对酶活性</td></tr>
-  <tr><td class="gl-en">Lysosomal hydrolase</td><td class="gl-zh">溶酶体水解酶</td></tr>
-  <tr><td class="gl-en">Chymotrypsin</td><td class="gl-zh">胰凝乳蛋白酶</td></tr>
+  <tr><td class="gl-en">pH dependence</td><td class="gl-zh">pH依赖性</td></tr>
+  <tr><td class="gl-en">enzyme activity</td><td class="gl-zh">酶活性</td></tr>
+  <tr><td class="gl-en">ionizable group</td><td class="gl-zh">可电离基团</td></tr>
+  <tr><td class="gl-en">pH-titratable</td><td class="gl-zh">pH可滴定</td></tr>
+  <tr><td class="gl-en">protonated</td><td class="gl-zh">质子化</td></tr>
+  <tr><td class="gl-en">deprotonated</td><td class="gl-zh">去质子化</td></tr>
+  <tr><td class="gl-en">substrate binding</td><td class="gl-zh">底物结合</td></tr>
+  <tr><td class="gl-en">catalysis</td><td class="gl-zh">催化</td></tr>
+  <tr><td class="gl-en">conformation</td><td class="gl-zh">构象</td></tr>
+  <tr><td class="gl-en">pKa</td><td class="gl-zh">pKa</td></tr>
+  <tr><td class="gl-en">pancreatic serine protease</td><td class="gl-zh">胰腺丝氨酸蛋白酶</td></tr>
+  <tr><td class="gl-en">chymotrypsin</td><td class="gl-zh">胰凝乳蛋白酶</td></tr>
+  <tr><td class="gl-en">His-57</td><td class="gl-zh">His-57</td></tr>
+  <tr><td class="gl-en">amino terminus</td><td class="gl-zh">氨基端</td></tr>
+  <tr><td class="gl-en">lysosomal hydrolase</td><td class="gl-zh">溶酶体水解酶</td></tr>
+  <tr><td class="gl-en">pH optimum</td><td class="gl-zh">pH最适值</td></tr>
+  <tr><td class="gl-en">lysosome</td><td class="gl-zh">溶酶体</td></tr>
+  <tr><td class="gl-en">titration</td><td class="gl-zh">滴定</td></tr>
   </table>
 </figure>
 <p>去质子化时蛋白质的正确折叠被破坏；活性位点附近的构象因此改变。</p>
@@ -538,11 +808,21 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>参与共同代谢过程的酶（如糖酵解中葡萄糖降解为丙酮酸，见第 12 章）通常位于同一细胞区室，无论是细胞质、膜上还是某特定细胞器内。在此区室内，一个反应的产物可通过扩散移动到代谢通路的下一个酶。然而，扩散涉及随机运动，对在酶之间移动分子而言可能是缓慢、相对低效的过程（图 3-30a）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-30_1.png" alt="图 3-30" onclick="lightbox(this.src)">
-  <figcaption>图3-30 · 酶组装成高效多酶复合物。此处所示的假设反应通路中，初始反应物通过三种酶 A、B、C 的顺序作用转化为最终产物。(a) 当酶游离于溶液中，或甚至限制在同一细胞区室内时，反应序列中的中间体必须从一个酶扩散到下一个，这是一个固有缓慢的过程。(b) 当各个酶作为亚基聚集或组装在共同骨架上时，扩散被极大减少或消除。(c) 独立蛋白质在遗传水平上融合产生单一多结构域、多功能酶。</figcaption>
+  <figcaption>图3-30 · 酶组装成高效多酶复合物。此处所示的假设反应通路中，初始反应物通过三种酶 A、B、C 的顺序作用转化为最终产物。(a) 当酶游离于溶液中，或甚至限制在同一细胞区室内时，反应序列中的中间体必须从一个酶扩散到下一个，这是一个固有缓慢的过程。(b) 当各个酶自身缔合或借助骨架蛋白组装成多亚基复合物时，扩散被大大减少或消除。(c) 不同催化活性的最紧密整合发生在酶在遗传水平上融合，成为单一多肽链中的结构域时。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Reactants</td><td class="gl-zh">反应物</td></tr>
-  <tr><td class="gl-en">Products</td><td class="gl-zh">产物</td></tr>
-  <tr><td class="gl-en">Scaffold</td><td class="gl-zh">骨架</td></tr>
+  <tr><td class="gl-en">multienzyme complex</td><td class="gl-zh">多酶复合物</td></tr>
+  <tr><td class="gl-en">enzyme</td><td class="gl-zh">酶</td></tr>
+  <tr><td class="gl-en">reactant</td><td class="gl-zh">反应物</td></tr>
+  <tr><td class="gl-en">product</td><td class="gl-zh">产物</td></tr>
+  <tr><td class="gl-en">intermediate</td><td class="gl-zh">中间体</td></tr>
+  <tr><td class="gl-en">diffusion</td><td class="gl-zh">扩散</td></tr>
+  <tr><td class="gl-en">cellular compartment</td><td class="gl-zh">细胞区室</td></tr>
+  <tr><td class="gl-en">multisubunit complex</td><td class="gl-zh">多亚基复合物</td></tr>
+  <tr><td class="gl-en">scaffold protein</td><td class="gl-zh">骨架蛋白</td></tr>
+  <tr><td class="gl-en">genetic level fusion</td><td class="gl-zh">遗传水平融合</td></tr>
+  <tr><td class="gl-en">polypeptide chain</td><td class="gl-zh">多肽链</td></tr>
+  <tr><td class="gl-en">catalytic activity</td><td class="gl-zh">催化活性</td></tr>
+  <tr><td class="gl-en">domain</td><td class="gl-zh">结构域</td></tr>
   </table>
 </figure>
 <p>为克服这一障碍，细胞进化出将共同通路中的酶带到邻近的机制，这一过程称为代谢偶联。在最简单的此类机制中，具不同催化活性的多肽作为多聚体酶的亚基紧密聚集，或组装在将它们维系在一起的共同"骨架"上（图 3-30b）。这种安排使一个反应的产物能直接通道到通路中的下一个酶。在某些情况下，独立的蛋白质在遗传水平上融合，产生单一的多结构域、多功能酶（图 3-30c）。代谢偶联通常涉及大型多蛋白复合物，如本章前述。</p>
@@ -573,17 +853,42 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>蛋白酶体是非常大的蛋白质降解分子机器，影响许多不同的细胞功能，</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-31_1.png" alt="图 3-31" onclick="lightbox(this.src)">
-  <figcaption>图3-31 · 泛素和蛋白酶体介导的蛋白水解。(a) 26S 蛋白酶体有圆柱形结构，20S 核心颗粒的一端或两端有 19S 帽。19S 帽的十九个不同亚基（多色显示）包括六个 AAA-ATP 酶亚基（Rpt1–6，红），组装成异六聚体环；两个泛素（Ub）受体（Rpn10 和 Rpn13，黄）；和一个去泛素化酶（DUB，Rpn11，绿）。(b) 泛素化反应：E1 激活泛素（步骤 1），将其转移到 E2 的半胱氨酸（步骤 2）；泛素连接酶 E3 将 E2 上结合的 Ub 转移到靶蛋白赖氨酸侧链的 –NH2，形成异肽键（步骤 3）。通过重复步骤 1–3，额外泛素经异肽键加到先前添加的泛素上，形成多聚泛素链。多聚泛素化的蛋白质被 19S 帽识别、展开并送入 20S 核心降解，泛素被 DUB 回收。</figcaption>
+  <figcaption>图3-31 · 实验性图：泛素和蛋白酶体介导的蛋白水解。(a) [右：] 26S 蛋白酶体具有圆柱形结构，20S 核心颗粒的一端或两端有 19S 帽。19S 帽的十九个不同亚基（多色显示）包括六个 AAA-ATP 酶亚基（Rpt1–6，红色），组装成异六聚体环；两个泛素（Ub）受体（Rpn10 和 Rpn13，黄色）；和一个去泛素化酶（DUB，Rpn11，绿色），后者与其进化相关的对应物 Rpn8 形成异二聚体。此外，19S 帽含有骨架蛋白和其他蛋白质（棕褐色）。所示两个 19S 帽相对于页面平面朝向相反方向。20S 核心由四个堆叠的七聚体环组成（直径约 110 Å × 长 160 Å），每个环含 α（外环）或 β（内环）亚基（蓝色）。[左：] 20S 核心的剖面图，显示内腔。蛋白水解发生在由 β 环形成的核心中央内腔中。(b) 蛋白质通过多聚泛素化被靶向蛋白酶体降解。酶 E1 通过 ATP 依赖性连接泛素（Ub）分子而被激活（步骤 1），然后将此 Ub 分子转移到 E2 的半胱氨酸残基上（步骤 2）。泛素连接酶（E3）将 E2 上结合的 Ub 分子转移到靶蛋白赖氨酸残基侧链的 –NH₂ 上，形成异肽键（步骤 3）。通过重复步骤 1–3，额外的 Ub 分子经异肽键加到先前添加的 Ub 上，形成多聚泛素链（步骤 4）。多聚泛素化的靶蛋白被蛋白酶体 19S 帽中的 Ub 受体识别（步骤 5），Ub 基团被去泛素化酶去除（步骤 6）。在步骤 7，ATP 水解使六个蛋白质（六聚体）ATP 酶亚基（红色）能够展开底物，并通过六聚体中的孔将展开的蛋白质转移到 20S 核心的蛋白水解腔中（步骤 7a），在某些情况下与步骤 6 协调进行，蛋白质被切割成短肽消化片段（步骤 7b），然后被释放（步骤 7c）。[部分 (a) 由 Antje Aufderheide 和 Friedrich Foerster 提供，数据来自 P. Unverdorben et al., 2014, P. Natl. Acad. Sci. USA 111:(15):5544–5549, PDB ID 4cr2。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">ubiquitin (Ub)</td><td class="gl-zh">泛素（Ub）</td></tr>
   <tr><td class="gl-en">proteasome</td><td class="gl-zh">蛋白酶体</td></tr>
+  <tr><td class="gl-en">proteolysis</td><td class="gl-zh">蛋白水解</td></tr>
+  <tr><td class="gl-en">26S proteasome</td><td class="gl-zh">26S蛋白酶体</td></tr>
   <tr><td class="gl-en">19S cap</td><td class="gl-zh">19S帽</td></tr>
   <tr><td class="gl-en">20S core</td><td class="gl-zh">20S核心</td></tr>
-  <tr><td class="gl-en">ubiquitin</td><td class="gl-zh">泛素</td></tr>
-  <tr><td class="gl-en">E1</td><td class="gl-zh">泛素激活酶E1</td></tr>
-  <tr><td class="gl-en">E2</td><td class="gl-zh">泛素结合酶E2</td></tr>
-  <tr><td class="gl-en">E3</td><td class="gl-zh">泛素连接酶E3</td></tr>
+  <tr><td class="gl-en">AAA-ATPase subunit</td><td class="gl-zh">AAA-ATP酶亚基</td></tr>
+  <tr><td class="gl-en">heterohexameric ring</td><td class="gl-zh">异六聚体环</td></tr>
+  <tr><td class="gl-en">ubiquitin receptor</td><td class="gl-zh">泛素受体</td></tr>
+  <tr><td class="gl-en">deubiquitinase (DUB)</td><td class="gl-zh">去泛素化酶（DUB）</td></tr>
+  <tr><td class="gl-en">scaffolding protein</td><td class="gl-zh">骨架蛋白</td></tr>
+  <tr><td class="gl-en">α subunit</td><td class="gl-zh">α亚基</td></tr>
+  <tr><td class="gl-en">β subunit</td><td class="gl-zh">β亚基</td></tr>
+  <tr><td class="gl-en">heptameric ring</td><td class="gl-zh">七聚体环</td></tr>
+  <tr><td class="gl-en">E1 (ubiquitin-activating enzyme)</td><td class="gl-zh">E1（泛素激活酶）</td></tr>
+  <tr><td class="gl-en">E2 (ubiquitin-conjugating enzyme)</td><td class="gl-zh">E2（泛素结合酶）</td></tr>
+  <tr><td class="gl-en">E3 (ubiquitin ligase)</td><td class="gl-zh">E3（泛素连接酶）</td></tr>
   <tr><td class="gl-en">isopeptide bond</td><td class="gl-zh">异肽键</td></tr>
-  <tr><td class="gl-en">deubiquitinase</td><td class="gl-zh">去泛素化酶</td></tr>
+  <tr><td class="gl-en">polyubiquitinylation</td><td class="gl-zh">多聚泛素化</td></tr>
+  <tr><td class="gl-en">polyubiquitin chain</td><td class="gl-zh">多聚泛素链</td></tr>
+  <tr><td class="gl-en">lysine residue</td><td class="gl-zh">赖氨酸残基</td></tr>
+  <tr><td class="gl-en">ATP hydrolysis</td><td class="gl-zh">ATP水解</td></tr>
+  <tr><td class="gl-en">peptide digestion fragment</td><td class="gl-zh">肽消化片段</td></tr>
+  <tr><td class="gl-en">Rpt1-6</td><td class="gl-zh">Rpt1-6</td></tr>
+  <tr><td class="gl-en">Rpn10</td><td class="gl-zh">Rpn10</td></tr>
+  <tr><td class="gl-en">Rpn13</td><td class="gl-zh">Rpn13</td></tr>
+  <tr><td class="gl-en">Rpn11</td><td class="gl-zh">Rpn11</td></tr>
+  <tr><td class="gl-en">Rpn8</td><td class="gl-zh">Rpn8</td></tr>
+  <tr><td class="gl-en">cysteine residue</td><td class="gl-zh">半胱氨酸残基</td></tr>
+  <tr><td class="gl-en">proteasomal degradation</td><td class="gl-zh">蛋白酶体降解</td></tr>
+  <tr><td class="gl-en">cytosolic target protein</td><td class="gl-zh">胞质靶蛋白</td></tr>
+  <tr><td class="gl-en">unfolding</td><td class="gl-zh">展开</td></tr>
+  <tr><td class="gl-en">cleavage</td><td class="gl-zh">切割</td></tr>
+  <tr><td class="gl-en">inner chamber</td><td class="gl-zh">内腔</td></tr>
   </table>
 </figure>
 <p>包括细胞周期（见第 19 章）、转录、DNA 修复（见第 5 章）、程序性细胞死亡或细胞凋亡（见第 21 章）、识别和响应外来生物感染（见第 23 章），以及去除错误折叠的蛋白质。一个典型的哺乳动物细胞中约有 30,000 个蛋白酶体。</p>
@@ -605,12 +910,28 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>协同性（常与别构同义使用）通常指一个位点上配体的结合对不同位点上同类型配体另一分子结合的影响（正或负）。血红蛋白是正协同结合的经典例子：单个配体--分子氧（O₂）--的结合增加血红蛋白对下一个氧分子的亲和力。血红蛋白四个亚基各含一个血红素分子。血红素基团是血红蛋白的结合氧组分（见图 3-14a）。氧与血红蛋白四个亚基之一中血红素分子的结合诱导局部构象变化，其效应传播到其他亚基，降低额外氧分子与剩余血红素结合的 Kd（增加亲和力），产生 S 形氧结合曲线（图 3-32）。由于氧饱和曲线的 S 形，仅需氧浓度增加四倍即可使血红蛋白中氧结合位点的饱和度从 10% 升至 90%。反之，若无协同性且曲线形状为典型的 Michaelis-Menten（见图 3-24）或非协同结合形状，则需要氧浓度增加八十一倍才能实现其结合位点装载的相同增加。这种协同性使血红蛋白能在氧浓度高的肺部非常高效地摄取氧，并在氧浓度低的组织中卸载氧。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-32_1.png" alt="图 3-32" onclick="lightbox(this.src)">
-  <figcaption>图3-32 · 血红蛋白协同结合氧。每个四聚体血红蛋白分子有四个氧结合位点；饱和时所有位点都装载氧。组织中的氧浓度通常以氧分压（pO2，单位 torr，即标准条件下相当于 1 mm 汞柱的压力标准）测量。p50 是半数氧结合位点被占据时的 pO2，它类似于酶的 Km。血红蛋白的 S 形氧结合曲线反映了正协同性，使其能在肺部（pO2 高）高效摄取氧，在组织（pO2 低，如活动肌肉毛细血管中）释放氧。</figcaption>
+  <figcaption>图3-32 · 实验性图：血红蛋白协同结合氧。每个四聚体血红蛋白分子有四个氧结合位点；饱和时所有位点都装载氧。组织中的氧浓度通常以氧分压（pO₂）的 torr 单位测量（一种标准压力度量，标准条件下相当于 1 mm 汞柱）。P₅₀ 是半数氧结合位点被占据时的 pO₂；它类似于酶催化反应的 Km。在小的 pO₂ 范围内结合氧量的大变化使得在肌肉等外周组织中有效卸载氧。饱和度对配体浓度曲线的 S 形表明协同结合，即一个氧分子的结合别构影响后续氧的结合。在无协同结合时，结合曲线为双曲线，类似于图 3-24 中的曲线。参见 J. M. Berg et al., 2015, Biochemistry, 8th ed., Macmillan.</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">hemoglobin</td><td class="gl-zh">血红蛋白</td></tr>
+  <tr><td class="gl-en">cooperative binding</td><td class="gl-zh">协同结合</td></tr>
   <tr><td class="gl-en">oxygen</td><td class="gl-zh">氧</td></tr>
-  <tr><td class="gl-en">pO2</td><td class="gl-zh">氧分压</td></tr>
-  <tr><td class="gl-en">p50</td><td class="gl-zh">p50</td></tr>
+  <tr><td class="gl-en">tetrameric</td><td class="gl-zh">四聚体</td></tr>
+  <tr><td class="gl-en">oxygen-binding site</td><td class="gl-zh">氧结合位点</td></tr>
+  <tr><td class="gl-en">saturation</td><td class="gl-zh">饱和</td></tr>
+  <tr><td class="gl-en">partial pressure of oxygen (pO₂)</td><td class="gl-zh">氧分压（pO₂）</td></tr>
+  <tr><td class="gl-en">torr</td><td class="gl-zh">torr</td></tr>
+  <tr><td class="gl-en">P₅₀</td><td class="gl-zh">P₅₀</td></tr>
+  <tr><td class="gl-en">Km</td><td class="gl-zh">Km</td></tr>
+  <tr><td class="gl-en">sigmoidal</td><td class="gl-zh">S形</td></tr>
+  <tr><td class="gl-en">hyperbola</td><td class="gl-zh">双曲线</td></tr>
+  <tr><td class="gl-en">allosteric</td><td class="gl-zh">别构</td></tr>
+  <tr><td class="gl-en">ligand concentration</td><td class="gl-zh">配体浓度</td></tr>
+  <tr><td class="gl-en">peripheral tissue</td><td class="gl-zh">外周组织</td></tr>
+  <tr><td class="gl-en">muscle</td><td class="gl-zh">肌肉</td></tr>
+  <tr><td class="gl-en">alveoli</td><td class="gl-zh">肺泡</td></tr>
+  <tr><td class="gl-en">lung</td><td class="gl-zh">肺</td></tr>
+  <tr><td class="gl-en">capillary</td><td class="gl-zh">毛细血管</td></tr>
+  <tr><td class="gl-en">mercury</td><td class="gl-zh">汞柱</td></tr>
   </table>
 </figure>
 <p>因此协同性放大了系统对其配体浓度变化的敏感性，在许多情况下提供选择性的进化优势。</p>
@@ -620,24 +941,41 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>许多 Ca²⁺ 结合蛋白使用前述的 EF 手/螺旋-环-螺旋结构基序结合 Ca²⁺（见图 3-10b）。一种研究充分的 EF 手蛋白--钙调蛋白--见于所有真核细胞，它可作为单独的单体蛋白或多聚体蛋白的亚基存在。这种哑铃形分子含四个 Kd 约 10⁻⁶ M 的 Ca²⁺ 结合 EF 手。Ca²⁺ 与钙调蛋白的结合引起构象变化，使 Ca²⁺/钙调蛋白能结合各种靶蛋白质中的保守序列（图 3-33），从而开启或关闭其活性。钙调蛋白和类似 EF 手蛋白因此作为开关蛋白，与 Ca²⁺ 水平变化协同调节其他蛋白质的活性。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-33_1.png" alt="图 3-33" onclick="lightbox(this.src)">
-  <figcaption>图3-33 · Ca²⁺ 结合钙调蛋白诱导的构象变化。钙调蛋白是一种广泛分布的胞质蛋白，含四个 Ca²⁺ 结合位点，每个在其 EF 手（螺旋-环-螺旋）基序中（EF1–EF4，另见图 3-10）。在胞质 Ca²⁺ 浓度高于约 5 × 10⁻⁷ M 时，Ca²⁺ 与钙调蛋白的结合使蛋白质构象从哑铃形、无 Ca²⁺ 形式 (a) 变为疏水侧链更暴露于溶剂的形式，使 Ca²⁺/钙调蛋白能结合靶肽 (b)，从而开关靶蛋白活性。</figcaption>
+  <figcaption>图3-33 · Ca²⁺ 结合钙调蛋白诱导的构象变化。钙调蛋白是一种广泛分布的胞质蛋白，含四个 Ca²⁺ 结合位点，每个在其 EF 手（螺旋-环-螺旋）基序中（EF1–EF4，另见图 3-10）。在胞质 Ca²⁺ 浓度高于约 5 × 10⁻⁷ M 时，Ca²⁺ 与钙调蛋白的结合使蛋白质构象从哑铃形、无 Ca²⁺ 形式 (a) 变为疏水侧链更暴露于溶剂的形式。所得 Ca²⁺/钙调蛋白复合物可包裹各种靶蛋白中具有特化序列的暴露螺旋（靶肽）(b)，从而改变其活性。[部分 (a) 数据来自 H. Kuboniwa et al., 1995, Nat. Struct. Biol. 2:768–776, PDB ID 1cfd. 部分 (b) 数据来自 W. E. Meador, A. R. Means, and F. A. Quiocho, 1992, Science 257:1251–1255, PDB ID 1cdl.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">calmodulin</td><td class="gl-zh">钙调蛋白</td></tr>
-  <tr><td class="gl-en">EF hand</td><td class="gl-zh">EF手</td></tr>
+  <tr><td class="gl-en">Ca²⁺ binding</td><td class="gl-zh">Ca²⁺结合</td></tr>
+  <tr><td class="gl-en">conformational change</td><td class="gl-zh">构象变化</td></tr>
+  <tr><td class="gl-en">cytosolic protein</td><td class="gl-zh">胞质蛋白</td></tr>
+  <tr><td class="gl-en">EF hand (helix-loop-helix motif)</td><td class="gl-zh">EF手（螺旋-环-螺旋基序）</td></tr>
   <tr><td class="gl-en">target peptide</td><td class="gl-zh">靶肽</td></tr>
+  <tr><td class="gl-en">dumbbell-shaped</td><td class="gl-zh">哑铃形</td></tr>
+  <tr><td class="gl-en">hydrophobic side chain</td><td class="gl-zh">疏水侧链</td></tr>
+  <tr><td class="gl-en">solvent</td><td class="gl-zh">溶剂</td></tr>
+  <tr><td class="gl-en">target protein</td><td class="gl-zh">靶蛋白</td></tr>
+  <tr><td class="gl-en">Ca²⁺-free form</td><td class="gl-zh">无Ca²⁺形式</td></tr>
+  <tr><td class="gl-en">EF1-EF4</td><td class="gl-zh">EF1-EF4</td></tr>
   </table>
 </figure>
 <p>鸟苷酸结合蛋白介导的开关 另一组胞内开关蛋白构成 GTP 酶超家族。顾名思义，这些蛋白质是酶--GTP 酶--能将 GTP（鸟苷三磷酸）水解为 GDP（鸟苷二磷酸）。它们包括单体 Ras 蛋白（其结构见图 3-9，结合的 GDP 以蓝色显示）和三聚体 G 蛋白的 Gα 亚基，二者在第 15、16 章详述。Ras 和 Gα 都能结合质膜，在细胞信号传导中发挥作用，并在细胞增殖和分化中起关键作用。GTP 酶超家族的其他成员在蛋白质合成、蛋白质在细胞核与细胞质间运输、网格蛋白包被囊泡的形成及其与靶膜融合、以及肌动蛋白细胞骨架重排中发挥作用。一些 GTP 酶蛋白有共价附着的脂质链（见图 7-19），介导其与膜的结合。我们在后续数章考察各种 GTP 酶开关蛋白在调控胞内信号和其他过程中的作用。</p>
 <p>所有 GTP 酶开关蛋白都以两种形式或构象存在（图 3-34）：(1) 结合 GTP 的活性（"开"）形式，能影响其结合的特定靶蛋白质的活性；(2) 结合 GDP 的非活性（"关"）形式。当一个 GTP 分子替换非活性构象中结合的 GDP 时，开关被开启--即蛋白质构象从非活性变为活性。当蛋白质相对缓慢的 GTP 酶活性水解结合的 GTP，将其转化为 GDP 并导致构象变为非活性形式时，开关被关闭。任何给定 GTP 酶开关保持活性、结合 GTP 形式的时间取决于其 GTP 酶活性的速率。因此 GTP 酶活性作为计时器控制此开关。细胞含多种能调节任何给定 GTP 酶开关基线（或内在）GTP 酶活性速率的蛋白质，从而能控制开关保持开启的时间。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-34_1.png" alt="图 3-34" onclick="lightbox(this.src)">
-  <figcaption>图3-34 · GTP 酶开关。GTP 酶是结合 GTP 并将其水解为 GDP 的酶。结合 GTP 时，GTP 酶蛋白采取活性（“开”）构象，可与靶蛋白相互作用调控其活性。当结合的 GTP 被蛋白质内在 GTP 酶活性水解为 GDP 时，结合 GDP 的 GTP 酶采取非活性（“关”）构象。当另一种称为 GEF（鸟苷酸交换因子）的蛋白质介导结合的 GDP 被 GTP 替换（交换）时，GTP 酶开关可重新开启。GTP 酶激活蛋白（GAP）可影响 GTP 水解速率。活性形式 GTP 酶与其靶标的结合是一种非共价调控形式。</figcaption>
+  <figcaption>图3-34 · GTP 酶开关。GTP 酶是结合 GTP 并将其水解为 GDP 的酶。结合 GTP 时，GTP 酶蛋白采取活性或"开"构象，可与靶蛋白相互作用以调控其活性。当结合的 GTP 被蛋白质内在 GTP 酶活性水解为 GDP 时，结合 GDP 的 GTP 酶采取非活性或"关"构象。当另一种称为 GEF（鸟苷酸交换因子）的蛋白质介导结合的 GDP 被周围液体中的 GTP 分子替换（交换）时，GTP 酶开关可重新开启。GTP 酶激活蛋白（GAP）可影响 GTP 水解速率。活性形式 GTP 酶与其靶标的结合是一种非共价调控形式。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">GTPase switch</td><td class="gl-zh">GTP酶开关</td></tr>
   <tr><td class="gl-en">GTPase</td><td class="gl-zh">GTP酶</td></tr>
-  <tr><td class="gl-en">GEF</td><td class="gl-zh">鸟苷酸交换因子</td></tr>
-  <tr><td class="gl-en">GAP</td><td class="gl-zh">GTP酶激活蛋白</td></tr>
-  <tr><td class="gl-en">Active (on)</td><td class="gl-zh">活性(开)</td></tr>
-  <tr><td class="gl-en">Inactive (off)</td><td class="gl-zh">非活性(关)</td></tr>
+  <tr><td class="gl-en">GTP</td><td class="gl-zh">GTP</td></tr>
+  <tr><td class="gl-en">GDP</td><td class="gl-zh">GDP</td></tr>
+  <tr><td class="gl-en">active (on) conformation</td><td class="gl-zh">活性（开）构象</td></tr>
+  <tr><td class="gl-en">inactive (off) conformation</td><td class="gl-zh">非活性（关）构象</td></tr>
+  <tr><td class="gl-en">GEF (guanine nucleotide exchange factor)</td><td class="gl-zh">GEF（鸟苷酸交换因子）</td></tr>
+  <tr><td class="gl-en">GAP (GTPase-activating protein)</td><td class="gl-zh">GAP（GTP酶激活蛋白）</td></tr>
+  <tr><td class="gl-en">GTP hydrolysis</td><td class="gl-zh">GTP水解</td></tr>
+  <tr><td class="gl-en">intrinsic GTPase activity</td><td class="gl-zh">内在GTP酶活性</td></tr>
+  <tr><td class="gl-en">noncovalent regulation</td><td class="gl-zh">非共价调控</td></tr>
+  <tr><td class="gl-en">target protein</td><td class="gl-zh">靶蛋白</td></tr>
+  <tr><td class="gl-en">nucleotide exchange</td><td class="gl-zh">核苷酸交换</td></tr>
   </table>
 </figure>
 <p>例如，GTP 酶激活蛋白（GAP）增加 GTP 酶活性速率，从而缩短 GTP 酶处于活性形式的时间。细胞还有特定蛋白质，其功能是通过介导结合的 GDP 被 GTP 替换（GDP/GTP 交换）来调控非活性 GTP 酶转化为活性--即开启开关。这些蛋白质称为鸟苷酸交换因子（GEF）。带脂质锚的 GTP 酶还受鸟苷酸解离抑制剂（GDI）调控，GDI 结合脂质链从而影响与细胞膜的相互作用。</p>
@@ -647,14 +985,20 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>所有酵母蛋白质中近 3% 是蛋白激酶或磷酸酶，表明磷酸化和去磷酸化反应即使在这些简单细胞中的重要性。人基因组分析表明有约 500 种人蛋白激酶（人"激酶组"）。所有类别的蛋白质--包括结构蛋白、骨架、酶、膜通道和信号分子--都有受激酶/磷酸酶修饰调控的成员。不同的蛋白激酶和磷酸酶对不同的靶蛋白质特异，常识别待磷酸化残基嵌入的不同线性序列，因此可调控不同的细胞通路，如后续章节所述。一些激酶有许多靶标，因此单一激酶可同时整合许多靶标的活性。激酶或磷酸酶的靶标常是另一个激酶或磷酸酶，产生级联效应。此类激酶级联有许多例子，允许信号放大和多层次精细调控（见第 15、16 章）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-35_1.png" alt="图 3-35" onclick="lightbox(this.src)">
-  <figcaption>图3-35 · 通过磷酸化和去磷酸化调控蛋白质活性。蛋白质的循环磷酸化和去磷酸化是调控蛋白质活性的常见细胞机制。此例中，靶蛋白磷酸化时（上）有活性，去磷酸化时（下）无活性；某些蛋白质对磷酸化有相反响应。蛋白激酶催化磷酸化（消耗 ATP 产生 ADP），蛋白磷酸酶催化去磷酸化（产生无机磷 Pi）。</figcaption>
+  <figcaption>图3-35 · 通过磷酸化和去磷酸化调控蛋白质活性。蛋白质的循环磷酸化和去磷酸化是调控蛋白质活性的常见细胞机制。在此例中，靶蛋白磷酸化时（上）有活性，去磷酸化时（下）无活性；某些蛋白质对磷酸化有相反的响应。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">phosphorylation</td><td class="gl-zh">磷酸化</td></tr>
   <tr><td class="gl-en">dephosphorylation</td><td class="gl-zh">去磷酸化</td></tr>
   <tr><td class="gl-en">protein kinase</td><td class="gl-zh">蛋白激酶</td></tr>
   <tr><td class="gl-en">protein phosphatase</td><td class="gl-zh">蛋白磷酸酶</td></tr>
-  <tr><td class="gl-en">Active</td><td class="gl-zh">活性</td></tr>
-  <tr><td class="gl-en">Inactive</td><td class="gl-zh">非活性</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
+  <tr><td class="gl-en">Pi (inorganic phosphate)</td><td class="gl-zh">Pi（无机磷酸）</td></tr>
+  <tr><td class="gl-en">target protein</td><td class="gl-zh">靶蛋白</td></tr>
+  <tr><td class="gl-en">active</td><td class="gl-zh">活性</td></tr>
+  <tr><td class="gl-en">inactive</td><td class="gl-zh">非活性</td></tr>
+  <tr><td class="gl-en">cyclic mechanism</td><td class="gl-zh">循环机制</td></tr>
+  <tr><td class="gl-en">protein activity regulation</td><td class="gl-zh">蛋白质活性调控</td></tr>
   </table>
 </figure>
 <p>泛素化和去泛素化共价调控蛋白质活性</p>
@@ -662,15 +1006,28 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>我们已经看到通过 Lys-48 残基的多聚泛素化如何用于标记蛋白质进行蛋白酶体降解。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-36_1.png" alt="图 3-36" onclick="lightbox(this.src)">
-  <figcaption>图3-36 · 通过泛素间异肽键所用赖氨酸确定多聚泛素功能。泛素连接酶催化不同靶（底物）蛋白（彩色椭圆）的多聚泛素化，使用泛素分子（紫）的不同赖氨酸侧链与相邻泛素的 Gly-76 生成泛素间异肽连接（蓝）。所用赖氨酸决定多聚泛素链的功能：Lys-48 和 Lys-11 连接标记蛋白质进行蛋白酶体降解；Lys-63 连接参与信号传导、内吞、DNA 修复、免疫识别等；Lys-33 连接抑制 T 淋巴细胞受体活性；Lys-11 连接调控细胞分裂。</figcaption>
+  <figcaption>图3-36 · 通过泛素间异肽键所用赖氨酸确定多聚泛素功能。泛素连接酶催化不同靶（底物）蛋白（彩色椭圆）的多聚泛素化，使用泛素分子（紫色）的不同赖氨酸侧链与相邻泛素的 Gly-76 生成泛素间异肽连接（蓝色）。蓝色虚线箭头代表链中未显示的额外泛素。用于异肽键的赖氨酸决定多聚泛素化的功能。例如，含 Lys-48:Gly-76 异肽键的多聚泛素将靶蛋白导向蛋白酶体进行降解。使用 Lys-63、Lys-33 和 Lys-11 的多聚泛素分别影响信号传导、T 淋巴细胞调控和细胞分裂。涉及泛素 Lys-6、Lys-27 和 Lys-29 的异肽键以及使用其 N 端氨基（未显示）的键也可用于生成多聚泛素链。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">polyubiquitin</td><td class="gl-zh">多聚泛素</td></tr>
-  <tr><td class="gl-en">isopeptide bond</td><td class="gl-zh">异肽键</td></tr>
+  <tr><td class="gl-en">inter-ubiquitin isopeptide bond</td><td class="gl-zh">泛素间异肽键</td></tr>
   <tr><td class="gl-en">ubiquitin ligase</td><td class="gl-zh">泛素连接酶</td></tr>
+  <tr><td class="gl-en">lysine (Lys)</td><td class="gl-zh">赖氨酸（Lys）</td></tr>
+  <tr><td class="gl-en">Gly-76</td><td class="gl-zh">Gly-76</td></tr>
   <tr><td class="gl-en">Lys-48</td><td class="gl-zh">Lys-48</td></tr>
   <tr><td class="gl-en">Lys-63</td><td class="gl-zh">Lys-63</td></tr>
-  <tr><td class="gl-en">Lys-11</td><td class="gl-zh">Lys-11</td></tr>
   <tr><td class="gl-en">Lys-33</td><td class="gl-zh">Lys-33</td></tr>
+  <tr><td class="gl-en">Lys-11</td><td class="gl-zh">Lys-11</td></tr>
+  <tr><td class="gl-en">Lys-6</td><td class="gl-zh">Lys-6</td></tr>
+  <tr><td class="gl-en">Lys-27</td><td class="gl-zh">Lys-27</td></tr>
+  <tr><td class="gl-en">Lys-29</td><td class="gl-zh">Lys-29</td></tr>
+  <tr><td class="gl-en">proteasomal degradation</td><td class="gl-zh">蛋白酶体降解</td></tr>
+  <tr><td class="gl-en">signaling</td><td class="gl-zh">信号传导</td></tr>
+  <tr><td class="gl-en">T-lymphocyte control</td><td class="gl-zh">T淋巴细胞调控</td></tr>
+  <tr><td class="gl-en">cell division</td><td class="gl-zh">细胞分裂</td></tr>
+  <tr><td class="gl-en">N-terminal amino group</td><td class="gl-zh">N端氨基</td></tr>
+  <tr><td class="gl-en">target protein (substrate)</td><td class="gl-zh">靶蛋白（底物）</td></tr>
+  <tr><td class="gl-en">polyubiquitin chain</td><td class="gl-zh">多聚泛素链</td></tr>
+  <tr><td class="gl-en">polyubiquitinylation</td><td class="gl-zh">多聚泛素化</td></tr>
   </table>
 </figure>
 <p>有证据表明通过其他 Lys 残基（例如 Lys-11 和 Lys-33，但非 Lys-63）的多聚泛素化也可靶向蛋白质进行蛋白酶体降解。引人注目的是，与蛋白质降解无关的泛素化也可控制多种细胞功能，包括通过内吞作用使分子内化（见第 14 章）、受损 DNA 的修复、代谢、信使 RNA 合成（转录）、防御病原体、细胞分裂/细胞周期进程、细胞信号通路、蛋白质在细胞内的运输和细胞凋亡。用于形成泛素间异肽键的赖氨酸可因受调控的细胞系统而异（见图 3-36）。例如，Lys-63 连接的多聚泛素化用于许多细胞识别和信号系统，如识别胞内病毒和细菌的存在及随之诱导保护性免疫反应，以及将这些病原体导向溶酶体降解。Lys-11 连接的多聚泛素链调控细胞分裂。Lys-33 连接的链帮助抑制称为 T 淋巴细胞（见第 23 章）的专门白细胞上受体的活性，从而控制这些淋巴细胞的活性和功能。</p>
@@ -707,32 +1064,69 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>SDS-聚丙烯酰胺凝胶电泳 由于许多大小和形状不同的蛋白质有几乎相同的荷质比，在液体溶液中电泳几乎不能分离不同长度的分子。然而，成功分离可通过</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-37_1.png" alt="图 3-37" onclick="lightbox(this.src)">
-  <figcaption>图3-37 · 离心技术分离质量或密度不同的颗粒。(a) 差速离心：细胞匀浆离心足够时间沉降较大颗粒（如细胞器、细胞），作为沉淀收集在管底；较小颗粒（可溶性蛋白质、核酸）留在液体上清中，可转移到另一管。(b) 速率区带离心：蛋白质混合物放在蔗糖密度梯度顶部离心，各蛋白质按质量以不同速率迁移，分离成不同质量的条带（区带）。</figcaption>
+  <figcaption>图3-37 · 实验性图：离心技术分离质量或密度不同的颗粒。(a) 在差速离心中，细胞匀浆或其他混合物被离心足够长时间以沉降较大颗粒（如细胞器、细胞），后者作为沉淀收集在管底（步骤 2）。较小颗粒（如可溶性蛋白质、核酸）留在液体上清中，可转移到另一管中（步骤 3）。(b) 在速率区带离心中，混合物被离心（步骤 1）刚好足够长的时间，以将质量不同但形状和密度可能相似的分子（如球状蛋白、RNA 分子）分离到密度梯度（通常由浓缩蔗糖溶液形成）中的离散区带内。级分从管底移取并进行测试（测定）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">differential centrifugation</td><td class="gl-zh">差速离心</td></tr>
-  <tr><td class="gl-en">supernatant</td><td class="gl-zh">上清</td></tr>
-  <tr><td class="gl-en">pellet</td><td class="gl-zh">沉淀</td></tr>
   <tr><td class="gl-en">rate-zonal centrifugation</td><td class="gl-zh">速率区带离心</td></tr>
+  <tr><td class="gl-en">cell homogenate</td><td class="gl-zh">细胞匀浆</td></tr>
+  <tr><td class="gl-en">pellet</td><td class="gl-zh">沉淀</td></tr>
+  <tr><td class="gl-en">supernatant</td><td class="gl-zh">上清</td></tr>
+  <tr><td class="gl-en">density gradient</td><td class="gl-zh">密度梯度</td></tr>
+  <tr><td class="gl-en">sucrose solution</td><td class="gl-zh">蔗糖溶液</td></tr>
+  <tr><td class="gl-en">fraction</td><td class="gl-zh">级分</td></tr>
+  <tr><td class="gl-en">assay</td><td class="gl-zh">测定</td></tr>
+  <tr><td class="gl-en">centrifugal force</td><td class="gl-zh">离心力</td></tr>
+  <tr><td class="gl-en">mass</td><td class="gl-zh">质量</td></tr>
+  <tr><td class="gl-en">density</td><td class="gl-zh">密度</td></tr>
+  <tr><td class="gl-en">cell organelle</td><td class="gl-zh">细胞器</td></tr>
+  <tr><td class="gl-en">soluble protein</td><td class="gl-zh">可溶性蛋白质</td></tr>
+  <tr><td class="gl-en">nucleic acid</td><td class="gl-zh">核酸</td></tr>
+  <tr><td class="gl-en">globular protein</td><td class="gl-zh">球状蛋白</td></tr>
+  <tr><td class="gl-en">RNA molecule</td><td class="gl-zh">RNA分子</td></tr>
   </table>
 </figure>
 <p>在各种凝胶中电泳实现。凝胶作为筛子，允许较小分子比大分子更快通过其孔。蛋白质的电泳分离最常在聚丙烯酰胺凝胶中进行。通过适当调整聚丙烯酰胺和交联试剂浓度及电场强度，大小差异很大的蛋白质可通过聚丙烯酰胺凝胶电泳（PAGE）解析。</p>
 <p>在解析蛋白质混合物最强大的技术中，蛋白质在凝胶电泳前和过程中暴露于离子去垢剂 SDS（十二烷基硫酸钠）（图 3-38）。SDS 使蛋白质变性，因为它结合疏水侧链，破坏稳定构象的疏水相互作用。SDS 处理通常与加热和断裂二硫键的还原剂结合。这些条件下大多数多聚体蛋白质解离成亚基。通常结合到蛋白质的 SDS 量与多肽链长度成正比，赋予每种蛋白质恒定荷质比（带负电的十二烷基硫酸根是主要电荷贡献者）。因此链长度（与质量成正比）是 SDS-PAGE 中迁移速率的主要决定因素。即使分子量差异小于 10% 的链也可解析。蛋白质分子量可通过比较其迁移距离与已知分子量标准（"分子量标准"）的迁移距离估算（迁移距离与分子量对数大致呈线性关系）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-38_1.png" alt="图 3-38" onclick="lightbox(this.src)">
-  <figcaption>图3-38 · SDS-聚丙烯酰胺凝胶电泳（SDS-PAGE）主要基于质量分离蛋白质。(a) 初始用 SDS（带负电去垢剂）处理解离多聚体蛋白并变性所有多肽链（步骤 1）。电泳时 SDS-蛋白复合物通过聚丙烯酰胺凝胶迁移（步骤 2），小复合物比大的更快通过孔。蛋白质按大小（质量）分离，可用分子量标准估算分子量。</figcaption>
+  <figcaption>图3-38 · 实验性图：SDS-聚丙烯酰胺凝胶电泳（SDS-PAGE）主要基于质量分离蛋白质。(a) 初始用 SDS（一种带负电荷的去垢剂）处理，解离多聚体蛋白并变性所有多肽链（步骤 1）。电泳时，SDS-蛋白复合物通过聚丙烯酰胺凝胶迁移（步骤 2）。小复合物比大复合物能更快通过孔。因此蛋白质在迁移时按大小分离成条带。分离的蛋白条带通过染色用染料可视化（步骤 3）。(b) SDS-PAGE 分离全细胞裂解物（去垢剂增溶的细胞）中所有蛋白质的示例。（左）许多分离的染色蛋白几乎呈连续状。（右）通过单步抗体亲和色谱从裂解物中纯化的单一蛋白质。蛋白质通过银基染料染色可视化。[部分 (b) 数据来自 B. Liu and M. Krieger, 2002, J. Biol. Chem. 277:34125–34135.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">SDS-PAGE</td><td class="gl-zh">SDS-PAGE</td></tr>
-  <tr><td class="gl-en">SDS</td><td class="gl-zh">十二烷基硫酸钠</td></tr>
+  <tr><td class="gl-en">SDS-polyacrylamide gel electrophoresis (SDS-PAGE)</td><td class="gl-zh">SDS-聚丙烯酰胺凝胶电泳（SDS-PAGE）</td></tr>
+  <tr><td class="gl-en">SDS (sodium dodecyl sulfate)</td><td class="gl-zh">SDS（十二烷基硫酸钠）</td></tr>
   <tr><td class="gl-en">polyacrylamide gel</td><td class="gl-zh">聚丙烯酰胺凝胶</td></tr>
+  <tr><td class="gl-en">electrophoresis</td><td class="gl-zh">电泳</td></tr>
+  <tr><td class="gl-en">denature</td><td class="gl-zh">变性</td></tr>
+  <tr><td class="gl-en">multimeric protein</td><td class="gl-zh">多聚体蛋白</td></tr>
+  <tr><td class="gl-en">polypeptide chain</td><td class="gl-zh">多肽链</td></tr>
+  <tr><td class="gl-en">molecular weight</td><td class="gl-zh">分子量</td></tr>
+  <tr><td class="gl-en">staining</td><td class="gl-zh">染色</td></tr>
+  <tr><td class="gl-en">dye</td><td class="gl-zh">染料</td></tr>
+  <tr><td class="gl-en">cell lysate</td><td class="gl-zh">细胞裂解物</td></tr>
+  <tr><td class="gl-en">antibody-affinity chromatography</td><td class="gl-zh">抗体亲和色谱</td></tr>
+  <tr><td class="gl-en">silver-based dye</td><td class="gl-zh">银基染料</td></tr>
+  <tr><td class="gl-en">kDa</td><td class="gl-zh">kDa</td></tr>
+  <tr><td class="gl-en">detergent-solubilized</td><td class="gl-zh">去垢剂增溶</td></tr>
+  <tr><td class="gl-en">cross-linked polyacrylamide gel</td><td class="gl-zh">交联聚丙烯酰胺凝胶</td></tr>
   </table>
 </figure>
 <p>双向凝胶电泳 SDS-PAGE 可分离质量差异较大的蛋白质，但不能轻易解析质量相似的蛋白质。为分离质量相似的蛋白质，必须利用另一种物理特性，最常用的是电荷。两个质量相似的不相关蛋白质不太可能有相同净电荷，因为其序列因而酸碱残基数目不同。在双向凝胶电泳中，蛋白质先按电荷再按质量依次分离（图 3-39a）。第一步用等电聚焦（IEF）：蛋白质在 pH 梯度中迁移直到达到等电点（pI，净电荷为零时的 pH）。IEF 可解析仅相差一个电荷单位的蛋白质，甚至能分离同一蛋白质的磷酸化和非磷酸化版本。然后 IEF 凝胶条纵向放在 SDS-聚丙烯酰胺凝胶板边缘，按质量做第二维分离。依次按电荷和质量解析可实现细胞蛋白质的出色分离（图 3-39b）。如今精密质谱方法常代替双向凝胶电泳。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-39_1.png" alt="图 3-39" onclick="lightbox(this.src)">
-  <figcaption>图3-39 · 双向凝胶电泳基于电荷和质量分离蛋白质。蛋白质先通过等电聚焦（IEF）按电荷分离成条带（步骤 1），凝胶条然后施加于 SDS-聚丙烯酰胺凝胶（步骤 2），按质量分离成斑点（步骤 3）。(b) 双向凝胶分离全细胞蛋白质的结果，显示细胞蛋白质组的复杂性。</figcaption>
+  <figcaption>图3-39 · 实验性图：双向凝胶电泳基于电荷和质量分离蛋白质。在此技术中，蛋白质首先通过等电聚焦按电荷分离成条带（步骤 1）。所得凝胶条施加于 SDS-聚丙烯酰胺凝胶（步骤 2），蛋白质按质量分离成斑点（步骤 3）。(b) 在此培养细胞蛋白质提取物的双向凝胶电泳凝胶中，每个斑点代表单一多肽。多肽可通过染料检测（如此处所示），或通过其他技术如放射自显影检测。每个多肽由其等电点（pI）和分子量表征。[部分 (b) Michael J. Dunn.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">isoelectric focusing</td><td class="gl-zh">等电聚焦</td></tr>
   <tr><td class="gl-en">two-dimensional gel electrophoresis</td><td class="gl-zh">双向凝胶电泳</td></tr>
+  <tr><td class="gl-en">isoelectric focusing (IEF)</td><td class="gl-zh">等电聚焦（IEF）</td></tr>
+  <tr><td class="gl-en">isoelectric point (pI)</td><td class="gl-zh">等电点（pI）</td></tr>
+  <tr><td class="gl-en">molecular weight</td><td class="gl-zh">分子量</td></tr>
+  <tr><td class="gl-en">charge</td><td class="gl-zh">电荷</td></tr>
+  <tr><td class="gl-en">mass</td><td class="gl-zh">质量</td></tr>
+  <tr><td class="gl-en">polypeptide</td><td class="gl-zh">多肽</td></tr>
+  <tr><td class="gl-en">autoradiography</td><td class="gl-zh">放射自显影</td></tr>
+  <tr><td class="gl-en">dye</td><td class="gl-zh">染料</td></tr>
+  <tr><td class="gl-en">gel strip</td><td class="gl-zh">凝胶条</td></tr>
+  <tr><td class="gl-en">SDS-polyacrylamide gel</td><td class="gl-zh">SDS-聚丙烯酰胺凝胶</td></tr>
+  <tr><td class="gl-en">protein extract</td><td class="gl-zh">蛋白质提取物</td></tr>
+  <tr><td class="gl-en">cultured cell</td><td class="gl-zh">培养细胞</td></tr>
   </table>
 </figure>
 <p>液相色谱按质量、电荷或亲和力解析蛋白质</p>
@@ -742,11 +1136,29 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>亲和色谱 基于蛋白质特异结合其他分子的能力。结合目的蛋白质的配体共价附着到珠上。免疫亲和色谱中，附着到珠上的是对目的蛋白质特异的抗体（图 3-40c）。亲和柱只保留结合珠上分子的蛋白质；通过加过量可溶配体、去垢剂、或改变盐浓度/pH 破坏结合来洗脱。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-40_1.png" alt="图 3-40" onclick="lightbox(this.src)">
-  <figcaption>图3-40 · 色谱技术基于质量、电荷或对特定结合伙伴的亲和力分离蛋白质。(a) 凝胶过滤色谱分离大小不同的蛋白质：混合物放在装多孔珠的柱顶，较小蛋白质比较大的通过柱更慢，洗脱体积与质量相关。(b) 离子交换色谱基于电荷分离：带正电珠保留酸性（带负电）蛋白质，用盐梯度洗脱。(c) 亲和色谱：结合目的蛋白质的配体（或抗体）共价附着到珠上，只保留特异结合的蛋白质。</figcaption>
+  <figcaption>图3-40 · 实验性图：三种常用液相色谱技术基于质量、电荷或对特定结合伙伴的亲和力分离蛋白质。(a) 凝胶过滤色谱分离大小不同的蛋白质。蛋白质混合物小心地放置（即上样）在装有填充多孔珠的圆柱顶部。较小蛋白质比大蛋白质通过柱的速度更慢。因此，在不同时间（不同洗脱体积）从柱底流出的洗脱液中出现的不同蛋白质可收集到单独的管中，称为级分。(b) 离子交换色谱在装有带正电（如此处所示）或带负电珠的柱中分离净电荷不同的蛋白质。与珠具有相同净电荷的蛋白质被排斥并流过柱，而具有相反电荷的蛋白质或多或少紧密地结合到珠上，取决于其结构。结合的蛋白质--此例中为带负电的蛋白质--随后通过在柱中通过盐梯度（通常为 NaCl 或 KCl）洗脱。当离子结合到珠上时，它们置换蛋白质；结合更紧密的蛋白质需要更高的盐浓度才能被释放。(c) 在抗体亲和色谱中，蛋白质混合物通过装有共价连接特异性抗体的珠的柱。只有对抗体具有高亲和力的蛋白质被柱保留；所有非结合蛋白质流过。洗涤柱后，结合的蛋白质用酸性溶液或其他破坏抗原-抗体复合物的溶液洗脱；释放的蛋白质随后流出柱并被收集。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">gel filtration</td><td class="gl-zh">凝胶过滤</td></tr>
+  <tr><td class="gl-en">gel filtration chromatography</td><td class="gl-zh">凝胶过滤色谱</td></tr>
   <tr><td class="gl-en">ion-exchange chromatography</td><td class="gl-zh">离子交换色谱</td></tr>
-  <tr><td class="gl-en">affinity chromatography</td><td class="gl-zh">亲和色谱</td></tr>
+  <tr><td class="gl-en">antibody-affinity chromatography</td><td class="gl-zh">抗体亲和色谱</td></tr>
+  <tr><td class="gl-en">liquid chromatography</td><td class="gl-zh">液相色谱</td></tr>
+  <tr><td class="gl-en">porous bead</td><td class="gl-zh">多孔珠</td></tr>
+  <tr><td class="gl-en">eluate</td><td class="gl-zh">洗脱液</td></tr>
+  <tr><td class="gl-en">elution volume</td><td class="gl-zh">洗脱体积</td></tr>
+  <tr><td class="gl-en">fraction</td><td class="gl-zh">级分</td></tr>
+  <tr><td class="gl-en">net charge</td><td class="gl-zh">净电荷</td></tr>
+  <tr><td class="gl-en">positive charge</td><td class="gl-zh">正电荷</td></tr>
+  <tr><td class="gl-en">negative charge</td><td class="gl-zh">负电荷</td></tr>
+  <tr><td class="gl-en">salt gradient</td><td class="gl-zh">盐梯度</td></tr>
+  <tr><td class="gl-en">NaCl</td><td class="gl-zh">NaCl</td></tr>
+  <tr><td class="gl-en">KCl</td><td class="gl-zh">KCl</td></tr>
+  <tr><td class="gl-en">antigen-antibody complex</td><td class="gl-zh">抗原-抗体复合物</td></tr>
+  <tr><td class="gl-en">acidic solution</td><td class="gl-zh">酸性溶液</td></tr>
+  <tr><td class="gl-en">covalently attached</td><td class="gl-zh">共价连接</td></tr>
+  <tr><td class="gl-en">affinity</td><td class="gl-zh">亲和力</td></tr>
+  <tr><td class="gl-en">anion</td><td class="gl-zh">阴离子</td></tr>
+  <tr><td class="gl-en">cation</td><td class="gl-zh">阳离子</td></tr>
+  <tr><td class="gl-en">polymer gel bead</td><td class="gl-zh">聚合物凝胶珠</td></tr>
   </table>
 </figure>
 <p>高特异的酶和抗体测定可检测单个蛋白质</p>
@@ -759,12 +1171,34 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>免疫印迹（Western 印迹）结合凝胶电泳的解析能力和抗体特异性。用一抗（对目的蛋白质特异）和标记二抗，二抗所连酶产生有色产物或化学发光（图 3-41）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-41_1.png" alt="图 3-41" onclick="lightbox(this.src)">
-  <figcaption>图3-41 · 免疫印迹（Western 印迹）和共免疫沉淀（co-IP）可检测特定蛋白质及其结合伙伴。免疫印迹：蛋白质混合物经 SDS 凝胶电泳后（步骤 1），分离的条带转移到多孔膜上，用一抗结合目的蛋白质，再用标记二抗检测，二抗所连酶产生有色产物或化学发光。共免疫沉淀用特异抗体沉淀目的蛋白质，紧密结合的分子共沉淀。</figcaption>
+  <figcaption>图3-41 · 实验性图：免疫印迹（Western 印迹）和共免疫沉淀（co-IP）可检测特定蛋白质及其结合伙伴。(a) 免疫印迹的一般方法。步骤 1：蛋白质混合物经 SDS 凝胶电泳后，分离的条带（或双向凝胶电泳的斑点）从凝胶转移（印迹）到蛋白质不易被移除的多孔膜上。此时单个蛋白质（以蓝色椭圆表示）不可见。步骤 2：膜浸没在特异于目的蛋白的抗体（Ab₁）溶液中并孵育一段时间。Ab₁ 结合目的蛋白（从上数第二个），但不结合膜上的其他任何蛋白质，形成与蛋白质位置重合的抗体分子层（此时仍无法看到其位置）。然后洗涤膜以去除未结合的 Ab₁。步骤 3：膜与第二抗体（Ab₂）孵育，后者特异识别并结合第一抗体（Ab₁）。第二抗体共价连接一种催化显色反应或释放光（如化学发光）的酶、放射性同位素或其他可高灵敏检测其存在的物质。步骤 4：最后，检测结合的 Ab₂ 的位置和量（如通过显色反应的颜色，或通过测量化学发光释放光的检测器或胶片），从而确定目的蛋白的电泳迁移率（进而确定其质量）及其量（基于条带强度）。(b) 裂解细胞的免疫印迹以检测胞内受体。在此实验中，作为红细胞前体的细胞在体外培养皿中维持，然后用无配体（−，最左和最右泳道）或结合 GR（糖皮质激素受体）的配体（+，中间泳道）处理。细胞然后用去垢剂裂解，用三种不同抗体对总细胞裂解物进行免疫印迹（Western 印迹）：结合 GR 的抗体（anti-GR）、结合称为 PPARα 的受体的抗体（anti-PPARα）、或结合丰富胞内蛋白肌动蛋白的抗体（anti-actin），后者的存在和丰度预期对配体处理不敏感。用 anti-actin 抗体检测到的免疫印迹条带的相等强度（下方框）提供了"上样对照"，证实在凝胶的每个泳道中上样了基本等量的细胞裂解物。GR 和 PPARα 条带在有无预先用 GR 配体孵育细胞时的大致相等强度表明，配体未实质改变细胞中这两种蛋白质的量。用于 (b) 部分免疫印迹的同一细胞裂解物的部分也用于 (c) 部分所示的免疫沉淀/免疫印迹。(c) 免疫沉淀（IP）后进行免疫印迹（合称 co-IP）用于确定 GR 配体是否能诱导形成含 GR 和 PPARα 的稳定复合物。细胞裂解物的部分用抗 GR 抗体（左泳道和中泳道）或不能结合 GR 或 PPARα 的对照抗体（右泳道）进行免疫沉淀。免疫沉淀物通过离心与裂解物的其余部分分离，然后用 anti-GR（上方框）或 anti-PPARα（下方框）进行免疫印迹分析。如预期，上方框显示当同一 anti-GR 抗体用于免疫印迹时，GR 蛋白在使用 anti-GR 生成的免疫沉淀物中被检测到，但在用对照抗体生成的免疫沉淀物中未检测到（未观察到条带）。令人瞩目的是，当用 anti-PPARα 抗体检查免疫沉淀物的免疫印迹时（下方框），当 GR 配体存在时（中泳道）可见大量 PPARα，而在无 GR 配体时（左泳道）或在对照免疫沉淀物中（右泳道）共沉淀很少。这些结果表明 GR 配体诱导形成含糖皮质激素受体和 PPARα 两种蛋白的复合物。这些结果不能确定当 GR 配体存在时 GR 和 PPARα 蛋白是否直接结合，还是复合物中有其他分子作为中间体在配体存在时将 GR 和 PPARα 紧密连接在一起。[部分 (b) 和 (c) 经 Macmillan Publishers Ltd 许可转载，来自 Lee, H.Y. et al., "PPAR-α and glucocorticoid receptor synergize to promote erythroid progenitor self-renewal," Nature, 2015, 522:474–477.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Western blotting</td><td class="gl-zh">Western印迹</td></tr>
-  <tr><td class="gl-en">immunoprecipitation</td><td class="gl-zh">免疫沉淀</td></tr>
-  <tr><td class="gl-en">primary antibody</td><td class="gl-zh">一抗</td></tr>
-  <tr><td class="gl-en">secondary antibody</td><td class="gl-zh">二抗</td></tr>
+  <tr><td class="gl-en">immunoblotting (Western blotting)</td><td class="gl-zh">免疫印迹（Western印迹）</td></tr>
+  <tr><td class="gl-en">co-immunoprecipitation (co-IP)</td><td class="gl-zh">共免疫沉淀（co-IP）</td></tr>
+  <tr><td class="gl-en">immunoprecipitation (IP)</td><td class="gl-zh">免疫沉淀（IP）</td></tr>
+  <tr><td class="gl-en">electrophoresis</td><td class="gl-zh">电泳</td></tr>
+  <tr><td class="gl-en">transfer (blotting)</td><td class="gl-zh">转移（印迹）</td></tr>
+  <tr><td class="gl-en">membrane</td><td class="gl-zh">膜</td></tr>
+  <tr><td class="gl-en">antibody (Ab)</td><td class="gl-zh">抗体（Ab）</td></tr>
+  <tr><td class="gl-en">primary antibody (Ab₁)</td><td class="gl-zh">一抗（Ab₁）</td></tr>
+  <tr><td class="gl-en">secondary antibody (Ab₂)</td><td class="gl-zh">二抗（Ab₂）</td></tr>
+  <tr><td class="gl-en">chromogenic reaction</td><td class="gl-zh">显色反应</td></tr>
+  <tr><td class="gl-en">chemiluminescence</td><td class="gl-zh">化学发光</td></tr>
+  <tr><td class="gl-en">radioactive isotope</td><td class="gl-zh">放射性同位素</td></tr>
+  <tr><td class="gl-en">electrophoretic mobility</td><td class="gl-zh">电泳迁移率</td></tr>
+  <tr><td class="gl-en">band intensity</td><td class="gl-zh">条带强度</td></tr>
+  <tr><td class="gl-en">loading control</td><td class="gl-zh">上样对照</td></tr>
+  <tr><td class="gl-en">intracellular receptor</td><td class="gl-zh">胞内受体</td></tr>
+  <tr><td class="gl-en">glucocorticoid receptor (GR)</td><td class="gl-zh">糖皮质激素受体（GR）</td></tr>
+  <tr><td class="gl-en">PPARα</td><td class="gl-zh">PPARα</td></tr>
+  <tr><td class="gl-en">actin</td><td class="gl-zh">肌动蛋白</td></tr>
+  <tr><td class="gl-en">ligand</td><td class="gl-zh">配体</td></tr>
+  <tr><td class="gl-en">cell lysate</td><td class="gl-zh">细胞裂解物</td></tr>
+  <tr><td class="gl-en">red blood cell precursor</td><td class="gl-zh">红细胞前体</td></tr>
+  <tr><td class="gl-en">centrifugation</td><td class="gl-zh">离心</td></tr>
+  <tr><td class="gl-en">antigen</td><td class="gl-zh">抗原</td></tr>
+  <tr><td class="gl-en">detergent</td><td class="gl-zh">去垢剂</td></tr>
+  <tr><td class="gl-en">erythroid progenitor self-renewal</td><td class="gl-zh">红系前体自我更新</td></tr>
   </table>
 </figure>
 <p>免疫沉淀（IP）利用抗体特异性从复杂混合物分离目的蛋白质。抗体结合靶蛋白后，加试剂使抗体-靶复合物沉淀。若靶紧密结合其他分子，它们共沉淀（共免疫沉淀，co-IP），常用于鉴定四级结构和超分子复合物。</p>
@@ -772,23 +1206,42 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>追踪分子的灵敏方法是检测放射标记发出的放射性。生物研究中有用的放射性同位素包括磷-32（半衰期 14.3 天）、碘-125（60.4 天）、硫-35（87.5 天）、氚（12.4 年）、碳-14（5730.4 年）（表 3-1）。半衰期越短，比活越高。</p>
 <figure class="table">
   <img class="zoomable" src="figures/tab_T3-1_1.png" alt="表 T3-1" onclick="lightbox(this.src)">
-  <figcaption>表3-1 · 生物研究中常用的放射性同位素。磷-32（半衰期 14.3 天）、碘-125（60.4 天）、硫-35（87.5 天）、氚/氢-3（12.4 年）、碳-14（5730.4 年）。</figcaption>
+  <figcaption>表T3-1 · 生物研究中常用的放射性同位素。同位素 半衰期：磷-32 14.3 天；碘-125 60.4 天；硫-35 87.5 天；氚（氢-3）12.4 年；碳-14 5730.4 年。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Isotope</td><td class="gl-zh">同位素</td></tr>
-  <tr><td class="gl-en">Half-Life</td><td class="gl-zh">半衰期</td></tr>
-  <tr><td class="gl-en">Phosphorus-32</td><td class="gl-zh">磷-32</td></tr>
-  <tr><td class="gl-en">Tritium</td><td class="gl-zh">氚</td></tr>
-  <tr><td class="gl-en">Carbon-14</td><td class="gl-zh">碳-14</td></tr>
+  <tr><td class="gl-en">radioisotope</td><td class="gl-zh">放射性同位素</td></tr>
+  <tr><td class="gl-en">isotope</td><td class="gl-zh">同位素</td></tr>
+  <tr><td class="gl-en">half-life</td><td class="gl-zh">半衰期</td></tr>
+  <tr><td class="gl-en">phosphorus-32</td><td class="gl-zh">磷-32</td></tr>
+  <tr><td class="gl-en">iodine-125</td><td class="gl-zh">碘-125</td></tr>
+  <tr><td class="gl-en">sulfur-35</td><td class="gl-zh">硫-35</td></tr>
+  <tr><td class="gl-en">tritium (hydrogen-3)</td><td class="gl-zh">氚（氢-3）</td></tr>
+  <tr><td class="gl-en">carbon-14</td><td class="gl-zh">碳-14</td></tr>
+  <tr><td class="gl-en">biological research</td><td class="gl-zh">生物研究</td></tr>
   </table>
 </figure>
 <p>放射标记大分子的常见方法是向培养基加放射标记前体（如 [³⁵S]甲硫氨酸/半胱氨酸标记蛋白质、³²P-磷酸标记 ATP/磷蛋白、³H-核苷酸前体标记核酸）。用硫-35 标记的甲硫氨酸和半胱氨酸广泛用于标记蛋白质（高比活 >10¹⁵ dpm/mmol）。放射性同位素替换正常原子的标记化合物化学性质几乎不变（如 [³H]亮氨酸）；而 ¹²⁵I 需共价加到不含碘的分子上（如 ¹²⁵I-胰蛋白酶），可能改变生物活性。</p>
 <p>放射自显影用二维检测器（照相乳胶或电子检测器）检测放射标记分子。盖革计数器测量 β 粒子/γ 射线产生的离子（手持，用于实验室安全监测）。液体闪烁计数器用荧光化合物将衰变能量转为闪光由光电管计数。磷屏成像仪用二维阵列检测器存储每像素衰变数。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-42_1.png" alt="图 3-42" onclick="lightbox(this.src)">
-  <figcaption>图3-42 · 脉冲追踪实验可追踪细胞内蛋白质修饰的途径。(a) 为追踪特定新合成蛋白质的命运，细胞与 [³⁵S]甲硫氨酸孵育 0.5 小时（脉冲）标记所有新合成蛋白质，洗去未掺入的放射性氨基酸。细胞继续孵育（追踪）不同时间至 24 小时，定期取样分析放射标记蛋白质的位置和修饰（如糖基化、蛋白水解切割）及降解。</figcaption>
+  <figcaption>图3-42 · 实验性图：脉冲追踪实验可追踪细胞内蛋白质修饰的途径。(a) 为追踪细胞中特定新合成蛋白质的命运，细胞与 [³⁵S]甲硫氨酸孵育 0.5 小时（脉冲）以标记所有新合成蛋白质，然后洗去未掺入细胞的放射性氨基酸。细胞继续孵育（追踪）不同时间至 24 小时，每个追踪时间的样品通过免疫沉淀分离一种特定蛋白质（此处为低密度脂蛋白受体）。免疫沉淀物的 SDS-PAGE 后放射自显影允许可视化靶蛋白，该蛋白初始合成为较小的前体（p），然后通过添加碳水化合物迅速修饰为较大的成熟形式（m）。约一半标记蛋白在脉冲期间从 p 转化为 m；其余在 0.5 小时追踪后转化。蛋白质保持稳定 6–8 小时后开始被降解（如条带强度降低所示）。(b) 在产生突变形式蛋白的细胞中进行了相同实验。突变形式不能正确转化为 m 形式，且比正常蛋白更快被降解。[© Kozarsky et al., The Journal of Cell Biology 102: 1567–1575. doi:10.1083/jcb.102.5.1567.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">pulse-chase</td><td class="gl-zh">脉冲追踪</td></tr>
-  <tr><td class="gl-en">[35S]methionine</td><td class="gl-zh">[35S]甲硫氨酸</td></tr>
+  <tr><td class="gl-en">pulse-chase experiment</td><td class="gl-zh">脉冲追踪实验</td></tr>
+  <tr><td class="gl-en">[³⁵S]methionine</td><td class="gl-zh">[³⁵S]甲硫氨酸</td></tr>
+  <tr><td class="gl-en">pulse</td><td class="gl-zh">脉冲</td></tr>
+  <tr><td class="gl-en">chase</td><td class="gl-zh">追踪</td></tr>
+  <tr><td class="gl-en">immunoprecipitation</td><td class="gl-zh">免疫沉淀</td></tr>
+  <tr><td class="gl-en">SDS-PAGE</td><td class="gl-zh">SDS-PAGE</td></tr>
+  <tr><td class="gl-en">autoradiography</td><td class="gl-zh">放射自显影</td></tr>
+  <tr><td class="gl-en">precursor (p)</td><td class="gl-zh">前体（p）</td></tr>
+  <tr><td class="gl-en">mature form (m)</td><td class="gl-zh">成熟形式（m）</td></tr>
+  <tr><td class="gl-en">carbohydrate</td><td class="gl-zh">碳水化合物</td></tr>
+  <tr><td class="gl-en">low-density lipoprotein receptor</td><td class="gl-zh">低密度脂蛋白受体</td></tr>
+  <tr><td class="gl-en">mutant protein</td><td class="gl-zh">突变蛋白</td></tr>
+  <tr><td class="gl-en">degradation</td><td class="gl-zh">降解</td></tr>
+  <tr><td class="gl-en">protein modification</td><td class="gl-zh">蛋白质修饰</td></tr>
+  <tr><td class="gl-en">newly synthesized protein</td><td class="gl-zh">新合成蛋白质</td></tr>
+  <tr><td class="gl-en">radioactive amino acid</td><td class="gl-zh">放射性氨基酸</td></tr>
+  <tr><td class="gl-en">band intensity</td><td class="gl-zh">条带强度</td></tr>
   </table>
 </figure>
 <p>脉冲追踪实验追踪蛋白质胞内位置或修饰随时间的变化。细胞暴露于放射标记化合物（"脉冲"），洗去后加过量未标记化合物（"追踪"），定期取样测定放射标记的位置或化学形式。脉冲追踪结合免疫沉淀和 SDS-PAGE 放射自显影常用于追踪蛋白质合成、修饰和降解速率。经典用途是阐明分泌蛋白从内质网到细胞表面的途径（见第 14 章）。</p>
@@ -796,18 +1249,50 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>质谱（MS）是表征蛋白质的强大技术，测定蛋白质或片段的质量，由此可确定部分或全部序列。质谱仪有四个关键部件：离子源、质量分析器、检测器和计算机化数据系统。产生离子最常用 MALDI（基质辅助激光解吸/电离）和 ES（电喷雾）。质量分析器最常用 TOF（飞行时间）和离子阱。MS 高度灵敏，能检测少至 100 阿托摩尔肽。MS/MS（串联质谱）可选择母离子断裂成片段，由片段质量差推断短肽（<25 残基）序列。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-43_1.png" alt="图 3-43" onclick="lightbox(this.src)">
-  <figcaption>图3-43 · 分子质量可由基质辅助激光解吸/电离飞行时间（MALDI-TOF）质谱确定。在 MALDI-TOF 质谱仪中，激光光脉冲电离吸附在金属靶上的蛋白或肽混合物（步骤 1）。电场加速离子到检测器（步骤 2 和 3）。离子到达检测器的时间与 m/z 的平方根成正比（较小离子更快），由此确定质量。</figcaption>
+  <figcaption>图3-43 · 实验性图：分子质量可由基质辅助激光解吸/电离飞行时间（MALDI-TOF）质谱确定。在 MALDI-TOF 质谱仪中，激光光脉冲电离吸附在金属靶上的蛋白或肽混合物（步骤 1）。质量分析器中的电场加速样品中的离子向检测器移动（步骤 2 和 3）。离子到达检测器所需的时间与质荷比（m/z）的平方根成正比。在具有相同电荷的离子中，较小的离子移动更快（到达检测器时间更短）。样品中每个离子的分子量使用标准品的飞行时间计算。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">MALDI-TOF</td><td class="gl-zh">MALDI-TOF</td></tr>
-  <tr><td class="gl-en">mass spectrometry</td><td class="gl-zh">质谱</td></tr>
+  <tr><td class="gl-en">MALDI-TOF mass spectrometry</td><td class="gl-zh">MALDI-TOF质谱</td></tr>
+  <tr><td class="gl-en">matrix-assisted laser desorption/ionization</td><td class="gl-zh">基质辅助激光解吸/电离</td></tr>
+  <tr><td class="gl-en">time-of-flight</td><td class="gl-zh">飞行时间</td></tr>
+  <tr><td class="gl-en">laser</td><td class="gl-zh">激光</td></tr>
+  <tr><td class="gl-en">ionization</td><td class="gl-zh">电离</td></tr>
+  <tr><td class="gl-en">metal target</td><td class="gl-zh">金属靶</td></tr>
+  <tr><td class="gl-en">mass analyzer</td><td class="gl-zh">质量分析器</td></tr>
+  <tr><td class="gl-en">electric field</td><td class="gl-zh">电场</td></tr>
+  <tr><td class="gl-en">detector</td><td class="gl-zh">检测器</td></tr>
+  <tr><td class="gl-en">mass-to-charge ratio (m/z)</td><td class="gl-zh">质荷比（m/z）</td></tr>
+  <tr><td class="gl-en">molecular weight</td><td class="gl-zh">分子量</td></tr>
+  <tr><td class="gl-en">ion</td><td class="gl-zh">离子</td></tr>
+  <tr><td class="gl-en">acceleration</td><td class="gl-zh">加速</td></tr>
+  <tr><td class="gl-en">protein/peptide mixture</td><td class="gl-zh">蛋白/肽混合物</td></tr>
   </table>
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_3-44_1.png" alt="图 3-44" onclick="lightbox(this.src)">
-  <figcaption>图3-44 · 蛋白质和肽的质量可由电喷雾电离离子阱质谱确定。溶液中的蛋白质和肽通过加高压的针形成带电液滴，溶剂蒸发产生高度带电气态离子进入质谱仪。离子由离子阱质量分析器分析（顶部图），MS/MS 可选母离子断裂成片段（底部图），由片段质量差推断肽序列。</figcaption>
+  <figcaption>图3-44 · 实验性图：蛋白质和肽的分子质量可由电喷雾电离离子阱质谱确定。(a) 电喷雾（ES）电离通过将溶液通过加有高压的针（形成液滴并使液滴带电），将溶液中的蛋白质和肽转化为高度带电的气态离子。溶剂蒸发产生气态离子进入质谱仪。离子由离子阱质量分析器分析，后者随后将离子导向检测器。(b) [上面板：] 小鼠 H-2 I 类组织相容性抗原 Q10 α 链的三种主要肽和若干次要肽混合物的质谱，以打击检测器的离子的相对丰度（y 轴）作为质荷比（m/z）的函数（x 轴）呈现。[下面板：] 在如 (a) 部分所示离子阱等 MS/MS 仪器中，可选择特定肽离子进行断裂成较小离子，然后进行分析和检测。MS/MS 谱（也称为产物离子谱）提供关于母离子的详细结构信息，包括肽的序列信息。此处选择了 m/z 为 836.47 的离子进行断裂，并测定了产物离子的 m/z 质谱。注意不再存在 m/z 为 836.47 的离子，因为它已被断裂。从产物离子大小的变化、对此类实验中肽键常被断裂的理解、已知单个氨基酸片段的 m/z 值以及数据库信息，可推断出肽的序列 FIIVGYVDDTQFVR。[部分 (b)，未发表数据来自 S. Carr.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">electrospray</td><td class="gl-zh">电喷雾</td></tr>
-  <tr><td class="gl-en">ion-trap</td><td class="gl-zh">离子阱</td></tr>
+  <tr><td class="gl-en">electrospray ionization (ES)</td><td class="gl-zh">电喷雾电离（ES）</td></tr>
+  <tr><td class="gl-en">ion-trap mass spectrometry</td><td class="gl-zh">离子阱质谱</td></tr>
+  <tr><td class="gl-en">mass spectrometer</td><td class="gl-zh">质谱仪</td></tr>
+  <tr><td class="gl-en">mass analyzer</td><td class="gl-zh">质量分析器</td></tr>
+  <tr><td class="gl-en">gaseous ion</td><td class="gl-zh">气态离子</td></tr>
+  <tr><td class="gl-en">needle</td><td class="gl-zh">针</td></tr>
+  <tr><td class="gl-en">high voltage</td><td class="gl-zh">高压</td></tr>
+  <tr><td class="gl-en">droplet</td><td class="gl-zh">液滴</td></tr>
+  <tr><td class="gl-en">solvent evaporation</td><td class="gl-zh">溶剂蒸发</td></tr>
+  <tr><td class="gl-en">mass spectrum</td><td class="gl-zh">质谱</td></tr>
+  <tr><td class="gl-en">mass-to-charge ratio (m/z)</td><td class="gl-zh">质荷比（m/z）</td></tr>
+  <tr><td class="gl-en">MS/MS</td><td class="gl-zh">MS/MS</td></tr>
+  <tr><td class="gl-en">product-ion spectrum</td><td class="gl-zh">产物离子谱</td></tr>
+  <tr><td class="gl-en">parent ion</td><td class="gl-zh">母离子</td></tr>
+  <tr><td class="gl-en">fragmentation</td><td class="gl-zh">断裂</td></tr>
+  <tr><td class="gl-en">peptide bond</td><td class="gl-zh">肽键</td></tr>
+  <tr><td class="gl-en">amino acid fragment</td><td class="gl-zh">氨基酸片段</td></tr>
+  <tr><td class="gl-en">database</td><td class="gl-zh">数据库</td></tr>
+  <tr><td class="gl-en">histocompatibility antigen</td><td class="gl-zh">组织相容性抗原</td></tr>
+  <tr><td class="gl-en">peptide sequence</td><td class="gl-zh">肽序列</td></tr>
+  <tr><td class="gl-en">relative abundance</td><td class="gl-zh">相对丰度</td></tr>
+  <tr><td class="gl-en">ion trap</td><td class="gl-zh">离子阱</td></tr>
   </table>
 </figure>
 <p>LC-MS/MS 将液相色谱与 ES 串联质谱联用，近乎连续分析复杂蛋白质混合物。比较两样品蛋白质量需内标或稳定同位素标记（如 SILAC，细胞培养中氨基酸稳定同位素标记）。</p>
@@ -817,20 +1302,57 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>X 射线晶体学 由 Max Perutz 和 John Kendrew 于 1950 年代开创。X 射线（波长约 0.1–0.2 nm）穿过蛋白质晶体，电子散射产生衍射斑点图（图 3-45）。由衍射图计算电子密度图，将分子模型拟合到电子密度。迄今已建立超过 90,000 个三维结构（含 35,000 多种蛋白质序列），存于 Protein Data Bank（http://www.rcsb.org）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-45_1.png" alt="图 3-45" onclick="lightbox(this.src)">
-  <figcaption>图3-45 · X 射线晶体学提供衍射数据以确定蛋白质三维结构。(a) X 射线晶体学测定的基本部件。当窄 X 射线束撞击晶体时，部分直接穿过，其余被散射（衍射）到各方向。衍射波强度形成衍射斑点周期排列，被电子检测器记录。由衍射图计算电子密度图，将分子模型拟合到电子密度。</figcaption>
+  <figcaption>图3-45 · 实验性图：X 射线晶体学提供衍射数据，可由此确定蛋白质的三维结构。(a) X 射线晶体学测定的基本部件。当窄 X 射线束撞击晶体时，部分直接穿过，其余被散射（衍射）到各方向。形成衍射斑点周期排列的衍射波强度被记录在 X 射线胶片上或由固态电子检测器记录。(b) 在固态检测器上收集的蛋白质晶体 X 射线衍射图。从如此类衍射斑点图的复杂分析中，可确定蛋白质中原子的位置。参见 J. M. Berg, J. L. Tymoczko, G. J. Gatto, and L. Stryer, 2015, Biochemistry, 8th ed., Macmillan。[部分 (b) 由 James M. Berger 提供]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">x-ray crystallography</td><td class="gl-zh">X射线晶体学</td></tr>
+  <tr><td class="gl-en">X-ray crystallography</td><td class="gl-zh">X射线晶体学</td></tr>
+  <tr><td class="gl-en">X-ray source</td><td class="gl-zh">X射线源</td></tr>
+  <tr><td class="gl-en">X-ray beam</td><td class="gl-zh">X射线束</td></tr>
+  <tr><td class="gl-en">crystal</td><td class="gl-zh">晶体</td></tr>
   <tr><td class="gl-en">diffraction</td><td class="gl-zh">衍射</td></tr>
-  <tr><td class="gl-en">electron density map</td><td class="gl-zh">电子密度图</td></tr>
+  <tr><td class="gl-en">detector</td><td class="gl-zh">检测器</td></tr>
+  <tr><td class="gl-en">diffraction spot</td><td class="gl-zh">衍射斑点</td></tr>
+  <tr><td class="gl-en">electron density</td><td class="gl-zh">电子密度</td></tr>
+  <tr><td class="gl-en">three-dimensional structure</td><td class="gl-zh">三维结构</td></tr>
+  <tr><td class="gl-en">solid-state detector</td><td class="gl-zh">固态检测器</td></tr>
+  <tr><td class="gl-en">X-ray film</td><td class="gl-zh">X射线胶片</td></tr>
+  <tr><td class="gl-en">atom</td><td class="gl-zh">原子</td></tr>
+  <tr><td class="gl-en">scattered (diffracted)</td><td class="gl-zh">散射（衍射）</td></tr>
   </table>
 </figure>
 <p>冷冻电子显微镜 对难结晶的大蛋白质复合物有用。稀蛋白质样品薄层涂于载网，在液氦中快速冷冻，在冷冻水合状态检查（图 3-46）。用低电子剂量记录图像，计算机算法按取向分组并计算平均图像，重建三维结构。最新进展可辨别主链和侧链。</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-46_1.png" alt="图 3-46" onclick="lightbox(this.src)">
-  <figcaption>图3-46 · 人线粒体核糖体的冷冻电子显微镜结构分析。线粒体是复杂的、多功能的胞内细胞器，以合成能量载体 ATP 闻名（见第 12 章）。人线粒体可用大型（1.7 MDa）、多蛋白（至少 78 种）和多数酸复合物（线粒体核糖体）合成线粒体 DNA 编码的蛋白质。冷冻电镜通过快速冷冻样品、低剂量电子成像和计算机重建，确定此类大复合物的三维结构。</figcaption>
+  <figcaption>图3-46 · 实验性图：人线粒体核糖体结构的冷冻电子显微镜分析。线粒体是复杂的、多功能的胞内细胞器，以合成能量载体 ATP 的能力最为人知（见第 12 章）。人线粒体可使用大型（1.7 MDa）、多蛋白（至少 78 种）和多数酸复合物（称为线粒体核糖体）合成线粒体 DNA 编码的蛋白质，线粒体核糖体与细胞质核糖体有所不同。(a) 分离的人线粒体核糖体的冷冻电子显微照片。核糖体与缓冲液之间的低对比度使得难以清楚看到单个冷冻核糖体颗粒，后者在图像中随机取向。(b) 323,292 个单独颗粒的自动图像处理允许基于取向将其分组为类别，并对每类内的图像取平均以生成更清晰的核糖体图像。(c) 额外的计算分析生成不同的结构，每个基于数万个单独颗粒（每个结构分析的颗粒数以千 [K] 为单位显示在下方）。框中的结构被选择用于额外分析，产生了 (d) 中所示两个非常相似的模型，含几乎相同的大亚基。(e) 大（蓝色）和小（黄色）亚基电子密度的彩色编码低分辨率模型。小亚基的构象异质性阻碍了从此处所示数据确定其高分辨率结构。(f) 大亚基中一种蛋白质一部分的实验测定电子密度（网格）的高倍放大视图，说明如何用电子密度构建叠加的多肽链分子模型。在大亚基中一种蛋白质的这个极小部分中，脯氨酸（Pro）、苯丙氨酸（Phe）、缬氨酸（Val）和酪氨酸（Tyr）残基的侧链清晰可见，展示了冷冻电子显微镜以极高分辨率确定蛋白质结构的能力。(g) 以 3.4 Å 分辨率确定的大亚基中 48 个蛋白质亚基（不同颜色）的模型。[经美国科学促进会许可转载，来自 Brown, A., et al., "Structure of the large ribosomal subunit from human mitochondria." Science, 2014, 346(6210): 718-722; 许可通过 Copyright Clearance Center, Inc. 转达。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">cryoelectron microscopy</td><td class="gl-zh">冷冻电子显微镜</td></tr>
   <tr><td class="gl-en">mitochondrial ribosome</td><td class="gl-zh">线粒体核糖体</td></tr>
+  <tr><td class="gl-en">mitochondrion</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">ATP synthesis</td><td class="gl-zh">ATP合成</td></tr>
+  <tr><td class="gl-en">mitochondrial DNA</td><td class="gl-zh">线粒体DNA</td></tr>
+  <tr><td class="gl-en">multi-protein complex</td><td class="gl-zh">多蛋白复合物</td></tr>
+  <tr><td class="gl-en">multi-RNA complex</td><td class="gl-zh">多RNA复合物</td></tr>
+  <tr><td class="gl-en">cytoplasmic ribosome</td><td class="gl-zh">细胞质核糖体</td></tr>
+  <tr><td class="gl-en">cryoelectron micrograph</td><td class="gl-zh">冷冻电子显微照片</td></tr>
+  <tr><td class="gl-en">image processing</td><td class="gl-zh">图像处理</td></tr>
+  <tr><td class="gl-en">particle</td><td class="gl-zh">颗粒</td></tr>
+  <tr><td class="gl-en">electron density</td><td class="gl-zh">电子密度</td></tr>
+  <tr><td class="gl-en">molecular model</td><td class="gl-zh">分子模型</td></tr>
+  <tr><td class="gl-en">polypeptide chain</td><td class="gl-zh">多肽链</td></tr>
+  <tr><td class="gl-en">large subunit</td><td class="gl-zh">大亚基</td></tr>
+  <tr><td class="gl-en">small subunit</td><td class="gl-zh">小亚基</td></tr>
+  <tr><td class="gl-en">conformational heterogeneity</td><td class="gl-zh">构象异质性</td></tr>
+  <tr><td class="gl-en">resolution</td><td class="gl-zh">分辨率</td></tr>
+  <tr><td class="gl-en">Å (angstrom)</td><td class="gl-zh">Å（埃）</td></tr>
+  <tr><td class="gl-en">proline (Pro)</td><td class="gl-zh">脯氨酸（Pro）</td></tr>
+  <tr><td class="gl-en">phenylalanine (Phe)</td><td class="gl-zh">苯丙氨酸（Phe）</td></tr>
+  <tr><td class="gl-en">valine (Val)</td><td class="gl-zh">缬氨酸（Val）</td></tr>
+  <tr><td class="gl-en">tyrosine (Tyr)</td><td class="gl-zh">酪氨酸（Tyr）</td></tr>
+  <tr><td class="gl-en">protein subunit</td><td class="gl-zh">蛋白质亚基</td></tr>
+  <tr><td class="gl-en">MDa (megadalton)</td><td class="gl-zh">MDa（兆道尔顿）</td></tr>
+  <tr><td class="gl-en">meshwork</td><td class="gl-zh">网格</td></tr>
+  <tr><td class="gl-en">side chain</td><td class="gl-zh">侧链</td></tr>
+  <tr><td class="gl-en">buffer solution</td><td class="gl-zh">缓冲液</td></tr>
+  <tr><td class="gl-en">contrast</td><td class="gl-zh">对比度</td></tr>
   </table>
 </figure>
 <p>NMR 光谱法 适合约 200 个氨基酸以下的小蛋白质。浓缩蛋白质溶液置于磁场中，测量射频对核自旋态的影响，由残基间距离推断结构。NMR 不需结晶（优势），但限于约 50 kDa 以下蛋白质。可提供蛋白质动力学信息（构象变化）。氢/氘交换质谱（HXMS）研究蛋白质动力学和蛋白质-蛋白质相互作用。</p>
@@ -865,26 +1387,61 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>蛋白质组学技术（如质谱）的进步深刻影响可实际研究的问题类型。多年来，双向凝胶电泳允许研究者分离、展示和表征复杂蛋白质混合物（见图 3-39）。双向电泳凝胶上的斑点可被切下，蛋白质通过蛋白水解（如胰蛋白酶消化）片段化，片段由 MS 鉴定。此双向凝胶电泳方法的替代是高通量 LC-MS/MS。图 3-47 概述了一般 LC-MS/MS 方法：复杂蛋白质混合物用蛋白酶消化；由此产生的无数肽由 LC 分馏成多个较不复杂的级分，这些级分通过电喷雾电离缓慢但连续地注入串联质谱仪。然后级分依次经受多个</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-47_1.png" alt="图 3-47" onclick="lightbox(this.src)">
-  <figcaption>图3-47 · 用 LC-MS/MS 鉴定复杂生物样品中的蛋白质。生物样品中的蛋白质（如分离的高尔基体制备物）用蛋白酶消化。所得肽混合物通过液相色谱（LC）分馏成多个较不复杂的级分，这些级分通过电喷雾电离缓慢但连续地注入串联质谱仪（步骤 1-4）。第一次 MS 选择某肽离子（1st MS），经碰撞断裂成片段后由第二次 MS 测定片段（2nd MS），由片段质量差推断肽序列。级分依次经受多个 MS/MS 循环，直到许多肽的质量和序列被确定，并通过与蛋白质数据库比较鉴定原始生物样品中的蛋白质。</figcaption>
+  <figcaption>图3-47 · 实验性图：LC-MS/MS 通过与蛋白质数据库比较用于鉴定复杂生物样品中的蛋白质。生物样品中的复杂蛋白质混合物（如分离的高尔基体制备物）用蛋白酶消化。所得肽混合物通过液相色谱（LC）分馏成多个较不复杂的级分，这些级分通过电喷雾电离缓慢但连续地注入串联质谱仪。级分随后依次经受多个 MS/MS 循环，直到许多肽的质量和序列被确定，并通过与蛋白质数据库比较鉴定原始生物样品中的蛋白质。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">LC-MS/MS</td><td class="gl-zh">LC-MS/MS</td></tr>
-  <tr><td class="gl-en">electrospray ionization</td><td class="gl-zh">电喷雾电离</td></tr>
+  <tr><td class="gl-en">liquid chromatography (LC)</td><td class="gl-zh">液相色谱（LC）</td></tr>
   <tr><td class="gl-en">tandem mass spectrometer</td><td class="gl-zh">串联质谱仪</td></tr>
+  <tr><td class="gl-en">electrospray ionization</td><td class="gl-zh">电喷雾电离</td></tr>
+  <tr><td class="gl-en">protease</td><td class="gl-zh">蛋白酶</td></tr>
+  <tr><td class="gl-en">trypsin</td><td class="gl-zh">胰蛋白酶</td></tr>
+  <tr><td class="gl-en">peptide</td><td class="gl-zh">肽</td></tr>
+  <tr><td class="gl-en">protein database</td><td class="gl-zh">蛋白质数据库</td></tr>
+  <tr><td class="gl-en">fraction</td><td class="gl-zh">级分</td></tr>
+  <tr><td class="gl-en">collision fragmentation</td><td class="gl-zh">碰撞断裂</td></tr>
+  <tr><td class="gl-en">MS/MS cycle</td><td class="gl-zh">MS/MS循环</td></tr>
+  <tr><td class="gl-en">sequence</td><td class="gl-zh">序列</td></tr>
+  <tr><td class="gl-en">biological sample</td><td class="gl-zh">生物样品</td></tr>
+  <tr><td class="gl-en">Golgi organelle</td><td class="gl-zh">高尔基体</td></tr>
+  <tr><td class="gl-en">protein mixture</td><td class="gl-zh">蛋白质混合物</td></tr>
+  <tr><td class="gl-en">1st MS</td><td class="gl-zh">第一次MS</td></tr>
+  <tr><td class="gl-en">2nd MS</td><td class="gl-zh">第二次MS</td></tr>
+  <tr><td class="gl-en">detector</td><td class="gl-zh">检测器</td></tr>
   </table>
 </figure>
 <p>MS/MS 循环，直到许多肽的序列被确定并用于鉴定原始生物样品中的蛋白质。目前检测全细胞或组织中相当一部分蛋白质需要含 50 μg 以上蛋白质的样品，相当于约 70,000–200,000 个哺乳动物细胞的蛋白质含量。提高方法灵敏度的工作正在进行，以便最终能分析单个细胞的蛋白质组。</p>
 <p>LC-MS/MS 用于鉴定每个细胞器中许多蛋白质的例子见图 3-48。来自小鼠肝组织的细胞被机械破碎以释放细胞器，细胞器通过密度梯度离心部分分离。梯度中细胞器的位置用识别先前鉴定的细胞器特异蛋白的抗体进行免疫印迹确定。然后梯度级分经受 LC-MS/MS 鉴定每个级分中的蛋白质，并将许多</p>
 <figure>
   <img class="zoomable" src="figures/fig_3-48_1.png" alt="图 3-48" onclick="lightbox(this.src)">
-  <figcaption>图3-48 · 用密度梯度离心和 LC-MS/MS 鉴定细胞器中的许多蛋白质。(a) 细胞或组织机械破碎释放细胞器，细胞器通过密度梯度离心部分分离。细胞器在梯度中的位置（分散且彼此有些重叠）用识别先前鉴定的细胞器特异蛋白的抗体进行免疫印迹确定。梯度级分经受 LC-MS/MS，比较各蛋白质的分布与细胞器分布，将蛋白质分配到一个或多个细胞器（细胞器蛋白质组分析）。(b) 各细胞器鉴定的蛋白质数示例：线粒体 488、高尔基体 297、内质网 229、早期内体等。</figcaption>
+  <figcaption>图3-48 · 实验性图：密度梯度离心和 LC-MS/MS 可用于鉴定细胞器中的许多蛋白质。(a) 肝组织中的细胞被机械破碎以释放细胞器，细胞器通过密度梯度离心部分分离。细胞器在梯度中的位置--它们分散在整个梯度中且彼此有些重叠--通过用识别先前鉴定的细胞器特异蛋白的抗体进行免疫印迹来确定。来自梯度的级分经受蛋白水解和 LC-MS/MS 以鉴定每个级分中的肽，从而鉴定蛋白质。与梯度中细胞器位置的比较（称为蛋白质相关性分析）允许将许多单个蛋白质分配到一个或多个细胞器（细胞器蛋白质组鉴定）。(b) 由 (a) 部分程序所得数据的层次分解。注意并非所有鉴定的蛋白质都能被分配到细胞器，且某些蛋白质被分配到不止一个细胞器。[数据来自 L. J. Foster et al., 2006, Cell 125:187–199.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">density-gradient centrifugation</td><td class="gl-zh">密度梯度离心</td></tr>
-  <tr><td class="gl-en">immunoblot</td><td class="gl-zh">免疫印迹</td></tr>
-  <tr><td class="gl-en">Mitochondria</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">LC-MS/MS</td><td class="gl-zh">LC-MS/MS</td></tr>
+  <tr><td class="gl-en">organelle</td><td class="gl-zh">细胞器</td></tr>
+  <tr><td class="gl-en">immunoblotting</td><td class="gl-zh">免疫印迹</td></tr>
+  <tr><td class="gl-en">organelle-specific protein</td><td class="gl-zh">细胞器特异蛋白</td></tr>
+  <tr><td class="gl-en">proteolysis</td><td class="gl-zh">蛋白水解</td></tr>
+  <tr><td class="gl-en">protein correlation profiling</td><td class="gl-zh">蛋白质相关性分析</td></tr>
+  <tr><td class="gl-en">organelle proteome</td><td class="gl-zh">细胞器蛋白质组</td></tr>
+  <tr><td class="gl-en">fraction</td><td class="gl-zh">级分</td></tr>
+  <tr><td class="gl-en">gradient</td><td class="gl-zh">梯度</td></tr>
+  <tr><td class="gl-en">mitochondria</td><td class="gl-zh">线粒体</td></tr>
   <tr><td class="gl-en">Golgi</td><td class="gl-zh">高尔基体</td></tr>
-  <tr><td class="gl-en">Endoplasmic reticulum</td><td class="gl-zh">内质网</td></tr>
-  <tr><td class="gl-en">Early endosome</td><td class="gl-zh">早期内体</td></tr>
-  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质</td></tr>
+  <tr><td class="gl-en">endoplasmic reticulum</td><td class="gl-zh">内质网</td></tr>
+  <tr><td class="gl-en">early endosome</td><td class="gl-zh">早期内体</td></tr>
+  <tr><td class="gl-en">cytosol</td><td class="gl-zh">胞质</td></tr>
+  <tr><td class="gl-en">nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">proteasome</td><td class="gl-zh">蛋白酶体</td></tr>
+  <tr><td class="gl-en">recycling endosome</td><td class="gl-zh">循环内体</td></tr>
+  <tr><td class="gl-en">ER/Golgi vesicle</td><td class="gl-zh">ER/高尔基体囊泡</td></tr>
+  <tr><td class="gl-en">cytoplasmic organelle</td><td class="gl-zh">胞质细胞器</td></tr>
+  <tr><td class="gl-en">F1 ATP synthase</td><td class="gl-zh">F1 ATP合酶</td></tr>
+  <tr><td class="gl-en">α-mannosidase</td><td class="gl-zh">α-甘露糖苷酶</td></tr>
+  <tr><td class="gl-en">early endosome antigen 1</td><td class="gl-zh">早期内体抗原1</td></tr>
+  <tr><td class="gl-en">liver tissue</td><td class="gl-zh">肝组织</td></tr>
+  <tr><td class="gl-en">immunoblot</td><td class="gl-zh">免疫印迹</td></tr>
+  <tr><td class="gl-en">gradient fraction</td><td class="gl-zh">梯度级分</td></tr>
   </table>
 </figure>
 <p>单个蛋白质在梯度中的分布与细胞器的分布比较。此策略允许将许多单个蛋白质分配到一个或多个细胞器（细胞器蛋白质组分析）。最近，细胞器纯化、MS、生化定位和计算方法的组合已用于显示至少一千种不同蛋白质定位于人和小鼠的线粒体。</p>

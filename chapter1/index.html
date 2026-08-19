@@ -19,6 +19,8 @@ img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
 img.zoomable:hover { opacity: 0.88; }
 .boximg { margin: 1.5em 0; text-align: center; }
 .boximg img { border: 1px solid #d8b4fe; }
+.intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
+.intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
 figure figcaption { font-size: 0.85em; color: #555; margin-top: 0.5em; text-align: justify; text-indent: 0; line-height: 1.5; }
 figure.table figcaption { text-align: left; }
 table.glossary { margin: 0.2em auto 0.6em auto; border-collapse: collapse; font-size: 0.65em; color: #888; }
@@ -44,12 +46,45 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>然而，令人眼花缭乱的外部生物形态之下隐藏着强大的统一性：由于共同祖先，所有生物系统都由含相同类型化学分子、并在细胞水平采用相似组织原理的细胞组成。尽管</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-1_1.png" alt="图 1-1" onclick="lightbox(this.src)">
-  <figcaption>图1-1 · 所有生物都源自共同祖先细胞。从简单细菌到复杂哺乳动物的所有生物可能都从约 35 亿年前的共同单细胞祖先演化而来。图中展示主要生物类群的进化关系。</figcaption>
+  <figcaption>图1-1 · 所有生物都源自一个共同的祖先细胞。所有生物，从简单的细菌到复杂的哺乳动物，可能都从同一个单细胞祖先进化而来。这棵谱系树描绘了生物三大主要谱系之间的进化关系。该树的结构最初是根据形态学标准确定的：外形相似的生物被归在一起。近来，在生物中发现的 DNA 和蛋白质的大分子序列提供了信息更丰富的标准来判定亲缘关系。这些大分子序列的相似性越高，生物之间的亲缘关系就被认为越近。基于形态学比较的树系与化石记录总体上与基于分子数据的树系吻合得很好。
+[图中分类标记] 细菌域（BACTERIA）：低 G+C 革兰氏阳性菌、高 G+C 革兰氏阳性菌、δ/ε 紫菌、α 紫菌、γ/β 紫菌、螺旋体（Spirochaetes）、梭杆菌（Fusobacteria）、柔杆菌/拟杆菌（Flexibacter/Bacteroides）、蓝细菌（Cyanobacteria）、栖热菌属（Thermus）、产水菌属（Aquifex）、栖热袍菌目（Thermotogales）；古菌域（ARCHAEA）：广古菌门（Euryarchaeota）、初古菌门（Korarchaeota）、泉古菌门（Crenarchaeota）；真核生物域（EUKARYOTA）：植物、黏菌、动物、真菌、微孢子虫（Microsporidia）、内阿米巴属（Entamoeba）、顶复门（如疟原虫属 Plasmodium）、裸藻属（Euglena）、动基体目（如锥虫属 Trypanosoma）、副基体门（如毛滴虫属 Trichomonas）、后滴虫门（如贾第虫属 Giardia）、线粒体、叶绿体；推定的真核生物与古细菌的最近共同祖先；推定的所有现存生物的最近共同祖先。
+[数据来自 J. R. Brown, 2005, "Universal tree of life," in Encyclopedia of Life Sciences, Wiley InterScience (online).]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">BACTERIA</td><td class="gl-zh">细菌域</td></tr>
+  <tr><td class="gl-en">ARCHAEA</td><td class="gl-zh">古菌域</td></tr>
+  <tr><td class="gl-en">EUKARYOTA</td><td class="gl-zh">真核生物域</td></tr>
+  <tr><td class="gl-en">Apicomplexa</td><td class="gl-zh">顶复门</td></tr>
+  <tr><td class="gl-en">Plasmodium</td><td class="gl-zh">疟原虫属</td></tr>
+  <tr><td class="gl-en">Kinetoplasta</td><td class="gl-zh">动基体目</td></tr>
+  <tr><td class="gl-en">Trypanosoma</td><td class="gl-zh">锥虫属</td></tr>
+  <tr><td class="gl-en">Parabasalia</td><td class="gl-zh">副基体门</td></tr>
+  <tr><td class="gl-en">Trichomonas</td><td class="gl-zh">毛滴虫属</td></tr>
+  <tr><td class="gl-en">Metamonda</td><td class="gl-zh">后滴虫门</td></tr>
+  <tr><td class="gl-en">Giardia</td><td class="gl-zh">贾第虫属</td></tr>
+  <tr><td class="gl-en">Euglena</td><td class="gl-zh">裸藻属</td></tr>
+  <tr><td class="gl-en">Thermus</td><td class="gl-zh">栖热菌属</td></tr>
+  <tr><td class="gl-en">Aquifex</td><td class="gl-zh">产水菌属</td></tr>
+  <tr><td class="gl-en">Entamoeba</td><td class="gl-zh">内阿米巴属</td></tr>
+  <tr><td class="gl-en">Fungi</td><td class="gl-zh">真菌</td></tr>
+  <tr><td class="gl-en">Euryarchaeota</td><td class="gl-zh">广古菌门</td></tr>
+  <tr><td class="gl-en">Crenarchaeota</td><td class="gl-zh">泉古菌门</td></tr>
+  <tr><td class="gl-en">Korarchaeota</td><td class="gl-zh">初古菌门</td></tr>
+  <tr><td class="gl-en">Low G+C gram-positives</td><td class="gl-zh">低G+C革兰氏阳性菌</td></tr>
+  <tr><td class="gl-en">High G+C gram-positives</td><td class="gl-zh">高G+C革兰氏阳性菌</td></tr>
+  <tr><td class="gl-en">Spirochaetes</td><td class="gl-zh">螺旋体</td></tr>
+  <tr><td class="gl-en">Fusobacteria</td><td class="gl-zh">梭杆菌</td></tr>
+  <tr><td class="gl-en">Flexibacter/Bacteroides</td><td class="gl-zh">柔杆菌/拟杆菌</td></tr>
+  <tr><td class="gl-en">Cyanobacteria</td><td class="gl-zh">蓝细菌</td></tr>
+  <tr><td class="gl-en">Thermotogales</td><td class="gl-zh">栖热袍菌目</td></tr>
+  <tr><td class="gl-en">Microsporidia</td><td class="gl-zh">微孢子虫</td></tr>
+  <tr><td class="gl-en">Mitochondria</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">Chloroplasts</td><td class="gl-zh">叶绿体</td></tr>
   <tr><td class="gl-en">common ancestral cell</td><td class="gl-zh">共同祖先细胞</td></tr>
-  <tr><td class="gl-en">evolution</td><td class="gl-zh">演化</td></tr>
-  <tr><td class="gl-en">bacteria</td><td class="gl-zh">细菌</td></tr>
-  <tr><td class="gl-en">mammals</td><td class="gl-zh">哺乳动物</td></tr>
+  <tr><td class="gl-en">evolution</td><td class="gl-zh">进化</td></tr>
+  <tr><td class="gl-en">morphological criteria</td><td class="gl-zh">形态学标准</td></tr>
+  <tr><td class="gl-en">macromolecular sequences</td><td class="gl-zh">大分子序列</td></tr>
+  <tr><td class="gl-en">fossil record</td><td class="gl-zh">化石记录</td></tr>
+  <tr><td class="gl-en">molecular data</td><td class="gl-zh">分子数据</td></tr>
   </table>
 </figure>
 <p>基本类型的生物分子在数十亿年演化中被保守，但它们组装成有功能细胞和生物体的模式已发生相当大变化。</p>
@@ -58,29 +93,104 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>多细胞生物（包括人体）由如此密切相关的元素组成，以至于任何单一元素都不能脱离其他而被充分理解。生物体含器官，器官由组织组成，组织由细胞构成，细胞由分子形成（图 1-4）。生命系统的统一性由许多层次的相互关系协调：分子在器官间和细胞间传递信息，组织由细胞分泌的分子界定并与其他组织整合。一般而言，我们将生物系统划分的所有层次都相互联系。</p>
 <figure class="table">
   <img class="zoomable" src="figures/tab_T1-1_1.png" alt="表 T1-1" onclick="lightbox(this.src)">
-  <figcaption>表1-1 · 生命演化大事记（地质年代）。从约 46 亿年前地球形成，到约 35 亿年前出现最早细胞、30 亿年前蓝细菌、18.5 亿年前真核生物、12 亿年前多细胞生物、5.8–5.5 亿年前后生动物等关键演化事件。</figcaption>
+  <figcaption>表T1-1 · 根据化石记录确定的地球生命进化时间表
+46 亿年前：地球由围绕年轻太阳旋转的物质形成。
+约 39 亿–25 亿年前：出现类似原核生物的细胞。这些最早生物是化能自养生物（chemoautotrophs）：它们以二氧化碳（CO₂）作为碳源，氧化无机物质以获取能量。
+35 亿年前：最后共同祖先的生存时期；真细菌（Eubacteria）与古菌（Archaea）发生分化。
+30 亿年前：进化出能进行光合作用的蓝细菌（cyanobacteria）；它们以水作为还原剂，从而产生氧气作为废物。
+18.5 亿年前：单细胞真核生物出现。
+12 亿年前：进化出简单的多细胞生物，大多由复杂度有限的细胞群体组成。
+5.8 亿–5 亿年前：现代动物的大多数门在寒武纪大爆发（Cambrian explosion）期间开始在化石记录中出现。
+5.35 亿年前：海洋生物的大规模多样化：脊索动物、节肢动物（如三叶虫、甲壳类）、棘皮动物、软体动物、腕足动物、有孔虫、放射虫等。
+4.85 亿年前：进化出最早的具真正骨骼的脊椎动物（无颌鱼类）。
+4.34 亿年前：最早的原生植物在陆地上出现。
+2.25 亿年前：最早的恐龙（原蜥脚类）和真骨鱼类出现。
+2.20 亿年前：裸子植物森林统治陆地；食草动物体型变得巨大。
+2.15 亿年前：最早的哺乳动物进化出现。
+6550 万年前：白垩纪-第三纪灭绝事件使约一半动物物种灭绝，包括所有恐龙。
+650 万年前：最早的人科动物（hominids）进化出现。
+200 万年前：人属（Homo）的最早成员在化石记录中出现。
+35 万年前：尼安德特人出现。
+20 万年前：解剖学意义上的现代人在非洲出现。
+3 万年前：尼安德特人灭绝。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">4600 million years ago</td><td class="gl-zh">46亿年前</td></tr>
-  <tr><td class="gl-en">eukaryote</td><td class="gl-zh">真核生物</td></tr>
-  <tr><td class="gl-en">metazoan</td><td class="gl-zh">后生动物</td></tr>
+  <tr><td class="gl-en">prokaryotes</td><td class="gl-zh">原核生物</td></tr>
+  <tr><td class="gl-en">chemoautotrophs</td><td class="gl-zh">化能自养生物</td></tr>
+  <tr><td class="gl-en">carbon dioxide</td><td class="gl-zh">二氧化碳</td></tr>
+  <tr><td class="gl-en">Eubacteria</td><td class="gl-zh">真细菌</td></tr>
+  <tr><td class="gl-en">Archaea</td><td class="gl-zh">古菌</td></tr>
+  <tr><td class="gl-en">cyanobacteria</td><td class="gl-zh">蓝细菌</td></tr>
+  <tr><td class="gl-en">reducing agent</td><td class="gl-zh">还原剂</td></tr>
+  <tr><td class="gl-en">eukaryotes</td><td class="gl-zh">真核生物</td></tr>
+  <tr><td class="gl-en">unicellular</td><td class="gl-zh">单细胞</td></tr>
+  <tr><td class="gl-en">multicellular</td><td class="gl-zh">多细胞</td></tr>
+  <tr><td class="gl-en">Cambrian explosion</td><td class="gl-zh">寒武纪大爆发</td></tr>
+  <tr><td class="gl-en">chordates</td><td class="gl-zh">脊索动物</td></tr>
+  <tr><td class="gl-en">arthropods</td><td class="gl-zh">节肢动物</td></tr>
+  <tr><td class="gl-en">trilobites</td><td class="gl-zh">三叶虫</td></tr>
+  <tr><td class="gl-en">crustaceans</td><td class="gl-zh">甲壳类</td></tr>
+  <tr><td class="gl-en">echinoderms</td><td class="gl-zh">棘皮动物</td></tr>
+  <tr><td class="gl-en">mollusks</td><td class="gl-zh">软体动物</td></tr>
+  <tr><td class="gl-en">brachiopods</td><td class="gl-zh">腕足动物</td></tr>
+  <tr><td class="gl-en">foraminifers</td><td class="gl-zh">有孔虫</td></tr>
+  <tr><td class="gl-en">radiolarians</td><td class="gl-zh">放射虫</td></tr>
+  <tr><td class="gl-en">vertebrates</td><td class="gl-zh">脊椎动物</td></tr>
+  <tr><td class="gl-en">jawless fishes</td><td class="gl-zh">无颌鱼类</td></tr>
+  <tr><td class="gl-en">dinosaurs</td><td class="gl-zh">恐龙</td></tr>
+  <tr><td class="gl-en">prosauropods</td><td class="gl-zh">原蜥脚类</td></tr>
+  <tr><td class="gl-en">teleost fishes</td><td class="gl-zh">真骨鱼类</td></tr>
+  <tr><td class="gl-en">gymnosperm</td><td class="gl-zh">裸子植物</td></tr>
+  <tr><td class="gl-en">herbivores</td><td class="gl-zh">食草动物</td></tr>
+  <tr><td class="gl-en">mammals</td><td class="gl-zh">哺乳动物</td></tr>
+  <tr><td class="gl-en">Cretaceous-Tertiary extinction</td><td class="gl-zh">白垩纪-第三纪灭绝</td></tr>
+  <tr><td class="gl-en">hominids</td><td class="gl-zh">人科动物</td></tr>
+  <tr><td class="gl-en">Homo</td><td class="gl-zh">人属</td></tr>
+  <tr><td class="gl-en">Neanderthals</td><td class="gl-zh">尼安德特人</td></tr>
+  <tr><td class="gl-en">fossil record</td><td class="gl-zh">化石记录</td></tr>
   </table>
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_1-2_1.png" alt="图 1-2" onclick="lightbox(this.src)">
-  <figcaption>图1-2 · 查尔斯·达尔文（1809–1882）。在 HMS Beagle 史诗航行四年后，达尔文已开始在私人笔记本中构思其自然选择概念，该概念成为现代生物学的基础。</figcaption>
+  <figcaption>图1-2 · 查尔斯·达尔文（Charles Darwin, 1809–1882）。在搭乘英国皇家海军「小猎犬号」（HMS Beagle）完成史诗般的航行四年后，达尔文就已经开始在私人笔记本中阐述其自然选择（natural selection）的概念，这一概念后来发表在他的《物种起源》（On the Origin of Species, 1859）中。[查尔斯·达尔文在加拉帕戈斯群岛，Howat, Andrew（20世纪）/私人收藏/© Look and Learn/Bridgeman Images。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">natural selection</td><td class="gl-zh">自然选择</td></tr>
   <tr><td class="gl-en">Charles Darwin</td><td class="gl-zh">查尔斯·达尔文</td></tr>
+  <tr><td class="gl-en">natural selection</td><td class="gl-zh">自然选择</td></tr>
+  <tr><td class="gl-en">HMS Beagle</td><td class="gl-zh">小猎犬号</td></tr>
+  <tr><td class="gl-en">On the Origin of Species</td><td class="gl-zh">物种起源</td></tr>
   </table>
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_1-3_1.png" alt="图 1-3" onclick="lightbox(this.src)">
-  <figcaption>图1-3 · 细胞形状和大小的惊人多样性。照片展示细胞的一些形态多样性，包括单细胞生物和多细胞生物中的各类细胞。</figcaption>
+  <figcaption>图1-3 · 细胞具有令人惊叹的多种形态和大小。这些照片展示了细胞形态的多样性的一部分。除了形态之外，细胞还在运动能力、内部组织（原核细胞与真核细胞）以及代谢活动方面各不相同。
+(a) 1 μm：真细菌--乳酸乳球菌（Lactococcus lactis）用于生产罗克福、布里和卡门贝尔等奶酪。注意正在分裂的细胞。
+(b) 1 μm：一团古菌（Methanosarcina），它们通过将二氧化碳和氢气转化为甲烷（CH₄）来产生能量。某些生活在牛瘤胃中的物种每天可产生超过 150 升甲烷气体。
+(c) 10 μm：人类血细胞，假彩色显示。红色细胞是携带氧的红细胞（erythrocytes），白色细胞（白细胞，leukocytes）是免疫系统的一部分，负责抵御感染；绿色细胞是血小板（platelets），它们堵塞伤口并含有引发血液凝固的物质。
+(d) 100 μm：群体性单细胞绿藻--团藻（Volvox aureus）。大球体由许多单个细胞组成，呈现为蓝色或绿色斑点。内部的黄色团块是子代群体（daughter colonies），每个由许多细胞组成。
+(e) 20 μm：小脑中的一个浦肯野神经元（Purkinje neuron），通过其分支的树突（dendrites）网络可与其他细胞形成超过十万个连接。该细胞通过导入绿色荧光蛋白（green fluorescent protein）而显现；细胞体（cell body）是右上角的球状部分。
+(f) 20 μm：植物细胞在维管植物（vascular plants）中被牢牢固定在原位，由坚硬的纤维素（cellulose）骨架支撑。细胞之间的间隙连接成管，用于运输水和食物。
+[部分 (a) Gary Gaugler/Science Source。部分 (b) Power and Syred/Science Source。部分 (c) Science Source。部分 (d) micro_photo/iStockphoto/Getty Images。部分 (e) 感谢 Helen M. Blau 博士（斯坦福大学医学院）和 Clas B. Johansson 博士（卡罗林斯卡学院）。部分 (f) Biophoto Associates/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">single-celled</td><td class="gl-zh">单细胞</td></tr>
-  <tr><td class="gl-en">multicellular</td><td class="gl-zh">多细胞</td></tr>
-  <tr><td class="gl-en">bacteria</td><td class="gl-zh">细菌</td></tr>
-  <tr><td class="gl-en">protozoan</td><td class="gl-zh">原生动物</td></tr>
+  <tr><td class="gl-en">Eubacteria</td><td class="gl-zh">真细菌</td></tr>
+  <tr><td class="gl-en">Lactococcus lactis</td><td class="gl-zh">乳酸乳球菌</td></tr>
+  <tr><td class="gl-en">archaeans</td><td class="gl-zh">古菌</td></tr>
+  <tr><td class="gl-en">Methanosarcina</td><td class="gl-zh">甲烷八叠球菌属</td></tr>
+  <tr><td class="gl-en">methane</td><td class="gl-zh">甲烷</td></tr>
+  <tr><td class="gl-en">erythrocytes</td><td class="gl-zh">红细胞</td></tr>
+  <tr><td class="gl-en">leukocytes</td><td class="gl-zh">白细胞</td></tr>
+  <tr><td class="gl-en">platelets</td><td class="gl-zh">血小板</td></tr>
+  <tr><td class="gl-en">blood clotting</td><td class="gl-zh">血液凝固</td></tr>
+  <tr><td class="gl-en">immune system</td><td class="gl-zh">免疫系统</td></tr>
+  <tr><td class="gl-en">Volvox aureus</td><td class="gl-zh">团藻</td></tr>
+  <tr><td class="gl-en">daughter colonies</td><td class="gl-zh">子代群体</td></tr>
+  <tr><td class="gl-en">Purkinje neuron</td><td class="gl-zh">浦肯野神经元</td></tr>
+  <tr><td class="gl-en">cerebellum</td><td class="gl-zh">小脑</td></tr>
+  <tr><td class="gl-en">dendrites</td><td class="gl-zh">树突</td></tr>
+  <tr><td class="gl-en">green fluorescent protein</td><td class="gl-zh">绿色荧光蛋白</td></tr>
+  <tr><td class="gl-en">cell body</td><td class="gl-zh">细胞体</td></tr>
+  <tr><td class="gl-en">cellulose</td><td class="gl-zh">纤维素</td></tr>
+  <tr><td class="gl-en">vascular plants</td><td class="gl-zh">维管植物</td></tr>
+  <tr><td class="gl-en">prokaryotic</td><td class="gl-zh">原核的</td></tr>
+  <tr><td class="gl-en">eukaryotic</td><td class="gl-zh">真核的</td></tr>
   </table>
 </figure>
 <p>然而，要了解生物系统，我们必须一次只考察生命系统的一小部分。细胞生物学是合理的起点，因为生物体可被视为由相互作用的细胞组成，细胞是存在的最接近自主生物单位的实体。地球上所有生命的最后一个共同祖先是一个单细胞（见图 1-1），在细胞水平所有生命都极为相似。所有细胞使用相同的分子构建块、相似的遗传信息储存维护和表达方法，以及相似的能量代谢、分子运输、信号传导、发育和结构过程。</p>
@@ -88,12 +198,27 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>我们现在有数千种后生动物（多细胞动物）的完整基因组序列，这些序列为</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-4_1.png" alt="图 1-4" onclick="lightbox(this.src)">
-  <figcaption>图1-4 · 生命系统（如人体）由密切相关的元素组成。生物体含器官，器官由组织组成，组织由细胞构成，细胞由分子形成。皮肤由多层组织构成，是器官和组织的例子。</figcaption>
+  <figcaption>图1-4 · 生命系统（如人体）由紧密相关的要素组成。
+(a) 1 cm：手的表面被活的器官--皮肤（skin）覆盖，皮肤由数层组织构成。
+(b) 20 μm：一层坚硬的死皮细胞（dead skin cells）外层保护身体免受伤害、感染和脱水。这层由活的表皮细胞（epidermal cells）不断更新，这些细胞也产生动物的毛发和皮毛。更深层的肌肉和结缔组织赋予皮肤弹性和紧致。
+(c) 1 μm：组织通过亚细胞黏附结构--桥粒（desmosome）和半桥粒（hemidesmosome）--形成，这些结构将细胞彼此连接并与下方的一层支撑纤维连接。
+(d) 5 nm：细胞-细胞黏附的核心是其结构组分：构成细胞表面膜的磷脂（phospholipid）分子，以及大型蛋白质分子。穿过细胞膜的蛋白质分子通常与由多种蛋白质构成的内外纤维形成强键。
+[图中标记] 死皮细胞、表皮细胞、基底膜（basal lamina）、疏松结缔组织（loose connective tissue）、细胞-细胞黏附蛋白（cell-cell adhesion protein）、胞内附着蛋白（intracellular attachment protein）、多功能黏附蛋白（multi-adhesive protein）、细胞骨架蛋白（cytoskeletal proteins）、细胞表面受体（cell-surface receptor）、桥粒、半桥粒。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">organ</td><td class="gl-zh">器官</td></tr>
   <tr><td class="gl-en">tissue</td><td class="gl-zh">组织</td></tr>
-  <tr><td class="gl-en">molecule</td><td class="gl-zh">分子</td></tr>
-  <tr><td class="gl-en">skin</td><td class="gl-zh">皮肤</td></tr>
+  <tr><td class="gl-en">epidermal cells</td><td class="gl-zh">表皮细胞</td></tr>
+  <tr><td class="gl-en">dead skin cells</td><td class="gl-zh">死皮细胞</td></tr>
+  <tr><td class="gl-en">connective tissue</td><td class="gl-zh">结缔组织</td></tr>
+  <tr><td class="gl-en">basal lamina</td><td class="gl-zh">基底膜</td></tr>
+  <tr><td class="gl-en">desmosome</td><td class="gl-zh">桥粒</td></tr>
+  <tr><td class="gl-en">hemidesmosome</td><td class="gl-zh">半桥粒</td></tr>
+  <tr><td class="gl-en">phospholipid</td><td class="gl-zh">磷脂</td></tr>
+  <tr><td class="gl-en">cell-cell adhesion</td><td class="gl-zh">细胞-细胞黏附</td></tr>
+  <tr><td class="gl-en">cytoskeletal proteins</td><td class="gl-zh">细胞骨架蛋白</td></tr>
+  <tr><td class="gl-en">cell-surface receptor</td><td class="gl-zh">细胞表面受体</td></tr>
+  <tr><td class="gl-en">intracellular attachment protein</td><td class="gl-zh">胞内附着蛋白</td></tr>
+  <tr><td class="gl-en">multi-adhesive protein</td><td class="gl-zh">多功能黏附蛋白</td></tr>
+  <tr><td class="gl-en">cell-surface membrane</td><td class="gl-zh">细胞表面膜</td></tr>
   </table>
 </figure>
 <p>基因和生物的演化提供了相当深入的认识。本章最后一节展示如何用这些信息来精炼生物间进化关系以及我们对人类发育的理解。事实上，生物学家把演化用作研究工具：如果一个基因及其蛋白在所有后生动物中保守但不见于单细胞生物，该蛋白可能在所有后生动物中有重要功能，因而可在最适合研究的任何后生动物中研究。由于许多类型后生动物细胞的结构和功能也被保守，我们现在对许多细胞类型的结构和功能有相当详细的了解，包括肌肉和肝脏细胞以及衬于肠道并形成皮肤的表皮细胞片。但其他细胞--尤其是形成我们神经和免疫系统的多种类型--仍然神秘；对这些及其他形成我们身体的细胞系统和器官还需要许多重要的细胞生物学实验。</p>
@@ -102,12 +227,20 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>即使在许多小分子（如糖、维生素和氨基酸）的结构中，我们也能看到演化的印记。例如，除甘氨酸外所有氨基酸都有不对称碳原子，但只有 l-立体异构体（从不 d-立体异构体）被掺入蛋白质。类似地，细胞中只发现 d-葡萄糖的立体异构体，从不发现镜像 l-立体异构体（见图 1-5）。在生物演化的早期阶段，我们共同的细胞祖先进化出催化一种</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-5_1.png" alt="图 1-5" onclick="lightbox(this.src)">
-  <figcaption>图1-5 · 细胞中众多小分子的一部分。只有氨基酸（如丝氨酸）的 l 型被掺入蛋白质，非 d 镜像型。只有 d-葡萄糖见于细胞，从不 l 型。这些手性选择是早期演化锁定的。</figcaption>
+  <figcaption>图1-5 · 细胞中存在的许多小分子中的一部分。只有 L 型的氨基酸（如丝氨酸 serine）才会被掺入蛋白质中，而不是它们的 D 型镜像异构体；只有 D 型的葡萄糖（D-glucose，而非其 L 型镜像 L-glucose）才能被代谢为二氧化碳（CO₂）和水（H₂O）。
+[图中标记] 油酸（Oleic acid）、钠（Sodium）、水（Water）、L-丝氨酸（L-serine）、D-丝氨酸（D-serine）、L-葡萄糖（L-glucose）、D-葡萄糖（D-glucose）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">L-stereoisomer</td><td class="gl-zh">L立体异构体</td></tr>
-  <tr><td class="gl-en">D-stereoisomer</td><td class="gl-zh">D立体异构体</td></tr>
+  <tr><td class="gl-en">L-serine</td><td class="gl-zh">L-丝氨酸</td></tr>
+  <tr><td class="gl-en">D-serine</td><td class="gl-zh">D-丝氨酸</td></tr>
+  <tr><td class="gl-en">L-glucose</td><td class="gl-zh">L-葡萄糖</td></tr>
+  <tr><td class="gl-en">D-glucose</td><td class="gl-zh">D-葡萄糖</td></tr>
+  <tr><td class="gl-en">oleic acid</td><td class="gl-zh">油酸</td></tr>
   <tr><td class="gl-en">amino acid</td><td class="gl-zh">氨基酸</td></tr>
   <tr><td class="gl-en">glucose</td><td class="gl-zh">葡萄糖</td></tr>
+  <tr><td class="gl-en">mirror image</td><td class="gl-zh">镜像异构体</td></tr>
+  <tr><td class="gl-en">metabolized</td><td class="gl-zh">代谢</td></tr>
+  <tr><td class="gl-en">carbon dioxide</td><td class="gl-zh">二氧化碳</td></tr>
+  <tr><td class="gl-en">proteins</td><td class="gl-zh">蛋白质</td></tr>
   </table>
 </figure>
 <p>立体异构体而非另一种反应的能力。这些选择如何发生尚不知晓，但如今这些选择已被锁定。</p>
@@ -116,11 +249,29 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>某些小分子（单体）可通过</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-6_1.png" alt="图 1-6" onclick="lightbox(this.src)">
-  <figcaption>图1-6 · 腺苷三磷酸（ATP）是细胞捕获、储存和转移能量最常用的分子。ATP 由 ADP 和无机磷酸形成，两个磷酸酐键（红）断裂时释放能量驱动需能过程。</figcaption>
+  <figcaption>图1-6 · 三磷酸腺苷（Adenosine triphosphate, ATP）是细胞用来捕获、储存和转移能量的最常见分子。ATP 由二磷酸腺苷（ADP）和无机磷酸（Pᵢ）通过植物中的光合作用（photosynthesis），以及大多数细胞中糖和脂肪的分解（呼吸作用 respiration）而形成。Pᵢ 从 ATP 裂解（水解 hydrolysis）所释放的能量驱动许多细胞过程。
+[图中标记] ATP 分子结构（含腺嘌呤、核糖、三个磷酸基团，标注高能键 high-energy bonds）；ADP 分子结构（含腺嘌呤、核糖、两个磷酸基团，标注高能键 high-energy bond）。
+能量来源：光（光合作用）或高势能化合物（呼吸作用）→ ATP。
+ATP 驱动的细胞过程包括：合成细胞大分子（DNA、RNA、蛋白质、多糖）；合成其他细胞组分（如膜磷脂和某些必需代谢物）；细胞运动（包括肌肉收缩、整个细胞的爬行运动，以及有丝分裂中染色体的运动）；逆浓度梯度运输分子；跨膜产生电势能（对神经功能重要）；以及产热。
+ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
-  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
-  <tr><td class="gl-en">phosphoanhydride bond</td><td class="gl-zh">磷酸酐键</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">三磷酸腺苷</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">二磷酸腺苷</td></tr>
+  <tr><td class="gl-en">inorganic phosphate (Pi)</td><td class="gl-zh">无机磷酸</td></tr>
+  <tr><td class="gl-en">photosynthesis</td><td class="gl-zh">光合作用</td></tr>
+  <tr><td class="gl-en">respiration</td><td class="gl-zh">呼吸作用</td></tr>
+  <tr><td class="gl-en">hydrolysis</td><td class="gl-zh">水解</td></tr>
+  <tr><td class="gl-en">high-energy bonds</td><td class="gl-zh">高能键</td></tr>
+  <tr><td class="gl-en">macromolecules</td><td class="gl-zh">大分子</td></tr>
+  <tr><td class="gl-en">polysaccharides</td><td class="gl-zh">多糖</td></tr>
+  <tr><td class="gl-en">phospholipids</td><td class="gl-zh">磷脂</td></tr>
+  <tr><td class="gl-en">metabolites</td><td class="gl-zh">代谢物</td></tr>
+  <tr><td class="gl-en">muscle contraction</td><td class="gl-zh">肌肉收缩</td></tr>
+  <tr><td class="gl-en">mitosis</td><td class="gl-zh">有丝分裂</td></tr>
+  <tr><td class="gl-en">chromosomes</td><td class="gl-zh">染色体</td></tr>
+  <tr><td class="gl-en">concentration gradient</td><td class="gl-zh">浓度梯度</td></tr>
+  <tr><td class="gl-en">electric potential</td><td class="gl-zh">电势能</td></tr>
+  <tr><td class="gl-en">nerve function</td><td class="gl-zh">神经功能</td></tr>
   </table>
 </figure>
 <p>重复一种共价化学连接反应连接形成多聚物（也称大分子）。细胞产生三类大分子：多糖、蛋白质和核酸。例如，糖是用于形成多糖的单体。d-葡萄糖的不同多聚物形成纤维素（植物细胞壁的重要成分）和糖原（肝和肌肉中葡萄糖的储存形式）。细胞注意提供合成大分子所需前体的适当小分子混合物。</p>
@@ -129,12 +280,23 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>蛋白质在细胞中有多种功能。许多蛋白质是酶，加速（催化）涉及小分子或大分子的化学反应（见第 3 章）。某些蛋白质催化所有蛋白质合成的步骤；其他催化</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-7_1.png" alt="图 1-7" onclick="lightbox(this.src)">
-  <figcaption>图1-7 · 一些代表性蛋白质的模型，按共同比例绘制，与脂双层、DNA 分子和 RNA 分子的小部分比较。蛋白质折叠成独特三维结构决定其功能。</figcaption>
+  <figcaption>图1-7 · 以统一比例绘制的若干代表性蛋白质模型，并与一小段脂质双层（lipid bilayer）、一个 DNA 分子和一个 RNA 分子进行比较。每种蛋白质都有一个由众多化学键维持的确定三维形状。图中所示的蛋白质包括酶（谷氨酰胺合成酶 glutamine synthetase 和腺苷酸激酶 adenylate kinase）、抗体（免疫球蛋白 immunoglobulin）、激素（胰岛素 insulin），以及血液的氧载体（血红蛋白 hemoglobin）。标尺：10 nm = 100 Å。
+[图中标记] 谷氨酰胺合成酶、胰岛素、血红蛋白、免疫球蛋白、腺苷酸激酶、DNA 分子、RNA 分子、脂质双层。
+[谷氨酰胺合成酶数据来自 H. S. Gill and D. Eisenberg, 2001, Biochemistry 40:1903–1912, PDB ID 1fpy。胰岛素数据来自 E. N. Baker et al., 1988, Phil. Trans. R. Soc. Lond. B Biol. Sci. 319:369–456, PDB ID 4ins。血红蛋白数据来自 G. Fermi et al., 1984, J. Mol. Biol. 175:159–174, PDB ID 2hhb。免疫球蛋白数据来自 L. J. Harris et al., 1998, J. Mol. Biol. 275:861–872, PDB ID 1igy。腺苷酸激酶数据来自 G. Bunkoczi et al., PDB ID 2c9y。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">protein</td><td class="gl-zh">蛋白质</td></tr>
-  <tr><td class="gl-en">lipid bilayer</td><td class="gl-zh">脂双层</td></tr>
-  <tr><td class="gl-en">DNA</td><td class="gl-zh">DNA</td></tr>
-  <tr><td class="gl-en">RNA</td><td class="gl-zh">RNA</td></tr>
+  <tr><td class="gl-en">glutamine synthetase</td><td class="gl-zh">谷氨酰胺合成酶</td></tr>
+  <tr><td class="gl-en">adenylate kinase</td><td class="gl-zh">腺苷酸激酶</td></tr>
+  <tr><td class="gl-en">immunoglobulin</td><td class="gl-zh">免疫球蛋白</td></tr>
+  <tr><td class="gl-en">insulin</td><td class="gl-zh">胰岛素</td></tr>
+  <tr><td class="gl-en">hemoglobin</td><td class="gl-zh">血红蛋白</td></tr>
+  <tr><td class="gl-en">lipid bilayer</td><td class="gl-zh">脂质双层</td></tr>
+  <tr><td class="gl-en">enzyme</td><td class="gl-zh">酶</td></tr>
+  <tr><td class="gl-en">antibody</td><td class="gl-zh">抗体</td></tr>
+  <tr><td class="gl-en">hormone</td><td class="gl-zh">激素</td></tr>
+  <tr><td class="gl-en">three-dimensional shape</td><td class="gl-zh">三维形状</td></tr>
+  <tr><td class="gl-en">chemical bonds</td><td class="gl-zh">化学键</td></tr>
+  <tr><td class="gl-en">DNA molecule</td><td class="gl-zh">DNA分子</td></tr>
+  <tr><td class="gl-en">RNA molecule</td><td class="gl-zh">RNA分子</td></tr>
   </table>
 </figure>
 <p>DNA 和 RNA 等大分子的合成。细胞骨架蛋白作为细胞的结构成分，例如形成内骨架。其他与细胞骨架相关的蛋白利用 ATP 化学键中的能量驱动亚细胞结构（如染色体）乃至整个细胞的运动（见第 17、18 章）。还有其他蛋白质结合相邻细胞或形成胞外基质的一部分（见图 1-4）。蛋白质可作为传感器，随温度、离子浓度或其他细胞性质变化而改变形状。许多嵌入细胞表面（质）膜的蛋白质输入输出各种小分子和离子（见第 11 章）。一些蛋白质（如胰岛素）是激素；其他是激素受体，结合其靶蛋白或小分子然后产生调节细胞功能特定方面的信号。其他重要类别的蛋白质结合 DNA 特定片段，开关基因（见第 9 章）。事实上，分子细胞生物学很大一部分由研究特定蛋白质在特定细胞类型中的功能组成。</p>
@@ -142,12 +304,18 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>最受公众关注的分子是脱氧核糖核酸（DNA），其功能性质使其成为细胞的"主分子"。DNA 的三维结构由 James D. Watson 和 Francis H. C. Crick 于 1953 年首次提出，由两条绕共同轴盘绕的长螺旋链形成</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-8_1.png" alt="图 1-8" onclick="lightbox(this.src)">
-  <figcaption>图1-8 · DNA 由两条互补链相互缠绕形成双螺旋。双螺旋由碱基间弱氢键稳定：A 与 T 配对，G 与 C 配对。此互补性是 DNA 复制和遗传的基础。</figcaption>
+  <figcaption>图1-8 · DNA 由两条互补链（complementary strands）相互缠绕形成双螺旋（double helix）。双螺旋由 A 和 T 碱基之间、C 和 G 碱基之间的弱氢键（hydrogen bonds）稳定。在复制（replication）过程中，两条链被解开并被用作模板来产生互补链。结果是原始双螺旋的两个相同拷贝，每个拷贝包含一条原始亲代链（parental strand）和一条新的子代（互补）链（daughter strand）。
+[图中标记] A、G、T、C（碱基 bases）；核苷酸（Nucleotide, T）；亲代链；子代链。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">double helix</td><td class="gl-zh">双螺旋</td></tr>
-  <tr><td class="gl-en">complementary</td><td class="gl-zh">互补</td></tr>
-  <tr><td class="gl-en">hydrogen bond</td><td class="gl-zh">氢键</td></tr>
-  <tr><td class="gl-en">base</td><td class="gl-zh">碱基</td></tr>
+  <tr><td class="gl-en">complementary strands</td><td class="gl-zh">互补链</td></tr>
+  <tr><td class="gl-en">hydrogen bonds</td><td class="gl-zh">氢键</td></tr>
+  <tr><td class="gl-en">replication</td><td class="gl-zh">复制</td></tr>
+  <tr><td class="gl-en">nucleotide</td><td class="gl-zh">核苷酸</td></tr>
+  <tr><td class="gl-en">parental strands</td><td class="gl-zh">亲代链</td></tr>
+  <tr><td class="gl-en">daughter strands</td><td class="gl-zh">子代链</td></tr>
+  <tr><td class="gl-en">bases</td><td class="gl-zh">碱基</td></tr>
+  <tr><td class="gl-en">DNA</td><td class="gl-zh">DNA</td></tr>
   </table>
 </figure>
 <p>双螺旋（图 1-8）。DNA 的双螺旋结构是自然最宏伟的构造之一，对遗传现象（遗传决定的特征从一代传到下一代）至关重要。</p>
@@ -160,12 +328,32 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>像酶一样，某些 RNA 分子（称为核酶）催化化学反应，如核糖体内的 RNA。许多科学家支持 RNA 世界假说，该假说提出能自我复制的 RNA 分子是当前生命形式的先驱；</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-9_1.png" alt="图 1-9" onclick="lightbox(this.src)">
-  <figcaption>图1-9 · DNA 中编码的信息通过多步过程转化为蛋白质氨基酸序列。转录（DNA->RNA，由 RNA 聚合酶催化）和翻译（RNA->蛋白质，在核糖体上进行）。</figcaption>
+  <figcaption>图1-9 · DNA 中编码的信息通过多步过程转化为蛋白质的氨基酸序列。
+步骤1（激活 Activation）：转录因子（transcription factors）和其他蛋白质结合到它们所控制的特定基因的调控区域，从而激活这些基因。
+步骤2（转录 Transcription）：RNA 聚合酶（RNA polymerase）在特定位置（起始位点 start site）开始转录已激活的基因。聚合酶沿 DNA 移动，以一条 DNA 链为模板，将核苷酸（nucleotides）连接成单链 pre-mRNA 转录本。
+步骤3（加工 Processing）：转录本被加工以去除非编码序列（noncoding sequences）。
+步骤4（翻译 Translation）：在真核细胞中，成熟的 mRNA 移动到细胞质（cytoplasm），被核糖体（ribosomes）结合，核糖体读取其序列并通过化学键将氨基酸连接成线性链来组装蛋白质。
+[图中标记] 细胞核（Nucleus）、细胞质（Cytoplasm）、转录因子、DNA、pre-mRNA、mRNA、核糖体、RNA 聚合酶、DNA 转录区域（Transcribed region of DNA）、DNA 非转录区域（Nontranscribed region of DNA）、RNA 蛋白质编码区（Protein-coding region of RNA）、RNA 非编码区（Noncoding region of RNA）、蛋白质（Protein）、起始（Start）、激活、转录、加工、翻译、氨基酸链（Amino acid chain）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">transcription</td><td class="gl-zh">转录</td></tr>
   <tr><td class="gl-en">translation</td><td class="gl-zh">翻译</td></tr>
+  <tr><td class="gl-en">transcription factors</td><td class="gl-zh">转录因子</td></tr>
   <tr><td class="gl-en">RNA polymerase</td><td class="gl-zh">RNA聚合酶</td></tr>
+  <tr><td class="gl-en">pre-mRNA</td><td class="gl-zh">前体mRNA</td></tr>
+  <tr><td class="gl-en">mRNA</td><td class="gl-zh">信使RNA</td></tr>
   <tr><td class="gl-en">ribosome</td><td class="gl-zh">核糖体</td></tr>
+  <tr><td class="gl-en">nucleotides</td><td class="gl-zh">核苷酸</td></tr>
+  <tr><td class="gl-en">cytoplasm</td><td class="gl-zh">细胞质</td></tr>
+  <tr><td class="gl-en">nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">noncoding sequences</td><td class="gl-zh">非编码序列</td></tr>
+  <tr><td class="gl-en">amino acid</td><td class="gl-zh">氨基酸</td></tr>
+  <tr><td class="gl-en">protein-coding region</td><td class="gl-zh">蛋白质编码区</td></tr>
+  <tr><td class="gl-en">transcribed region</td><td class="gl-zh">转录区域</td></tr>
+  <tr><td class="gl-en">start site</td><td class="gl-zh">起始位点</td></tr>
+  <tr><td class="gl-en">regulatory regions</td><td class="gl-zh">调控区域</td></tr>
+  <tr><td class="gl-en">genes</td><td class="gl-zh">基因</td></tr>
+  <tr><td class="gl-en">activation</td><td class="gl-zh">激活</td></tr>
+  <tr><td class="gl-en">processing</td><td class="gl-zh">加工</td></tr>
   </table>
 </figure>
 <p>数十亿年前，RNA 世界逐渐演化为当今生物的 DNA、RNA 和蛋白质世界。</p>
@@ -176,12 +364,17 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>新细胞总是通过细胞分裂来自亲代细胞。我们已见新 DNA 分子的合成以亲代 DNA 两链为模板，使每个子代 DNA 分子与亲代有相同序列。同时，新膜通过脂质和蛋白质掺入亲代细胞现有膜而制造，并通过分裂分配给子细胞。因此膜合成像 DNA 合成一样以亲代结构为模板。</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-10_1.png" alt="图 1-10" onclick="lightbox(this.src)">
-  <figcaption>图1-10 · 细胞水性内部被质膜（磷脂双层壳）包围。磷脂分子亲水头朝向膜内外表面，疏水尾埋在内部。膜含蛋白质控制离子和小分子跨膜。</figcaption>
+  <figcaption>图1-10 · 细胞的水性内部被质膜（plasma membrane）--一层由磷脂（phospholipids）构成的双层壳--所包围。磷脂分子以其疏水脂肪酰链（hydrophobic fatty acyl chains，黑色波浪线）朝内、亲水头部基团（hydrophilic head group，白色球体）朝外的方式排列。因此，膜的两侧都排列着头部基团（主要是带电磷酸基团），与细胞内外的水性空间相邻。所有生物膜都具有相同的基本磷脂双层（phospholipid bilayer）结构。胆固醇（cholesterol，红色）和各种蛋白质嵌入双层中。内部空间实际上相对于质膜体积的比例比此处描绘的要大得多。
+[图中标记] 水（Water）、跨膜蛋白（Transmembrane proteins）、胆固醇、疏水脂肪酰链、亲水头部基团。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">phospholipids</td><td class="gl-zh">磷脂</td></tr>
+  <tr><td class="gl-en">hydrophobic fatty acyl chains</td><td class="gl-zh">疏水脂肪酰链</td></tr>
+  <tr><td class="gl-en">hydrophilic head group</td><td class="gl-zh">亲水头部基团</td></tr>
   <tr><td class="gl-en">phospholipid bilayer</td><td class="gl-zh">磷脂双层</td></tr>
-  <tr><td class="gl-en">hydrophilic</td><td class="gl-zh">亲水</td></tr>
-  <tr><td class="gl-en">hydrophobic</td><td class="gl-zh">疏水</td></tr>
+  <tr><td class="gl-en">cholesterol</td><td class="gl-zh">胆固醇</td></tr>
+  <tr><td class="gl-en">transmembrane proteins</td><td class="gl-zh">跨膜蛋白</td></tr>
+  <tr><td class="gl-en">charged phosphates</td><td class="gl-zh">带电磷酸基团</td></tr>
   </table>
 </figure>
 <h2>1.2 原核细胞结构与功能</h2>
@@ -190,12 +383,23 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>近年对多种原核生物 DNA 序列的详细分析揭示了两个不同界：真细菌（常简称"细菌"）和古菌。真细菌是单细胞生物，包括蓝细菌（"蓝绿藻"），可为单细胞或丝状细胞链。图 1-11 展示典型真细菌细胞的一般结构；古菌细胞有相似结构。细菌细胞通常 1–2 μm 大小，由含细胞质、被质膜包围的单个封闭区室组成。基因组由单个环状 DNA 分子组成；许多原核生物还含称为质粒的额外小环状 DNA 分子。虽然细菌细胞无明确细胞核，DNA 被广泛折叠和凝缩到细胞中央区域（称为拟核）。相比之下，大多数核糖体在细胞质中。一些细菌还有细胞膜内陷（称为中间体），与</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-11_1.png" alt="图 1-11" onclick="lightbox(this.src)">
-  <figcaption>图1-11 · 原核细胞有相对简单的结构。常见肠道细菌薄切片电镜照片。拟核（凝缩 DNA）、质膜、细胞壁。无膜界细胞核。</figcaption>
+  <figcaption>图1-11 · 原核细胞（Prokaryotic cells）具有相对简单的结构。
+（左）常见肠道细菌大肠杆菌（Escherichia coli）薄切片的电子显微镜照片。标尺：0.5 μm。由细菌 DNA 组成的拟核（nucleoid）不被膜包围。大肠杆菌和其他革兰氏阴性菌（gram-negative bacteria）被两层膜包围，两层膜之间由周质空间（periplasmic space）隔开。薄的细胞壁（cell wall）紧邻内膜。
+（右）这幅艺术绘图展示了拟核（蓝色）和包围细胞质（cytoplasm）的各层的放大图。细胞的大部分由水、蛋白质、离子和其他分子组成，这些分子太小，无法在本图的比例下描绘。
+[图中标记] 周质空间和细胞壁（Periplasmic space and cell wall）、外膜（Outer membrane）、内膜/质膜（Inner (plasma) membrane）、细胞质（Cytoplasm）、拟核（Nucleoid）。
+[电子显微镜照片感谢 I. D. J. Burdett 和 R. G. E. Murray。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">prokaryotic</td><td class="gl-zh">原核</td></tr>
+  <tr><td class="gl-en">prokaryotic cells</td><td class="gl-zh">原核细胞</td></tr>
+  <tr><td class="gl-en">Escherichia coli</td><td class="gl-zh">大肠杆菌</td></tr>
   <tr><td class="gl-en">nucleoid</td><td class="gl-zh">拟核</td></tr>
+  <tr><td class="gl-en">gram-negative bacteria</td><td class="gl-zh">革兰氏阴性菌</td></tr>
+  <tr><td class="gl-en">periplasmic space</td><td class="gl-zh">周质空间</td></tr>
   <tr><td class="gl-en">cell wall</td><td class="gl-zh">细胞壁</td></tr>
+  <tr><td class="gl-en">inner membrane</td><td class="gl-zh">内膜</td></tr>
+  <tr><td class="gl-en">outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">cytoplasm</td><td class="gl-zh">细胞质</td></tr>
   <tr><td class="gl-en">plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">electron micrograph</td><td class="gl-zh">电子显微镜照片</td></tr>
   </table>
 </figure>
 <p>DNA 合成和蛋白质分泌相关。许多蛋白质在胞质或质膜中精确定位，表明存在精细的内部组织。与真核生物（见图 1-9）不同，细菌 mRNA 几乎不加工。由于细菌 DNA 和胞质间无膜屏障，核糖体能在 RNA 聚合酶合成 mRNA 一部分时立即结合；因此原核生物中转录和翻译同时进行。</p>
@@ -205,12 +409,62 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>细菌谱系包括大肠杆菌，一种受喜爱的实验生物，自然中常见于土壤和动物肠道。大肠杆菌和其他几种细菌作为实验生物有诸多优势。它们在含葡萄糖和盐的简单廉价培养基中快速生长，能合成所有必需氨基酸、脂质、维生素和其他必需小分子。像所有细菌，大肠杆菌有控制基因活动的精细机制，现已充分理解</p>
 <figure class="table">
   <img class="zoomable" src="figures/tab_T1-2_1.png" alt="表 T1-2" onclick="lightbox(this.src)">
-  <figcaption>表1-2 · 完全测序的代表性生物基因组。列出真细菌（支原体、幽门螺杆菌、流感嗜血杆菌、大肠杆菌、枯草芽孢杆菌）、古菌和真核生物（酵母、疟原虫、线虫、果蝇、人等）的基因组大小（Mb）和蛋白质编码基因数。</figcaption>
+  <figcaption>表T1-2 · 分子细胞生物学研究中使用的已完全测序生物的基因组大小
+列说明：碱基对（百万）/ Base Pairs (Millions)；编码蛋白质近似数* / Approximate Number of Encoded Proteins；染色体** / Chromosomes；参考文献 / Reference
+
+真细菌（Eubacteria）：
+- 生殖支原体（Mycoplasma genitalum）：0.58 Mb，约 500 蛋白质，1 条染色体，参考 a
+- 幽门螺杆菌（Helicobacter pylori）：1.67 Mb，约 1,500，1，a
+- 流感嗜血杆菌（Haemophilus influenza）：1.83 Mb，约 1,600，1，a
+- 大肠杆菌（Escherichia coli）：4.64 Mb，约 4,100，1，a
+- 枯草芽孢杆菌（Bacillus subtilis）：4.22 Mb，约 4,200，1，a
+
+古菌（Archaea）：
+- 詹氏甲烷球菌（Methanococcus jannaschii）：1.74 Mb，约 1,800，1，a
+- 嗜酸热硫化叶菌（Sulfolobus solfataricus）：2.99 Mb，约 3,000，1，a
+
+单细胞真核生物（Single-Celled Eukaryotes）：
+- 酿酒酵母（Saccharomyces cerevisiae）：12.16 Mb，约 6,700，16，b
+- 莱茵衣藻（Chlamydomonas reinhardtii）：120.4 Mb，约 14,400，17，b
+- 恶性疟原虫（Plasmodium falciparum）：23.26 Mb，约 5,400，14，b
+
+多细胞真核生物/后生动物（Multicellular Eukaryotes, Metazoans）：
+- 黑腹果蝇（Drosophila melanogaster）：168.74 Mb，约 13,900，6，b
+- 秀丽隐杆线虫（Caenorhabditis elegans）：100.29 Mb，约 20,500，6，b
+- 地中海涡虫（Schmidtea mediterranea，涡虫 planarian）：480 Mb，>20,000***，4，c
+- 斑马鱼（Danio rerio）：1412.46 Mb，约 26,500，25，b
+- 原鸡（Gallus gallus，鸡 chicken）：1072.54 Mb，约 15,500，33，b
+- 小鼠（Mus musculus）：3480.96 Mb，约 23,100，21，b
+- 人（Homo sapiens）：3326.74 Mb，约 20,800，24，b
+- 拟南芥（Arabidopsis thaliana）：135.67 Mb，约 27,400，5，b</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">genome</td><td class="gl-zh">基因组</td></tr>
-  <tr><td class="gl-en">protein-coding gene</td><td class="gl-zh">蛋白质编码基因</td></tr>
+  <tr><td class="gl-en">base pairs</td><td class="gl-zh">碱基对</td></tr>
+  <tr><td class="gl-en">encoded proteins</td><td class="gl-zh">编码蛋白质</td></tr>
+  <tr><td class="gl-en">chromosomes</td><td class="gl-zh">染色体</td></tr>
   <tr><td class="gl-en">Eubacteria</td><td class="gl-zh">真细菌</td></tr>
   <tr><td class="gl-en">Archaea</td><td class="gl-zh">古菌</td></tr>
+  <tr><td class="gl-en">Mycoplasma genitalum</td><td class="gl-zh">生殖支原体</td></tr>
+  <tr><td class="gl-en">Helicobacter pylori</td><td class="gl-zh">幽门螺杆菌</td></tr>
+  <tr><td class="gl-en">Haemophilus influenza</td><td class="gl-zh">流感嗜血杆菌</td></tr>
+  <tr><td class="gl-en">Escherichia coli</td><td class="gl-zh">大肠杆菌</td></tr>
+  <tr><td class="gl-en">Bacillus subtilis</td><td class="gl-zh">枯草芽孢杆菌</td></tr>
+  <tr><td class="gl-en">Methanococcus jannaschii</td><td class="gl-zh">詹氏甲烷球菌</td></tr>
+  <tr><td class="gl-en">Sulfolobus solfataricus</td><td class="gl-zh">嗜酸热硫化叶菌</td></tr>
+  <tr><td class="gl-en">Saccharomyces cerevisiae</td><td class="gl-zh">酿酒酵母</td></tr>
+  <tr><td class="gl-en">Chlamydomonas reinhardtii</td><td class="gl-zh">莱茵衣藻</td></tr>
+  <tr><td class="gl-en">Plasmodium falciparum</td><td class="gl-zh">恶性疟原虫</td></tr>
+  <tr><td class="gl-en">Drosophila melanogaster</td><td class="gl-zh">黑腹果蝇</td></tr>
+  <tr><td class="gl-en">Caenorhabditis elegans</td><td class="gl-zh">秀丽隐杆线虫</td></tr>
+  <tr><td class="gl-en">Schmidtea mediterranea</td><td class="gl-zh">地中海涡虫</td></tr>
+  <tr><td class="gl-en">Danio rerio</td><td class="gl-zh">斑马鱼</td></tr>
+  <tr><td class="gl-en">Gallus gallus</td><td class="gl-zh">原鸡</td></tr>
+  <tr><td class="gl-en">Mus musculus</td><td class="gl-zh">小鼠</td></tr>
+  <tr><td class="gl-en">Homo sapiens</td><td class="gl-zh">人</td></tr>
+  <tr><td class="gl-en">Arabidopsis thaliana</td><td class="gl-zh">拟南芥</td></tr>
+  <tr><td class="gl-en">metazoans</td><td class="gl-zh">后生动物</td></tr>
+  <tr><td class="gl-en">Single-Celled Eukaryotes</td><td class="gl-zh">单细胞真核生物</td></tr>
+  <tr><td class="gl-en">Multicellular Eukaryotes</td><td class="gl-zh">多细胞真核生物</td></tr>
   </table>
 </figure>
 <p>（见第 9 章）。随时间推移，研究者开发了该生物遗传分析的强大系统。这些系统得益于细菌基因组小、易获突变体、可向细菌转移基因的技术、对细菌基因控制和蛋白质功能的丰富知识，以及细菌基因组中基因相对映射的简单性。第 6 章见大肠杆菌如何用于重组 DNA 研究。</p>
@@ -227,31 +481,95 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>细胞核是动物细胞中最大的细胞器，被两层膜包围，每层是含多种蛋白质的磷脂双层</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-12_1.png" alt="图 1-12" onclick="lightbox(this.src)">
-  <figcaption>图1-12 · “典型”动物细胞示意，展示一些较大细胞器。线粒体、质膜、细胞核、内质网、高尔基体等。</figcaption>
+  <figcaption>图1-12 · 真核细胞的亚细胞组织结构。
+(a) 「典型」动物细胞（上）和植物细胞（下）的示意图，展示其主要亚结构。并非每种细胞类型都包含此处所示的所有细胞器、颗粒和纤维结构，某些细胞类型中可能存在其他亚结构。细胞在形状和各种细胞器及亚结构的显著程度上也有很大差异。
+动物细胞结构：
+1. 质膜（Plasma membrane）--控制分子进出细胞的运动，并在细胞间信号传导和细胞黏附中发挥作用。
+2. 线粒体（Mitochondria）--被双层膜包围，通过葡萄糖和脂肪酸的氧化产生 ATP。
+3. 溶酶体（Lysosomes）--具有酸性腔，降解细胞内吞的物质以及磨损的细胞膜和细胞器。
+4. 核膜（Nuclear envelope）--双层膜，包围核内容物；外核膜与粗面内质网（rough ER）相连。
+5. 核仁（Nucleolus）--一个核内亚区室，大部分细胞的 rRNA 在此合成。
+6. 细胞核（Nucleus）--充满由 DNA 和蛋白质组成的染色质（chromatin）；是 mRNA 和 tRNA 合成的场所。
+7. 粗面内质网（Rough ER）--参与分泌蛋白、溶酶体蛋白和某些膜蛋白的合成、加工和分选。
+8. 光面内质网（Smooth ER）--含有合成脂质并解毒某些疏水分子的酶。
+9. 高尔基体（Golgi complex）--加工和分选在粗面内质网上合成的分泌蛋白、溶酶体蛋白和膜蛋白。
+10. 分泌囊泡（Secretory vesicles）--储存分泌蛋白，与质膜融合以释放其内容物。
+11. 过氧化物酶体（Peroxisomes）--含有将脂肪酸分解为用于生物合成的较小分子的酶，也可解毒某些分子。
+12. 细胞骨架纤维（Cytoskeletal fibers）--形成网络和束，支撑细胞膜，帮助组织细胞器，并参与细胞运动。
+13. 微绒毛（Microvilli）--增加从周围介质中吸收营养物质的表面积。
+植物细胞结构：
+14. 细胞壁（Cell wall）--主要由纤维素组成，帮助维持细胞形状并提供对抗机械应力的保护。
+15. 液泡（Vacuole）--储存水、离子和营养物质，降解大分子，并在生长过程中参与细胞伸长。
+16. 叶绿体（Chloroplasts）--执行光合作用，被双层膜包围，含有内部膜结合囊的网络。
+17. 胞间连丝（Plasmodesmata）--管状细胞连接，横跨细胞壁并连接相邻植物细胞的细胞质。
+(b) 浆细胞（plasma cell，一种分泌抗体的白细胞）的电子显微镜照片，展示一些较大的细胞器。标尺：1 μm。
+[部分 (b) 感谢 I. D. J. Burdett 和 R. G. E. Murray。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">organelle</td><td class="gl-zh">细胞器</td></tr>
-  <tr><td class="gl-en">mitochondrion</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">eukaryotic cells</td><td class="gl-zh">真核细胞</td></tr>
+  <tr><td class="gl-en">organelles</td><td class="gl-zh">细胞器</td></tr>
+  <tr><td class="gl-en">plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">mitochondria</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">lysosomes</td><td class="gl-zh">溶酶体</td></tr>
+  <tr><td class="gl-en">nuclear envelope</td><td class="gl-zh">核膜</td></tr>
+  <tr><td class="gl-en">nucleolus</td><td class="gl-zh">核仁</td></tr>
   <tr><td class="gl-en">nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">chromatin</td><td class="gl-zh">染色质</td></tr>
+  <tr><td class="gl-en">rough endoplasmic reticulum</td><td class="gl-zh">粗面内质网</td></tr>
+  <tr><td class="gl-en">smooth endoplasmic reticulum</td><td class="gl-zh">光面内质网</td></tr>
+  <tr><td class="gl-en">Golgi complex</td><td class="gl-zh">高尔基体</td></tr>
+  <tr><td class="gl-en">secretory vesicles</td><td class="gl-zh">分泌囊泡</td></tr>
+  <tr><td class="gl-en">peroxisomes</td><td class="gl-zh">过氧化物酶体</td></tr>
+  <tr><td class="gl-en">cytoskeletal fibers</td><td class="gl-zh">细胞骨架纤维</td></tr>
+  <tr><td class="gl-en">microvilli</td><td class="gl-zh">微绒毛</td></tr>
+  <tr><td class="gl-en">cell wall</td><td class="gl-zh">细胞壁</td></tr>
+  <tr><td class="gl-en">cellulose</td><td class="gl-zh">纤维素</td></tr>
+  <tr><td class="gl-en">vacuole</td><td class="gl-zh">液泡</td></tr>
+  <tr><td class="gl-en">chloroplasts</td><td class="gl-zh">叶绿体</td></tr>
+  <tr><td class="gl-en">photosynthesis</td><td class="gl-zh">光合作用</td></tr>
+  <tr><td class="gl-en">plasmodesmata</td><td class="gl-zh">胞间连丝</td></tr>
+  <tr><td class="gl-en">rRNA</td><td class="gl-zh">核糖体RNA</td></tr>
+  <tr><td class="gl-en">tRNA</td><td class="gl-zh">转运RNA</td></tr>
+  <tr><td class="gl-en">plasma cell</td><td class="gl-zh">浆细胞</td></tr>
+  <tr><td class="gl-en">antibodies</td><td class="gl-zh">抗体</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">三磷酸腺苷</td></tr>
+  <tr><td class="gl-en">glucose</td><td class="gl-zh">葡萄糖</td></tr>
+  <tr><td class="gl-en">fatty acids</td><td class="gl-zh">脂肪酸</td></tr>
+  <tr><td class="gl-en">lipids</td><td class="gl-zh">脂质</td></tr>
+  <tr><td class="gl-en">biosynthesis</td><td class="gl-zh">生物合成</td></tr>
+  <tr><td class="gl-en">macromolecules</td><td class="gl-zh">大分子</td></tr>
   </table>
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_1-13_1.png" alt="图 1-13" onclick="lightbox(this.src)">
-  <figcaption>图1-13 · 三类细胞骨架纤维在哺乳动物细胞中有特征分布。培养成纤维细胞显示微管、微丝和中间丝。</figcaption>
+  <figcaption>图1-13 · 三类细胞骨架纤维在哺乳动物细胞中具有特征性分布。同一细胞的三个视图。一个培养的成纤维细胞（fibroblast）被透化处理后，用三种不同的抗体制剂处理。每种抗体特异性地结合形成一种纤维的蛋白质单体，并化学连接到不同颜色的荧光染料（绿色、蓝色或红色）。在荧光显微镜下观察染色细胞，可显示与特定染料-抗体制剂结合的纤维的位置。在本例中，微管（microtubules）被染成蓝色；微丝（microfilaments）红色；中间丝（intermediate filaments）绿色。所有三种纤维系统都对细胞的形状和运动有贡献。
+[图中标记] 中间丝、微管、微丝。
+[感谢 V. Small。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">cytoskeleton</td><td class="gl-zh">细胞骨架</td></tr>
-  <tr><td class="gl-en">microtubule</td><td class="gl-zh">微管</td></tr>
-  <tr><td class="gl-en">microfilament</td><td class="gl-zh">微丝</td></tr>
-  <tr><td class="gl-en">intermediate filament</td><td class="gl-zh">中间丝</td></tr>
+  <tr><td class="gl-en">cytoskeletal filaments</td><td class="gl-zh">细胞骨架纤维</td></tr>
+  <tr><td class="gl-en">microtubules</td><td class="gl-zh">微管</td></tr>
+  <tr><td class="gl-en">microfilaments</td><td class="gl-zh">微丝</td></tr>
+  <tr><td class="gl-en">intermediate filaments</td><td class="gl-zh">中间丝</td></tr>
+  <tr><td class="gl-en">fibroblast</td><td class="gl-zh">成纤维细胞</td></tr>
+  <tr><td class="gl-en">antibody</td><td class="gl-zh">抗体</td></tr>
+  <tr><td class="gl-en">fluorescence microscope</td><td class="gl-zh">荧光显微镜</td></tr>
+  <tr><td class="gl-en">protein monomers</td><td class="gl-zh">蛋白质单体</td></tr>
+  <tr><td class="gl-en">fluorescent dye</td><td class="gl-zh">荧光染料</td></tr>
   </table>
 </figure>
 <p>（图 1-15）。内核膜定义细胞核本身。大多数细胞中外核膜与内质网连续，内外核膜间空间与内质网腔连续（见图 1-15a）。两层核膜在核孔复合物处似融合，核孔复合物是环状结构，由特定膜蛋白组成，物质通过它在核与胞质溶胶间移动。核孔结构及通过它的受调控物质运输在第 10、13 章详述。称为核纤层蛋白的中间丝蛋白沿内核膜内表面形成二维网络（核纤层），赋予形状和刚性。核纤层分解发生在细胞分裂早期，第 19 章详述。在生长或分化细胞中，核代谢活跃，因为它是 DNA 复制和核糖体 RNA、mRNA 及多种</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-14_1.png" alt="图 1-14" onclick="lightbox(this.src)">
-  <figcaption>图1-14 · 哺乳动物气管衬里纤毛上皮表面（扫描电镜）。摆动纤毛（微管核心）推动物质跨上皮表面。</figcaption>
+  <figcaption>图1-14 · 哺乳动物气管内衬的纤毛上皮表面，在扫描电子显微镜下观察。摆动的纤毛（cilia），具有微管（microtubules）核心，推动黏液和外来颗粒排出呼吸道，保持肺部和气道通畅。
+[图中标记] 纤毛。
+[NIBSC/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">cilia</td><td class="gl-zh">纤毛</td></tr>
   <tr><td class="gl-en">epithelium</td><td class="gl-zh">上皮</td></tr>
-  <tr><td class="gl-en">microtubule</td><td class="gl-zh">微管</td></tr>
+  <tr><td class="gl-en">trachea</td><td class="gl-zh">气管</td></tr>
+  <tr><td class="gl-en">scanning electron microscope</td><td class="gl-zh">扫描电子显微镜</td></tr>
+  <tr><td class="gl-en">microtubules</td><td class="gl-zh">微管</td></tr>
+  <tr><td class="gl-en">mucus</td><td class="gl-zh">黏液</td></tr>
+  <tr><td class="gl-en">respiratory tract</td><td class="gl-zh">呼吸道</td></tr>
   </table>
 </figure>
 <p>非编码 RNA 合成的场所（见第 5、9 章）。核内常可见一个致密亚区室（核仁），此处合成核糖体 RNA 并组装核糖体（见图 1-15b 和第 10 章）。</p>
@@ -261,22 +579,48 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>我们早先注意到，与原核细胞不同，大多数真核细胞含包围</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-15_1.png" alt="图 1-15" onclick="lightbox(this.src)">
-  <figcaption>图1-15 · 细胞核结构。典型细胞核结构及外核膜与粗面内质网的连接。核仁、核纤层、异染色质、核孔复合物。</figcaption>
+  <figcaption>图1-15 · 细胞核的结构。
+(a) 典型细胞核结构的示意图，以及外核膜与粗面内质网的连接。附着在粗面内质网膜上的小黑点是核糖体（ribosomes），它们正在合成膜蛋白和分泌蛋白。
+(b) 蝙蝠（Myotis lucifugus）胰腺腺泡细胞的电子显微镜照片。核仁（nucleolus）是细胞核的一个亚区室，不被膜包围；大部分核糖体 RNA（ribosomal RNA）在核仁中产生。核仁外细胞核中深染的区域是异染色质（heterochromatin）区域。
+[图中标记] (a)：细胞核（Nucleus）、细胞溶质（Cytosol）、核纤层（Lamina）、核糖体、染色质（Chromatin）、核仁、核孔复合物（Nuclear pore complex）、外核膜（Outer nuclear membrane）、内核膜（Inner nuclear membrane）、内质网腔（Lumen of endoplasmic reticulum）、质膜（Plasma membrane）、粗面内质网（Rough endoplasmic reticulum）；(b)：核孔、外核膜、内核膜、凝缩的异染色质（Condensed heterochromatin）、内质网、核仁。
+[部分 (b) Don W. Fawcett/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">nuclear envelope</td><td class="gl-zh">核膜</td></tr>
+  <tr><td class="gl-en">nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">nuclear pore complex</td><td class="gl-zh">核孔复合物</td></tr>
+  <tr><td class="gl-en">outer nuclear membrane</td><td class="gl-zh">外核膜</td></tr>
+  <tr><td class="gl-en">inner nuclear membrane</td><td class="gl-zh">内核膜</td></tr>
+  <tr><td class="gl-en">rough endoplasmic reticulum</td><td class="gl-zh">粗面内质网</td></tr>
+  <tr><td class="gl-en">ribosome</td><td class="gl-zh">核糖体</td></tr>
+  <tr><td class="gl-en">chromatin</td><td class="gl-zh">染色质</td></tr>
   <tr><td class="gl-en">nucleolus</td><td class="gl-zh">核仁</td></tr>
+  <tr><td class="gl-en">lamina</td><td class="gl-zh">核纤层</td></tr>
   <tr><td class="gl-en">heterochromatin</td><td class="gl-zh">异染色质</td></tr>
-  <tr><td class="gl-en">nuclear lamina</td><td class="gl-zh">核纤层</td></tr>
-  <tr><td class="gl-en">nuclear pore</td><td class="gl-zh">核孔</td></tr>
+  <tr><td class="gl-en">ribosomal RNA</td><td class="gl-zh">核糖体RNA</td></tr>
+  <tr><td class="gl-en">lumen</td><td class="gl-zh">腔</td></tr>
+  <tr><td class="gl-en">cytosol</td><td class="gl-zh">细胞溶质</td></tr>
+  <tr><td class="gl-en">pancreatic acinar cell</td><td class="gl-zh">胰腺腺泡细胞</td></tr>
   </table>
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_1-16_1.png" alt="图 1-16" onclick="lightbox(this.src)">
-  <figcaption>图1-16 · 细胞分裂（有丝分裂）时可见个体染色体。染色体复制，子代“姐妹染色单体”分离到两个子细胞。</figcaption>
+  <figcaption>图1-16 · 在细胞分裂（有丝分裂 mitosis）过程中可以看到个体染色体。
+(a) 在细胞周期的 S 期（见图1-21），染色体被复制，子代「姐妹染色单体」（sister chromatids）各自拥有染色体 DNA 的完整拷贝，仍连在着丝粒（centromere）处。
+(b) 在实际细胞分裂过程（有丝分裂）中，染色体 DNA 高度凝缩，姐妹染色单体对可在电子显微镜下看到，如图所示。
+(c) 培养的人类男性淋巴样细胞的染色体展片的光学显微镜图像，该细胞通过微管解聚药物秋水仙胺（colcemid）处理被阻滞在有丝分裂的中期（metaphase）。有一条复制的 X 和 Y 染色体拷贝，以及每种其他染色体的两条拷贝。
+[图中标记] (a)、(b)、(c)；染色体（Chromosome）；姐妹染色单体对（Sister chromatid pair）；S 期（S phase）；着丝粒（Centromere）。
+[部分 (b) Medical RF/The Medical File/Peter Arnold Inc.。部分 (c) 感谢 Tatyana Pyntikova。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">chromosome</td><td class="gl-zh">染色体</td></tr>
   <tr><td class="gl-en">mitosis</td><td class="gl-zh">有丝分裂</td></tr>
-  <tr><td class="gl-en">sister chromatid</td><td class="gl-zh">姐妹染色单体</td></tr>
+  <tr><td class="gl-en">S phase</td><td class="gl-zh">S期</td></tr>
+  <tr><td class="gl-en">cell cycle</td><td class="gl-zh">细胞周期</td></tr>
+  <tr><td class="gl-en">sister chromatids</td><td class="gl-zh">姐妹染色单体</td></tr>
+  <tr><td class="gl-en">centromere</td><td class="gl-zh">着丝粒</td></tr>
+  <tr><td class="gl-en">chromosomal DNA</td><td class="gl-zh">染色体DNA</td></tr>
+  <tr><td class="gl-en">metaphase</td><td class="gl-zh">中期</td></tr>
+  <tr><td class="gl-en">lymphoid cell</td><td class="gl-zh">淋巴样细胞</td></tr>
+  <tr><td class="gl-en">colcemid</td><td class="gl-zh">秋水仙胺</td></tr>
+  <tr><td class="gl-en">microtubule-depolymerizing</td><td class="gl-zh">微管解聚</td></tr>
   </table>
 </figure>
 <p>特定亚细胞区室（细胞器）的广泛内膜。此处回顾细胞器及其功能。</p>
@@ -285,11 +629,16 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>待分泌蛋白和膜蛋白在高尔基体修饰后，由第二组囊泡从复合物运出，这些囊泡从高尔基体一侧出芽。一些囊泡携带</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-17_1.png" alt="图 1-17" onclick="lightbox(this.src)">
-  <figcaption>图1-17 · 高尔基体和粗面内质网。人肝细胞切片电镜显示丰富布满核糖体的粗面 ER 和高尔基体。</figcaption>
+  <figcaption>图1-17 · 高尔基体和粗面内质网。人肝细胞切片的电子显微镜照片显示丰富的布满核糖体的粗面内质网（rough endoplasmic reticulum）和高尔基体（Golgi complex），以及许多游离在细胞溶质（cytosol）中的核糖体。标尺：200 nm。
+[图中标记] 粗面内质网、高尔基体、高尔基囊泡腔（Lumen of Golgi vesicle）、粗面内质网腔（Lumen of rough endoplasmic reticulum）、将蛋白质从粗面内质网运送到高尔基体的囊泡（Vesicles moving proteins from the rough endoplasmic reticulum to the Golgi complex）。
+[感谢 George E. Palade 电子显微镜幻灯片收藏，加州大学圣地亚哥分校。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">Golgi complex</td><td class="gl-zh">高尔基体</td></tr>
   <tr><td class="gl-en">rough endoplasmic reticulum</td><td class="gl-zh">粗面内质网</td></tr>
   <tr><td class="gl-en">ribosome</td><td class="gl-zh">核糖体</td></tr>
+  <tr><td class="gl-en">cytosol</td><td class="gl-zh">细胞溶质</td></tr>
+  <tr><td class="gl-en">vesicle</td><td class="gl-zh">囊泡</td></tr>
+  <tr><td class="gl-en">lumen</td><td class="gl-zh">腔</td></tr>
   </table>
 </figure>
 <p> destined for 质膜的膜蛋白或将从细胞释放到胞外空间的可溶蛋白；其他携带可溶或膜蛋白到溶酶体或其他细胞器。胞内运输囊泡如何"知道"与哪些膜融合及在何处交付内容也在第 14 章讨论。</p>
@@ -297,13 +646,29 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>溶酶体 溶酶体是胞内膜形成封闭区室（其腔组成与周围胞质溶胶大不相同）能力的极好例子。溶酶体仅见于动物细胞，负责降解对细胞或生物体已过时的许多组分。老化细胞器在溶酶体中降解的过程称为自噬（"吃自己"）。通过内吞或吞噬进入细胞的物质也可在溶酶体中降解（见图 1-18）。吞噬中，大的不溶颗粒（如细菌）被质膜包围并内化。</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-18_1.png" alt="图 1-18" onclick="lightbox(this.src)">
-  <figcaption>图1-18 · 内体和其他细胞结构将物质送到溶酶体。物质被运到溶酶体的三条途径示意：内吞、自噬、吞噬。</figcaption>
+  <figcaption>图1-18 · 内体和其他细胞结构将物质运送到溶酶体。物质被运送到溶酶体的三条途径的示意图。
+途径1（内吞途径 Endocytic pathway）：可溶性大分子和结合在细胞表面蛋白质上的分子通过质膜片段的内陷被摄入细胞，并通过内吞途径运送到溶酶体。
+途径2（吞噬途径 Phagocytic pathway）：整个细胞和其他大的不溶性颗粒通过吞噬途径从细胞表面运送到溶酶体。
+途径3（自噬途径 Autophagic pathway）：磨损的细胞器和大量细胞质通过自噬途径运送到溶酶体。
+在溶酶体的酸性腔内，水解酶（hydrolytic enzymes）降解蛋白质、核酸、脂质和其他大分子。
+[图中标记] 1、2、3；吞噬泡（Phagosome）；细菌（Bacterium）；吞噬作用（Phagocytosis）；早期内体（Early endosome）；内质网（ER）；内吞作用（Endocytosis）；自噬作用（Autophagy）；线粒体（Mitochondrion）；自噬体（Autophagosome）；质膜（Plasma membrane）；溶酶体（Lysosome）；晚期内体（Late endosome）；溶酶体（Lysosomes）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">endosome</td><td class="gl-zh">内体</td></tr>
   <tr><td class="gl-en">lysosome</td><td class="gl-zh">溶酶体</td></tr>
-  <tr><td class="gl-en">endocytosis</td><td class="gl-zh">内吞</td></tr>
-  <tr><td class="gl-en">autophagy</td><td class="gl-zh">自噬</td></tr>
-  <tr><td class="gl-en">phagocytosis</td><td class="gl-zh">吞噬</td></tr>
+  <tr><td class="gl-en">endocytic pathway</td><td class="gl-zh">内吞途径</td></tr>
+  <tr><td class="gl-en">phagocytic pathway</td><td class="gl-zh">吞噬途径</td></tr>
+  <tr><td class="gl-en">autophagic pathway</td><td class="gl-zh">自噬途径</td></tr>
+  <tr><td class="gl-en">macromolecules</td><td class="gl-zh">大分子</td></tr>
+  <tr><td class="gl-en">invagination</td><td class="gl-zh">内陷</td></tr>
+  <tr><td class="gl-en">phagosome</td><td class="gl-zh">吞噬泡</td></tr>
+  <tr><td class="gl-en">early endosome</td><td class="gl-zh">早期内体</td></tr>
+  <tr><td class="gl-en">late endosome</td><td class="gl-zh">晚期内体</td></tr>
+  <tr><td class="gl-en">autophagosome</td><td class="gl-zh">自噬体</td></tr>
+  <tr><td class="gl-en">phagocytosis</td><td class="gl-zh">吞噬作用</td></tr>
+  <tr><td class="gl-en">endocytosis</td><td class="gl-zh">内吞作用</td></tr>
+  <tr><td class="gl-en">autophagy</td><td class="gl-zh">自噬作用</td></tr>
+  <tr><td class="gl-en">hydrolytic enzymes</td><td class="gl-zh">水解酶</td></tr>
+  <tr><td class="gl-en">acidic lumen</td><td class="gl-zh">酸性腔</td></tr>
   </table>
 </figure>
 <p>溶酶体含一组将多聚物降解为单体亚基的酶。例如核酸酶将 RNA 和 DNA 降解为单核苷酸构建块；蛋白酶降解多种蛋白质和肽；磷酸酶从单核苷酸、磷脂和其他化合物去除磷酸基；还有其他酶降解复杂多糖和糖脂为更小单位。所有这些溶酶体酶（统称酸性水解酶）在酸性 pH 下工作最有效。酸性 pH 帮助变性蛋白质，使其可被溶酶体水解酶作用。这些酶在细胞和大多数胞外液体的中性 pH 下活性较低。因此若溶酶体将酶释放到胞质溶胶（pH 7.0–7.3），它们对胞质组分几乎不降解。胞质和核蛋白质一般在溶酶体中不降解，而在胞质溶胶中的蛋白酶体（大多蛋白复合物）中降解（见第 3 章）。</p>
@@ -311,12 +676,16 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>植物液泡 大多数植物细胞含至少一个膜界液泡，积聚和储存水、离子和小分子营养物（如糖和氨基酸）。液泡膜中的多种膜蛋白允许这些分子从胞质溶胶</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-19_1.png" alt="图 1-19" onclick="lightbox(this.src)">
-  <figcaption>图1-19 · 叶细胞薄切片电镜。此细胞单个大液泡占据大部分细胞体积。可见叶绿体的一部分，含类囊体和基质。</figcaption>
+  <figcaption>图1-19 · 叶细胞薄切片的电子显微镜照片。标尺：2 μm。在此细胞中，一个大的液泡占据了大部分细胞体积。还可看到五个叶绿体的一部分和细胞壁。注意叶绿体内部的亚区室。
+[图中标记] 基质（Stroma）、液泡（Vacuole）、叶绿体（Chloroplast）、基粒（Granum）、类囊体膜（Thylakoid membrane）、细胞壁（Cell wall）。
+[Biophoto Associates/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">vacuole</td><td class="gl-zh">液泡</td></tr>
   <tr><td class="gl-en">chloroplast</td><td class="gl-zh">叶绿体</td></tr>
-  <tr><td class="gl-en">thylakoid</td><td class="gl-zh">类囊体</td></tr>
+  <tr><td class="gl-en">granum</td><td class="gl-zh">基粒</td></tr>
   <tr><td class="gl-en">stroma</td><td class="gl-zh">基质</td></tr>
+  <tr><td class="gl-en">thylakoid membrane</td><td class="gl-zh">类囊体膜</td></tr>
+  <tr><td class="gl-en">cell wall</td><td class="gl-zh">细胞壁</td></tr>
   </table>
 </figure>
 <p>运输并在液泡腔中保留。液泡的数目和大小取决于细胞类型和发育阶段；单个液泡可占成熟植物细胞的 80%（图 1-19）。像溶酶体，液泡腔含一系列降解酶并有酸性 pH，由液泡膜中相似转运蛋白维持。因此植物液泡也可有与动物细胞溶酶体相似的降解功能。相似</p>
@@ -326,13 +695,19 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>非光合细胞中，ATP 合成的主要燃料是脂肪酸和葡萄糖。1 分子葡萄糖完全有氧降解为二氧化碳和水偶联合成多达 30 分子 ATP（来自 ADP 和无机磷酸，见图 1-6）。真核细胞中，葡萄糖降解的初始阶段在胞质溶胶进行，每分子葡萄糖产生 2 分子 ATP。氧化和</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-20_1.png" alt="图 1-20" onclick="lightbox(this.src)">
-  <figcaption>图1-20 · 胰腺细胞中线粒体电镜。光滑外膜形成线粒体外边界。内膜内折（嵴）突入基质，增加表面积。</figcaption>
+  <figcaption>图1-20 · 胰腺细胞中线粒体的电子显微镜照片。标尺：3 μm。光滑的外膜（outer membrane）形成线粒体的外边界。内膜（inner membrane）与外膜不同，高度内折形成称为嵴（cristae）的片层和管道；ATP 由嵌入嵴膜中的蛋白质产生。内外膜之间的水性空间（膜间间隙 intermembrane space）和内膜内部的空间（基质 matrix）各自含有对糖、脂质和其他分子代谢重要的特定蛋白质。
+[图中标记] 外膜、嵴、内膜、膜间间隙（Intermembrane space）、基质、基质颗粒（Matrix granules）。
+[Keith R. Porter/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">mitochondrion</td><td class="gl-zh">线粒体</td></tr>
   <tr><td class="gl-en">outer membrane</td><td class="gl-zh">外膜</td></tr>
   <tr><td class="gl-en">inner membrane</td><td class="gl-zh">内膜</td></tr>
   <tr><td class="gl-en">cristae</td><td class="gl-zh">嵴</td></tr>
+  <tr><td class="gl-en">intermembrane space</td><td class="gl-zh">膜间间隙</td></tr>
   <tr><td class="gl-en">matrix</td><td class="gl-zh">基质</td></tr>
+  <tr><td class="gl-en">matrix granules</td><td class="gl-zh">基质颗粒</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">三磷酸腺苷</td></tr>
+  <tr><td class="gl-en">invaginated</td><td class="gl-zh">内折</td></tr>
   </table>
 </figure>
 <p>ATP 合成的末端阶段由线粒体基质和内膜中的酶执行（见第 12 章）；每分子葡萄糖多达 28 分子 ATP 在线粒体产生。类似地，脂肪酸氧化为二氧化碳形成的几乎所有 ATP 都在线粒体产生。因此线粒体可视为细胞的"发电厂"。</p>
@@ -344,12 +719,21 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>单细胞真核生物、动物和植物都使用基本相同的细胞周期（准备细胞分裂的一系列事件）</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-21_1.png" alt="图 1-21" onclick="lightbox(this.src)">
-  <figcaption>图1-21 · 生长中所有真核细胞持续经历细胞周期四期。增殖细胞四期：G1、S（DNA 合成）、G2、M（有丝分裂）。</figcaption>
+  <figcaption>图1-21 · 在生长过程中，所有真核细胞持续经历细胞周期的四个阶段。在增殖细胞中，细胞周期的四个阶段依次进行。在人类中，该周期需要 10 到 20 小时，具体取决于细胞类型和发育状态。酵母分裂快得多。在间期（interphase，由 G1、S 和 G2 期组成），细胞的质量大约翻倍。在 S 期进行 DNA 复制使细胞拥有每种染色体类型的四份拷贝。在有丝分裂（M）期，染色体被均匀分配到两个子细胞中，在大多数情况下细胞质大致等分。在某些条件下，如饥饿或组织已达到其最终大小时，细胞将停止周期并停留在称为 G0 的等待状态。G0 中的某些类型的细胞在条件改变时可以重新进入细胞周期。
+[图中标记] G0、非分裂细胞（Nondividing cells）/静止细胞（Resting cells）；M（有丝分裂）；G2（RNA 和蛋白质合成）；S（DNA 复制）；G1（RNA 和蛋白质合成）；细胞分裂（Cell division）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">cell cycle</td><td class="gl-zh">细胞周期</td></tr>
+  <tr><td class="gl-en">eukaryotic cells</td><td class="gl-zh">真核细胞</td></tr>
+  <tr><td class="gl-en">interphase</td><td class="gl-zh">间期</td></tr>
+  <tr><td class="gl-en">G1 phase</td><td class="gl-zh">G1期</td></tr>
   <tr><td class="gl-en">S phase</td><td class="gl-zh">S期</td></tr>
+  <tr><td class="gl-en">G2 phase</td><td class="gl-zh">G2期</td></tr>
   <tr><td class="gl-en">M phase</td><td class="gl-zh">M期</td></tr>
-  <tr><td class="gl-en">mitosis</td><td class="gl-zh">有丝分裂</td></tr>
+  <tr><td class="gl-en">mitotic</td><td class="gl-zh">有丝分裂</td></tr>
+  <tr><td class="gl-en">DNA replication</td><td class="gl-zh">DNA复制</td></tr>
+  <tr><td class="gl-en">daughter cells</td><td class="gl-zh">子细胞</td></tr>
+  <tr><td class="gl-en">cytoplasm</td><td class="gl-zh">细胞质</td></tr>
+  <tr><td class="gl-en">G0</td><td class="gl-zh">G0期</td></tr>
   </table>
 </figure>
 <p>和相同的实际分裂过程（有丝分裂）。真核细胞周期通常分四期（图 1-21）。染色体及其携带的 DNA 在 S（合成）期复制。复制染色体在 M（有丝分裂）期分离（细胞在此期分裂），每个子细胞获得每条染色体的一份。M 和 S 期由两个间隙期（G1 和 G2）分开，期间制造 mRNA、蛋白质、脂质和其他细胞组分，细胞增大。</p>
@@ -362,15 +746,47 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>用于制造面包和啤酒的常见酵母酿酒酵母在本书中频繁出现，因为它已证明是极其有用的实验生物。酿酒酵母细胞中表达的约 6000 种不同蛋白质的同源物见于大多数（即使不是所有）真核生物，对细胞分裂或个体真核细胞器功能重要。我们对内质网和高尔基体中促进蛋白质分泌的蛋白质的</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-22_1.png" alt="图 1-22" onclick="lightbox(this.src)">
-  <figcaption>图1-22 · 细胞生物学中使用的每种真核生物对某些研究有优势。酿酒酵母、衣藻、疟原虫、果蝇、线虫、斑马鱼、小鼠、涡虫等模式生物。</figcaption>
+  <figcaption>图1-22 · 细胞生物学中使用的每种真核生物对某些类型的研究具有优势。
+(a) 酿酒酵母（Saccharomyces cerevisiae）具有真核生物的细胞组织，但是一种相对简单的单细胞生物，易于培养和遗传操作。研究优势：细胞周期和细胞分裂的调控；蛋白质分泌和膜生物发生；细胞骨架的功能；细胞分化；衰老；基因调控和染色体结构。
+(b) 绿藻--莱茵衣藻（Chlamydomonas reinhardtii），广泛用于研究光合作用以及鞭毛（flagella）的结构和功能。研究优势：鞭毛的结构和功能；叶绿体和光合作用；细胞器运动；趋光性（phototaxis）。
+(c) 线虫--秀丽隐杆线虫（Caenorhabditis elegans），具有少量细胞，在每条虫中以几乎相同的方式排列，每个个体细胞的形成都可以被追踪。研究优势：身体计划的发育；细胞谱系（cell lineage）；神经系统的形成和功能；程序性细胞死亡的调控；细胞增殖和癌症基因；衰老；行为；基因调控和染色体结构。
+(d) 果蝇--黑腹果蝇（Drosophila melanogaster），最早用于发现染色体的特性，在鉴定控制胚胎发育的基因方面特别有价值。许多这些基因在人类中是进化保守的。研究优势：身体计划的发育；分化细胞谱系的产生；神经系统、心脏和肌肉系统的形成；程序性细胞死亡；行为的遗传调控；癌症基因和细胞增殖的调控；细胞极化的调控；药物、酒精、农药的影响。
+(e) 涡虫--地中海涡虫（Schmidtea mediterranea）是扁形动物，可以再生身体任何被切断的部分，包括头部和光感受器（photoreceptors）。产生其新细胞和组织的干细胞被广泛研究。研究优势：干细胞；成体组织的更替；伤口愈合；再生；咽（pharynx）；光感受器。
+(f) 斑马鱼（Danio rerio）用于快速遗传筛选以鉴定控制脊椎动物发育和器官发生的基因。研究优势：脊椎动物身体组织的发育；脑和神经系统的形成和功能；出生缺陷；癌症。
+(g) 小鼠（Mus musculus），包括培养细胞，在实验动物系统中与人类进化上最接近，因此为研究众多人类遗传病和传染病提供了模型。研究优势：身体组织的发育；哺乳动物免疫系统的功能；脑和神经系统的形成和功能；癌症和其他人类疾病的模型；基因调控和遗传；传染病；行为。
+(h) 十字花科杂草--拟南芥（Arabidopsis thaliana）已用于遗传筛选以鉴定涉及植物生活几乎每个方面的基因。研究优势：组织的发育和模式形成；细胞生物学遗传学；农业应用；生理学；基因调控；免疫；传染病。
+[部分 (a) Scimat/Photo Researchers, Inc.。部分 (b) William Dentler，堪萨斯大学。部分 (c) Science Source。部分 (d) Darwin Dale/Science Source。部分 (e) Peter Reddien，MIT Whitehead Institute。部分 (f) blickwinkel/Hartl/Alamy。部分 (g) J. M. Labat/Jacana/Photo Researchers, Inc.。部分 (h) Darwin Dale/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">model organism</td><td class="gl-zh">模式生物</td></tr>
-  <tr><td class="gl-en">S. cerevisiae</td><td class="gl-zh">酿酒酵母</td></tr>
-  <tr><td class="gl-en">Chlamydomonas</td><td class="gl-zh">衣藻</td></tr>
-  <tr><td class="gl-en">Plasmodium</td><td class="gl-zh">疟原虫</td></tr>
-  <tr><td class="gl-en">Drosophila</td><td class="gl-zh">果蝇</td></tr>
-  <tr><td class="gl-en">C. elegans</td><td class="gl-zh">线虫</td></tr>
-  <tr><td class="gl-en">planaria</td><td class="gl-zh">涡虫</td></tr>
+  <tr><td class="gl-en">Saccharomyces cerevisiae</td><td class="gl-zh">酿酒酵母</td></tr>
+  <tr><td class="gl-en">Chlamydomonas reinhardtii</td><td class="gl-zh">莱茵衣藻</td></tr>
+  <tr><td class="gl-en">Caenorhabditis elegans</td><td class="gl-zh">秀丽隐杆线虫</td></tr>
+  <tr><td class="gl-en">Drosophila melanogaster</td><td class="gl-zh">黑腹果蝇</td></tr>
+  <tr><td class="gl-en">Schmidtea mediterranea</td><td class="gl-zh">地中海涡虫</td></tr>
+  <tr><td class="gl-en">Danio rerio</td><td class="gl-zh">斑马鱼</td></tr>
+  <tr><td class="gl-en">Mus musculus</td><td class="gl-zh">小鼠</td></tr>
+  <tr><td class="gl-en">Arabidopsis thaliana</td><td class="gl-zh">拟南芥</td></tr>
+  <tr><td class="gl-en">eukaryote</td><td class="gl-zh">真核生物</td></tr>
+  <tr><td class="gl-en">flagella</td><td class="gl-zh">鞭毛</td></tr>
+  <tr><td class="gl-en">photosynthesis</td><td class="gl-zh">光合作用</td></tr>
+  <tr><td class="gl-en">chloroplasts</td><td class="gl-zh">叶绿体</td></tr>
+  <tr><td class="gl-en">phototaxis</td><td class="gl-zh">趋光性</td></tr>
+  <tr><td class="gl-en">cell lineage</td><td class="gl-zh">细胞谱系</td></tr>
+  <tr><td class="gl-en">nervous system</td><td class="gl-zh">神经系统</td></tr>
+  <tr><td class="gl-en">programmed cell death</td><td class="gl-zh">程序性细胞死亡</td></tr>
+  <tr><td class="gl-en">cancer genes</td><td class="gl-zh">癌症基因</td></tr>
+  <tr><td class="gl-en">stem cells</td><td class="gl-zh">干细胞</td></tr>
+  <tr><td class="gl-en">regeneration</td><td class="gl-zh">再生</td></tr>
+  <tr><td class="gl-en">photoreceptors</td><td class="gl-zh">光感受器</td></tr>
+  <tr><td class="gl-en">pharynx</td><td class="gl-zh">咽</td></tr>
+  <tr><td class="gl-en">organogenesis</td><td class="gl-zh">器官发生</td></tr>
+  <tr><td class="gl-en">vertebrate</td><td class="gl-zh">脊椎动物</td></tr>
+  <tr><td class="gl-en">immune system</td><td class="gl-zh">免疫系统</td></tr>
+  <tr><td class="gl-en">genetic screens</td><td class="gl-zh">遗传筛选</td></tr>
+  <tr><td class="gl-en">cell differentiation</td><td class="gl-zh">细胞分化</td></tr>
+  <tr><td class="gl-en">aging</td><td class="gl-zh">衰老</td></tr>
+  <tr><td class="gl-en">gene regulation</td><td class="gl-zh">基因调控</td></tr>
+  <tr><td class="gl-en">chromosome structure</td><td class="gl-zh">染色体结构</td></tr>
+  <tr><td class="gl-en">cell polarization</td><td class="gl-zh">细胞极化</td></tr>
   </table>
 </figure>
 <p>大部分认识首先在酵母中阐明（见第 14 章）。酵母对鉴定许多调节细胞周期和催化 DNA 复制及转录的蛋白质也必不可少。酿酒酵母（图 1-23a；另见图 1-22a）和其他酵母对分子和细胞生物学家有许多优势：</p>
@@ -383,13 +799,23 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>在经典遗传学方法中，科学家分离和表征缺乏正常生物能做某事能力的突变体。常进行大型遗传"筛选"以寻找不能完成某过程（如细胞分裂或肌肉形成）的许多不同突变个体（如果蝇、酵母细胞）。突变通常由诱变剂（以大致随机方式促进突变的化学或物理试剂）处理产生。但我们如何分离和维持某必需过程（如细胞分裂或蛋白质分泌，对生存必需）有缺陷的突变生物或细胞？</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-23_1.png" alt="图 1-23" onclick="lightbox(this.src)">
-  <figcaption>图1-23 · 酵母可为单倍体或二倍体，可有性或无性繁殖。酿酒酵母出芽分裂电镜。a 和 α 单倍体细胞融合形成 a/α 二倍体。</figcaption>
+  <figcaption>图1-23 · 酿酒酵母（Saccharomyces cerevisiae）可以是单倍体或二倍体，可有性或无性繁殖。
+(a) 出芽酵母酿酒酵母的扫描电子显微镜照片。这些细胞通过一种称为有丝分裂出芽（mitotic budding）的特殊有丝分裂方式生长。一个子核留在「母」细胞中；另一个子核被运送到芽中，芽长大后作为新细胞释放。每个芽细胞脱离后，在出芽位点留下一个疤痕，因此可以计数母细胞上之前的出芽数量。橙色细胞是细菌。
+(b) 单倍体酵母细胞可以有不同的交配型，称为 a（蓝色）和 α（橙色）。两种类型都含有每种酵母染色体的单拷贝，即通常数目的一半，通过有丝分裂出芽生长。两个交配型不同的单倍体细胞（一个 a 和一个 α）可以融合形成 a/α 二倍体细胞，含有每种染色体的两份拷贝；二倍体细胞可通过有丝分裂出芽增殖。在饥饿条件下，二倍体细胞可以经历减数分裂（meiosis，一种特殊类型的细胞分裂），形成四个单倍体子囊孢子（ascospores）。子囊破裂释放四个单倍体孢子，它们可以发芽成单倍体 a 和 α 细胞。这些细胞也可以无性增殖。
+[图中标记] (a) 出芽（S. cerevisiae）；(b) 1：a 和 α 单倍体细胞之间的交配；2：二倍体细胞（a/α）的营养生长；3：饥饿导致子囊形成、减数分裂；4：子囊内四个单倍体子囊孢子；5：子囊破裂，孢子发芽；单倍体细胞的营养生长；芽（Bud）。
+[部分 (a) SCIMAT/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">haploid</td><td class="gl-zh">单倍体</td></tr>
   <tr><td class="gl-en">diploid</td><td class="gl-zh">二倍体</td></tr>
+  <tr><td class="gl-en">mitotic budding</td><td class="gl-zh">有丝分裂出芽</td></tr>
+  <tr><td class="gl-en">mating type</td><td class="gl-zh">交配型</td></tr>
+  <tr><td class="gl-en">meiosis</td><td class="gl-zh">减数分裂</td></tr>
+  <tr><td class="gl-en">ascospores</td><td class="gl-zh">子囊孢子</td></tr>
+  <tr><td class="gl-en">ascus</td><td class="gl-zh">子囊</td></tr>
+  <tr><td class="gl-en">chromosome</td><td class="gl-zh">染色体</td></tr>
+  <tr><td class="gl-en">vegetative growth</td><td class="gl-zh">营养生长</td></tr>
+  <tr><td class="gl-en">sporulation</td><td class="gl-zh">孢子形成</td></tr>
   <tr><td class="gl-en">budding</td><td class="gl-zh">出芽</td></tr>
-  <tr><td class="gl-en">a cell</td><td class="gl-zh">a细胞</td></tr>
-  <tr><td class="gl-en">α cell</td><td class="gl-zh">α细胞</td></tr>
   </table>
 </figure>
 <p>一种方法是分离温度敏感突变。这些突变体能在允许温度生长，但不能在另一（通常更高）非允许温度生长。正常细胞在两温度都能生长。大多数情况下，温度敏感突变体产生改变的蛋白，在允许温度工作但在非允许温度展开且无功能。温度敏感突变的筛选最易在单倍体</p>
@@ -405,14 +831,49 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>疟原虫生命周期中发生的所有细胞类型转化都由该寄生虫遗传物质中编码的指令控制（见表 1-2）。疟原虫基因组有与酵母酿酒酵母约相同数量的蛋白质编码基因，但约 2/3 的疟原虫基因似乎是此及相关寄生虫独有的，证明这些寄生虫、</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-24_1.png" alt="图 1-24" onclick="lightbox(this.src)">
-  <figcaption>图1-24 · 引起疟疾的疟原虫物种是具有显著生命周期的单细胞原生动物。许多物种已知，可感染不同宿主。裂殖子含棒状体、极环、微线体等独特细胞器。</figcaption>
+  <figcaption>图1-24 · 疟原虫（Plasmodium）物种--引起疟疾的寄生虫--是具有显著生命周期的单细胞原生动物。已知有许多物种，它们可以感染各种动物，在昆虫和脊椎动物宿主之间循环。引起人类疟疾的四个物种在人类和蚊虫宿主体内经历数次戏剧性的转化。
+(a) 生命周期图解。
+步骤1：当感染的按蚊（Anopheles）叮咬人时，子孢子（sporozoites）进入人体。
+步骤2：它们迁移到肝脏，在那里发育成裂殖子（merozoites），然后释放入血液。裂殖子与子孢子差异很大，因此这种转化是一种变态（metamorphosis，希腊语「变形」或「多种形态」）。
+步骤3：循环中的裂殖子侵入红细胞（RBCs）并在其中繁殖。某些疟原虫产生的蛋白质移动到感染红细胞的表面，导致细胞黏附在血管壁上。这阻止了感染的红细胞循环到脾脏，在脾脏免疫系统的细胞会破坏红细胞和其中寄生的生物。
+步骤4：在红细胞中生长和繁殖一段每种疟原虫物种特异的时间后，裂殖子突然同步地从大量感染细胞中迸发出来。正是这一事件引起了发热和寒战--疟疾的著名症状。一些释放的裂殖子感染更多的红细胞，形成产生和感染的循环。
+步骤5：最终，一些裂殖子经历减数分裂并发育成雄性和雌性配子母细胞（gametocytes），这是另一次变态。这些细胞含有通常数目一半的染色体，除非通过血液转移到按蚊中，否则不能长期存活。
+步骤6：在蚊虫的胃中，配子母细胞转化为精子或卵（配子 gametes），这是另一次变态，标志是精子上长出长毛发状的鞭毛（flagella）。
+步骤7：精子和卵的融合产生合子（zygotes），合子植入胃壁细胞中并生长成卵囊（oocysts），实质上是生产子孢子的工厂。
+步骤8：卵囊破裂释放数千个子孢子，它们迁移到唾液腺，为感染另一个人体宿主做好准备。
+(b) 间日疟原虫（Plasmodium vivax）裂殖子的细胞器。其中一些细胞器仅在疟原虫和相关真核寄生微生物中发现。
+(c) 间日疟原虫裂殖子侵入人红细胞切片。参见 A. Cowman and B. Crabb, 2006, Cell 124:755–766。
+[图中标记] (b)：线粒体（Mitochondrion）、微管（Microtubule）、表面外被（Surface coat）、极环（Polar ring）、细胞核（Nucleus）、质体（Plastid）、核糖体（Ribosome）、微线体（Microneme）、棒状体（Rhoptry）、致密颗粒（Dense granules）、质膜（Plasma membrane）、红细胞（Red blood cell）、裂殖子（Merozoites）；(c)：微线体、棒状体、间日疟原虫和红细胞质膜间的紧密连接（Tight junction between plasma membranes of P. vivax and red blood cell）。
+[图中生命周期标记] 子孢子（Sporozoites）、卵囊（Oocyst）、按蚊（Mosquito）、人（Human）、合子（Zygote）、精子（Sperm）、裂殖子（Merozoites）、配子母细胞（Gametocytes）、卵（Egg）、肝（Liver）、孢子形成（Sporulation）。
+[部分 (c) Masamichi Aikawa。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">Plasmodium</td><td class="gl-zh">疟原虫</td></tr>
   <tr><td class="gl-en">malaria</td><td class="gl-zh">疟疾</td></tr>
-  <tr><td class="gl-en">merozoite</td><td class="gl-zh">裂殖子</td></tr>
-  <tr><td class="gl-en">rhoptry</td><td class="gl-zh">棒状体</td></tr>
-  <tr><td class="gl-en">microneme</td><td class="gl-zh">微线体</td></tr>
+  <tr><td class="gl-en">protozoan</td><td class="gl-zh">原生动物</td></tr>
+  <tr><td class="gl-en">sporozoites</td><td class="gl-zh">子孢子</td></tr>
+  <tr><td class="gl-en">Anopheles</td><td class="gl-zh">按蚊</td></tr>
+  <tr><td class="gl-en">merozoites</td><td class="gl-zh">裂殖子</td></tr>
+  <tr><td class="gl-en">metamorphosis</td><td class="gl-zh">变态</td></tr>
+  <tr><td class="gl-en">red blood cells</td><td class="gl-zh">红细胞</td></tr>
+  <tr><td class="gl-en">gametocytes</td><td class="gl-zh">配子母细胞</td></tr>
+  <tr><td class="gl-en">meiosis</td><td class="gl-zh">减数分裂</td></tr>
+  <tr><td class="gl-en">gametes</td><td class="gl-zh">配子</td></tr>
+  <tr><td class="gl-en">flagella</td><td class="gl-zh">鞭毛</td></tr>
+  <tr><td class="gl-en">zygotes</td><td class="gl-zh">合子</td></tr>
+  <tr><td class="gl-en">oocysts</td><td class="gl-zh">卵囊</td></tr>
+  <tr><td class="gl-en">mitochondrion</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">microtubule</td><td class="gl-zh">微管</td></tr>
+  <tr><td class="gl-en">surface coat</td><td class="gl-zh">表面外被</td></tr>
   <tr><td class="gl-en">polar ring</td><td class="gl-zh">极环</td></tr>
+  <tr><td class="gl-en">nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">plastid</td><td class="gl-zh">质体</td></tr>
+  <tr><td class="gl-en">ribosome</td><td class="gl-zh">核糖体</td></tr>
+  <tr><td class="gl-en">microneme</td><td class="gl-zh">微线体</td></tr>
+  <tr><td class="gl-en">rhoptry</td><td class="gl-zh">棒状体</td></tr>
+  <tr><td class="gl-en">dense granules</td><td class="gl-zh">致密颗粒</td></tr>
+  <tr><td class="gl-en">plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">tight junction</td><td class="gl-zh">紧密连接</td></tr>
+  <tr><td class="gl-en">sporulation</td><td class="gl-zh">孢子形成</td></tr>
   </table>
 </figure>
 <p>顶复门（见图 1-1）与大多数其他真核生物之间的巨大进化距离，以及其复杂生命周期所需独特细胞器的存在。</p>
@@ -430,11 +891,15 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>后生动物--无论是如果蝇和线虫等无脊椎动物，还是小鼠和人等脊椎动物--含 13,000 至 23,000 个蛋白质编码基因，约为酵母的 3-4 倍（见表 1-2）。整个基因组测序显示</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-25_1.png" alt="图 1-25" onclick="lightbox(this.src)">
-  <figcaption>图1-25 · 所有器官都是各种组织的有组织排列，如小动脉横截面所示。血流通过内皮衬里腔，外被平滑肌和结缔组织。</figcaption>
+  <figcaption>图1-25 · 所有器官都是各种组织的有序排列，如这一个小动脉（arteriole）横截面所示。血液流过血管腔（lumen），腔由一层形成内皮（endothelium）的内皮细胞薄层和下方的基底膜（basal lamina）衬里。该组织黏附于上方的平滑肌组织层；肌层的收缩控制通过血管的血流。一层纤维状结缔组织（connective tissue）围绕血管并将其与其他组织连接。
+[图中标记] 结缔组织（Connective tissue）、腔（Lumen）、平滑肌（Smooth muscle）、内皮（Endothelium）。
+[SPL/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">organ</td><td class="gl-zh">器官</td></tr>
-  <tr><td class="gl-en">tissue</td><td class="gl-zh">组织</td></tr>
+  <tr><td class="gl-en">arteriole</td><td class="gl-zh">小动脉</td></tr>
+  <tr><td class="gl-en">lumen</td><td class="gl-zh">腔</td></tr>
   <tr><td class="gl-en">endothelium</td><td class="gl-zh">内皮</td></tr>
+  <tr><td class="gl-en">endothelial cells</td><td class="gl-zh">内皮细胞</td></tr>
+  <tr><td class="gl-en">basal lamina</td><td class="gl-zh">基底膜</td></tr>
   <tr><td class="gl-en">smooth muscle</td><td class="gl-zh">平滑肌</td></tr>
   <tr><td class="gl-en">connective tissue</td><td class="gl-zh">结缔组织</td></tr>
   </table>
@@ -449,21 +914,41 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>敏锐的读者会注意到前面讨论中的一个悖论：如果大多数人蛋白质编码基因与类人猿和小鼠共享，许多与蝇和虫共享，这些生物看起来和功能为何如此不同？</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-26_1.png" alt="图 1-26" onclick="lightbox(this.src)">
-  <figcaption>图1-26 · 连接猴、类人猿和人的进化树。人、类人猿、小猿和旧大陆猴的进化树。人与黑猩猩 DNA 99% 相同。</figcaption>
+  <figcaption>图1-26 · 连接猴、类人猿和人的进化树。人类、类人猿（great apes）、一种小猿（small ape）和一种旧大陆猴（Old World monkey）的进化树是根据它们基因组 DNA 序列之间的差异估算的。全基因组 DNA 序列被比对，并估算了独特 DNA 序列中的平均核苷酸差异。不同物种彼此分化的时间估计值标在每个节点处，以约百万年（Myr）为单位，基于 DNA 序列同一性计算；1 Myr 意味着约 1 Myr 或更短。
+[图中标记] 恒河猴（Rhesus macaque, Macaca mulatta）、白颊长臂猿（Gibbon, Nomascus leucogenys）、苏门答腊猩猩（Sumatran orangutan, Pongo abelii）、大猩猩（Gorilla, Gorilla gorilla）、人（Human, Homo sapiens）、倭黑猩猩（Bonobo, Pan paniscus）、黑猩猩（Chimpanzee, Pan troglodytes）、人科（The Hominidae，类人猿 great apes）、猴科（Cercopithecidae，旧大陆猴 Old World monkeys）、长臂猿科（Hylobatidae，小猿 Small apes）；DNA 序列同一性值：0.996、0.990、0.984、0.974、0.971、0.949；分化时间：约 1 Myr 前、4.5–6 Myr 前、6–8 Myr 前、12–16 Myr 前、18–20 Myr 前、25–33 Myr 前。
+[数据来自 D. P. Locke et al., 2011, Nature 469:529–533。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">evolutionary tree</td><td class="gl-zh">进化树</td></tr>
   <tr><td class="gl-en">great apes</td><td class="gl-zh">类人猿</td></tr>
+  <tr><td class="gl-en">small apes</td><td class="gl-zh">小猿</td></tr>
+  <tr><td class="gl-en">Old World monkey</td><td class="gl-zh">旧大陆猴</td></tr>
+  <tr><td class="gl-en">genomic DNA sequences</td><td class="gl-zh">基因组DNA序列</td></tr>
+  <tr><td class="gl-en">nucleotide divergence</td><td class="gl-zh">核苷酸差异</td></tr>
+  <tr><td class="gl-en">DNA sequence identity</td><td class="gl-zh">DNA序列同一性</td></tr>
+  <tr><td class="gl-en">Rhesus macaque</td><td class="gl-zh">恒河猴</td></tr>
+  <tr><td class="gl-en">gibbon</td><td class="gl-zh">长臂猿</td></tr>
+  <tr><td class="gl-en">orangutan</td><td class="gl-zh">猩猩</td></tr>
+  <tr><td class="gl-en">gorilla</td><td class="gl-zh">大猩猩</td></tr>
+  <tr><td class="gl-en">bonobo</td><td class="gl-zh">倭黑猩猩</td></tr>
   <tr><td class="gl-en">chimpanzee</td><td class="gl-zh">黑猩猩</td></tr>
+  <tr><td class="gl-en">Hominidae</td><td class="gl-zh">人科</td></tr>
+  <tr><td class="gl-en">Cercopithecidae</td><td class="gl-zh">猴科</td></tr>
+  <tr><td class="gl-en">Hylobatidae</td><td class="gl-zh">长臂猿科</td></tr>
   </table>
 </figure>
 <p>此问题的答案在于基因在所有后生动物从单细胞（受精卵）发育过程中的调节方式。如第 8、9 章所学，每个蛋白质编码基因与不同生物中不同的调节 DNA 序列相关。这些调节序列许多结合指导基因表达（从而蛋白质制造量）于特定类型细胞的蛋白。其中一些蛋白称为主转录因子；这些蛋白结合调节 DNA 序列、在整个进化中保守，通过激活或抑制基因组（常在发育不同阶段）控制特定类型细胞的发育。</p>
 <p>人胚胎发育的早期阶段与小鼠相似。特征是快速细胞分裂（图 1-28）随后</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-27_1.png" alt="图 1-27" onclick="lightbox(this.src)">
-  <figcaption>图1-27 · 人和小鼠间共线性保守。所示为小鼠染色体片段与人共享共同祖先，基因顺序保守。</figcaption>
+  <figcaption>图1-27 · 人与小鼠之间共线性（synteny）的保守。所示为小鼠 12 号染色体上的一段 510,000 碱基对（bp）片段，与人类 14 号染色体的 600,000 bp 区域共享共同祖先。粉红线连接两个基因组中对应的独特 DNA 序列。Mb，1 百万碱基对。
+[图中标记] 人 14 号染色体（Human Chr 14）、小鼠 12 号染色体（Mouse Chr 12）；59.9（Mb）、60.5（Mb）。
+[数据来自 Mouse Genome Sequencing Consortium, 2002, Nature 420:520。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">synteny</td><td class="gl-zh">共线性</td></tr>
-  <tr><td class="gl-en">homolog</td><td class="gl-zh">同源基因</td></tr>
+  <tr><td class="gl-en">conservation</td><td class="gl-zh">保守</td></tr>
+  <tr><td class="gl-en">base pair</td><td class="gl-zh">碱基对</td></tr>
+  <tr><td class="gl-en">chromosome</td><td class="gl-zh">染色体</td></tr>
+  <tr><td class="gl-en">common ancestry</td><td class="gl-zh">共同祖先</td></tr>
   </table>
 </figure>
 <p>细胞分化为组织。在所有生物中，胚胎体型（细胞类型/组织和身体部分的空间模式）源自两个影响：指定身体模式的基因程序和诱导程序不同部分的局部细胞相互作用。</p>
@@ -471,21 +956,38 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>许多模式基因编码主转录因子，控制其他基因表达并指定生物体的一般组织，从主要体轴（前后/头尾、背腹/背肚和左右）开始，以头、胸、腹和尾等体节结束。从最简单蠕虫到哺乳动物的轴对称保守性可由其基因组中保守</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-29_1.png" alt="图 1-29" onclick="lightbox(this.src)">
-  <figcaption>图1-29 · 进化中保守的相似主转录因子调节不同动物早期发育过程。(a) Urbilateria 是原口和后口动物的共同祖先。(b) 不同动物中保守的同源主转录因子调节体型模式。</figcaption>
+  <figcaption>图1-29 · 进化中保守的相似主转录因子调节不同动物早期发育过程。
+(a) Urbilateria 是所有原口动物（protostomes）和后口动物（deuterostomes）的推定祖先，存在于约 6 亿年前。图中显示其神经索（nerve cord，紫色）、表面外胚层（surface ectoderm，主要为皮肤；白色）和内胚层（endoderm，主要为消化道和器官；浅绿色）的位置。
+(b) 高度保守的主转录因子称为 Hox 蛋白，在胚胎发育中决定体节的身份，在原口动物和后口动物中均有发现。Hox 基因在大多数或所有动物的染色体上以基因簇形式存在，它们编码相关的主转录因子，控制其他基因的活性。在许多动物中，不同的 Hox 基因沿头尾轴指导不同体节的发育，如对应颜色所示。每个基因沿头尾轴在特定区域被（转录）激活，并控制该处组织的生长和发育。例如，在小鼠（一种后口动物）中，Hox 基因负责椎骨的独特形状。影响果蝇（一种原口动物）Hox 基因的突变导致身体部位在错误位置形成，如在头部本应有触角的位置长出腿。在两种生物中，这些基因提供头尾「地址」并用于指导在适当位置形成结构。
+[图中标记] (a)：Urbilateria、约 6 亿年前（~600 million years ago）、原口动物（Protostome）、后口动物（Deuterostome）；(b)：基因（Genes）、果蝇（Fly，原口动物 protostome）、哺乳动物（Mammal，后口动物 deuterostome）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">master transcription factor</td><td class="gl-zh">主转录因子</td></tr>
+  <tr><td class="gl-en">master transcription factors</td><td class="gl-zh">主转录因子</td></tr>
+  <tr><td class="gl-en">Hox proteins</td><td class="gl-zh">Hox蛋白</td></tr>
+  <tr><td class="gl-en">Hox genes</td><td class="gl-zh">Hox基因</td></tr>
   <tr><td class="gl-en">Urbilateria</td><td class="gl-zh">Urbilateria</td></tr>
-  <tr><td class="gl-en">protostome</td><td class="gl-zh">原口动物</td></tr>
-  <tr><td class="gl-en">deuterostome</td><td class="gl-zh">后口动物</td></tr>
+  <tr><td class="gl-en">protostomes</td><td class="gl-zh">原口动物</td></tr>
+  <tr><td class="gl-en">deuterostomes</td><td class="gl-zh">后口动物</td></tr>
+  <tr><td class="gl-en">nerve cord</td><td class="gl-zh">神经索</td></tr>
+  <tr><td class="gl-en">surface ectoderm</td><td class="gl-zh">表面外胚层</td></tr>
+  <tr><td class="gl-en">endoderm</td><td class="gl-zh">内胚层</td></tr>
+  <tr><td class="gl-en">body segments</td><td class="gl-zh">体节</td></tr>
+  <tr><td class="gl-en">embryonic development</td><td class="gl-zh">胚胎发育</td></tr>
+  <tr><td class="gl-en">head-to-tail axis</td><td class="gl-zh">头尾轴</td></tr>
+  <tr><td class="gl-en">vertebrae</td><td class="gl-zh">椎骨</td></tr>
+  <tr><td class="gl-en">mutations</td><td class="gl-zh">突变</td></tr>
+  <tr><td class="gl-en">antennae</td><td class="gl-zh">触角</td></tr>
   </table>
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_1-28_1.png" alt="图 1-28" onclick="lightbox(this.src)">
-  <figcaption>图1-28 · 受精卵最初几次细胞分裂为所有后续发育奠定基础。发育中小鼠胚胎（两细胞、四细胞等阶段）。</figcaption>
+  <figcaption>图1-28 · 受精卵最初几次细胞分裂为所有后续发育奠定基础。发育中的小鼠胚胎展示在 (a) 两细胞、(b) 四细胞和 (c) 八细胞阶段。胚胎被支持膜包围。人类发育中的相应步骤发生在受精后的最初几天内。
+[图中标记] (a)、(b)、(c)。
+[Claude Edelmann/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">fertilized egg</td><td class="gl-zh">受精卵</td></tr>
-  <tr><td class="gl-en">embryo</td><td class="gl-zh">胚胎</td></tr>
   <tr><td class="gl-en">cell division</td><td class="gl-zh">细胞分裂</td></tr>
+  <tr><td class="gl-en">embryo</td><td class="gl-zh">胚胎</td></tr>
+  <tr><td class="gl-en">supporting membranes</td><td class="gl-zh">支持膜</td></tr>
   </table>
 </figure>
 <p>模式基因的存在解释。其他模式基因编码在细胞黏附或细胞信号传导中重要的蛋白质。这种广泛的模式基因库允许整合和协调发育胚胎不同部分的事件，并赋予身体每个体节独特身份。</p>
@@ -495,12 +997,25 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>涡虫 Schmidtea mediterranea 以其从解剖形成的微小身体部分再生完整个体（含正常头）的能力而闻名（见图 1-22e）。涡虫含干细胞</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-30_1.png" alt="图 1-30" onclick="lightbox(this.src)">
-  <figcaption>图1-30 · 同源基因调节不同动物的眼发育。(a) 果蝇复眼发育需 eyeless 基因；(b) 人眼发育需 Pax6 基因。这些基因突变导致眼形成重大缺陷。</figcaption>
+  <figcaption>图1-30 · 同源基因调节不同动物的眼发育。
+(a) 果蝇大型复眼（compound eyes）的发育需要一个名为 eyeless 的基因（以突变表型命名）。
+(b) eyeless 基因失活的果蝇缺乏眼睛。
+(c) 正常人眼需要 Pax6 基因，即 eyeless 的同源基因。
+(d) 缺乏足够 Pax6 功能的人患有遗传病无虹膜症（aniridia），即眼中缺乏虹膜。
+eyeless 和 Pax6 编码高度相关的主转录因子，调节其他基因的活性，它们是同源基因（homologs），推测从同一祖先基因演化而来。
+[图中标记] (a)、(b)、(c)、(d)。
+[部分 (a) 和 (b) 感谢 Andreas Hefti，巴塞尔大学生物中心跨系电子显微镜室（IEM）。部分 (c) © Simon Fraser/Science Source。部分 (d) © Mediscan/Alamy。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">homologous genes</td><td class="gl-zh">同源基因</td></tr>
+  <tr><td class="gl-en">compound eyes</td><td class="gl-zh">复眼</td></tr>
   <tr><td class="gl-en">eyeless</td><td class="gl-zh">eyeless基因</td></tr>
+  <tr><td class="gl-en">mutant phenotype</td><td class="gl-zh">突变表型</td></tr>
   <tr><td class="gl-en">Pax6</td><td class="gl-zh">Pax6基因</td></tr>
-  <tr><td class="gl-en">homologous</td><td class="gl-zh">同源</td></tr>
-  <tr><td class="gl-en">compound eye</td><td class="gl-zh">复眼</td></tr>
+  <tr><td class="gl-en">homolog</td><td class="gl-zh">同源基因</td></tr>
+  <tr><td class="gl-en">aniridia</td><td class="gl-zh">无虹膜症</td></tr>
+  <tr><td class="gl-en">irises</td><td class="gl-zh">虹膜</td></tr>
+  <tr><td class="gl-en">transcription factors</td><td class="gl-zh">转录因子</td></tr>
+  <tr><td class="gl-en">ancestral gene</td><td class="gl-zh">祖先基因</td></tr>
   </table>
 </figure>
 <p>替换正常周转丢失的细胞。在解剖动物的片段中，它们经过几次细胞分裂后将产生再生中所需的任何细胞类型。这些干细胞作为发现头和尾（各由多种类型细胞构建）如何形成的有效实验系统（见第 16、21 章）。指导身体不同部位干细胞产生特定类型细胞的激素与哺乳动物（包括人）发育中使用的相似（见第 16 章），因此未来涡虫再生研究可能告知科学家如何再生人身体部分如手或眼。</p>
@@ -516,13 +1031,24 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>本书后续章节我们更详细讨论细胞过程。从讨论细胞构建块的化学性质</p>
 <figure>
   <img class="zoomable" src="figures/fig_1-31_1.png" alt="图 1-31" onclick="lightbox(this.src)">
-  <figcaption>图1-31 · 骨骼肌细胞中的抗肌萎缩蛋白糖蛋白复合物（DGC）。抗肌萎缩蛋白（杜氏肌营养不良中缺陷蛋白）将胞外基质层粘连蛋白连接到细胞骨架肌动蛋白。</figcaption>
+  <figcaption>图1-31 · 骨骼肌细胞中的抗肌萎缩蛋白糖蛋白复合物（dystrophin glycoprotein complex, DGC）。抗肌萎缩蛋白（dystrophin）--杜氏肌营养不良（Duchenne muscular dystrophy）中缺陷的蛋白--将肌动蛋白细胞骨架（actin cytoskeleton）与质膜中的多蛋白肌聚糖复合物（sarcoglycan complex）连接。复合物中的其他蛋白质结合基底膜（basal lamina）的组分，如层粘连蛋白（laminin），后者又结合赋予基底膜强度和刚性的胶原纤维（collagen fibers）。因此，抗肌萎缩蛋白是将肌细胞及其内部肌动蛋白细胞骨架与周围基底膜连接的一组蛋白质中的重要成员。参见 D. E. Michele and K. P. Campbell, J. Biol. Chem. 278:15457, 2003。
+[图中标记] 聚集蛋白（Agrin）、基底膜（Basal lamina）、细胞外空间（Extracellular space）、肌聚糖复合物（Sarcoglycan complex）、质膜（Plasma membrane）、细胞溶质（Cytosol）、抗肌萎缩蛋白（Dystrophin）、肌动蛋白（Actin）、串珠素（Perlecan）、层粘连蛋白（Laminin）、胶原和其他纤维状蛋白（Collagen and other fibrous proteins）、附着在蛋白质上的糖链（Carbohydrate chains attached to proteins）、杜氏肌营养不良中缺陷的蛋白（The protein defective in Duchenne muscular dystrophy）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">dystrophin glycoprotein complex</td><td class="gl-zh">抗肌萎缩蛋白糖蛋白复合物</td></tr>
   <tr><td class="gl-en">dystrophin</td><td class="gl-zh">抗肌萎缩蛋白</td></tr>
-  <tr><td class="gl-en">DGC</td><td class="gl-zh">抗肌萎缩蛋白糖蛋白复合物</td></tr>
+  <tr><td class="gl-en">Duchenne muscular dystrophy</td><td class="gl-zh">杜氏肌营养不良</td></tr>
+  <tr><td class="gl-en">actin cytoskeleton</td><td class="gl-zh">肌动蛋白细胞骨架</td></tr>
+  <tr><td class="gl-en">sarcoglycan complex</td><td class="gl-zh">肌聚糖复合物</td></tr>
+  <tr><td class="gl-en">plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">basal lamina</td><td class="gl-zh">基底膜</td></tr>
   <tr><td class="gl-en">laminin</td><td class="gl-zh">层粘连蛋白</td></tr>
-  <tr><td class="gl-en">cytoskeleton</td><td class="gl-zh">细胞骨架</td></tr>
+  <tr><td class="gl-en">collagen fibers</td><td class="gl-zh">胶原纤维</td></tr>
+  <tr><td class="gl-en">agrin</td><td class="gl-zh">聚集蛋白</td></tr>
+  <tr><td class="gl-en">perlecan</td><td class="gl-zh">串珠素</td></tr>
+  <tr><td class="gl-en">extracellular space</td><td class="gl-zh">细胞外空间</td></tr>
+  <tr><td class="gl-en">cytosol</td><td class="gl-zh">细胞溶质</td></tr>
   <tr><td class="gl-en">actin</td><td class="gl-zh">肌动蛋白</td></tr>
+  <tr><td class="gl-en">carbohydrate chains</td><td class="gl-zh">糖链</td></tr>
   </table>
 </figure>
 <p>和后续章节讨论的大分子过程所需的基本化学过程开始（第 2 章）。接着讨论蛋白质的结构和功能（第 3 章）。第 4 章讨论生物学家用于培养和分部细胞及可视化细胞内特定蛋白质和结构的许多技术。第 5 章描述 DNA 如何复制、DNA 片段如何复制成 RNA、蛋白质如何在核糖体上合成。第 6 章描述用于研究基因、基因表达和蛋白质功能的许多技术，包括产生特定遗传突变的动物。生物膜结构是第 7 章主题。基因和染色体结构及基因表达调节在第 8、9、10 章讨论。离子和小分子跨膜运输在第 11 章讨论，第 12 章讨论细胞能学及线粒体和叶绿体功能。膜生物发生、蛋白质分泌和蛋白质运输（将蛋白质导向其正确亚细胞目的地）是第 13、14 章主题。第 15、16 章讨论细胞通讯和调节其活动的多种信号和信号受体。细胞骨架和细胞运动在第 17、18 章讨论。第 19 章讨论细胞周期及细胞分裂如何调节。细胞间及细胞与胞外基质间使组织和器官形成的相互作用在第 20 章详述。后续章节讨论重要的特化细胞类型--干细胞（第 21 章）、神经元（第 22 章）和免疫系统细胞（第 23 章）。第 24 章讨论癌症及细胞生长和分化被突变改变的多种方式。</p>
