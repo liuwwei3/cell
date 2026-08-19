@@ -28,6 +28,17 @@ table.glossary caption { font-size: 0.75em; color: #999; margin-bottom: 2px; tex
 table.glossary td { padding: 1px 4px; vertical-align: top; line-height: 1.25; border: none; font-style: italic; }
 table.glossary td.gl-en { color: #7a9aad; font-family: "Times New Roman", serif; white-space: nowrap; }
 table.glossary td.gl-zh { color: #999; font-style: normal; }
+	table.data-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.78em; line-height: 1.5; }
+	table.data-table thead th { background: #3b82f6; color: #fff; padding: 8px 10px; text-align: left; font-weight: bold; font-size: 0.95em; white-space: nowrap; }
+	table.data-table tbody td { padding: 5px 10px; border-bottom: 1px solid #e8ecf0; vertical-align: top; }
+	table.data-table tbody tr:hover { background: #f8faff; }
+	table.data-table .cat-cell { font-weight: bold; color: #1e40af; background: #eff6ff; white-space: nowrap; vertical-align: middle; text-align: center; min-width: 120px; }
+	table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: #666; display: block; }
+	table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; }
+	table.data-table .zh-name { color: #1a1a1a; }
+	table.data-table .mechanism { color: #777; font-size: 0.92em; }
+	table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+	@media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
@@ -61,7 +72,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>正常细胞寿命有限的一个重要例外是胚胎干细胞，顾名思义源自胚胎，将在发育中分裂并产生所有组织。如第 21 章讨论，胚胎干细胞可在适当条件下无限培养。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-1_1.png" alt="图 4-1" onclick="lightbox(this.src)">
-  <figcaption>(a) 人细胞 相期 I 相期 II 相期 III 细胞株 培养物生长速率 细胞衰老 1 50 25 细胞世代 (b) 小鼠细胞 生长潜力的初始丧失 永生变体（细胞系）的出现 衰老 培养物生长速率 30 60 培养起始后的天数 图4-1 · 建立细胞培养的各个阶段。(a) 从人组织分离的细胞初始培养时，一些细胞死亡，另一些细胞（主要是成纤维细胞）开始生长；总体上，生长速率增加（相期 I）。若将剩余细胞收获、稀释并反复重新接种到培养皿中，该细胞株将以恒定速率持续分裂约 50 个细胞世代（相期 II），此后生长速率迅速下降。在随后的时期（相期 III），培养物中所有细胞都停止生长（衰老）。(b) 在由小鼠或其他啮齿动物细胞制备的培养物中，初始细胞死亡（未显示）伴随健康、生长中细胞的出现。随着这些分裂细胞被稀释并允许继续生长，它们很快开始丧失生长潜力，大多数停止生长（即培养物进入衰老）。极少数细胞经历致癌突变，使它们能够存活并继续分裂，直到其后代过度生长整个培养物。这些细胞构成一个细胞系，如果适当稀释并供给营养物，将无限期生长。此类细胞被称为永生的。</figcaption>
+  <figcaption>图4-1 · 建立细胞培养的各个阶段。(a) 从人组织分离的细胞初始培养时，一些细胞死亡，另一些细胞（主要是成纤维细胞）开始生长；总体上，生长速率增加（相期 I）。若将剩余细胞收获、稀释并反复重新接种到培养皿中，该细胞株将以恒定速率持续分裂约 50 个细胞世代（相期 II），此后生长速率迅速下降。在随后的时期（相期 III），培养物中所有细胞都停止生长（衰老）。(b) 在由小鼠或其他啮齿动物细胞制备的培养物中，初始细胞死亡（未显示）伴随健康、生长中细胞的出现。随着这些分裂细胞被稀释并允许继续生长，它们很快开始丧失生长潜力，大多数停止生长（即培养物进入衰老）。极少数细胞经历致癌突变，使它们能够存活并继续分裂，直到其后代过度生长整个培养物。这些细胞构成一个细胞系，如果适当稀释并供给营养物，将无限期生长。此类细胞被称为永生的。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">cell culture</td><td class="gl-zh">细胞培养</td></tr>
   <tr><td class="gl-en">fibroblast</td><td class="gl-zh">成纤维细胞</td></tr>
@@ -91,7 +102,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>分离特定类型细胞的另一种方法使用与特异性细胞表面分子抗体偶联的小磁珠。例如分离 T 细胞，磁珠涂以 CD3 或 Thy1.2 等表面蛋白的特异性单克隆抗体。只有带这些蛋白的细胞会粘附磁珠，磁珠可通过吸附到试管侧面的小磁铁回收。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-3_1.png" alt="图 4-3" onclick="lightbox(this.src)">
-  <figcaption>10⁴ 10³ 绿色荧光 Thy1.2 10² 10¹ 非T 细胞 10⁰ 10⁰ 10¹ 10² 10³ 10⁴ CD3 红色荧光 实验图4-3 · 用 FACS 分离 T 细胞与其他白细胞。将小鼠脾细胞用针对 CD3 细胞表面蛋白的红色荧光单克隆抗体和针对第二种细胞表面蛋白 Thy1.2 的绿色荧光单克隆抗体处理。当细胞通过 FACS 时，记录每个细胞发射的绿色和红色荧光强度。每个点代表一个细胞。该散点图以绿色荧光（纵轴）对红色荧光（横轴）显示数万个脾细胞，表明其中约一半——即 T 细胞——在其表面同时表达 CD3 和 Thy1.2 蛋白（右上象限）。其余细胞荧光较低（左下象限），仅表现这些蛋白的本底水平，属其他类型的白细胞。注意两轴均为对数标尺。[数据来自 Chengcheng Zhang, Whitehead Institute.]</figcaption>
+  <figcaption>实验图4-3 · 用 FACS 分离 T 细胞与其他白细胞。将小鼠脾细胞用针对 CD3 细胞表面蛋白的红色荧光单克隆抗体和针对第二种细胞表面蛋白 Thy1.2 的绿色荧光单克隆抗体处理。当细胞通过 FACS 时，记录每个细胞发射的绿色和红色荧光强度。每个点代表一个细胞。该散点图以绿色荧光（纵轴）对红色荧光（横轴）显示数万个脾细胞，表明其中约一半——即 T 细胞——在其表面同时表达 CD3 和 Thy1.2 蛋白（右上象限）。其余细胞荧光较低（左下象限），仅表现这些蛋白的本底水平，属其他类型的白细胞。注意两轴均为对数标尺。[数据来自 Chengcheng Zhang, Whitehead Institute.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">T cell</td><td class="gl-zh">T 细胞</td></tr>
   <tr><td class="gl-en">white blood cell</td><td class="gl-zh">白细胞</td></tr>
@@ -108,7 +119,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_4-2_1.png" alt="图 4-2" onclick="lightbox(this.src)">
-  <figcaption>滤片 聚光器 荧光光检测器 激光束 − 4 带较少电荷的液滴 荧光细胞 非荧光细胞 荧光细胞液滴 非荧光细胞液滴 细胞悬液 鞘液 散射光检测器 1 2 3 −− = + = − 无电荷液滴 带较大电荷的液滴 分拣的含荧光细胞的带电液滴 图4-2 · 荧光激活细胞分拣器（FACS）分离具有不同荧光水平的细胞。步骤 1：浓缩的标记细胞悬液与缓冲液（鞘液）混合，使细胞以单列形式通过激光束。步骤 2：测量每个细胞发射的荧光和散射光；由散射光的测量可确定细胞的大小和形状。步骤 3：随后将悬液压过喷嘴，形成最多含单个细胞的微小液滴。在喷嘴尖端形成时，每个含细胞的液滴被赋予与该细胞先前测量所确定的荧光成比例的负电荷。步骤 4：液滴随后通过电场，无电荷的被弃去，而具不同电荷的液滴则被分离和收集。由于分拣每个液滴仅需毫秒级时间，每小时可有多达 1000 万个细胞通过该机器。</figcaption>
+  <figcaption>图4-2 · 荧光激活细胞分拣器（FACS）分离具有不同荧光水平的细胞。步骤 1：浓缩的标记细胞悬液与缓冲液（鞘液）混合，使细胞以单列形式通过激光束。步骤 2：测量每个细胞发射的荧光和散射光；由散射光的测量可确定细胞的大小和形状。步骤 3：随后将悬液压过喷嘴，形成最多含单个细胞的微小液滴。在喷嘴尖端形成时，每个含细胞的液滴被赋予与该细胞先前测量所确定的荧光成比例的负电荷。步骤 4：液滴随后通过电场，无电荷的被弃去，而具不同电荷的液滴则被分离和收集。由于分拣每个液滴仅需毫秒级时间，每小时可有多达 1000 万个细胞通过该机器。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">fluorescence-activated cell sorter</td><td class="gl-zh">荧光激活细胞分拣器</td></tr>
   <tr><td class="gl-en">FACS</td><td class="gl-zh">FACS</td></tr>
@@ -128,7 +139,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>虽然在塑料或玻璃表面生长的细胞上学到很多，但这些表面远离细胞的正常组织环境。如第 20 章详述，许多细胞类型只有在与其他细胞密切联系时才发挥作用。关键例子是覆盖器官外</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-4_1.png" alt="图 4-4" onclick="lightbox(this.src)">
-  <figcaption>顶面 培养皿 侧面 顶面培养基 基底面 基底面培养基 基底 多孔滤片 MDCK 细胞单层 图4-4 · 犬犬肾上皮（MDCK）细胞在特制容器中生长，为研究上皮细胞提供有用的实验系统。当 MDCK 细胞在涂有胶原和基板其他成分的多孔膜滤片上生长时，形成极化上皮。使用此处所示的特制培养皿，可以实验性操控滤片两侧（单层的顶面和基底面）的培养基，并监测分子跨层移动。几种连接细胞的细胞间连接只有在生长培养基含足够钙离子时才形成。</figcaption>
+  <figcaption>图4-4 · 犬犬肾上皮（MDCK）细胞在特制容器中生长，为研究上皮细胞提供有用的实验系统。当 MDCK 细胞在涂有胶原和基板其他成分的多孔膜滤片上生长时，形成极化上皮。使用此处所示的特制培养皿，可以实验性操控滤片两侧（单层的顶面和基底面）的培养基，并监测分子跨层移动。几种连接细胞的细胞间连接只有在生长培养基含足够钙离子时才形成。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">Madin-Darby canine kidney</td><td class="gl-zh">犬犬肾上皮（MDCK）</td></tr>
   <tr><td class="gl-en">MDCK</td><td class="gl-zh">MDCK</td></tr>
@@ -146,7 +157,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>和内表面的片状上皮组织层（上皮，单数 epithelium）。典型地，上皮细胞有不同表面：顶面（顶部）、底面（基底或底部）和侧面（图 20-11）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-5_1.png" alt="图 4-5" onclick="lightbox(this.src)">
-  <figcaption>(a) (b) 实验图4-5 · MDCK 细胞在三维培养中形成囊泡。(a) 在有支撑的细胞外基质上生长的 MDCK 细胞会形成细胞群，这些细胞极化形成中间带腔的管状单层细胞，称为囊泡。(b) 通过检查存在于顶面（红）和基底侧面膜（绿）的蛋白定位，我们可以看到这些细胞完全极化，顶面朝向腔，重现了它们在所来源肾小管中的组织方式。细胞核 DNA 染成蓝色。[Institute of Cancer Sciences/CRUK Beatson Institute, University of Glasgow, Garscube Estate, Switchback Road.]</figcaption>
+  <figcaption>实验图4-5 · MDCK 细胞在三维培养中形成囊泡。(a) 在有支撑的细胞外基质上生长的 MDCK 细胞会形成细胞群，这些细胞极化形成中间带腔的管状单层细胞，称为囊泡。(b) 通过检查存在于顶面（红）和基底侧面膜（绿）的蛋白定位，我们可以看到这些细胞完全极化，顶面朝向腔，重现了它们在所来源肾小管中的组织方式。细胞核 DNA 染成蓝色。[Institute of Cancer Sciences/CRUK Beatson Institute, University of Glasgow, Garscube Estate, Switchback Road.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">extracellular matrix</td><td class="gl-zh">细胞外基质</td></tr>
   <tr><td class="gl-en">cyst</td><td class="gl-zh">囊泡</td></tr>
@@ -171,7 +182,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>产生单克隆抗体程序的第二步是分离或选择杂交瘤细胞与未融合亲本细胞及与同型融合细胞。此选择通常通过在特殊培养基（选择培养基）中孵育细胞混合物进行，该培养基因杂交瘤细胞的新特征只允许其生长。用于融合的骨髓瘤细胞携带阻断代谢途径的突变，故可使用对其致命而对其无此突变的 B 淋巴细胞融合伙伴不致命的选择培养基。在永生杂交细胞中，淋巴细胞的功能基因可提供缺失基因产物。融合所用淋巴细胞非永生，在选择培养基中也不能生长。故杂交瘤细胞是能在选择培养基中快速增殖的唯一细胞，可容易从初始细胞混合物中分离。最后，测试每个选定杂交瘤克隆是否产生所需抗体；产生该抗体的任何克隆在大培养物中生长，从中可获得大量纯单克隆抗体。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-6_1.png" alt="图 4-6" onclick="lightbox(this.src)">
-  <figcaption>用抗原 X 注射小鼠 小鼠脾细胞； 突变小鼠 部分细胞（红）产生 骨髓瘤细胞 1 抗原 X 的抗体 在选择培养基中无法生长 混合并融合细胞 转移到 2 选择培养基中 未融合细胞（ ）死亡 融合细胞（ ）生长 在单独孔中培养单个细胞 3 检测每个孔中针对抗原 X 的抗体 图4-6 · 利用细胞融合和筛选获得产生针对特定蛋白的单克隆抗体的杂交瘤。步骤 1：由于缺乏胸苷激酶而在特殊条件下不能合成嘌呤的永生骨髓瘤细胞，与来自用抗原 X 免疫动物的正常抗体生成脾细胞融合。步骤 2：在特制选择培养基中培养时，未融合和自融合细胞不生长：骨髓瘤细胞不生长因为选择培养基不含嘌呤，脾细胞不生长因其寿命有限且在培养中。因此，只有由骨髓瘤细胞与脾细胞融合形成的融合细胞在选择培养基中存活，增殖成称为杂交瘤的克隆。每个杂交瘤产生单一抗体。步骤 3：对单个克隆的检测鉴定出识别抗原 X 的克隆。在鉴定出产生所需抗体的杂交瘤后，可培养该克隆以大量产生该抗体。</figcaption>
+  <figcaption>图4-6 · 利用细胞融合和筛选获得产生针对特定蛋白的单克隆抗体的杂交瘤。步骤 1：由于缺乏胸苷激酶而在特殊条件下不能合成嘌呤的永生骨髓瘤细胞，与来自用抗原 X 免疫动物的正常抗体生成脾细胞融合。步骤 2：在特制选择培养基中培养时，未融合和自融合细胞不生长：骨髓瘤细胞不生长因为选择培养基不含嘌呤，脾细胞不生长因其寿命有限且在培养中。因此，只有由骨髓瘤细胞与脾细胞融合形成的融合细胞在选择培养基中存活，增殖成称为杂交瘤的克隆。每个杂交瘤产生单一抗体。步骤 3：对单个克隆的检测鉴定出识别抗原 X 的克隆。在鉴定出产生所需抗体的杂交瘤后，可培养该克隆以大量产生该抗体。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">hybridoma</td><td class="gl-zh">杂交瘤</td></tr>
   <tr><td class="gl-en">myeloma</td><td class="gl-zh">骨髓瘤</td></tr>
@@ -193,124 +204,320 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>分析生物过程的另一种强大方法是用药物处理细胞，药物结合特定细胞组分并使其失活或激活。本节讨论为此目的常用的一些药物以及如何开发影响特定细胞过程的新药。</p>
 <p>天然药物使用了数世纪，但其作用机制常未知。例如秋水仙提取物用于治疗痛风（关节炎症导致的疼痛疾病）。今天我们知道此植物含秋水仙素，一种使微管解聚并干扰白细胞移动到炎症部位能力的药物（见第 18 章）。亚历山大·弗莱明发现某些真菌分泌杀死细菌的化合物（抗生素），他的发现导致青霉素的开发。后来才发现青霉素通过阻断某些细菌细胞壁组装来抑制细胞分裂。</p>
 <figure class="table">
-  <img class="zoomable" src="figures/tab_T4-1_1.png" alt="表 T4-1" onclick="lightbox(this.src)">
-  <figcaption>表T4-1 · 细胞生物学研究中所选药物。DNA 复制抑制剂：蚜孢霉素（aphidicolin，真核 DNA 聚合酶抑制剂）；喜树碱（camptothecin）、依托泊苷（etoposide）（真核拓扑异构酶抑制剂）。转录抑制剂：α-鹅膏蕈碱（α-amanitin，真核 RNA 聚合酶 II 抑制剂）；放线菌素 D（actinomycin D）、5,6-二氯-1-β-D-呋喃核糖基苯并咪唑（DRB）（真核转录延伸抑制剂）；利福平（rifampicin，细菌 RNA 聚合酶抑制剂）；硫链丝菌素（thiolutin，细菌和酵母 RNA 聚合酶抑制剂）。蛋白质合成抑制剂：阻断一般蛋白产生；长时间暴露后有毒性：放线菌酮（cycloheximide）、茴香霉素（anisomycin）（真核翻译抑制剂）；遗传霉素/G418（geneticin/G418）、潮霉素（hygromycin）、嘌呤霉素（puromycin）（细菌和真核翻译抑制剂）；氯霉素（chloramphenicol，细菌和线粒体翻译抑制剂）；四环素（tetracycline，细菌翻译抑制剂）。蛋白酶抑制剂：阻断蛋白降解：MG-132、乳胞素（lactacystin，蛋白酶体抑制剂）；E-64、亮肽素（leupeptin，丝氨酸和/或半胱氨酸蛋白酶抑制剂）；苯甲基磺酰氟（PMSF，丝氨酸蛋白酶抑制剂）；甲苯磺酰-L-赖氨酸氯甲基酮（TLCK，类胰蛋白酶丝氨酸蛋白酶抑制剂）。影响细胞骨架的化合物：鬼笔环肽（phalloidin）、茉莉酰胺醇（jasplakinolide，F-肌动蛋白稳定剂）；红海海绵素（latrunculin）、细胞松弛素（cytochalasin，F-肌动蛋白聚合抑制剂）；紫杉醇（taxol，微管稳定剂）；秋水仙碱（colchicine）、诺考达唑（nocodazole）、长春碱（vinblastine）、鬼臼毒素（podophyllotoxin）（微管聚合抑制剂）；monastrol（驱动蛋白-5 抑制剂）。影响膜运输、胞内运动和分泌途径、蛋白糖基化的化合物：布雷菲德菌素 A（brefeldin A，分泌抑制剂）；来普霉素 B（leptomycin B，核蛋白输出抑制剂）；dynasore（发动蛋白抑制剂）；衣霉素（tunicamycin，N-连接糖基化抑制剂）。激酶抑制剂：染料木素（genistein）、雷帕霉素（rapamycin）、格列卫（gleevec）（具各种特异性的酪氨酸激酶抑制剂）；渥曼青霉素（wortmannin）、LY294002（PI3 激酶抑制剂）；星孢菌素（staurosporine，蛋白激酶抑制剂）；roscovitine（细胞周期 CDK1 和 CDK2 抑制剂）；U0126（MEK 抑制剂）。磷酸酶抑制剂：环孢素 A（cyclosporine A）、FK506、花萼素（calyculin）（具各种特异性的蛋白磷酸酶抑制剂）；冈田酸（okadaic acid，丝氨酸/苏氨酸磷酸酶的一般抑制剂）；苯胂氧化物（phenylarsine oxide）、原钒酸钠（sodium orthovanadate）（酪氨酸磷酸酶抑制剂）。影响胞内 cAMP 水平的化合物：forskolin（腺苷酸环化酶激活剂）。影响离子（如 K⁺、Ca²⁺）的化合物：A23187（Ca²⁺ 离子载体）；缬氨霉素（valinomycin，K⁺ 离子载体）；BAPTA（二价阳离子（如 Ca²⁺）结合/螯合剂）；毒胡萝卜素（thapsigargin，内质网 Ca²⁺ ATPase 抑制剂）；乌本苷（ouabain，Na⁺/K⁺ ATPase 抑制剂）。医学中使用的一些药物：普萘洛尔（propranolol，β-肾上腺素能受体拮抗剂），他汀类（statins，HMG-CoA 还原酶抑制剂，阻断胆固醇合成）；奥美拉唑（omeprazole，胃质子泵抑制剂）。注意：这些分子中有些具广谱特异性，而其他高度特异。许多这些化合物的更多信息可在本书相关章节中找到。</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">DNA replication inhibitor</td><td class="gl-zh">DNA 复制抑制剂</td></tr>
-  <tr><td class="gl-en">aphidicolin</td><td class="gl-zh">蚜孢霉素</td></tr>
-  <tr><td class="gl-en">DNA polymerase</td><td class="gl-zh">DNA 聚合酶</td></tr>
-  <tr><td class="gl-en">topoisomerase</td><td class="gl-zh">拓扑异构酶</td></tr>
-  <tr><td class="gl-en">camptothecin</td><td class="gl-zh">喜树碱</td></tr>
-  <tr><td class="gl-en">etoposide</td><td class="gl-zh">依托泊苷</td></tr>
-  <tr><td class="gl-en">transcription inhibitor</td><td class="gl-zh">转录抑制剂</td></tr>
-  <tr><td class="gl-en">α-amanitin</td><td class="gl-zh">α-鹅膏蕈碱</td></tr>
-  <tr><td class="gl-en">RNA polymerase II</td><td class="gl-zh">RNA 聚合酶 II</td></tr>
-  <tr><td class="gl-en">actinomycin D</td><td class="gl-zh">放线菌素 D</td></tr>
-  <tr><td class="gl-en">DRB</td><td class="gl-zh">DRB</td></tr>
-  <tr><td class="gl-en">transcription elongation</td><td class="gl-zh">转录延伸</td></tr>
-  <tr><td class="gl-en">rifampicin</td><td class="gl-zh">利福平</td></tr>
-  <tr><td class="gl-en">thiolutin</td><td class="gl-zh">硫链丝菌素</td></tr>
-  <tr><td class="gl-en">protein synthesis inhibitor</td><td class="gl-zh">蛋白质合成抑制剂</td></tr>
-  <tr><td class="gl-en">cycloheximide</td><td class="gl-zh">放线菌酮</td></tr>
-  <tr><td class="gl-en">anisomycin</td><td class="gl-zh">茴香霉素</td></tr>
-  <tr><td class="gl-en">translation</td><td class="gl-zh">翻译</td></tr>
-  <tr><td class="gl-en">geneticin</td><td class="gl-zh">遗传霉素</td></tr>
-  <tr><td class="gl-en">G418</td><td class="gl-zh">G418</td></tr>
-  <tr><td class="gl-en">hygromycin</td><td class="gl-zh">潮霉素</td></tr>
-  <tr><td class="gl-en">puromycin</td><td class="gl-zh">嘌呤霉素</td></tr>
-  <tr><td class="gl-en">chloramphenicol</td><td class="gl-zh">氯霉素</td></tr>
-  <tr><td class="gl-en">tetracycline</td><td class="gl-zh">四环素</td></tr>
-  <tr><td class="gl-en">protease inhibitor</td><td class="gl-zh">蛋白酶抑制剂</td></tr>
-  <tr><td class="gl-en">MG-132</td><td class="gl-zh">MG-132</td></tr>
-  <tr><td class="gl-en">lactacystin</td><td class="gl-zh">乳胞素</td></tr>
-  <tr><td class="gl-en">proteasome</td><td class="gl-zh">蛋白酶体</td></tr>
-  <tr><td class="gl-en">E-64</td><td class="gl-zh">E-64</td></tr>
-  <tr><td class="gl-en">leupeptin</td><td class="gl-zh">亮肽素</td></tr>
-  <tr><td class="gl-en">serine protease</td><td class="gl-zh">丝氨酸蛋白酶</td></tr>
-  <tr><td class="gl-en">cysteine protease</td><td class="gl-zh">半胱氨酸蛋白酶</td></tr>
-  <tr><td class="gl-en">PMSF</td><td class="gl-zh">苯甲基磺酰氟</td></tr>
-  <tr><td class="gl-en">TLCK</td><td class="gl-zh">甲苯磺酰-L-赖氨酸氯甲基酮</td></tr>
-  <tr><td class="gl-en">trypsin-like</td><td class="gl-zh">类胰蛋白酶</td></tr>
-  <tr><td class="gl-en">cytoskeleton</td><td class="gl-zh">细胞骨架</td></tr>
-  <tr><td class="gl-en">phalloidin</td><td class="gl-zh">鬼笔环肽</td></tr>
-  <tr><td class="gl-en">jasplakinolide</td><td class="gl-zh">茉莉酰胺醇</td></tr>
-  <tr><td class="gl-en">F-actin</td><td class="gl-zh">F-肌动蛋白</td></tr>
-  <tr><td class="gl-en">latrunculin</td><td class="gl-zh">红海海绵素</td></tr>
-  <tr><td class="gl-en">cytochalasin</td><td class="gl-zh">细胞松弛素</td></tr>
-  <tr><td class="gl-en">polymerization</td><td class="gl-zh">聚合</td></tr>
-  <tr><td class="gl-en">taxol</td><td class="gl-zh">紫杉醇</td></tr>
-  <tr><td class="gl-en">microtubule</td><td class="gl-zh">微管</td></tr>
-  <tr><td class="gl-en">colchicine</td><td class="gl-zh">秋水仙碱</td></tr>
-  <tr><td class="gl-en">nocodazole</td><td class="gl-zh">诺考达唑</td></tr>
-  <tr><td class="gl-en">vinblastine</td><td class="gl-zh">长春碱</td></tr>
-  <tr><td class="gl-en">podophyllotoxin</td><td class="gl-zh">鬼臼毒素</td></tr>
-  <tr><td class="gl-en">monastrol</td><td class="gl-zh">monastrol</td></tr>
-  <tr><td class="gl-en">kinesin-5</td><td class="gl-zh">驱动蛋白-5</td></tr>
-  <tr><td class="gl-en">membrane traffic</td><td class="gl-zh">膜运输</td></tr>
-  <tr><td class="gl-en">brefeldin A</td><td class="gl-zh">布雷菲德菌素 A</td></tr>
-  <tr><td class="gl-en">secretion</td><td class="gl-zh">分泌</td></tr>
-  <tr><td class="gl-en">leptomycin B</td><td class="gl-zh">来普霉素 B</td></tr>
-  <tr><td class="gl-en">nuclear protein export</td><td class="gl-zh">核蛋白输出</td></tr>
-  <tr><td class="gl-en">dynasore</td><td class="gl-zh">dynasore</td></tr>
-  <tr><td class="gl-en">dynamin</td><td class="gl-zh">发动蛋白</td></tr>
-  <tr><td class="gl-en">tunicamycin</td><td class="gl-zh">衣霉素</td></tr>
-  <tr><td class="gl-en">N-linked glycosylation</td><td class="gl-zh">N-连接糖基化</td></tr>
-  <tr><td class="gl-en">kinase inhibitor</td><td class="gl-zh">激酶抑制剂</td></tr>
-  <tr><td class="gl-en">genistein</td><td class="gl-zh">染料木素</td></tr>
-  <tr><td class="gl-en">rapamycin</td><td class="gl-zh">雷帕霉素</td></tr>
-  <tr><td class="gl-en">gleevec</td><td class="gl-zh">格列卫</td></tr>
-  <tr><td class="gl-en">tyrosine kinase</td><td class="gl-zh">酪氨酸激酶</td></tr>
-  <tr><td class="gl-en">wortmannin</td><td class="gl-zh">渥曼青霉素</td></tr>
-  <tr><td class="gl-en">LY294002</td><td class="gl-zh">LY294002</td></tr>
-  <tr><td class="gl-en">PI3 kinase</td><td class="gl-zh">PI3 激酶</td></tr>
-  <tr><td class="gl-en">staurosporine</td><td class="gl-zh">星孢菌素</td></tr>
-  <tr><td class="gl-en">protein kinase</td><td class="gl-zh">蛋白激酶</td></tr>
-  <tr><td class="gl-en">roscovitine</td><td class="gl-zh">roscovitine</td></tr>
-  <tr><td class="gl-en">CDK1</td><td class="gl-zh">CDK1</td></tr>
-  <tr><td class="gl-en">CDK2</td><td class="gl-zh">CDK2</td></tr>
-  <tr><td class="gl-en">U0126</td><td class="gl-zh">U0126</td></tr>
-  <tr><td class="gl-en">MEK</td><td class="gl-zh">MEK</td></tr>
-  <tr><td class="gl-en">phosphatase inhibitor</td><td class="gl-zh">磷酸酶抑制剂</td></tr>
-  <tr><td class="gl-en">cyclosporine A</td><td class="gl-zh">环孢素 A</td></tr>
-  <tr><td class="gl-en">FK506</td><td class="gl-zh">FK506</td></tr>
-  <tr><td class="gl-en">calyculin</td><td class="gl-zh">花萼素</td></tr>
-  <tr><td class="gl-en">protein phosphatase</td><td class="gl-zh">蛋白磷酸酶</td></tr>
-  <tr><td class="gl-en">okadaic acid</td><td class="gl-zh">冈田酸</td></tr>
-  <tr><td class="gl-en">serine/threonine phosphatase</td><td class="gl-zh">丝氨酸/苏氨酸磷酸酶</td></tr>
-  <tr><td class="gl-en">phenylarsine oxide</td><td class="gl-zh">苯胂氧化物</td></tr>
-  <tr><td class="gl-en">sodium orthovanadate</td><td class="gl-zh">原钒酸钠</td></tr>
-  <tr><td class="gl-en">tyrosine phosphatase</td><td class="gl-zh">酪氨酸磷酸酶</td></tr>
-  <tr><td class="gl-en">cAMP</td><td class="gl-zh">cAMP</td></tr>
-  <tr><td class="gl-en">forskolin</td><td class="gl-zh">forskolin</td></tr>
-  <tr><td class="gl-en">adenylate cyclase</td><td class="gl-zh">腺苷酸环化酶</td></tr>
-  <tr><td class="gl-en">ionophore</td><td class="gl-zh">离子载体</td></tr>
-  <tr><td class="gl-en">A23187</td><td class="gl-zh">A23187</td></tr>
-  <tr><td class="gl-en">Ca²⁺</td><td class="gl-zh">Ca²⁺</td></tr>
-  <tr><td class="gl-en">valinomycin</td><td class="gl-zh">缬氨霉素</td></tr>
-  <tr><td class="gl-en">K⁺</td><td class="gl-zh">K⁺</td></tr>
-  <tr><td class="gl-en">BAPTA</td><td class="gl-zh">BAPTA</td></tr>
-  <tr><td class="gl-en">divalent cation</td><td class="gl-zh">二价阳离子</td></tr>
-  <tr><td class="gl-en">thapsigargin</td><td class="gl-zh">毒胡萝卜素</td></tr>
-  <tr><td class="gl-en">endoplasmic reticulum</td><td class="gl-zh">内质网</td></tr>
-  <tr><td class="gl-en">ATPase</td><td class="gl-zh">ATPase</td></tr>
-  <tr><td class="gl-en">ouabain</td><td class="gl-zh">乌本苷</td></tr>
-  <tr><td class="gl-en">Na⁺/K⁺ ATPase</td><td class="gl-zh">Na⁺/K⁺ ATPase</td></tr>
-  <tr><td class="gl-en">propranolol</td><td class="gl-zh">普萘洛尔</td></tr>
-  <tr><td class="gl-en">β-adrenergic receptor</td><td class="gl-zh">β-肾上腺素能受体</td></tr>
-  <tr><td class="gl-en">antagonist</td><td class="gl-zh">拮抗剂</td></tr>
-  <tr><td class="gl-en">statins</td><td class="gl-zh">他汀类</td></tr>
-  <tr><td class="gl-en">HMG-CoA reductase</td><td class="gl-zh">HMG-CoA 还原酶</td></tr>
-  <tr><td class="gl-en">cholesterol</td><td class="gl-zh">胆固醇</td></tr>
-  <tr><td class="gl-en">omeprazole</td><td class="gl-zh">奥美拉唑</td></tr>
-  <tr><td class="gl-en">proton pump</td><td class="gl-zh">质子泵</td></tr>
-  <tr><td class="gl-en">specificity</td><td class="gl-zh">特异性</td></tr>
+  <figcaption>表4-1 · 细胞生物学研究中所选药物</figcaption>
+  <table class="data-table">
+    <thead><tr><th>类别</th><th>英文名</th><th>中文名</th><th>作用机制</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="cat-cell" rowspan="3">DNA 复制抑制剂</td>
+        <td class="en-name">Aphidicolin</td>
+        <td class="zh-name">蚜孢霉素</td>
+        <td class="mechanism">真核 DNA 聚合酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Camptothecin</td>
+        <td class="zh-name">喜树碱</td>
+        <td class="mechanism">真核拓扑异构酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Etoposide</td>
+        <td class="zh-name">依托泊苷</td>
+        <td class="mechanism">真核拓扑异构酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="5">转录抑制剂</td>
+        <td class="en-name">α-Amanitin</td>
+        <td class="zh-name">α-鹅膏蕈碱</td>
+        <td class="mechanism">真核 RNA 聚合酶 II 抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Actinomycin D</td>
+        <td class="zh-name">放线菌素 D</td>
+        <td class="mechanism">真核转录延伸抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">DRB (5,6-Dichloro-1-β-D-ribofuranosylbenzimidazole)</td>
+        <td class="zh-name">5,6-二氯-1-β-D-呋喃核糖基苯并咪唑（DRB）</td>
+        <td class="mechanism">真核转录延伸抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Rifampicin</td>
+        <td class="zh-name">利福平</td>
+        <td class="mechanism">细菌 RNA 聚合酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Thiolutin</td>
+        <td class="zh-name">硫链丝菌素</td>
+        <td class="mechanism">细菌和酵母 RNA 聚合酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="7">蛋白质合成抑制剂<span class="cat-subtitle">阻断一般蛋白产生；长时间暴露后有毒性</span></td>
+        <td class="en-name">Cycloheximide</td>
+        <td class="zh-name">放线菌酮</td>
+        <td class="mechanism">真核翻译抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Anisomycin</td>
+        <td class="zh-name">茴香霉素</td>
+        <td class="mechanism">真核翻译抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Geneticin / G418</td>
+        <td class="zh-name">遗传霉素 / G418</td>
+        <td class="mechanism">细菌和真核翻译抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Hygromycin</td>
+        <td class="zh-name">潮霉素</td>
+        <td class="mechanism">细菌和真核翻译抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Puromycin</td>
+        <td class="zh-name">嘌呤霉素</td>
+        <td class="mechanism">细菌和真核翻译抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Chloramphenicol</td>
+        <td class="zh-name">氯霉素</td>
+        <td class="mechanism">细菌和线粒体翻译抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Tetracycline</td>
+        <td class="zh-name">四环素</td>
+        <td class="mechanism">细菌翻译抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="6">蛋白酶抑制剂<span class="cat-subtitle">阻断蛋白降解</span></td>
+        <td class="en-name">MG-132</td>
+        <td class="zh-name">MG-132</td>
+        <td class="mechanism">蛋白酶体抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Lactacystin</td>
+        <td class="zh-name">乳胞素</td>
+        <td class="mechanism">蛋白酶体抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">E-64</td>
+        <td class="zh-name">E-64</td>
+        <td class="mechanism">丝氨酸和/或半胱氨酸蛋白酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Leupeptin</td>
+        <td class="zh-name">亮肽素</td>
+        <td class="mechanism">丝氨酸和/或半胱氨酸蛋白酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">PMSF</td>
+        <td class="zh-name">苯甲基磺酰氟（PMSF）</td>
+        <td class="mechanism">丝氨酸蛋白酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">TLCK</td>
+        <td class="zh-name">甲苯磺酰-L-赖氨酸氯甲基酮（TLCK）</td>
+        <td class="mechanism">类胰蛋白酶丝氨酸蛋白酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="10">影响细胞骨架的化合物</td>
+        <td class="en-name">Phalloidin</td>
+        <td class="zh-name">鬼笔环肽</td>
+        <td class="mechanism">F-肌动蛋白稳定剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Jasplakinolide</td>
+        <td class="zh-name">茉莉酰胺醇</td>
+        <td class="mechanism">F-肌动蛋白稳定剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Latrunculin</td>
+        <td class="zh-name">红海海绵素</td>
+        <td class="mechanism">F-肌动蛋白聚合抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Cytochalasin</td>
+        <td class="zh-name">细胞松弛素</td>
+        <td class="mechanism">F-肌动蛋白聚合抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Taxol</td>
+        <td class="zh-name">紫杉醇</td>
+        <td class="mechanism">微管稳定剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Colchicine</td>
+        <td class="zh-name">秋水仙碱</td>
+        <td class="mechanism">微管聚合抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Nocodazole</td>
+        <td class="zh-name">诺考达唑</td>
+        <td class="mechanism">微管聚合抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Vinblastine</td>
+        <td class="zh-name">长春碱</td>
+        <td class="mechanism">微管聚合抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Podophyllotoxin</td>
+        <td class="zh-name">鬼臼毒素</td>
+        <td class="mechanism">微管聚合抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Monastrol</td>
+        <td class="zh-name">Monastrol</td>
+        <td class="mechanism">驱动蛋白-5 抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="4">影响膜运输、胞内运动和分泌途径、蛋白糖基化的化合物</td>
+        <td class="en-name">Brefeldin A</td>
+        <td class="zh-name">布雷菲德菌素 A</td>
+        <td class="mechanism">分泌抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Leptomycin B</td>
+        <td class="zh-name">来普霉素 B</td>
+        <td class="mechanism">核蛋白输出抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Dynasore</td>
+        <td class="zh-name">Dynasore</td>
+        <td class="mechanism">发动蛋白抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Tunicamycin</td>
+        <td class="zh-name">衣霉素</td>
+        <td class="mechanism">N-连接糖基化抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="8">激酶抑制剂</td>
+        <td class="en-name">Genistein</td>
+        <td class="zh-name">染料木素</td>
+        <td class="mechanism">具各种特异性的酪氨酸激酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Rapamycin</td>
+        <td class="zh-name">雷帕霉素</td>
+        <td class="mechanism">具各种特异性的酪氨酸激酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Gleevec</td>
+        <td class="zh-name">格列卫</td>
+        <td class="mechanism">具各种特异性的酪氨酸激酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Wortmannin</td>
+        <td class="zh-name">渥曼青霉素</td>
+        <td class="mechanism">PI3 激酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">LY294002</td>
+        <td class="zh-name">LY294002</td>
+        <td class="mechanism">PI3 激酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Staurosporine</td>
+        <td class="zh-name">星孢菌素</td>
+        <td class="mechanism">蛋白激酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Roscovitine</td>
+        <td class="zh-name">Roscovitine</td>
+        <td class="mechanism">细胞周期 CDK1 和 CDK2 抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">U0126</td>
+        <td class="zh-name">U0126</td>
+        <td class="mechanism">MEK 抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="6">磷酸酶抑制剂</td>
+        <td class="en-name">Cyclosporine A</td>
+        <td class="zh-name">环孢素 A</td>
+        <td class="mechanism">具各种特异性的蛋白磷酸酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">FK506</td>
+        <td class="zh-name">FK506</td>
+        <td class="mechanism">具各种特异性的蛋白磷酸酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Calyculin</td>
+        <td class="zh-name">花萼素</td>
+        <td class="mechanism">具各种特异性的蛋白磷酸酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Okadaic acid</td>
+        <td class="zh-name">冈田酸</td>
+        <td class="mechanism">丝氨酸/苏氨酸磷酸酶的一般抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Phenylarsine oxide</td>
+        <td class="zh-name">苯胂氧化物</td>
+        <td class="mechanism">酪氨酸磷酸酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Sodium orthovanadate</td>
+        <td class="zh-name">原钒酸钠</td>
+        <td class="mechanism">酪氨酸磷酸酶抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="1">影响胞内 cAMP 水平的化合物</td>
+        <td class="en-name">Forskolin</td>
+        <td class="zh-name">Forskolin</td>
+        <td class="mechanism">腺苷酸环化酶激活剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="5">影响离子（如 K⁺、Ca²⁺）的化合物</td>
+        <td class="en-name">A23187</td>
+        <td class="zh-name">A23187</td>
+        <td class="mechanism">Ca²⁺ 离子载体</td>
+      </tr>
+      <tr>
+        <td class="en-name">Valinomycin</td>
+        <td class="zh-name">缬氨霉素</td>
+        <td class="mechanism">K⁺ 离子载体</td>
+      </tr>
+      <tr>
+        <td class="en-name">BAPTA</td>
+        <td class="zh-name">BAPTA</td>
+        <td class="mechanism">二价阳离子（如 Ca²⁺）结合/螯合剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Thapsigargin</td>
+        <td class="zh-name">毒胡萝卜素</td>
+        <td class="mechanism">内质网 Ca²⁺ ATPase 抑制剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Ouabain</td>
+        <td class="zh-name">乌本苷</td>
+        <td class="mechanism">Na⁺/K⁺ ATPase 抑制剂</td>
+      </tr>
+      <tr>
+        <td class="cat-cell" rowspan="3">医学中使用的一些药物</td>
+        <td class="en-name">Propranolol</td>
+        <td class="zh-name">普萘洛尔</td>
+        <td class="mechanism">β-肾上腺素能受体拮抗剂</td>
+      </tr>
+      <tr>
+        <td class="en-name">Statins</td>
+        <td class="zh-name">他汀类</td>
+        <td class="mechanism">HMG-CoA 还原酶抑制剂，阻断胆固醇合成</td>
+      </tr>
+      <tr>
+        <td class="en-name">Omeprazole</td>
+        <td class="zh-name">奥美拉唑</td>
+        <td class="mechanism">胃质子泵抑制剂</td>
+      </tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>这些分子中有些具广谱特异性，而其他高度特异。许多这些化合物的更多信息可在本书相关章节中找到。</p>
 </figure>
 <p>此类发现产生了可抑制细胞特定和必需过程的广泛药物。大多数情况下，研究者最终能鉴定这些药物的分子靶标。例如有许多影响原核蛋白质合成的抗生素药物。表 4-1 列出细胞生物学研究中最常用的一些药物，按其抑制的过程分组。</p>
 <p>如何发现新药？一种广泛使用的方法是在化学库（含数万至数十万种不同化合物的库）中搜索抑制特定过程的化学物质。化学库筛选</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-7_1.png" alt="图 4-7" onclick="lightbox(this.src)">
-  <figcaption>(a) (b) 16,320 种化合物 1 筛选阻滞细胞于有丝分裂的化合物 139 2 筛选不影响体外微管组装的化合物 86 3 筛选特异影响纺锤体形态的化合物 5 5 μm 5 μm 5 μm 5 μm 图4-7 · 筛选影响特定生物过程的药物。(a) 在此例中，对包含 16,320 种不同化合物的化学库进行了一系列有丝分裂抑制剂的筛选。由于此类抑制剂预计会阻滞细胞于细胞周期的有丝分裂期，第一轮筛选（步骤 1）是查看是否有任何化合物提高有丝分裂细胞特异标志物的水平；此筛选获得 139 个候选物。微管构成有丝分裂纺锤体的结构，研究者对以微管为靶点的新药不感兴趣，因此在第二轮筛选（步骤 2）中测试了这 139 种化合物影响微管组装的能力；此测试淘汰了 53 个候选物。然后用抗微管蛋白（微管的主要亚基）抗体的免疫荧光显微术，结合 DNA 染色，在第三轮筛选（步骤 3）中鉴定破坏纺锤体结构的化合物。(b) 未经处理的（顶部）有丝分裂纺锤体与用一种回收化合物（现称为 monastrol）处理的纺锤体的微管蛋白（绿）和 DNA（蓝）定位。Monastrol 抑制一种称为驱动蛋白-5（kinesin-5）的微管马达蛋白（在第 18 章讨论），该蛋白为分离有丝分裂纺锤体两极所必需。当驱动蛋白-5 被抑制时，两极保持相连，形成单极纺锤体。[部分 (b) 来自 T. U. Mayer 等，1999, Science 286:971–974.]</figcaption>
+  <figcaption>图4-7 · 筛选影响特定生物过程的药物。(a) 在此例中，对包含 16,320 种不同化合物的化学库进行了一系列有丝分裂抑制剂的筛选。由于此类抑制剂预计会阻滞细胞于细胞周期的有丝分裂期，第一轮筛选（步骤 1）是查看是否有任何化合物提高有丝分裂细胞特异标志物的水平；此筛选获得 139 个候选物。微管构成有丝分裂纺锤体的结构，研究者对以微管为靶点的新药不感兴趣，因此在第二轮筛选（步骤 2）中测试了这 139 种化合物影响微管组装的能力；此测试淘汰了 53 个候选物。然后用抗微管蛋白（微管的主要亚基）抗体的免疫荧光显微术，结合 DNA 染色，在第三轮筛选（步骤 3）中鉴定破坏纺锤体结构的化合物。(b) 未经处理的（顶部）有丝分裂纺锤体与用一种回收化合物（现称为 monastrol）处理的纺锤体的微管蛋白（绿）和 DNA（蓝）定位。Monastrol 抑制一种称为驱动蛋白-5（kinesin-5）的微管马达蛋白（在第 18 章讨论），该蛋白为分离有丝分裂纺锤体两极所必需。当驱动蛋白-5 被抑制时，两极保持相连，形成单极纺锤体。[部分 (b) 来自 T. U. Mayer 等，1999, Science 286:971–974.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">chemical library</td><td class="gl-zh">化学库</td></tr>
   <tr><td class="gl-en">mitosis</td><td class="gl-zh">有丝分裂</td></tr>
@@ -348,7 +555,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>生命的细胞基础最初用原始光显微镜认识。此后，细胞生物学进展与光学显微术技术进步并行，且常被其驱动（图 4-8）。我们讨论这些主要发展及其如何推进细胞过程研究。首先描述光显微镜观察未染色细胞和结构的基本用途。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-8_1.png" alt="图 4-8" onclick="lightbox(this.src)">
-  <figcaption>(a) (b) (c) 图4-8 · 光显微镜的发展。(a) 早期的显微镜，如 Robert Hooke 在 1660 年代使用的，使用透镜或镜子来照明标本。(b) 光学总体上，尤其是光显微镜，在 19 世纪得到巨大发展。到 20 世纪中叶，仅受光分辨率限制的高度精密显微镜已普遍。(c) 在 20 世纪下半叶，荧光显微术和数字成像技术，连同共聚焦技术，被开发出来，造就了今日的多功能显微镜。[部分 (a) SSPL/Getty Images；部分 (b) 和 (c) 承蒙 A. Bretscher 惠赠。]</figcaption>
+  <figcaption>图4-8 · 光显微镜的发展。(a) 早期的显微镜，如 Robert Hooke 在 1660 年代使用的，使用透镜或镜子来照明标本。(b) 光学总体上，尤其是光显微镜，在 19 世纪得到巨大发展。到 20 世纪中叶，仅受光分辨率限制的高度精密显微镜已普遍。(c) 在 20 世纪下半叶，荧光显微术和数字成像技术，连同共聚焦技术，被开发出来，造就了今日的多功能显微镜。[部分 (a) SSPL/Getty Images；部分 (b) 和 (c) 承蒙 A. Bretscher 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">light microscope</td><td class="gl-zh">光显微镜</td></tr>
   <tr><td class="gl-en">resolution</td><td class="gl-zh">分辨率</td></tr>
@@ -365,7 +572,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <figure>
   <img class="zoomable" src="figures/fig_4-9_1.png" alt="图 4-9" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_4-9_2.png" alt="图 4-9" onclick="lightbox(this.src)">
-  <figcaption>光学显微镜 α (a) (b) 明场 (c) 相差 (d) 荧光 检测器 投影镜 二色镜 物镜 载物台 聚光器 反射镜 灯 集光镜 激发滤片 物镜 像平面 物镜内的相板 未受阻光 环形光阑 光源 标本 聚光镜 投影镜 图4-9 · 光学显微镜通常配置为 (a) 明场、(b) 相差或 (d) 荧光显微术。(a) 在典型的光显微镜中，标本通常置于透明玻璃载玻片上，并放置于可移动的载物台上。(b) 在明场光显微术中，来自钨丝灯的光由载物台下方的聚光镜聚焦于标本上；光以黄色所示的路径传播。(c) 在相差显微术中，入射光通过环形光阑，将一圈环形光聚焦于标本上。未受阻通过标本的光被物镜聚焦到相板较厚的灰色环上，该环吸收部分直射光并使其相位改变四分之一波长。若标本折射（弯曲）或衍射光，则部分光波的相位发生改变（绿线），这些光波通过相板的透明区域。折射光和未折射光在像平面上重组形成图像。(d) 在荧光显微术中，来自汞灯的一束光（灰线）被导向激发滤片，该滤片只允许正确波长的光通过（绿线）。然后光被二色镜反射并通过物镜，由物镜聚焦于标本上。标本发射的荧光（红线）向上通过物镜，然后通过二色镜，在像平面上被聚焦并记录于检测器。</figcaption>
+  <figcaption>图4-9 · 光学显微镜通常配置为 (a) 明场、(b) 相差或 (d) 荧光显微术。(a) 在典型的光显微镜中，标本通常置于透明玻璃载玻片上，并放置于可移动的载物台上。(b) 在明场光显微术中，来自钨丝灯的光由载物台下方的聚光镜聚焦于标本上；光以黄色所示的路径传播。(c) 在相差显微术中，入射光通过环形光阑，将一圈环形光聚焦于标本上。未受阻通过标本的光被物镜聚焦到相板较厚的灰色环上，该环吸收部分直射光并使其相位改变四分之一波长。若标本折射（弯曲）或衍射光，则部分光波的相位发生改变（绿线），这些光波通过相板的透明区域。折射光和未折射光在像平面上重组形成图像。(d) 在荧光显微术中，来自汞灯的一束光（灰线）被导向激发滤片，该滤片只允许正确波长的光通过（绿线）。然后光被二色镜反射并通过物镜，由物镜聚焦于标本上。标本发射的荧光（红线）向上通过物镜，然后通过二色镜，在像平面上被聚焦并记录于检测器。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">bright-field microscopy</td><td class="gl-zh">明场显微术</td></tr>
   <tr><td class="gl-en">phase-contrast microscopy</td><td class="gl-zh">相差显微术</td></tr>
@@ -399,7 +606,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>相差显微术产生图像，标本区域暗度或亮度取决于该区域折射率。光在折射率更高的介质中移动更慢。故</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-10_1.png" alt="图 4-10" onclick="lightbox(this.src)">
-  <figcaption>左 中 右 图4-10 · 活细胞可通过干涉产生对比度的显微术可视化。显微照片显示活的培养巨噬细胞，分别以明场显微术（左）、相差显微术（中）和微分干涉相差（DIC）显微术（右）观察。在相差图像中，细胞被明暗交替的条带环绕；聚焦内和聚焦外的细节在相差显微镜中同时成像。在 DIC 图像中，细胞呈现伪浮雕外观。由于仅对狭窄的聚焦内区域成像，DIC 图像是穿过物体的一个光学切片。[承蒙 N. Watson 和 James Evans 惠赠。]</figcaption>
+  <figcaption>图4-10 · 活细胞可通过干涉产生对比度的显微术可视化。显微照片显示活的培养巨噬细胞，分别以明场显微术（左）、相差显微术（中）和微分干涉相差（DIC）显微术（右）观察。在相差图像中，细胞被明暗交替的条带环绕；聚焦内和聚焦外的细节在相差显微镜中同时成像。在 DIC 图像中，细胞呈现伪浮雕外观。由于仅对狭窄的聚焦内区域成像，DIC 图像是穿过物体的一个光学切片。[承蒙 N. Watson 和 James Evans 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">interference</td><td class="gl-zh">干涉</td></tr>
   <tr><td class="gl-en">macrophage</td><td class="gl-zh">巨噬细胞</td></tr>
@@ -422,7 +629,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>制备光显微术标本的最后一步是染色以可视化细胞或组织的主要结构特征。许多化学染料结合具特定特征的分子。例如组织学样本常用苏木精和伊红（"H&E 染色"）。苏木精结合多种蛋白质的碱性氨基酸（赖氨酸和精氨酸），而伊红结合酸性分子（如 DNA 和天冬氨酸根、谷氨酸根侧链）。因结合性质不同，这些染料充分不同地染色各种细胞类型使其可</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-11_1.png" alt="图 4-11" onclick="lightbox(this.src)">
-  <figcaption>(a) (b) 蜡块 标本夹 标本蜡块 标本 切片刀 切下的切片 切片 切片机 显微镜载玻片 图4-11 · 用于光显微术的组织通常被固定、包埋于固体介质中并切成薄片。(a) 固定的组织通过浸泡于一系列醇-水溶液中脱水，最后用与包埋介质相容的有机溶剂处理。为包埋组织以便切片，将组织置于液态石蜡中。包含标本的蜡块硬化后，将其安装在切片机的臂上，用切片刀切片。光显微术常用的切片厚度为 0.5 至 50 μm。切片收集在显微镜载玻片上并用适当的染色剂染色。(b) 正常（顶部）和癌变（腺癌，底部）人结肠切片，用 H&E 染色。注意癌组织中细胞的紊乱排列。[部分 (b) 承蒙康奈尔大学 Alexander Nikitin 博士惠赠。]</figcaption>
+  <figcaption>图4-11 · 用于光显微术的组织通常被固定、包埋于固体介质中并切成薄片。(a) 固定的组织通过浸泡于一系列醇-水溶液中脱水，最后用与包埋介质相容的有机溶剂处理。为包埋组织以便切片，将组织置于液态石蜡中。包含标本的蜡块硬化后，将其安装在切片机的臂上，用切片刀切片。光显微术常用的切片厚度为 0.5 至 50 μm。切片收集在显微镜载玻片上并用适当的染色剂染色。(b) 正常（顶部）和癌变（腺癌，底部）人结肠切片，用 H&E 染色。注意癌组织中细胞的紊乱排列。[部分 (b) 承蒙康奈尔大学 Alexander Nikitin 博士惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">fixation</td><td class="gl-zh">固定</td></tr>
   <tr><td class="gl-en">embedding</td><td class="gl-zh">包埋</td></tr>
@@ -445,7 +652,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>对 Ca²⁺ 敏感的荧光色素 fura-2 含五个羧酸基，与乙醇形成酯键。所得 fura-2 酯亲脂，可从培养基跨质膜扩散入细胞。胞质内，酯酶水解 fura-2 酯，生成 fura-2，其游离羧酸基使分子非亲脂故不能跨细胞膜，留在胞质。细胞内，每个 fura-2 分子可结合单个 Ca²⁺ 离子，但不结合其他细胞阳离子。此结合在特定范围内与胞质 Ca²⁺ 浓度成比例，增加 fura-2 在某一特定波长的荧光。在第二波长，fura-2 的荧光无论是否结合 Ca²⁺ 都相同，从而提供细胞区域 fura-2 总量的度量。通过在荧光显微镜中连续检查细胞并测量两波长 fura-2 荧光</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-12_1.png" alt="图 4-12" onclick="lightbox(this.src)">
-  <figcaption>左 右 实验图4-12 · Fura-2，一种 Ca²⁺ 敏感荧光色素，可用于监测活细胞不同区域胞质 Ca²⁺ 的相对浓度。（左）在移动的白细胞中，建立了 Ca²⁺ 梯度。最高浓度（绿）位于细胞后部，此处发生皮质收缩；最低浓度（蓝）位于细胞前端，此处肌动蛋白发生聚合。（右）当充满趋化分子的吸管置于细胞一侧诱导细胞转向时，Ca²⁺ 浓度在整个胞质中瞬间升高，并建立新的梯度。该梯度定向为：最低 Ca²⁺ 浓度区域（蓝）位于细胞将转向的方向，而高 Ca²⁺ 浓度区域（黄）总是形成于将成为细胞后部的位置。[来自 R. A. Brundage 等，1991, Science 254:703；承蒙 F. Fay 惠赠。]</figcaption>
+  <figcaption>实验图4-12 · Fura-2，一种 Ca²⁺ 敏感荧光色素，可用于监测活细胞不同区域胞质 Ca²⁺ 的相对浓度。（左）在移动的白细胞中，建立了 Ca²⁺ 梯度。最高浓度（绿）位于细胞后部，此处发生皮质收缩；最低浓度（蓝）位于细胞前端，此处肌动蛋白发生聚合。（右）当充满趋化分子的吸管置于细胞一侧诱导细胞转向时，Ca²⁺ 浓度在整个胞质中瞬间升高，并建立新的梯度。该梯度定向为：最低 Ca²⁺ 浓度区域（蓝）位于细胞将转向的方向，而高 Ca²⁺ 浓度区域（黄）总是形成于将成为细胞后部的位置。[来自 R. A. Brundage 等，1991, Science 254:703；承蒙 F. Fay 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">Fura-2</td><td class="gl-zh">Fura-2</td></tr>
   <tr><td class="gl-en">fluorochrome</td><td class="gl-zh">荧光色素</td></tr>
@@ -468,7 +675,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>用任一类型抗体定位蛋白质，细胞或组织必须首先固定以确保所有组分留在原位，且细胞必须透化以允许抗体进入，通常通过用非离子去垢剂孵育细胞或</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-13_1.png" alt="图 4-13" onclick="lightbox(this.src)">
-  <figcaption>N 实验图4-13 · 培养活牛肺动脉内皮细胞中溶酶体和线粒体的定位。细胞用特异性结合线粒体的绿色荧光染料和特异性掺入溶酶体的红色荧光染料染色。图像用本章稍后讨论的去卷积计算机程序进行锐化。N，细胞核。[© 2015 Thermo Fisher Scientific, Inc. 经许可使用。]</figcaption>
+  <figcaption>实验图4-13 · 培养活牛肺动脉内皮细胞中溶酶体和线粒体的定位。细胞用特异性结合线粒体的绿色荧光染料和特异性掺入溶酶体的红色荧光染料染色。图像用本章稍后讨论的去卷积计算机程序进行锐化。N，细胞核。[© 2015 Thermo Fisher Scientific, Inc. 经许可使用。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">lysosome</td><td class="gl-zh">溶酶体</td></tr>
   <tr><td class="gl-en">mitochondrion</td><td class="gl-zh">线粒体</td></tr>
@@ -484,7 +691,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>此技术最常用的变体称间接免疫荧光显微术，因为对目的蛋白特异的抗体被间接检测。此技术中，未标记单克隆或多克隆抗体加到标本，然后是结合第一抗体恒定（Fc）段的第二荧光色素标记抗体。例如可通过用所有兔 IgG 抗体共同的 Fc 段免疫山羊产生"二抗"；偶联荧光色素后，此第二抗体制备（称"山羊抗兔"）将检测用于染色组织或细胞的任何兔抗体（图 4-14）。因数个</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-14_1.png" alt="图 4-14" onclick="lightbox(this.src)">
-  <figcaption>(a) 准备标本并置于显微镜载玻片上 1 与一抗孵育；洗去未结合抗体 2 与荧光色素偶联的二抗孵育；洗去未结合抗体 3 封片并在荧光显微镜中观察 4 (b) 刷状缘 侧膜 固有层 20 μm 图4-14 · 通过间接免疫荧光显微术可在固定组织切片中定位特定蛋白。(a) 为通过免疫荧光显微术定位蛋白，组织切片或细胞样品必须化学固定并使抗体能够通透（步骤 1）。然后将样品与特异性结合目标抗原的一抗孵育，随后通过洗涤去除未结合抗体（步骤 2）。接着样品与荧光色素标记的、特异性结合一抗的二抗孵育，再次通过洗涤去除过量二抗（步骤 3）。然后将样品封于特制封片剂中并在荧光显微镜下检查（步骤 4）。(b) 在此例中，大鼠肠壁切片用 Evans blue 染色（产生非特异性红色荧光），并通过间接免疫荧光显微术定位 GLUT2（一种葡萄糖转运蛋白）。可见 GLUT2（黄）存在于肠细胞的基底面和侧面，但在刷状缘处缺失；刷状缘由面向肠腔的顶面上紧密排列的微绒毛组成。毛细血管穿行于固有层中，固有层是上皮层下方的一种疏松结缔组织。[部分 (b) 来自 B. Thorens 等，1990, Am. J. Physiol. 259: C279；承蒙 B. Thorens 惠赠。]</figcaption>
+  <figcaption>图4-14 · 通过间接免疫荧光显微术可在固定组织切片中定位特定蛋白。(a) 为通过免疫荧光显微术定位蛋白，组织切片或细胞样品必须化学固定并使抗体能够通透（步骤 1）。然后将样品与特异性结合目标抗原的一抗孵育，随后通过洗涤去除未结合抗体（步骤 2）。接着样品与荧光色素标记的、特异性结合一抗的二抗孵育，再次通过洗涤去除过量二抗（步骤 3）。然后将样品封于特制封片剂中并在荧光显微镜下检查（步骤 4）。(b) 在此例中，大鼠肠壁切片用 Evans blue 染色（产生非特异性红色荧光），并通过间接免疫荧光显微术定位 GLUT2（一种葡萄糖转运蛋白）。可见 GLUT2（黄）存在于肠细胞的基底面和侧面，但在刷状缘处缺失；刷状缘由面向肠腔的顶面上紧密排列的微绒毛组成。毛细血管穿行于固有层中，固有层是上皮层下方的一种疏松结缔组织。[部分 (b) 来自 B. Thorens 等，1990, Am. J. Physiol. 259: C279；承蒙 B. Thorens 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">indirect immunofluorescence microscopy</td><td class="gl-zh">间接免疫荧光显微术</td></tr>
   <tr><td class="gl-en">antibody</td><td class="gl-zh">抗体</td></tr>
@@ -511,7 +718,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>在此技术的另一广泛使用版本中，用分子遗传技术制造编码融合短氨基酸序列（表位标签）的重组蛋白 cDNA。在细胞中表达时，此 cDNA 将产生连接到特定标签的蛋白。两个常用表位标签是 FLAG（编码氨基酸序列 DYKDDDDK，单字母氨基酸码）和 myc（编码序列 EQKLISEEDL）。然后可用偶联荧光色素的 FLAG 或 myc 表位单克隆抗体检测细胞中重组蛋白。此技术扩展允许同时可视化</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-15_1.png" alt="图 4-15" onclick="lightbox(this.src)">
-  <figcaption>罗丹明标记的鬼笔环肽（结合肌动蛋白丝的荧光色素偶联药物，红） 微管 肌动蛋白丝 识别微管的兔一抗（黑）和荧光色素偶联的山羊抗兔二抗（绿） (a) (b) 实验图4-15 · 双标记荧光显微术可可视化两种蛋白的相对分布。在双标记荧光显微术中，每种蛋白必须用不同的荧光色素标记。(a) 一个培养细胞经固定和通透后，与罗丹明标记的鬼笔环肽（一种特异性结合丝状肌动蛋白的试剂）孵育。同时与兔抗微管蛋白（微管的主要成分）抗体孵育，然后用荧光素标记的山羊抗兔二抗孵育。(b) 上方面板显示荧光素染色的微管蛋白（左）和罗丹明染色的肌动蛋白（右），下方面板显示电子合并的图像。[部分 (b) 承蒙 A. Bretscher 惠赠。]</figcaption>
+  <figcaption>实验图4-15 · 双标记荧光显微术可可视化两种蛋白的相对分布。在双标记荧光显微术中，每种蛋白必须用不同的荧光色素标记。(a) 一个培养细胞经固定和通透后，与罗丹明标记的鬼笔环肽（一种特异性结合丝状肌动蛋白的试剂）孵育。同时与兔抗微管蛋白（微管的主要成分）抗体孵育，然后用荧光素标记的山羊抗兔二抗孵育。(b) 上方面板显示荧光素染色的微管蛋白（左）和罗丹明染色的肌动蛋白（右），下方面板显示电子合并的图像。[部分 (b) 承蒙 A. Bretscher 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">double-label fluorescence microscopy</td><td class="gl-zh">双标记荧光显微术</td></tr>
   <tr><td class="gl-en">fluorochrome</td><td class="gl-zh">荧光色素</td></tr>
@@ -533,7 +740,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>水母 Aequorea victoria 表达天然荧光蛋白，称绿色荧光蛋白（GFP，约 27 kDa）。GFP 含丝氨酸、酪氨酸和甘氨酸序列，其侧链自发环化形成绿色荧光色素（蓝光照射时）。用重组 DNA 技术，可制造 GFP 编码序列与目的蛋白编码序列融合的 DNA 构建体。当此构建体引入并表达于细胞时，产生 GFP"标记"蛋白，其中目的蛋白作为同一多肽一部分与 GFP 共价连接。虽 GFP 是中等大小蛋白，但目的蛋白的功能常不因与 GFP 融合而改变。此技术允许可视化 GFP 从而目的蛋白。不仅可立即看到 GFP 标记蛋白的位置，还可在活细胞中随时间观察其分布从而评估其动态或跟踪各种细胞处理后其定位。用 GFP 标记特定蛋白的简单想法彻底改变了细胞生物学，并导致许多不同荧光蛋白的开发（图 4-16）。使用此多彩荧光蛋白允许可视化两</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-16_1.png" alt="图 4-16" onclick="lightbox(this.src)">
-  <figcaption>EBFP ECFP EGFP Citrine mHoneydew mBanana mOrange tdTomato mTangerine mStrawberry mCherry mGrape1 mRaspberry mGrape2 mPlum (a) (b) 图4-16 · 现已可获得多种不同颜色的荧光蛋白。(a) 试管显示多种不同荧光蛋白的发射颜色和名称。(b) 琼脂培养皿被照明以显示表达多种不同颜色荧光蛋白的生长细菌。[承蒙 Roger Tsien 惠赠。]</figcaption>
+  <figcaption>图4-16 · 现已可获得多种不同颜色的荧光蛋白。(a) 试管显示多种不同荧光蛋白的发射颜色和名称。(b) 琼脂培养皿被照明以显示表达多种不同颜色荧光蛋白的生长细菌。[承蒙 Roger Tsien 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">fluorescent protein</td><td class="gl-zh">荧光蛋白</td></tr>
   <tr><td class="gl-en">emission color</td><td class="gl-zh">发射颜色</td></tr>
@@ -554,7 +761,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>获取更好三维信息的第二种方法称共聚焦显微术，因为它用光学方法从特定焦面获取图像并排除其他面光。共聚焦显微镜收集通过样本垂直深度的一系列图像，从中可计算生成准确的三维表示。当今常用两类共聚焦显微镜：点扫描共聚焦</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-17_1.png" alt="图 4-17" onclick="lightbox(this.src)">
-  <figcaption>(a) (b) 实验图4-17 · 去卷积荧光显微术产生高分辨率光学切片，可重建以创建一个三维图像。一个巨噬细胞用对 DNA（蓝）、微管（绿）和肌动蛋白微丝（红）特异的荧光色素标记试剂染色。在细胞连续焦平面（光学切片）上获得的一系列荧光图像被三维重组。(a) 在原始图像的这种三维重建中，DNA、微管和肌动蛋白在细胞中呈现为弥漫区域。(b) 对图像应用去卷积算法后，微管的纤维组织以及肌动蛋白在粘附处的定位在重建中清晰可见。[承蒙 PhenoVista Biosciences 的 James Evans 惠赠。]</figcaption>
+  <figcaption>实验图4-17 · 去卷积荧光显微术产生高分辨率光学切片，可重建以创建一个三维图像。一个巨噬细胞用对 DNA（蓝）、微管（绿）和肌动蛋白微丝（红）特异的荧光色素标记试剂染色。在细胞连续焦平面（光学切片）上获得的一系列荧光图像被三维重组。(a) 在原始图像的这种三维重建中，DNA、微管和肌动蛋白在细胞中呈现为弥漫区域。(b) 对图像应用去卷积算法后，微管的纤维组织以及肌动蛋白在粘附处的定位在重建中清晰可见。[承蒙 PhenoVista Biosciences 的 James Evans 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">deconvolution fluorescence microscopy</td><td class="gl-zh">去卷积荧光显微术</td></tr>
   <tr><td class="gl-en">optical section</td><td class="gl-zh">光学切片</td></tr>
@@ -571,7 +778,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>显微镜（也称激光扫描共聚焦显微镜 LSCM）和转盘共聚焦显微镜。每种显微镜的想法是只照亮和收集一个小焦面区域的发射荧光光，以排除失焦光。这可通过在发射光到达探测器前通过针孔收集实现--来自照亮焦面的光通过，而来自其他焦面的光大部分被排除。照亮区域然后移动跨整个焦面以电子建立图像。两类显微镜在如何覆盖图像上不同。点扫描显微镜用激发波长的点激光光源快速以光栅模式扫描焦面，在光电倍增管收集发射荧光，从而建立图像（图 4-18a）。然后可在样本不同深度拍摄系列图像生成三维重建。点扫描共聚焦显微镜可提供二维和三维异常高分辨率图像（图 4-19），尽管有两个小限制。首先，扫描每个焦面需可观时间，故若成像非常动态过程，显微镜可能无法足够快收集图像跟踪动态。其次，它用强激光照亮每个点，可能漂白所成像荧光色素并通过光毒性损伤活细胞，从而限制可收集图像数。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-18_1.png" alt="图 4-18" onclick="lightbox(this.src)">
-  <figcaption>(a) 点扫描共聚焦显微镜 激光器 扫描镜，y 维 像平面 投影镜 可拆卸反射镜 扫描镜，x 维 物镜 标本 (b) 转盘共聚焦显微镜 二色镜 光电倍增管 像平面 投影镜 针孔 可拆卸反射镜 物镜 标本 计算机 扫描头单元 转盘头单元 针孔阵列 微透镜阵列 扩展激光束 高灵敏数字相机 激光器 二色镜 旋转 图4-18 · 两类共聚焦显微术的光路。两种显微术都围绕传统荧光显微镜组装（黄色阴影）。(a) 点扫描共聚焦显微镜中的光路。来自合适激光器的单波长光点被二色镜反射，从两个扫描镜上反射后通过物镜照亮标本中的一个点。两个扫描镜来回摆动，使光以光栅方式扫描标本（见标本中的绿线）。标本发射的荧光通过物镜返回，从扫描镜上反射到二色镜。这允许光通过到达针孔。该针孔排除来自焦外焦平面的光，因此到达光电倍增管的光几乎全部来自焦平面中被照亮的点。然后计算机获取这些信号并重建图像。(b) 转盘共聚焦显微镜中的光路。此处不使用两个扫描镜，而是将激光束扩展以照亮耦合转盘上的针孔，第一个转盘由微透镜组成以将光聚焦到第二个转盘上的针孔。激发光通过物镜以提供标本中多个点的点照明。发射的荧光通过物镜并穿过转盘上的孔返回，然后从二色镜反射到灵敏的数字相机。转盘上的针孔排列使转盘旋转时能快速多次照亮标本的所有部分。由于转盘转速可达 3000 rpm，可记录活细胞中非常动态的事件。</figcaption>
+  <figcaption>图4-18 · 两类共聚焦显微术的光路。两种显微术都围绕传统荧光显微镜组装（黄色阴影）。(a) 点扫描共聚焦显微镜中的光路。来自合适激光器的单波长光点被二色镜反射，从两个扫描镜上反射后通过物镜照亮标本中的一个点。两个扫描镜来回摆动，使光以光栅方式扫描标本（见标本中的绿线）。标本发射的荧光通过物镜返回，从扫描镜上反射到二色镜。这允许光通过到达针孔。该针孔排除来自焦外焦平面的光，因此到达光电倍增管的光几乎全部来自焦平面中被照亮的点。然后计算机获取这些信号并重建图像。(b) 转盘共聚焦显微镜中的光路。此处不使用两个扫描镜，而是将激光束扩展以照亮耦合转盘上的针孔，第一个转盘由微透镜组成以将光聚焦到第二个转盘上的针孔。激发光通过物镜以提供标本中多个点的点照明。发射的荧光通过物镜并穿过转盘上的孔返回，然后从二色镜反射到灵敏的数字相机。转盘上的针孔排列使转盘旋转时能快速多次照亮标本的所有部分。由于转盘转速可达 3000 rpm，可记录活细胞中非常动态的事件。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">confocal microscopy</td><td class="gl-zh">共聚焦显微术</td></tr>
   <tr><td class="gl-en">point-scanning confocal microscope</td><td class="gl-zh">点扫描共聚焦显微镜</td></tr>
@@ -594,7 +801,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>我们刚见点扫描共聚焦显微术如何帮助减少失焦面荧光。为此，它聚焦激光光锥到扫描焦面的点。焦面上下区域也被此光锥照亮，</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-19_1.png" alt="图 4-19" onclick="lightbox(this.src)">
-  <figcaption>(a) 传统荧光显微术 焦平面 成像体积 (b) 共聚焦荧光显微术 焦平面 成像体积 40 μm 图4-19 · 共聚焦显微术产生穿过厚细胞的聚焦光学切片。海胆（Psammechinus）的有丝分裂受精卵用去垢剂裂解，暴露于微管蛋白抗体，然后暴露于结合抗微管蛋白抗体的荧光素标记抗体。(a) 用传统荧光显微术观察时，有丝分裂纺锤体模糊。这种模糊是因为检测到了焦平面上方和下方微管蛋白的背景荧光，如草图所示。(b) 共聚焦显微图像清晰，特别是在有丝分裂纺锤体中心。在此情况下，仅检测焦平面中分子的荧光，产生非常薄的光学切片。[显微照片 © 1987 White 等，1987, The Journal of Cell Biology 105:41–48. doi:10.1083/jcb.105.1.41]</figcaption>
+  <figcaption>图4-19 · 共聚焦显微术产生穿过厚细胞的聚焦光学切片。海胆（Psammechinus）的有丝分裂受精卵用去垢剂裂解，暴露于微管蛋白抗体，然后暴露于结合抗微管蛋白抗体的荧光素标记抗体。(a) 用传统荧光显微术观察时，有丝分裂纺锤体模糊。这种模糊是因为检测到了焦平面上方和下方微管蛋白的背景荧光，如草图所示。(b) 共聚焦显微图像清晰，特别是在有丝分裂纺锤体中心。在此情况下，仅检测焦平面中分子的荧光，产生非常薄的光学切片。[显微照片 © 1987 White 等，1987, The Journal of Cell Biology 105:41–48. doi:10.1083/jcb.105.1.41]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">confocal microscopy</td><td class="gl-zh">共聚焦显微术</td></tr>
   <tr><td class="gl-en">optical section</td><td class="gl-zh">光学切片</td></tr>
@@ -611,7 +818,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_4-20_1.png" alt="图 4-20" onclick="lightbox(this.src)">
-  <figcaption>00 s 30 s 58 s 85 s 113 s 140 s 实验图4-20 · [活细胞中的微管]可在转盘共聚焦显微镜上成像。显示了裂殖酵母两个杆状细胞中 GFP-微管蛋白影片的六帧。[承蒙 Fred Chang 惠赠。]</figcaption>
+  <figcaption>实验图4-20 · [活细胞中的微管]可在转盘共聚焦显微镜上成像。显示了裂殖酵母两个杆状细胞中 GFP-微管蛋白影片的六帧。[承蒙 Fred Chang 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">spinning disk confocal microscope</td><td class="gl-zh">转盘共聚焦显微镜</td></tr>
   <tr><td class="gl-en">microtubule</td><td class="gl-zh">微管</td></tr>
@@ -624,7 +831,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>产生须通过针孔收集光去除的失焦信号。此强光锥也导致光漂白（使荧光蛋白失活）或光毒性损伤样本。若样本很薄，这些不是显著问题，但随样本变厚变得更相关。为克服这些问题，利用了荧光色素可被单光子（如 488 nm）或两半能量光子（960 nm）激发的发现，任一都产生相同发射波长（图 4-21a）。故若 960 nm 激光光锥聚焦到一面中一点，使只有焦点有足够光子密度激发荧光色素（图 4-21b），将无失焦信号且更少光漂白或光毒性。因只有焦面荧光色素被激发，双光子显微术可用于探索更厚样本，且无需针孔排除失焦光。但双光子激发显微术需非常高激光强度，因两光子须在约飞秒</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-21_1.png" alt="图 4-21" onclick="lightbox(this.src)">
-  <figcaption>(a) 点扫描共聚焦显微术 电子激发态 激发光子（488 nm） 电子基态 (b) 双光子激发显微术 激发光子 1（960 nm） 激发光子 2（960 nm） 发射光子（507 nm） (c) 焦平面发射光子（507 nm） (d) 激发光子（960 nm） 显微镜物镜 固定的小鼠 图4-21 · 双光子激发显微术将照明限制在焦平面，允许活体成像的深穿透。(a) 说明传统点扫描共聚焦显微术与双光子激发显微术所用不同激发方法的图示。在传统系统中，吸收一个适当波长的光子（此处为 488 nm，由蓝色箭头表示）使电子跃迁到激发态。经过振动弛豫（黑色虚线箭头）后，电子回落到基态，发射一个较长（较低能量）波长的光子，此处为 507 nm（绿色箭头）。在双光子激发中，当两个适当波长的光子（此处为 960 nm，红色箭头）几乎同时到达时，两者都可被吸收并诱导电子跃迁到激发态。与前一种情况相同，电子经过一些振动弛豫（黑色虚线箭头）并回落到基态，发射一个光子（507 nm）。(b) 一个装有荧光材料的比色皿用 488 nm 光照明（左），如传统共聚焦显微术；或用强 960 nm 光照明，如双光子显微术。注意传统系统在焦平面外产生明亮的激发锥，而双光子激发只照亮焦平面中的一个点。(c) 由于双光子显微术不激发焦平面外的荧光色素，可用于观察活体动物内深达 1 mm 的细胞（“活体成像”）。为对活体动物成像，必须将其固定在显微镜载物台上，并使物镜能接近成像区域。(d) 活体成像的示例，其中对龙虾中标记的神经元进行了成像。[部分 (b) 来自 W. Zipfel 等，2003, Macmillan Publishers Ltd: Nature Biotechnol. 21:1369，承蒙 Warren R. Zipfel 惠赠；部分 (d) 为 Peter Kloppenburg 和 Warren R. Zipfel 的未发表数据。]</figcaption>
+  <figcaption>图4-21 · 双光子激发显微术将照明限制在焦平面，允许活体成像的深穿透。(a) 说明传统点扫描共聚焦显微术与双光子激发显微术所用不同激发方法的图示。在传统系统中，吸收一个适当波长的光子（此处为 488 nm，由蓝色箭头表示）使电子跃迁到激发态。经过振动弛豫（黑色虚线箭头）后，电子回落到基态，发射一个较长（较低能量）波长的光子，此处为 507 nm（绿色箭头）。在双光子激发中，当两个适当波长的光子（此处为 960 nm，红色箭头）几乎同时到达时，两者都可被吸收并诱导电子跃迁到激发态。与前一种情况相同，电子经过一些振动弛豫（黑色虚线箭头）并回落到基态，发射一个光子（507 nm）。(b) 一个装有荧光材料的比色皿用 488 nm 光照明（左），如传统共聚焦显微术；或用强 960 nm 光照明，如双光子显微术。注意传统系统在焦平面外产生明亮的激发锥，而双光子激发只照亮焦平面中的一个点。(c) 由于双光子显微术不激发焦平面外的荧光色素，可用于观察活体动物内深达 1 mm 的细胞（“活体成像”）。为对活体动物成像，必须将其固定在显微镜载物台上，并使物镜能接近成像区域。(d) 活体成像的示例，其中对龙虾中标记的神经元进行了成像。[部分 (b) 来自 W. Zipfel 等，2003, Macmillan Publishers Ltd: Nature Biotechnol. 21:1369，承蒙 Warren R. Zipfel 惠赠；部分 (d) 为 Peter Kloppenburg 和 Warren R. Zipfel 的未发表数据。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">two-photon excitation microscopy</td><td class="gl-zh">双光子激发显微术</td></tr>
   <tr><td class="gl-en">intravital imaging</td><td class="gl-zh">活体成像</td></tr>
@@ -650,7 +857,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
   <img class="zoomable" src="figures/fig_4-22_1.png" alt="图 4-22" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_4-22_2.png" alt="图 4-22" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_4-22_3.png" alt="图 4-22" onclick="lightbox(this.src)">
-  <figcaption>(a) 激发束 玻璃-水界面全反射产生倏逝波 盖玻片 水中标本 显微镜载玻片 (b) 发射光 物镜 浸油 倏逝波，照明深度 50–100 nm 5 μm 实验图4-22 · 受限焦平面中的荧光样本可通过全内反射荧光（TIRF）显微术成像。(a) 在 TIRF 显微术中，只有盖玻片旁约 50–100 nm 厚的标本被照明，因此样本其余部分的荧光分子不被激发。这种有限照明通过将照明光以一定角度导向，使其从盖玻片的玻璃-水界面反射而非穿过界面来实现。虽然大部分光被反射，但也产生一个非常小的照明区域，称为倏逝波（以浅绿色描绘）。(b) 用微管蛋白抗体的免疫荧光显微术观察微管，分别以传统荧光显微术（顶部）和 TIRF（中部）观察，并由两种视图创建合并图像（底部）。两幅图像被采集并伪着色为红和绿，使合并图像可突出显示靠近盖玻片的那些微管（绿）。[部分 (b) © 2010 J. B. Manneville 等，2010, The Journal of Cell Biology 191:585–598. doi: 10.1083/jcb.201002151.]</figcaption>
+  <figcaption>实验图4-22 · 受限焦平面中的荧光样本可通过全内反射荧光（TIRF）显微术成像。(a) 在 TIRF 显微术中，只有盖玻片旁约 50–100 nm 厚的标本被照明，因此样本其余部分的荧光分子不被激发。这种有限照明通过将照明光以一定角度导向，使其从盖玻片的玻璃-水界面反射而非穿过界面来实现。虽然大部分光被反射，但也产生一个非常小的照明区域，称为倏逝波（以浅绿色描绘）。(b) 用微管蛋白抗体的免疫荧光显微术观察微管，分别以传统荧光显微术（顶部）和 TIRF（中部）观察，并由两种视图创建合并图像（底部）。两幅图像被采集并伪着色为红和绿，使合并图像可突出显示靠近盖玻片的那些微管（绿）。[部分 (b) © 2010 J. B. Manneville 等，2010, The Journal of Cell Biology 191:585–598. doi: 10.1083/jcb.201002151.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">total internal reflection fluorescence microscopy</td><td class="gl-zh">全内反射荧光（TIRF）显微术</td></tr>
   <tr><td class="gl-en">TIRF</td><td class="gl-zh">TIRF</td></tr>
@@ -674,7 +881,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>荧光显微术也可用于确定两蛋白是否在体内相互作用，利用称福斯特共振能量转移（FRET）的现象。此技术使用一对荧光蛋白，第一个的发射波长接近第二个的激发波长（图 4-24）。例如用 433 nm 光激发青色荧光蛋白（CFP）时，它荧光并发射 475 nm 光。但若黄色荧光蛋白（YFP）在附近，CFP 不发射 475 nm 光，而是通过 FRET 将能量转移给 YFP，YFP 发射 530 nm 光。FRET 效率与 R⁻⁶ 成比例（R 为荧光色素间距离），故对距离小变化非常敏感，实际上 10 nm 以上距离不可检测。故用 433 nm 光照射适当制备样本并在 530 nm 观察，可判断分别用 CFP 和 YFP 标记的蛋白是否非常接近。例如已开发 FRET 传感器确定小 GTP 结合调节蛋白与其效应器在细胞中信号传导的位置（图 4-24b）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-23_1.png" alt="图 4-23" onclick="lightbox(this.src)">
-  <figcaption>(a) 漂白前 漂白一个小感兴趣区（ROI） 在 ROI 中追踪随时间（秒）的荧光恢复 5 10 15 30 (b) GFP-EBP50 Ezrin-GFP (c) 1.0 0.8 0.6 0.4 0.2 0.0 0 10 20 30 40 归一化强度 漂白后时间（秒） GFP-EBP50 Ezrin-GFP 实验图4-23 · 光漂白后荧光恢复（FRAP）揭示分子的动态。在活细胞中，追踪 GFP 标记蛋白的分布可提供蛋白总体分布的视图，但无法告诉我们个体分子群的动态如何。(a) 在 FRAP 中，GFP 荧光色素被聚焦于感兴趣区（ROI）的短暂强激光脉冲漂白。光迅速不可逆地漂白分子，使其不再被检测。该区域荧光的恢复告诉我们未漂白分子已移入 ROI。(b) FRAP 用于测定 EBP50 和 ezrin（微绒毛的两个组分，呈白色线条）在上皮细胞顶面的交换速率。在表达 GFP-EBP50 或 ezrin-GFP 的细胞中，绿色方框所示小区域中的 GFP 被漂白，并追踪与未漂白蛋白交换后的恢复。GFP-EBP50 的荧光恢复非常快，表明其交换速率快；而 ezrin-GFP 的荧光恢复缓慢，表明交换速率较慢。(c) 通过量化恢复，可建立 EBP50 和 ezrin 的动态特性。[部分 (b) 和 (c) © 2012 Garbett 等，2012, The Journal of Cell Biology 198:195–203. doi: 10.1083/jcb.201204008.]</figcaption>
+  <figcaption>实验图4-23 · 光漂白后荧光恢复（FRAP）揭示分子的动态。在活细胞中，追踪 GFP 标记蛋白的分布可提供蛋白总体分布的视图，但无法告诉我们个体分子群的动态如何。(a) 在 FRAP 中，GFP 荧光色素被聚焦于感兴趣区（ROI）的短暂强激光脉冲漂白。光迅速不可逆地漂白分子，使其不再被检测。该区域荧光的恢复告诉我们未漂白分子已移入 ROI。(b) FRAP 用于测定 EBP50 和 ezrin（微绒毛的两个组分，呈白色线条）在上皮细胞顶面的交换速率。在表达 GFP-EBP50 或 ezrin-GFP 的细胞中，绿色方框所示小区域中的 GFP 被漂白，并追踪与未漂白蛋白交换后的恢复。GFP-EBP50 的荧光恢复非常快，表明其交换速率快；而 ezrin-GFP 的荧光恢复缓慢，表明交换速率较慢。(c) 通过量化恢复，可建立 EBP50 和 ezrin 的动态特性。[部分 (b) 和 (c) © 2012 Garbett 等，2012, The Journal of Cell Biology 198:195–203. doi: 10.1083/jcb.201204008.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">fluorescence recovery after photobleaching</td><td class="gl-zh">光漂白后荧光恢复（FRAP）</td></tr>
   <tr><td class="gl-en">FRAP</td><td class="gl-zh">FRAP</td></tr>
@@ -693,7 +900,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>FRET 的一个巧妙应用称 FRET 生物传感器，可用于感知活细胞中局部生化环境。想法是表达含 CFP 和 YFP 的单个多肽，中间被感知生化信号时发生构象变化的区域隔开。无信号时，CFP 和 YFP 距离太远不能显著 FRET。但当检测到信号时，构象变化使 CFP 和 YFP 足够近产生 FRET。此技术的一个版本可用于测量特定蛋白激酶局部活性。此情况中，CFP 和 YFP 之间含蛋白激酶底物（传感结构域）和特异性结合磷酸化底物的配体结构域的多肽区域（图 4-25a）。当激酶磷酸化传感结构域时，配体结构域结合它，使 CFP 和 YFP 足够近发生 FRET。因蛋白磷酸化是动态过程，适当磷酸酶去磷酸化传感结构域将使 FRET 生物传感器失活。故 FRET 信号将反映细胞中激酶活性超过磷酸酶活性的区域。例如科学家开发了蛋白激酶 A 活性 FRET 生物传感器，它被</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-24_1.png" alt="图 4-24" onclick="lightbox(this.src)">
-  <figcaption>(a) 433 nm 475 nm 433 nm 433 nm 530 nm FRET CFP YFP CFP YFP X Y Y X (b) 10 μm 图4-24 · 蛋白-蛋白相互作用可通过 FRET 可视化。FRET 背后的理念是使用两种不同的荧光蛋白，使得当一种被激发时，能量将通过 FRET 转移给第二种，前提是它们足够接近。(a) 在此例中，青色荧光蛋白（CFP）融合到蛋白 X，黄色荧光蛋白（YFP）融合到蛋白 Y，两种蛋白都在活细胞中表达。如果细胞现在被 433 nm 光照明，CFP 将在 475 nm 发射荧光信号。如果 YFP 不在附近（左），能量转移不会发生，不会发射 530 nm 光。但如果蛋白 X 与蛋白 Y 相互作用（右），将使 CFP 接近 YFP，能量将通过 FRET 转移给 YFP，YFP 将在 530 nm 发射光。(b) 在这个小鼠成纤维细胞中，FRET 用于揭示活性调节蛋白（Rac）与其结合伴侣之间的相互作用定位于迁移细胞的前部。[部分 (b) © 2003 R. B. Sekar, A. Periasamy 等，2003, The Journal of Cell Biology 160:629–633. doi: 10.1083/jcb.200210140.]</figcaption>
+  <figcaption>图4-24 · 蛋白-蛋白相互作用可通过 FRET 可视化。FRET 背后的理念是使用两种不同的荧光蛋白，使得当一种被激发时，能量将通过 FRET 转移给第二种，前提是它们足够接近。(a) 在此例中，青色荧光蛋白（CFP）融合到蛋白 X，黄色荧光蛋白（YFP）融合到蛋白 Y，两种蛋白都在活细胞中表达。如果细胞现在被 433 nm 光照明，CFP 将在 475 nm 发射荧光信号。如果 YFP 不在附近（左），能量转移不会发生，不会发射 530 nm 光。但如果蛋白 X 与蛋白 Y 相互作用（右），将使 CFP 接近 YFP，能量将通过 FRET 转移给 YFP，YFP 将在 530 nm 发射光。(b) 在这个小鼠成纤维细胞中，FRET 用于揭示活性调节蛋白（Rac）与其结合伴侣之间的相互作用定位于迁移细胞的前部。[部分 (b) © 2003 R. B. Sekar, A. Periasamy 等，2003, The Journal of Cell Biology 160:629–633. doi: 10.1083/jcb.200210140.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">FRET</td><td class="gl-zh">福斯特共振能量转移（FRET）</td></tr>
   <tr><td class="gl-en">cyan fluorescent protein</td><td class="gl-zh">青色荧光蛋白（CFP）</td></tr>
@@ -713,7 +920,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>如前讨论，荧光显微镜理论分辨率极限约 0.2 μm（200 nm）。已开发两种绕过此限制的一般方法，统称超分辨率显微术。第一类方法中，照明光以产生更高分辨率图像的方式图案化。结构照明显微术（SIM）中，标本用光暗条纹图案照亮，随照明图案旋转拍摄数张图像以产生莫尔条纹。图像计算分析给出约 100 nm 分辨率，是常规共聚焦显微镜的两倍，如核膜部分微图所见（图 4-26a）。SIM 特别适合活细胞成像，因三维图像可每 4 秒收集。受激发射损耗（STED）显微术中，样本像点扫描显微术一样扫描，但有一重要区别：聚焦激发激光点被环形"损耗光束"包围，有效使激发区域小得多。因计算机记录激发点的精确位置并可记录其发射，它可建立令人印象深刻的图像，最佳产生 30 nm 分辨率，大大增强例如肌动蛋白纤维图像中可见的细节（图 4-26b）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-25_1.png" alt="图 4-25" onclick="lightbox(this.src)">
-  <figcaption>(a) 433 nm 433 nm 475 nm 530 nm FRET CFP YFP 蛋白激酶 传感结构域（激酶底物） P 配体结构域（结合磷酸化底物） 蛋白磷酸酶 (b) 0.0 1.1 1.4 1.7 2.0 3.0 低 FRET 高 FRET 时间（分钟） 实验图4-25 · FRET 生物传感器可检测局部生化环境。(a) FRET 生物传感器是一种融合蛋白，含两个荧光蛋白，由对所研究环境敏感的区域连接。在此例中，蛋白构建体由 CFP 与 YFP 通过一个区域连接，该区域包含可被特定激酶磷酸化的特定序列（“传感结构域”）和一个在传感结构域磷酸化时与之结合的区域（“配体结构域”）。在缺乏激酶活性时，两个荧光蛋白距离过远不能发生 FRET；而当被活性激酶局部磷酸化时，传感结构域被磷酸化，配体结构域与之结合，CFP 和 YFP 被带到足够近以发生 FRET。当传感结构域遇到去除所加磷酸基团的合适磷酸酶时，传感器也可被去活化。因此，该生物传感器报告局部环境中激酶与磷酸酶活性的比例。(b) 使用 FRET 生物传感器检测蛋白激酶 A 的示例，该激酶被 cAMP 升高所激活。在此例中，forskolin（一种诱导 cAMP 生成的药物）在 t = 0 时加入细胞，此后在不同时间采集图像。成像显示了活性激酶的激活速率和定位。[部分 (b) 来自 J. Zhang 等，2001, Proc. Natl. Acad. Sci. USA 98:14997–15005. © 2001 National Academy of Sciences, U.S.A.]</figcaption>
+  <figcaption>实验图4-25 · FRET 生物传感器可检测局部生化环境。(a) FRET 生物传感器是一种融合蛋白，含两个荧光蛋白，由对所研究环境敏感的区域连接。在此例中，蛋白构建体由 CFP 与 YFP 通过一个区域连接，该区域包含可被特定激酶磷酸化的特定序列（“传感结构域”）和一个在传感结构域磷酸化时与之结合的区域（“配体结构域”）。在缺乏激酶活性时，两个荧光蛋白距离过远不能发生 FRET；而当被活性激酶局部磷酸化时，传感结构域被磷酸化，配体结构域与之结合，CFP 和 YFP 被带到足够近以发生 FRET。当传感结构域遇到去除所加磷酸基团的合适磷酸酶时，传感器也可被去活化。因此，该生物传感器报告局部环境中激酶与磷酸酶活性的比例。(b) 使用 FRET 生物传感器检测蛋白激酶 A 的示例，该激酶被 cAMP 升高所激活。在此例中，forskolin（一种诱导 cAMP 生成的药物）在 t = 0 时加入细胞，此后在不同时间采集图像。成像显示了活性激酶的激活速率和定位。[部分 (b) 来自 J. Zhang 等，2001, Proc. Natl. Acad. Sci. USA 98:14997–15005. © 2001 National Academy of Sciences, U.S.A.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">FRET biosensor</td><td class="gl-zh">FRET 生物传感器</td></tr>
   <tr><td class="gl-en">fusion protein</td><td class="gl-zh">融合蛋白</td></tr>
@@ -731,7 +938,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_4-26_1.png" alt="图 4-26" onclick="lightbox(this.src)">
-  <figcaption>(a) 结构照明显微术（SIM） 以不同方向的照明图案采集图像 生成可计算重建以创建图像的干涉图案 点扫描图像 + = (b) 受激发射损耗显微术（STED） 激发激光点 被环形“损耗束”包围的激发激光点，使激发区域更小 “损耗束” 有效激发 (c) 光激活定位显微术（PALM） 采集数千幅图像，每幅中只有少数 GFP 分子被激发 每个 GFP 分子以高斯分布发射光子，可计算其中心并用于创建图像 点扫描图像 SIM 图像 1 μm 1 μm STED 图像 点扫描图像 5 μm 5 μm PALM 图像 GFP 激发分布 GFP 激发 实验图4-26 · 超分辨率显微术可产生分辨率达纳米级的光显微镜图像。光显微镜的理论分辨率可通过超分辨率显微术绕过。(a) 在结构照明显微术（SIM）中，样本被明暗条纹图案照明，随着照明旋转拍摄多幅图像。该技术产生可通过数学重建生成更高分辨率图像的干涉图案。右侧图像显示由传统点扫描共聚焦显微术和 SIM 成像的相似核区域（核纤层蛋白，绿；DNA，品红），SIM 使分辨率提高约两倍。(b) 在受激发射损耗显微术（STED）中，样本如点扫描显微术那样扫描，但使用一个由发射激光产生并被环形受激发射损耗区限制的非常小的光点。右侧图像显示用点扫描显微术和 STED 成像后用肌动蛋白纤维染色的细胞的一部分。(c) 在光激活定位显微术（PALM）中，使用一种可被与激发波长不同波长光激活的 GFP 变体。当少量 GFP 分子被激活然后激发时，每个分子将发射数千个可被采集的光子。这产生以发射 GFP 位置为中心的高斯曲线；中心提供了 GFP 的纳米级精度位置。该过程重复数百次以激发其他 GFP 分子，最终产生高分辨率图像。右侧将微管的共聚焦图像与相应的超分辨率图像对比，后者中微管的三维排列以颜色编码。[部分 (a) 显微照片来自 Schermelleh 等，2008, Science 320:1332–1336.；部分 (b) 来自多伦多西部研究所的 Elise Stanley 博士；部分 (c) 来自 B. Huang 等，2008, Science 319:810–813.]</figcaption>
+  <figcaption>实验图4-26 · 超分辨率显微术可产生分辨率达纳米级的光显微镜图像。光显微镜的理论分辨率可通过超分辨率显微术绕过。(a) 在结构照明显微术（SIM）中，样本被明暗条纹图案照明，随着照明旋转拍摄多幅图像。该技术产生可通过数学重建生成更高分辨率图像的干涉图案。右侧图像显示由传统点扫描共聚焦显微术和 SIM 成像的相似核区域（核纤层蛋白，绿；DNA，品红），SIM 使分辨率提高约两倍。(b) 在受激发射损耗显微术（STED）中，样本如点扫描显微术那样扫描，但使用一个由发射激光产生并被环形受激发射损耗区限制的非常小的光点。右侧图像显示用点扫描显微术和 STED 成像后用肌动蛋白纤维染色的细胞的一部分。(c) 在光激活定位显微术（PALM）中，使用一种可被与激发波长不同波长光激活的 GFP 变体。当少量 GFP 分子被激活然后激发时，每个分子将发射数千个可被采集的光子。这产生以发射 GFP 位置为中心的高斯曲线；中心提供了 GFP 的纳米级精度位置。该过程重复数百次以激发其他 GFP 分子，最终产生高分辨率图像。右侧将微管的共聚焦图像与相应的超分辨率图像对比，后者中微管的三维排列以颜色编码。[部分 (a) 显微照片来自 Schermelleh 等，2008, Science 320:1332–1336.；部分 (b) 来自多伦多西部研究所的 Elise Stanley 博士；部分 (c) 来自 B. Huang 等，2008, Science 319:810–813.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">super-resolution microscopy</td><td class="gl-zh">超分辨率显微术</td></tr>
   <tr><td class="gl-en">structured illumination microscopy</td><td class="gl-zh">结构照明显微术（SIM）</td></tr>
@@ -758,7 +965,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>我们上面讨论的大多数共聚焦成像方法通过同一物镜照亮和检测荧光色素；这确保样本激发和发射荧光成像在同一焦面。此方法结果是样本可成像深度有限。最近开发了绕过此限制的新技术。光片显微术中，样本从侧面照亮然后从正交方向观察（图 4-27a）。聚焦激光束来回扫描样本，</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-27_1.png" alt="图 4-27" onclick="lightbox(this.src)">
-  <figcaption>(a) 检测物镜 样品架 (b) GFP 的 N 端半 GFP 的 C 端半 Ca²⁺ – Ca²⁺ 传感结构域 配体结构域 (c) 聚焦激光束 图4-27 · 光片显微术可对活组织中的快速事件成像。(a) 在光片显微术中，组织样本从侧面被聚焦激光束照明，激光束扫描样本产生一片光。样本从正交方向通过检测物镜观察。为获得三维图像，照明物镜和检测物镜协调移动，在样本整个深度上拍摄图像。(b) 称为 GCaMP 的 Ca²⁺ 生物传感器。该生物传感器使用重组 DNA 技术制造，生成一个融合了 GFP 的 N 端和 C 端的多肽，中间被中断。中断的一侧是传感结构域，由 Ca²⁺ 结合蛋白钙调蛋白（calmodulin）组成。另一侧是配体结构域，由钙调蛋白在 Ca²⁺ 存在时与之结合的靶序列组成。在 Ca²⁺ 不存在时，GFP 因中断而不具功能。在 Ca²⁺ 存在时，钙调蛋白结合四个 Ca²⁺ 离子并经历构象变化，使其能结合配体结构域。该构象变化将 GFP 的两部分带到足够近，使荧光蛋白恢复功能。(c) 活体斑马鱼脑细胞中的 Ca²⁺ 瞬变，伪着色为红色。[部分 (c) 来自 M. B. Ahrens 等，2013, Nature Methods 10:413–420.]</figcaption>
+  <figcaption>图4-27 · 光片显微术可对活组织中的快速事件成像。(a) 在光片显微术中，组织样本从侧面被聚焦激光束照明，激光束扫描样本产生一片光。样本从正交方向通过检测物镜观察。为获得三维图像，照明物镜和检测物镜协调移动，在样本整个深度上拍摄图像。(b) 称为 GCaMP 的 Ca²⁺ 生物传感器。该生物传感器使用重组 DNA 技术制造，生成一个融合了 GFP 的 N 端和 C 端的多肽，中间被中断。中断的一侧是传感结构域，由 Ca²⁺ 结合蛋白钙调蛋白（calmodulin）组成。另一侧是配体结构域，由钙调蛋白在 Ca²⁺ 存在时与之结合的靶序列组成。在 Ca²⁺ 不存在时，GFP 因中断而不具功能。在 Ca²⁺ 存在时，钙调蛋白结合四个 Ca²⁺ 离子并经历构象变化，使其能结合配体结构域。该构象变化将 GFP 的两部分带到足够近，使荧光蛋白恢复功能。(c) 活体斑马鱼脑细胞中的 Ca²⁺ 瞬变，伪着色为红色。[部分 (c) 来自 M. B. Ahrens 等，2013, Nature Methods 10:413–420.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">light-sheet microscopy</td><td class="gl-zh">光片显微术</td></tr>
   <tr><td class="gl-en">detection objective</td><td class="gl-zh">检测物镜</td></tr>
@@ -803,7 +1010,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>本节描述电子显微术观察生物材料的各种方法。最广泛使用的仪器是透射电子显微镜，但扫描电子显微镜（SEM）也常用，提供互补信息，如本节末讨论（图 4-28 右）。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-28_1.png" alt="图 4-28" onclick="lightbox(this.src)">
-  <figcaption>TEM SEM 钨丝（阴极） 阳极 聚光镜 电子束 扫描线圈 标本 标本 电磁物镜 投影镜 检测器 图4-28 · 在电子显微术中，图像由穿过标本或从金属包被标本散射的电子形成。在透射电子显微镜（TEM，左）中，电子从加热的灯丝中提取，被电场加速，并由磁聚光镜聚焦到标本上。穿过标本的电子由一系列磁物镜和投影镜聚焦，在检测器上形成标本的放大图像，检测器可以是荧光观察屏、照相胶片或电荷耦合器件（CCD）相机。在扫描电子显微镜（SEM）中，电子由聚光镜和物镜聚焦到金属包被的标本上。扫描线圈使束流扫过标本，从金属散射的电子被光电倍增管检测器收集。在两种显微镜中，由于电子易被空气分子散射，整个镜筒保持极高真空。</figcaption>
+  <figcaption>图4-28 · 在电子显微术中，图像由穿过标本或从金属包被标本散射的电子形成。在透射电子显微镜（TEM，左）中，电子从加热的灯丝中提取，被电场加速，并由磁聚光镜聚焦到标本上。穿过标本的电子由一系列磁物镜和投影镜聚焦，在检测器上形成标本的放大图像，检测器可以是荧光观察屏、照相胶片或电荷耦合器件（CCD）相机。在扫描电子显微镜（SEM）中，电子由聚光镜和物镜聚焦到金属包被的标本上。扫描线圈使束流扫过标本，从金属散射的电子被光电倍增管检测器收集。在两种显微镜中，由于电子易被空气分子散射，整个镜筒保持极高真空。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">electron microscopy</td><td class="gl-zh">电子显微术</td></tr>
   <tr><td class="gl-en">transmission electron microscope</td><td class="gl-zh">透射电子显微镜（TEM）</td></tr>
@@ -829,7 +1036,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>生物学中常探索单个大分子（如蛋白质或核酸）或结构（如病毒和构成细胞骨架的丝）的详细形状。在透射电子显微镜中观察这些物体相对容易（前提是用散射入射电子的重金属染色）。制备样本时，首先吸附到 3 mm 电子显微镜载网（图 4-29a），</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-29_1.png" alt="图 4-29" onclick="lightbox(this.src)">
-  <figcaption>(a) 加样 3 mm (b) 用重金属染色样本 (c) 100 nm 图4-29 · 负染样本的透射电子显微术揭示精细特征。(a) 透射电子显微术（TEM）的样本通常安装在一个小铜或金载网上。载网通常覆盖有很薄的塑料和碳膜，样本可附着于其上。(b) 然后将标本在重金属（如醋酸铀酰）中孵育，去除过量染料。(c) 样本排斥染料，因此当在 TEM 中观察时，以负轮廓呈现。(c) 中的例子是轮状病毒的负染。[部分 (c) ISM/Phototake。]</figcaption>
+  <figcaption>图4-29 · 负染样本的透射电子显微术揭示精细特征。(a) 透射电子显微术（TEM）的样本通常安装在一个小铜或金载网上。载网通常覆盖有很薄的塑料和碳膜，样本可附着于其上。(b) 然后将标本在重金属（如醋酸铀酰）中孵育，去除过量染料。(c) 样本排斥染料，因此当在 TEM 中观察时，以负轮廓呈现。(c) 中的例子是轮状病毒的负染。[部分 (c) ISM/Phototake。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">negative stain</td><td class="gl-zh">负染</td></tr>
   <tr><td class="gl-en">transmission electron microscopy</td><td class="gl-zh">透射电子显微术（TEM）</td></tr>
@@ -847,7 +1054,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>样本也可用金属投影制备（图 4-30）。此技术中，样本吸附到小块云母，然后通过金属蒸发涂薄层铂，再用酸或漂白剂溶解，留下铂涂层（称复型）。铂涂层可从固定角度或旋转样本时低角度生成（后者称低角旋转投影）。复型转移到载网在 TEM 检查时，提供样本三维拓扑信息。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-30_1.png" alt="图 4-30" onclick="lightbox(this.src)">
-  <figcaption>(a) 样本 云母表面 1 蒸发铂 2 蒸发碳 3 可用于观察的金属复型 4 (b) 金属复型 碳膜 0.5 μm 图4-30 · 金属投影使极小物体的表面细节可通过透射电子显微术可见。样本铺展在云母表面上，然后在真空蒸发器中干燥（步骤 1）。样本载网涂上一层重金属（如铂或金）薄膜，由电加热金属丝蒸发而成（步骤 2）。然后涂上一层由上方电极蒸发的碳膜（步骤 3）。为稳定复型，生物材料然后用酸和漂白剂溶解（步骤 4），剩余的金属复型在 TEM 中观察。在这种制备物的电子显微图中，涂碳区域显得亮--与简单金属染色制备物的显微图相反，后者中金属染色最重的区域显得最暗。(b) 脊髓灰质炎病毒颗粒的铂投影复型。[部分 (b) Science Source]</figcaption>
+  <figcaption>图4-30 · 金属投影使极小物体的表面细节可通过透射电子显微术可见。样本铺展在云母表面上，然后在真空蒸发器中干燥（步骤 1）。样本载网涂上一层重金属（如铂或金）薄膜，由电加热金属丝蒸发而成（步骤 2）。然后涂上一层由上方电极蒸发的碳膜（步骤 3）。为稳定复型，生物材料然后用酸和漂白剂溶解（步骤 4），剩余的金属复型在 TEM 中观察。在这种制备物的电子显微图中，涂碳区域显得亮--与简单金属染色制备物的显微图相反，后者中金属染色最重的区域显得最暗。(b) 脊髓灰质炎病毒颗粒的铂投影复型。[部分 (b) Science Source]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">metal shadowing</td><td class="gl-zh">金属投影</td></tr>
   <tr><td class="gl-en">mica</td><td class="gl-zh">云母</td></tr>
@@ -867,7 +1074,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>为制备薄片，需化学固定样本、脱水、用硬化液态塑料（类似有机玻璃）浸渍，然后切约 5-100 nm 厚切片。为看到结构，样本须用铀和铅盐等重金属染色，可在塑料包埋前或切片后进行。薄切片电子显微术观察的细胞和组织示例见此处及全书（图 4-31）。重要</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-31_1.png" alt="图 4-31" onclick="lightbox(this.src)">
-  <figcaption>粗面内质网 图4-31 · 透射电子显微术观察薄切片的示例。胰腺细胞切片显示参与消化酶合成和分泌的广泛粗面内质网。[Keith R. Porter Archive, University of Maryland, Baltimore County.]</figcaption>
+  <figcaption>图4-31 · 透射电子显微术观察薄切片的示例。胰腺细胞切片显示参与消化酶合成和分泌的广泛粗面内质网。[Keith R. Porter Archive, University of Maryland, Baltimore County.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">thin section</td><td class="gl-zh">薄切片</td></tr>
   <tr><td class="gl-en">transmission electron microscopy</td><td class="gl-zh">透射电子显微术</td></tr>
@@ -901,7 +1108,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>已开发更温和的方法，如轻度固定、液氮温度冷冻后切片、最后室温与抗体孵育。为使抗体在电子显微镜中可见，须附着电子致密标记。一种方法是用涂蛋白 A（结合所有抗体分子 Fc 段的细菌蛋白）的电子致密金颗粒（图 4-33）。因金颗粒衍射入射电子，它们显示为暗点。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-33_1.png" alt="图 4-33" onclick="lightbox(this.src)">
-  <figcaption>(a) 抗体 蛋白 A 金 抗原 Fc 结构域 (b) 图4-33 · 涂有蛋白 A 的金颗粒用于透射电子显微术检测抗体结合蛋白。(a) 首先，让抗体与固定组织切片中其特异抗原相互作用。然后用涂有来自金黄色葡萄球菌（S. aureus）蛋白 A 的电子致密金颗粒处理切片。结合的蛋白 A 与抗体分子的 Fc 结构域结合，使目标蛋白的位置在电子显微镜下可见。(b) 从受感染 HeLa 细胞出芽的 HIV 颗粒。制备标本的冷冻切片，首先与抗衣壳蛋白抗体孵育，然后与涂蛋白 A 的 5 nm 金颗粒孵育以定位内部衣壳蛋白。灭活蛋白 A 中未占据的位点，然后标本与抗膜结合 Env 蛋白抗体孵育，接着与涂蛋白 A 的 10 nm 金颗粒孵育。可见标记衣壳蛋白的 5 nm 金和标记 Env 蛋白的 10 nm 金的明显定位。比例尺为 100 nm。[承蒙英国伦敦大学学院 MRC 分子细胞生物学实验室的 Annegret Pelchen-Matthews 和 Mark Marsh 惠赠。]</figcaption>
+  <figcaption>图4-33 · 涂有蛋白 A 的金颗粒用于透射电子显微术检测抗体结合蛋白。(a) 首先，让抗体与固定组织切片中其特异抗原相互作用。然后用涂有来自金黄色葡萄球菌（S. aureus）蛋白 A 的电子致密金颗粒处理切片。结合的蛋白 A 与抗体分子的 Fc 结构域结合，使目标蛋白的位置在电子显微镜下可见。(b) 从受感染 HeLa 细胞出芽的 HIV 颗粒。制备标本的冷冻切片，首先与抗衣壳蛋白抗体孵育，然后与涂蛋白 A 的 5 nm 金颗粒孵育以定位内部衣壳蛋白。灭活蛋白 A 中未占据的位点，然后标本与抗膜结合 Env 蛋白抗体孵育，接着与涂蛋白 A 的 10 nm 金颗粒孵育。可见标记衣壳蛋白的 5 nm 金和标记 Env 蛋白的 10 nm 金的明显定位。比例尺为 100 nm。[承蒙英国伦敦大学学院 MRC 分子细胞生物学实验室的 Annegret Pelchen-Matthews 和 Mark Marsh 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">protein A</td><td class="gl-zh">蛋白 A</td></tr>
   <tr><td class="gl-en">gold particle</td><td class="gl-zh">金颗粒</td></tr>
@@ -923,7 +1130,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>标准透射电子显微术不能用于研究活细胞，样本中无水导致大分子变性失活。但水合、未固定、未染色的生物标本如果冷冻可在透射电子显微镜中直接观察。冷冻电子显微术中，样本水悬液涂到载网上成极薄膜，在液氮中冷冻，用特殊支架保持此状态。冷冻样本然后放入电子显微镜。极低温（−196 °C）防止水蒸发，</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-34_1.png" alt="图 4-34" onclick="lightbox(this.src)">
-  <figcaption>(a) 发射器 旋转台 图像 旋转台以 1-2° 增量旋转 ±70°，每步记录图像 采集图像 所有图像的三维计算机重建 (b) (c) (d) 图4-34 · 通过冷冻电子断层术成像的核孔复合体（NPC）结构。(a) 在冷冻电子断层术中，从位于中心的三维标本记录一系列半圆形的二维投影图像；标本倾斜（以围绕垂直于电子束轴的小增量），而电子光学和检测器保持静止。因此获得从不同方向观察物体的图像（图 4-34a、b）。然后通过计算将图像合并为所有图像的三维计算机重建。(b) 从细胞黏菌盘基网柄菌（Dictyostelium discoideum）分离的细胞核在液氮中快速冷冻，并在样本于电子显微镜下观察时保持此状态。面板显示三幅连续倾斜图像。NPC（箭头）的不同方向以顶视图（左和中）和侧视图（右）显示。可见与外核膜相连的核糖体，以及一片粗面内质网（箭头）。(c) 一段核膜膜（黄）上布满 NPC（蓝）的计算机生成的表面渲染表示。(d) 通过平均多个核孔的图像，可辨别出更多细节。参见 S. Nickell 等，2006, Nature Rev. Mol. Cell Biol. 7:225。[部分 (b)、(c) 和 (d) 来自 M. Beck 等，2004, Science 306:1387.]</figcaption>
+  <figcaption>图4-34 · 通过冷冻电子断层术成像的核孔复合体（NPC）结构。(a) 在冷冻电子断层术中，从位于中心的三维标本记录一系列半圆形的二维投影图像；标本倾斜（以围绕垂直于电子束轴的小增量），而电子光学和检测器保持静止。因此获得从不同方向观察物体的图像（图 4-34a、b）。然后通过计算将图像合并为所有图像的三维计算机重建。(b) 从细胞黏菌盘基网柄菌（Dictyostelium discoideum）分离的细胞核在液氮中快速冷冻，并在样本于电子显微镜下观察时保持此状态。面板显示三幅连续倾斜图像。NPC（箭头）的不同方向以顶视图（左和中）和侧视图（右）显示。可见与外核膜相连的核糖体，以及一片粗面内质网（箭头）。(c) 一段核膜膜（黄）上布满 NPC（蓝）的计算机生成的表面渲染表示。(d) 通过平均多个核孔的图像，可辨别出更多细节。参见 S. Nickell 等，2006, Nature Rev. Mol. Cell Biol. 7:225。[部分 (b)、(c) 和 (d) 来自 M. Beck 等，2004, Science 306:1387.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">cryoelectron tomography</td><td class="gl-zh">冷冻电子断层术</td></tr>
   <tr><td class="gl-en">nuclear pore complex</td><td class="gl-zh">核孔复合体（NPC）</td></tr>
@@ -959,7 +1166,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>光和电子显微术对细胞的检查导致认识到真核细胞含一组共同细胞器（见第 1 章图 1-12a）。但用显微术观察细胞器和记录其详细结构并不清楚揭示它们扮演的角色及如何工作。为此，需在天然状态分离细胞器并鉴定和剖析每个组分功能。因此，与显微术进展并行，分离和表征细胞器的方法被开发。例如溶酶体是生物分子被降解的细胞器（第 1 章描述）。溶酶体已用显微术看到，但其功能只有在开发分离方法后才被发现。</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-35_1.png" alt="图 4-35" onclick="lightbox(this.src)">
-  <figcaption>纤毛 杯状细胞 基板 上皮细胞 10 μm 图4-35 · 扫描电子显微术（SEM）产生未切片标本表面的三维图像。此处所示为气管细胞的 SEM 图像。中间是分泌粘液的杯状细胞。杯状细胞两侧是顶面有丰富纤毛的上皮细胞。[Steve Gschmeissner/Science Source。]</figcaption>
+  <figcaption>图4-35 · 扫描电子显微术（SEM）产生未切片标本表面的三维图像。此处所示为气管细胞的 SEM 图像。中间是分泌粘液的杯状细胞。杯状细胞两侧是顶面有丰富纤毛的上皮细胞。[Steve Gschmeissner/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">scanning electron microscopy</td><td class="gl-zh">扫描电子显微术（SEM）</td></tr>
   <tr><td class="gl-en">SEM</td><td class="gl-zh">SEM</td></tr>
@@ -989,7 +1196,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>差速和平衡密度梯度离心后剩余的细胞组分通常含超过</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-37_1.png" alt="图 4-37" onclick="lightbox(this.src)">
-  <figcaption>细胞器组分 溶酶体（1.12 g/cm³） 线粒体（1.18 g/cm³） 过氧化物酶体（1.23 g/cm³） 离心前 1.09 1.11 1.15 1.19 1.22 1.25 离心后 蔗糖密度递增（g/cm³） 图4-37 · 混合细胞器组分可通过平衡密度梯度离心进一步分离。在此例中使用大鼠肝脏，将 15,000 g 离心所得沉淀物（见图 4-36）重悬并铺在离心管中密度递增的蔗糖溶液梯度上。在数小时离心过程中，每个细胞器迁移到其适当的平衡密度并停留在那里。为获得溶酶体与线粒体的良好分离，在组织破碎前用含少量去垢剂的溶液灌注肝脏。在此灌注期间，去垢剂通过胞吞作用进入细胞并转移到溶酶体，使其密度比正常情况下低，从而允许溶酶体与线粒体的“干净”分离。</figcaption>
+  <figcaption>图4-37 · 混合细胞器组分可通过平衡密度梯度离心进一步分离。在此例中使用大鼠肝脏，将 15,000 g 离心所得沉淀物（见图 4-36）重悬并铺在离心管中密度递增的蔗糖溶液梯度上。在数小时离心过程中，每个细胞器迁移到其适当的平衡密度并停留在那里。为获得溶酶体与线粒体的良好分离，在组织破碎前用含少量去垢剂的溶液灌注肝脏。在此灌注期间，去垢剂通过胞吞作用进入细胞并转移到溶酶体，使其密度比正常情况下低，从而允许溶酶体与线粒体的“干净”分离。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">equilibrium density-gradient centrifugation</td><td class="gl-zh">平衡密度梯度离心</td></tr>
   <tr><td class="gl-en">organelle fraction</td><td class="gl-zh">细胞器组分</td></tr>
@@ -1007,7 +1214,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 </figure>
 <figure>
   <img class="zoomable" src="figures/fig_4-36_1.png" alt="图 4-36" onclick="lightbox(this.src)">
-  <figcaption>过滤匀浆以去除未破碎细胞团块、结缔组织等 过滤的匀浆 倾出：600 g × 10 min 细胞核 倾出：15,000 g × 5 min 线粒体、叶绿体、溶酶体和过氧化物酶体 倾出：100,000 g × 60 min 质膜、微粒体组分（内质网碎片）和大多聚核糖体 离心机 倾出：300,000 g × 2 h 核糖体亚基、小多聚核糖体 胞质可溶部分（胞液） 图4-36 · 差速离心是分馏细胞匀浆的常见第一步。破碎细胞所得的匀浆通常经过过滤以去除未破碎细胞，然后以相当低的速度离心以选择性沉淀细胞核--最大的细胞器。未沉淀的物质（上清液）接下来以更高速度离心以沉淀线粒体、叶绿体、溶酶体和过氧化物酶体。随后在超速离心机中以 100,000 g 离心 60 分钟导致质膜、内质网碎片和大多聚核糖体的沉淀。要回收核糖体亚基、小多聚核糖体和颗粒（如酶复合物），需要在更高速度下额外离心。在 300,000 g 离心 2 小时后，只有胞液--胞质的可溶水相--留在上清液中。</figcaption>
+  <figcaption>图4-36 · 差速离心是分馏细胞匀浆的常见第一步。破碎细胞所得的匀浆通常经过过滤以去除未破碎细胞，然后以相当低的速度离心以选择性沉淀细胞核--最大的细胞器。未沉淀的物质（上清液）接下来以更高速度离心以沉淀线粒体、叶绿体、溶酶体和过氧化物酶体。随后在超速离心机中以 100,000 g 离心 60 分钟导致质膜、内质网碎片和大多聚核糖体的沉淀。要回收核糖体亚基、小多聚核糖体和颗粒（如酶复合物），需要在更高速度下额外离心。在 300,000 g 离心 2 小时后，只有胞液--胞质的可溶水相--留在上清液中。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">differential centrifugation</td><td class="gl-zh">差速离心</td></tr>
   <tr><td class="gl-en">homogenate</td><td class="gl-zh">匀浆</td></tr>
@@ -1034,7 +1241,7 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>所有细胞含十余种大小（直径 50-100 nm）和密度相似的不同类型膜界小囊泡，使离心技术难分离。免疫技术对纯化此类囊泡的特定类别特别有用。例如脂肪和肌肉细胞含特定葡萄糖转运蛋白（GLUT4），定位到其中一种囊泡膜。胰岛素加入细胞时，这些囊泡与质膜融合，增加能从血摄取葡萄糖的葡萄糖转运蛋白数。如第 15 章所见，此过程对维持血中适当糖浓度关键。含 GLUT4 的囊泡</p>
 <figure>
   <img class="zoomable" src="figures/fig_4-38_1.png" alt="图 4-38" onclick="lightbox(this.src)">
-  <figcaption>网格蛋白 (a) 抗网格蛋白抗体 蛋白 A 有被囊泡 细菌细胞 (b) 有被囊泡 0.1 μm 图4-38 · 有被囊泡可通过与囊泡表面蛋白特异的抗体结合并连接到细菌来纯化。在此例中，来自大鼠肝脏的膜悬液与特异于网格蛋白（一种包被某些胞质囊泡外表面的蛋白）的抗体孵育。向此混合物中加入杀死的金黄色葡萄球菌（Staphylococcus aureus）悬液，其表面膜含蛋白 A，可与抗体的恒定（Fc）区结合。(a) 蛋白 A 与结合在网格蛋白有被囊泡上的抗体相互作用，将囊泡连接到细菌细胞。然后可通过低速离心回收囊泡-细菌复合物。(b) 薄切片电子显微图显示结合到金黄色葡萄球菌细胞上的网格蛋白有被囊泡。参见 E. Merisko 等，1982, J. Cell Biol. 93:846。[显微图承蒙 George Palade 惠赠。]</figcaption>
+  <figcaption>图4-38 · 有被囊泡可通过与囊泡表面蛋白特异的抗体结合并连接到细菌来纯化。在此例中，来自大鼠肝脏的膜悬液与特异于网格蛋白（一种包被某些胞质囊泡外表面的蛋白）的抗体孵育。向此混合物中加入杀死的金黄色葡萄球菌（Staphylococcus aureus）悬液，其表面膜含蛋白 A，可与抗体的恒定（Fc）区结合。(a) 蛋白 A 与结合在网格蛋白有被囊泡上的抗体相互作用，将囊泡连接到细菌细胞。然后可通过低速离心回收囊泡-细菌复合物。(b) 薄切片电子显微图显示结合到金黄色葡萄球菌细胞上的网格蛋白有被囊泡。参见 E. Merisko 等，1982, J. Cell Biol. 93:846。[显微图承蒙 George Palade 惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">coated vesicle</td><td class="gl-zh">有被囊泡</td></tr>
   <tr><td class="gl-en">clathrin</td><td class="gl-zh">网格蛋白</td></tr>
