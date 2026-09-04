@@ -3,9 +3,9 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
 h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
@@ -52,13 +52,25 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
 #lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
-/* 左侧阅读索引 */
-#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+/* 左侧悬浮阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 34px; height: 100vh; overflow-y: auto; overflow-x: hidden;
   background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
   font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin;
+  transition: width 0.18s ease, box-shadow 0.18s ease; }
+#toc:hover, #toc.pinned { width: 250px; box-shadow: 2px 0 16px rgba(0,0,0,0.10); }
+#toc-inner { width: 250px; min-height: 100vh; padding-bottom: 30px; }
+#toc .toc-collapsed { writing-mode: vertical-rl; text-orientation: mixed;
+  font-size: 14px; font-weight: 600; color: #aaa; letter-spacing: 4px;
+  padding: 20px 10px; width: 34px; user-select: none; }
+#toc:hover .toc-collapsed, #toc.pinned .toc-collapsed { display: none; }
 #toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
-  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px;
+  display: flex; align-items: center; justify-content: space-between; }
+#toc .toc-title .pin-btn { font-size: 15px; cursor: pointer; color: #bbb; background: none;
+  border: none; padding: 2px 6px; line-height: 1; transition: color 0.12s; }
+#toc .toc-title .pin-btn:hover { color: #333; }
+#toc.pinned .toc-title .pin-btn { color: #333; }
 #toc ul { list-style: none; padding: 0; margin: 0; }
 #toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
   border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
@@ -66,106 +78,91 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
   font-size: 13.5px; border-left-color: transparent; }
 #toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
-#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+#toc li.toc-fig > a, #toc li.toc-tab > a {
   padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
 #toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
 #toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
-#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
-#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active {
   border-left-color: #999; background: #eee9e0; color: #555; }
 #toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
   background: #333; color: #fff; border: none; border-radius: 4px;
   padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
-@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media print { #toc, #toc-toggle { display: none !important; } }
 @media (max-width: 1050px) {
-  body { padding-left: 0; }
-  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
-  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc { width: 0; border-right: none; }
+  #toc.open { width: 250px; border-right: 1px solid #e5e2db; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
+  #toc .toc-collapsed { display: none; }
+  #toc.open .toc-collapsed { display: none; }
   #toc-toggle { display: block; }
   article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
 }</style></head><body>
 <button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
 <nav id="toc">
-<div class="toc-title">目录</div>
+<div id="toc-inner">
+<div class="toc-collapsed">目&nbsp;录</div>
+<div class="toc-title">目录<button class="pin-btn" id="toc-pin" title="固定/取消固定侧栏">⊳</button></div>
 <ul>
-<li class="toc-box"><a href="#box-G2-1">第2章 化学基础"大卫之星"索烃。两个由碳、氢、氮组成的三重…</a></li>
-<li class="toc-fig"><a href="#fig-2-1">图2-1 · 生命的化学：四个关键概念。(a) 分子互补性位…</a></li>
+<li class="toc-fig"><a href="#fig-2-1">图2-1 · 生命的化学：四个关键概念</a></li>
 <li class="toc-sec"><a href="#sec-2.1">2.1 共价键与非共价相互作用</a>
 <ul>
-<li class="toc-fig"><a href="#fig-2-3">图2-3 · 碳与三个或四个其他原子共价连接时的键几何。(a…</a></li>
-<li class="toc-fig"><a href="#fig-2-2">图2-2 · 共价键通过电子共享形成。共价键是将原子维系在分…</a></li>
-<li class="toc-fig"><a href="#fig-2-4">图2-4 · 立体异构体。细胞中的许多分子含至少一个不对称碳…</a></li>
-<li class="toc-tab"><a href="#tab-T2-1">表2-1 · 生物分子中最丰富原子的成键性质。列出各原子（H…</a></li>
-<li class="toc-tab"><a href="#tab-T2-2">表2-2 · 生物分子中的常见官能团和连接。包括羟基（−OH…</a></li>
-<li class="toc-box"><a href="#box-G2-2">G2-2</a></li>
-<li class="toc-fig"><a href="#fig-2-5">图2-5 · 水分子的偶极性质。符号 δ 表示部分电荷（弱于…</a></li>
-<li class="toc-fig"><a href="#fig-2-6">图2-6 · 共价键和非共价相互作用的相对能量。键能定义为断…</a></li>
-<li class="toc-fig"><a href="#fig-2-7">图2-7 · 盐（NaCl）带相反电荷离子在晶体和水溶液中的…</a></li>
-<li class="toc-box"><a href="#box-G2-3">G2-3</a></li>
-<li class="toc-fig"><a href="#fig-2-8">图2-8 · 水与自身及与其他化合物的氢键。氧或氮原子中每对…</a></li>
-<li class="toc-fig"><a href="#fig-2-9">图2-9 · 肽键中成键电子和外层非键合电子的分布。所示为蛋…</a></li>
-<li class="toc-fig"><a href="#fig-2-10">图2-10 · 处于范德华接触的两个氧分子。此模型中红色表示…</a></li>
-<li class="toc-fig"><a href="#fig-2-11">图2-11 · 疏水效应示意。溶液中非极性分子周围形成的水分…</a></li>
-<li class="toc-fig"><a href="#fig-2-12">图2-12 · 分子互补性通过多个非共价相互作用实现蛋白质紧…</a></li>
+<li class="toc-fig"><a href="#fig-2-3">图2-3 · 碳与三个或四个其他原子共价连接时的键几何</a></li>
+<li class="toc-fig"><a href="#fig-2-2">图2-2 · 共价键通过电子共享形成</a></li>
+<li class="toc-fig"><a href="#fig-2-4">图2-4 · 立体异构体</a></li>
+<li class="toc-tab"><a href="#tab-T2-1">表2-1 · 生物分子中最丰富原子的成键性质</a></li>
+<li class="toc-tab"><a href="#tab-T2-2">表2-2 · 生物分子中的常见官能团和连接</a></li>
+<li class="toc-fig"><a href="#fig-2-5">图2-5 · 水分子的偶极性质</a></li>
+<li class="toc-fig"><a href="#fig-2-6">图2-6 · 共价键和非共价相互作用的相对能量</a></li>
+<li class="toc-fig"><a href="#fig-2-7">图2-7 · 盐（NaCl）带相反电荷离子在晶体和水溶液中的静电相互作用</a></li>
+<li class="toc-fig"><a href="#fig-2-8">图2-8 · 水与自身及与其他化合物的氢键</a></li>
+<li class="toc-fig"><a href="#fig-2-9">图2-9 · 肽键中成键电子和外层非键合电子的分布</a></li>
+<li class="toc-fig"><a href="#fig-2-10">图2-10 · 处于范德华接触的两个氧分子</a></li>
+<li class="toc-fig"><a href="#fig-2-11">图2-11 · 疏水效应示意</a></li>
+<li class="toc-fig"><a href="#fig-2-12">图2-12 · 分子互补性通过多个非共价相互作用实现蛋白质紧密结合</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-2.2">2.2 细胞的化学构建块</a>
 <ul>
-<li class="toc-fig"><a href="#fig-2-13">图2-13 · 细胞主要化学构建块概述。(a) 三大类生物大…</a></li>
-<li class="toc-fig"><a href="#fig-2-14">图2-14 · 蛋白质的 20 种氨基酸。按侧链性质分类：非…</a></li>
-<li class="toc-box"><a href="#box-G2-4">G2-4</a></li>
-<li class="toc-box"><a href="#box-G2-5">G2-5</a></li>
-<li class="toc-fig"><a href="#fig-2-15">图2-15 · 蛋白质中氨基酸侧链的常见修饰。这些修饰残基及…</a></li>
-<li class="toc-box"><a href="#box-G2-6">G2-6</a></li>
-<li class="toc-fig"><a href="#fig-2-16">图2-16 · 核苷酸的共同结构。(a) 腺苷 5'-一磷酸…</a></li>
-<li class="toc-fig"><a href="#fig-2-17">图2-17 · 核酸中主要碱基的化学结构。核酸和核苷酸中，嘌…</a></li>
-<li class="toc-box"><a href="#box-G2-7">G2-7</a></li>
-<li class="toc-tab"><a href="#tab-T2-3">表2-3 · 核苷和核苷酸术语。列出碱基、RNA/DNA 中…</a></li>
-<li class="toc-box"><a href="#box-G2-8">G2-8</a></li>
-<li class="toc-box"><a href="#box-G2-9">G2-9</a></li>
-<li class="toc-fig"><a href="#fig-2-18">图2-18 · 己糖的化学结构。所有己糖有相同化学式（C₆H…</a></li>
-<li class="toc-fig"><a href="#fig-2-19">图2-19 · 二糖乳糖和蔗糖的形成。任何糖苷键中，一种糖分…</a></li>
-<li class="toc-box"><a href="#box-G2-10">G2-10</a></li>
-<li class="toc-fig"><a href="#fig-2-20">图2-20 · 磷脂酰胆碱，典型磷酸甘油酯。所有磷酸甘油酯都…</a></li>
-<li class="toc-box"><a href="#box-G2-11">G2-11</a></li>
-<li class="toc-tab"><a href="#tab-T2-4">表2-4 · 磷脂中主要脂肪酸。列出饱和（豆蔻酸 C14:0…</a></li>
-<li class="toc-tab"><a href="#tab-T2-5">表2-5 · 常见磷酸甘油酯及头基。磷脂酰胆碱（头基胆碱）、…</a></li>
-<li class="toc-box"><a href="#box-G2-12">G2-12</a></li>
-<li class="toc-box"><a href="#box-G2-13">G2-13</a></li>
-<li class="toc-box"><a href="#box-G2-14">G2-14</a></li>
-<li class="toc-fig"><a href="#fig-2-21">图2-21 · 双键对脂肪酸形状的影响。所示为饱和脂肪酸棕榈…</a></li>
+<li class="toc-fig"><a href="#fig-2-13">图2-13 · 细胞主要化学构建块概述</a></li>
+<li class="toc-fig"><a href="#fig-2-14">图2-14 · 蛋白质的 20 种氨基酸</a></li>
+<li class="toc-fig"><a href="#fig-2-15">图2-15 · 蛋白质中氨基酸侧链的常见修饰</a></li>
+<li class="toc-fig"><a href="#fig-2-16">图2-16 · 核苷酸的共同结构</a></li>
+<li class="toc-fig"><a href="#fig-2-17">图2-17 · 核酸中主要碱基的化学结构</a></li>
+<li class="toc-tab"><a href="#tab-T2-3">表2-3 · 核苷和核苷酸术语</a></li>
+<li class="toc-fig"><a href="#fig-2-18">图2-18 · 己糖的化学结构</a></li>
+<li class="toc-fig"><a href="#fig-2-19">图2-19 · 二糖乳糖和蔗糖的形成</a></li>
+<li class="toc-fig"><a href="#fig-2-20">图2-20 · 磷脂酰胆碱，典型磷酸甘油酯</a></li>
+<li class="toc-tab"><a href="#tab-T2-4">表2-4 · 磷脂中主要脂肪酸</a></li>
+<li class="toc-tab"><a href="#tab-T2-5">表2-5 · 常见磷酸甘油酯及头基</a></li>
+<li class="toc-fig"><a href="#fig-2-21">图2-21 · 双键对脂肪酸形状的影响</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-2.3">2.3 化学反应与化学平衡</a>
 <ul>
-<li class="toc-fig"><a href="#fig-2-22">图2-22 · 化学反应速率的时间依赖性。反应的正向和逆向速…</a></li>
-<li class="toc-fig"><a href="#fig-2-23">图2-23 · 平衡与稳态反应的比较。(a) 试管中生化反应…</a></li>
-<li class="toc-fig"><a href="#fig-2-24">图2-24 · 大分子可有多个配体的独立结合位点。大型大分子…</a></li>
-<li class="toc-fig"><a href="#fig-2-25">图2-25 · 常见溶液的 pH 值。水溶液 pH 是氢离子…</a></li>
-<li class="toc-fig"><a href="#fig-2-26">图2-26 · pH、pKa 和酸解离之间的关系。随碳酸溶液…</a></li>
-<li class="toc-box"><a href="#box-G2-15">G2-15</a></li>
-<li class="toc-fig"><a href="#fig-2-27">图2-27 · 缓冲液醋酸（CH₃COOH）的滴定曲线。醋酸…</a></li>
-<li class="toc-fig"><a href="#fig-2-28">图2-28 · 磷酸（H₃PO₄）的滴定曲线，生物系统中常见…</a></li>
+<li class="toc-fig"><a href="#fig-2-22">图2-22 · 化学反应速率的时间依赖性</a></li>
+<li class="toc-fig"><a href="#fig-2-23">图2-23 · 平衡与稳态反应的比较</a></li>
+<li class="toc-fig"><a href="#fig-2-24">图2-24 · 大分子可有多个配体的独立结合位点</a></li>
+<li class="toc-fig"><a href="#fig-2-25">图2-25 · 常见溶液的 pH 值</a></li>
+<li class="toc-fig"><a href="#fig-2-26">图2-26 · pH、pKa 和酸解离之间的关系</a></li>
+<li class="toc-fig"><a href="#fig-2-27">图2-27 · 缓冲液醋酸（CH₃COOH）的滴定曲线</a></li>
+<li class="toc-fig"><a href="#fig-2-28">图2-28 · 磷酸（H₃PO₄）的滴定曲线，生物系统中常见缓冲液</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-2.4">2.4 生化能学</a>
 <ul>
-<li class="toc-fig"><a href="#fig-2-29">图2-29 · 放能和吸能反应的自由能（ΔG）变化。(a) …</a></li>
-<li class="toc-fig"><a href="#fig-2-30">图2-30 · 未催化和催化化学反应的活化能。此假设反应路径…</a></li>
-<li class="toc-box"><a href="#box-G2-16">G2-16</a></li>
-<li class="toc-fig"><a href="#fig-2-31">图2-31 · 腺苷三磷酸（ATP）的水解。ATP 中连接三…</a></li>
-<li class="toc-box"><a href="#box-G2-17">G2-17</a></li>
-<li class="toc-fig"><a href="#fig-2-32">图2-32 · 琥珀酸转化为延胡索酸。此氧化反应发生在线粒体…</a></li>
-<li class="toc-fig"><a href="#fig-2-33">图2-33 · 电子载体辅酶 NAD⁺ 和 FAD。(a) …</a></li>
-<li class="toc-box"><a href="#box-G2-18">G2-18</a></li>
+<li class="toc-fig"><a href="#fig-2-29">图2-29 · 放能和吸能反应的自由能（ΔG）变化</a></li>
+<li class="toc-fig"><a href="#fig-2-30">图2-30 · 未催化和催化化学反应的活化能</a></li>
+<li class="toc-fig"><a href="#fig-2-31">图2-31 · 腺苷三磷酸（ATP）的水解</a></li>
+<li class="toc-fig"><a href="#fig-2-32">图2-32 · 琥珀酸转化为延胡索酸</a></li>
+<li class="toc-fig"><a href="#fig-2-33">图2-33 · 电子载体辅酶 NAD⁺ 和 FAD</a></li>
 </ul>
 </li>
-</ul></nav>
+</ul>
+</div></nav>
 <article>
 <h1>第2章 化学基础</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Chemical Foundations · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg" id="box-G2-1">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-1_1.png" alt="G2-1" onclick="lightbox(this.src)">
 </div>
 <div class="intro-block"><span class="intro-title">第2章 化学基础</span>"大卫之星"索烃。两个由碳、氢、氮组成的三重缠绕环，通过桥连铁原子经复杂化学合成途径相互交叉六次形成六角星（六角星）。左侧为化学结构，两个独立环分别染成蓝色和橙色。右侧为 X 射线晶体学确定的三维结构，一个环的碳原子为蓝色，另一个为浅灰色；铁为粉色，氮为紫色。中心是非共价结合的带负电六氟化磷（青色和绿色）。参见 D. A. Leigh, R. G. Pritchard, and A. J. Stephens, 2014, Nature Chem. 6:978–982.</div>
@@ -298,7 +295,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>电偶极，即正电荷与等量相反的负电荷分离。O−H 偶极氧原子上的 δ− 电荷约为一个电子的 25%，氢原子上有等量相反的 δ+ 电荷。衡量电荷分离程度或偶极强度的常用定量指标称为偶极矩 μ，对于一个化学键，它等于每个原子上的部分电荷与两原子间距离的乘积。对于含多个偶极的分子，整个分子的电荷分离程度部分取决于其所有单个化学键的偶极矩，部分取决于分子的几何（各偶极矩的相对取向）。</p>
 <p>以水（H₂O）为例，它有两个 O−H 键，因而有两个单键偶极矩。如果水是线性分子，两个键在氧原子正对的两侧，则分子两端的两个偶极强度相同但方向相反，会相互抵消，整个分子的偶极矩为零。然而，由于水是 V 形分子，两个 O−H 键的单个偶极都指向氧，水分子的一端（含氧原子的一端）带部分负电荷，另一端（含两个氢原子的一端）带部分正电荷。因此，整个分子是一个具有明确偶极矩的偶极（图 2-5）。该偶极矩以及氧和氢原子的电子性质使水能与其他</p>
-<div class="boximg" id="box-G2-2">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-2_1.png" alt="G2-2" onclick="lightbox(this.src)">
 </div>
 <figure id="fig-2-5">
@@ -358,7 +355,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>两个带相反电荷离子 A⁻ 和 C⁺ 之间相互作用的相对强度取决于溶液中其他离子的浓度。其他离子（如 Na⁺ 和 Cl⁻）浓度越高，A⁻ 和 C⁺ 与这些其他离子发生离子相互作用的机会越多，因而断裂 A⁻ 与 C⁺ 之间相互作用所需能量越低。因此，增加生物分子溶液中 NaCl 等盐的浓度可削弱甚至破坏维系生物分子的离子相互作用。这一原理可被利用来将蛋白质等相互作用分子的复杂混合物分离成各自的纯组分。</p>
 <p>氢键是决定不带电分子水溶性的非共价相互作用</p>
 <p>氢键是偶极（如水）中带部分正电荷的氢原子与同一或不同分子中另一原子的未配对电子之间的相互作用。通常，氢原子只与一个其他原子形成共价键。然而，与电负性供体原子 D 共价键合的氢原子可与受体原子 A 形成额外的弱结合--氢键，受体原子必须有可用于该相互作用的非键合电子对：</p>
-<div class="boximg" id="box-G2-3">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-3_1.png" alt="G2-3" onclick="lightbox(this.src)">
 </div>
 <p>共价 D−H 键的长度比没有氢键时略长，因为受体将氢从供体"拉"开。所有氢键的一个重要特征是方向性。在最强氢键中，供体原子、氢原子和受体原子都在一条直线上。非线性氢键比线性弱；但多个非线性氢键有助于稳定许多蛋白质的三维结构。</p>
@@ -552,12 +549,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>也能理解蛋白质如何工作，因为氨基酸可根据其侧链的大小、形状、电荷、疏水性（水溶性的度量）和化学反应性分为几大类（图 2-14）。</p>
 <p>含非极性侧链的氨基酸称为疏水氨基酸，在水中难溶。非极性侧链越大，氨基酸越疏水。丙氨酸、缬氨酸、亮氨酸和异亮氨酸的侧链是不成环的线性或分枝烃，因此称为脂肪族氨基酸。这些氨基酸都是非极性的，甲硫氨酸也如此（除含一个硫原子外与它们相似）。苯丙氨酸、酪氨酸和色氨酸的侧链含大的疏水性芳香环。后续章节将详述疏水侧链在疏水效应影响下如何常堆叠到蛋白质内部或排列于镶嵌在生物膜疏水区域的蛋白质表面。</p>
 <p>含极性侧链的氨基酸称为亲水氨基酸；最亲水的是侧链在细胞内外生物体液典型 pH（约 7）下带电荷（电离）的亚类（见 2.3 节）。精氨酸和赖氨酸有带正电的侧链，称为碱性氨基酸；天冬氨酸和谷氨酸由于侧链中的羧酸基而带负电（其带电形式称为天冬氨酸根和谷氨酸根），称为酸性氨基酸。第五种氨基酸组氨酸的侧链含一个带两个氮的环（称为咪唑），可根据环境酸度的微小变化从带正电转变为不带电：</p>
-<div class="boximg" id="box-G2-4">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-4_1.png" alt="G2-4" onclick="lightbox(this.src)">
 </div>
 <p>许多蛋白质的活性通过组氨酸侧链的质子化或去质子化受环境酸度（pH）变化调节。天冬酰胺和谷氨酰胺不带电但有含酰胺基的极性侧链，具有广泛的氢键能力。类似地，丝氨酸和苏氨酸不带电但有极性羟基，也参与与其他极性分子的氢键。</p>
 <p>最后，半胱氨酸、甘氨酸和脯氨酸因其侧链的独特性质在蛋白质中发挥特殊作用。半胱氨酸的侧链含一个反应性巯基（−SH）。释放一个质子（H⁺）时，巯基转化为硫醇阴离子（S⁻）。硫醇阴离子在催化中起重要作用，特别是在某些破坏蛋白质的酶（蛋白酶）中。在蛋白质中，两个相邻巯基各自可被氧化（各释放一个质子和一个电子），形成共价二硫键（−S−S−）：</p>
-<div class="boximg" id="box-G2-5">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-5_1.png" alt="G2-5" onclick="lightbox(this.src)">
 </div>
 <p>二硫键用于"交联"单个多肽链内的区域（分子内交联）或两条独立链之间（分子间交联）。二硫键稳定某些蛋白质的折叠结构。最小的氨基酸甘氨酸的 R 基是单个氢原子，其小尺寸使其能嵌入狭小空间。与其他常见氨基酸不同，脯氨酸的侧链弯曲形成环，共价键合到连接 Cα 的氨基中的氮原子。结果脯氨酸非常刚性，其氨基不能用于典型氢键。脯氨酸在蛋白质中的存在在多聚物链中造成固定弯折，限制其在脯氨酸残基附近的折叠方式。</p>
@@ -584,7 +581,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>谷氨酰胺脱氨形成相应酸性氨基酸（天冬氨酸根和谷氨酸根）也是常见现象。</p>
 <p>N 端残基氨基的乙酰化是最常见的氨基酸化学修饰形式，影响约 80% 的蛋白质：</p>
-<div class="boximg" id="box-G2-6">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-6_1.png" alt="G2-6" onclick="lightbox(this.src)">
 </div>
 <p>此修饰可能在控制细胞内蛋白质寿命方面起重要作用，因为许多非乙酰化蛋白质被迅速降解。</p>
@@ -628,7 +625,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">deoxyribose</td><td class="gl-zh">脱氧核糖</td></tr>
   </table>
 </figure>
-<div class="boximg" id="box-G2-7">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-7_1.png" alt="G2-7" onclick="lightbox(this.src)">
 </div>
 <p>离子（H⁺），使磷酸带负电（见图 2-16a）。细胞中大多数核酸与蛋白质结合，蛋白质与带负电磷酸形成离子相互作用。</p>
@@ -668,12 +665,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>核苷三磷酸有第三个磷酸。表 2-3 列出核酸中核苷和核苷酸的名称及各种核苷磷酸形式。核苷三磷酸用于核酸合成（第 5 章）。GTP 参与胞内信号传导并作为能量储库（特别是蛋白质合成），ATP（本章稍后讨论）是使用最广泛的生物能量载体。</p>
 <p>单糖共价组装成线性和分枝多糖</p>
 <p>多糖的构建块是简单糖或单糖。单糖是碳水化合物，字面意思是碳与水的一比一共价结合（CH₂O）ₙ，n 等于 3、4、5、6 或 7。己糖（n=6）和戊糖（n=5）是最常见的单糖。所有单糖含羟基（−OH）和醛基或酮基：</p>
-<div class="boximg" id="box-G2-8">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-8_1.png" alt="G2-8" onclick="lightbox(this.src)">
 </div>
 <p>许多生物学重要的糖是己糖，包括葡萄糖、甘露糖和半乳糖（图 2-18）。甘露糖与葡萄糖的差别仅在碳 2 上基团取向相反。类似地，半乳糖与葡萄糖的差别仅在碳 4 上基团取向。葡萄糖与甘露糖或半乳糖的互变需要断裂和形成共价键；此类反应由差向异构酶催化。</p>
 <p>d-葡萄糖（C₆H₁₂O₆）是复杂多细胞生物中大多数细胞的主要外部能源。它可存在三种形式：线性结构和两种不同的半缩醛环结构（图 2-18a）。碳 1 的醛基与碳 5 的羟基结合，形成的半缩醛 d-葡萄吡喃糖含六元环。d-葡萄吡喃糖的 α 异头物中，碳 1 的羟基从环"向下"；</p>
-<div class="boximg" id="box-G2-9">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-9_1.png" alt="G2-9" onclick="lightbox(this.src)">
 </div>
 <figure id="fig-2-18">
@@ -716,7 +713,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>形成糖苷键（将单糖连接成多糖）的酶对一种糖的 α 或 β 异头物和另一种糖的特定羟基特异。原则上，任意两个糖分子可以多种方式连接，因为每个单糖有多个可参与糖苷键形成的羟基。此外，任一单糖可能连接到两个以上其他单糖，从而产生分枝点和非线性多聚物。糖苷键通常在生长的多糖链与单糖的共价修饰形式之间形成。此类修饰包括添加磷酸（如葡萄糖-6-磷酸）或核苷酸（如 UDP-半乳糖）：</p>
-<div class="boximg" id="box-G2-10">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-10_1.png" alt="G2-10" onclick="lightbox(this.src)">
 </div>
 <p>互转不同单糖的差向异构酶常使用核苷酸糖而非未修饰的"游离"糖。</p>
@@ -748,7 +745,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>含多个碳-碳双键的不饱和脂肪酸称为多不饱和。两种"必需"多不饱和脂肪酸--亚油酸（C18:2）和亚麻酸（C18:3）--哺乳动物不能合成，必须由饮食供给。哺乳动物能合成其他常见脂肪酸。</p>
 <p>磷脂中，脂肪酸通过酯化共价连接到另一分子。此反应形成的组合分子中，来自脂肪酸的部分称为酰基或脂肪酰基。最常见磷脂形式--磷酸甘油酯-- illustrate 此结构，它含两个酰基连接到甘油三个羟基中的两个（见图 2-20）。</p>
 <p>磷酸甘油酯中，甘油的一个羟基酯化到磷酸，另两个通常酯化到脂肪酸。最简单的磷脂磷脂酸仅含这些组分。磷脂酸等磷脂不仅是膜构建块，还是重要信号分子。溶血磷脂酸（2 位酰链被去除）相对水溶，可是细胞分裂的有效诱导剂（促细胞分裂剂）。在膜中发现的大多数磷脂中，磷酸基也酯化到另一亲水化合物的羟基。例如磷脂酰胆碱，</p>
-<div class="boximg" id="box-G2-11">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-11_1.png" alt="G2-11" onclick="lightbox(this.src)">
 </div>
 <figure class="table" id="tab-T2-4">
@@ -787,14 +784,14 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">inositol</td><td class="gl-zh">肌醇</td></tr>
   </table>
 </figure>
-<div class="boximg" id="box-G2-12">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-12_1.png" alt="G2-12" onclick="lightbox(this.src)">
 </div>
 <p>它们也可共价连接到强疏水分子胆固醇（一种醇）形成胆固醇酯：</p>
-<div class="boximg" id="box-G2-13">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-13_1.png" alt="G2-13" onclick="lightbox(this.src)">
 </div>
-<div class="boximg" id="box-G2-14">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-14_1.png" alt="G2-14" onclick="lightbox(this.src)">
 </div>
 <p>三酰甘油和胆固醇酯是极不溶于水的分子，脂肪酸和胆固醇在其中储存或运输。三酰甘油是脂肪细胞中脂肪酸的储存形式，是膳食脂肪的主要成分。胆固醇酯和三酰甘油通过血流在专门载体（脂蛋白）中在组织间运输（见第 14 章）。</p>
@@ -953,7 +950,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>氢离子由酸释放、被碱摄取</p>
 <p>一般而言，酸是倾向于释放氢离子（H⁺）的任何分子、离子或化学基团，如羧基（−COOH）倾向于解离形成带负电的羧酸根离子（−COO⁻）；或盐酸（HCl）。相反，碱是易于结合 H⁺ 的任何分子、离子或化学基团，如氢氧根离子（OH⁻）；氨（NH₃）形成铵离子（NH₄⁺）；或氨基（−NH₂）。向水溶液加酸时，[H⁺] 增加，pH 下降。相反，加碱时 [H⁺] 减少，pH 上升。因 [H⁺][OH⁻] = 10⁻¹⁴ M²，[H⁺] 的任何增加都伴随 [OH⁻] 的相应减少，反之亦然。</p>
 <p>许多生物分子既含酸性基团又含碱性基团。例如在中性溶液（pH = 7.0）中，许多氨基酸主要以双重电离形式存在，其中羧基失去一个质子、氨基接受一个质子：</p>
-<div class="boximg" id="box-G2-15">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-15_1.png" alt="G2-15" onclick="lightbox(this.src)">
 </div>
 <p>其中 R 代表不带电侧链。这种含等量正负离子的分子称为两性离子。两性离子无净电荷，呈中性。在极端 pH 值下，氨基酸这两个可电离基团中只有一个带电：低 pH 时为 −NH₃⁺，高 pH 时为 −COO⁻。酸（或较大分子中的酸基）HA 的解离反应可写为 HA ⇌ H⁺ + A⁻。此反应的平衡常数记为 Ka（下标 a 代表"acid"），定义为 Ka = [H⁺][A⁻]/[HA]。两边取对数并重排，得到平衡常数与 pH 之间非常有用的关系：</p>
@@ -1093,7 +1090,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>ATP 水解释放大量自由能并驱动许多细胞过程</p>
 <p>几乎所有生物中，核苷三磷酸腺苷三磷酸或 ATP（图 2-31）是捕获、瞬时储存并随后转移能量做功（如生物合成、机械运动）的最重要分子。ATP 常被称为细胞的能量"货币"，是细胞可"花费"以驱动其活动的可用势能。ATP 的传奇历史始于 1929 年其发现，显然由德国与伟大生化学家 Otto Meyerhof 共事并率先发表的 Kurt Lohmann，以及美国的 Cyrus Fiske 和 Yellapragada SubbaRow 同时发现。1930 年代证明肌肉收缩依赖 ATP。ATP 是细胞能量转移主要中介的提议归功于约 1941 年的 Fritz Lipmann。许多诺贝尔奖授予 ATP 及其在细胞能量代谢中作用的研究，其在理解分子细胞生物学中的重要性怎么强调都不为过。</p>
 <p>ATP 分子中的有用能量含在磷酸酐键中，磷酸酐键是两分子磷酸通过失去水缩合形成的共价键：</p>
-<div class="boximg" id="box-G2-16">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-16_1.png" alt="G2-16" onclick="lightbox(this.src)">
 </div>
 <figure id="fig-2-31">
@@ -1117,7 +1114,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>Ap∼p + H₂O → Ap + Pi + H⁺    (ADP → AMP)</p>
 <p>Pi 代表无机磷酸（PO₄³⁻），PPi 代表无机焦磷酸（两个磷酸基由磷酸酐键连接）。如上两反应所示，从 ATP 去除一个磷酸基留下腺苷二磷酸（ADP），从 ATP 去除一个焦磷酸基留下腺苷一磷酸（AMP）。</p>
 <p>磷酸酐键或其他"高能键"（常以 ∼ 表示）与其他共价键无本质不同。高能键仅在水解时释放大量能量。例如，ATP 中磷酸酐键水解的 ΔG°′（−7.3 kcal/mol）是甘油 3-磷酸中磷酸酯键（红）水解 ΔG°′（−2.2 kcal/mol）的三倍多：</p>
-<div class="boximg" id="box-G2-17">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-17_1.png" alt="G2-17" onclick="lightbox(this.src)">
 </div>
 <p>此差异的一个主要原因 是 ATP 及其水解产物 ADP 和 Pi 在中性 pH 下带电。ATP 合成时，必须用大量能量迫使 ADP 和 Pi 中的负电荷靠拢。反之，ATP 水解为 ADP 和 Pi 时此能量释放。相比之下，甘油中不带电羟基与 Pi 间磷酸酯键形成需能量较少，水解时释放能量也较少。</p>
@@ -1197,7 +1194,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>氧化还原反应中，电子自发移向还原电位更正的原子或分子。换言之，还原电位更负的分子可自发将电子转移给（还原）还原电位更正的分子。此类反应中，电势变化 ΔE 是两个半反应还原和氧化电位之和。氧化还原反应的 ΔE 与自由能变化 ΔG 的关系为：</p>
 <p>ΔG (cal/mol) = −n(23,064)ΔE (volts)    (2-11)</p>
 <p>其中 n 是转移电子数。注意 ΔE 为正的氧化还原反应 ΔG 为负，故趋向自发从左到右进行。</p>
-<div class="boximg" id="box-G2-18">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G2-18_1.png" alt="G2-18" onclick="lightbox(this.src)">
 </div>
 <p>第 2.4 节关键概念</p>
@@ -1244,8 +1241,23 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mouseup',onUp);
   }
 })();
-/* 阅读索引滚动监视 */
+/* 阅读索引：悬浮交互 + 滚动监视 */
 (function(){
+  var toc=document.getElementById('toc');
+  var pinBtn=document.getElementById('toc-pin');
+  if(pinBtn){
+    pinBtn.addEventListener('click',function(e){
+      e.stopPropagation();
+      toc.classList.toggle('pinned');
+      pinBtn.textContent=toc.classList.contains('pinned')?'⊲':'⊳';
+    });
+  }
+  /* 点击正文区域取消固定 */
+  document.addEventListener('click',function(e){
+    if(toc.classList.contains('pinned')&&!toc.contains(e.target))
+      toc.classList.remove('pinned');
+  });
+
   var tocLinks=document.querySelectorAll('#toc a');
   var targets=[];
   tocLinks.forEach(function(a){
@@ -1265,7 +1277,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
   }
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
-  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+
   tocLinks.forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();
@@ -1273,10 +1285,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
       var el=document.getElementById(id);
       if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
       var toc=document.getElementById('toc');
-      if(toc)toc.classList.remove('open');
+      if(toc&&window.innerWidth<=1050)toc.classList.remove('open');
     });
   });
-  /* 点击正文区域关闭移动端侧栏 */
+  /* 移动端点击正文关闭侧栏 */
   document.addEventListener('click',function(e){
     var toc=document.getElementById('toc');
     if(!toc||!toc.classList.contains('open'))return;

@@ -3,9 +3,9 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
 h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
@@ -52,13 +52,25 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
 #lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
-/* 左侧阅读索引 */
-#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+/* 左侧悬浮阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 34px; height: 100vh; overflow-y: auto; overflow-x: hidden;
   background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
   font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin;
+  transition: width 0.18s ease, box-shadow 0.18s ease; }
+#toc:hover, #toc.pinned { width: 250px; box-shadow: 2px 0 16px rgba(0,0,0,0.10); }
+#toc-inner { width: 250px; min-height: 100vh; padding-bottom: 30px; }
+#toc .toc-collapsed { writing-mode: vertical-rl; text-orientation: mixed;
+  font-size: 14px; font-weight: 600; color: #aaa; letter-spacing: 4px;
+  padding: 20px 10px; width: 34px; user-select: none; }
+#toc:hover .toc-collapsed, #toc.pinned .toc-collapsed { display: none; }
 #toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
-  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px;
+  display: flex; align-items: center; justify-content: space-between; }
+#toc .toc-title .pin-btn { font-size: 15px; cursor: pointer; color: #bbb; background: none;
+  border: none; padding: 2px 6px; line-height: 1; transition: color 0.12s; }
+#toc .toc-title .pin-btn:hover { color: #333; }
+#toc.pinned .toc-title .pin-btn { color: #333; }
 #toc ul { list-style: none; padding: 0; margin: 0; }
 #toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
   border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
@@ -66,90 +78,92 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
   font-size: 13.5px; border-left-color: transparent; }
 #toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
-#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+#toc li.toc-fig > a, #toc li.toc-tab > a {
   padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
 #toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
 #toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
-#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
-#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active {
   border-left-color: #999; background: #eee9e0; color: #555; }
 #toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
   background: #333; color: #fff; border: none; border-radius: 4px;
   padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
-@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media print { #toc, #toc-toggle { display: none !important; } }
 @media (max-width: 1050px) {
-  body { padding-left: 0; }
-  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
-  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc { width: 0; border-right: none; }
+  #toc.open { width: 250px; border-right: 1px solid #e5e2db; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
+  #toc .toc-collapsed { display: none; }
+  #toc.open .toc-collapsed { display: none; }
   #toc-toggle { display: block; }
   article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
 }</style></head><body>
 <button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
 <nav id="toc">
-<div class="toc-title">目录</div>
+<div id="toc-inner">
+<div class="toc-collapsed">目&nbsp;录</div>
+<div class="toc-title">目录<button class="pin-btn" id="toc-pin" title="固定/取消固定侧栏">⊳</button></div>
 <ul>
-<li class="toc-box"><a href="#box-G4-1">第4章 细胞培养与可视化荧光显微术显示两个培养细胞中 DNA…</a></li>
 <li class="toc-sec"><a href="#sec-4.1">4.1 细胞的培养与研究</a>
 <ul>
-<li class="toc-fig"><a href="#fig-4-1">图4-1 · 建立细胞培养的各个阶段。(a) 从人组织分离的…</a></li>
-<li class="toc-fig"><a href="#fig-4-3">实验图4-3 · 用 FACS 分离 T 细胞与其他白细胞。…</a></li>
-<li class="toc-fig"><a href="#fig-4-2">图4-2 · 荧光激活细胞分拣器（FACS）分离具有不同荧光…</a></li>
-<li class="toc-fig"><a href="#fig-4-4">图4-4 · 犬犬肾上皮（MDCK）细胞在特制容器中生长，为…</a></li>
-<li class="toc-fig"><a href="#fig-4-5">实验图4-5 · MDCK 细胞在三维培养中形成囊泡。(a)…</a></li>
-<li class="toc-fig"><a href="#fig-4-6">图4-6 · 利用细胞融合和筛选获得产生针对特定蛋白的单克隆…</a></li>
-<li class="toc-tab"><a href="#tab-T4-1">表T4-1 · 细胞生物学研究中所选药物。DNA 复制抑制剂…</a></li>
-<li class="toc-fig"><a href="#fig-4-7">图4-7 · 筛选影响特定生物过程的药物。(a) 在此例中，…</a></li>
+<li class="toc-fig"><a href="#fig-4-1">图4-1 · 建立细胞培养的各个阶段</a></li>
+<li class="toc-fig"><a href="#fig-4-3">实验图4-3 · 用 FACS 分离 T 细胞与其他白细胞</a></li>
+<li class="toc-fig"><a href="#fig-4-2">图4-2 · 荧光激活细胞分拣器（FACS）分离具有不同荧光水平的细胞</a></li>
+<li class="toc-fig"><a href="#fig-4-4">图4-4 · 犬犬肾上皮（MDCK）细胞在特制容器中生长，为研究上皮细胞提供有用…</a></li>
+<li class="toc-fig"><a href="#fig-4-5">实验图4-5 · MDCK 细胞在三维培养中形成囊泡</a></li>
+<li class="toc-fig"><a href="#fig-4-6">图4-6 · 利用细胞融合和筛选获得产生针对特定蛋白的单克隆抗体的杂交瘤</a></li>
+<li class="toc-tab"><a href="#tab-T4-1">表T4-1 · 细胞生物学研究中所选药物</a></li>
+<li class="toc-fig"><a href="#fig-4-7">图4-7 · 筛选影响特定生物过程的药物</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-4.2">4.2 光学显微术：探索细胞结构与细胞内蛋白质可视化</a>
 <ul>
-<li class="toc-fig"><a href="#fig-4-8">图4-8 · 光显微镜的发展。(a) 早期的显微镜，如 Ro…</a></li>
-<li class="toc-fig"><a href="#fig-4-9">图4-9 · 光学显微镜通常配置为 (a) 明场、(b) 相…</a></li>
-<li class="toc-fig"><a href="#fig-4-10">图4-10 · 活细胞可通过干涉产生对比度的显微术可视化。显…</a></li>
-<li class="toc-fig"><a href="#fig-4-11">图4-11 · 用于光显微术的组织通常被固定、包埋于固体介质…</a></li>
-<li class="toc-fig"><a href="#fig-4-12">实验图4-12 · Fura-2，一种 Ca²⁺ 敏感荧光色…</a></li>
-<li class="toc-fig"><a href="#fig-4-13">实验图4-13 · 培养活牛肺动脉内皮细胞中溶酶体和线粒体的…</a></li>
-<li class="toc-fig"><a href="#fig-4-14">图4-14 · 通过间接免疫荧光显微术可在固定组织切片中定位…</a></li>
-<li class="toc-fig"><a href="#fig-4-15">实验图4-15 · 双标记荧光显微术可可视化两种蛋白的相对分…</a></li>
-<li class="toc-fig"><a href="#fig-4-16">图4-16 · 现已可获得多种不同颜色的荧光蛋白。(a) 试…</a></li>
-<li class="toc-fig"><a href="#fig-4-17">实验图4-17 · 去卷积荧光显微术产生高分辨率光学切片，可…</a></li>
-<li class="toc-fig"><a href="#fig-4-18">图4-18 · 两类共聚焦显微术的光路。两种显微术都围绕传统…</a></li>
-<li class="toc-fig"><a href="#fig-4-19">图4-19 · 共聚焦显微术产生穿过厚细胞的聚焦光学切片。海…</a></li>
-<li class="toc-fig"><a href="#fig-4-20">实验图4-20 · [活细胞中的微管]可在转盘共聚焦显微镜上…</a></li>
-<li class="toc-fig"><a href="#fig-4-21">图4-21 · 双光子激发显微术将照明限制在焦平面，允许活体…</a></li>
-<li class="toc-fig"><a href="#fig-4-22">实验图4-22 · 受限焦平面中的荧光样本可通过全内反射荧光…</a></li>
-<li class="toc-fig"><a href="#fig-4-23">实验图4-23 · 光漂白后荧光恢复（FRAP）揭示分子的动…</a></li>
-<li class="toc-fig"><a href="#fig-4-24">图4-24 · 蛋白-蛋白相互作用可通过 FRET 可视化。…</a></li>
-<li class="toc-fig"><a href="#fig-4-25">实验图4-25 · FRET 生物传感器可检测局部生化环境。…</a></li>
-<li class="toc-fig"><a href="#fig-4-26">实验图4-26 · 超分辨率显微术可产生分辨率达纳米级的光显…</a></li>
-<li class="toc-fig"><a href="#fig-4-27">图4-27 · 光片显微术可对活组织中的快速事件成像。(a)…</a></li>
+<li class="toc-fig"><a href="#fig-4-8">图4-8 · 光显微镜的发展</a></li>
+<li class="toc-fig"><a href="#fig-4-9">图4-9 · 光学显微镜通常配置为 (a) 明场、(b) 相差或 (d) 荧光显…</a></li>
+<li class="toc-fig"><a href="#fig-4-10">图4-10 · 活细胞可通过干涉产生对比度的显微术可视化</a></li>
+<li class="toc-fig"><a href="#fig-4-11">图4-11 · 用于光显微术的组织通常被固定、包埋于固体介质中并切成薄片</a></li>
+<li class="toc-fig"><a href="#fig-4-12">实验图4-12 · Fura-2，一种 Ca²⁺ 敏感荧光色素，可用于监测活细胞…</a></li>
+<li class="toc-fig"><a href="#fig-4-13">实验图4-13 · 培养活牛肺动脉内皮细胞中溶酶体和线粒体的定位</a></li>
+<li class="toc-fig"><a href="#fig-4-14">图4-14 · 通过间接免疫荧光显微术可在固定组织切片中定位特定蛋白</a></li>
+<li class="toc-fig"><a href="#fig-4-15">实验图4-15 · 双标记荧光显微术可可视化两种蛋白的相对分布</a></li>
+<li class="toc-fig"><a href="#fig-4-16">图4-16 · 现已可获得多种不同颜色的荧光蛋白</a></li>
+<li class="toc-fig"><a href="#fig-4-17">实验图4-17 · 去卷积荧光显微术产生高分辨率光学切片，可重建以创建一个三维图…</a></li>
+<li class="toc-fig"><a href="#fig-4-18">图4-18 · 两类共聚焦显微术的光路</a></li>
+<li class="toc-fig"><a href="#fig-4-19">图4-19 · 共聚焦显微术产生穿过厚细胞的聚焦光学切片</a></li>
+<li class="toc-fig"><a href="#fig-4-20">实验图4-20 · [活细胞中的微管]可在转盘共聚焦显微镜上成像</a></li>
+<li class="toc-fig"><a href="#fig-4-21">图4-21 · 双光子激发显微术将照明限制在焦平面，允许活体成像的深穿透</a></li>
+<li class="toc-fig"><a href="#fig-4-22">实验图4-22 · 受限焦平面中的荧光样本可通过全内反射荧光（TIRF）显微术成…</a></li>
+<li class="toc-fig"><a href="#fig-4-23">实验图4-23 · 光漂白后荧光恢复（FRAP）揭示分子的动态</a></li>
+<li class="toc-fig"><a href="#fig-4-24">图4-24 · 蛋白-蛋白相互作用可通过 FRET 可视化</a></li>
+<li class="toc-fig"><a href="#fig-4-25">实验图4-25 · FRET 生物传感器可检测局部生化环境</a></li>
+<li class="toc-fig"><a href="#fig-4-26">实验图4-26 · 超分辨率显微术可产生分辨率达纳米级的光显微镜图像</a></li>
+<li class="toc-fig"><a href="#fig-4-27">图4-27 · 光片显微术可对活组织中的快速事件成像</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-4.3">4.3 电子显微术：高分辨率成像</a>
 <ul>
-<li class="toc-fig"><a href="#fig-4-28">图4-28 · 在电子显微术中，图像由穿过标本或从金属包被标…</a></li>
-<li class="toc-fig"><a href="#fig-4-29">图4-29 · 负染样本的透射电子显微术揭示精细特征。(a)…</a></li>
-<li class="toc-fig"><a href="#fig-4-30">图4-30 · 金属投影使极小物体的表面细节可通过透射电子显…</a></li>
-<li class="toc-fig"><a href="#fig-4-31">图4-31 · 透射电子显微术观察薄切片的示例。胰腺细胞切片…</a></li>
-<li class="toc-fig"><a href="#fig-4-32">图4-32 · 基于电子显微术图像三维重建的高尔基体模型。从…</a></li>
-<li class="toc-fig"><a href="#fig-4-33">图4-33 · 涂有蛋白 A 的金颗粒用于透射电子显微术检测…</a></li>
-<li class="toc-fig"><a href="#fig-4-34">图4-34 · 通过冷冻电子断层术成像的核孔复合体（NPC）…</a></li>
+<li class="toc-fig"><a href="#fig-4-28">图4-28 · 在电子显微术中，图像由穿过标本或从金属包被标本散射的电子形成</a></li>
+<li class="toc-fig"><a href="#fig-4-29">图4-29 · 负染样本的透射电子显微术揭示精细特征</a></li>
+<li class="toc-fig"><a href="#fig-4-30">图4-30 · 金属投影使极小物体的表面细节可通过透射电子显微术可见</a></li>
+<li class="toc-fig"><a href="#fig-4-31">图4-31 · 透射电子显微术观察薄切片的示例</a></li>
+<li class="toc-fig"><a href="#fig-4-32">图4-32 · 基于电子显微术图像三维重建的高尔基体模型</a></li>
+<li class="toc-fig"><a href="#fig-4-33">图4-33 · 涂有蛋白 A 的金颗粒用于透射电子显微术检测抗体结合蛋白</a></li>
+<li class="toc-fig"><a href="#fig-4-34">图4-34 · 通过冷冻电子断层术成像的核孔复合体（NPC）结构</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-4.4">4.4 细胞器的分离</a>
 <ul>
-<li class="toc-fig"><a href="#fig-4-35">图4-35 · 扫描电子显微术（SEM）产生未切片标本表面的…</a></li>
-<li class="toc-fig"><a href="#fig-4-37">图4-37 · 混合细胞器组分可通过平衡密度梯度离心进一步分…</a></li>
-<li class="toc-fig"><a href="#fig-4-36">图4-36 · 差速离心是分馏细胞匀浆的常见第一步。破碎细胞…</a></li>
-<li class="toc-fig"><a href="#fig-4-38">图4-38 · 有被囊泡可通过与囊泡表面蛋白特异的抗体结合并…</a></li>
+<li class="toc-fig"><a href="#fig-4-35">图4-35 · 扫描电子显微术（SEM）产生未切片标本表面的三维图像</a></li>
+<li class="toc-fig"><a href="#fig-4-37">图4-37 · 混合细胞器组分可通过平衡密度梯度离心进一步分离</a></li>
+<li class="toc-fig"><a href="#fig-4-36">图4-36 · 差速离心是分馏细胞匀浆的常见第一步</a></li>
+<li class="toc-fig"><a href="#fig-4-38">图4-38 · 有被囊泡可通过与囊泡表面蛋白特异的抗体结合并连接到细菌来纯化</a></li>
 </ul>
 </li>
-</ul></nav>
+</ul>
+</div></nav>
 <article>
 <h1>第4章 细胞培养与可视化</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Culturing and Visualizing Cells · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg" id="box-G4-1">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G4-1_1.png" alt="G4-1" onclick="lightbox(this.src)">
 </div>
 <div class="intro-block"><span class="intro-title">第4章 细胞培养与可视化</span>荧光显微术显示两个培养细胞中 DNA（绿）、微管（黄）和微丝（紫）的位置。细胞经化学固定，然后用温和去垢剂使其对抗体通透。微管用微管蛋白抗体染色；微丝用标记的毒素鬼笔环肽（选择性结合 F-肌动蛋白）染色；DNA 用 DNA 结合染料可视化。[Torsten Wittmann, University of California, San Francisco.]</div>
@@ -1415,8 +1429,23 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mouseup',onUp);
   }
 })();
-/* 阅读索引滚动监视 */
+/* 阅读索引：悬浮交互 + 滚动监视 */
 (function(){
+  var toc=document.getElementById('toc');
+  var pinBtn=document.getElementById('toc-pin');
+  if(pinBtn){
+    pinBtn.addEventListener('click',function(e){
+      e.stopPropagation();
+      toc.classList.toggle('pinned');
+      pinBtn.textContent=toc.classList.contains('pinned')?'⊲':'⊳';
+    });
+  }
+  /* 点击正文区域取消固定 */
+  document.addEventListener('click',function(e){
+    if(toc.classList.contains('pinned')&&!toc.contains(e.target))
+      toc.classList.remove('pinned');
+  });
+
   var tocLinks=document.querySelectorAll('#toc a');
   var targets=[];
   tocLinks.forEach(function(a){
@@ -1436,7 +1465,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
   }
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
-  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+
   tocLinks.forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();
@@ -1444,10 +1473,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
       var el=document.getElementById(id);
       if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
       var toc=document.getElementById('toc');
-      if(toc)toc.classList.remove('open');
+      if(toc&&window.innerWidth<=1050)toc.classList.remove('open');
     });
   });
-  /* 点击正文区域关闭移动端侧栏 */
+  /* 移动端点击正文关闭侧栏 */
   document.addEventListener('click',function(e){
     var toc=document.getElementById('toc');
     if(!toc||!toc.classList.contains('open'))return;

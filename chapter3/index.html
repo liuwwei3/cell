@@ -3,9 +3,9 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
 h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
@@ -52,13 +52,25 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
 #lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
-/* 左侧阅读索引 */
-#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+/* 左侧悬浮阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 34px; height: 100vh; overflow-y: auto; overflow-x: hidden;
   background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
   font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin;
+  transition: width 0.18s ease, box-shadow 0.18s ease; }
+#toc:hover, #toc.pinned { width: 250px; box-shadow: 2px 0 16px rgba(0,0,0,0.10); }
+#toc-inner { width: 250px; min-height: 100vh; padding-bottom: 30px; }
+#toc .toc-collapsed { writing-mode: vertical-rl; text-orientation: mixed;
+  font-size: 14px; font-weight: 600; color: #aaa; letter-spacing: 4px;
+  padding: 20px 10px; width: 34px; user-select: none; }
+#toc:hover .toc-collapsed, #toc.pinned .toc-collapsed { display: none; }
 #toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
-  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px;
+  display: flex; align-items: center; justify-content: space-between; }
+#toc .toc-title .pin-btn { font-size: 15px; cursor: pointer; color: #bbb; background: none;
+  border: none; padding: 2px 6px; line-height: 1; transition: color 0.12s; }
+#toc .toc-title .pin-btn:hover { color: #333; }
+#toc.pinned .toc-title .pin-btn { color: #333; }
 #toc ul { list-style: none; padding: 0; margin: 0; }
 #toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
   border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
@@ -66,110 +78,110 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
   font-size: 13.5px; border-left-color: transparent; }
 #toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
-#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+#toc li.toc-fig > a, #toc li.toc-tab > a {
   padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
 #toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
 #toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
-#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
-#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active {
   border-left-color: #999; background: #eee9e0; color: #555; }
 #toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
   background: #333; color: #fff; border: none; border-radius: 4px;
   padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
-@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media print { #toc, #toc-toggle { display: none !important; } }
 @media (max-width: 1050px) {
-  body { padding-left: 0; }
-  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
-  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc { width: 0; border-right: none; }
+  #toc.open { width: 250px; border-right: 1px solid #e5e2db; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
+  #toc .toc-collapsed { display: none; }
+  #toc.open .toc-collapsed { display: none; }
   #toc-toggle { display: block; }
   article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
 }</style></head><body>
 <button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
 <nav id="toc">
-<div class="toc-title">目录</div>
+<div id="toc-inner">
+<div class="toc-collapsed">目&nbsp;录</div>
+<div class="toc-title">目录<button class="pin-btn" id="toc-pin" title="固定/取消固定侧栏">⊳</button></div>
 <ul>
-<li class="toc-box"><a href="#box-G3-1">第3章 蛋白质结构与功能致病菌用来将蛋白质注入人体细胞以引发…</a></li>
-<li class="toc-fig"><a href="#fig-3-1">图3-1 · 蛋白质结构与功能概述。(a) 蛋白质具有层级结…</a></li>
+<li class="toc-fig"><a href="#fig-3-1">图3-1 · 蛋白质结构与功能概述</a></li>
 <li class="toc-sec"><a href="#sec-3.1">3.1 蛋白质的层级结构</a>
 <ul>
-<li class="toc-fig"><a href="#fig-3-2">图3-2 · 蛋白质层级的四个层次。(a) 由肽键连接在一起…</a></li>
-<li class="toc-fig"><a href="#fig-3-3">图3-3 · 多肽的结构。(a) 各个氨基酸通过肽键连接在一…</a></li>
-<li class="toc-fig"><a href="#fig-3-4">图3-4 · α 螺旋，蛋白质中常见的二级结构。多肽主链（以…</a></li>
-<li class="toc-fig"><a href="#fig-3-5">图3-5 · β 片层，蛋白质中另一种常见的二级结构。(a)…</a></li>
-<li class="toc-fig"><a href="#fig-3-6">图3-6 · β 转角的结构。β 转角由四个残基组成，使多肽…</a></li>
-<li class="toc-fig"><a href="#fig-3-7">图3-7 · 蛋白质折叠的油滴模型。多肽链的疏水和亲水残基可…</a></li>
-<li class="toc-fig"><a href="#fig-3-8">图3-8 · 实验性图：内在无序蛋白与有序蛋白结合的机制，以…</a></li>
-<li class="toc-fig"><a href="#fig-3-9">图3-9 · 可视化蛋白质 Ras 及其结合的 GDP 的五…</a></li>
-<li class="toc-fig"><a href="#fig-3-10">图3-10 · 蛋白质二级结构基序。(a) 卷曲螺旋基序，由…</a></li>
-<li class="toc-fig"><a href="#fig-3-11">图3-11 · 三级和四级结构层次。此处所示的蛋白质——血凝…</a></li>
-<li class="toc-fig"><a href="#fig-3-12">图3-12 · 蛋白质结构域的模块性。表皮生长因子（EGF）…</a></li>
-<li class="toc-fig"><a href="#fig-3-13">图3-13 · 分子机器：转录起始复合物。核心 RNA 聚合…</a></li>
-<li class="toc-fig"><a href="#fig-3-14">图3-14 · 珠蛋白家族的进化。(a) 血红蛋白是由两条 …</a></li>
+<li class="toc-fig"><a href="#fig-3-2">图3-2 · 蛋白质层级的四个层次</a></li>
+<li class="toc-fig"><a href="#fig-3-3">图3-3 · 多肽的结构</a></li>
+<li class="toc-fig"><a href="#fig-3-4">图3-4 · α 螺旋，蛋白质中常见的二级结构</a></li>
+<li class="toc-fig"><a href="#fig-3-5">图3-5 · β 片层，蛋白质中另一种常见的二级结构</a></li>
+<li class="toc-fig"><a href="#fig-3-6">图3-6 · β 转角的结构</a></li>
+<li class="toc-fig"><a href="#fig-3-7">图3-7 · 蛋白质折叠的油滴模型</a></li>
+<li class="toc-fig"><a href="#fig-3-8">图3-8 · 实验性图：内在无序蛋白与有序蛋白结合的机制，以及基于疏水性和净电荷…</a></li>
+<li class="toc-fig"><a href="#fig-3-9">图3-9 · 可视化蛋白质 Ras 及其结合的 GDP 的五种方式</a></li>
+<li class="toc-fig"><a href="#fig-3-10">图3-10 · 蛋白质二级结构基序</a></li>
+<li class="toc-fig"><a href="#fig-3-11">图3-11 · 三级和四级结构层次</a></li>
+<li class="toc-fig"><a href="#fig-3-12">图3-12 · 蛋白质结构域的模块性</a></li>
+<li class="toc-fig"><a href="#fig-3-13">图3-13 · 分子机器：转录起始复合物</a></li>
+<li class="toc-fig"><a href="#fig-3-14">图3-14 · 珠蛋白家族的进化</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-3.2">3.2 蛋白质折叠</a>
 <ul>
-<li class="toc-box"><a href="#box-G3-2">G3-2</a></li>
-<li class="toc-fig"><a href="#fig-3-15">图3-15 · 蛋白质中平面肽基之间的旋转。绕 Cα-氨基氮…</a></li>
-<li class="toc-fig"><a href="#fig-3-16">图3-16 · 假设的蛋白质折叠途径。单体蛋白质的折叠遵循一…</a></li>
-<li class="toc-fig"><a href="#fig-3-17">图3-17 · 分子伴侣介导的蛋白质折叠。(a) Hsp70…</a></li>
-<li class="toc-fig"><a href="#fig-3-18">图3-18 · 伴侣蛋白介导的蛋白质折叠。某些蛋白质的折叠依…</a></li>
-<li class="toc-fig"><a href="#fig-3-19">图3-19 · 脯氨酸顺/反异构化影响蛋白质折叠和结构。(a…</a></li>
-<li class="toc-fig"><a href="#fig-3-20">图3-20 · 错误折叠的蛋白质可形成基于交叉 β 片层结构…</a></li>
+<li class="toc-fig"><a href="#fig-3-15">图3-15 · 蛋白质中平面肽基之间的旋转</a></li>
+<li class="toc-fig"><a href="#fig-3-16">图3-16 · 假设的蛋白质折叠途径</a></li>
+<li class="toc-fig"><a href="#fig-3-17">图3-17 · 分子伴侣介导的蛋白质折叠</a></li>
+<li class="toc-fig"><a href="#fig-3-18">图3-18 · 伴侣蛋白介导的蛋白质折叠</a></li>
+<li class="toc-fig"><a href="#fig-3-19">图3-19 · 脯氨酸顺/反异构化影响蛋白质折叠和结构</a></li>
+<li class="toc-fig"><a href="#fig-3-20">图3-20 · 错误折叠的蛋白质可形成基于交叉 β 片层结构的有序淀粉样聚集体</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-3.3">3.3 蛋白质结合与酶催化</a>
 <ul>
-<li class="toc-fig"><a href="#fig-3-21">图3-21 · 抗体的蛋白质-配体结合。(a) 抗体的（表面…</a></li>
-<li class="toc-fig"><a href="#fig-3-22">图3-22 · 酶对化学反应活化能的影响。此假设反应路径描绘…</a></li>
-<li class="toc-fig"><a href="#fig-3-23">图3-23 · 酶胰蛋白酶的活性位点。(a) 酶的活性位点（…</a></li>
-<li class="toc-fig"><a href="#fig-3-24">图3-24 · 酶催化反应的 Km 和 Vmax。Vmax …</a></li>
-<li class="toc-fig"><a href="#fig-3-25">图3-25 · 酶反应机制的示意模型。酶动力学表明酶（E）在…</a></li>
-<li class="toc-box"><a href="#box-G3-3">G3-3</a></li>
-<li class="toc-fig"><a href="#fig-3-26">图3-26 · 未催化和多步酶催化反应的自由能反应曲线。(a…</a></li>
-<li class="toc-fig"><a href="#fig-3-27">图3-27 · 胰蛋白酶样丝氨酸蛋白酶活性位点中的底物结合。…</a></li>
-<li class="toc-fig"><a href="#fig-3-28">图3-28 · 丝氨酸蛋白酶介导的肽键水解机制。丝氨酸蛋白酶…</a></li>
-<li class="toc-fig"><a href="#fig-3-29">图3-29 · 酶活性的 pH 依赖性。在某些情况下，酶活性…</a></li>
-<li class="toc-fig"><a href="#fig-3-30">图3-30 · 酶组装成高效多酶复合物。此处所示的假设反应通…</a></li>
+<li class="toc-fig"><a href="#fig-3-21">图3-21 · 抗体的蛋白质-配体结合</a></li>
+<li class="toc-fig"><a href="#fig-3-22">图3-22 · 酶对化学反应活化能的影响</a></li>
+<li class="toc-fig"><a href="#fig-3-23">图3-23 · 酶胰蛋白酶的活性位点</a></li>
+<li class="toc-fig"><a href="#fig-3-24">图3-24 · 酶催化反应的 Km 和 Vmax</a></li>
+<li class="toc-fig"><a href="#fig-3-25">图3-25 · 酶反应机制的示意模型</a></li>
+<li class="toc-fig"><a href="#fig-3-26">图3-26 · 未催化和多步酶催化反应的自由能反应曲线</a></li>
+<li class="toc-fig"><a href="#fig-3-27">图3-27 · 胰蛋白酶样丝氨酸蛋白酶活性位点中的底物结合</a></li>
+<li class="toc-fig"><a href="#fig-3-28">图3-28 · 丝氨酸蛋白酶介导的肽键水解机制</a></li>
+<li class="toc-fig"><a href="#fig-3-29">图3-29 · 酶活性的 pH 依赖性</a></li>
+<li class="toc-fig"><a href="#fig-3-30">图3-30 · 酶组装成高效多酶复合物</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-3.4">3.4 蛋白质功能的调控</a>
 <ul>
-<li class="toc-fig"><a href="#fig-3-31">图3-31 · 实验性图：泛素和蛋白酶体介导的蛋白水解。(a…</a></li>
-<li class="toc-fig"><a href="#fig-3-32">图3-32 · 实验性图：血红蛋白协同结合氧。每个四聚体血红…</a></li>
-<li class="toc-fig"><a href="#fig-3-33">图3-33 · Ca²⁺ 结合钙调蛋白诱导的构象变化。钙调蛋…</a></li>
-<li class="toc-fig"><a href="#fig-3-34">图3-34 · GTP 酶开关。GTP 酶是结合 GTP 并…</a></li>
-<li class="toc-fig"><a href="#fig-3-35">图3-35 · 通过磷酸化和去磷酸化调控蛋白质活性。蛋白质的…</a></li>
-<li class="toc-fig"><a href="#fig-3-36">图3-36 · 通过泛素间异肽键所用赖氨酸确定多聚泛素功能。…</a></li>
+<li class="toc-fig"><a href="#fig-3-31">图3-31 · 实验性图：泛素和蛋白酶体介导的蛋白水解</a></li>
+<li class="toc-fig"><a href="#fig-3-32">图3-32 · 实验性图：血红蛋白协同结合氧</a></li>
+<li class="toc-fig"><a href="#fig-3-33">图3-33 · Ca²⁺ 结合钙调蛋白诱导的构象变化</a></li>
+<li class="toc-fig"><a href="#fig-3-34">图3-34 · GTP 酶开关</a></li>
+<li class="toc-fig"><a href="#fig-3-35">图3-35 · 通过磷酸化和去磷酸化调控蛋白质活性</a></li>
+<li class="toc-fig"><a href="#fig-3-36">图3-36 · 通过泛素间异肽键所用赖氨酸确定多聚泛素功能</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-3.5">3.5 蛋白质的纯化、检测与表征</a>
 <ul>
-<li class="toc-fig"><a href="#fig-3-37">图3-37 · 实验性图：离心技术分离质量或密度不同的颗粒。…</a></li>
-<li class="toc-fig"><a href="#fig-3-38">图3-38 · 实验性图：SDS-聚丙烯酰胺凝胶电泳（SDS…</a></li>
-<li class="toc-fig"><a href="#fig-3-39">图3-39 · 实验性图：双向凝胶电泳基于电荷和质量分离蛋白…</a></li>
-<li class="toc-fig"><a href="#fig-3-40">图3-40 · 实验性图：三种常用液相色谱技术基于质量、电荷…</a></li>
-<li class="toc-fig"><a href="#fig-3-41">图3-41 · 实验性图：免疫印迹（Western 印迹）和…</a></li>
-<li class="toc-tab"><a href="#tab-T3-1">表T3-1 · 生物研究中常用的放射性同位素。同位素 半衰期…</a></li>
-<li class="toc-fig"><a href="#fig-3-42">图3-42 · 实验性图：脉冲追踪实验可追踪细胞内蛋白质修饰…</a></li>
-<li class="toc-fig"><a href="#fig-3-43">图3-43 · 实验性图：分子质量可由基质辅助激光解吸/电离…</a></li>
-<li class="toc-fig"><a href="#fig-3-44">图3-44 · 实验性图：蛋白质和肽的分子质量可由电喷雾电离…</a></li>
-<li class="toc-fig"><a href="#fig-3-45">图3-45 · 实验性图：X 射线晶体学提供衍射数据，可由此…</a></li>
-<li class="toc-fig"><a href="#fig-3-46">图3-46 · 实验性图：人线粒体核糖体结构的冷冻电子显微镜…</a></li>
+<li class="toc-fig"><a href="#fig-3-37">图3-37 · 实验性图：离心技术分离质量或密度不同的颗粒</a></li>
+<li class="toc-fig"><a href="#fig-3-38">图3-38 · 实验性图：SDS-聚丙烯酰胺凝胶电泳（SDS-PAGE）主要基于…</a></li>
+<li class="toc-fig"><a href="#fig-3-39">图3-39 · 实验性图：双向凝胶电泳基于电荷和质量分离蛋白质</a></li>
+<li class="toc-fig"><a href="#fig-3-40">图3-40 · 实验性图：三种常用液相色谱技术基于质量、电荷或对特定结合伙伴的亲…</a></li>
+<li class="toc-fig"><a href="#fig-3-41">图3-41 · 实验性图：免疫印迹（Western 印迹）和共免疫沉淀（co-I…</a></li>
+<li class="toc-tab"><a href="#tab-T3-1">表T3-1 · 生物研究中常用的放射性同位素</a></li>
+<li class="toc-fig"><a href="#fig-3-42">图3-42 · 实验性图：脉冲追踪实验可追踪细胞内蛋白质修饰的途径</a></li>
+<li class="toc-fig"><a href="#fig-3-43">图3-43 · 实验性图：分子质量可由基质辅助激光解吸/电离飞行时间（MALDI…</a></li>
+<li class="toc-fig"><a href="#fig-3-44">图3-44 · 实验性图：蛋白质和肽的分子质量可由电喷雾电离离子阱质谱确定</a></li>
+<li class="toc-fig"><a href="#fig-3-45">图3-45 · 实验性图：X 射线晶体学提供衍射数据，可由此确定蛋白质的三维结构</a></li>
+<li class="toc-fig"><a href="#fig-3-46">图3-46 · 实验性图：人线粒体核糖体结构的冷冻电子显微镜分析</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-3.6">3.6 蛋白质组学</a>
 <ul>
-<li class="toc-fig"><a href="#fig-3-47">图3-47 · 实验性图：LC-MS/MS 通过与蛋白质数据…</a></li>
-<li class="toc-fig"><a href="#fig-3-48">图3-48 · 实验性图：密度梯度离心和 LC-MS/MS …</a></li>
+<li class="toc-fig"><a href="#fig-3-47">图3-47 · 实验性图：LC-MS/MS 通过与蛋白质数据库比较用于鉴定复杂生…</a></li>
+<li class="toc-fig"><a href="#fig-3-48">图3-48 · 实验性图：密度梯度离心和 LC-MS/MS 可用于鉴定细胞器中的…</a></li>
 </ul>
 </li>
-</ul></nav>
+</ul>
+</div></nav>
 <article>
 <h1>第3章 蛋白质结构与功能</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Protein Structure and Function · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg" id="box-G3-1">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G3-1_1.png" alt="G3-1" onclick="lightbox(this.src)">
 </div>
 <div class="intro-block"><span class="intro-title">第3章 蛋白质结构与功能</span>致病菌用来将蛋白质注入人体细胞以引发感染的蛋白质"针"的分子带状模型。许多致病菌——包括鼠伤寒沙门菌（食物中毒）和鼠疫耶尔森菌（腺鼠疫）——使用称为 III 型分泌系统的注射器样蛋白质复合物，将蛋白质注入其哺乳动物靶细胞。沙门菌所用注射器针头部分的结构，是利用核磁共振（NMR）、电子显微镜与计算方法相结合而测定的，它是一根长管，由许多 α 螺旋（绘制为盘绕的丝带）构成针管的壁。[Data from A. Loquet et al., 2012, Nature 486:276, PDB ID 2lpz.]</div>
@@ -540,7 +552,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>如上所述，在蛋白质的建筑学中，"形式追随功能"。因此，多肽必须以正确的氨基酸序列合成，并折叠成正确的三维构象，具备适当的二级、三级乃至四级结构，才能在细胞内外发挥其生物学作用。具有正确序列的蛋白质是如何生成的？多肽链通过一个称为翻译的复杂过程合成，该过程发生在细胞质中一个称为核糖体的大型蛋白质-核酸复合物上。翻译过程中，信使 RNA（mRNA）的序列作为装配相应氨基酸序列的模板。mRNA 最初由一个称为转录的过程产生，借此 DNA 中的核苷酸序列被细胞核内的转录机器转化为 mRNA 序列。转录和翻译的复杂细节在第 5 章讨论。此处我们描述新生多肽链从核糖体出来时正确折叠的关键决定因素。</p>
 <p>平面肽键限制蛋白质可折叠的形状</p>
 <p>多肽一个限制链如何折叠的关键结构特征是肽键的平面结构。图 3-3 展示了多肽链中肽键的酰胺基。由于肽键本身表现得有点像平面双键（中和右），</p>
-<div class="boximg" id="box-G3-2">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G3-2_1.png" alt="G3-2" onclick="lightbox(this.src)">
 </div>
 <p>肽键两侧的多肽链部分（P1 和 P2）可相对于肽键取反式（中）或顺式（右）构型。我们在第 2 章见过不饱和脂肪酸中碳-碳双键的类似顺式和反式异构体。晶体结构分析表明，在蛋白质中，P2 位置为非脯氨酸残基的肽键约 99.97% 处于反式构型。（我们将稍后考虑 P2 为脯氨酸的情况。）在肽键中，羰基碳、酰胺氮及直接与它们键合的原子都必须位于一个固定平面内（图 3-15）；肽键本身几乎不能旋转。因此，多肽链中唯一的灵活性--使其能扭曲转向从而折叠成不同三维</p>
@@ -816,7 +828,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">enzyme kinetics</td><td class="gl-zh">酶动力学</td></tr>
   </table>
 </figure>
-<div class="boximg" id="box-G3-3">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G3-3_1.png" alt="G3-3" onclick="lightbox(this.src)">
 </div>
 <p>其中 Michaelis 常数 Km，是衡量酶对其底物亲和力的指标，是产生半最大反应速率（即图 3-24 中的 ½ Vmax）的底物浓度。Km 在性质上与解离常数 Kd 相似但不相同（见第 2 章）。Km 值越小，酶从稀底物溶液中生成产物的效率越高，达到半最大速度所需的底物浓度越低。Kd 越小，达到 50% 结合所需的配体浓度越低。细胞中各种小分子的浓度差异很大，作用于它们的不同酶的 Km 值也如此。一个有用的经验法则是，底物的胞内浓度通常与结合酶的 Km 值大致相同或略高。</p>
@@ -1621,8 +1633,23 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mouseup',onUp);
   }
 })();
-/* 阅读索引滚动监视 */
+/* 阅读索引：悬浮交互 + 滚动监视 */
 (function(){
+  var toc=document.getElementById('toc');
+  var pinBtn=document.getElementById('toc-pin');
+  if(pinBtn){
+    pinBtn.addEventListener('click',function(e){
+      e.stopPropagation();
+      toc.classList.toggle('pinned');
+      pinBtn.textContent=toc.classList.contains('pinned')?'⊲':'⊳';
+    });
+  }
+  /* 点击正文区域取消固定 */
+  document.addEventListener('click',function(e){
+    if(toc.classList.contains('pinned')&&!toc.contains(e.target))
+      toc.classList.remove('pinned');
+  });
+
   var tocLinks=document.querySelectorAll('#toc a');
   var targets=[];
   tocLinks.forEach(function(a){
@@ -1642,7 +1669,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
   }
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
-  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+
   tocLinks.forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();
@@ -1650,10 +1677,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
       var el=document.getElementById(id);
       if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
       var toc=document.getElementById('toc');
-      if(toc)toc.classList.remove('open');
+      if(toc&&window.innerWidth<=1050)toc.classList.remove('open');
     });
   });
-  /* 点击正文区域关闭移动端侧栏 */
+  /* 移动端点击正文关闭侧栏 */
   document.addEventListener('click',function(e){
     var toc=document.getElementById('toc');
     if(!toc||!toc.classList.contains('open'))return;

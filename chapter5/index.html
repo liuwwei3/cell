@@ -3,9 +3,9 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
 h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
@@ -52,13 +52,25 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
 #lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
-/* 左侧阅读索引 */
-#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+/* 左侧悬浮阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 34px; height: 100vh; overflow-y: auto; overflow-x: hidden;
   background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
   font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin;
+  transition: width 0.18s ease, box-shadow 0.18s ease; }
+#toc:hover, #toc.pinned { width: 250px; box-shadow: 2px 0 16px rgba(0,0,0,0.10); }
+#toc-inner { width: 250px; min-height: 100vh; padding-bottom: 30px; }
+#toc .toc-collapsed { writing-mode: vertical-rl; text-orientation: mixed;
+  font-size: 14px; font-weight: 600; color: #aaa; letter-spacing: 4px;
+  padding: 20px 10px; width: 34px; user-select: none; }
+#toc:hover .toc-collapsed, #toc.pinned .toc-collapsed { display: none; }
 #toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
-  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px;
+  display: flex; align-items: center; justify-content: space-between; }
+#toc .toc-title .pin-btn { font-size: 15px; cursor: pointer; color: #bbb; background: none;
+  border: none; padding: 2px 6px; line-height: 1; transition: color 0.12s; }
+#toc .toc-title .pin-btn:hover { color: #333; }
+#toc.pinned .toc-title .pin-btn { color: #333; }
 #toc ul { list-style: none; padding: 0; margin: 0; }
 #toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
   border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
@@ -66,116 +78,116 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
   font-size: 13.5px; border-left-color: transparent; }
 #toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
-#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+#toc li.toc-fig > a, #toc li.toc-tab > a {
   padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
 #toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
 #toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
-#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
-#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active {
   border-left-color: #999; background: #eee9e0; color: #555; }
 #toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
   background: #333; color: #fff; border: none; border-radius: 4px;
   padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
-@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media print { #toc, #toc-toggle { display: none !important; } }
 @media (max-width: 1050px) {
-  body { padding-left: 0; }
-  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
-  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc { width: 0; border-right: none; }
+  #toc.open { width: 250px; border-right: 1px solid #e5e2db; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
+  #toc .toc-collapsed { display: none; }
+  #toc.open .toc-collapsed { display: none; }
   #toc-toggle { display: block; }
   article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
 }</style></head><body>
 <button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
 <nav id="toc">
-<div class="toc-title">目录</div>
+<div id="toc-inner">
+<div class="toc-collapsed">目&nbsp;录</div>
+<div class="toc-title">目录<button class="pin-btn" id="toc-pin" title="固定/取消固定侧栏">⊳</button></div>
 <ul>
-<li class="toc-box"><a href="#box-G5-1">第5章 基本分子遗传机制来自非洲爪蟾卵母细胞的一个核糖体RN…</a></li>
-<li class="toc-fig"><a href="#fig-5-1">图5-1 · 四个基本分子遗传过程概览。本章涵盖导致蛋白质产…</a></li>
+<li class="toc-fig"><a href="#fig-5-1">图5-1 · 四个基本分子遗传过程概览</a></li>
 <li class="toc-sec"><a href="#sec-5.1">5.1 核酸的结构</a>
 <ul>
-<li class="toc-fig"><a href="#fig-5-2">图5-2 · 核酸链的化学方向性。此处展示了一条仅含三个碱基…</a></li>
-<li class="toc-fig"><a href="#fig-5-3">图5-3 · DNA双螺旋。（a）B型DNA的空间填充模型，…</a></li>
-<li class="toc-fig"><a href="#fig-5-4">图5-4 · A型和B型DNA的比较。两种结构中两条多核苷酸…</a></li>
-<li class="toc-fig"><a href="#fig-5-5">图5-5 · 与蛋白质的相互作用可使DNA弯曲。标准B型DN…</a></li>
-<li class="toc-fig"><a href="#fig-5-6">图5-6 · RNA的碱催化水解。RNA中的2′-羟基可作为…</a></li>
-<li class="toc-fig"><a href="#fig-5-7">实验图5-7 · DNA的G·C含量影响解链温度。DNA变性…</a></li>
-<li class="toc-fig"><a href="#fig-5-8">实验图5-8 · 拓扑异构酶I缓解DNA的扭转应力。（a）S…</a></li>
-<li class="toc-fig"><a href="#fig-5-9">图5-9 · RNA的二级和三级结构。（a）发夹、茎环和其他…</a></li>
+<li class="toc-fig"><a href="#fig-5-2">图5-2 · 核酸链的化学方向性</a></li>
+<li class="toc-fig"><a href="#fig-5-3">图5-3 · DNA双螺旋</a></li>
+<li class="toc-fig"><a href="#fig-5-4">图5-4 · A型和B型DNA的比较</a></li>
+<li class="toc-fig"><a href="#fig-5-5">图5-5 · 与蛋白质的相互作用可使DNA弯曲</a></li>
+<li class="toc-fig"><a href="#fig-5-6">图5-6 · RNA的碱催化水解</a></li>
+<li class="toc-fig"><a href="#fig-5-7">实验图5-7 · DNA的G·C含量影响解链温度</a></li>
+<li class="toc-fig"><a href="#fig-5-8">实验图5-8 · 拓扑异构酶I缓解DNA的扭转应力</a></li>
+<li class="toc-fig"><a href="#fig-5-9">图5-9 · RNA的二级和三级结构</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-5.2">5.2 蛋白质编码基因的转录与功能性mRNA的形成</a>
 <ul>
-<li class="toc-fig"><a href="#fig-5-10">图5-10 · RNA按5′→3′方向合成。（a）转录过程中…</a></li>
-<li class="toc-fig"><a href="#fig-5-11">图5-11 · 转录的三个阶段。在转录起始期，RNA聚合酶形…</a></li>
-<li class="toc-fig"><a href="#fig-5-12">图5-12 · 细菌RNA聚合酶。此结构对应于图5-11中延…</a></li>
-<li class="toc-fig"><a href="#fig-5-13">图5-13 · 原核生物和真核生物的基因组织。（a）色氨酸（…</a></li>
-<li class="toc-fig"><a href="#fig-5-14">图5-14 · 5′甲基化帽的结构。真核mRNA上5′甲基化…</a></li>
-<li class="toc-fig"><a href="#fig-5-15">图5-15 · RNA加工概述。RNA加工在真核生物中产生功…</a></li>
-<li class="toc-fig"><a href="#fig-5-16">图5-16 · 可变剪接。约75 kb的纤连蛋白基因（上）包…</a></li>
+<li class="toc-fig"><a href="#fig-5-10">图5-10 · RNA按5′→3′方向合成</a></li>
+<li class="toc-fig"><a href="#fig-5-11">图5-11 · 转录的三个阶段</a></li>
+<li class="toc-fig"><a href="#fig-5-12">图5-12 · 细菌RNA聚合酶</a></li>
+<li class="toc-fig"><a href="#fig-5-13">图5-13 · 原核生物和真核生物的基因组织</a></li>
+<li class="toc-fig"><a href="#fig-5-14">图5-14 · 5′甲基化帽的结构</a></li>
+<li class="toc-fig"><a href="#fig-5-15">图5-15 · RNA加工概述</a></li>
+<li class="toc-fig"><a href="#fig-5-16">图5-16 · 可变剪接</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-5.3">5.3 mRNA被tRNA解码</a>
 <ul>
-<li class="toc-fig"><a href="#fig-5-17">图5-17 · RNA在蛋白质合成中的三种作用。信使RNA（…</a></li>
+<li class="toc-fig"><a href="#fig-5-17">图5-17 · RNA在蛋白质合成中的三种作用</a></li>
 <li class="toc-tab"><a href="#tab-T5-1">表T5-1 · 遗传密码（密码子到氨基酸）*</a></li>
-<li class="toc-fig"><a href="#fig-5-18">图5-18 · mRNA序列中的多重阅读框。如果所示mRNA…</a></li>
+<li class="toc-fig"><a href="#fig-5-18">图5-18 · mRNA序列中的多重阅读框</a></li>
 <li class="toc-tab"><a href="#tab-T5-2">表T5-2 · 通用遗传密码的已知偏离</a></li>
-<li class="toc-fig"><a href="#fig-5-19">图5-19 · 将核酸序列翻译为氨基酸序列。将mRNA中的核…</a></li>
-<li class="toc-fig"><a href="#fig-5-20">图5-20 · tRNA的结构。尽管不同tRNA的精确核苷酸…</a></li>
-<li class="toc-fig"><a href="#fig-5-21">图5-21 · 摆动位置的非标准碱基配对。mRNA密码子第三…</a></li>
+<li class="toc-fig"><a href="#fig-5-19">图5-19 · 将核酸序列翻译为氨基酸序列</a></li>
+<li class="toc-fig"><a href="#fig-5-20">图5-20 · tRNA的结构</a></li>
+<li class="toc-fig"><a href="#fig-5-21">图5-21 · 摆动位置的非标准碱基配对</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-5.4">5.4 蛋白质在核糖体上的逐步合成</a>
 <ul>
 <li class="toc-tab"><a href="#tab-T5-3">表T5-3 · 核糖体组分</a></li>
-<li class="toc-fig"><a href="#fig-5-22">图5-22 · 细菌核糖体的结构。嗜热栖热菌核糖体沿大亚基（…</a></li>
-<li class="toc-fig"><a href="#fig-5-23">图5-23 · 所有生命域核糖体中心的共同核心结构以及细菌、…</a></li>
-<li class="toc-fig"><a href="#fig-5-24">图5-24 · 真核生物中的翻译起始。当前真核起始模型涉及八…</a></li>
-<li class="toc-fig"><a href="#fig-5-25">图5-25 · 真核生物中的链延伸。一旦80S核糖体在P位点…</a></li>
-<li class="toc-fig"><a href="#fig-5-26">图5-26 · 真核生物中的翻译终止。当携带新生蛋白链的核糖…</a></li>
-<li class="toc-fig"><a href="#fig-5-27">实验图5-27 · mRNA的环状结构增加翻译效率。真核mR…</a></li>
+<li class="toc-fig"><a href="#fig-5-22">图5-22 · 细菌核糖体的结构</a></li>
+<li class="toc-fig"><a href="#fig-5-23">图5-23 · 所有生命域核糖体中心的共同核心结构以及细菌、酵母和人核糖体的比较</a></li>
+<li class="toc-fig"><a href="#fig-5-24">图5-24 · 真核生物中的翻译起始</a></li>
+<li class="toc-fig"><a href="#fig-5-25">图5-25 · 真核生物中的链延伸</a></li>
+<li class="toc-fig"><a href="#fig-5-26">图5-26 · 真核生物中的翻译终止</a></li>
+<li class="toc-fig"><a href="#fig-5-27">实验图5-27 · mRNA的环状结构增加翻译效率</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-5.5">5.5 DNA复制</a>
 <ul>
-<li class="toc-fig"><a href="#fig-5-28">实验图5-28 · Meselson-Stahl实验。此实验…</a></li>
-<li class="toc-box"><a href="#box-G5-2">G5-2</a></li>
-<li class="toc-fig"><a href="#fig-5-29">图5-29 · 前导链和滞后链DNA合成。核苷酸由DNA聚合…</a></li>
-<li class="toc-fig"><a href="#fig-5-30">图5-30 · SV40 DNA复制叉模型。（a）大T抗原（…</a></li>
-<li class="toc-fig"><a href="#fig-5-31">实验图5-31 · SV40 DNA中的双向复制。复制中SV…</a></li>
-<li class="toc-fig"><a href="#fig-5-32">图5-32 · DNA双向复制机制。此处左侧的复制叉与图5-…</a></li>
+<li class="toc-fig"><a href="#fig-5-28">实验图5-28 · Meselson-Stahl实验</a></li>
+<li class="toc-fig"><a href="#fig-5-29">图5-29 · 前导链和滞后链DNA合成</a></li>
+<li class="toc-fig"><a href="#fig-5-30">图5-30 · SV40 DNA复制叉模型</a></li>
+<li class="toc-fig"><a href="#fig-5-31">实验图5-31 · SV40 DNA中的双向复制</a></li>
+<li class="toc-fig"><a href="#fig-5-32">图5-32 · DNA双向复制机制</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-5.6">5.6 DNA修复与重组</a>
 <ul>
-<li class="toc-fig"><a href="#fig-5-33">图5-33 · DNA聚合酶的校对功能。所有DNA聚合酶具有…</a></li>
-<li class="toc-fig"><a href="#fig-5-34">图5-34 · 脱氨导致点突变。自发性点突变可由5-甲基胞嘧…</a></li>
-<li class="toc-fig"><a href="#fig-5-35">图5-35 · T·G错配的碱基切除修复。特异性识别G·T错…</a></li>
-<li class="toc-fig"><a href="#fig-5-36">图5-36 · 人细胞中的错配切除修复。错配切除修复途径纠正…</a></li>
-<li class="toc-fig"><a href="#fig-5-37">图5-37 · 胸腺嘧啶-胸腺嘧啶二聚体的形成。（a）UV照…</a></li>
-<li class="toc-fig"><a href="#fig-5-38">图5-38 · 人细胞中的核苷酸切除修复。引起双螺旋扭曲的D…</a></li>
-<li class="toc-fig"><a href="#fig-5-39">图5-39 · 非同源末端连接。（a）当没有姐妹染色单体可用…</a></li>
-<li class="toc-fig"><a href="#fig-5-40">图5-40 · 塌陷复制叉的重组修复。亲本链为浅蓝色和深蓝色…</a></li>
-<li class="toc-fig"><a href="#fig-5-41">图5-41 · 通过同源重组修复双链断裂。为简化，每个DNA…</a></li>
-<li class="toc-fig"><a href="#fig-5-42">图5-42 · Holliday结构的替代解析方式。对角线和…</a></li>
+<li class="toc-fig"><a href="#fig-5-33">图5-33 · DNA聚合酶的校对功能</a></li>
+<li class="toc-fig"><a href="#fig-5-34">图5-34 · 脱氨导致点突变</a></li>
+<li class="toc-fig"><a href="#fig-5-35">图5-35 · T·G错配的碱基切除修复</a></li>
+<li class="toc-fig"><a href="#fig-5-36">图5-36 · 人细胞中的错配切除修复</a></li>
+<li class="toc-fig"><a href="#fig-5-37">图5-37 · 胸腺嘧啶-胸腺嘧啶二聚体的形成</a></li>
+<li class="toc-fig"><a href="#fig-5-38">图5-38 · 人细胞中的核苷酸切除修复</a></li>
+<li class="toc-fig"><a href="#fig-5-39">图5-39 · 非同源末端连接</a></li>
+<li class="toc-fig"><a href="#fig-5-40">图5-40 · 塌陷复制叉的重组修复</a></li>
+<li class="toc-fig"><a href="#fig-5-41">图5-41 · 通过同源重组修复双链断裂</a></li>
+<li class="toc-fig"><a href="#fig-5-42">图5-42 · Holliday结构的替代解析方式</a></li>
 </ul>
 </li>
 <li class="toc-sec"><a href="#sec-5.7">5.7 病毒：细胞遗传系统的寄生体</a>
 <ul>
-<li class="toc-fig"><a href="#fig-5-43">图5-43 · 病毒粒子结构。（a）螺旋形烟草花叶病毒。（b…</a></li>
-<li class="toc-fig"><a href="#fig-5-44">实验图5-44 · 噬菌斑测定。噬菌斑测定确定病毒悬液中的感…</a></li>
-<li class="toc-fig"><a href="#fig-5-45">图5-45 · 无包膜细菌病毒的裂解性复制周期。噬菌体T4具…</a></li>
-<li class="toc-fig"><a href="#fig-5-46">图5-46 · 有包膜动物病毒的裂解性复制周期。狂犬病毒是一…</a></li>
-<li class="toc-fig"><a href="#fig-5-47">实验图5-47 · 子代病毒粒子通过出芽释放。有包膜病毒的子…</a></li>
-<li class="toc-fig"><a href="#fig-5-48">图5-48 · 逆转录病毒生命周期。逆转录病毒具有两条相同的…</a></li>
-<li class="toc-box"><a href="#box-G5-3">G5-3</a></li>
+<li class="toc-fig"><a href="#fig-5-43">图5-43 · 病毒粒子结构</a></li>
+<li class="toc-fig"><a href="#fig-5-44">实验图5-44 · 噬菌斑测定</a></li>
+<li class="toc-fig"><a href="#fig-5-45">图5-45 · 无包膜细菌病毒的裂解性复制周期</a></li>
+<li class="toc-fig"><a href="#fig-5-46">图5-46 · 有包膜动物病毒的裂解性复制周期</a></li>
+<li class="toc-fig"><a href="#fig-5-47">实验图5-47 · 子代病毒粒子通过出芽释放</a></li>
+<li class="toc-fig"><a href="#fig-5-48">图5-48 · 逆转录病毒生命周期</a></li>
 </ul>
 </li>
-</ul></nav>
+</ul>
+</div></nav>
 <article>
 <h1>第5章 基本分子遗传机制</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Fundamental Molecular Genetic Mechanisms · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg" id="box-G5-1">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G5-1_1.png" alt="G5-1" onclick="lightbox(this.src)">
 </div>
 <div class="intro-block"><span class="intro-title">第5章 基本分子遗传机制</span>来自非洲爪蟾卵母细胞的一个核糖体RNA转录单位的彩色透射电子显微照片。转录从左到右进行，新生的核糖体核蛋白复合物（rRNPs）随着每个相继的RNA聚合酶I分子沿中央DNA模板移动而逐渐增长。在此制备中，每个rRNP定向于正在转录的DNA中心链的上方或下方，因此整体形状类似羽毛。在活细胞的核仁中，新生的rRNPs向各个方向延伸，如同瓶刷。[Professor Oscar L. Miller/Science Photo Library.]</div>
@@ -857,7 +869,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>氧与 dNTP 的 α 磷酸之间形成磷酸酯键（见图 5-10a）。如前所述，RNA 聚合酶可以在双链 DNA 上找到合适的转录起始位点，并起始合成与模板 DNA 链互补的 RNA（见图 5-11）。相比之下，DNA 聚合酶不能从头起始链合成；相反，它们需要一条短的、预先存在的 RNA 或 DNA 链（称为引物）来开始链增长。引物与模板链碱基配对后，DNA 聚合酶按照模板链的序列</p>
-<div class="boximg" id="box-G5-2">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G5-2_1.png" alt="G5-2" onclick="lightbox(this.src)">
 </div>
 <p>将脱氧核苷酸添加到引物 3′ 端的游离羟基上：</p>
@@ -1293,7 +1305,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>⎯⎯⎯⎯→ DNA解旋方向</p>
 <p>Asn = AAU Cys = TCG Gly = CAG His = CAU Lys = AAG</p>
 <p>Met = AUG Phe = UUC Ser = AGC Tyr = UAC Val = GUC; GUA</p>
-<div class="boximg" id="box-G5-3">
+<div class="boximg">
   <img class="zoomable" src="figures/box_G5-3_1.png" alt="G5-3" onclick="lightbox(this.src)">
 </div>
 <p>17. a. 观察上图。解释为什么在产生滞后链时有必要形成冈崎片段（而不是连续链）。</p>
@@ -1394,8 +1406,23 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mouseup',onUp);
   }
 })();
-/* 阅读索引滚动监视 */
+/* 阅读索引：悬浮交互 + 滚动监视 */
 (function(){
+  var toc=document.getElementById('toc');
+  var pinBtn=document.getElementById('toc-pin');
+  if(pinBtn){
+    pinBtn.addEventListener('click',function(e){
+      e.stopPropagation();
+      toc.classList.toggle('pinned');
+      pinBtn.textContent=toc.classList.contains('pinned')?'⊲':'⊳';
+    });
+  }
+  /* 点击正文区域取消固定 */
+  document.addEventListener('click',function(e){
+    if(toc.classList.contains('pinned')&&!toc.contains(e.target))
+      toc.classList.remove('pinned');
+  });
+
   var tocLinks=document.querySelectorAll('#toc a');
   var targets=[];
   tocLinks.forEach(function(a){
@@ -1415,7 +1442,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
   }
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
-  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+
   tocLinks.forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();
@@ -1423,10 +1450,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
       var el=document.getElementById(id);
       if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
       var toc=document.getElementById('toc');
-      if(toc)toc.classList.remove('open');
+      if(toc&&window.innerWidth<=1050)toc.classList.remove('open');
     });
   });
-  /* 点击正文区域关闭移动端侧栏 */
+  /* 移动端点击正文关闭侧栏 */
   document.addEventListener('click',function(e){
     var toc=document.getElementById('toc');
     if(!toc||!toc.classList.contains('open'))return;
