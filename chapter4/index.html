@@ -52,25 +52,16 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
 #lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
-/* 左侧悬浮阅读索引 */
-#toc { position: fixed; left: 0; top: 0; width: 34px; height: 100vh; overflow-y: auto; overflow-x: hidden;
+/* 左侧阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; overflow-y: auto;
   background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
   font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   font-size: 13px; line-height: 1.55; scrollbar-width: thin;
-  transition: width 0.18s ease, box-shadow 0.18s ease; }
-#toc:hover, #toc.pinned { width: 250px; box-shadow: 2px 0 16px rgba(0,0,0,0.10); }
-#toc-inner { width: 250px; min-height: 100vh; padding-bottom: 30px; }
-#toc .toc-collapsed { writing-mode: vertical-rl; text-orientation: mixed;
-  font-size: 14px; font-weight: 600; color: #aaa; letter-spacing: 4px;
-  padding: 20px 10px; width: 34px; user-select: none; }
-#toc:hover .toc-collapsed, #toc.pinned .toc-collapsed { display: none; }
+  transition: left 0.25s ease; }
+#toc.hidden { left: -250px; }
+#toc-inner { padding-bottom: 30px; }
 #toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
-  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px;
-  display: flex; align-items: center; justify-content: space-between; }
-#toc .toc-title .pin-btn { font-size: 15px; cursor: pointer; color: #bbb; background: none;
-  border: none; padding: 2px 6px; line-height: 1; transition: color 0.12s; }
-#toc .toc-title .pin-btn:hover { color: #333; }
-#toc.pinned .toc-title .pin-btn { color: #333; }
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
 #toc ul { list-style: none; padding: 0; margin: 0; }
 #toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
   border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
@@ -84,23 +75,25 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 #toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
 #toc li.toc-fig > a.active, #toc li.toc-tab > a.active {
   border-left-color: #999; background: #eee9e0; color: #555; }
-#toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
-  background: #333; color: #fff; border: none; border-radius: 4px;
-  padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
+/* 折叠/展开箭头 */
+#toc-toggle { position: fixed; left: 250px; top: 50%; transform: translateY(-50%); z-index: 101;
+  background: #fafaf7; border: 1px solid #e5e2db; border-left: none;
+  color: #666; cursor: pointer; font-size: 24px; padding: 20px 7px;
+  border-radius: 0 7px 7px 0; transition: left 0.25s ease, color 0.12s, background 0.12s;
+  line-height: 1; user-select: none; }
+#toc-toggle:hover { color: #333; background: #f0ede6; }
+#toc.hidden + #toc-toggle { left: 0; }
 @media print { #toc, #toc-toggle { display: none !important; } }
 @media (max-width: 1050px) {
-  #toc { width: 0; border-right: none; }
-  #toc.open { width: 250px; border-right: 1px solid #e5e2db; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
-  #toc .toc-collapsed { display: none; }
-  #toc.open .toc-collapsed { display: none; }
-  #toc-toggle { display: block; }
+  #toc { left: -250px; }
+  #toc.open { left: 0; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
+  #toc-toggle { left: 0; font-size: 20px; padding: 16px 6px; }
+  #toc.open + #toc-toggle { left: 250px; }
   article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
 }</style></head><body>
-<button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
 <nav id="toc">
 <div id="toc-inner">
-<div class="toc-collapsed">目&nbsp;录</div>
-<div class="toc-title">目录<button class="pin-btn" id="toc-pin" title="固定/取消固定侧栏">⊳</button></div>
+<div class="toc-title">目录</div>
 <ul>
 <li class="toc-sec"><a href="#sec-4.1">4.1 细胞的培养与研究</a>
 <ul>
@@ -159,6 +152,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </li>
 </ul>
 </div></nav>
+<button id="toc-toggle" title="隐藏/显示目录">◀</button>
 <article>
 <h1>第4章 细胞培养与可视化</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Culturing and Visualizing Cells · 保留全部图表（点击图片可放大）</p>
@@ -1429,22 +1423,21 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mouseup',onUp);
   }
 })();
-/* 阅读索引：悬浮交互 + 滚动监视 */
+/* 阅读索引：折叠切换 + 滚动监视 */
 (function(){
   var toc=document.getElementById('toc');
-  var pinBtn=document.getElementById('toc-pin');
-  if(pinBtn){
-    pinBtn.addEventListener('click',function(e){
-      e.stopPropagation();
-      toc.classList.toggle('pinned');
-      pinBtn.textContent=toc.classList.contains('pinned')?'⊲':'⊳';
+  var toggle=document.getElementById('toc-toggle');
+  if(toggle){
+    toggle.addEventListener('click',function(){
+      if(window.innerWidth<=1050){
+        toc.classList.toggle('open');
+        toggle.textContent=toc.classList.contains('open')?'◀':'▶';
+      }else{
+        toc.classList.toggle('hidden');
+        toggle.textContent=toc.classList.contains('hidden')?'▶':'◀';
+      }
     });
   }
-  /* 点击正文区域取消固定 */
-  document.addEventListener('click',function(e){
-    if(toc.classList.contains('pinned')&&!toc.contains(e.target))
-      toc.classList.remove('pinned');
-  });
 
   var tocLinks=document.querySelectorAll('#toc a');
   var targets=[];
@@ -1472,15 +1465,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
       var id=this.getAttribute('href').replace('#','');
       var el=document.getElementById(id);
       if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
-      var toc=document.getElementById('toc');
-      if(toc&&window.innerWidth<=1050)toc.classList.remove('open');
+      if(window.innerWidth<=1050)toc.classList.remove('open');
     });
   });
   /* 移动端点击正文关闭侧栏 */
   document.addEventListener('click',function(e){
-    var toc=document.getElementById('toc');
-    if(!toc||!toc.classList.contains('open'))return;
-    if(!toc.contains(e.target))toc.classList.remove('open');
+    if(!toc.classList.contains('open'))return;
+    if(!toc.contains(e.target)&&e.target!==toggle)toc.classList.remove('open');
   });
 })();
 </script>
