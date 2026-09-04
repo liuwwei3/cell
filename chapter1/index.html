@@ -3,21 +3,21 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
-h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; }
+h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
 p { margin: 0 0 0.7em 0; text-align: justify; text-indent: 2em; }
 p.ni { text-indent: 0; }
 hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
-figure { margin: 1.5em 0; text-align: center; }
+figure { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 figure.table { border-left: 4px solid #3b82f6; padding: 6px 0 6px 12px; text-align: left; background: #f8faff; }
 figure img, .boximg img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; }
 img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
 img.zoomable:hover { opacity: 0.88; }
-.boximg { margin: 1.5em 0; text-align: center; }
+.boximg { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 .boximg img { border: 1px solid #d8b4fe; }
 .intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
 .intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
@@ -51,11 +51,108 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
-#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }</style></head><body><article>
+#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
+/* 左侧阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+  background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+#toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+#toc ul { list-style: none; padding: 0; margin: 0; }
+#toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
+  border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
+#toc li a:hover { background: #f0ede6; color: #333; }
+#toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
+  font-size: 13.5px; border-left-color: transparent; }
+#toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
+#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+  padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
+#toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
+#toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
+#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+  border-left-color: #999; background: #eee9e0; color: #555; }
+#toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
+  background: #333; color: #fff; border: none; border-radius: 4px;
+  padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
+@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media (max-width: 1050px) {
+  body { padding-left: 0; }
+  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
+  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc-toggle { display: block; }
+  article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
+}</style></head><body>
+<button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
+<nav id="toc">
+<div class="toc-title">目录</div>
+<ul>
+<li class="toc-box"><a href="#box-G1-1">G1-1</a></li>
+<li class="toc-fig"><a href="#fig-1-1">图1-1 · 所有生物都源自一个共同的祖先细胞。所有生物，从…</a></li>
+<li class="toc-tab"><a href="#tab-T1-1">表T1-1 · 根据化石记录确定的地球生命进化时间表
+46 …</a></li>
+<li class="toc-fig"><a href="#fig-1-2">图1-2 · 查尔斯·达尔文（Charles Darwin,…</a></li>
+<li class="toc-fig"><a href="#fig-1-3">图1-3 · 细胞具有令人惊叹的多种形态和大小。这些照片展示…</a></li>
+<li class="toc-fig"><a href="#fig-1-4">图1-4 · 生命系统（如人体）由紧密相关的要素组成。
+(a…</a></li>
+<li class="toc-sec"><a href="#sec-1.1">1.1 生命的分子</a>
+<ul>
+<li class="toc-fig"><a href="#fig-1-5">图1-5 · 细胞中存在的许多小分子中的一部分。只有 L 型…</a></li>
+<li class="toc-fig"><a href="#fig-1-6">图1-6 · 三磷酸腺苷（Adenosine triphos…</a></li>
+<li class="toc-fig"><a href="#fig-1-7">图1-7 · 以统一比例绘制的若干代表性蛋白质模型，并与一小…</a></li>
+<li class="toc-fig"><a href="#fig-1-8">图1-8 · DNA 由两条互补链（complementar…</a></li>
+<li class="toc-fig"><a href="#fig-1-9">图1-9 · DNA 中编码的信息通过多步过程转化为蛋白质的…</a></li>
+<li class="toc-fig"><a href="#fig-1-10">图1-10 · 细胞的水性内部被质膜（plasma memb…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-1.2">1.2 原核细胞结构与功能</a>
+<ul>
+<li class="toc-fig"><a href="#fig-1-11">图1-11 · 原核细胞（Prokaryotic cells…</a></li>
+<li class="toc-tab"><a href="#tab-T1-2">表T1-2 · 分子细胞生物学研究中使用的已完全测序生物的基…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-1.3">1.3 真核细胞结构与功能</a>
+<ul>
+<li class="toc-fig"><a href="#fig-1-12">图1-12 · 真核细胞的亚细胞组织结构。
+(a) 「典型」…</a></li>
+<li class="toc-fig"><a href="#fig-1-13">图1-13 · 三类细胞骨架纤维在哺乳动物细胞中具有特征性分…</a></li>
+<li class="toc-fig"><a href="#fig-1-14">图1-14 · 哺乳动物气管内衬的纤毛上皮表面，在扫描电子显…</a></li>
+<li class="toc-fig"><a href="#fig-1-15">图1-15 · 细胞核的结构。
+(a) 典型细胞核结构的示意…</a></li>
+<li class="toc-fig"><a href="#fig-1-16">图1-16 · 在细胞分裂（有丝分裂 mitosis）过程中…</a></li>
+<li class="toc-fig"><a href="#fig-1-17">图1-17 · 高尔基体和粗面内质网。人肝细胞切片的电子显微…</a></li>
+<li class="toc-fig"><a href="#fig-1-18">图1-18 · 内体和其他细胞结构将物质运送到溶酶体。物质被…</a></li>
+<li class="toc-fig"><a href="#fig-1-19">图1-19 · 叶细胞薄切片的电子显微镜照片。标尺：2 μm…</a></li>
+<li class="toc-fig"><a href="#fig-1-20">图1-20 · 胰腺细胞中线粒体的电子显微镜照片。标尺：3 …</a></li>
+<li class="toc-fig"><a href="#fig-1-21">图1-21 · 在生长过程中，所有真核细胞持续经历细胞周期的…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-1.4">1.4 单细胞真核模式生物</a>
+<ul>
+<li class="toc-fig"><a href="#fig-1-22">图1-22 · 细胞生物学中使用的每种真核生物对某些类型的研…</a></li>
+<li class="toc-fig"><a href="#fig-1-23">图1-23 · 酿酒酵母（Saccharomyces cer…</a></li>
+<li class="toc-fig"><a href="#fig-1-24">图1-24 · 疟原虫（Plasmodium）物种--引起疟…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-1.5">1.5 后生动物结构、分化与模式生物</a>
+<ul>
+<li class="toc-fig"><a href="#fig-1-25">图1-25 · 所有器官都是各种组织的有序排列，如这一个小动…</a></li>
+<li class="toc-fig"><a href="#fig-1-26">图1-26 · 连接猴、类人猿和人的进化树。人类、类人猿（g…</a></li>
+<li class="toc-fig"><a href="#fig-1-27">图1-27 · 人与小鼠之间共线性（synteny）的保守。…</a></li>
+<li class="toc-fig"><a href="#fig-1-29">图1-29 · 进化中保守的相似主转录因子调节不同动物早期发…</a></li>
+<li class="toc-fig"><a href="#fig-1-28">图1-28 · 受精卵最初几次细胞分裂为所有后续发育奠定基础…</a></li>
+<li class="toc-fig"><a href="#fig-1-30">图1-30 · 同源基因调节不同动物的眼发育。
+(a) 果蝇…</a></li>
+<li class="toc-fig"><a href="#fig-1-31">图1-31 · 骨骼肌细胞中的抗肌萎缩蛋白糖蛋白复合物（dy…</a></li>
+</ul>
+</li>
+</ul></nav>
+<article>
 <h1>第1章 分子、细胞与模式生物</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Molecules, Cells, and Model Organisms · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg">
+<div class="boximg" id="box-G1-1">
   <img class="zoomable" src="figures/box_G1-1_1.png" alt="G1-1" onclick="lightbox(this.src)">
 </div>
 <p>"若无进化之光，生物学中的一切都毫无意义。"</p>
@@ -63,7 +160,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>生物学是一门与物理学或化学根本不同的科学，后两者处理可用数学方程描述的物质不变性质。生物系统当然遵循化学和物理规律，但生物学是一门历史性科学，因为今日生命世界的形态和结构是数十亿年演化的结果。通过演化，所有生物都处在一棵家族树上，从远古生存的原始单细胞生物延伸到当今多样化的植物、动物和微生物（图 1-1、表 1-1）。查尔斯·达尔文（图 1-2）的伟大洞见是自然选择原理：生物随机变异并在其环境中竞争资源。只有存活并繁殖者才能传下其遗传特征。</p>
 <p>乍看之下，生物世界确实极为多样--从微小蕨类到高大冷杉，从显微镜下可见的单细胞细菌和原生动物到各种多细胞动物。事实上，细胞的大小和形状令人惊叹地多样（图 1-3）。一些细胞移动迅速且结构快速变化，如我们在阿米巴和轮虫影片中所见。另一些基本静止且结构稳定。氧会杀死某些细胞但对另一些却是绝对必需。多细胞生物中的大多数细胞与其他细胞密切相关。虽然一些单细胞生物孤立生存（图 1-3a），另一些形成群落或与其他类型生物密切共生（图 1-3b、d），如帮助植物从空气中固氮的细菌或生活在我们肠道帮助消化食物的细菌。</p>
 <p>然而，令人眼花缭乱的外部生物形态之下隐藏着强大的统一性：由于共同祖先，所有生物系统都由含相同类型化学分子、并在细胞水平采用相似组织原理的细胞组成。尽管</p>
-<figure>
+<figure id="fig-1-1">
   <img class="zoomable" src="figures/fig_1-1_1.png" alt="图 1-1" onclick="lightbox(this.src)">
   <figcaption>图1-1 · 所有生物都源自一个共同的祖先细胞。所有生物，从简单的细菌到复杂的哺乳动物，可能都从同一个单细胞祖先进化而来。这棵谱系树描绘了生物三大主要谱系之间的进化关系。该树的结构最初是根据形态学标准确定的：外形相似的生物被归在一起。近来，在生物中发现的 DNA 和蛋白质的大分子序列提供了信息更丰富的标准来判定亲缘关系。这些大分子序列的相似性越高，生物之间的亲缘关系就被认为越近。基于形态学比较的树系与化石记录总体上与基于分子数据的树系吻合得很好。
 [图中分类标记] 细菌域（BACTERIA）：低 G+C 革兰氏阳性菌、高 G+C 革兰氏阳性菌、δ/ε 紫菌、α 紫菌、γ/β 紫菌、螺旋体（Spirochaetes）、梭杆菌（Fusobacteria）、柔杆菌/拟杆菌（Flexibacter/Bacteroides）、蓝细菌（Cyanobacteria）、栖热菌属（Thermus）、产水菌属（Aquifex）、栖热袍菌目（Thermotogales）；古菌域（ARCHAEA）：广古菌门（Euryarchaeota）、初古菌门（Korarchaeota）、泉古菌门（Crenarchaeota）；真核生物域（EUKARYOTA）：植物、黏菌、动物、真菌、微孢子虫（Microsporidia）、内阿米巴属（Entamoeba）、顶复门（如疟原虫属 Plasmodium）、裸藻属（Euglena）、动基体目（如锥虫属 Trypanosoma）、副基体门（如毛滴虫属 Trichomonas）、后滴虫门（如贾第虫属 Giardia）、线粒体、叶绿体；推定的真核生物与古细菌的最近共同祖先；推定的所有现存生物的最近共同祖先。
@@ -110,7 +207,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>我们现在知道，化学上由脱氧核糖核酸（DNA）组成的基因最终决定生物结构并维持细胞功能的整合。许多基因编码蛋白质，蛋白质是构成细胞结构和执行细胞活动的主要分子。基因结构或组织的改变（突变）提供可改变生物结构和功能的随机变异。虽然绝大多数随机突变对基因或蛋白质功能无可见影响，许多是有害的，只有少数赋予生物体进化优势。在所有生物中，DNA 突变不断发生，使细胞结构和功能随时间发生可能有利的小改变。全新的细胞结构很少被创造；更常见的是，现有细胞结构发生变化以更好地使生物适应新环境。蛋白质的微小变化可引起其功能的重要改变或完全废除其功能。</p>
 <p>例如，在某生物中，一个基因可能随机重复，之后该基因的一个拷贝及其编码蛋白保留原功能，而随时间第二个拷贝突变使其蛋白采取略有不同甚至全新功能。在一些生物的演化中，整个基因组重复，使许多基因的第二个拷贝经历突变并获得新功能。生物的细胞组织在此过程中起根本作用，因为它允许这些改变通过先前演化细胞的小改变而发生，赋予新能力。结果是亲缘相近的生物有非常相似的基因和蛋白质，以及相似的细胞和组织组织。</p>
 <p>多细胞生物（包括人体）由如此密切相关的元素组成，以至于任何单一元素都不能脱离其他而被充分理解。生物体含器官，器官由组织组成，组织由细胞构成，细胞由分子形成（图 1-4）。生命系统的统一性由许多层次的相互关系协调：分子在器官间和细胞间传递信息，组织由细胞分泌的分子界定并与其他组织整合。一般而言，我们将生物系统划分的所有层次都相互联系。</p>
-<figure class="table">
+<figure class="table" id="tab-T1-1">
   <img class="zoomable" src="figures/tab_T1-1_1.png" alt="表 T1-1" onclick="lightbox(this.src)">
   <figcaption>表T1-1 · 根据化石记录确定的地球生命进化时间表
 46 亿年前：地球由围绕年轻太阳旋转的物质形成。
@@ -168,7 +265,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">fossil record</td><td class="gl-zh">化石记录</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-1-2">
   <img class="zoomable" src="figures/fig_1-2_1.png" alt="图 1-2" onclick="lightbox(this.src)">
   <figcaption>图1-2 · 查尔斯·达尔文（Charles Darwin, 1809–1882）。在搭乘英国皇家海军「小猎犬号」（HMS Beagle）完成史诗般的航行四年后，达尔文就已经开始在私人笔记本中阐述其自然选择（natural selection）的概念，这一概念后来发表在他的《物种起源》（On the Origin of Species, 1859）中。[查尔斯·达尔文在加拉帕戈斯群岛，Howat, Andrew（20世纪）/私人收藏/© Look and Learn/Bridgeman Images。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -178,7 +275,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">On the Origin of Species</td><td class="gl-zh">物种起源</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-1-3">
   <img class="zoomable" src="figures/fig_1-3_1.png" alt="图 1-3" onclick="lightbox(this.src)">
   <figcaption>图1-3 · 细胞具有令人惊叹的多种形态和大小。这些照片展示了细胞形态的多样性的一部分。除了形态之外，细胞还在运动能力、内部组织（原核细胞与真核细胞）以及代谢活动方面各不相同。
 (a) 1 μm：真细菌--乳酸乳球菌（Lactococcus lactis）用于生产罗克福、布里和卡门贝尔等奶酪。注意正在分裂的细胞。
@@ -215,7 +312,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>然而，要了解生物系统，我们必须一次只考察生命系统的一小部分。细胞生物学是合理的起点，因为生物体可被视为由相互作用的细胞组成，细胞是存在的最接近自主生物单位的实体。地球上所有生命的最后一个共同祖先是一个单细胞（见图 1-1），在细胞水平所有生命都极为相似。所有细胞使用相同的分子构建块、相似的遗传信息储存维护和表达方法，以及相似的能量代谢、分子运输、信号传导、发育和结构过程。</p>
 <p>本章我们介绍细胞的共同特征。从生物系统中的主要小分子和大分子简要讨论开始。然后讨论当今生物中保守的细胞结构和功能的基本方面，先聚焦原核生物（无细胞核的单细胞生物）及其在研究生命基本分子中的用途。接着讨论真核细胞（有明确细胞核的细胞）的结构和功能，聚焦其众多细胞器。随后一节描述单细胞真核生物在分子细胞生物学研究中的应用，聚焦酵母和引起疟疾的寄生虫。</p>
 <p>我们现在有数千种后生动物（多细胞动物）的完整基因组序列，这些序列为</p>
-<figure>
+<figure id="fig-1-4">
   <img class="zoomable" src="figures/fig_1-4_1.png" alt="图 1-4" onclick="lightbox(this.src)">
   <figcaption>图1-4 · 生命系统（如人体）由紧密相关的要素组成。
 (a) 1 cm：手的表面被活的器官--皮肤（skin）覆盖，皮肤由数层组织构成。
@@ -241,10 +338,10 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>基因和生物的演化提供了相当深入的认识。本章最后一节展示如何用这些信息来精炼生物间进化关系以及我们对人类发育的理解。事实上，生物学家把演化用作研究工具：如果一个基因及其蛋白在所有后生动物中保守但不见于单细胞生物，该蛋白可能在所有后生动物中有重要功能，因而可在最适合研究的任何后生动物中研究。由于许多类型后生动物细胞的结构和功能也被保守，我们现在对许多细胞类型的结构和功能有相当详细的了解，包括肌肉和肝脏细胞以及衬于肠道并形成皮肤的表皮细胞片。但其他细胞--尤其是形成我们神经和免疫系统的多种类型--仍然神秘；对这些及其他形成我们身体的细胞系统和器官还需要许多重要的细胞生物学实验。</p>
-<h2>1.1 生命的分子</h2>
+<h2 id="sec-1.1">1.1 生命的分子</h2>
 <p>虽然大分子多聚物是分子细胞生物学的焦点，但小分子是所有细胞过程上演的舞台。水、无机离子和各种相对小的有机分子（图 1-5）按重量占生命物质的 75% 至 80%，水约占细胞体积的 75%。这些小分子（包括水）作为细胞内发生的许多反应（包括能量代谢和细胞信号传导）的底物。细胞以不同方式获取这些小分子。离子、水和许多小有机分子被输入细胞（见第 11 章）；其他小分子在细胞内合成，常通过一系列化学反应（见第 12 章）。</p>
 <p>即使在许多小分子（如糖、维生素和氨基酸）的结构中，我们也能看到演化的印记。例如，除甘氨酸外所有氨基酸都有不对称碳原子，但只有 l-立体异构体（从不 d-立体异构体）被掺入蛋白质。类似地，细胞中只发现 d-葡萄糖的立体异构体，从不发现镜像 l-立体异构体（见图 1-5）。在生物演化的早期阶段，我们共同的细胞祖先进化出催化一种</p>
-<figure>
+<figure id="fig-1-5">
   <img class="zoomable" src="figures/fig_1-5_1.png" alt="图 1-5" onclick="lightbox(this.src)">
   <figcaption>图1-5 · 细胞中存在的许多小分子中的一部分。只有 L 型的氨基酸（如丝氨酸 serine）才会被掺入蛋白质中，而不是它们的 D 型镜像异构体；只有 D 型的葡萄糖（D-glucose，而非其 L 型镜像 L-glucose）才能被代谢为二氧化碳（CO₂）和水（H₂O）。
 [图中标记] 油酸（Oleic acid）、钠（Sodium）、水（Water）、L-丝氨酸（L-serine）、D-丝氨酸（D-serine）、L-葡萄糖（L-glucose）、D-葡萄糖（D-glucose）。</figcaption>
@@ -266,7 +363,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>一种重要且普遍保守的小分子是腺苷三磷酸（ATP），它在两个化学键中储存易得的化学能（图 1-6）。当 ATP 中一个富能键断裂形成 ADP（腺苷二磷酸）时，释放的能量可被利用来驱动需能过程如肌肉收缩或蛋白质生物合成。为获得制造 ATP 的能量，所有细胞分解食物分子。例如，当糖降解为二氧化碳和水时，储存在糖分子化学键中的能量被释放，其中大部分可被"捕获"到 ATP 的富能键中。细菌、植物和动物细胞都可通过此过程制造 ATP。此外，植物和少数其他生物可从阳光采集能量在光合作用中形成 ATP。</p>
 <p>其他小分子（如某些激素和生长因子）作为指导细胞活动的信号（见第 15、16 章），神经元（神经细胞）通过释放和感知某些小信号分子相互通讯（见第 22 章）。例如，惊吓事件的强大生理效应来自小分子激素肾上腺素瞬时充斥全身，调动"战或逃"反应。</p>
 <p>某些小分子（单体）可通过</p>
-<figure>
+<figure id="fig-1-6">
   <img class="zoomable" src="figures/fig_1-6_1.png" alt="图 1-6" onclick="lightbox(this.src)">
   <figcaption>图1-6 · 三磷酸腺苷（Adenosine triphosphate, ATP）是细胞用来捕获、储存和转移能量的最常见分子。ATP 由二磷酸腺苷（ADP）和无机磷酸（Pᵢ）通过植物中的光合作用（photosynthesis），以及大多数细胞中糖和脂肪的分解（呼吸作用 respiration）而形成。Pᵢ 从 ATP 裂解（水解 hydrolysis）所释放的能量驱动许多细胞过程。
 [图中标记] ATP 分子结构（含腺嘌呤、核糖、三个磷酸基团，标注高能键 high-energy bonds）；ADP 分子结构（含腺嘌呤、核糖、两个磷酸基团，标注高能键 high-energy bond）。
@@ -297,7 +394,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>蛋白质赋予细胞结构并执行大多数细胞任务</p>
 <p>蛋白质是细胞的主力，是细胞大分子中含量最丰富、功能最多样的。细胞将 20 种不同氨基酸以线性链连接，每条有确定序列，形成蛋白质（见图 2-14），通常长 100 至 1000 个氨基酸。在聚合过程中或之后，线性氨基酸链折叠成复杂形状，赋予蛋白质独特的三维结构和功能（图 1-7）。人通过从其他分子合成氨基酸或分解所吃蛋白质获得氨基酸。</p>
 <p>蛋白质在细胞中有多种功能。许多蛋白质是酶，加速（催化）涉及小分子或大分子的化学反应（见第 3 章）。某些蛋白质催化所有蛋白质合成的步骤；其他催化</p>
-<figure>
+<figure id="fig-1-7">
   <img class="zoomable" src="figures/fig_1-7_1.png" alt="图 1-7" onclick="lightbox(this.src)">
   <figcaption>图1-7 · 以统一比例绘制的若干代表性蛋白质模型，并与一小段脂质双层（lipid bilayer）、一个 DNA 分子和一个 RNA 分子进行比较。每种蛋白质都有一个由众多化学键维持的确定三维形状。图中所示的蛋白质包括酶（谷氨酰胺合成酶 glutamine synthetase 和腺苷酸激酶 adenylate kinase）、抗体（免疫球蛋白 immunoglobulin）、激素（胰岛素 insulin），以及血液的氧载体（血红蛋白 hemoglobin）。标尺：10 nm = 100 Å。
 [图中标记] 谷氨酰胺合成酶、胰岛素、血红蛋白、免疫球蛋白、腺苷酸激酶、DNA 分子、RNA 分子、脂质双层。
@@ -321,7 +418,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>DNA 和 RNA 等大分子的合成。细胞骨架蛋白作为细胞的结构成分，例如形成内骨架。其他与细胞骨架相关的蛋白利用 ATP 化学键中的能量驱动亚细胞结构（如染色体）乃至整个细胞的运动（见第 17、18 章）。还有其他蛋白质结合相邻细胞或形成胞外基质的一部分（见图 1-4）。蛋白质可作为传感器，随温度、离子浓度或其他细胞性质变化而改变形状。许多嵌入细胞表面（质）膜的蛋白质输入输出各种小分子和离子（见第 11 章）。一些蛋白质（如胰岛素）是激素；其他是激素受体，结合其靶蛋白或小分子然后产生调节细胞功能特定方面的信号。其他重要类别的蛋白质结合 DNA 特定片段，开关基因（见第 9 章）。事实上，分子细胞生物学很大一部分由研究特定蛋白质在特定细胞类型中的功能组成。</p>
 <p>核酸在正确的时间和地点携带编码信息以制造蛋白质</p>
 <p>最受公众关注的分子是脱氧核糖核酸（DNA），其功能性质使其成为细胞的"主分子"。DNA 的三维结构由 James D. Watson 和 Francis H. C. Crick 于 1953 年首次提出，由两条绕共同轴盘绕的长螺旋链形成</p>
-<figure>
+<figure id="fig-1-8">
   <img class="zoomable" src="figures/fig_1-8_1.png" alt="图 1-8" onclick="lightbox(this.src)">
   <figcaption>图1-8 · DNA 由两条互补链（complementary strands）相互缠绕形成双螺旋（double helix）。双螺旋由 A 和 T 碱基之间、C 和 G 碱基之间的弱氢键（hydrogen bonds）稳定。在复制（replication）过程中，两条链被解开并被用作模板来产生互补链。结果是原始双螺旋的两个相同拷贝，每个拷贝包含一条原始亲代链（parental strand）和一条新的子代（互补）链（daughter strand）。
 [图中标记] A、G、T、C（碱基 bases）；核苷酸（Nucleotide, T）；亲代链；子代链。</figcaption>
@@ -345,7 +442,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>除在信息从核到质转移中的作用外，RNA 可作为构建分子机器的框架。例如核糖体由四条 RNA 链结合 50 多种蛋白质构成，成为异常精确高效的 mRNA 阅读器和蛋白质合成器。虽然细胞中大多数化学反应由蛋白质催化，但少数（如核糖体形成连接蛋白质中氨基酸的肽键）由 RNA 分子催化。</p>
 <p>早在整个人类基因组被测序前，已明显只有约 10% 人类 DNA 由蛋白质编码基因组成，多年来其余 90% 被视为"垃圾 DNA"！近年我们了解到，所谓垃圾 DNA 的大部分实际被复制成数千种 RNA 分子，虽不编码蛋白质却在细胞中同等重要（见第 10 章）。但目前我们只知这些丰富非编码 RNA 中极少数的功能。</p>
 <p>像酶一样，某些 RNA 分子（称为核酶）催化化学反应，如核糖体内的 RNA。许多科学家支持 RNA 世界假说，该假说提出能自我复制的 RNA 分子是当前生命形式的先驱；</p>
-<figure>
+<figure id="fig-1-9">
   <img class="zoomable" src="figures/fig_1-9_1.png" alt="图 1-9" onclick="lightbox(this.src)">
   <figcaption>图1-9 · DNA 中编码的信息通过多步过程转化为蛋白质的氨基酸序列。
 步骤1（激活 Activation）：转录因子（transcription factors）和其他蛋白质结合到它们所控制的特定基因的调控区域，从而激活这些基因。
@@ -381,7 +478,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>在所有生物中，细胞膜主要由磷脂分子的双层（两层）组成。每个二分分子有"喜水"（亲水）的"头"和"怕水"（疏水）的"尾"。膜的两层磷脂取向为所有亲水头朝向膜内或外表面，疏水尾埋在内部（图 1-10）。少量其他脂质（如胆固醇）插入此磷脂框架。细胞膜相对细胞大小极薄。若将细菌或酵母细胞放大约 1 万倍到足球大小，质膜约如一张纸厚！</p>
 <p>磷脂膜对水、所有离子和几乎所有亲水小分子不通透。因此每个细胞的每个膜都含允许特定离子和小分子跨膜的蛋白质组。其他膜蛋白用于将细胞附着到其他细胞或周围多聚物；还有其他赋予细胞形状或允许形状变化。第 7、11 章将学膜及分子如何跨膜。</p>
 <p>新细胞总是通过细胞分裂来自亲代细胞。我们已见新 DNA 分子的合成以亲代 DNA 两链为模板，使每个子代 DNA 分子与亲代有相同序列。同时，新膜通过脂质和蛋白质掺入亲代细胞现有膜而制造，并通过分裂分配给子细胞。因此膜合成像 DNA 合成一样以亲代结构为模板。</p>
-<figure>
+<figure id="fig-1-10">
   <img class="zoomable" src="figures/fig_1-10_1.png" alt="图 1-10" onclick="lightbox(this.src)">
   <figcaption>图1-10 · 细胞的水性内部被质膜（plasma membrane）--一层由磷脂（phospholipids）构成的双层壳--所包围。磷脂分子以其疏水脂肪酰链（hydrophobic fatty acyl chains，黑色波浪线）朝内、亲水头部基团（hydrophilic head group，白色球体）朝外的方式排列。因此，膜的两侧都排列着头部基团（主要是带电磷酸基团），与细胞内外的水性空间相邻。所有生物膜都具有相同的基本磷脂双层（phospholipid bilayer）结构。胆固醇（cholesterol，红色）和各种蛋白质嵌入双层中。内部空间实际上相对于质膜体积的比例比此处描绘的要大得多。
 [图中标记] 水（Water）、跨膜蛋白（Transmembrane proteins）、胆固醇、疏水脂肪酰链、亲水头部基团。</figcaption>
@@ -396,11 +493,11 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
   <tr><td class="gl-en">charged phosphates</td><td class="gl-zh">带电磷酸基团</td></tr>
   </table>
 </figure>
-<h2>1.2 原核细胞结构与功能</h2>
+<h2 id="sec-1.2">1.2 原核细胞结构与功能</h2>
 <p>生物世界由两类细胞组成：原核和真核。原核细胞（如细菌）由质膜包围的单个封闭区室组成，无明确细胞核，内部组织相对简单（图 1-11）。真核细胞含明确膜界细胞核和包围细胞器的广泛内膜（见图 1-12）。</p>
 <p>原核生物包括两个界：古菌和真细菌</p>
 <p>近年对多种原核生物 DNA 序列的详细分析揭示了两个不同界：真细菌（常简称"细菌"）和古菌。真细菌是单细胞生物，包括蓝细菌（"蓝绿藻"），可为单细胞或丝状细胞链。图 1-11 展示典型真细菌细胞的一般结构；古菌细胞有相似结构。细菌细胞通常 1–2 μm 大小，由含细胞质、被质膜包围的单个封闭区室组成。基因组由单个环状 DNA 分子组成；许多原核生物还含称为质粒的额外小环状 DNA 分子。虽然细菌细胞无明确细胞核，DNA 被广泛折叠和凝缩到细胞中央区域（称为拟核）。相比之下，大多数核糖体在细胞质中。一些细菌还有细胞膜内陷（称为中间体），与</p>
-<figure>
+<figure id="fig-1-11">
   <img class="zoomable" src="figures/fig_1-11_1.png" alt="图 1-11" onclick="lightbox(this.src)">
   <figcaption>图1-11 · 原核细胞（Prokaryotic cells）具有相对简单的结构。
 （左）常见肠道细菌大肠杆菌（Escherichia coli）薄切片的电子显微镜照片。标尺：0.5 μm。由细菌 DNA 组成的拟核（nucleoid）不被膜包围。大肠杆菌和其他革兰氏阴性菌（gram-negative bacteria）被两层膜包围，两层膜之间由周质空间（periplasmic space）隔开。薄的细胞壁（cell wall）紧邻内膜。
@@ -426,7 +523,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>除区分古菌与真细菌的 DNA 序列差异外，古菌细胞膜组成与真细菌和真核生物截然不同。许多古菌生长在不寻常常极端的环境中，可能类似生命首次在地球上出现时的古老条件。例如嗜盐菌（"喜盐者"）需高盐浓度生存，嗜热嗜酸菌（"喜热喜酸者"）生长在 80 °C 热硫泉中，pH 常低于 2。还有其他古菌生活在无氧环境，通过将水与二氧化碳结合生成甲烷（CH₄）。</p>
 <p>大肠杆菌广泛用于生物学研究</p>
 <p>细菌谱系包括大肠杆菌，一种受喜爱的实验生物，自然中常见于土壤和动物肠道。大肠杆菌和其他几种细菌作为实验生物有诸多优势。它们在含葡萄糖和盐的简单廉价培养基中快速生长，能合成所有必需氨基酸、脂质、维生素和其他必需小分子。像所有细菌，大肠杆菌有控制基因活动的精细机制，现已充分理解</p>
-<figure class="table">
+<figure class="table" id="tab-T1-2">
   <img class="zoomable" src="figures/tab_T1-2_1.png" alt="表 T1-2" onclick="lightbox(this.src)">
   <figcaption>表T1-2 · 分子细胞生物学研究中使用的已完全测序生物的基因组大小
 列说明：碱基对（百万）/ Base Pairs (Millions)；编码蛋白质近似数* / Approximate Number of Encoded Proteins；染色体** / Chromosomes；参考文献 / Reference
@@ -490,7 +587,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>大肠杆菌等生长在土壤和人肠道等多种环境的细菌约 4000 个基因，编码约相同数量蛋白质（表 1-2）。</p>
 <p>支原体等寄生菌从其宿主细胞获取氨基酸和其他营养物，缺乏催化氨基酸和某些脂质合成反应的酶基因。许多编码 DNA、RNA、蛋白质合成和膜功能必需蛋白质的细菌基因在所有生物中保守，我们对这些重要细胞过程的大部分知识首先来自大肠杆菌和其他细菌的研究。例如，某些大肠杆菌膜蛋白跨质膜输入氨基酸，在序列、结构和功能上与某些哺乳动物脑细胞输入称为神经递质的神经间信号小分子的膜蛋白密切相关（见第 11、22 章）。</p>
 <p>由于其许多基因和蛋白质及其功能在所有生物中保守，大肠杆菌被科学家选为受喜爱的模式生物：一个实验系统，在其中研究特定基因或蛋白质或细胞/生物体功能或调节的方面，可提供对其他物种相似分子或过程的理解。本章我们将遇到其他因像大肠杆菌易于培养和研究而被选的模式生物。当然，许多细菌引起严重疾病，对它们的研究常聚焦于理解其独特生物学和发现选择性杀死它们而不伤人畜宿主的抗生素。</p>
-<h2>1.3 真核细胞结构与功能</h2>
+<h2 id="sec-1.3">1.3 真核细胞结构与功能</h2>
 <p>真核生物包括植物和动物界的所有成员以及原生动物（proto "原始"，zoan "动物"），后者 exclusively 单细胞，包括真菌和阿米巴。真核细胞通常约 10–100 μm，一般比细菌大得多。典型人成纤维细胞（结缔组织细胞）约 15 μm，体积和干重约为大肠杆菌细胞的数千倍。阿米巴（单细胞原生动物）细胞直径可达约 0.5 mm，是成纤维细胞的 30 多倍。真核细胞像原核细胞一样被质膜包围。但与原核细胞不同，大多数真核细胞（人红细胞是例外）还含广泛内膜，包围特定亚细胞区室（细胞器）并使之与细胞质分开（图 1-12）。胞质溶胶（细胞质中无细胞器的部分）含水、溶解离子、小分子和蛋白质。植物细胞和大多数真菌细胞被细胞壁包围，赋予细胞刚性形状并允许快速细胞扩展。</p>
 <p>所有真核细胞有许多相同细胞器和其他亚细胞结构。许多细胞器被单层磷脂膜包围，但细胞核、线粒体和叶绿体由两层膜包围。每个细胞器膜和每个细胞器内部空间都有独特蛋白质组，使其能执行特定功能，包括催化必需化学反应的酶。定义这些亚细胞区室的膜含控制其内部离子组成的蛋白质，使其通常不同于周围胞质溶胶和其他细胞器。此处描述所有真核细胞共同的细胞器以及仅见于某些类型真核生物的几个。从赋予真核细胞形状和组织细胞器的蛋白质开始。</p>
 <p>细胞骨架有许多重要功能</p>
@@ -498,7 +595,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>纤毛和鞭毛是质膜的类似延伸。它们含一束微管赋予形状，并与马达蛋白一起允许有节奏地摆动。它们推动物质跨上皮表面（图 1-14），使精子能游泳，推卵通过输卵管（见第 18 章）。如第 16 章详述，大多数脊椎动物细胞含至少一根在细胞-细胞信号传导中起关键作用的纤毛。</p>
 <p>细胞核含 DNA 基因组、RNA 合成装置和纤维基质</p>
 <p>细胞核是动物细胞中最大的细胞器，被两层膜包围，每层是含多种蛋白质的磷脂双层</p>
-<figure>
+<figure id="fig-1-12">
   <img class="zoomable" src="figures/fig_1-12_1.png" alt="图 1-12" onclick="lightbox(this.src)">
   <figcaption>图1-12 · 真核细胞的亚细胞组织结构。
 (a) 「典型」动物细胞（上）和植物细胞（下）的示意图，展示其主要亚结构。并非每种细胞类型都包含此处所示的所有细胞器、颗粒和纤维结构，某些细胞类型中可能存在其他亚结构。细胞在形状和各种细胞器及亚结构的显著程度上也有很大差异。
@@ -558,7 +655,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
   <tr><td class="gl-en">macromolecules</td><td class="gl-zh">大分子</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-1-13">
   <img class="zoomable" src="figures/fig_1-13_1.png" alt="图 1-13" onclick="lightbox(this.src)">
   <figcaption>图1-13 · 三类细胞骨架纤维在哺乳动物细胞中具有特征性分布。同一细胞的三个视图。一个培养的成纤维细胞（fibroblast）被透化处理后，用三种不同的抗体制剂处理。每种抗体特异性地结合形成一种纤维的蛋白质单体，并化学连接到不同颜色的荧光染料（绿色、蓝色或红色）。在荧光显微镜下观察染色细胞，可显示与特定染料-抗体制剂结合的纤维的位置。在本例中，微管（microtubules）被染成蓝色；微丝（microfilaments）红色；中间丝（intermediate filaments）绿色。所有三种纤维系统都对细胞的形状和运动有贡献。
 [图中标记] 中间丝、微管、微丝。
@@ -576,7 +673,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
   </table>
 </figure>
 <p>（图 1-15）。内核膜定义细胞核本身。大多数细胞中外核膜与内质网连续，内外核膜间空间与内质网腔连续（见图 1-15a）。两层核膜在核孔复合物处似融合，核孔复合物是环状结构，由特定膜蛋白组成，物质通过它在核与胞质溶胶间移动。核孔结构及通过它的受调控物质运输在第 10、13 章详述。称为核纤层蛋白的中间丝蛋白沿内核膜内表面形成二维网络（核纤层），赋予形状和刚性。核纤层分解发生在细胞分裂早期，第 19 章详述。在生长或分化细胞中，核代谢活跃，因为它是 DNA 复制和核糖体 RNA、mRNA 及多种</p>
-<figure>
+<figure id="fig-1-14">
   <img class="zoomable" src="figures/fig_1-14_1.png" alt="图 1-14" onclick="lightbox(this.src)">
   <figcaption>图1-14 · 哺乳动物气管内衬的纤毛上皮表面，在扫描电子显微镜下观察。摆动的纤毛（cilia），具有微管（microtubules）核心，推动黏液和外来颗粒排出呼吸道，保持肺部和气道通畅。
 [图中标记] 纤毛。
@@ -596,7 +693,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>染色体被碱性染料强烈染色，只在细胞分裂时 DNA 高度凝缩时在光学和电子显微镜下可见（图 1-16）。虽然原核生物的大基因组 DNA 分子与蛋白质结合，但细菌染色体内 DNA 的排列与真核细胞线性染色体大不相同；细菌染色体是环状的，与不同类型蛋白质结合。</p>
 <p>真核细胞含大量内膜结构</p>
 <p>我们早先注意到，与原核细胞不同，大多数真核细胞含包围</p>
-<figure>
+<figure id="fig-1-15">
   <img class="zoomable" src="figures/fig_1-15_1.png" alt="图 1-15" onclick="lightbox(this.src)">
   <figcaption>图1-15 · 细胞核的结构。
 (a) 典型细胞核结构的示意图，以及外核膜与粗面内质网的连接。附着在粗面内质网膜上的小黑点是核糖体（ribosomes），它们正在合成膜蛋白和分泌蛋白。
@@ -620,7 +717,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
   <tr><td class="gl-en">pancreatic acinar cell</td><td class="gl-zh">胰腺腺泡细胞</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-1-16">
   <img class="zoomable" src="figures/fig_1-16_1.png" alt="图 1-16" onclick="lightbox(this.src)">
   <figcaption>图1-16 · 在细胞分裂（有丝分裂 mitosis）过程中可以看到个体染色体。
 (a) 在细胞周期的 S 期（见图1-21），染色体被复制，子代「姐妹染色单体」（sister chromatids）各自拥有染色体 DNA 的完整拷贝，仍连在着丝粒（centromere）处。
@@ -646,7 +743,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>内质网和高尔基体 真核细胞中一般最大的膜包围的细胞器是内质网（ER）--一个由封闭扁平膜囊（称为潴泡）组成的广泛网络（图 1-17；另见图 1-15a）。内质网在细胞中有多种功能，但在脂质、分泌蛋白和多种膜蛋白合成中尤为重要。滑面内质网因无核糖体而光滑，是脂肪酸和磷脂合成场所。</p>
 <p>相比之下，粗面内质网的胞质面布满核糖体；这些核糖体合成某些膜和细胞器蛋白以及几乎所有将从细胞分泌的蛋白质（见第 13 章）。当生长的多肽从核糖体出来时，在嵌入膜的特定转运蛋白帮助下穿过粗面 ER 膜。新合成的膜蛋白保持与粗面 ER 膜结合，将分泌的蛋白积聚在腔（细胞器的水性内部）中。蛋白质在粗面 ER 合成几分钟后，大多数在小膜泡运输囊泡中离开细胞器。这些囊泡从无核糖体覆盖的粗面 ER 区域出芽，将蛋白质带到另一膜界细胞器--高尔基体（见图 1-17）。如第 14 章详述，分泌和膜蛋白在高尔基体中经历一系列酶催化的化学修饰，这些对蛋白质正常功能至关重要。</p>
 <p>待分泌蛋白和膜蛋白在高尔基体修饰后，由第二组囊泡从复合物运出，这些囊泡从高尔基体一侧出芽。一些囊泡携带</p>
-<figure>
+<figure id="fig-1-17">
   <img class="zoomable" src="figures/fig_1-17_1.png" alt="图 1-17" onclick="lightbox(this.src)">
   <figcaption>图1-17 · 高尔基体和粗面内质网。人肝细胞切片的电子显微镜照片显示丰富的布满核糖体的粗面内质网（rough endoplasmic reticulum）和高尔基体（Golgi complex），以及许多游离在细胞溶质（cytosol）中的核糖体。标尺：200 nm。
 [图中标记] 粗面内质网、高尔基体、高尔基囊泡腔（Lumen of Golgi vesicle）、粗面内质网腔（Lumen of rough endoplasmic reticulum）、将蛋白质从粗面内质网运送到高尔基体的囊泡（Vesicles moving proteins from the rough endoplasmic reticulum to the Golgi complex）。
@@ -663,7 +760,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p> destined for 质膜的膜蛋白或将从细胞释放到胞外空间的可溶蛋白；其他携带可溶或膜蛋白到溶酶体或其他细胞器。胞内运输囊泡如何"知道"与哪些膜融合及在何处交付内容也在第 14 章讨论。</p>
 <p>内体 虽然质膜中的转运蛋白介导离子和小分子跨脂双层进入细胞，但胞外环境中的蛋白质和其他可溶大分子通过内吞作用内化。在此过程中，质膜片段内陷形成有被小窝，其胞质面排列引起囊泡形成的特定蛋白质组。小窝从膜掐断成含胞外物质的小膜泡。囊泡被交付并与内体（膜界小管和囊泡的分拣站）融合（图 1-18）。从此区室，一些膜蛋白回收回质膜；其他膜蛋白在最终与溶酶体融合降解的囊泡中运输。整个内吞途径第 14 章详述。</p>
 <p>溶酶体 溶酶体是胞内膜形成封闭区室（其腔组成与周围胞质溶胶大不相同）能力的极好例子。溶酶体仅见于动物细胞，负责降解对细胞或生物体已过时的许多组分。老化细胞器在溶酶体中降解的过程称为自噬（"吃自己"）。通过内吞或吞噬进入细胞的物质也可在溶酶体中降解（见图 1-18）。吞噬中，大的不溶颗粒（如细菌）被质膜包围并内化。</p>
-<figure>
+<figure id="fig-1-18">
   <img class="zoomable" src="figures/fig_1-18_1.png" alt="图 1-18" onclick="lightbox(this.src)">
   <figcaption>图1-18 · 内体和其他细胞结构将物质运送到溶酶体。物质被运送到溶酶体的三条途径的示意图。
 途径1（内吞途径 Endocytic pathway）：可溶性大分子和结合在细胞表面蛋白质上的分子通过质膜片段的内陷被摄入细胞，并通过内吞途径运送到溶酶体。
@@ -693,7 +790,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>溶酶体含一组将多聚物降解为单体亚基的酶。例如核酸酶将 RNA 和 DNA 降解为单核苷酸构建块；蛋白酶降解多种蛋白质和肽；磷酸酶从单核苷酸、磷脂和其他化合物去除磷酸基；还有其他酶降解复杂多糖和糖脂为更小单位。所有这些溶酶体酶（统称酸性水解酶）在酸性 pH 下工作最有效。酸性 pH 帮助变性蛋白质，使其可被溶酶体水解酶作用。这些酶在细胞和大多数胞外液体的中性 pH 下活性较低。因此若溶酶体将酶释放到胞质溶胶（pH 7.0–7.3），它们对胞质组分几乎不降解。胞质和核蛋白质一般在溶酶体中不降解，而在胞质溶胶中的蛋白酶体（大多蛋白复合物）中降解（见第 3 章）。</p>
 <p>过氧化物酶体 所有动物细胞（除红细胞外）和许多植物及真菌细胞含过氧化物酶体，一类直径 0.2–1.0 μm 的近球形细胞器。过氧化物酶体含几种氧化酶：使用分子氧氧化有机物质并在此过程中形成过氧化氢（H₂O₂，腐蚀性物质）的酶。过氧化物酶体还含大量过氧化氢酶，将过氧化氢降解为水和氧（见第 12 章）。植物种子含乙醛酸循环体，氧化储存脂质作为碳和能量来源的小细胞器。它们与过氧化物酶体相似，含许多相同类型酶及用于将脂肪酸转化为葡萄糖前体的额外酶。</p>
 <p>植物液泡 大多数植物细胞含至少一个膜界液泡，积聚和储存水、离子和小分子营养物（如糖和氨基酸）。液泡膜中的多种膜蛋白允许这些分子从胞质溶胶</p>
-<figure>
+<figure id="fig-1-19">
   <img class="zoomable" src="figures/fig_1-19_1.png" alt="图 1-19" onclick="lightbox(this.src)">
   <figcaption>图1-19 · 叶细胞薄切片的电子显微镜照片。标尺：2 μm。在此细胞中，一个大的液泡占据了大部分细胞体积。还可看到五个叶绿体的一部分和细胞壁。注意叶绿体内部的亚区室。
 [图中标记] 基质（Stroma）、液泡（Vacuole）、叶绿体（Chloroplast）、基粒（Granum）、类囊体膜（Thylakoid membrane）、细胞壁（Cell wall）。
@@ -712,7 +809,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>线粒体是有氧细胞 ATP 产生的主要场所</p>
 <p>大多数真核细胞含许多线粒体（图 1-20），占细胞质体积的 25%。这些复杂细胞器是有氧代谢中 ATP 产生的主要场所，一般大小仅次 于细胞核、液泡和叶绿体。包围线粒体的两层膜组成和功能不同。外线粒体膜含允许许多分子从胞质溶胶移动到内外膜间膜间隙的蛋白质。内线粒体膜通透性低得多，约 20% 脂质 80% 蛋白质--蛋白质比例高于其他细胞膜。内膜表面积因大量内折（嵴）突入基质（中央水性空间）而大增。</p>
 <p>非光合细胞中，ATP 合成的主要燃料是脂肪酸和葡萄糖。1 分子葡萄糖完全有氧降解为二氧化碳和水偶联合成多达 30 分子 ATP（来自 ADP 和无机磷酸，见图 1-6）。真核细胞中，葡萄糖降解的初始阶段在胞质溶胶进行，每分子葡萄糖产生 2 分子 ATP。氧化和</p>
-<figure>
+<figure id="fig-1-20">
   <img class="zoomable" src="figures/fig_1-20_1.png" alt="图 1-20" onclick="lightbox(this.src)">
   <figcaption>图1-20 · 胰腺细胞中线粒体的电子显微镜照片。标尺：3 μm。光滑的外膜（outer membrane）形成线粒体的外边界。内膜（inner membrane）与外膜不同，高度内折形成称为嵴（cristae）的片层和管道；ATP 由嵌入嵴膜中的蛋白质产生。内外膜之间的水性空间（膜间间隙 intermembrane space）和内膜内部的空间（基质 matrix）各自含有对糖、脂质和其他分子代谢重要的特定蛋白质。
 [图中标记] 外膜、嵴、内膜、膜间间隙（Intermembrane space）、基质、基质颗粒（Matrix granules）。
@@ -736,7 +833,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>线粒体和叶绿体中 ATP 形成的分子机制非常相似，第 12 章解释。除被两层膜包围外，叶绿体和线粒体有其他共同特征：都常在细胞内迁移，都含自己的 DNA（编码一些关键细胞器蛋白，见第 12 章）。线粒体或叶绿体 DNA 编码的蛋白质在细胞器内核糖体上合成。但每个细胞器的大部分蛋白质由核 DNA 编码并在胞质溶胶合成；这些蛋白质通过第 13 章描述的过程掺入细胞器。</p>
 <p>所有真核细胞使用相似周期调节分裂</p>
 <p>单细胞真核生物、动物和植物都使用基本相同的细胞周期（准备细胞分裂的一系列事件）</p>
-<figure>
+<figure id="fig-1-21">
   <img class="zoomable" src="figures/fig_1-21_1.png" alt="图 1-21" onclick="lightbox(this.src)">
   <figcaption>图1-21 · 在生长过程中，所有真核细胞持续经历细胞周期的四个阶段。在增殖细胞中，细胞周期的四个阶段依次进行。在人类中，该周期需要 10 到 20 小时，具体取决于细胞类型和发育状态。酵母分裂快得多。在间期（interphase，由 G1、S 和 G2 期组成），细胞的质量大约翻倍。在 S 期进行 DNA 复制使细胞拥有每种染色体类型的四份拷贝。在有丝分裂（M）期，染色体被均匀分配到两个子细胞中，在大多数情况下细胞质大致等分。在某些条件下，如饥饿或组织已达到其最终大小时，细胞将停止周期并停留在称为 G0 的等待状态。G0 中的某些类型的细胞在条件改变时可以重新进入细胞周期。
 [图中标记] G0、非分裂细胞（Nondividing cells）/静止细胞（Resting cells）；M（有丝分裂）；G2（RNA 和蛋白质合成）；S（DNA 复制）；G1（RNA 和蛋白质合成）；细胞分裂（Cell division）。</figcaption>
@@ -757,13 +854,13 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 </figure>
 <p>和相同的实际分裂过程（有丝分裂）。真核细胞周期通常分四期（图 1-21）。染色体及其携带的 DNA 在 S（合成）期复制。复制染色体在 M（有丝分裂）期分离（细胞在此期分裂），每个子细胞获得每条染色体的一份。M 和 S 期由两个间隙期（G1 和 G2）分开，期间制造 mRNA、蛋白质、脂质和其他细胞组分，细胞增大。</p>
 <p>最佳条件下，一些细菌（如大肠杆菌）可每 30 分钟分裂一次形成两个子细胞。大多数真核细胞生长和分裂需更长时间，通常数小时。此外，真核细胞周期通常受高度调控（见第 19 章）。这种紧密控制防止在缺乏必需营养物或某些激素信号时细胞和组织的失衡过度生长。成体动物中一些高度特化的细胞（如神经元和横纹肌细胞）极少分裂（如果分裂的话）。然而，生物体通常替换磨损细胞或响应新需求产生更多细胞，如响应运动或损伤从未分化干细胞产生新肌肉细胞。另一例是人到更高海拔需要更多捕获氧能力时形成额外红细胞。癌症的根本缺陷是丧失控制细胞生长和分裂的能力。第 24 章我们考察导致不适当时失控细胞增殖的分子和细胞事件。</p>
-<h2>1.4 单细胞真核模式生物</h2>
+<h2 id="sec-1.4">1.4 单细胞真核模式生物</h2>
 <p>我们对真核细胞分子功能的当前理解很大程度上建立在对少数几种生物（模式生物，图 1-22）的研究上。由于基因、蛋白质、细胞器、细胞类型等的进化保守，用一个实验生物获得的生物结构和功能发现常适用于其他。因此研究者通常用最适合快速完整回答所提问题的生物进行研究，知道在一个生物中获得的结果可能广泛适用。事实上，许多生物（特别是大鼠、蛙、海胆、鸡和黏菌）一直且继续对细胞生物学研究极为有价值。随着越来越多生物的整个基因组被测序，越来越多的其他物种被用于研究，特别是基因、细胞和生物演化的研究以及生物如何适应不同生态位。</p>
 <p>如我们所见，细菌是研究几种细胞功能的优秀模型，但它们缺乏真核生物的细胞器。酵母等单细胞真核生物用于研究真核细胞结构和功能的许多基本方面。蠕虫、果蝇和小鼠等后生动物模型用于研究更复杂的组织和器官系统及发育。如本节和下节所见，几种真核模式生物广泛用于理解复杂细胞系统和机制。</p>
 <p>酵母用于研究真核细胞结构和功能的基本方面</p>
 <p>一组单细胞真核生物--酵母--在真核细胞形成和功能的分子及遗传分析中证明极为有用。酵母及其多细胞近亲霉菌（合称真菌）在分解植物和动物残体以再利用中有重要生态作用。它们还制造众多抗生素，用于面包、啤酒和葡萄酒制造。</p>
 <p>用于制造面包和啤酒的常见酵母酿酒酵母在本书中频繁出现，因为它已证明是极其有用的实验生物。酿酒酵母细胞中表达的约 6000 种不同蛋白质的同源物见于大多数（即使不是所有）真核生物，对细胞分裂或个体真核细胞器功能重要。我们对内质网和高尔基体中促进蛋白质分泌的蛋白质的</p>
-<figure>
+<figure id="fig-1-22">
   <img class="zoomable" src="figures/fig_1-22_1.png" alt="图 1-22" onclick="lightbox(this.src)">
   <figcaption>图1-22 · 细胞生物学中使用的每种真核生物对某些类型的研究具有优势。
 (a) 酿酒酵母（Saccharomyces cerevisiae）具有真核生物的细胞组织，但是一种相对简单的单细胞生物，易于培养和遗传操作。研究优势：细胞周期和细胞分裂的调控；蛋白质分泌和膜生物发生；细胞骨架的功能；细胞分化；衰老；基因调控和染色体结构。
@@ -816,7 +913,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>酵母突变导致关键细胞周期蛋白的鉴定</p>
 <p>生化研究可告诉我们许多关于个体蛋白质的信息，但不能证明它对细胞分裂或任何其他细胞过程是必需的。蛋白质的重要性最坚定地被证明：若阻止其合成或使其无功能的突变对所研究过程产生不利影响。</p>
 <p>在经典遗传学方法中，科学家分离和表征缺乏正常生物能做某事能力的突变体。常进行大型遗传"筛选"以寻找不能完成某过程（如细胞分裂或肌肉形成）的许多不同突变个体（如果蝇、酵母细胞）。突变通常由诱变剂（以大致随机方式促进突变的化学或物理试剂）处理产生。但我们如何分离和维持某必需过程（如细胞分裂或蛋白质分泌，对生存必需）有缺陷的突变生物或细胞？</p>
-<figure>
+<figure id="fig-1-23">
   <img class="zoomable" src="figures/fig_1-23_1.png" alt="图 1-23" onclick="lightbox(this.src)">
   <figcaption>图1-23 · 酿酒酵母（Saccharomyces cerevisiae）可以是单倍体或二倍体，可有性或无性繁殖。
 (a) 出芽酵母酿酒酵母的扫描电子显微镜照片。这些细胞通过一种称为有丝分裂出芽（mitotic budding）的特殊有丝分裂方式生长。一个子核留在「母」细胞中；另一个子核被运送到芽中，芽长大后作为新细胞释放。每个芽细胞脱离后，在出芽位点留下一个疤痕，因此可以计数母细胞上之前的出芽数量。橙色细胞是细菌。
@@ -848,7 +945,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>酵母用于制造面包、啤酒、葡萄酒和奶酪，而一些单细胞真核生物引起主要人类疾病，被广泛研究以开发杀死它们而不伤人宿主的药物。溶组织内阿米巴引起痢疾；阴道毛滴虫引起阴道炎；布氏锥虫引起昏睡病。每年这些原生动物中最严重的恶性疟原虫及相关物种引起超过 3 亿新发疟疾病例，每年杀死 150 万至 300 万人。这些原生动物交替栖息哺乳动物和蚊子，响应各自环境信号改变形态和行为。</p>
 <p>疟原虫的复杂生命周期显著展示单细胞如何适应多重挑战（图 1-24a）。此外，感染人红细胞的裂殖子形式含几个大多数真核生物没有的细胞器，使寄生虫能侵入红细胞，包括棒状体、极环和微线体，以及细胞外表面模糊外套（图 1-24b、c）。寄生虫进入红细胞由某些寄生虫细胞表面蛋白与红细胞表面蛋白结合启动，随后两质膜间形成紧密连接，"模糊外套"丢失，微线体和棒状体中储存蛋白分泌。</p>
 <p>疟原虫生命周期中发生的所有细胞类型转化都由该寄生虫遗传物质中编码的指令控制（见表 1-2）。疟原虫基因组有与酵母酿酒酵母约相同数量的蛋白质编码基因，但约 2/3 的疟原虫基因似乎是此及相关寄生虫独有的，证明这些寄生虫、</p>
-<figure>
+<figure id="fig-1-24">
   <img class="zoomable" src="figures/fig_1-24_1.png" alt="图 1-24" onclick="lightbox(this.src)">
   <figcaption>图1-24 · 疟原虫（Plasmodium）物种--引起疟疾的寄生虫--是具有显著生命周期的单细胞原生动物。已知有许多物种，它们可以感染各种动物，在昆虫和脊椎动物宿主之间循环。引起人类疟疾的四个物种在人类和蚊虫宿主体内经历数次戏剧性的转化。
 (a) 生命周期图解。
@@ -896,7 +993,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
   </table>
 </figure>
 <p>顶复门（见图 1-1）与大多数其他真核生物之间的巨大进化距离，以及其复杂生命周期所需独特细胞器的存在。</p>
-<h2>1.5 后生动物结构、分化与模式生物</h2>
+<h2 id="sec-1.5">1.5 后生动物结构、分化与模式生物</h2>
 <p>多细胞生物的演化可能始于细胞分裂后保持在小群落中而不分离成个体细胞时。少数原核生物和几种单细胞真核生物（如团藻，见图 1-3d）以及许多真菌和黏菌表现出这种初级社会行为。然而多细胞性的充分绽放发生在其细胞分化并组织成不同细胞执行特化功能的群组（组织）中的真核生物。</p>
 <p>多细胞性需要细胞-细胞和细胞-基质黏附</p>
 <p>高等植物的细胞被包围细胞的互锁细胞壁形成的网络包裹，并由称为胞间连丝的细胞质桥连接（见图 1-12a）。动物细胞常被表面细胞黏附蛋白（常称细胞黏附分子或 CAM）"粘"成链、球或片（见图 1-4d）。一些 CAM 将细胞彼此结合；其他类型将细胞结合到胞外基质，形成内聚单位。动物中，基质缓冲细胞并允许营养物向其扩散、废物从其扩散。一种专门的特别坚韧的基质（基板，由多糖和胶原蛋白等多种蛋白质组成）形成衬于细胞片下的支撑层，防止细胞聚集体撕裂（见图 1-4）。人中的许多 CAM 和胞外基质蛋白也见于无脊椎动物，表明其在后生动物演化中的重要性。类似地，后生动物用作信号分子的许多蛋白质和小分子在人及许多无脊椎动物中保守，其受体（结合这些信号分子并在接收细胞中触发效应的细胞蛋白）亦然。例如，第 16 章讨论的信号蛋白 Wnt 同时作为果蝇 Wingless 突变中突变的基因和小鼠中致癌病毒整合位点被发现。</p>
@@ -908,7 +1005,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>这种组织层次在其他血管中复制，主要差别在层厚度。大动脉壁必须承受大应力，故比小血管壁厚。分组和分层不同组织的策略也用于建造其他复杂器官。每种情况下，器官功能由其组成组织的特定功能决定，组织中每种细胞类型产生使组织执行功能的特定蛋白质组。</p>
 <p>基因组学揭示了后生动物演化和细胞功能的重要方面</p>
 <p>后生动物--无论是如果蝇和线虫等无脊椎动物，还是小鼠和人等脊椎动物--含 13,000 至 23,000 个蛋白质编码基因，约为酵母的 3-4 倍（见表 1-2）。整个基因组测序显示</p>
-<figure>
+<figure id="fig-1-25">
   <img class="zoomable" src="figures/fig_1-25_1.png" alt="图 1-25" onclick="lightbox(this.src)">
   <figcaption>图1-25 · 所有器官都是各种组织的有序排列，如这一个小动脉（arteriole）横截面所示。血液流过血管腔（lumen），腔由一层形成内皮（endothelium）的内皮细胞薄层和下方的基底膜（basal lamina）衬里。该组织黏附于上方的平滑肌组织层；肌层的收缩控制通过血管的血流。一层纤维状结缔组织（connective tissue）围绕血管并将其与其他组织连接。
 [图中标记] 结缔组织（Connective tissue）、腔（Lumen）、平滑肌（Smooth muscle）、内皮（Endothelium）。
@@ -931,7 +1028,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>不只人类演化让我们感兴趣！北极熊生活在北极，吃高脂饮食（主要由海豹组成）。最近基因组测序使研究者得出结论：北极熊及其生活在温带的棕熊亲属的最近共同祖先存在于约 500,000 年前--仅约 20,000 熊代。但在那相当短的演化时期，北极熊基因组在调节心血管功能、脂肪代谢和心脏发育的许多基因中获得了变化，使其能消费非常富含脂肪的饮食。</p>
 <p>胚胎发育使用保守的主转录因子集</p>
 <p>敏锐的读者会注意到前面讨论中的一个悖论：如果大多数人蛋白质编码基因与类人猿和小鼠共享，许多与蝇和虫共享，这些生物看起来和功能为何如此不同？</p>
-<figure>
+<figure id="fig-1-26">
   <img class="zoomable" src="figures/fig_1-26_1.png" alt="图 1-26" onclick="lightbox(this.src)">
   <figcaption>图1-26 · 连接猴、类人猿和人的进化树。人类、类人猿（great apes）、一种小猿（small ape）和一种旧大陆猴（Old World monkey）的进化树是根据它们基因组 DNA 序列之间的差异估算的。全基因组 DNA 序列被比对，并估算了独特 DNA 序列中的平均核苷酸差异。不同物种彼此分化的时间估计值标在每个节点处，以约百万年（Myr）为单位，基于 DNA 序列同一性计算；1 Myr 意味着约 1 Myr 或更短。
 [图中标记] 恒河猴（Rhesus macaque, Macaca mulatta）、白颊长臂猿（Gibbon, Nomascus leucogenys）、苏门答腊猩猩（Sumatran orangutan, Pongo abelii）、大猩猩（Gorilla, Gorilla gorilla）、人（Human, Homo sapiens）、倭黑猩猩（Bonobo, Pan paniscus）、黑猩猩（Chimpanzee, Pan troglodytes）、人科（The Hominidae，类人猿 great apes）、猴科（Cercopithecidae，旧大陆猴 Old World monkeys）、长臂猿科（Hylobatidae，小猿 Small apes）；DNA 序列同一性值：0.996、0.990、0.984、0.974、0.971、0.949；分化时间：约 1 Myr 前、4.5–6 Myr 前、6–8 Myr 前、12–16 Myr 前、18–20 Myr 前、25–33 Myr 前。
@@ -957,7 +1054,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 </figure>
 <p>此问题的答案在于基因在所有后生动物从单细胞（受精卵）发育过程中的调节方式。如第 8、9 章所学，每个蛋白质编码基因与不同生物中不同的调节 DNA 序列相关。这些调节序列许多结合指导基因表达（从而蛋白质制造量）于特定类型细胞的蛋白。其中一些蛋白称为主转录因子；这些蛋白结合调节 DNA 序列、在整个进化中保守，通过激活或抑制基因组（常在发育不同阶段）控制特定类型细胞的发育。</p>
 <p>人胚胎发育的早期阶段与小鼠相似。特征是快速细胞分裂（图 1-28）随后</p>
-<figure>
+<figure id="fig-1-27">
   <img class="zoomable" src="figures/fig_1-27_1.png" alt="图 1-27" onclick="lightbox(this.src)">
   <figcaption>图1-27 · 人与小鼠之间共线性（synteny）的保守。所示为小鼠 12 号染色体上的一段 510,000 碱基对（bp）片段，与人类 14 号染色体的 600,000 bp 区域共享共同祖先。粉红线连接两个基因组中对应的独特 DNA 序列。Mb，1 百万碱基对。
 [图中标记] 人 14 号染色体（Human Chr 14）、小鼠 12 号染色体（Mouse Chr 12）；59.9（Mb）、60.5（Mb）。
@@ -973,7 +1070,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>细胞分化为组织。在所有生物中，胚胎体型（细胞类型/组织和身体部分的空间模式）源自两个影响：指定身体模式的基因程序和诱导程序不同部分的局部细胞相互作用。</p>
 <p>除少数例外，动物显示轴对称（即左右两侧镜像）。这种最基本的模式编码在基因组中。发育生物学家根据口和肛门在早期胚胎中形成的位置将两侧对称动物门分为两大群。原口动物在早期胚胎暂态开口（胚孔）附近发育口，有腹神经索；原口动物包括所有蠕虫、昆虫和软体动物。后口动物在此暂态开口附近发育肛门，有背侧中枢神经系统；包括棘皮动物（如海星和海胆）和脊椎动物。原口动物和后口动物的身体都分成在胚胎发育早期形成的离散体节。原口动物和后口动物可能从约 6 亿年前生存的称为 Urbilateria 的共同祖先演化而来（图 1-29a）。</p>
 <p>许多模式基因编码主转录因子，控制其他基因表达并指定生物体的一般组织，从主要体轴（前后/头尾、背腹/背肚和左右）开始，以头、胸、腹和尾等体节结束。从最简单蠕虫到哺乳动物的轴对称保守性可由其基因组中保守</p>
-<figure>
+<figure id="fig-1-29">
   <img class="zoomable" src="figures/fig_1-29_1.png" alt="图 1-29" onclick="lightbox(this.src)">
   <figcaption>图1-29 · 进化中保守的相似主转录因子调节不同动物早期发育过程。
 (a) Urbilateria 是所有原口动物（protostomes）和后口动物（deuterostomes）的推定祖先，存在于约 6 亿年前。图中显示其神经索（nerve cord，紫色）、表面外胚层（surface ectoderm，主要为皮肤；白色）和内胚层（endoderm，主要为消化道和器官；浅绿色）的位置。
@@ -997,7 +1094,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
   <tr><td class="gl-en">antennae</td><td class="gl-zh">触角</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-1-28">
   <img class="zoomable" src="figures/fig_1-28_1.png" alt="图 1-28" onclick="lightbox(this.src)">
   <figcaption>图1-28 · 受精卵最初几次细胞分裂为所有后续发育奠定基础。发育中的小鼠胚胎展示在 (a) 两细胞、(b) 四细胞和 (c) 八细胞阶段。胚胎被支持膜包围。人类发育中的相应步骤发生在受精后的最初几天内。
 [图中标记] (a)、(b)、(c)。
@@ -1014,7 +1111,7 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <p>涡虫用于研究干细胞和组织再生</p>
 <p>单细胞生物中，两个子细胞通常（虽不总是）与亲代细胞相似。类似地，多细胞生物中，许多类型细胞分裂时子代细胞看起来很像亲代--例如肝细胞分裂产生与亲代有相同特征和功能的肝细胞，胰腺产胰岛素细胞亦然。相比之下，干细胞和某些其他未分化细胞能产生多种类型的分化后代细胞；这些细胞常以两子细胞不同的方式分裂。这种不对称细胞分裂是干细胞的特征，对体内不同细胞类型的产生至关重要（见第 21 章）。通常一个子细胞在保持未分化和保留产生多类型分化细胞能力方面像其亲代。另一子细胞多次分裂，其每个子细胞分化为特定类型细胞。</p>
 <p>涡虫 Schmidtea mediterranea 以其从解剖形成的微小身体部分再生完整个体（含正常头）的能力而闻名（见图 1-22e）。涡虫含干细胞</p>
-<figure>
+<figure id="fig-1-30">
   <img class="zoomable" src="figures/fig_1-30_1.png" alt="图 1-30" onclick="lightbox(this.src)">
   <figcaption>图1-30 · 同源基因调节不同动物的眼发育。
 (a) 果蝇大型复眼（compound eyes）的发育需要一个名为 eyeless 的基因（以突变表型命名）。
@@ -1048,7 +1145,7 @@ eyeless 和 Pax6 编码高度相关的主转录因子，调节其他基因的活
 <p>考虑杜氏肌营养不良（DMD），最常见的遗传性肌肉萎缩疾病（统称肌营养不良）。DMD 是 X 染色体连锁疾病，影响 1/3300 男孩，导致心脏或呼吸衰竭和死亡，通常在十几岁后期或二十几岁早期。理解该疾病分子基础的第一条线索来自发现 DMD 患者携带名为抗肌萎缩蛋白的基因编码蛋白突变。如第 17 章详述，这种非常大的蛋白后来被发现是胞质接头蛋白，结合作为细胞骨架一部分的肌动蛋白丝（见图 1-13）和称为肌聚糖复合物的肌质膜蛋白复合物（图 1-31）。由此产生的大多蛋白聚集体（抗肌萎缩蛋白糖蛋白复合物 DGC）将胞外基质蛋白层粘连蛋白连接到肌细胞内的细胞骨架。抗肌萎缩蛋白、其他 DGC 组分或层粘连蛋白突变可破坏 DGC 介导的肌细胞内外连接，导致肌无力和最终死亡。鉴定整个抗肌萎缩蛋白糖蛋白复合物的第一步涉及用正常个体和杜氏肌营养不良患者的 DNA 克隆编码抗肌萎缩蛋白的基因。</p>
 <p>后续章节呈现大量实验数据解释我们如何知道我们所知道的关于细胞结构和功能</p>
 <p>本书后续章节我们更详细讨论细胞过程。从讨论细胞构建块的化学性质</p>
-<figure>
+<figure id="fig-1-31">
   <img class="zoomable" src="figures/fig_1-31_1.png" alt="图 1-31" onclick="lightbox(this.src)">
   <figcaption>图1-31 · 骨骼肌细胞中的抗肌萎缩蛋白糖蛋白复合物（dystrophin glycoprotein complex, DGC）。抗肌萎缩蛋白（dystrophin）--杜氏肌营养不良（Duchenne muscular dystrophy）中缺陷的蛋白--将肌动蛋白细胞骨架（actin cytoskeleton）与质膜中的多蛋白肌聚糖复合物（sarcoglycan complex）连接。复合物中的其他蛋白质结合基底膜（basal lamina）的组分，如层粘连蛋白（laminin），后者又结合赋予基底膜强度和刚性的胶原纤维（collagen fibers）。因此，抗肌萎缩蛋白是将肌细胞及其内部肌动蛋白细胞骨架与周围基底膜连接的一组蛋白质中的重要成员。参见 D. E. Michele and K. P. Campbell, J. Biol. Chem. 278:15457, 2003。
 [图中标记] 聚集蛋白（Agrin）、基底膜（Basal lamina）、细胞外空间（Extracellular space）、肌聚糖复合物（Sarcoglycan complex）、质膜（Plasma membrane）、细胞溶质（Cytosol）、抗肌萎缩蛋白（Dystrophin）、肌动蛋白（Actin）、串珠素（Perlecan）、层粘连蛋白（Laminin）、胶原和其他纤维状蛋白（Collagen and other fibrous proteins）、附着在蛋白质上的糖链（Carbohydrate chains attached to proteins）、杜氏肌营养不良中缺陷的蛋白（The protein defective in Duchenne muscular dystrophy）。</figcaption>
@@ -1104,6 +1201,45 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mousemove',onMove);
     document.removeEventListener('mouseup',onUp);
   }
+})();
+/* 阅读索引滚动监视 */
+(function(){
+  var tocLinks=document.querySelectorAll('#toc a');
+  var targets=[];
+  tocLinks.forEach(function(a){
+    var id=a.getAttribute('href');
+    if(!id)return;
+    var el=document.getElementById(id.replace('#',''));
+    if(el)targets.push({el:el,link:a});
+  });
+  function onScroll(){
+    var scrollY=window.scrollY+120;
+    var active=null;
+    for(var i=targets.length-1;i>=0;i--){
+      if(targets[i].el.offsetTop<=scrollY){active=targets[i].link;break;}
+    }
+    tocLinks.forEach(function(a){a.classList.remove('active');});
+    if(active)active.classList.add('active');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+  tocLinks.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').replace('#','');
+      var el=document.getElementById(id);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+      var toc=document.getElementById('toc');
+      if(toc)toc.classList.remove('open');
+    });
+  });
+  /* 点击正文区域关闭移动端侧栏 */
+  document.addEventListener('click',function(e){
+    var toc=document.getElementById('toc');
+    if(!toc||!toc.classList.contains('open'))return;
+    if(!toc.contains(e.target))toc.classList.remove('open');
+  });
 })();
 </script>
 </body></html>

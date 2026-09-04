@@ -3,21 +3,21 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
-h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; }
+h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
 p { margin: 0 0 0.7em 0; text-align: justify; text-indent: 2em; }
 p.ni { text-indent: 0; }
 hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
-figure { margin: 1.5em 0; text-align: center; }
+figure { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 figure.table { border-left: 4px solid #3b82f6; padding: 6px 0 6px 12px; text-align: left; background: #f8faff; }
 figure img, .boximg img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; }
 img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
 img.zoomable:hover { opacity: 0.88; }
-.boximg { margin: 1.5em 0; text-align: center; }
+.boximg { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 .boximg img { border: 1px solid #d8b4fe; }
 .intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
 .intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
@@ -51,11 +51,131 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
-#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }</style></head><body><article>
+#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
+/* 左侧阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+  background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+#toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+#toc ul { list-style: none; padding: 0; margin: 0; }
+#toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
+  border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
+#toc li a:hover { background: #f0ede6; color: #333; }
+#toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
+  font-size: 13.5px; border-left-color: transparent; }
+#toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
+#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+  padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
+#toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
+#toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
+#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+  border-left-color: #999; background: #eee9e0; color: #555; }
+#toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
+  background: #333; color: #fff; border: none; border-radius: 4px;
+  padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
+@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media (max-width: 1050px) {
+  body { padding-left: 0; }
+  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
+  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc-toggle { display: block; }
+  article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
+}</style></head><body>
+<button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
+<nav id="toc">
+<div class="toc-title">目录</div>
+<ul>
+<li class="toc-box"><a href="#box-G5-1">第5章 基本分子遗传机制来自非洲爪蟾卵母细胞的一个核糖体RN…</a></li>
+<li class="toc-fig"><a href="#fig-5-1">图5-1 · 四个基本分子遗传过程概览。本章涵盖导致蛋白质产…</a></li>
+<li class="toc-sec"><a href="#sec-5.1">5.1 核酸的结构</a>
+<ul>
+<li class="toc-fig"><a href="#fig-5-2">图5-2 · 核酸链的化学方向性。此处展示了一条仅含三个碱基…</a></li>
+<li class="toc-fig"><a href="#fig-5-3">图5-3 · DNA双螺旋。（a）B型DNA的空间填充模型，…</a></li>
+<li class="toc-fig"><a href="#fig-5-4">图5-4 · A型和B型DNA的比较。两种结构中两条多核苷酸…</a></li>
+<li class="toc-fig"><a href="#fig-5-5">图5-5 · 与蛋白质的相互作用可使DNA弯曲。标准B型DN…</a></li>
+<li class="toc-fig"><a href="#fig-5-6">图5-6 · RNA的碱催化水解。RNA中的2′-羟基可作为…</a></li>
+<li class="toc-fig"><a href="#fig-5-7">实验图5-7 · DNA的G·C含量影响解链温度。DNA变性…</a></li>
+<li class="toc-fig"><a href="#fig-5-8">实验图5-8 · 拓扑异构酶I缓解DNA的扭转应力。（a）S…</a></li>
+<li class="toc-fig"><a href="#fig-5-9">图5-9 · RNA的二级和三级结构。（a）发夹、茎环和其他…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-5.2">5.2 蛋白质编码基因的转录与功能性mRNA的形成</a>
+<ul>
+<li class="toc-fig"><a href="#fig-5-10">图5-10 · RNA按5′→3′方向合成。（a）转录过程中…</a></li>
+<li class="toc-fig"><a href="#fig-5-11">图5-11 · 转录的三个阶段。在转录起始期，RNA聚合酶形…</a></li>
+<li class="toc-fig"><a href="#fig-5-12">图5-12 · 细菌RNA聚合酶。此结构对应于图5-11中延…</a></li>
+<li class="toc-fig"><a href="#fig-5-13">图5-13 · 原核生物和真核生物的基因组织。（a）色氨酸（…</a></li>
+<li class="toc-fig"><a href="#fig-5-14">图5-14 · 5′甲基化帽的结构。真核mRNA上5′甲基化…</a></li>
+<li class="toc-fig"><a href="#fig-5-15">图5-15 · RNA加工概述。RNA加工在真核生物中产生功…</a></li>
+<li class="toc-fig"><a href="#fig-5-16">图5-16 · 可变剪接。约75 kb的纤连蛋白基因（上）包…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-5.3">5.3 mRNA被tRNA解码</a>
+<ul>
+<li class="toc-fig"><a href="#fig-5-17">图5-17 · RNA在蛋白质合成中的三种作用。信使RNA（…</a></li>
+<li class="toc-tab"><a href="#tab-T5-1">表T5-1 · 遗传密码（密码子到氨基酸）*</a></li>
+<li class="toc-fig"><a href="#fig-5-18">图5-18 · mRNA序列中的多重阅读框。如果所示mRNA…</a></li>
+<li class="toc-tab"><a href="#tab-T5-2">表T5-2 · 通用遗传密码的已知偏离</a></li>
+<li class="toc-fig"><a href="#fig-5-19">图5-19 · 将核酸序列翻译为氨基酸序列。将mRNA中的核…</a></li>
+<li class="toc-fig"><a href="#fig-5-20">图5-20 · tRNA的结构。尽管不同tRNA的精确核苷酸…</a></li>
+<li class="toc-fig"><a href="#fig-5-21">图5-21 · 摆动位置的非标准碱基配对。mRNA密码子第三…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-5.4">5.4 蛋白质在核糖体上的逐步合成</a>
+<ul>
+<li class="toc-tab"><a href="#tab-T5-3">表T5-3 · 核糖体组分</a></li>
+<li class="toc-fig"><a href="#fig-5-22">图5-22 · 细菌核糖体的结构。嗜热栖热菌核糖体沿大亚基（…</a></li>
+<li class="toc-fig"><a href="#fig-5-23">图5-23 · 所有生命域核糖体中心的共同核心结构以及细菌、…</a></li>
+<li class="toc-fig"><a href="#fig-5-24">图5-24 · 真核生物中的翻译起始。当前真核起始模型涉及八…</a></li>
+<li class="toc-fig"><a href="#fig-5-25">图5-25 · 真核生物中的链延伸。一旦80S核糖体在P位点…</a></li>
+<li class="toc-fig"><a href="#fig-5-26">图5-26 · 真核生物中的翻译终止。当携带新生蛋白链的核糖…</a></li>
+<li class="toc-fig"><a href="#fig-5-27">实验图5-27 · mRNA的环状结构增加翻译效率。真核mR…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-5.5">5.5 DNA复制</a>
+<ul>
+<li class="toc-fig"><a href="#fig-5-28">实验图5-28 · Meselson-Stahl实验。此实验…</a></li>
+<li class="toc-box"><a href="#box-G5-2">G5-2</a></li>
+<li class="toc-fig"><a href="#fig-5-29">图5-29 · 前导链和滞后链DNA合成。核苷酸由DNA聚合…</a></li>
+<li class="toc-fig"><a href="#fig-5-30">图5-30 · SV40 DNA复制叉模型。（a）大T抗原（…</a></li>
+<li class="toc-fig"><a href="#fig-5-31">实验图5-31 · SV40 DNA中的双向复制。复制中SV…</a></li>
+<li class="toc-fig"><a href="#fig-5-32">图5-32 · DNA双向复制机制。此处左侧的复制叉与图5-…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-5.6">5.6 DNA修复与重组</a>
+<ul>
+<li class="toc-fig"><a href="#fig-5-33">图5-33 · DNA聚合酶的校对功能。所有DNA聚合酶具有…</a></li>
+<li class="toc-fig"><a href="#fig-5-34">图5-34 · 脱氨导致点突变。自发性点突变可由5-甲基胞嘧…</a></li>
+<li class="toc-fig"><a href="#fig-5-35">图5-35 · T·G错配的碱基切除修复。特异性识别G·T错…</a></li>
+<li class="toc-fig"><a href="#fig-5-36">图5-36 · 人细胞中的错配切除修复。错配切除修复途径纠正…</a></li>
+<li class="toc-fig"><a href="#fig-5-37">图5-37 · 胸腺嘧啶-胸腺嘧啶二聚体的形成。（a）UV照…</a></li>
+<li class="toc-fig"><a href="#fig-5-38">图5-38 · 人细胞中的核苷酸切除修复。引起双螺旋扭曲的D…</a></li>
+<li class="toc-fig"><a href="#fig-5-39">图5-39 · 非同源末端连接。（a）当没有姐妹染色单体可用…</a></li>
+<li class="toc-fig"><a href="#fig-5-40">图5-40 · 塌陷复制叉的重组修复。亲本链为浅蓝色和深蓝色…</a></li>
+<li class="toc-fig"><a href="#fig-5-41">图5-41 · 通过同源重组修复双链断裂。为简化，每个DNA…</a></li>
+<li class="toc-fig"><a href="#fig-5-42">图5-42 · Holliday结构的替代解析方式。对角线和…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-5.7">5.7 病毒：细胞遗传系统的寄生体</a>
+<ul>
+<li class="toc-fig"><a href="#fig-5-43">图5-43 · 病毒粒子结构。（a）螺旋形烟草花叶病毒。（b…</a></li>
+<li class="toc-fig"><a href="#fig-5-44">实验图5-44 · 噬菌斑测定。噬菌斑测定确定病毒悬液中的感…</a></li>
+<li class="toc-fig"><a href="#fig-5-45">图5-45 · 无包膜细菌病毒的裂解性复制周期。噬菌体T4具…</a></li>
+<li class="toc-fig"><a href="#fig-5-46">图5-46 · 有包膜动物病毒的裂解性复制周期。狂犬病毒是一…</a></li>
+<li class="toc-fig"><a href="#fig-5-47">实验图5-47 · 子代病毒粒子通过出芽释放。有包膜病毒的子…</a></li>
+<li class="toc-fig"><a href="#fig-5-48">图5-48 · 逆转录病毒生命周期。逆转录病毒具有两条相同的…</a></li>
+<li class="toc-box"><a href="#box-G5-3">G5-3</a></li>
+</ul>
+</li>
+</ul></nav>
+<article>
 <h1>第5章 基本分子遗传机制</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Fundamental Molecular Genetic Mechanisms · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg">
+<div class="boximg" id="box-G5-1">
   <img class="zoomable" src="figures/box_G5-1_1.png" alt="G5-1" onclick="lightbox(this.src)">
 </div>
 <div class="intro-block"><span class="intro-title">第5章 基本分子遗传机制</span>来自非洲爪蟾卵母细胞的一个核糖体RNA转录单位的彩色透射电子显微照片。转录从左到右进行，新生的核糖体核蛋白复合物（rRNPs）随着每个相继的RNA聚合酶I分子沿中央DNA模板移动而逐渐增长。在此制备中，每个rRNP定向于正在转录的DNA中心链的上方或下方，因此整体形状类似羽毛。在活细胞的核仁中，新生的rRNPs向各个方向延伸，如同瓶刷。[Professor Oscar L. Miller/Science Photo Library.]</div>
@@ -67,7 +187,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>1953年DNA结构的发现，以及随后对DNA如何指导RNA合成、RNA又如何指导蛋白质组装——即所谓的中心法则——的阐明，是标志着分子生物学早期时代的里程碑式成就。然而，将中心法则简化为DNA→RNA→蛋白质的表述并未反映蛋白质在核酸合成中的作用。此外，正如本章对细菌以及在后续章节中对真核生物的讨论，蛋白质在很大程度上负责调控基因表达，即编码在DNA中的信息在发育过程中在正确的时间在正确的细胞中被解码为蛋白质的整个过程。因此，血红蛋白仅在骨髓中注定发育为循环红细胞（红细胞）的细胞（红系祖细胞）中表达，而发育中的神经元则与人脑中约10^11个其他发育中的神经元建立正确的突触（连接）。DNA复制、转录和翻译这些基本的分子遗传过程必须以极高的保真度、速度和精确的调控来进行，才能保证像细菌、古菌和真核生物这样复杂的生物体正常发育（见图1-1）。这是通过以极高精确度运行的化学过程，加上多层次的检查点或监视机制来实现的，这些机制在启动下一步之前检测这些过程中的关键步骤是否已正确发生。多细胞生物体发育所需基因的高度调控表达，需要整合来自发育中生物体远处细胞以及邻近细胞发出的信号，以及由每个细胞的祖细胞在胚胎发生早期步骤决定的内在发育程序。所有这些调控都依赖于DNA中的控制序列，这些序列与称为转录因子的蛋白质一起发挥作用，协调每个基因的表达。我们在第8、9和10章中讨论的RNA序列也用于调控染色质结构、转录、RNA加工和翻译。核酸充当细胞的"大脑和中枢神经系统"，而蛋白质则执行它们所指定的大多数功能。</p>
 <p>在本章中，我们首先回顾DNA和RNA的结构和性质，并探讨这两类核酸的不同特性如何使它们各自适合在细胞中执行其功能。在接下来的几节中，我们将讨论图5-1中总结的基本过程：DNA转录为RNA前体，这些前体的加工以生成功能性RNA分子，mRNA翻译为蛋白质，以及DNA的复制。蛋白质调控细胞结构以及细胞中大多数生物化学反应，因此我们首先考虑蛋白质的氨基酸序列（决定其三维结构，从而决定其功能）如何编码在DNA中并被翻译。在概述mRNA、tRNA和rRNA在蛋白质合成中的功能之后，我们将详细描述翻译的组分和生化步骤。理解这些过程使我们深刻认识到精确复制DNA核苷酸序列的必要性。因此，我们接下来讨论DNA复制中涉及的分子问题，以及确保遗传物质精确复制的复杂细胞机器。在此过程中，我们比较原核生物和真核生物中的这些过程。下一节将描述DNA损伤如何被修复，以及不同DNA分子的区域如何在</p>
 <p>在本章中，我们首先回顾 DNA 和 RNA 的结构与性质，并探讨这两类核酸的不同特性如何使其分别适应细胞中的各自功能。在接下来的几节中，我们将讨论图 5-1 所概括的基本过程：DNA 转录为 RNA 前体，这些前体经过加工生成功能性 RNA 分子，mRNA 翻译为蛋白质，以及 DNA 的复制。蛋白质调控细胞结构以及细胞内绝大多数生化反应，因此我们首先考虑蛋白质的氨基酸序列（决定其三维结构从而决定其功能）如何编码在 DNA 中并得以翻译。在概述 mRNA、tRNA 和 rRNA 在蛋白质合成中的功能之后，我们将详细描述翻译的组分和生化步骤。理解这些过程使我们深刻认识到精确复制 DNA 核苷酸序列的必要性。因此，我们接下来讨论 DNA 复制涉及的分子问题，以及确保遗传物质准确复制的复杂细胞机器。在此过程中，我们比较原核生物和真核生物中的这些过程。下一节将描述 DNA 损伤如何被修复，以及不同 DNA 分子的区域如何通过重组过程进行交换，从而在一个物种的个体生物中产生新的性状组合。本章最后一节介绍关于病毒的基本知识，病毒是寄生生物，利用细胞机器进行 DNA 复制、转录和蛋白质合成。病毒不仅是重要的病原体，也是研究这些大分子合成的细胞机制及其他细胞过程的重要模式生物。与细胞相比，病毒结构相对简单，其较小的基因组使其在历史上对这些基本细胞过程的早期研究中易于操作。至今，病毒仍在分子细胞生物学中提供重要的启示，并已被改造为将基因导入细胞的实验工具，这些工具目前正在人体基因治疗中测试其有效性。</p>
-<figure>
+<figure id="fig-5-1">
   <img class="zoomable" src="figures/fig_5-1_1.png" alt="图 5-1" onclick="lightbox(this.src)">
   <figcaption>图5-1 · 四个基本分子遗传过程概览。本章涵盖导致蛋白质产生的三个过程——以及DNA复制过程。由于病毒利用宿主细胞机器，它们一直是研究这些过程的重要模型。在RNA聚合酶对蛋白质编码基因进行转录（1）时，编码蛋白质氨基酸序列的四碱基DNA密码被拷贝（转录）为前体信使RNA（pre-mRNA），通过核糖核苷三磷酸单体（rNTPs）的聚合完成。去除非编码序列及其他对pre-mRNA的修饰，统称为RNA加工（2），产生功能性mRNA，随后被转运至细胞质。在翻译过程中（3），mRNA的四碱基密码被解码为蛋白质的20种氨基酸语言。核糖体是翻译mRNA密码的大分子机器，由两个亚基组成，亚基在核仁中由核糖体RNA（rRNA）和多种蛋白质组装而成（左）。转运至细胞质后，核糖体亚基与mRNA结合，并在转运RNA（tRNA）和翻译因子蛋白的帮助下进行蛋白质合成。在DNA复制过程中（4），仅在准备分裂的细胞中发生，脱氧核糖核苷三磷酸单体（dNTPs）被聚合产生每个染色体DNA分子的两个相同拷贝。每个子细胞获得其中一个相同拷贝。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -93,9 +213,9 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>本章最后一节介绍关于病毒的基本知识，病毒是寄生生物，利用细胞机器进行 DNA 复制、转录和蛋白质合成。病毒不仅是重要的病原体，也是研究这些大分子合成的细胞机制及其他细胞过程的重要模式生物。与细胞相比，病毒结构相对简单，其较小的基因组使其在历史上对这些基本细胞过程的早期研究中易于操作。至今，病毒仍在分子细胞生物学中提供重要的启示，并已被改造为将基因导入细胞的实验工具，这些工具目前正在人体基因治疗中测试其有效性。</p>
-<h2>5.1 核酸的结构</h2>
+<h2 id="sec-5.1">5.1 核酸的结构</h2>
 <p>DNA和RNA在化学上非常相似。两者的初级结构都是由称为核苷酸的单体组成的线性聚合物。DNA和信使RNA主要作为信息分子发挥作用，在其核苷酸的精确序列中携带信息。细胞RNA的长度范围从约22个到数千个核苷酸。细胞DNA分子可长达数亿个核苷酸。这些与蛋白质结合的大型DNA单位可以用染料染色并在光学显微镜下观察为染色体，因其可染色性而得名。尽管化学上相似，DNA和RNA表现出一些非常重要的差异。例如，RNA也可以作为催化分子发挥作用。我们将会看到，DNA和RNA的不同且独特的性质</p>
-<figure>
+<figure id="fig-5-2">
   <img class="zoomable" src="figures/fig_5-2_1.png" alt="图 5-2" onclick="lightbox(this.src)">
   <figcaption>图5-2 · 核酸链的化学方向性。此处展示了一条仅含三个碱基——胞嘧啶（C）、腺嘌呤（A）和鸟嘌呤（G）——的单链DNA的替代表示。（a）化学结构显示3′端有一个羟基，5′端有一个磷酸基团。还注意到两个磷酸酯键连接相邻核苷酸；这种双键连接通常称为磷酸二酯键。（b）在"棍棒"图（上）中，糖用竖直线表示，磷酸二酯键用斜线表示；碱基用其单字母缩写表示。在最简单的表示法（下）中，仅标出碱基。按惯例，除非另有说明，多核苷酸序列总是按5′→3′方向（从左到右）书写。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -112,7 +232,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>分子生物学的现代纪元始于 1953 年，当时 James D. Watson 和 Francis H. C. Crick 提出 DNA 具有双螺旋结构。他们的提议基于对 Rosalind Franklin 和 Maurice Wilkins 产生的 DNA 纤维 X 射线衍射图样的分析（表明该结构为螺旋状），以及 Erwin Chargaff 及其同事对多种生物 DNA 碱基组成的分析。Chargaff 的研究揭示，虽然远缘生物之间 DNA 的碱基组成（A、T、G、C 的百分比）差异很大，但在所有生物中，A 的百分比始终等于 T 的百分比，G 的百分比始终等于 C 的百分比。基于这些发现和四种核苷酸的结构，Watson 和 Crick 进行了精心的分子模型构建，提出了双螺旋结构，其中 A 始终与 T 通过氢键配对，G 始终与 C 通过氢键配对，位于双螺旋的轴心，作为 DNA 的结构。Watson-Crick 模型被证明是正确的，为我们现代理解 DNA 如何作为遗传物质发挥功能铺平了道路。今天，我们对 DNA 结构最精确的模型来自对 DNA 晶体的高分辨率 X 射线衍射研究，这得益于通过化学合成大量长度和序列均一的短 DNA 分子，使其适合结晶（见图 5-3a）。</p>
 <p>DNA 由两条相互缠绕的多核苷酸链组成，形成双螺旋。两条糖-磷酸骨架位于双螺旋外侧，碱基伸向内部。每条链中相邻的碱基在平行平面上彼此堆叠（见图 5-3a）。两条链的方向是反平行的，即它们的 5′→3′ 方向相反。两条链通过碱基配对精确对齐：A 通过两个氢键与 T 配对；G 通过三个氢键与 C 配对（图 5-3b）。这种碱基配对互补性是碱基的大小、形状和化学组成的结果。DNA 分子中成千上万个这样的氢键极大地贡献了双螺旋的稳定性。堆叠的相邻碱基对之间的疏水和范德华相互作用进一步稳定了双螺旋结构。</p>
 <p>在天然 DNA 中，A 始终与 T 通过氢键配对，G 始终与 C 配对，形成 A∙T 和 G∙C 碱基对，如图 5-3b 所示。这些配对始终发生在较大的嘌呤和较小的嘧啶之间，通常被称为 Watson-Crick 碱基对。两条多核苷酸链（或其区域）中所有核苷酸均形成此类碱基对时，被称为互补链。然而，在理论上和合成 DNA 中，也可以形成其他碱基对。例如，鸟嘌呤（一种嘌呤）理论上可以与胸腺嘧啶（一种嘧啶）形成氢键，仅引起螺旋的轻微扭曲。螺旋中的可用空间也允许两个嘧啶——胞嘧啶和胸腺嘧啶之间配对。虽然非标准 G∙T 和 C∙T 碱基对通常不存在于 DNA 中，但 G∙U 碱基对在单链 RNA 内部形成的双螺旋区域中相当常见。非标准碱基对不会天然出现在双链 DNA 中，因为本章稍后描述的 DNA 复制酶不允许它们存在。</p>
-<figure>
+<figure id="fig-5-3">
   <img class="zoomable" src="figures/fig_5-3_1.png" alt="图 5-3" onclick="lightbox(this.src)">
   <figcaption>图5-3 · DNA双螺旋。（a）B型DNA的空间填充模型，是细胞中最常见的DNA形式。碱基（浅色）从每条链的糖-磷酸骨架（深红和蓝色）向内突出，但其边缘可通过大沟和小沟接触到。箭头指示每条链的5′→3′方向。碱基之间的氢键位于结构中心。大沟和小沟内衬潜在的氢键供体和受体（以黄色高亮）。（b）DNA双螺旋的化学结构。此扩展示意图显示两条糖-磷酸骨架以及Watson-Crick碱基对A·T和G·C之间的氢键。参见R. E. Dickerson, 1983, Sci. Am. 249:94。[部分（a）数据来自R. Wing等, 1980, Nature 287:755, PDB ID 1bna。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -122,12 +242,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>虽然非标准 G∙T 和 C∙T 碱基对通常不存在于 DNA 中，但 G∙U 碱基对在单链 RNA 内部形成的双螺旋区域中相当常见。非标准碱基对不会天然出现在双链 DNA 中，因为本章稍后描述的 DNA 复制酶不允许它们存在。</p>
 <p>细胞中的大多数 DNA 采取右手螺旋形式。DNA 的 X 射线衍射图样表明，堆叠的碱基沿螺旋轴规则地间隔 0.34 nm。螺旋每 3.4 至 3.6 nm 完成一整圈，具体取决于序列；因此每圈大约有 10-10.5 个碱基对。这种螺旋形式被称为 B 型 DNA，是细胞中大多数 DNA 片段存在的正常形式。在螺旋外侧，缠绕链之间的空间形成两个宽度不同的螺旋沟，分别称为大沟和小沟（见图 5-3a）。因此，位于这些沟中的每个碱基边缘的原子可从螺旋外部接近，形成两种类型的结合表面。DNA 结合蛋白可以通过接触大沟或小沟中的原子来"读取"双链 DNA 中的碱基序列。</p>
 <p>在实验室条件下，当 DNA 中大部分水分被去除时，DNA 的晶体结构转变为 A 型，比 B 型 DNA 更宽更短，具有更宽更深的大沟和更窄更浅的小沟（图 5-4）。RNA-DNA 和 RNA-RNA 螺旋在细胞中和体外也以这种形式存在。</p>
-<figure>
+<figure id="fig-5-4">
   <img class="zoomable" src="figures/fig_5-4_1.png" alt="图 5-4" onclick="lightbox(this.src)">
   <figcaption>图5-4 · A型和B型DNA的比较。两种结构中两条多核苷酸链的糖-磷酸骨架均在外部，以红色和蓝色显示；碱基（浅色）朝向内部。（a）B型DNA每螺旋圈约10.5个碱基对。相邻堆积碱基对相距0.34 nm。（b）更紧凑的A型DNA每圈有11个碱基对，其大沟比B型DNA深得多，小沟浅得多。[部分（a）数据来自R. Wing等, 1980, Nature 287:755, PDB ID 1bna。部分（b）数据来自B. N. Conner等, 1984, J. Mol. Biol. 174:663, PDB ID 1ana。]</figcaption>
 </figure>
 <p>标准 B 型 DNA 结构的重要修饰来自蛋白质与特定 DNA 序列的结合。虽然碱基之间大量的氢键和疏水键为 DNA 提供了稳定性，但双螺旋绕其长轴是柔性的。与蛋白质中的 α 螺旋不同（见图 3-4），DNA 没有平行于螺旋轴的氢键。这一特性使 DNA 在与 DNA 结合蛋白（如转录因子 TBP）复合时能够弯曲（图 5-5）。</p>
-<figure>
+<figure id="fig-5-5">
   <img class="zoomable" src="figures/fig_5-5_1.png" alt="图 5-5" onclick="lightbox(this.src)">
   <figcaption>图5-5 · 与蛋白质的相互作用可使DNA弯曲。标准B型DNA结构的重要修饰来自蛋白质与特定DNA序列的结合。尽管碱基之间的大量氢键和疏水键为DNA提供了稳定性，但双螺旋围绕其长轴是柔性的。与蛋白质中的α螺旋不同（见图3-4），它没有平行于螺旋轴的氢键。这一特性使DNA在与DNA结合蛋白（如转录因子TBP）形成复合物时能够弯曲。TATA盒结合蛋白（TBP）的保守C端结构域结合到富含A和T的特定DNA序列的小沟，使双螺旋解旋并急剧弯曲。大多数真核基因的转录需要TBP的参与。[数据来自D. B. Nikolov和S. K. Burley, 1997, Proc. Natl. Acad. Sci. USA 94:15, PDB ID 1cdw。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -140,7 +260,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>DNA的弯曲也对染色质中DNA的紧密包装至关重要，染色质是真核细胞中核DNA所在的蛋白质-DNA复合物（见第8章）。</p>
 <p>为什么DNA，而不是RNA，进化成为细胞中遗传信息的载体？DNA脱氧核糖中2'位的氢原子使其成为比RNA稳定得多的分子，RNA在核糖的2'位有一个羟基（见图2-16）。RNA中的2'-羟基在中性pH下参与OH⁻催化的磷酸二酯键的缓慢水解（图5-6）。DNA中缺乏2'-羟基阻止了这一过程。因此，DNA中脱氧核糖的存在使其成为更稳定的分子——这一特性对其在遗传信息长期储存中的功能至关重要。</p>
 <p>DNA可以进行可逆的链分离</p>
-<figure>
+<figure id="fig-5-6">
   <img class="zoomable" src="figures/fig_5-6_1.png" alt="图 5-6" onclick="lightbox(this.src)">
   <figcaption>图5-6 · RNA的碱催化水解。RNA中的2′-羟基可作为亲核试剂，攻击磷酸二酯键。2′,3′-环单磷酸衍生物进一步水解产生2′和3′单核苷酸的混合物。DNA缺少2′-羟基，因此对碱催化水解稳定。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -149,7 +269,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>破坏氢键的变性剂，如甲酰胺或尿素，也会降低 Tm。最后，极端 pH 在低温下使 DNA 变性。在低 pH 下，碱基被质子化从而带正电荷，相互排斥。在高 pH 下，碱基失去质子而带负电荷，同样因电荷相同而相互排斥。在细胞中，pH 和温度在很大程度上维持恒定。DNA 变性的这些特征在实验室操作 DNA 时最为有用。</p>
-<figure>
+<figure id="fig-5-7">
   <img class="zoomable" src="figures/fig_5-7_1.png" alt="图 5-7" onclick="lightbox(this.src)">
   <figcaption>实验图5-7 · DNA的G·C含量影响解链温度。DNA变性温度随G·C对比例的增加而升高。（a）双链DNA的解链可通过其260 nm紫外光吸收来监测。当双链DNA区域解链时，这些区域的光吸收几乎增加两倍。光吸收随温度的变化曲线显示，在双链DNA解离为单链DNA的温度范围内，吸收急剧增加。解链温度Tm是光吸收增加达到一半时的温度。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -168,11 +288,11 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>在复制和转录过程中，细胞和病毒 DNA 分子中会产生扭转应力。这种酶随机结合在 DNA 上，在一条链上断开一个磷酸二酯键。DNA 中这种单链断裂称为切口。断裂的末端随后绕未切断的链旋转，导致超螺旋消失（图 5-8b）。最后，同一酶将断裂链的两端连接起来。另一种酶，拓扑异构酶 II，在双链 DNA 的两条链上均造成断裂，然后重新连接。因此，拓扑异构酶 II 既可以解除扭转应力，也可以像链环一样将两个环状 DNA 分子连接在一起。</p>
 <p>不同类型的 RNA 表现出与其功能相关的各种构象</p>
 <p>RNA 的一级结构通常与 DNA 相似，但有两个例外：RNA 的糖组分核糖在 2′ 位有一个羟基（见图 2-16b），而 DNA 中的胸腺嘧啶在 RNA 中被尿嘧啶取代。DNA 中存在胸腺嘧啶而非尿嘧啶对 DNA 的长期稳定性很重要，因为它具有 DNA 修复功能（见第 5.6 节）。如前所述，核糖 2′ 碳上的羟基使 RNA 比 DNA 化学上更不稳定。由于这种不稳定性，RNA 可被碱性溶液裂解为单核苷酸（见图 5-6），而 DNA 则不能。RNA 的 2′-羟基还提供一个参与 RNA 介导催化的化学反应基团。与 DNA 一样，RNA 是一种长多核苷酸，可以是双链或单链，线性或环状。它还可以参与由一条 RNA 链和一条 DNA 链组成的杂合螺旋。如上所述，RNA-RNA 和 RNA-DNA 双螺旋具有类似 DNA A 型的紧凑构象（见图 5-4b）。</p>
-<figure>
+<figure id="fig-5-8">
   <img class="zoomable" src="figures/fig_5-8_1.png" alt="图 5-8" onclick="lightbox(this.src)">
   <figcaption>实验图5-8 · 拓扑异构酶I缓解DNA的扭转应力。（a）SV40病毒DNA的电子显微图。当SV40病毒的环状DNA被分离并去除其结合蛋白后，DNA双链处于欠旋状态并呈现超螺旋构型。（b）如果超螺旋DNA被切刻（即一条链被切断），链可以重新缠绕，导致失去一个超螺旋。拓扑异构酶I催化此反应并重新连接断裂末端。SV40分离DNA中的所有超螺旋都可以通过该酶的连续作用被去除，产生松弛环构型。为清晰起见，底部分子的形状已被简化。[照片承蒙Laurien Polder惠赠，来自A. Kornberg (1980) DNA Replication, p. 29, W.H. Freeman, New York。]</figcaption>
 </figure>
-<figure>
+<figure id="fig-5-9">
   <img class="zoomable" src="figures/fig_5-9_1.png" alt="图 5-9" onclick="lightbox(this.src)">
   <figcaption>图5-9 · RNA的二级和三级结构。（a）发夹、茎环和其他二级结构可通过RNA分子中远距离互补片段之间的碱基配对形成。在茎环中，碱基配对螺旋茎之间的单链环可能有数百甚至数千个核苷酸长，而在发夹中，短转角可能仅含四个核苷酸。（b）假结是RNA三级结构的一种类型，通过环之间互补碱基的碱基配对相互作用形成。所示结构形成人端粒酶RNA的核心结构域。左：二级结构图，碱基配对核苷酸为绿色和蓝色，单链区域为红色。中：端粒酶RNA核心结构域的序列，颜色对应左侧二级结构图。右：通过二维核磁共振确定的端粒酶核心结构域结构图，仅显示配对碱基和糖磷酸骨架管，颜色对应左侧图。[部分（b）中和右数据来自C. A. Theimer等, 2005, Mol. Cell 17:671, PDB ID 1ymo。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -201,7 +321,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>r 核酸中的碱基可以通过氢键相互作用。标准的Watson-Crick碱基对是G·C、A·T（在DNA中）和G·C、A·U（在RNA中）。碱基配对稳定了DNA和RNA的天然三维结构。</p>
 <p>r 蛋白质与DNA的结合可以使其螺旋结构变形，引起DNA分子的局部弯曲或解旋。</p>
 <p>r 加热使DNA链分离（变性）。DNA的熔解温度（Tm）随G·C碱基对百分比的增加而升高。在合适条件下，分离的互补核酸链将复性。</p>
-<h2>5.2 蛋白质编码基因的转录与功能性mRNA的形成</h2>
+<h2 id="sec-5.2">5.2 蛋白质编码基因的转录与功能性mRNA的形成</h2>
 <p>r 细胞RNA是单链多核苷酸，其中一些形成明确的二级和三级结构（见图5-9）。一些RNA，称为核酶，具有催化活性。</p>
 <p>在 RNA 合成过程中，包含 A、G、C 和 T 的 DNA 四碱基语言被简单地拷贝，或转录成 RNA 的四碱基语言，后者除了用 U 代替 T 外完全相同。相比之下，在蛋白质合成过程中，DNA 和 RNA 的四碱基语言被翻译成蛋白质的 20 种氨基酸语言。在本节中，我们重点关注从蛋白质编码基因形成功能性 mRNA 的过程（见图 5-1，步骤 1）。类似的过程产生 rRNA 和 tRNA 的前体，由 rRNA 和 tRNA 基因编码；这些前体随后被进一步修饰以产生功能性 rRNA 和 tRNA（见第 9 和第 10 章）。类似地，数千种 microRNA（miRNA）调控特定靶 mRNA 的翻译和稳定性，也由类似过程产生。</p>
 <p>基因最简单的定义是"一段DNA单元，它包含指定合成单条多肽链或功能性RNA（如tRNA）所需的信息"。小病毒的DNA分子仅含少数几个基因，而高等动植物每条染色体中的单个DNA分子可包含数千个基因。绝大多数基因携带用于构建蛋白质分子的信息，正是这些蛋白质编码基因的RNA拷贝构成了细胞中的mRNA分子。</p>
@@ -210,7 +330,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>在DNA转录过程中，一条DNA链作为模板，决定核糖核苷三磷酸（rNTP）单体连接形成互补RNA链的顺序。模板DNA链中的碱基与互补的进入rNTP碱基配对，随后在RNA聚合酶催化的聚合反应中连接。该聚合反应涉及生长中RNA链的3′氧对下一个待添加核苷酸前体的α磷酸进行亲核攻击，导致磷酸二酯键的形成并释放焦磷酸（PPi）。由于这一机制，RNA分子始终沿5′→3′方向合成（图5-10a）。</p>
 <p>聚合反应的能量学强烈有利于核糖核苷酸添加到生长中的RNA链上，因为rNTP单体α和β磷酸之间的高能键被核苷酸之间能量较低的磷酸二酯键所取代。焦磷酸酶进一步推动反应平衡向链延伸方向移动，该酶催化释放的PPi裂解为两分子无机磷酸。与DNA中的两条链一样，模板DNA链和与其碱基配对的生长RNA链具有相反的5′→3′方向性。</p>
 <p>按照惯例，DNA模板上RNA聚合酶开始转录的位点编号为+1（图5-10b）。下游表示模板DNA链被转录的方向；上游表示相反方向。起始位点下游DNA序列中的核苷酸位置用正号（+）标示；上游则用负号（−）标示。由于RNA沿5′→3′方向合成，RNA聚合酶沿3′→5′方向沿模板DNA链移动。新合成的RNA与模板DNA链互补，因此与非模板DNA链相同，只是尿嘧啶取代了胸腺嘧啶。</p>
-<figure>
+<figure id="fig-5-10">
   <img class="zoomable" src="figures/fig_5-10_1.png" alt="图 5-10" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_5-10_2.png" alt="图 5-10" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_5-10_3.png" alt="图 5-10" onclick="lightbox(this.src)">
@@ -229,14 +349,14 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>RNA 聚合酶和起始因子使 DNA 链分离，使模板链中的碱基可用于与它将聚合的 rNTP 的碱基进行碱基配对（步骤 2）。转录起始位点周围约 12-14 个碱基对的 DNA 在模板链上被分开，使模板链能够进入酶的活性位点。活性位点催化与模板链互补的 rNTP 之间形成磷酸二酯键。聚合酶中约 12-14 碱基对的熔解 DNA 区域称为转录泡。当 RNA 链的前两个核糖核苷酸通过磷酸二酯键连接时，转录起始即告完成（步骤 3）。</p>
 <p>在几个核糖核苷酸聚合之后，RNA 聚合酶从启动子 DNA 和起始因子（在细菌中称为 σ 因子，在古菌和真核生物中称为通用转录因子）上解离。在链延伸阶段，RNA 聚合酶沿模板 DNA 移动，在其运动方向前方打开双链 DNA，并引导链重新结合，使它们在转录泡的上游端重新结合（步骤 4）。聚合酶每次将一个核糖核苷酸添加到正在生长的新生 RNA 链的 3′ 端。在链延伸期间，酶在转录泡中维持约 14-20 个碱基对的熔解区域。新生 RNA 链 3′ 端约八个核苷酸与转录泡中的模板 DNA 链保持碱基配对。延伸复合物，包括 RNA 聚合酶、模板 DNA 和新生 RNA 链，异常稳定。例如，RNA 聚合酶转录已知最长的哺乳动物基因（约含 200 万个碱基对），而不从 DNA 模板上解离或释放新生 RNA。RNA 合成在 37°C 下以每分钟约 1000-2000 个核苷酸的速度进行，因此延伸复合物必须保持完整超过 24 小时，以确保从这个非常长的基因连续合成前体 mRNA。</p>
 <p>在链延伸阶段，RNA 聚合酶沿模板 DNA 移动，在其运动方向前方打开双链 DNA，并引导链重新结合，使它们在转录泡的上游端重新结合（步骤 4）。聚合酶每次将一个核糖核苷酸添加到正在生长的新生 RNA 链的 3′ 端。在链延伸期间，酶在转录泡中维持约 14-20 个碱基对的熔解区域。新生 RNA 链 3′ 端约八个核苷酸与转录泡中的模板 DNA 链保持碱基配对。延伸复合物，包括 RNA 聚合酶、模板 DNA 和新生 RNA 链，异常稳定。例如，RNA 聚合酶转录已知最长的哺乳动物基因（约含 200 万个碱基对），而不从 DNA 模板上解离或释放新生 RNA。RNA 合成在 37°C 下以每分钟约 1000-2000 个核苷酸的速度进行，因此延伸复合物必须保持完整超过 24 小时，以确保从这个非常长的基因连续合成前体 mRNA。</p>
-<figure>
+<figure id="fig-5-11">
   <img class="zoomable" src="figures/fig_5-11_1.png" alt="图 5-11" onclick="lightbox(this.src)">
   <figcaption>图5-11 · 转录的三个阶段。在转录起始期，RNA聚合酶形成转录泡并开始在启动子区域内的起始位点聚合核糖核苷酸（rNTPs）。一旦DNA区域被转录，分离的链重新结合成双螺旋。新生RNA从其模板链上被置换，仅在其3′端保持结合。RNA的5′端通过酶中的一个通道离开RNA聚合酶。当聚合酶遇到特定的终止序列（终止位点）时发生终止。详见正文。为简化，该图描绘了约4圈DNA螺旋的转录，编码约40个核苷酸的RNA。大多数RNA更长，需要转录更长的DNA区域。</figcaption>
 </figure>
 <p>延伸复合物必须保持完整超过 24 小时，以确保从这个非常长的基因连续合成前体 mRNA。</p>
 <p>延伸复合物必须保持完整超过24小时，以确保从这一极长基因连续合成前体mRNA。</p>
 <p>在转录终止阶段，即RNA合成的最后阶段，完成的RNA分子从RNA聚合酶释放，聚合酶从模板DNA上解离（步骤5）。一旦释放，RNA聚合酶即可自由地再次转录同一基因或转录另一个基因。</p>
-<figure>
+<figure id="fig-5-12">
   <img class="zoomable" src="figures/fig_5-12_1.png" alt="图 5-12" onclick="lightbox(this.src)">
   <figcaption>图5-12 · 细菌RNA聚合酶。此结构对应于图5-11中延伸阶段（步骤4）的聚合酶分子。在此图中，转录向右进行。箭头指示下游DNA进入聚合酶的位置和上游DNA以一定角度从下游DNA离开的位置。模板链为浅紫色，非模板链为深紫色；新生RNA为红色。RNA聚合酶的β′亚基为金色；β亚基为浅黄色；从此角度可见的α亚基为棕色。与模板DNA互补的核苷酸被添加到转录泡右侧新生RNA链的3′端。新合成的新生RNA通过由β亚基形成的通道在上游侧离开聚合酶。ω亚基从此角度也可见。[数据承蒙Seth Darst惠赠；参见N. Korzheva等, 2000, Science 289:619–625, 和N. Opalka等, 2003, Cell 114:335–345。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -258,7 +378,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>细菌中蛋白质编码基因最常见的排布方式具有一种强大而引人入胜的逻辑：编码功能协同的蛋白质的基因——例如合成色氨酸所需的酶——通常以连续排列的形式出现在DNA中。这种功能组中基因的排列称为操纵子，因为它从单个启动子作为一个单元运作。操纵子的转录产生一条连续的mRNA链，携带一系列相关蛋白质的信息（图5-13a）。mRNA的每一段代表编码该系列中一种蛋白质的单元（或基因）。这种排布导致了操纵子中所有基因的协同表达。每次RNA聚合酶分子在操纵子启动子处启动转录，操纵子的所有基因都被转录和翻译。在原核DNA中，基因紧密排列，非编码间隙极少，DNA直接转录为mRNA。由于原核生物中DNA不被隔离在细胞核内，核糖体可以在mRNA从RNA聚合酶表面出现时立即接触到其中的翻译起始位点。因此，即使在mRNA的3′端仍在RNA聚合酶活性位点合成时，mRNA的翻译就已经开始了。</p>
 <p>这种将专用于单一代谢功能的基因经济地聚集成簇的方式在真核生物中很少见，即使是酵母这样代谢上与细菌相似的简单真核生物也是如此。相反，编码功能协同的蛋白质的真核基因通常在DNA上物理分离；事实上，这类基因通常位于不同的染色体上。每个基因从其自身的启动子转录，产生一条mRNA，通常翻译产生一条多肽（图5-13b）。</p>
 <p>对真核基因结构的早期研究涉及感染动物的病毒。当研究人员分析编码病毒mRNA的病毒DNA分子区域时，他们惊讶地发现，单条病毒mRNA的序列编码在病毒DNA的多个区域中，这些区域被不存在于mRNA中的DNA序列隔开。后来，基因克隆和DNA测序（见第6章）的发展使研究人员能够比较多细胞生物的基因组DNA序列与其mRNA序列。这项研究揭示，大多数细胞mRNA也编码在基因组DNA的多个分离区域中，称为外显子，它们被称为内含子的DNA序列隔开。进一步研究表明，基因首先被转录为一条长的初级转录本，其中包含外显子序列和分隔它们的间插内含子序列。随后，内含子被移除，外显子被剪接在一起（见第10章）。尽管内含子在多细胞真核生物中很常见，但在细菌和古菌中极为罕见，在许多单细胞真核生物（如面包酵母）中也不常见。</p>
-<figure>
+<figure id="fig-5-13">
   <img class="zoomable" src="figures/fig_5-13_1.png" alt="图 5-13" onclick="lightbox(this.src)">
   <figcaption>图5-13 · 原核生物和真核生物的基因组织。（a）色氨酸（trp）操纵子是E. coli染色体中一段连续的DNA片段，包含编码色氨酸逐步合成所需酶的五个基因（蓝色）。整个trp操纵子从一个启动子转录为一条长的连续mRNA（红色）。该mRNA的翻译从五个不同的起始位点开始，产生五种蛋白质（绿色）。细菌染色体中基因的顺序与它们在操纵子中的顺序相同，并且与五种酶在色氨酸合成途径中发挥作用的顺序相同。（b）真核生物蛋白质编码基因的编码区通常被内含子（非编码序列）打断。当基因转录时，外显子和内含子都被拷贝到pre-mRNA中。在RNA加工过程中，内含子被切除，外显子连接在一起，形成编码一种蛋白质的连续编码序列。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -281,7 +401,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>所有真核前体mRNA最初都在两端进行修饰，这些修饰保留在mRNA中。当新生RNA链的5′端从RNA聚合酶表面出现时，立即被</p>
 <p>几种酶共同合成5′帽，即一个7-甲基鸟苷酸，通过一个不寻常的5′,5′三磷酸键连接到RNA的末端核苷酸上（图5-14）。该帽保护mRNA免受酶促降解，并协助其输出到细胞质。该帽还结合一种在细胞质中启动翻译所需的蛋白因子。</p>
 <p>前体mRNA 3′端的加工涉及内切核酸酶的切割，产生一个游离的3′-羟基，然后由poly(A)聚合酶一次一个地添加一串腺苷酸残基。产生的poly(A)尾含有100–250个碱基，在酵母和无脊椎动物中比在脊椎动物中更短。poly(A)聚合酶是一个蛋白质复合物的一部分，该复合物可以定位并在特定位置切割转录本，然后添加正确数量的A残基，这一过程不需要模板。如第5.4节和第10章中进一步讨论的，poly(A)尾在mRNA翻译以及稳定细胞核中的前体mRNA和细胞核及细胞质中完全加工的mRNA方面都具有重要功能。</p>
-<figure>
+<figure id="fig-5-14">
   <img class="zoomable" src="figures/fig_5-14_1.png" alt="图 5-14" onclick="lightbox(this.src)">
   <figcaption>图5-14 · 5′甲基化帽的结构。真核mRNA上5′甲基化帽的显著化学特征是（1）7-甲基鸟苷酸通过5′→5′连接与mRNA分子的初始核苷酸相连，以及（2）第一个核苷酸（碱基1）核糖的2′羟基上的甲基。这两个特征都存在于所有动物细胞和高等植物细胞中；酵母缺少核苷酸1上的甲基。在脊椎动物中，第二个核苷酸（碱基2）的核糖也被甲基化。参见A. J. Shatkin, 1976, Cell 9:645。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -291,7 +411,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>许多不同真核mRNA分子加工中的另一个步骤是RNA剪接：在转录本内部切割以切除内含子并将编码外显子缝合在一起。图5-15以β-珠蛋白基因为例总结了真核mRNA加工的基本步骤。我们将在第10章中考察执行mRNA以及tRNA和rRNA加工的细胞机器。</p>
 <p>经RNA加工产生的功能性真核mRNA在两端保留非编码区，称为非翻译区（UTR）。在哺乳动物mRNA中，5′ UTR可能长达一百个或更多核苷酸，3′ UTR可能长达数千碱基。细菌mRNA通常也具有5′和3′ UTR，但这些区域比真核mRNA中的短得多，通常含少于10个核苷酸。如第10章所讨论的，5′ UTR和3′ UTR序列参与</p>
-<figure>
+<figure id="fig-5-15">
   <img class="zoomable" src="figures/fig_5-15_1.png" alt="图 5-15" onclick="lightbox(this.src)">
   <figcaption>图5-15 · RNA加工概述。RNA加工在真核生物中产生功能性mRNA。β-珠蛋白基因包含三个蛋白质编码外显子（构成编码区）和两个间插非编码内含子。内含子打断氨基酸31和32以及105和106之间密码子的蛋白质编码序列。真核蛋白质编码基因的转录从编码第一个氨基酸的序列之前开始，并延伸到编码最后一个氨基酸的序列之后，导致初级转录本两端存在非编码区。这些非翻译区（UTR）在加工过程中被保留。5′帽（m⁷Gppp）在初级RNA转录本形成过程中添加，该转录本延伸到poly(A)位点之后。在poly(A)位点切割并在3′端添加多个A残基后，剪接去除内含子并连接外显子。小数字表示β-珠蛋白147个氨基酸序列中的位置。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -312,7 +432,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>mRNA翻译和稳定性的调控，且3′ UTR还在许多mRNA定位到细胞质特定区域中发挥作用。</p>
 <p>可变RNA剪接增加了从单个真核基因表达的蛋白质数量</p>
 <p>与细菌和古菌基因不同，多细胞真核生物中绝大多数基因含有多个内含子。如第3章所述，高等真核生物的许多蛋白质具有多结构域三级结构（见图3-11）。单个重复的蛋白质结构域通常由一个外显子或少数几个外显子编码，这些外显子在基因组DNA中重复出现，编码相同或几乎相同的氨基酸序列。这种重复外显子被认为是从位于两个位点之间的某段DNA长度的多次重复进化而来的</p>
-<figure>
+<figure id="fig-5-16">
   <img class="zoomable" src="figures/fig_5-16_1.png" alt="图 5-16" onclick="lightbox(this.src)">
   <figcaption>图5-16 · 可变剪接。约75 kb的纤连蛋白基因（上）包含多个外显子；纤连蛋白转录本的剪接因细胞类型而异。EIIIB和EIIIA外显子（绿色）编码成纤维细胞表面特定蛋白的结合结构域。成纤维细胞中产生的纤连蛋白mRNA包含EIIIB和EIIIA外显子，而肝细胞中产生的则缺少这些外显子。因此，两种细胞类型产生不同形式的纤连蛋白。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -335,13 +455,13 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>r 在真核DNA中，每个蛋白质编码基因从其自身的启动子转录。初始初级转录本通常包含间插在编码区（外显子）之间的非编码区（内含子）。</p>
 <p>r 真核初级转录本必须经过RNA加工才能产生功能性RNA。在加工过程中，几乎所有蛋白质编码基因的初级转录本的两端都通过添加5′帽和3′poly(A)尾进行修饰。来自含有内含子的基因的转录本经历剪接，即切除内含子并连接外显子（见图5-15）。</p>
 <p>r 高等真核生物中发现的多结构域蛋白质的各个结构域通常由单个外显子或少数几个外显子编码。这类蛋白质的不同同工型通常作为外显子可变剪接的结果在特定细胞类型中表达。</p>
-<h2>5.3 mRNA被tRNA解码</h2>
+<h2 id="sec-5.3">5.3 mRNA被tRNA解码</h2>
 <p>虽然DNA储存着蛋白质合成的信息，mRNA传递DNA中编码的指令，但大多数生物活动是由蛋白质执行的。正如我们在第3章中所见，每种蛋白质中氨基酸的线性排列顺序决定了其三维结构和活性。因此，按照DNA中编码的顺序正确组装氨基酸，对于产生功能性蛋白质以及细胞和生物体的正常运作至关重要。</p>
 <p>翻译是将mRNA的核苷酸序列用作模板，以正确顺序将氨基酸连接成多肽链的整个过程（见图5-1，步骤3）。在真核细胞中，蛋白质合成发生在细胞质中，三种类型的RNA分子在此汇聚，执行不同但相互协作的功能（图5-17）：</p>
 <p>1. 信使RNA（mRNA）以线性形式携带从DNA转录而来的遗传信息。mRNA以三个核苷酸为一组进行读取，称为密码子，每个密码子指定一种特定的氨基酸。</p>
 <p>2. 转运RNA（tRNA）是解读mRNA中密码子的关键。每种氨基酸都有其自身的tRNA亚群，这些tRNA与该氨基酸共价结合，并在mRNA中的下一个密码子需要时将其携带至多肽链的生长端。在每个步骤中，携带正确氨基酸的tRNA之所以能被选中，是因为每个特定的tRNA分子都含有一个三核苷酸序列——反密码子，它可以与mRNA中互补的密码子进行碱基配对。</p>
 <p>3. 核糖体RNA（rRNA）与一组蛋白质结合形成核糖体。这些复杂的结构沿着mRNA分子物理移动，催化氨基酸组装成多肽链。它们还结合tRNA以及蛋白质合成所需的各种辅助蛋白。核糖体由一个大亚基和一个小亚基组成，每个亚基都含有自身的rRNA分子。</p>
-<figure>
+<figure id="fig-5-17">
   <img class="zoomable" src="figures/fig_5-17_1.png" alt="图 5-17" onclick="lightbox(this.src)">
   <figcaption>图5-17 · RNA在蛋白质合成中的三种作用。信使RNA（mRNA）通过转运RNA（tRNA）和核糖体的联合作用翻译为蛋白质，核糖体由多种蛋白质和三个（细菌）或四个（真核）核糖体RNA（rRNA）分子组成（未显示）。注意tRNA反密码子与mRNA中互补密码子之间的碱基配对。生长中蛋白质链（绿色）的氨基N与进入的氨酰-tRNA的羧基末端C之间肽键的形成由其中一个rRNA催化。aa = 氨基酸；R = 侧基。注意这些是tRNA和核糖体亚基的简化图。它们的实际结构见图5-20b和图5-22。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -360,7 +480,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>这三类RNA在所有生物体的蛋白质合成中都发挥作用。在本节中，我们将重点讨论tRNA对mRNA的解码，以及这些RNA各自的结构如何与其特定任务相关联。它们如何与核糖体和蛋白质因子协同作用来合成蛋白质，将在下一节中详细描述。由于翻译对蛋白质合成至关重要，这两个过程通常被互换使用。然而，翻译产生的多肽链必须经过翻译后折叠，通常还需要其他修饰（如化学修饰、与其他链的组装），才能产生成熟的、有功能的蛋白质（见第3章）。</p>
 <p>信使 RNA 以三字母遗传密码携带来自 DNA 的信息</p>
 <p>如上所述，细胞使用的遗传密码是一种三联体密码，其中每三个核苷酸序列（即一个密码子）从mRNA的指定起点开始被"读取"。在遗传密码的64种可能密码子中（每个密码子的三个位置各有四种核苷酸之一，4 × 4 × 4 = 64种可能），61种指定特定的氨基酸，三种是终止密码子。表5-1显示，大多数氨基酸由不止一个密码子编码。只有两种——甲硫氨酸和色氨酸——只有一个密码子；另一个极端是，亮氨酸、丝氨酸和精氨酸各自由六个不同的密码子指定。指定同一种氨基酸的不同密码子称为同义密码子。密码本身被称为简并的，意味着一种特定的氨基酸可以由多个密码子来指定。</p>
-<figure class="table">
+<figure class="table" id="tab-T5-1">
   <img class="zoomable" src="figures/tab_T5-1_1.png" alt="表 T5-1" onclick="lightbox(this.src)">
   <figcaption>表T5-1 · 遗传密码（密码子到氨基酸）*</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -410,7 +530,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>因为遗传密码是一种无重叠的三联体密码，密码子之间没有间隔，所以理论上一条特定的mRNA可以以三种不同的阅读框进行翻译。事实上，已经证明某些mRNA含有重叠信息，可以以不同的阅读框进行翻译，产生不同的多肽（图5-18）。然而，绝大多数mRNA只能以一种阅读框读取，因为其他两种可能的阅读框中遇到的终止密码子会在产生功能性蛋白质之前终止翻译。在极少数情况下，由于移码而出现另一种不寻常的编码方式。此时，蛋白质合成机器可能将四个核苷酸读作一个氨基酸，然后继续读取三联体，或者可能后退一个碱基，以新的阅读框读取所有后续三联体，直到链终止。已知的此类情况仅有几十例。</p>
 <p>每种密码子的含义在大多数已知生物体中都是相同的——这是地球生命仅进化一次的强有力证据。</p>
 <p>每个密码子的含义在大多数已知生物中都是相同的——这是地球上生命仅进化了一次的有力证据。事实上，表 5-1 所示的遗传密码被称为通用密码。然而，在许多线粒体、纤毛原生动物和 Acetabularia（一种单细胞植物）中，少数密码子的遗传密码有所不同。如表 5-2 所示，这些差异大多涉及将正常终止密码子解读为氨基酸，而非一种氨基酸交换为另一种氨基酸。这些对通用密码的例外情况可能是后来的进化发展；也就是说，密码子并非在任何单一时刻不可改变地固定下来，尽管一旦早期进化中一个通用密码开始运作，大规模改变就不再被容忍。</p>
-<figure>
+<figure id="fig-5-18">
   <img class="zoomable" src="figures/fig_5-18_1.png" alt="图 5-18" onclick="lightbox(this.src)">
   <figcaption>图5-18 · mRNA序列中的多重阅读框。如果所示mRNA序列的翻译从三个不同的上游起始位点（未显示）开始，则可能存在三个重叠的阅读框。在此例中，中间框的密码子向右偏移一个碱基，第三个框向右偏移两个碱基，第三个框以终止密码子结束。因此，相同的mRNA核苷酸序列可以指定不同的氨基酸。虽然序列区域在三个可能阅读框中的不止一个中被翻译的情况很少见，但在原核生物和真核生物中，特别是在它们的病毒中，存在一些例子，其中同一DNA区域表达的两个可变mRNA中使用相同的序列，该序列在一个mRNA中以一个阅读框阅读，而在另一个mRNA中以另一个阅读框阅读。甚至有少数情况，同一短序列在所有三个可能的阅读框中都被阅读。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -433,7 +553,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>事实上，表 5-1 所示的遗传密码被称为通用密码。然而，在许多线粒体、纤毛原生动物和 Acetabularia（一种单细胞植物）中，少数密码子的遗传密码有所不同。如表 5-2 所示，这些差异大多涉及将正常终止密码子解读为氨基酸，而非一种氨基酸交换为另一种氨基酸。这些对通用密码的例外情况可能是后来的进化发展；也就是说，密码子并非在任何单一时刻不可改变地固定下来，尽管一旦早期进化中一个通用密码开始运作，大规模改变就不再被容忍。</p>
-<figure class="table">
+<figure class="table" id="tab-T5-2">
   <img class="zoomable" src="figures/tab_T5-2_1.png" alt="表 T5-2" onclick="lightbox(this.src)">
   <figcaption>表T5-2 · 通用遗传密码的已知偏离</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -462,7 +582,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>如果密码子和反密码子之间需要完美的Watson-Crick碱基配对，细胞将必须包含至少61种不同类型的tRNA，每种对应一个指定氨基酸的密码子。然而，如上所述，许多细胞含有少于61种tRNA。数量较少的原因在于单个tRNA反密码子能够识别不止一个（但并非必然每一个）对应某种氨基酸的密码子。这种更广泛的识别之所以可能，是因为所谓摆动位置上碱基之间的非标准配对：即mRNA密码子中的第三个（3′）碱基与其tRNA反密码子中相应的第一个（5′）碱基之间。</p>
 <p>密码子的第一个和第二个碱基几乎总是与相应反密码子的第三个和第二个碱基分别形成标准的Watson-Crick碱基对，但摆动位置可以发生四种非标准相互作用。</p>
 <p>密码子的第一和第二碱基几乎总是分别与相应反密码子的第三和第二碱基形成标准 Watson-Crick 碱基配对，但碱基之间可以发生四种非标准相互作用。</p>
-<figure>
+<figure id="fig-5-19">
   <img class="zoomable" src="figures/fig_5-19_1.png" alt="图 5-19" onclick="lightbox(this.src)">
   <figcaption>图5-19 · 将核酸序列翻译为氨基酸序列。将mRNA中的核酸序列翻译为蛋白质中的氨基酸序列的过程涉及两个步骤。步骤1：氨酰-tRNA合成酶催化特定氨基酸通过高能键共价连接到含有匹配反密码子的tRNA，形成氨酰-tRNA。步骤2：氨酰-tRNA的tRNA部分通过其反密码子与mRNA中互补密码子的碱基配对，将该tRNA携带的氨基酸定位到核糖体上。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -483,7 +603,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>虽然腺嘌呤很少出现在反密码子的摆动位置，但植物和动物中的许多tRNA在该位置含有肌苷（I），即腺嘌呤的脱氨产物。肌苷可以与A、C和U形成非标准碱基对。因此，摆动位置含有肌苷的tRNA可以识别第三个（摆动）位置为A、C或U的相应mRNA密码子（见图5-21）。因此，含肌苷的tRNA在翻译指定同一种氨基酸的同义密码子时被大量使用。例如，亮氨酸的六个密码子中的四个（CUA、</p>
 <p>虽然腺嘌呤很少出现在反密码子摆动位置，但许多植物和动物 tRNA 在此位置含有肌苷（I），即腺嘌呤的脱氨产物。肌苷可以与 A、C 和 U 形成非标准碱基对。因此，摆动位置含有肌苷的 tRNA 可以识别在第三位含有 A、C 或 U 的相应 mRNA 密码子（见图 5-21）。因此，含肌苷的 tRNA 在翻译指定单一氨基酸的同义密码子中被大量使用。例如，亮氨酸的六个密码子中的四个（CUA、CUC、CUU 和 UUA）均由同一 tRNA 识别，其反密码子为 3′-GAI-5′；摆动位置的肌苷与这四个密码子中每个的第三碱基形成非标准碱基对。在 UUA 密码子的情况下，反密码子第 3 位与密码子第 1 位之间还形成非标准 G∙U 配对。</p>
-<figure>
+<figure id="fig-5-20">
   <img class="zoomable" src="figures/fig_5-20_1.png" alt="图 5-20" onclick="lightbox(this.src)">
   <figcaption>图5-20 · tRNA的结构。尽管不同tRNA的精确核苷酸序列各不相同，但它们都折叠成四个碱基配对茎和三个环。3′端的CCA序列也存在于所有tRNA中。将氨基酸连接到3′A上产生氨酰-tRNA。大多数tRNA中的一些A、C、G和U残基在转录后被修饰。二氢尿嘧啶（D）几乎总是存在于D环中；同样，核糖胸腺嘧啶（T）和假尿嘧啶（Ψ）几乎总是存在于TΨCG环中。此处所示的酵母丙氨酸tRNA还含有其他修饰碱基。反密码子环尖端的三个碱基与mRNA中相应的密码子配对。参见R. W. Holly等, 1965, Science 147:1462。（b）所有tRNA的通用骨架三维模型。注意分子的L形。[数据来自J. G. Arnez和D. Moras, 1997, Trends Biochem. Sci. 22:211, PDB ID 1vtq。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -503,7 +623,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">= Methyl group</td><td class="gl-zh">= 甲基</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-5-21">
   <img class="zoomable" src="figures/fig_5-21_1.png" alt="图 5-21" onclick="lightbox(this.src)">
   <figcaption>图5-21 · 摆动位置的非标准碱基配对。mRNA密码子第三（或摆动）位置的碱基通常与tRNA反密码子第一（或摆动）位置的碱基形成非标准碱基对。摆动配对允许一个tRNA识别不止一个mRNA密码子（上）；反过来，它允许一个密码子被不止一种tRNA识别（下），尽管这些tRNA都携带相同的氨基酸。注意带有I（肌苷）的tRNA在摆动位置可以识别三种不同的密码子，而带有G或U的tRNA在摆动位置可以识别两种密码子。虽然A在反密码子的摆动位置理论上可能，但在自然界中几乎从未发现。tRNA的实际结构见图5-20b。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -527,14 +647,14 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>r 由于非标准相互作用，一个tRNA可以与多个mRNA密码子进行碱基配对；反之，一个特定密码子可以与多个tRNA进行碱基配对。然而，在每种情况下，只有正确的氨基酸被插入到生长中的多肽链中。</p>
 <p>r 20种氨酰-tRNA合成酶各识别一种氨基酸，并将其共价连接到同源tRNA上，形成氨酰-tRNA（见图5-19）。该反应激活氨基酸，使其能够参与肽键形成。</p>
 <p>r 20 种氨酰-tRNA 合成酶各识别一种氨基酸，并将其共价连接到一个同源 tRNA 上，形成氨酰-tRNA（见图 5-19）。该反应激活氨基酸，使其能够参与肽键形成。</p>
-<h2>5.4 蛋白质在核糖体上的逐步合成</h2>
+<h2 id="sec-5.4">5.4 蛋白质在核糖体上的逐步合成</h2>
 <p>前几节已经介绍了蛋白质合成中的两个主要参与者：mRNA 和氨酰-tRNA。在此，我们首先描述蛋白质合成中的第三个关键角色——含有 rRNA 的核糖体——然后详细考察三者如何协同作用，完成核糖体上多肽链形成的生化事件。与转录类似，翻译这一复杂过程可分为三个阶段——起始、延伸和终止——我们将依次讨论。我们的描述以真核细胞翻译为主，但翻译机制在所有细胞中基本一致。</p>
 <p>如果参与翻译mRNA的众多组分必须在自由溶液中相互作用，那么它们</p>
 <p>如果参与翻译 mRNA 的众多组分必须在自由溶液中相互作用，那么它们</p>
 <p>聚集在一起的概率将极低，以至于氨基酸聚合速率会非常缓慢。mRNA 和各氨酰-tRNA 在核糖体内的结合极大地提高了翻译效率。核糖体是细胞中含量最丰富的 RNA-蛋白质复合物，能以每秒添加 3 至 5 个氨基酸的速率指导多肽链延伸。因此，100–200 个氨基酸的小蛋白可在 1 分钟或更短时间内合成。而目前已知最大的蛋白质——存在于肌肉中的肌联蛋白（titin），含有约 30,000 个氨基酸残基，其合成需要 2–3 小时。完成这一任务的细胞机器必须精确且持久。</p>
 <p>借助电子显微镜，核糖体最初在分泌大量蛋白质的细胞类型中被发现，是富含 RNA 的小颗粒。然而，直到获得了相当纯的核糖体制剂，其在蛋白质合成中的作用才被认识。用此类制剂进行的体外放射性标记实验表明，放射性氨基酸先被掺入与核糖体结合的生长中的多肽链，然后才出现在完成的多肽链中。</p>
 <p>尽管细菌、古菌和真核生物的核糖体之间存在差异，但所有物种核糖体在结构和功能上的高度相似性反映了活细胞最基本组分的共同进化起源。核糖体由三（细菌和古菌）或四（真核生物）条不同的 rRNA 分子和多达 80 种蛋白质组成，组装成大亚基和小亚基（图 5-22 和表 5-3）。核糖体亚基和 rRNA 分子通常以 Svedberg 单位（S）表示，S 是</p>
-<figure class="table">
+<figure class="table" id="tab-T5-3">
   <img class="zoomable" src="figures/tab_T5-3_1.png" alt="表 T5-3" onclick="lightbox(this.src)">
   <figcaption>表T5-3 · 核糖体组分</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -559,7 +679,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">18S rRNA: 1870 bases</td><td class="gl-zh">18S rRNA: 1870碱基</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-5-22">
   <img class="zoomable" src="figures/fig_5-22_1.png" alt="图 5-22" onclick="lightbox(this.src)">
   <figcaption>图5-22 · 细菌核糖体的结构。嗜热栖热菌核糖体沿大亚基（50S）和小亚基（30S）界面的视图模型。小亚基中的16S rRNA和蛋白质为深灰色。RNA以管模型描绘，蛋白质表面显示；大亚基中的23S rRNA和蛋白质为浅灰色；5S rRNA为中间灰色。核糖体表面被部分透明化以显示tRNA在A、P和E位点的位置。注意核糖体蛋白主要位于核糖体表面。[数据来自A. Korostelev等, 2006, Cell 126:1065-1077, PDB ID 4v4i。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -568,7 +688,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">3' mRNA</td><td class="gl-zh">3' mRNA</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-5-23">
   <img class="zoomable" src="figures/fig_5-23_1.png" alt="图 5-23" onclick="lightbox(this.src)">
   <figcaption>图5-23 · 所有生命域核糖体中心的共同核心结构以及细菌、酵母和人核糖体的比较。（a）共同核心结构中的RNA以浅蓝色显示，所有核糖体共有的蛋白质结构域以粉色显示。共同核心结构的添加以深蓝色显示。（b）细菌（左）、酵母（中）和人（右）核糖体的比较，显示rRNA和蛋白质在进化过程中的添加。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -605,7 +725,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>大（60S）亚基与小亚基的结合由结合 GTP 的 eIF5B 介导，导致许多起始因子被置换（步骤 7）。核糖体亚基之间的正确结合导致 eIF5B 结合的 GTP 水解为 GDP，并释放 eIF5B-GDP 和 eIF1A（步骤 8），完成 80S 起始复合物的形成。核糖体亚基结合反应与 eIF5B 对 GTP 的水解相偶联，使得起始过程仅在亚基相互作用正确发生时才能继续。这也使该步骤成为不可逆步骤，因此核糖体亚基不会解离，直到整个 mRNA 被翻译完毕且蛋白质合成终止。</p>
 <p>真核蛋白质合成机器如上所述，在大多数细胞 mRNA 的 5′ 帽端约 100 个核苷酸内开始翻译。然而，某些细胞 mRNA 含有一个位于 5′ 端下游远处的内部核糖体进入位点（IRES）。据认为，细胞 IRES 形成 RNA 结构，与 eIF4A 和 eIF4G 的复合物相互作用，后者再与结合在带有 eIF1 和 eIF1A 的 40S 亚基上的 eIF3 结合。该组装体随后结合 eIF2 三元复合物，直接在邻近的 AUG 密码子上组装起始复合物。此外，某些缺乏 5′ 帽的正链病毒 RNA 的翻译在病毒 IRES 序列处起始。这些 RNA 根据起始所需标准 eIF 的数量分为不同类别。在蟋蟀麻痹病毒中，约 200 nt 长的 IRES 折叠成复杂结构，直接与 40S 核糖体亚基相互作用，在没有任何 eIF 甚至起始 Met-tRNA_i^Met 的情况下起始翻译！</p>
 <p>Met ! 在细菌中，小核糖体亚基与起始位点的结合通过一种不同的机制进行，</p>
-<figure>
+<figure id="fig-5-24">
   <img class="zoomable" src="figures/fig_5-24_1.png" alt="图 5-24" onclick="lightbox(this.src)">
   <figcaption>图5-24 · 真核生物中的翻译起始。当前真核起始模型涉及八个步骤。步骤1：当eIF2·GTP结合Met-tRNAⁱ时，形成eIF2三元复合物。步骤2：当核糖体在终止时解离，40S亚基与eIF1、eIF1A和eIF3结合。步骤3：三元复合物与40S亚基结合，形成43S起始前复合物。步骤4：eIF4E结合到mRNA的5′帽。步骤5：eIF4G与eIF4E和PABPC结合，使mRNA环化。步骤6：43S复合物通过eIF3与eIF4G的相互作用被带到mRNA的5′端。步骤7：43S复合物沿mRNA扫描直到找到AUG起始密码子。步骤8：60S亚基加入，组装成80S核糖体。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -641,7 +761,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>翻译起始完成时，Met-tRNAi</p>
 <p>Met复合物已经准备好开始通过mRNA的框内翻译逐步添加氨基酸。与起始一样，需要一组称为翻译延伸因子（EF）的特殊蛋白质来执行链延伸过程。延伸的关键步骤是：每个后续氨酰-tRNA（其反密码子与下一个密码子互补）的进入，肽键的形成，以及核糖体沿mRNA一次一个密码子的移动或转位。</p>
-<figure>
+<figure id="fig-5-25">
   <img class="zoomable" src="figures/fig_5-25_1.png" alt="图 5-25" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_5-25_2.png" alt="图 5-25" onclick="lightbox(this.src)">
   <figcaption>图5-25 · 真核生物中的链延伸。一旦80S核糖体在P位点带有Met-tRNAⁱ组装完成，核糖体的这个区域称为P位点，因为与生长多肽链化学连接的tRNA位于此处。第二个氨酰-tRNA以三元复合物的形式与EF1α·GTP结合进入核糖体，并结合到A位点（氨酰-tRNA结合位点）。与各种氨酰-tRNA结合的EF1α·GTP扩散进入A位点，但只有当tRNA反密码子与编码区中的第二个密码子碱基配对时，翻译的下一步才继续进行。当正确配对发生时，结合的EF1α·GTP中的GTP被水解。GTP的水解促进构象变化，使肽键形成，肽链从P位点的tRNA转移到A位点的氨酰-tRNA。然后核糖体易位，使A位点空出以接收下一个氨酰-tRNA。</figcaption>
@@ -664,7 +784,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>在没有核糖体的情况下，A位点和P位点中tRNA反密码子与mRNA密码子之间的三碱基对RNA-RNA杂合体将不稳定；分离的RNA分子之间的RNA-RNA双链必须相当长</p>
 <p>重复图 5-25 所示的延伸循环，按照 mRNA 序列的指令，每次将一个氨基酸添加到生长中的多肽的羧基端，直到遇到终止密码子。在后续循环中，步骤 2 中发生的构象变化将未酰化的 tRNA 从 E 位点排出。随着新生多肽链变长，它穿过大核糖体亚基中的一个通道，在与小亚基相互作用面的对面一侧退出（图 5-22、5-26）。</p>
 <p>在没有核糖体的情况下，A 位点和 P 位点中 tRNA 反密码子与 mRNA 密码子之间的三碱基对 RNA-RNA 杂交体将不稳定；</p>
-<figure>
+<figure id="fig-5-26">
   <img class="zoomable" src="figures/fig_5-26_1.png" alt="图 5-26" onclick="lightbox(this.src)">
   <figcaption>图5-26 · 真核生物中的翻译终止。当携带新生蛋白链的核糖体到达终止密码子（UAA、UGA、UAG）时，释放因子eRF1与eRF3·GTP一起进入A位点。结合的GTP水解伴随着肽链从P位点的tRNA上切割以及E位点tRNA的排出，形成终止后复合物。核糖体亚基通过ABCE1 ATPase与eIF1、eIF1A和eIF3的作用分离。40S亚基与这些eIF结合释放，准备起始另一轮翻译（见图5-24）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -690,7 +810,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>我们现在可以看到，一个或多个GTP结合蛋白参与翻译的每个阶段。这些蛋白质属于GTP酶超家族的开关蛋白，它们在结合GTP的活性形式和结合GDP的非活性形式之间循环（见图3-34）。结合的GTP水解引起GTP酶本身和其他相关蛋白的构象变化，这对各种复杂的分子过程至关重要。例如，在翻译起始中，eIF2∙GTP水解为eIF2∙GDP阻止了在遇到起始位点后进一步扫描mRNA，并允许大核糖体亚基与小亚基结合（见图5-24，步骤6）。类似地，eIF5B∙GTP的水解监控大、小核糖体亚基的成功结合（图5-24，步骤8）。回想一下，如果正确的复合物没有形成，eIF5B∙GTP不会水解GTP，复合物不稳定，可以自由扩散分开</p>
 <p>GTPase 超家族蛋白在翻译的多个质量控制步骤中发挥作用</p>
 <p>我们现在可以看到，一种或多种 GTP 结合蛋白参与了翻译的每个阶段。这些蛋白属于 GTPase 超家族的开关蛋白，在 GTP 结合的活性形式和 GDP 结合的非活性形式之间循环（见图 3-34）。结合的 GTP 的水解引起 GTPase 本身及其他相关蛋白的构象变化，这对各种复杂的分子过程至关重要。例如，在翻译起始中，eIF2∙GTP 水解为 eIF2∙GDP 阻止了 mRNA 在遇到起始位点后的进一步扫描，并允许大核糖体亚基结合到小亚基上（见图 5-24，步骤 6）。类似地，eIF5B∙GTP 的水解监控大、小核糖体亚基的成功结合（图 5-24 步骤 8）。回想一下，如果正确的复合物没有形成，eIF5B∙GTP 不会水解 GTP，复合物就不稳定，可以自由扩散解离。</p>
-<figure>
+<figure id="fig-5-27">
   <img class="zoomable" src="figures/fig_5-27_1.png" alt="图 5-27" onclick="lightbox(this.src)">
   <figcaption>实验图5-27 · mRNA的环状结构增加翻译效率。真核mRNA由于三种蛋白质的相互作用形成环状结构。（a）在纯化的酵母poly(A)结合蛋白、eIF4E和eIF4G存在下，真核mRNA形成环状结构，在此力场电子显微图中可见。在这些结构中，蛋白质-蛋白质和蛋白质-mRNA相互作用在mRNA的5′和3′端之间形成桥梁。（b）环状多核糖体上的蛋白质合成和核糖体亚基回收模型。多个单独的核糖体可以同时翻译一个真核mRNA，此处以环状形式显示，通过与3′和5′端结合的蛋白质之间的相互作用稳定。当核糖体完成翻译并从3′端解离时，分离的亚基可以迅速找到附近的5′帽和PABPC结合的poly(A)尾，并起始另一轮合成。[部分（a）承蒙Alan Sachs和Sandra Wells惠赠。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -717,13 +837,13 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>r 蛋白质合成的效率通过多个核糖体同时翻译一条mRNA（形成多聚核糖体或多核糖体）而提高。在真核细胞中，蛋白质介导的相互作用使多聚核糖体的两端靠近，从而促进核糖体亚基的快速回收，进一步提高蛋白质合成的效率（见图5-27b）。</p>
 <p>r 翻译终止由两类终止因子执行：识别终止密码子的因子和促进肽基-tRNA 水解的因子（见图 5-26）。同样，终止密码子的正确识别由一个 GTPase（eRF3）监控。</p>
 <p>r 蛋白质合成的效率通过单个 mRNA 被多个核糖体同时翻译而提高，形成多聚核糖体（polyribosome 或 polysome）。在真核细胞中，蛋白质介导的相互作用使多聚核糖体的两端靠拢，从而促进核糖体亚基的快速循环再利用，进一步提高蛋白质合成效率（见图 5-27b）。</p>
-<h2>5.5 DNA复制</h2>
+<h2 id="sec-5.5">5.5 DNA复制</h2>
 <p>这种碱基配对模板模型在理论上可以通过保守机制或半保留机制进行。如果采用保守机制，两条子链将形成一个新的双链 DNA 分子，而亲本双链保持完整。如果采用半保留机制，亲本链将被永久分开，每条链与碱基配对到其上的新合成子链形成一个双链分子。双链 DNA 以半保留机制复制的决定性证据来自 M. Meselson 和 W. F. Stahl 进行的经典实验，如图 5-28 所示。</p>
 <p>因此，将 DNA 模板链复制为互补链是 DNA 复制、DNA 转录为 RNA 以及（如本章稍后将看到的）DNA 修复和重组的共同特征。在所有这些过程中，模板中的信息以特定核苷酸序列的形式得以保留。在某些病毒中，单链 RNA 分子作为合成互补 RNA 或 DNA 链的模板。然而，细胞中绝大多数的 RNA 和 DNA 是从预先存在的双链 DNA 合成的。</p>
 <p>DNA 聚合酶需要引物来启动复制</p>
 <p>DNA 由脱氧核苷 5′-三磷酸前体（dNTPs）合成，其方式类似于 RNA 合成。与 RNA 合成一样，DNA 合成始终沿 5′→3′ 方向进行，因为链的增长源于生长链的 3′ 氧与 dNTP 的 α 磷酸之间形成磷酸酯键（见图 5-10a）。</p>
 <p>DNA 由脱氧核苷 5′-三磷酸前体（dNTPs）合成，方式类似于 RNA 合成。与 RNA 合成一样，DNA 合成始终沿 5′→3′ 方向进行，因为链增长源于生长链的 3′</p>
-<figure>
+<figure id="fig-5-28">
   <img class="zoomable" src="figures/fig_5-28_1.png" alt="图 5-28" onclick="lightbox(this.src)">
   <figcaption>实验图5-28 · Meselson-Stahl实验。此实验表明DNA通过半保留机制复制。大肠杆菌细胞最初在含有"重"氮（¹⁵N）铵盐制备的培养基中生长，直到所有细胞DNA都被标记。将细胞转移到含有正常"轻"同位素（¹⁴N）的培养基后，定期从培养物中取样，并通过平衡密度梯度离心分析每个样品中的DNA。该技术可以将重-重（H-H）、轻-轻（L-L）和重-轻（H-L）双链分离为不同的条带。（a）如果DNA复制按保守或半保留机制进行，在细胞转移到¹⁴N培养基后，从¹⁵N标记DNA合成的子代双链分子的预期组成。亲本重（H）链为红色；转移到¹⁴N培养基后合成的轻（L）链为蓝色。注意保守机制永远不会产生H-L DNA，而半保留机制永远不会产生H-H DNA，但在第一次和随后的加倍中会产生H-L DNA。随着额外的复制周期，原始DNA中的¹⁵N标记链将被稀释，因此绝大多数DNA将由L-L双链组成。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -737,7 +857,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>氧与 dNTP 的 α 磷酸之间形成磷酸酯键（见图 5-10a）。如前所述，RNA 聚合酶可以在双链 DNA 上找到合适的转录起始位点，并起始合成与模板 DNA 链互补的 RNA（见图 5-11）。相比之下，DNA 聚合酶不能从头起始链合成；相反，它们需要一条短的、预先存在的 RNA 或 DNA 链（称为引物）来开始链增长。引物与模板链碱基配对后，DNA 聚合酶按照模板链的序列</p>
-<div class="boximg">
+<div class="boximg" id="box-G5-2">
   <img class="zoomable" src="figures/box_G5-2_1.png" alt="G5-2" onclick="lightbox(this.src)">
 </div>
 <p>将脱氧核苷酸添加到引物 3′ 端的游离羟基上：</p>
@@ -747,7 +867,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>DNA 复制叉操作中的一个主要复杂因素源于 DNA 的两个特性：亲本 DNA 双链的两条链是反平行的，而 DNA 聚合酶（与 RNA 聚合酶一样）只能沿 5′→3′ 方向将核苷酸添加到生长的子链上。一条子链（称为前导链）的合成可以从单个 RNA 引物开始沿 5′→3′ 方向连续进行，该方向与复制叉的移动方向相同（图 5-29）。问题在于另一条子链（称为滞后链）的合成。</p>
 <p>由于滞后链的增长必须沿 5′→3′ 方向进行，其模板链的复制必须以某种方式沿与复制叉移动相反的方向进行。细胞通过在该模板链上每 100 到 200 个核苷酸合成一个新的引物来完成这一壮举，随着解旋暴露出更多的模板链。每个与模板链碱基配对的引物沿 5′→3′ 方向延伸，形成不连续的片段，以其发现者冈崎令治命名为冈崎片段（见图 5-29）。每个冈崎片段的 RNA 引物被去除，并由相邻冈崎片段的 DNA 链增长所取代；最后，一种称为 DNA 连接酶的酶将相邻片段连接起来。</p>
 <p>由于后随链的合成必须沿 5′→3′ 方向进行，其模板链的复制必须以某种方式沿与复制叉移动相反的方向进行。细胞通过在模板链上每 100 至 200 个核苷酸合成一个新引物来完成这一壮举，随着链的更多部分因解旋而暴露。这些引物与模板链碱基配对后，沿 5′→3′ 方向延伸，形成不连续片段，以其发现者冈崎令治（Reiji Okazaki）的名字命名为冈崎片段（见图 5-29）。每个冈崎片段的 RNA 引物被邻近冈崎片段延伸的 DNA 链移除并替换；最后，一种称为 DNA 连接酶的酶将相邻片段连接起来。</p>
-<figure>
+<figure id="fig-5-29">
   <img class="zoomable" src="figures/fig_5-29_1.png" alt="图 5-29" onclick="lightbox(this.src)">
   <figcaption>图5-29 · 前导链和滞后链DNA合成。核苷酸由DNA聚合酶按5′→3′方向（箭头指示）添加到每条生长中的子链。前导链从其5′端的单个RNA引物（红色）连续合成。滞后链从多个RNA引物不连续合成，这些引物在亲本双链的每个新区域解旋时周期性形成。这些引物的延伸最初产生冈崎片段。当每个生长中的片段接近前一个引物时，该引物被去除，片段被连接。重复此过程最终导致整个滞后链的合成。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -764,7 +884,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>对参与 DNA 复制的真核蛋白质的详细了解最初主要来自对小型病毒 DNA 的研究，特别是 SV40 DNA——一种感染猴子的病毒的环状基因组。病毒感染的细胞在短时间内复制大量简单的病毒基因组，这使其成为研究 DNA 复制基本方面的理想模型系统。由于像 SV40 这样的简单病毒在很大程度上依赖其宿主细胞（在这种情况下是猴细胞）的 DNA 复制机器，它们为研究细胞蛋白质对多个相同小 DNA 分子的复制提供了独特的机会。图 5-30 描绘了在复制叉处协调 SV40 DNA 复制的多种蛋白质。在复制叉处组装的蛋白质进一步说明了第 3 章中介绍的分子机器的概念。这些多组分复合物使细胞能够执行一系列有序的事件，以完成基本的细胞功能。</p>
 <p>复制 SV40 DNA 的分子机器仅包含一种病毒蛋白；所有其他参与 SV40 DNA 复制的蛋白质均由宿主细胞提供。这种病毒蛋白——大 T 抗原——形成六聚体复制解旋酶，该蛋白质利用 ATP 水解的能量在复制叉处解旋亲本链。前导链和滞后链子链的引物由引物酶和 DNA 聚合酶 α（Pol α）的复合物合成，其中引物酶合成短 RNA 引物（约 12 个核苷酸），</p>
 <p>复制 SV40 DNA 的分子机器仅含一种病毒蛋白；所有其他参与 SV40 DNA 复制的蛋白质均由宿主细胞提供。这种病毒蛋白——大 T 抗原，形成六聚体复制解旋酶，一种利用 ATP 水解释放的能量在复制叉处解开亲本链的蛋白质。前导链和后随链子链的引物由引物酶与 DNA 聚合酶 α（Pol α）的复合物合成，引物酶合成短的 RNA 引物（约 12 个核苷酸），</p>
-<figure>
+<figure id="fig-5-30">
   <img class="zoomable" src="figures/fig_5-30_1.png" alt="图 5-30" onclick="lightbox(this.src)">
   <figcaption>图5-30 · SV40 DNA复制叉模型。（a）大T抗原（一种病毒蛋白）的六聚体作为解旋酶解开亲本DNA链。前导链由DNA聚合酶ε（Pol ε）延伸至复制叉。Pol ε结合到围绕子代双链DNA的PCNA环上，使Pol ε-PCNA复合物稳定地结合在复制叉上。由T抗原解旋酶产生的滞后链模板单链区域被异源三聚体蛋白RPA的多个拷贝结合。滞后链合成的引物（红色为RNA，浅绿色为DNA）由引物酶和DNA聚合酶α（Pol α）的复合物合成。Pol α-引物酶合成的每个引物的3′端然后被PCNA-Pol δ复合物结合，该复合物延伸引物并合成每个冈崎片段的大部分。（b）SV40 T抗原的解旋酶结构域形成六聚体复制解旋酶。亚基以交替的浅橙色和深橙色显示。（c）模型...</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -792,7 +912,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>与 SV40 DNA 不同，真核染色体 DNA 分子含有多个复制起点，间隔数十到数百 kb。一种称为 ORC（起点识别复合物）的六亚基蛋白与每个起点结合，并与其他蛋白质结合以加载细胞</p>
 <p>普遍共识是，所有细菌、古菌和真核细胞都采用双向 DNA 复制机制。在 SV40 DNA 中，复制由两个大 T 抗原六聚体解旋酶结合到单个 SV40 复制起点并组装其他蛋白质形成两个复制叉而起始。这些复制叉随后从 SV40 起点向相反方向移动，前导链和后随链合成在两个叉处同时进行。如图 5-32 所示，左侧复制叉向左延伸 DNA 合成；类似地，右侧复制叉向右延伸 DNA 合成。</p>
 <p>与 SV40 DNA 不同，真核染色体 DNA 分子含有多个复制起点，之间相隔数十到数百 kb。一种称为 ORC（origin recognition complex，起始识别复合物）的六亚基蛋白结合到每个起点，并与加载细胞</p>
-<figure>
+<figure id="fig-5-31">
   <img class="zoomable" src="figures/fig_5-31_1.png" alt="图 5-31" onclick="lightbox(this.src)">
   <figcaption>实验图5-31 · SV40 DNA中的双向复制。复制中SV40 DNA的电子显微术表明DNA链从复制起点双向生长。从SV40感染细胞中提取的复制病毒DNA被限制酶EcoRI切割，该酶识别环状病毒DNA中的一个位点。这样做是为了在SV40基因组中提供一个标志：EcoRI识别序列现在可以很容易地被识别为电子显微术可视化的线性DNA分子的末端。EcoRI切割的复制中SV40 DNA分子的电子显微图显示了一组切割分子，其复制"泡"越来越长，泡的中心距离切割分子的每个末端距离恒定。这一发现与从位于泡中心的共同起点向两个方向进行链生长一致，如相应图示所示。参见G. C. Fareed等, 1972, J. Virol. 10:484。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -808,7 +928,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>六聚体解旋酶（由六个同源 MCM 蛋白组成）所需的其他蛋白质结合。两个 MCM 解旋酶以相反方向定向，在起点处分离亲本链，RPA 蛋白结合到生成的单链 DNA 上。细胞 DNA 复制中引物的合成和后续步骤被认为与 SV40 DNA 复制类似（见图 5-31 和 5-32）。</p>
 <p>细胞 DNA 的复制以及导致细胞增殖的其他事件必须受到严格调控，以便</p>
 <p>有丝分裂和另一种特化的细胞分裂类型——减数分裂（产生单倍体精子和卵细胞）将在第 6 章讨论。我们将在第 19 章讨论决定细胞分裂速率的各种调控机制。</p>
-<figure>
+<figure id="fig-5-32">
   <img class="zoomable" src="figures/fig_5-32_1.png" alt="图 5-32" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_5-32_2.png" alt="图 5-32" onclick="lightbox(this.src)">
   <figcaption>图5-32 · DNA双向复制机制。此处左侧的复制叉与图5-30中图示的复制叉相当（尽管该图也显示了除大T抗原外的其他蛋白质，此处未显示）。两个大T抗原六聚体解旋酶首先以相反方向结合在复制起点。步骤1：利用ATP水解提供的能量，解旋酶向相反方向移动，解开亲本DNA并产生单链模板，模板被RPA蛋白结合。步骤2：引物酶-Pol α复合物合成与每条分离的亲本链碱基配对的短引物（红色）。步骤3：PCNA-Rfc-Pol ε复合物替换引物酶-Pol α复合物并延伸短引物，在每个复制叉产生前导链（深绿色）。步骤4：解旋酶进一步解开亲本链，RPA蛋白结合到新暴露的单链区域。步骤5：PCNA-Rfc-Pol ε复合物进一步延伸前导链。步骤6：引物酶-Pol α复合物在每个复制叉合成滞后链合成的引物。步骤7：PCNA-Rfc-Pol δ复合物替换引物酶-Pol α复合物并延伸滞后链冈崎片段（浅绿色），最终连接到前导链的5′端。连接位置用圆圈表示。复制通过进一步解开亲本链以及合成前导链和滞后链继续进行。为清晰起见描绘为单独的步骤，但解旋以及前导链和滞后链的合成是同时发生的。</figcaption>
@@ -834,7 +954,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>r MCM 解旋酶在体内沿染色体 DNA 间隔排列的多个起点处启动真核 DNA 复制。真核 DNA 的合成通过控制这些解旋酶的结合和活性来调控。</p>
 <p>r DNA 复制通常通过双向机制进行，两个复制叉在起点形成并向相反方向移动，两条模板链在每个叉处均被复制（见图 5-32）。</p>
 <p>DNA 的损伤是不可避免的，且以多种方式产生。DNA 损伤可由 DNA 中化学键的自发断裂、紫外线与电离辐射等环境因素，以及与正常细胞代谢的副产物或环境中存在的基因毒性化学物质的反应引起。DNA 正常序列的改变称为突变，可以在复制过程中 DNA 聚合酶读取受损模板时插入错误核苷酸时发生。突变也会因 DNA 聚合酶在复制未受损模板时引入的复制错误而低频发生。如果这些突变不被纠正，细胞可能积累过多突变以至于无法正常运作。此外，生殖细胞中的 DNA 可能遭受过多突变，以至于无法形成可存活的后代。因此，在所有类型的细胞中防止 DNA 序列错误对其生存至关重要，且已进化出几种修复受损 DNA 和纠正序列错误的细胞机制。其中一种修复双链 DNA 断裂的机制也被真核细胞用于在生殖细胞（如精子和卵子）产生过程中，通过染色体片段的交换，在每条染色体上产生新的母本和父本基因组合，这一过程称为遗传重组。</p>
-<h2>5.6 DNA修复与重组</h2>
+<h2 id="sec-5.6">5.6 DNA修复与重组</h2>
 <p>DNA 聚合酶会引入复制错误，也会纠正它们</p>
 <p>防止突变的第一道防线是 DNA 聚合酶本身。偶尔，当复制型 DNA 聚合酶（Pol δ 和 Pol ε）沿模板 DNA 前进时，一个错误的核苷酸会被添加到子链的生长 3′ 端。例如，大肠杆菌 DNA 聚合酶每聚合 10^4（一万）个核苷酸约引入 1 个错误核苷酸。然而，在细菌细胞中测得的突变率要低得多：每掺入生长链 10^9（十亿）个核苷酸约 1 个错误。这种显著的准确性主要归功于大肠杆菌 DNA 聚合酶的校对功能。真核生物的 Pol δ 和 Pol ε 采用类似的机制。</p>
 <p>校对依赖于某些 DNA 聚合酶的 3′→5′ 外切核酸酶活性。当 DNA 合成过程中掺入错误碱基时，新生链的 3′ 核苷酸与模板链之间不会发生碱基配对。结果，聚合酶暂停，然后将生长链的 3′ 端转移到其外切核酸酶位点，在那里错误配对的碱基被去除（图 5-33）。然后 3′ 端被转移回聚合酶位点，该区域被正确复制。所有三种大肠杆菌 DNA 聚合酶都具有校对活性，用于动物细胞中大多数染色体 DNA 复制的两种真核 DNA 聚合酶 δ 和 ε 也是如此。校对似乎对所有细胞避免过多突变是不可或缺的。</p>
@@ -842,7 +962,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>DNA 持续受到大量损伤性化学反应的影响；据估计，单个人类细胞中每天发生 10^4 到 10^6 次 DNA 损伤事件！即使 DNA 不暴露于损伤性化学物质，DNA 结构的某些方面本身就不稳定。例如，连接嘌呤碱基与脱氧核糖的键在生理条件下容易以低速率发生水解，留下没有连接碱基的糖。因此编码信息丢失，这种丢失可导致 DNA 复制过程中的突变。正常细胞反应，包括线粒体中电子沿电子传递链的移动</p>
 <p>DNA 的化学和辐射损伤可导致突变</p>
 <p>DNA 持续遭受大量破坏性化学反应；据估计，单个人类细胞中 DNA 损伤事件的数量每天高达 10^4 到 10^6 次！即使 DNA 不暴露于破坏性化学物质，DNA 结构的某些方面本身就不稳定。例如，连接嘌呤碱基与脱氧核糖的键在生理条件下容易以低速率发生水解，留下没有连接碱基的糖。因此编码信息丢失，这种丢失可能在 DNA 复制过程中导致突变。正常的细胞反应，包括电子沿电子传递链的移动</p>
-<figure>
+<figure id="fig-5-33">
   <img class="zoomable" src="figures/fig_5-33_1.png" alt="图 5-33" onclick="lightbox(this.src)">
   <figcaption>图5-33 · DNA聚合酶的校对功能。所有DNA聚合酶具有相似的三维结构，类似于半开的右手。"手指"结合模板链的单链片段，聚合酶催化活性（Pol）位于手指和手掌之间的连接处。只要正确的核苷酸被添加到生长链的3′端，它就保持在聚合酶位点。在3′端掺入错误碱基会导致生长链解开配对并移动到核酸外切酶（Exo）位点，在那里错误碱基被去除。然后链移回聚合酶位点，正确的核苷酸可以被添加。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -861,7 +981,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>胞嘧啶（C）碱基的脱氨基作用，将其转化为尿嘧啶（U）碱基。另一个原因是常见修饰碱基5-甲基胞嘧啶的脱氨基作用，脱氨基时形成胸腺嘧啶。如果这些改变在DNA复制前未被纠正，细胞将以含U或T的链为模板，形成U·A或T·A碱基对，从而在DNA序列中产生永久性改变（图5-34）。</p>
 <p>高保真DNA切除修复系统识别并修复损伤</p>
 <p>除了校对功能外，细胞还有其他系统来防止因复制错误以及暴露于化学物质和辐射而引起的突变。几种DNA切除修复</p>
-<figure>
+<figure id="fig-5-34">
   <img class="zoomable" src="figures/fig_5-34_1.png" alt="图 5-34" onclick="lightbox(this.src)">
   <figcaption>图5-34 · 脱氨导致点突变。自发性点突变可由5-甲基胞嘧啶（C）脱氨形成胸腺嘧啶（T）引起。如果产生的T·G碱基对没有被碱基切除修复机制恢复为正常的C·G碱基对，在下一轮DNA复制中，一条子链将含有T·A碱基对（突变），而另一条将含有正常的C·G碱基对。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -884,7 +1004,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>G·T错配被一种DNA糖基化酶识别，该酶将胸腺嘧啶碱基翻出螺旋，然后水解连接碱基与糖-磷酸DNA骨架的键。在此初始切口之后，核酸内切酶APE1在无碱基位点附近切割DNA链。缺少碱基的脱氧核糖磷酸随后被一种特化的DNA聚合酶切除，并用C替换，该酶读取模板链中的G（图5-35）。</p>
 <p>如前所述，这种修复必须在DNA复制之前进行，因为该碱基对中不正确的碱基T在正常DNA中天然存在。因此，它能够在复制过程中进行正常的Watson-Crick碱基配对，产生稳定的点突变，该突变将不再被修复机制识别（见图5-34，步骤2）。</p>
 <p>人类细胞含有一系列糖基化酶，每种酶对一组不同的化学修饰DNA碱基具有特异性。例如，一种糖基化酶切除8-氧代鸟嘌呤（鸟嘌呤的氧化形式），使其被未受损的G替换，其他糖基化酶切除被烷化剂修饰的碱基。产生的无碱基核苷酸随后由上述修复机制替换。类似的机制也用于修复脱嘌呤引起的损伤，脱嘌呤是指由于脱氧核糖与碱基之间的糖苷键水解而导致DNA丢失鸟嘌呤或腺嘌呤碱基。脱嘌呤自发发生，且由于哺乳动物和鸟类体温较高，相当常见。由此产生的无碱基位点若不修复，在DNA复制过程中会产生突变，因为它们无法指定正确的配对碱基。</p>
-<figure>
+<figure id="fig-5-35">
   <img class="zoomable" src="figures/fig_5-35_1.png" alt="图 5-35" onclick="lightbox(this.src)">
   <figcaption>图5-35 · T·G错配的碱基切除修复。特异性识别G·T错配的DNA糖基化酶（通常由5-甲基C脱氨形成，见图5-34）将胸腺嘧啶碱基翻出螺旋，然后将其从糖-磷酸DNA骨架上切下（步骤1），仅留下脱氧核糖磷酸（黑点）。特异性识别产生的无碱基位点的内切酶（无嘌呤内切酶I，APE1）然后切割DNA骨架（步骤2），脱氧核糖磷酸被与DNA聚合酶β（一种用于修复的特殊DNA聚合酶）相关的无嘌呤裂合酶（AP裂合酶）去除（步骤3）。缺口然后由DNA Pol β填补并由DNA连接酶密封（步骤4），恢复原始的G·C碱基对。参见O. Schärer, 2003, Angewandte Chemie 42:2946。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -901,7 +1021,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>另一种过程从细菌到人类都保守，主要负责消除DNA聚合酶在复制过程中意外引入的碱基对错配以及一个或几个核苷酸的插入或缺失。与T-G错配中T的碱基切除修复一样，错配切除修复面临的概念性问题是确定哪条是正常的DNA链，哪条是突变的DNA链。这在人类细胞中是如何发生的尚未确定。据认为，与错配DNA片段结合的蛋白质能够区分模板链和子链；然后子链中含有复制错误的错配片段被切除并修复，以产生模板链的精确互补序列（图5-36）。与碱基切除修复相反，错配切除修复发生在DNA复制之后。</p>
 <p>对一种称为遗传性非息肉病性结直肠癌的结肠癌的易感性，源于MLH1或MSH2基因一个拷贝的遗传性功能丧失突变。MSH2和MLH1蛋白</p>
 <p>对DNA错配修复至关重要（见图5-36）。每个基因至少有一个功能性拷贝的细胞表现出正常的错配修复。然而，肿瘤细胞通常由在第二个拷贝中发生随机突变的单个细胞产生；当两个拷贝</p>
-<figure>
+<figure id="fig-5-36">
   <img class="zoomable" src="figures/fig_5-36_1.png" alt="图 5-36" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_5-36_2.png" alt="图 5-36" onclick="lightbox(this.src)">
   <figcaption>图5-36 · 人细胞中的错配切除修复。错配切除修复途径纠正复制过程中引入的错误。MSH2和MSH6蛋白（细菌MutS同源物1和6）的复合物以能够区分模板链和新合成子链的方式结合到错配的DNA片段上（步骤1）。这种结合触发MLH1和PMS2（两者均为细菌MutL的同源物）的结合。产生的DNA-蛋白复合物然后结合切割新合成子链的内切酶。接下来，DNA解旋酶解开螺旋，外切酶从子链的切割端去除几个核苷酸，包括错配的碱基（步骤2）。最后，与碱基切除修复一样，缺口由DNA聚合酶（此处为Pol δ）填补并由DNA连接酶密封（步骤3）。</figcaption>
@@ -917,7 +1037,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>都失去功能时，错配修复系统就丧失了。这些基因的失活突变在非遗传性结肠癌中也很常见。■</p>
 <p>核苷酸切除修复修复扭曲正常DNA形状的化学加合物</p>
 <p>细胞利用核苷酸切除修复来修复含有化学修饰碱基的DNA区域，这些碱基通常称为化学加合物，它们会局部扭曲DNA的正常形状。这种修复的关键在于某些蛋白质能够沿双链DNA分子表面滑动，寻找双螺旋形状中的凸起或其他不规则之处。例如，该机制修复胸腺嘧啶-胸腺嘧啶二聚体，这是由紫外线引起的一种常见化学加合物（图5-37）；这些二聚体干扰DNA的复制和转录。图5-38</p>
-<figure>
+<figure id="fig-5-37">
   <img class="zoomable" src="figures/fig_5-37_1.png" alt="图 5-37" onclick="lightbox(this.src)">
   <figcaption>图5-37 · 胸腺嘧啶-胸腺嘧啶二聚体的形成。（a）UV照射引起的最常见DNA损伤类型是胸腺嘧啶-胸腺嘧啶二聚体的形成。（b）这些损伤可以通过识别它们在DNA双螺旋形状中产生的扭曲的切除修复机制来修复。（b）中的红线代表（a）中所示的UV诱导的C-C键。[部分（b）数据来自K. McAteer等, 1998, J Mol Biol. 282:1013, PDB ID 1ttd。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -929,7 +1049,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Kink</td><td class="gl-zh">扭结</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-5-38">
   <img class="zoomable" src="figures/fig_5-38_1.png" alt="图 5-38" onclick="lightbox(this.src)">
   <figcaption>图5-38 · 人细胞中的核苷酸切除修复。引起双螺旋扭曲的DNA损伤，如胸腺嘧啶-胸腺嘧啶二聚体，最初被XP-C（着色性干皮病蛋白C）和23B蛋白的复合物识别（步骤1）。该复合物然后招募转录因子TFIIH，其解旋酶亚基由ATP水解提供动力，部分解开双螺旋。XP-G和RPA蛋白然后结合到复合物上，进一步解开并稳定螺旋，直到形成约25个碱基的泡（步骤2）。然后XP-G（现在作为内切酶）和XP-F，第二个内切酶，在损伤两侧相距24-32个碱基的点切割损伤链（步骤3）。这释放了带有损伤碱基的DNA片段，该片段被降解为单核苷酸。最后，缺口由DNA聚合酶（与DNA复制中完全相同）填补，剩余的切口由DNA连接酶密封（步骤4）。参见J. Hoeijmakers, 2001, Nature 411:366, 和O. Schärer, 2003, Angewandte Chemie 42:2946。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -955,7 +1075,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>非同源末端连接的易错修复 修复双链断裂的主要机制</p>
 <p>在多细胞生物中，涉及两个DNA分子的非同源末端重新连接。即使连接的DNA片段来自同一染色体，修复过程也会在连接点处丢失几个碱基对（图5-39）。这种可能具有致突变性的缺失的形成，是DNA损伤修复如何引入突变的一个例子。</p>
 <p>由于DNA在粘稠的核质中扩散相当缓慢，断裂染色体的正确末端通常会在它们扩散得太远而无法进行非同源</p>
-<figure>
+<figure id="fig-5-39">
   <img class="zoomable" src="figures/fig_5-39_1.png" alt="图 5-39" onclick="lightbox(this.src)">
   <figcaption>图5-39 · 非同源末端连接。（a）当没有姐妹染色单体可用来帮助修复双链断裂时，在未断裂DNA中不并置的核苷酸序列被对接在一起。这些DNA末端通常来自同一染色体位点，当连接在一起时，会丢失几个碱基对。偶尔，来自不同染色体的末端被意外连接在一起。两种蛋白质Ku和DNA依赖性蛋白激酶（DNA-PK）的复合物结合到双链断裂的末端（步骤1）。形成突触后，末端被核酸酶进一步加工，导致去除几个碱基（步骤2），两个双链分子被连接在一起（步骤3）。结果是双链断裂被修复，但断裂位点处的几个碱基对被去除。参见G. Chu, 1997, J. Biol. Chem. 272:24097; M. Lieber等, 1997, Curr. Opin. Genet. Devel. 7:99; 和D. van Gant等, 2001, Nature Rev. Genet 2:196。（b）KU70/KU80与双链DNA末端结合的结构。复合物以沿DNA轴视图（左）和侧视图（右）显示。KU80为浅绿色，KU70为深绿色，DNA为蓝色。[部分（b）数据来自J. R. Walker, R. A. Corpina, 和J. Goldberg, 2001, Nature 412:607, PDB ID 1jey。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -976,7 +1096,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>修复崩溃的复制叉 重组DNA修复的一个例子是修复"崩溃的"复制叉。如果一条DNA链磷酸二酯骨架中的断裂（称为"切口"）在复制叉通过之前未被修复，那么当复制解旋酶到达母链中的切口时，子染色体已复制的部分就会分离，因为切口两侧母链的两个片段之间没有共价键。这个过程称为复制叉崩溃（图5-40，步骤1）。如果双链子DNA分子中的断裂未被修复，由于断裂点和染色体末端之间遗传信息的丢失，在细胞分裂后通常对至少一个子细胞是致死的。修复由此产生的双链断裂并再生复制叉的重组过程涉及多种酶和其他蛋白质，这里仅提及其中一部分。</p>
 <p>修复双链断裂的第一步是对断裂DNA末端带有5′端的链进行外切核酸酶消化，使断裂处带有3′端的链保持单链状态（图5-40，步骤2）。如图5-40步骤2所示，与未断裂母链（深蓝色）碱基配对的后随链新生链（粉色）被连接到母染色体未复制部分（浅蓝色）上。下一步所需的一种蛋白质是细菌中的RecA，或酿酒酵母及其他真核生物中同源的Rad51。多个RecA/Rad51分子结合到单链DNA上，催化其与另一条同源双链DNA分子中完全或近乎完全互补的序列杂交。该靶标双链DNA的互补链（深蓝色）在杂交区域被置换为单链DNA环，与入侵链配对（图5-40，步骤3）。这种由RecA/Rad51催化的、一条单链（与其中一条链互补）入侵双链DNA的过程是重组过程的关键。该过程称为链入侵，由于碱基对数量没有变化，因此不需要能量输入。</p>
 <p>接下来，靶标DNA与入侵链之间的杂交区域利用ATP水解能量的蛋白质向远离断裂的方向延伸。这一过程称为分支迁移（图5-40，步骤4），因为靶标DNA链从一条互补链（深蓝色）交叉到断裂DNA分子中其互补链（深红色）的位置——即步骤3后的粉色对角线——在DNA结构中被称为分支。在该示意图中，对角线仅代表一个磷酸二酯键。分子建模和其他研究表明，分支两侧的第一个碱基都与互补核苷酸碱基配对。随着该分支向左迁移，碱基对数量保持</p>
-<figure>
+<figure id="fig-5-40">
   <img class="zoomable" src="figures/fig_5-40_1.png" alt="图 5-40" onclick="lightbox(this.src)">
   <figcaption>图5-40 · 塌陷复制叉的重组修复。亲本链为浅蓝色和深蓝色。前导子链为深红色，滞后子链为粉色。步骤3及之后的斜线代表相应颜色DNA链的单个磷酸二酯键。步骤4之后的小黑色箭头代表Holliday结构中DNA链交叉处磷酸二酯键的切割。参见http://www.sheffield.ac.uk/mbb/ruva了解大肠杆菌蛋白RuvA和RuvB催化的分支迁移动画。详见正文。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -994,7 +1114,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>互补碱基对。在此过程中，两个亲本之间的序列差异会丢失，这一过程称为基因转换。</p>
 <p>图 5-42 图解了在 Holliday 结构中四链交叉连接处切割一对或另一对链如何产生亲本分子或重组分子。这一过程称为 Holliday 结构的拆分，将最初由 RecA/Rad51 催化的链入侵连接的 DNA 分子分开。图 5-41 步骤 5 之后中间体中的每个 Holliday 结构都可以按图 5-42 中两组小黑箭头所示的两种可能方式（步骤 1 或步骤 2）进行切割和重新连接。</p>
 <p>接下来，新的3′端被连接到外切核酸酶消化的5′端（步骤5）。这在配对分子中产生了两个Holliday结构（步骤5）。这些Holliday结构的分支迁移可以发生在任一方向（未图示）。最后，在箭头所示位置切割链，并将每个切割后的Holliday结构处的替代5′和3′端连接，产生两条重组染色体，它们在初始断裂点的一侧含有一条亲本DNA分子的DNA（粉色和红色链），在断裂点的另一侧含有另一条亲本DNA分子的DNA（浅蓝色和深蓝色）（步骤6）。初始断裂点紧邻区域形成异源双链，其中来自一个亲本的一条链与另一亲本的互补链碱基配对（粉色或红色链与浅蓝色或深蓝色链碱基配对）。两条亲本链之间的碱基对错配通常由上述修复机制修复，以产生</p>
-<figure>
+<figure id="fig-5-41">
   <img class="zoomable" src="figures/fig_5-41_1.png" alt="图 5-41" onclick="lightbox(this.src)">
   <figcaption>图5-41 · 通过同源重组修复双链断裂。为简化，每个DNA双螺旋用两条平行线表示，链的极性由其3′端的箭头指示。上方分子有一个双链断裂。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1005,7 +1125,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>一个互补的碱基对。在此过程中，两个亲本之间的序列差异丢失了，这一过程称为基因转换。</p>
 <p>图5-42示意了Holliday结构中四链交叉处如何通过切割其中一对或另一对链来产生亲本分子或重组分子。这一过程称为Holliday结构的拆分，它能分离最初由RecA/Rad51催化的链入侵所连接的DNA分子。图5-41步骤5之后中间体中的每个Holliday结构都可以被切割</p>
 <p>并按图5-42中两组小黑箭头所示的两种可能方式（步骤1或步骤2）重新连接。因此，图5-41所示的重组过程有四种可能的产物。在切割末端连接后，其中两种产物再生出亲本染色体[除了断裂点处的异源双链区域被修复为其中一个亲本的序列（基因转换）]。另外两种可能产物产生如图5-41所示的重组染色体。</p>
-<figure>
+<figure id="fig-5-42">
   <img class="zoomable" src="figures/fig_5-42_1.png" alt="图 5-42" onclick="lightbox(this.src)">
   <figcaption>图5-42 · Holliday结构的替代解析方式。对角线和垂直线代表单个磷酸二酯键。最简单的方法是将底部分子旋转180°来图示该过程，使顶部和底部分子具有相同的...</figcaption>
 </figure>
@@ -1017,7 +1137,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>病毒颗粒表面含有一种蛋白质的多个拷贝，该蛋白质能特异性地结合宿主细胞表面受体蛋白的多个拷贝。这种相互作用决定了宿主范围——即病毒能够感染的细胞类型群体——并启动了感染过程。大多数病毒的宿主范围相当有限。</p>
 <p>仅感染细菌的病毒称为噬菌体（bacteriophage），或简称 phage。感染动物或植物细胞的病毒通常分别称为动物病毒或植物病毒。少数病毒既能在植物或动物体内生长，也能在取食这些宿主的昆虫体内生长。高度移动的昆虫作为媒介，将此类病毒在易感动物或植物宿主之间传播。广泛的宿主范围也是一些严格动物病毒的特征，例如水疱性口炎病毒（vesicular stomatitis</p>
 <p>r 核苷酸切除修复途径的遗传性缺陷，如着色性干皮病患者，使他们易患皮肤癌。遗传性结肠癌常与错配修复途径必需蛋白的突变形式相关。同源重组修复缺陷与BRCA-1或BRCA-2基因一个突变等位基因的遗传相关，导致易患乳腺癌和子宫癌。</p>
-<h2>5.7 病毒：细胞遗传系统的寄生体</h2>
+<h2 id="sec-5.7">5.7 病毒：细胞遗传系统的寄生体</h2>
 <p>virus），它能在昆虫媒介和多种不同类型的哺乳动物体内生长。然而，大多数动物病毒不会跨越门（phyla）传播，有些病毒（如脊髓灰质炎病毒）仅感染密切相关的物种，如灵长类动物。某些动物病毒的宿主细胞范围进一步局限于有限数量的细胞类型，因为只有这些细胞才具有病毒颗粒能够附着的表面受体。一个例子是脊髓灰质炎病毒，它仅感染肠道中的细胞，以及不幸的是对其宿主而言，感染脊髓中的运动神经元，导致瘫痪。另一个例子是 HIV-1（下文将进一步讨论），它感染称为 CD4+ T 淋巴细胞的细胞（这些细胞对免疫应答至关重要，见第 23 章），以及中枢神经系统的某些神经元和其他称为胶质细胞的细胞。</p>
 <p>病毒衣壳是由一种或少数几种蛋白质组成的规则阵列</p>
 <p>病毒颗粒的核酸被包裹在蛋白质外壳（即衣壳）中，衣壳由一种蛋白质或少数几种不同蛋白质的多个拷贝组成，每种蛋白质均由单个病毒基因编码。由于这种结构，病毒能够用少量基因编码构建相对较大的衣壳所需的所有信息。这种对遗传信息的高效利用非常重要，因为只有有限数量的 DNA 或 RNA，因而只有有限数量的基因，能够装入病毒颗粒衣壳中。</p>
@@ -1040,7 +1160,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>5. 释放——宿主细胞要么突然破裂（裂解），一次性释放所有新形成的病毒粒子，要么逐渐解体，缓慢释放病毒粒子。两种释放方式都导致受感染细胞死亡。</p>
 <p>图5-45展示了T4噬菌体（一种感染大肠杆菌的无包膜DNA病毒）的裂解周期。病毒衣壳蛋白通常大量合成，因为每个子代病毒粒子的组装需要许多拷贝。在每个受感染的大肠杆菌细胞中，约产生100-200个T4子代病毒粒子并通过裂解释放。</p>
 <p>对于感染真核细胞的DNA病毒，裂解周期稍复杂一些。在大多数此类病毒中，DNA基因组（连同一些相关蛋白）被转运到细胞核中。一旦进入细胞核，病毒DNA由宿主的转录机器转录为RNA。病毒RNA初级转录本经宿主细胞酶加工产生病毒mRNA，后者被转运到细胞质，并由宿主细胞的核糖体、tRNA和翻译因子翻译为病毒蛋白。病毒蛋白随后被转运回细胞核，在那里其中一些蛋白直接复制病毒DNA，或指导细胞蛋白复制病毒DNA，如前面讨论的SV40的情况。衣壳蛋白</p>
-<figure>
+<figure id="fig-5-43">
   <img class="zoomable" src="figures/fig_5-43_1.png" alt="图 5-43" onclick="lightbox(this.src)">
   <figcaption>图5-43 · 病毒粒子结构。（a）螺旋形烟草花叶病毒。（b，左）脊髓灰质炎病毒的结构图，一种小型二十面体病毒，由20个等边三角形面组成，其中一个面用红色标出。每个面由三个称为衣壳粒的轮廓结构元件组成。数字显示五个衣壳粒如何在二十面体的12个顶点处结合。（b，右）基于X射线晶体学的脊髓灰质炎病毒空间填充模型。模型按距离病毒粒子中心的远近着色，红色最远，蓝色最近。病毒粒子与宿主细胞受体（未显示）结合，这些受体是长而窄的细胞表面蛋白，进入每个顶点周围的蓝色"峡谷"中。（c）噬菌体T4。（d）流感病毒，一种有包膜病毒的示例。[部分（a）: Omikron/Science Source。部分（b）数据来自D. J. Filman等, 1989. EMBO J. 8:1567, PDB ID 2plv。部分（c）Department of Microbiology, Biozentrum, University of Basel/Science Source。部分（d）James Cavallini/Science Source。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1048,7 +1168,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>与新复制的病毒DNA在细胞核中结合，产生数千到数十万个子代病毒粒子。由于哺乳动物细胞比细菌细胞大约一千倍，每个细胞产生的病毒粒子数量也大约多一千倍。然而，由于必须合成更多蛋白质并复制更多病毒基因组来组装如此大量的病毒粒子，对动物病毒而言，一个感染周期所需的时间比同等复杂度的噬菌体长得多。T4噬菌体在大肠杆菌细胞中复制并裂解约需20分钟，而脊髓灰质炎病毒复制并裂解宿主细胞约需8小时。许多动物病毒比脊髓灰质炎病毒慢得多，需要</p>
-<figure>
+<figure id="fig-5-44">
   <img class="zoomable" src="figures/fig_5-44_1.png" alt="图 5-44" onclick="lightbox(this.src)">
   <figcaption>实验图5-44 · 噬菌斑测定。噬菌斑测定确定病毒悬液中的感染性颗粒数量。（a）一个损伤或噬菌斑在单个病毒粒子最初感染单个细胞的位置形成。每个噬菌斑构成一个纯病毒克隆。（b）噬菌体φS1在荧光假单胞菌菌苔上形成的噬菌斑。[部分（b）P. Rossi, 1994, Advances in biological tracer techniques for hydrology and hydrogeology using bacteriophages, Ph.D. thesis, University of Neuchatel, 200 pp.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1058,7 +1178,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>感染细胞裂解并释放子代病毒粒子需要2天或更长时间。</p>
 <p>大多数具有RNA基因组的植物和动物病毒在裂解性复制中不需要核功能。在其中一些病毒中，一种在侵入期间进入宿主细胞的病毒编码酶将病毒基因组RNA转录为细胞质中的mRNA。该mRNA随后由宿主细胞的翻译机器直接翻译成病毒蛋白。这些蛋白中的一种或多种随后产生病毒RNA基因组的额外拷贝。最后，子代基因组与新合成的衣壳蛋白结合，在细胞质中形成子代病毒粒子。</p>
 <p>在新病毒粒子合成完成数百至数十万个后（取决于病毒和宿主细胞的类型），大多数被感染的细菌细胞和一些</p>
-<figure>
+<figure id="fig-5-45">
   <img class="zoomable" src="figures/fig_5-45_1.png" alt="图 5-45" onclick="lightbox(this.src)">
   <figcaption>图5-45 · 无包膜细菌病毒的裂解性复制周期。噬菌体T4具有双链DNA基因组，缺乏膜包膜。T4尾部末端的病毒衣壳蛋白与宿主细胞外部的特定受体蛋白相互作用后，病毒基因组被注入宿主（步骤1）。宿主细胞酶然后将病毒"早期"基因转录为mRNA，随后将这些mRNA翻译为病毒"早期"蛋白（步骤2）。早期蛋白复制病毒DNA并诱导宿主细胞酶表达病毒"晚期"蛋白（步骤3）。病毒晚期蛋白包括衣壳和组装蛋白以及降解宿主细胞DNA的酶，为合成更多病毒DNA提供核苷酸。子代病毒粒子在细胞中组装（步骤4），并在病毒蛋白裂解细胞时释放（步骤5）。新释放的病毒在其它宿主细胞中启动另一轮感染。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1071,7 +1191,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>被感染的植物和动物细胞会裂解，一次性释放所有病毒粒子。然而，在许多植物和动物病毒感染中，不发生离散的裂解事件；相反，死亡的宿主细胞在逐渐解体过程中释放病毒粒子。</p>
 <p>如前所述，有包膜动物病毒被一层源自宿主细胞质膜的外层磷脂双分子层包围，其中含有丰富的病毒糖蛋白。有包膜病毒的吸附和释放过程与无包膜病毒的这些过程有显著差异。为了说明有包膜病毒的裂解性复制，我们以狂犬病毒为例，其核衣壳由一条单链RNA基因组与多个核衣壳蛋白拷贝结合而成。与其他裂解性RNA病毒一样，狂犬病毒在细胞质中复制，不需要宿主细胞核酶。如图</p>
-<figure>
+<figure id="fig-5-46">
   <img class="zoomable" src="figures/fig_5-46_1.png" alt="图 5-46" onclick="lightbox(this.src)">
   <figcaption>图5-46 · 有包膜动物病毒的裂解性复制周期。狂犬病毒是一种具有单链RNA基因组的有包膜病毒。该病毒的结构组分在顶部描绘。病毒粒子吸附到特定宿主膜蛋白的多个拷贝后（步骤1），细胞将其吞入内体（步骤2）。内体膜中的一种细胞蛋白将H⁺离子从胞质泵入内体内部。内体pH的降低诱导病毒糖蛋白的构象变化，导致病毒包膜与内体脂质双层融合，并将核衣壳释放到胞质中（步骤3和4）。病毒RNA聚合酶利用胞质中的核糖核苷三磷酸复制病毒RNA基因组（步骤5）并合成病毒mRNA（步骤6）。其中一种病毒mRNA编码病毒跨膜糖蛋白，该蛋白被插入内质网膜...</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1111,11 +1231,11 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>一些称为温和噬菌体的细菌病毒可以与其宿主细胞建立不杀死细胞的非裂解性关联。例如，当噬菌体λ感染大肠杆菌时，大多数情况下会引起裂解性感染。偶尔，</p>
 <p>了形成 DNA 分子的模板——这种遗传信息流向与更常见的 DNA 转录为 RNA 相反。在逆转录病毒的生命周期中（图 5-48），一种称为逆转录酶（reverse transcriptase）的病毒酶首先将病毒 RNA 基因组拷贝成与病毒 RNA 互补的单链 DNA；然后同一种酶催化互补 DNA 链的合成。（这一复杂反应在第 8 章中详述，届时我们将考虑密切相关的细胞内寄生生物——逆转座子。）所产生的双链 DNA 被病毒颗粒中的整合酶（integrase）整合到受感染细胞的染色体 DNA 中。最后，整合的 DNA（称为前病毒 provirus）由宿主细胞自身的 RNA 聚合酶转录成 RNA，这些 RNA 要么被翻译成病毒蛋白，要么被包装进病毒颗粒衣壳蛋白中，形成子代病毒颗粒，通过从宿主细胞膜出芽释放。由于大多数逆转录病毒不杀死其宿主细胞，受感染的细胞可以复制，产生带有整合的前病毒 DNA 的子细胞。这些子细胞继续转录前病毒 DNA 并出芽产生子代病毒颗粒。</p>
 <p>一些逆转录病毒含有致癌基因（癌基因），被此类逆转录病毒感染的细胞会被致癌性转化为肿瘤细胞。对致癌性逆转录病毒（主要是鸟类和小鼠的病毒）的研究揭示了大量关于正常细胞转化为癌细胞的过程（见第 24 章）。</p>
-<figure>
+<figure id="fig-5-47">
   <img class="zoomable" src="figures/fig_5-47_1.png" alt="图 5-47" onclick="lightbox(this.src)">
   <figcaption>实验图5-47 · 子代病毒粒子通过出芽释放。有包膜病毒的子代病毒粒子通过从感染细胞出芽释放。在这张感染麻疹病毒细胞的透射电子显微图中，从细胞表面突出的病毒粒子芽清晰可见。麻疹病毒是一种有包膜RNA病毒，具有螺旋核衣壳，类似于狂犬病毒，其复制方式如图5-46所示。[Thomas Deerinck, NCMIR/Science Source.]</figcaption>
 </figure>
-<figure>
+<figure id="fig-5-48">
   <img class="zoomable" src="figures/fig_5-48_1.png" alt="图 5-48" onclick="lightbox(this.src)">
   <figcaption>图5-48 · 逆转录病毒生命周期。逆转录病毒具有两条相同的单链RNA拷贝的基因组和外部包膜。步骤1：逆转录病毒包膜中的病毒糖蛋白与特定宿主细胞膜蛋白相互作用后，包膜直接与质膜融合，允许核衣壳进入细胞质。步骤2：病毒逆转录酶和其他蛋白质将病毒ssRNA基因组拷贝为双链DNA。步骤3：病毒dsDNA被转运到细胞核并整合到宿主细胞DNA中，形成前病毒。步骤4：宿主细胞酶转录前病毒DNA，产生病毒基因组RNA和编码病毒蛋白的mRNA。步骤5：病毒蛋白和基因组RNA在质膜处组装，并通过出芽释放子代病毒粒子。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1173,7 +1293,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>⎯⎯⎯⎯→ DNA解旋方向</p>
 <p>Asn = AAU Cys = TCG Gly = CAG His = CAU Lys = AAG</p>
 <p>Met = AUG Phe = UUC Ser = AGC Tyr = UAC Val = GUC; GUA</p>
-<div class="boximg">
+<div class="boximg" id="box-G5-3">
   <img class="zoomable" src="figures/box_G5-3_1.png" alt="G5-3" onclick="lightbox(this.src)">
 </div>
 <p>17. a. 观察上图。解释为什么在产生滞后链时有必要形成冈崎片段（而不是连续链）。</p>
@@ -1273,6 +1393,45 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mousemove',onMove);
     document.removeEventListener('mouseup',onUp);
   }
+})();
+/* 阅读索引滚动监视 */
+(function(){
+  var tocLinks=document.querySelectorAll('#toc a');
+  var targets=[];
+  tocLinks.forEach(function(a){
+    var id=a.getAttribute('href');
+    if(!id)return;
+    var el=document.getElementById(id.replace('#',''));
+    if(el)targets.push({el:el,link:a});
+  });
+  function onScroll(){
+    var scrollY=window.scrollY+120;
+    var active=null;
+    for(var i=targets.length-1;i>=0;i--){
+      if(targets[i].el.offsetTop<=scrollY){active=targets[i].link;break;}
+    }
+    tocLinks.forEach(function(a){a.classList.remove('active');});
+    if(active)active.classList.add('active');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+  tocLinks.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').replace('#','');
+      var el=document.getElementById(id);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+      var toc=document.getElementById('toc');
+      if(toc)toc.classList.remove('open');
+    });
+  });
+  /* 点击正文区域关闭移动端侧栏 */
+  document.addEventListener('click',function(e){
+    var toc=document.getElementById('toc');
+    if(!toc||!toc.classList.contains('open'))return;
+    if(!toc.contains(e.target))toc.classList.remove('open');
+  });
 })();
 </script>
 </body></html>

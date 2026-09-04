@@ -3,21 +3,21 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
-h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; }
+h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
 p { margin: 0 0 0.7em 0; text-align: justify; text-indent: 2em; }
 p.ni { text-indent: 0; }
 hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
-figure { margin: 1.5em 0; text-align: center; }
+figure { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 figure.table { border-left: 4px solid #3b82f6; padding: 6px 0 6px 12px; text-align: left; background: #f8faff; }
 figure img, .boximg img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; }
 img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
 img.zoomable:hover { opacity: 0.88; }
-.boximg { margin: 1.5em 0; text-align: center; }
+.boximg { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 .boximg img { border: 1px solid #d8b4fe; }
 .intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
 .intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
@@ -51,11 +51,125 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
-#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }</style></head><body><article>
+#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
+/* 左侧阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+  background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+#toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+#toc ul { list-style: none; padding: 0; margin: 0; }
+#toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
+  border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
+#toc li a:hover { background: #f0ede6; color: #333; }
+#toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
+  font-size: 13.5px; border-left-color: transparent; }
+#toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
+#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+  padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
+#toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
+#toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
+#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+  border-left-color: #999; background: #eee9e0; color: #555; }
+#toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
+  background: #333; color: #fff; border: none; border-radius: 4px;
+  padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
+@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media (max-width: 1050px) {
+  body { padding-left: 0; }
+  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
+  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc-toggle { display: block; }
+  article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
+}</style></head><body>
+<button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
+<nav id="toc">
+<div class="toc-title">目录</div>
+<ul>
+<li class="toc-box"><a href="#box-G3-1">第3章 蛋白质结构与功能致病菌用来将蛋白质注入人体细胞以引发…</a></li>
+<li class="toc-fig"><a href="#fig-3-1">图3-1 · 蛋白质结构与功能概述。(a) 蛋白质具有层级结…</a></li>
+<li class="toc-sec"><a href="#sec-3.1">3.1 蛋白质的层级结构</a>
+<ul>
+<li class="toc-fig"><a href="#fig-3-2">图3-2 · 蛋白质层级的四个层次。(a) 由肽键连接在一起…</a></li>
+<li class="toc-fig"><a href="#fig-3-3">图3-3 · 多肽的结构。(a) 各个氨基酸通过肽键连接在一…</a></li>
+<li class="toc-fig"><a href="#fig-3-4">图3-4 · α 螺旋，蛋白质中常见的二级结构。多肽主链（以…</a></li>
+<li class="toc-fig"><a href="#fig-3-5">图3-5 · β 片层，蛋白质中另一种常见的二级结构。(a)…</a></li>
+<li class="toc-fig"><a href="#fig-3-6">图3-6 · β 转角的结构。β 转角由四个残基组成，使多肽…</a></li>
+<li class="toc-fig"><a href="#fig-3-7">图3-7 · 蛋白质折叠的油滴模型。多肽链的疏水和亲水残基可…</a></li>
+<li class="toc-fig"><a href="#fig-3-8">图3-8 · 实验性图：内在无序蛋白与有序蛋白结合的机制，以…</a></li>
+<li class="toc-fig"><a href="#fig-3-9">图3-9 · 可视化蛋白质 Ras 及其结合的 GDP 的五…</a></li>
+<li class="toc-fig"><a href="#fig-3-10">图3-10 · 蛋白质二级结构基序。(a) 卷曲螺旋基序，由…</a></li>
+<li class="toc-fig"><a href="#fig-3-11">图3-11 · 三级和四级结构层次。此处所示的蛋白质——血凝…</a></li>
+<li class="toc-fig"><a href="#fig-3-12">图3-12 · 蛋白质结构域的模块性。表皮生长因子（EGF）…</a></li>
+<li class="toc-fig"><a href="#fig-3-13">图3-13 · 分子机器：转录起始复合物。核心 RNA 聚合…</a></li>
+<li class="toc-fig"><a href="#fig-3-14">图3-14 · 珠蛋白家族的进化。(a) 血红蛋白是由两条 …</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-3.2">3.2 蛋白质折叠</a>
+<ul>
+<li class="toc-box"><a href="#box-G3-2">G3-2</a></li>
+<li class="toc-fig"><a href="#fig-3-15">图3-15 · 蛋白质中平面肽基之间的旋转。绕 Cα-氨基氮…</a></li>
+<li class="toc-fig"><a href="#fig-3-16">图3-16 · 假设的蛋白质折叠途径。单体蛋白质的折叠遵循一…</a></li>
+<li class="toc-fig"><a href="#fig-3-17">图3-17 · 分子伴侣介导的蛋白质折叠。(a) Hsp70…</a></li>
+<li class="toc-fig"><a href="#fig-3-18">图3-18 · 伴侣蛋白介导的蛋白质折叠。某些蛋白质的折叠依…</a></li>
+<li class="toc-fig"><a href="#fig-3-19">图3-19 · 脯氨酸顺/反异构化影响蛋白质折叠和结构。(a…</a></li>
+<li class="toc-fig"><a href="#fig-3-20">图3-20 · 错误折叠的蛋白质可形成基于交叉 β 片层结构…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-3.3">3.3 蛋白质结合与酶催化</a>
+<ul>
+<li class="toc-fig"><a href="#fig-3-21">图3-21 · 抗体的蛋白质-配体结合。(a) 抗体的（表面…</a></li>
+<li class="toc-fig"><a href="#fig-3-22">图3-22 · 酶对化学反应活化能的影响。此假设反应路径描绘…</a></li>
+<li class="toc-fig"><a href="#fig-3-23">图3-23 · 酶胰蛋白酶的活性位点。(a) 酶的活性位点（…</a></li>
+<li class="toc-fig"><a href="#fig-3-24">图3-24 · 酶催化反应的 Km 和 Vmax。Vmax …</a></li>
+<li class="toc-fig"><a href="#fig-3-25">图3-25 · 酶反应机制的示意模型。酶动力学表明酶（E）在…</a></li>
+<li class="toc-box"><a href="#box-G3-3">G3-3</a></li>
+<li class="toc-fig"><a href="#fig-3-26">图3-26 · 未催化和多步酶催化反应的自由能反应曲线。(a…</a></li>
+<li class="toc-fig"><a href="#fig-3-27">图3-27 · 胰蛋白酶样丝氨酸蛋白酶活性位点中的底物结合。…</a></li>
+<li class="toc-fig"><a href="#fig-3-28">图3-28 · 丝氨酸蛋白酶介导的肽键水解机制。丝氨酸蛋白酶…</a></li>
+<li class="toc-fig"><a href="#fig-3-29">图3-29 · 酶活性的 pH 依赖性。在某些情况下，酶活性…</a></li>
+<li class="toc-fig"><a href="#fig-3-30">图3-30 · 酶组装成高效多酶复合物。此处所示的假设反应通…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-3.4">3.4 蛋白质功能的调控</a>
+<ul>
+<li class="toc-fig"><a href="#fig-3-31">图3-31 · 实验性图：泛素和蛋白酶体介导的蛋白水解。(a…</a></li>
+<li class="toc-fig"><a href="#fig-3-32">图3-32 · 实验性图：血红蛋白协同结合氧。每个四聚体血红…</a></li>
+<li class="toc-fig"><a href="#fig-3-33">图3-33 · Ca²⁺ 结合钙调蛋白诱导的构象变化。钙调蛋…</a></li>
+<li class="toc-fig"><a href="#fig-3-34">图3-34 · GTP 酶开关。GTP 酶是结合 GTP 并…</a></li>
+<li class="toc-fig"><a href="#fig-3-35">图3-35 · 通过磷酸化和去磷酸化调控蛋白质活性。蛋白质的…</a></li>
+<li class="toc-fig"><a href="#fig-3-36">图3-36 · 通过泛素间异肽键所用赖氨酸确定多聚泛素功能。…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-3.5">3.5 蛋白质的纯化、检测与表征</a>
+<ul>
+<li class="toc-fig"><a href="#fig-3-37">图3-37 · 实验性图：离心技术分离质量或密度不同的颗粒。…</a></li>
+<li class="toc-fig"><a href="#fig-3-38">图3-38 · 实验性图：SDS-聚丙烯酰胺凝胶电泳（SDS…</a></li>
+<li class="toc-fig"><a href="#fig-3-39">图3-39 · 实验性图：双向凝胶电泳基于电荷和质量分离蛋白…</a></li>
+<li class="toc-fig"><a href="#fig-3-40">图3-40 · 实验性图：三种常用液相色谱技术基于质量、电荷…</a></li>
+<li class="toc-fig"><a href="#fig-3-41">图3-41 · 实验性图：免疫印迹（Western 印迹）和…</a></li>
+<li class="toc-tab"><a href="#tab-T3-1">表T3-1 · 生物研究中常用的放射性同位素。同位素 半衰期…</a></li>
+<li class="toc-fig"><a href="#fig-3-42">图3-42 · 实验性图：脉冲追踪实验可追踪细胞内蛋白质修饰…</a></li>
+<li class="toc-fig"><a href="#fig-3-43">图3-43 · 实验性图：分子质量可由基质辅助激光解吸/电离…</a></li>
+<li class="toc-fig"><a href="#fig-3-44">图3-44 · 实验性图：蛋白质和肽的分子质量可由电喷雾电离…</a></li>
+<li class="toc-fig"><a href="#fig-3-45">图3-45 · 实验性图：X 射线晶体学提供衍射数据，可由此…</a></li>
+<li class="toc-fig"><a href="#fig-3-46">图3-46 · 实验性图：人线粒体核糖体结构的冷冻电子显微镜…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-3.6">3.6 蛋白质组学</a>
+<ul>
+<li class="toc-fig"><a href="#fig-3-47">图3-47 · 实验性图：LC-MS/MS 通过与蛋白质数据…</a></li>
+<li class="toc-fig"><a href="#fig-3-48">图3-48 · 实验性图：密度梯度离心和 LC-MS/MS …</a></li>
+</ul>
+</li>
+</ul></nav>
+<article>
 <h1>第3章 蛋白质结构与功能</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Protein Structure and Function · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg">
+<div class="boximg" id="box-G3-1">
   <img class="zoomable" src="figures/box_G3-1_1.png" alt="G3-1" onclick="lightbox(this.src)">
 </div>
 <div class="intro-block"><span class="intro-title">第3章 蛋白质结构与功能</span>致病菌用来将蛋白质注入人体细胞以引发感染的蛋白质"针"的分子带状模型。许多致病菌——包括鼠伤寒沙门菌（食物中毒）和鼠疫耶尔森菌（腺鼠疫）——使用称为 III 型分泌系统的注射器样蛋白质复合物，将蛋白质注入其哺乳动物靶细胞。沙门菌所用注射器针头部分的结构，是利用核磁共振（NMR）、电子显微镜与计算方法相结合而测定的，它是一根长管，由许多 α 螺旋（绘制为盘绕的丝带）构成针管的壁。[Data from A. Loquet et al., 2012, Nature 486:276, PDB ID 2lpz.]</div>
@@ -66,7 +180,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>要全面理解蛋白质如何使细胞得以生存和繁衍，需要鉴定并表征一个细胞所使用的全部蛋白质。从某种意义上说，分子细胞生物学家希望编纂一份完整的蛋白质"零件清单"，并撰写一份描述这些蛋白质如何工作的"用户手册"。随着越来越多生物的整个基因组（全套基因）被测序，编纂全面的蛋白质清单近年来已成为可能。通过对基因组序列的计算机分析，研究者可推断出其所编码蛋白质的氨基酸序列和大致数量（见第 6 章）。"蛋白质组"一词被创造出来，指代一种生物的整个蛋白质 complement。人类基因组包含约 20,000–23,000 个编码蛋白质的基因。然而，mRNA 产生过程中的变异（如可变剪接，见第 10 章）以及一百多种蛋白质修饰，可能产生数十万种不同的人类蛋白质。通过将功能未知的蛋白质的序列和结构与功能已知的蛋白质相比较，科学家通常能推断出许多关于这些未知</p>
 <p>蛋白质功能的信息。过去，常先通过遗传学、生物化学或生理学方法表征蛋白质功能，随后才鉴定出具体的蛋白质。而在当今的基因组学和蛋白质组学时代，通常是先鉴定蛋白质，再确定其功能。</p>
 <p>本章中，我们开始研究蛋白质的结构如何产生其功能——这一主题贯穿全书（图 3-1）。第一节考察氨基酸构建块的线性链如何排列成三维结构层级。下一节讨论蛋白质如何折叠成这些结构。随后转向蛋白质功能，聚焦于催化化学反应的酶。细胞用来控制蛋白质活性和寿命的各种机制将在其后介绍。本章结尾讨论</p>
-<figure>
+<figure id="fig-3-1">
   <img class="zoomable" src="figures/fig_3-1_1.png" alt="图 3-1" onclick="lightbox(this.src)">
   <figcaption>图3-1 · 蛋白质结构与功能概述。(a) 蛋白质具有层级结构。多肽的氨基酸线性序列经肽键连接（一级结构）折叠成局部螺旋或片层（二级结构），后者堆积成复杂的三维形状（三级结构）。一些单独的多肽链可缔合成多链复合物（四级结构），在某些情况下这些复合物可以非常大，由数十到数百个亚基组成（超分子复合物）。(b) 蛋白质执行众多功能，包括在三维空间中组织基因组、细胞器、细胞质、蛋白质复合物和膜（结构）；控制蛋白质活性（调控）；监测环境并传递信息（信号传导）；跨膜运输小分子和离子（运输）；催化化学反应（通过酶）；以及产生运动所需的力（通过马达蛋白）。这些功能及其他功能均源于正确折叠蛋白质结构中的特异性结合相互作用和构象变化。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -96,9 +210,9 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>鉴定、分离和表征蛋白质的常用技术，以及蓬勃发展的蛋白质组学领域。</p>
-<h2>3.1 蛋白质的层级结构</h2>
+<h2 id="sec-3.1">3.1 蛋白质的层级结构</h2>
 <p>在许多蛋白质中，聚合物链折叠成独特的三维形状，这种形状主要由氨基酸线性序列中各区域之间的非共价相互作用所稳定。理解蛋白质如何工作的一个关键概念是：功能往往源自三维结构，而三维结构由蛋白质的氨基酸序列和分子内非共价相互作用共同决定。将生物结构与功能联系起来的原理，最初由生物学家约翰·冯·歌德（1749–1832）、恩斯特·海克尔（1834–1919）和达西·汤普森（1860–1948）所阐述，他们的工作在生物学乃至更广泛领域都产生了深远影响。事实上，他们的思想极大地影响了 20 世纪初由"有机"建筑学派所开创的理念，该学派的箴言"形式追随功能"（路易斯·沙利文）和"形式即功能"（弗兰克·劳埃德·赖特）正是其缩影。在此，我们从四个组织层级来考察蛋白质的建筑学：一级、二级、三级和四级（图 3-2）。</p>
-<figure>
+<figure id="fig-3-2">
   <img class="zoomable" src="figures/fig_3-2_1.png" alt="图 3-2" onclick="lightbox(this.src)">
   <figcaption>图3-2 · 蛋白质层级的四个层次。(a) 由肽键连接在一起的氨基酸线性序列是一级结构。(b) 多肽链折叠成局部螺旋或片层代表二级结构。(c) 二级结构元件连同单条多肽链中的各种环和转角，堆积成更大的、独立稳定的三级结构，后者可包含不同的结构域。(d) 某些蛋白质由不止一条多肽链缔合在一起构成四级结构。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -117,7 +231,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>一级结构是蛋白质的氨基酸线性排列</p>
 <p>如第 2 章所述，蛋白质是由 20 种不同氨基酸构成的多聚物。各个氨基酸通过共价酰胺键（称为肽键）连接成线性、不分枝的链。一个氨基酸的氨基与另一个氨基酸的羧基之间形成肽键，净释放一分子水，因此属于脱水反应的一种（图 3-3a）。每个氨基酸残基中重复的酰胺 N、α 碳（Cα）、羰基 C 和氧原子构成蛋白质分子的主链，各种侧链基团从其上伸出（图 3-3b、c）。由于</p>
-<figure>
+<figure id="fig-3-3">
   <img class="zoomable" src="figures/fig_3-3_1.png" alt="图 3-3" onclick="lightbox(this.src)">
   <figcaption>图3-3 · 多肽的结构。(a) 各个氨基酸通过肽键连接在一起，肽键通过导致水丢失（脱水）的反应形成。R₁、R₂ 等代表氨基酸的侧链（"R 基"）。(b) 由肽键连接的氨基酸组成的线性聚合物称为多肽，多肽具有游离的氨基端（N 端）和游离的羧基端（C 端）。(c) 球棍模型显示肽键（黄色）将一个氨基酸（aa）的氨基氮原子（蓝色）与链中相邻氨基酸的羰基碳原子（灰色）连接起来。R 基（绿色）从氨基酸的 α 碳原子（黑色）伸出。这些侧链在很大程度上决定了各个蛋白质的独特性质。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -142,7 +256,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>二级结构是蛋白质建筑学的核心元件</p>
 <p>蛋白质结构层级中的第二级是二级结构。二级结构是多肽链片段的稳定空间排列，由主链酰胺基与羰基之间的氢键维系，常涉及重复的结构模式。多肽链某一片段形成特定二级结构的倾向，取决于其氨基酸序列（见下文 3.2 节）。一条多肽可在链的不同部位含有多种类型的二级结构，视其序列而定。主要的二级结构有 α 螺旋、β 折叠以及短的 U 形 β 转角。未形成这些结构但仍有明确、稳定形状的多肽部分，被称为不规则结构。"无规卷曲"一词适用于多肽链上高度柔韧、无固定三维结构的部分。在普通蛋白质中，60% 的多肽链以 α 螺旋和 β 折叠形式存在；其余部分为不规则结构、卷曲和转角。因此 α 螺旋和 β 折叠是大多数蛋白质内部的主要支撑元件。此处我们探讨二级结构的形状及有利于其形成的力。在后续各节中，我们考察二级结构如何一起折叠成更大、更复杂的排列——即三级结构。</p>
 <p>α 螺旋 在折叠成 α 螺旋的多肽片段中，主链形成螺旋结构，其中每个肽键的羰基氧原子与朝 C 端方向再隔四个残基处的氨基酸的酰胺氢原子形成氢键（图 3-4）。在 α 螺旋内，所有主链氨基和羧基彼此形成氢键，仅在螺旋的极始端和极末端除外。这种周期性排列的键赋予螺旋从氨基到羧基端的</p>
-<figure>
+<figure id="fig-3-4">
   <img class="zoomable" src="figures/fig_3-4_1.png" alt="图 3-4" onclick="lightbox(this.src)">
   <figcaption>图3-4 · α 螺旋，蛋白质中常见的二级结构。多肽主链（以丝带表示）折叠成螺旋，由主链氧原子和氢原子之间的氢键固定其空间位置。图中仅显示参与成键的氢原子。螺旋的外表面被侧链 R 基（绿色）覆盖。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -159,7 +273,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>常利用一条或多条长 20–25 个残基的疏水螺旋来跨越膜。氨基酸脯氨酸通常不出现在 α 螺旋中，因为其氨基与侧链中的碳形成共价键，使其无法通过正常的氢键来稳定主链。虽然经典 α 螺旋是蛋白质中内在最稳定、最常见的螺旋形式，但也存在一些变体，如更紧密或更松弛扭转的螺旋。例如，在一种称为卷曲螺旋的特化螺旋中（稍后数节描述），螺旋缠绕得更紧（每圈 3.5 个残基，0.51 nm）。</p>
 <p>β 折叠 另一种二级结构——β 折叠——由侧向堆叠的 β 链组成。每条 β 链是一段短（5–8 个残基）、几乎完全伸展的多肽片段。与 α 螺旋中氢键发生在近乎相邻残基的主链氨基与羰基之间不同，β 折叠中的氢键发生在不同但相邻的 β 链之间的主链原子之间，且与主链原子链的方向垂直（图 3-5a）。这些不同的 β 链（图中以绿色和蓝色箭头表示）可以在单条多肽链之内，β 链片段之间有短环或长环；也可以位于由多条多肽组成的蛋白质中的不同多肽链上。图 3-5b 展示了两条或多条 β 链如何排列成相邻的行，形成近乎二维的 β 折叠片（简称折叠片），其中片平面内的氢键将 β 链维系在一起，侧链则向平面上方和下方伸出。与 α 螺旋一样，β 链具有由肽键取向所定义的方向性。因此，在折叠片中，相邻 β 链可以交替相反（反平行）方向排列（见图 3-5a），也可以相同（平行）方向排列（图 3-5c）。在某些蛋白质中，β 折叠构成蛋白质疏水核心的一部分（下文描述）或结合其他分子的开放空间的一侧；在某些镶嵌在膜中的蛋白质中，β 折叠弯曲并形成一个亲水的中心孔，离子和小分子可经此流动（见第 7 章）。</p>
 <p>β 转角 β 转角由四个残基组成，位于蛋白质表面，形成使多肽主链方向逆转的急转弯，常转向蛋白质内部。这些短的 U 形二级结构常通过其末端残基之间的氢键稳定（图 3-6）。甘氨酸和脯氨酸常见于 β 转角。甘氨酸缺乏大的侧链，脯氨酸具有内在的弯折，使多肽主链能折叠成紧密的 U 形。β 转角帮助长多肽折叠成高度紧凑的结构。多肽主链方向的反转也可由长于四个残基、形成弯曲或环的多肽片段介导。与仅有少数几种明确构象的紧凑 β 转角不同，较长的环可以有许多不同的构象。</p>
-<figure>
+<figure id="fig-3-5">
   <img class="zoomable" src="figures/fig_3-5_1.png" alt="图 3-5" onclick="lightbox(this.src)">
   <figcaption>图3-5 · β 片层，蛋白质中另一种常见的二级结构。(a) 三链 β 片层的俯视图。每条链由一条带交替蓝色和绿色片段的带状箭头标示，箭头以 N 端到 C 端方向指向，连接残基的环以粗黑线表示。在此反平行 β 片层中，每条链（箭头）指向与相邻链相反的方向。β 链之间起稳定作用的氢键以绿色虚线表示。(b) 反平行 β 片层的侧视图。R 基（绿色）在片层平面上方和下方的突出在此视图中显而易见。多肽主链中固定的键角产生褶皱轮廓，在 (a) 面板中以交替的彩色片段表示。(c) 两个 β 片层的俯视图，其各条链（以箭头表示 N 端到 C 端方向）或为反平行，即链交替指向相反方向（左），或为平行，即所有链指向相同方向（右）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -179,7 +293,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>三级结构是多肽链的整体折叠</p>
 <p>三级结构指一条多肽链的整体构象——即其所有氨基酸残基的三维排列。与仅由氢键稳定的二级结构不同，三级结构主要由非极性侧链之间的疏水相互作用稳定，加上</p>
-<figure>
+<figure id="fig-3-6">
   <img class="zoomable" src="figures/fig_3-6_1.png" alt="图 3-6" onclick="lightbox(this.src)">
   <figcaption>图3-6 · β 转角的结构。β 转角由四个残基组成，使多肽链方向反转（形成 180° 的 U 形转弯）。第一个和第四个残基的 Cα 碳通常相距不到 0.7 nm，这两个残基通常由氢键连接。β 转角促进长多肽折叠成紧凑结构。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -194,7 +308,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>氨基酸侧链的化学性质有助于定义三级结构。在某些蛋白质中——例如从细胞分泌的蛋白质或面向胞外环境的细胞表面蛋白——半胱氨酸残基侧链之间的二硫键可共价连接蛋白质的不同区域，从而限制蛋白质的柔韧性并增强其三级结构的稳定性。带电荷的亲水极性侧链氨基酸倾向于位于蛋白质外表面；通过与水相互作用，它们有助于使蛋白质在水溶液中可溶，并能与其他水溶性分子（包括其他蛋白质）形成非共价相互作用。相反，疏水性非极性侧链氨基酸通常被隔离在蛋白质面向水的一侧之外，在许多情况下形成不溶于水的中心核心。这一观察引出了所谓的蛋白质构象"油滴模型"，因为蛋白质的核心相对疏水，即"油性"的（图 3-7）。不带电荷的亲水极性侧链则既见于蛋白质表面，也见于内部核心。</p>
 <p>蛋白质有四大宽泛的结构类别</p>
 <p>蛋白质通常根据其三级结构归入四大宽泛类别之一：球状蛋白、纤维状蛋白、跨膜蛋白和本征无序</p>
-<figure>
+<figure id="fig-3-7">
   <img class="zoomable" src="figures/fig_3-7_1.png" alt="图 3-7" onclick="lightbox(this.src)">
   <figcaption>图3-7 · 蛋白质折叠的油滴模型。多肽链的疏水和亲水残基可分布在其整个线性序列中，如未折叠蛋白（上方）所示。色标表示从最亲水的残基（蓝色）到最疏水的残基（黄色）。当蛋白质折叠时（左下），亲水（带电和不带电极性）侧链通常暴露在蛋白质表面，在那里它们可以与周围的水和离子形成稳定化相互作用。相反，疏水残基倾向于在内部核心聚集在一起，有点像水溶液中的油滴，被疏水效应驱离水环境（见第 2 章）。当移除若干表面残基后，这些核心残基更容易被看到（右下）。[数据来自 M. C. Vaney et al., 1996, Acta Crystallogr., Sect. D 52:505, PDB ID 193l.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -219,7 +333,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>本征无序蛋白与其他三类中结构有序的蛋白质有根本不同。我们在本书中考察的许多蛋白质，在其正常功能状态（称为天然态）下只采取一种或少数几种极其相似的构象。然而，本征无序蛋白在其天然、有功能的状态下没有良好有序的结构；相反，其多肽链非常柔韧——实为无序——没有固定构象。有时只有一条多肽链的一个片段（而非整链）是本征无序的。本征无序蛋白或蛋白质片段异常的构象柔韧性，似乎是它们发挥功能活性的关键，例如与多个伙伴蛋白相互作用的能力，或仅在结合这种伙伴后才折叠成明确构象的能力（图 3-8a）。</p>
 <p>本征无序蛋白通常（但不 exclusively）充当信号分子、其他分子活性的调节因子，或作为多种蛋白质、小分子和离子的支架（例如通过多个带电荷残基结合离子）。本征无序区域可在蛋白质的有序区域之间提供柔性连接或系绳；作为某些类型翻译后蛋白质修饰的位点[例如共价添加磷酸基团（磷酸化）或糖（糖基化）]；作为调节蛋白质活性的蛋白酶消化的靶点；抑制其所在蛋白质的活性（自抑制位点）；或作为蛋白质胞内分选的信号（见第 13 章）。许多含本征无序片段的蛋白质的活性在后续章节中描述。例如，RNA 聚合酶 II（见图 8-12）无序 C 端结构域（CTD）的磷酸化，该结构域由含脯氨酸、苏氨酸和丝氨酸的七氨基酸序列的多次重复组成，调节 mRNA 合成中的关键步骤（见第 9、10 章）。控制染色质中 DNA 组织的组蛋白的 N 端（见第 8 章）是重要翻译后修饰的位点，而蛋白质 formin 中无序的、富含脯氨酸的 FH1 区域控制肌动蛋白丝的组装（见第 17 章）。</p>
 <p>本征无序蛋白可通过多种生化技术实验鉴定，如对蛋白酶消化的敏感性测试（无序区域通常对蛋白酶更敏感），以及包括光谱学在内的多种生物物理技术。这些蛋白质的本征无序性显然是由于其序列相对于有序蛋白质，更富含极性氨基酸、脯氨酸和净电荷，而疏水残基较少（图 3-8b）。主要基于氨基酸组成计算——尤其是净电荷和疏水性——的算法，被用于预测哪些蛋白质或蛋白质片段是本征无序的。据某些估计，30% 或以上的真核蛋白质被预测含至少一个长度为 50 个或更多连续残基的无序片段。</p>
-<figure>
+<figure id="fig-3-8">
   <img class="zoomable" src="figures/fig_3-8_1.png" alt="图 3-8" onclick="lightbox(this.src)">
   <figcaption>图3-8 · 实验性图：内在无序蛋白与有序蛋白结合的机制，以及基于疏水性和净电荷的鉴定。(a) 内在无序蛋白（PUMA，蓝色）与有序蛋白（MCL1，灰色）的结合导致先前无序蛋白形成明确的结构。PUMA 和 MCL1 是胞内蛋白，可影响称为细胞凋亡的受调控细胞死亡过程（见第 21 章）。已提出两种机制来生成两种蛋白均有结构的结合复合物：构象选择（上路径）和诱导契合（下路径）。在构象选择中，无序蛋白（PUMA）在溶液中偶尔且瞬时地采取其在结合态将具有的结构。有序的结合伙伴（MCL1）随后可结合（选择）处于该瞬时有序构象的 PUMA，形成相对稳定的结合复合物。在诱导契合中，无序蛋白在仍处于无序状态时开始与有序伙伴结合，然后在结合状态下被诱导形成相对稳定的异二聚体复合物中存在的有序构象。最近的实验表明，诱导契合机制最能描述 PUMA 和 MCL1 的结合。(b) 利用 275 种有序单体球状蛋白（灰色方块）和 91 种内在无序蛋白（黑色和黄色圆圈）的序列，使用 0（最不疏水）到 1（最疏水）的标度计算每种蛋白每个残基的平均疏水性（x 轴），以及在 pH 7.0 下每个残基的平均净电荷（y 轴）。仅有三个例外（黑色圆圈），这些蛋白定义了两种不同的分布：低疏水性、高净电荷（内在无序，黄色圆圈）和高疏水性、低净电荷（有序，灰色方块）。与有序群体重叠的三个无序蛋白（黑色圆圈）各自包含被预测为无序的大段片段（低疏水性、高净电荷），这些片段显然压倒了蛋白序列中其余原本可能导致有序构象的部分。[部分 (a) 来自 Rogers, J. et al., "Folding and Binding of an Intrinsically Disordered Protein: Fast, but Not 'Diffusion-Limited,'" J. Am. Chem. Soc., 2013, 135 (4), pp1415-1422. http://pubs.acs.org/doi/pdf/10.1021/ja309527h. 部分 (b) 数据来自 V. N. Uversky, J. R. Gillespie, and A. L. Fink, 2000, Proteins 41:415–427.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -243,7 +357,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>表示蛋白质三维结构最简单的方法是用实线（称为 Cα 主链追踪）描绘主链原子的走向，有时仅描绘 Cα 原子（图 3-9a）；最复杂的表示称为球棍模型，显示每个原子（图 3-9b）。Cα 主链追踪展示多肽链的整体折叠而不考虑氨基酸侧链；球棍模型（球代表原子，棍代表键）详述侧链原子之间的相互作用，包括稳定蛋白质构象和与其他分子相互作用的那些，以及主链原子。尽管这两种视图都有用，但二级结构元件并不总能从中轻易辨别。另一种表示称为带状图，用常用简写符号描绘二级结构——例如</p>
 <p>盘绕的丝带或实心圆柱代表 α 螺旋，扁平丝带或箭头代表 β 链，柔韧细丝代表 β 转角、卷曲和环（图 3-9c）。在基本带状图的变体中，全部或部分侧链的球棍模型或空间填充模型可附着于主链丝带上。这样，感兴趣的侧链可在丝带所特别清晰表示的二级结构背景中得以可视化。</p>
 <p>然而，这三种表示蛋白质结构的方式都不能传达多少关于位于蛋白质表面、与水环境接触的原子的信息。表面之所以重要，是因为它是其他分子通常与蛋白质结合之处。因此，一种有用的替代表示方式是仅显示水可及表面，并用颜色突出具有共同化学特征的区域，如疏水性或亲水性，以及电荷特征，如正（碱性）或负（酸性）侧链（图 3-9d）。此类模型揭示蛋白质表面的形貌</p>
-<figure>
+<figure id="fig-3-9">
   <img class="zoomable" src="figures/fig_3-9_1.png" alt="图 3-9" onclick="lightbox(this.src)">
   <figcaption>图3-9 · 可视化蛋白质 Ras 及其结合的 GDP 的五种方式。(a) Cα 主链追踪展示多肽如何紧密堆积在小的体积内。(b) 球棍表示揭示所有原子的位置。(c) 转角和环连接成对的螺旋与链。(d) 水可及表面揭示蛋白质表面众多的隆起、凸起和裂隙。正电荷区域以紫色着色；负电荷区域以红色着色。(e) 混合模型，将丝带模型与透明表面模型结合。[数据来自 E. F. Pai et al., 1990, EMBO J. 9:2351–2359, PDB ID 5p21.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -267,7 +381,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>一种常见的结构基序是基于 α 螺旋的卷曲螺旋，或称七联重复。许多蛋白质，包括纤维状蛋白和称为转录因子的 DNA 调节蛋白（见第 9 章），利用卷曲螺旋基序组装成二聚体或三聚体，其中来自两条、三条甚至四条不同多肽链的 α 螺旋彼此缠绕——结果是螺旋的螺旋；故得此名（图 3-10a）。各条螺旋紧密结合在</p>
 <p>一起，因为每条螺旋沿其一侧有一条脂肪族（疏水但非芳香族）侧链（亮氨酸、缬氨酸等）的条带，与相邻螺旋中类似的条带相互作用，从而将疏水基团隔离于水之外，稳定多条独立螺旋的组装。这些疏水条带仅沿螺旋一侧产生，是因为每条螺旋的一级结构由重复的七氨基酸单元（称为七联体）组成，其中第 1 和第 4 位残基的侧链是脂肪族的，其他侧链常是亲水的（见图 3-10a）。由于亲水侧链从螺旋一侧伸出，疏水侧链从相反一侧伸出，整体螺旋结构是两亲性的。由于亮氨酸频繁出现在第 4 位，且疏水侧链像拉链的齿一样汇合，这些结构基序也被称为亮氨酸拉链。</p>
 <p>许多其他结构基序含有 α 螺旋。一种常见的钙结合基序称为 EF 手，由一个环连接的两条短螺旋组成（图 3-10b）。这种结构基序——若干螺旋-转角-螺旋和螺旋-环-螺旋结构基序之一——存在于上百种蛋白质中，用于感知钙水平。Ca²⁺ 离子与环中保守残基的氧原子结合，取决于细胞内 Ca²⁺ 的浓度，有时会诱导蛋白质构象变化，改变其活性。因此钙浓度可直接控制蛋白质的结构和功能。略有不同的螺旋-转角-螺旋和碱性螺旋-环-螺旋</p>
-<figure>
+<figure id="fig-3-10">
   <img class="zoomable" src="figures/fig_3-10_1.png" alt="图 3-10" onclick="lightbox(this.src)">
   <figcaption>图3-10 · 蛋白质二级结构基序。(a) 卷曲螺旋基序，由两条相互缠绕的平行 α 螺旋（左）构成。螺旋堆积由沿每条链以规则间隔出现、位于相互缠绕螺旋接缝处的疏水侧链（红色和蓝色）之间的相互作用所稳定。每条螺旋表现出特征的七联重复序列，疏水残基通常（但不总是）位于第 1 和第 4 位。在含许多此类基序的长卷曲螺旋（右）中，这种结构基序的卷曲螺旋特性更为明显。(b) EF 手，一种螺旋-环-螺旋基序，由两条螺旋经一个具有特定构象的短环连接而成。此结构基序常见于多种蛋白质，包括许多钙结合和 DNA 结合调节蛋白。在钙调蛋白等钙结合蛋白中，富含谷氨酸和天冬氨酸的环中五个残基的氧原子与一个水分子共同与一个 Ca²⁺ 离子形成离子键。(c) 锌指基序见于许多帮助调节转录的 DNA 结合蛋白中。一个 Zn²⁺ 离子被一对 β 链（蓝色）和一条 α 螺旋（红色）通过一对半胱氨酸残基和一对组氨酸残基所固定。两个不变半胱氨酸残基通常位于第 3 和第 6 位，两个不变组氨酸残基位于第 20 和第 24 位（在此 25 残基基序中）。[部分 (a) 数据来自 L. Gonzalez, Jr., D. N. Woolfson, and T. Alber, 1996, Nat. Struct. Biol. 3:1011–1018, PDB IDs 1zik and 2tma. 部分 (b) 数据来自 R. Chattopadhyaya et al., 1992, J. Mol. Biol. 228:1177–1192, PDB ID 1cll. 部分 (c) 数据来自 S. A. Wolfe, R. A. Grant, and C. O. Pabo, 2003, Biochemistry 42:13401–13409, PDB ID 1llm.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -303,7 +417,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>蛋白酶是切割靶多肽中一个或多个肽键的酶。或者，可修改编码蛋白质的 DNA，使得用该修饰 DNA 生成蛋白质时，只产生全长蛋白质的某一特定区域或结构域。因此，可以确定蛋白质的特定部分是否负责该蛋白质所表现的特定活性。事实上，功能性结构域也常与相应的结构性结构域相关联。</p>
 <p>结构性结构域是长约 40 个或以上氨基酸的区域，排列成单一、稳定且独特的结构，常包含一个或多个二级结构。许多结构性结构域能独立于其所在蛋白质的其余部分折叠成其特征结构。结果是，不同的结构性结构域可被连接——有时由短或长的间隔区连接——形成大的多结构域蛋白质。例如，三聚体流感病毒血凝素的每条多肽链含一个球状结构域和一个纤维状结构域（图 3-11a）。结构性结构域可作为模块掺入不同蛋白质。蛋白质建筑学的模块化方式在大型蛋白质中尤为易辨，它们往往是不同结构域的镶嵌体，这些结构域赋予不同活性，从而能同时执行不同功能。多达 75% 的真核蛋白质具有多个结构性结构域。结构性结构域常同时也是功能性结构域，因为它们可具有独立于蛋白质其余部分的活性。</p>
 <p>表皮生长因子（EGF）结构域是一种存在于多种蛋白质中的结构性结构域（图 3-12）。EGF</p>
-<figure>
+<figure id="fig-3-11">
   <img class="zoomable" src="figures/fig_3-11_1.png" alt="图 3-11" onclick="lightbox(this.src)">
   <figcaption>图3-11 · 三级和四级结构层次。此处所示的蛋白质——血凝素（HA）——见于流感病毒表面。这个长的多聚体分子有三个相同的亚基，每个由 HA₁ 和 HA₂ 两条多肽链组成。(a) 每个 HA 亚基的三级结构包含其螺旋和链折叠成一个长 13.5 nm、分为两个结构域的紧凑结构。膜远侧结构域（银色）折叠成球状构象。膜近侧结构域（金色）由于 HA₂ 的 α 螺旋（圆柱）与 HA₁ 中 β 链的排列而呈纤维状茎样构象。短的转角和较长的环（许多位于分子表面）连接每条链中的螺旋和链。(b) HA 的四级结构由三个亚基（金色、蓝色和绿色）纤维状结构域中长螺旋（圆柱）之间的侧向相互作用所稳定，形成三链卷曲螺旋柄。HA 中每个远侧球状结构域结合靶细胞表面的唾液酸（红色）。与许多膜蛋白一样，HA 含有若干共价连接的糖链（未显示）。[数据来自 S. J. Gamblin et al., 2004, Science 303:1838–1842, PDB ID 1ruz.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -331,7 +445,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>是一种小的可溶性肽类激素，与胚胎细胞以及成体皮肤和结缔组织中的细胞结合，使之分裂。它由 EGF 前体蛋白中 EGF 结构域之间的蛋白水解切割（断开肽键）产生，前体蛋白通过一个跨膜结构域锚定在质膜上。与 EGF 肽类激素序列相似但不完全相同的 EGF 结构域存在于其他蛋白质中，并可通过蛋白水解释放。这些蛋白质包括组织型纤溶酶原激活剂（TPA）——一种用于溶解</p>
-<figure>
+<figure id="fig-3-12">
   <img class="zoomable" src="figures/fig_3-12_1.png" alt="图 3-12" onclick="lightbox(this.src)">
   <figcaption>图3-12 · 蛋白质结构域的模块性。表皮生长因子（EGF）由含多个 EGF 结构域（绿色）和一个跨膜结构域（蓝色）的前体蛋白经蛋白水解切割产生。Neu 蛋白和组织型纤溶酶原激活剂（TPA）中也存在 EGF 结构域。这些蛋白质还含有其他广泛分布的结构域，以形状和颜色表示。参见 I. D. Campbell and P. Bork, 1993, Curr. Opin. Struc. Biol. 3:385.</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -352,7 +466,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>多条多肽组装成四级结构和超分子复合物</p>
 <p>多聚体蛋白质由两条或多条多肽链组成，在此语境下称为亚基。第四级结构组织——四级结构——描述多聚体蛋白质中亚基的数目（化学计量）和相对位置（图 3-2）。例如，流感病毒血凝素是三个相同亚基（同源三聚体）通过非共价键结合而成的三聚体（图 3-11b）。其他多聚体蛋白质由数目不同的相同（同聚体）或不同（异聚体）亚基组成。血液中运氧的血红蛋白是异聚体多聚体蛋白的例子，它有两种不同多肽链各两份拷贝（如下文所述）。在许多情况下，多聚体蛋白质的单体亚基除非组装成多聚体蛋白质，否则无法正常发挥功能。在其他情况下，组装成多聚体蛋白质使在通路中依次作用的蛋白质得以因空间上的并置而提高运作效率，这种现象称为代谢偶联。代谢偶联的经典例子是脂肪酸合酶（真菌中合成脂肪酸的酶）和聚酮合酶（细菌中合成包括抗生素红霉素在内的多种药理相关分子聚酮的大型多蛋白复合物）。</p>
 <p>蛋白质结构层级中的最高层次是蛋白质缔合成超分子复合物。通常，此类结构非常大，某些情况下质量超过 1 兆道尔顿（MDa），大小接近 30–300 nm，含数十至数百条多肽链，有时还含其他生物聚合物如核酸。包裹病毒基因组核酸的衣壳是具结构功能的超分子复合物的例子。支撑并赋予质膜形状的细胞骨架丝束是另一个例子。其他超分子复合物作为分子机器，通过将多种各具独特功能的蛋白质整合到一个大型组装体中，执行最复杂的细胞过程。例如，转录机器负责以 DNA 为模板合成信使 RNA（mRNA）。这种转录</p>
-<figure>
+<figure id="fig-3-13">
   <img class="zoomable" src="figures/fig_3-13_1.png" alt="图 3-13" onclick="lightbox(this.src)">
   <figcaption>图3-13 · 分子机器：转录起始复合物。核心 RNA 聚合酶、通用转录因子、含约 20 个亚基的中介体复合物，以及此处未描绘的其他蛋白质复合物，在 DNA 的启动子处组装。聚合酶执行 DNA 的转录；相关蛋白质是聚合酶初始结合到特定启动子所必需的。多个组分作为分子机器协同发挥作用。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -371,7 +485,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>机器（其运作细节在第 5 章和第 9 章讨论）由 RNA 聚合酶（本身是多聚体蛋白）和至少 50 种其他组分组成，包括通用转录因子、启动子结合蛋白、解旋酶及其他蛋白质复合物（图 3-13）。核糖体（也在第 5 章讨论）是合成蛋白质的复杂多蛋白和多数酸机器。最复杂的组装体之一是核孔，一种允许大分子在细胞核与细胞质之间通讯和通过的结构（见第 14 章）。它由约 30 种不同蛋白质的多个拷贝组成，形成估计质量为 50 MDa 的组装体。上述脂肪酸合酶和聚酮合酶也是分子机器。</p>
 <p>比较蛋白质序列和结构可洞察蛋白质功能与进化</p>
 <p>对多种不同蛋白质的分析已确凿地建立了蛋白质的氨基酸序列、三维结构和功能之间的关系。最早的例子之一涉及两种运氧蛋白的比较：肌肉中的肌红蛋白和红细胞中的血红蛋白。肌红蛋白——一种单体（由一条多肽链/一个蛋白质分子组成）——和血红蛋白——一种</p>
-<figure>
+<figure id="fig-3-14">
   <img class="zoomable" src="figures/fig_3-14_1.png" alt="图 3-14" onclick="lightbox(this.src)">
   <figcaption>图3-14 · 珠蛋白家族的进化。(a) 血红蛋白是由两条 α 和两条 β 亚基组成的四聚体。这些亚基与豆血红蛋白和肌红蛋白（二者均为单体）的结构相似性显而易见。与每条珠蛋白多肽非共价结合的血红素分子（红色）直接负责这些蛋白质中的氧结合。(b) 一种原始的单体运氧珠蛋白被认为是现代血液血红蛋白、肌肉肌红蛋白和植物豆血红蛋白的祖先。序列比较揭示，珠蛋白的进化与动植物的进化平行。主要变化发生于植物珠蛋白与动物珠蛋白分化、以及肌红蛋白与血红蛋白分化之时。随后基因复制产生了血红蛋白的 α 和 β 亚基。[部分 (a) 数据来自 G. Fermi et al., 1984, J. Mol. Biol. 175:159–174, PDB ID 2hbb（血红蛋白），H. C. Watson, 1969, Prog. Stereochem. 4:299, PDB ID 1mbn（肌红蛋白），以及 M. S. Hargrove et al., 1997, J. Mol. Biol. 266:1032–1042, PDB ID 1bin（豆血红蛋白）。] 参见 R. C. Hardison, 1996, P. Natl. Acad. Sci. USA 93:5675.</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -422,15 +536,15 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 细胞含大型超分子组装体，有时称为分子机器，其中复杂细胞过程（如 DNA、RNA 和蛋白质合成；光合作用；信号转导）的所有必要参与者都结合在一起。</p>
 <p>● 氨基酸序列相似的蛋白质通常可假定具有相似的三维结构和相似的功能。也存在序列不同却折叠成相似三维结构的多肽链的例子。</p>
 <p>● 同源蛋白质是从共同祖先进化而来、因而具有相似序列、结构和功能的蛋白质。它们可分为家族和超家族。</p>
-<h2>3.2 蛋白质折叠</h2>
+<h2 id="sec-3.2">3.2 蛋白质折叠</h2>
 <p>如上所述，在蛋白质的建筑学中，"形式追随功能"。因此，多肽必须以正确的氨基酸序列合成，并折叠成正确的三维构象，具备适当的二级、三级乃至四级结构，才能在细胞内外发挥其生物学作用。具有正确序列的蛋白质是如何生成的？多肽链通过一个称为翻译的复杂过程合成，该过程发生在细胞质中一个称为核糖体的大型蛋白质-核酸复合物上。翻译过程中，信使 RNA（mRNA）的序列作为装配相应氨基酸序列的模板。mRNA 最初由一个称为转录的过程产生，借此 DNA 中的核苷酸序列被细胞核内的转录机器转化为 mRNA 序列。转录和翻译的复杂细节在第 5 章讨论。此处我们描述新生多肽链从核糖体出来时正确折叠的关键决定因素。</p>
 <p>平面肽键限制蛋白质可折叠的形状</p>
 <p>多肽一个限制链如何折叠的关键结构特征是肽键的平面结构。图 3-3 展示了多肽链中肽键的酰胺基。由于肽键本身表现得有点像平面双键（中和右），</p>
-<div class="boximg">
+<div class="boximg" id="box-G3-2">
   <img class="zoomable" src="figures/box_G3-2_1.png" alt="G3-2" onclick="lightbox(this.src)">
 </div>
 <p>肽键两侧的多肽链部分（P1 和 P2）可相对于肽键取反式（中）或顺式（右）构型。我们在第 2 章见过不饱和脂肪酸中碳-碳双键的类似顺式和反式异构体。晶体结构分析表明，在蛋白质中，P2 位置为非脯氨酸残基的肽键约 99.97% 处于反式构型。（我们将稍后考虑 P2 为脯氨酸的情况。）在肽键中，羰基碳、酰胺氮及直接与它们键合的原子都必须位于一个固定平面内（图 3-15）；肽键本身几乎不能旋转。因此，多肽链中唯一的灵活性--使其能扭曲转向从而折叠成不同三维</p>
-<figure>
+<figure id="fig-3-15">
   <img class="zoomable" src="figures/fig_3-15_1.png" alt="图 3-15" onclick="lightbox(this.src)">
   <figcaption>图3-15 · 蛋白质中平面肽基之间的旋转。绕 Cα-氨基氮键（Φ 角）和 Cα-羰基碳键（Ψ 角）的旋转，原则上使多肽主链能采取大量潜在构象。然而，由于多肽主链结构和氨基酸侧链性质造成的空间位阻，极大限制了任何给定蛋白质可采取的潜在构象。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -452,7 +566,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>天然有序蛋白质的哪些特征将其折叠从如此多的潜在构象限制到仅一种或少数几种？侧链的性质（如大小、疏水性、形成氢键和离子键的能力）连同它们在多肽主链上的特定序列，施加了关键限制。例如，大的侧链（如色氨酸的侧链）可能在空间上阻挡链的某一区域与另一区域紧密堆叠，而带正电荷的侧链（如精氨酸的侧链）可能吸引具有互补负电荷侧链的多肽片段（如天冬氨酸）。我们已经讨论过的另一个例子是七联重复中脂肪族侧链在促进螺旋缔合及随之形成卷曲螺旋中的作用。因此，多肽的一级结构决定了其二级、三级和四级结构。</p>
 <p>蛋白质正确折叠所需信息编码在其氨基酸序列中的最初证据，来自体外（试管中）对纯化蛋白质复性的研究，尤其是 20 世纪 60 年代 Christian Anfinsen 对核糖核酸酶 A（一种切割 RNA 的酶）复性研究的诺贝尔奖获奖工作。此前他人已表明，各种化学和物理扰动可破坏稳定蛋白质天然构象的弱非共价相互作用，导致其正常三级结构丧失。蛋白质结构的破坏（可包括二级和三级结构）称为变性。变性可由热带来的热能、改变氨基酸侧链电荷的极端 pH、或暴露于 6–8 M 浓度的尿素或盐酸胍等变性剂所诱导，所有这些都破坏稳定结构的非共价相互作用。用还原剂（如 β-巯基乙醇）处理以断裂二硫键，可进一步破坏含二硫键蛋白质的稳定性。在变性条件下，一群均匀折叠的蛋白质分子被破坏，转化为许多未折叠或变性分子的集合，这些分子具有许多不同的非天然且无生物活性的构象。如我们所见，存在大量可能的非天然构象（如 8ⁿ⁻¹）。蛋白质中可见两大类非天然构象：(1) 单体未折叠或变性结构，(2) 聚集体，可为无定形或具有良好组织的结构，如本章稍后描述的与疾病相关的淀粉样纤维。原则上，聚集体可由单一蛋白质的多个拷贝组成（同质聚集体），或含多种不同蛋白质的混合（异质聚集体）。</p>
 <p>在变性条件下蛋白质的自发展开并不令人惊讶，因为变性蛋白可采取许多非天然构象（无序度增加），熵显著增加。然而引人注目的是，当试管中单一类型未折叠蛋白的纯样品被非常小心地转回正常条件（体温、正常 pH、降低变性剂浓度）时，某些变性多肽能自发复性为其天然的有生物活性的状态，如 Anfinsen 的实验所示。这类复性实验，以及表明化学合成的蛋白质能正确折叠的研究，确立了蛋白质一级结构所含信息足以指导正确复性。新合成的蛋白质似乎正如变性蛋白质那样</p>
-<figure>
+<figure id="fig-3-16">
   <img class="zoomable" src="figures/fig_3-16_1.png" alt="图 3-16" onclick="lightbox(this.src)">
   <figcaption>图3-16 · 假设的蛋白质折叠途径。单体蛋白质的折叠遵循一级 (a) -> 二级 (b–d) -> 三级 (e) 结构的层级。小结构基序 (c) 的形成似乎先于结构域 (d) 和最终三级结构 (e) 的形成。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -474,7 +588,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 分子伴侣，结合蛋白质底物的一个短片段，稳定未折叠或部分折叠的蛋白质，从而防止这些蛋白质聚集和被降解。</p>
 <p>● 伴侣蛋白，形成折叠腔，未折叠蛋白的全部或部分可被隔离于其中，给予它时间和适当环境以正确折叠。</p>
 <p>分子伴侣 细胞质中的热激蛋白 Hsp70 及其同源物（线粒体基质中的 Hsp70、内质网中的 BiP、细菌中的 DnaK）是分子伴侣。它们最初因细胞受热激应激后迅速出现而被鉴定（Hsp 代表"热激蛋白"）。Hsp70 及其同源物是所有生物中使用依赖 ATP 的循环来折叠底物的主要分子伴侣（图 3-17a）。结合 ATP 时，单体 Hsp70 蛋白采取开放构象，其中暴露的疏水底物结合口袋瞬时结合未完全折叠或部分变性靶蛋白的暴露疏水区域，然后只要 ATP 结合着就迅速释放此底物（图 3-17a 步骤 1）。结合的 ATP 的水解使分子伴侣采取闭合形式，更紧密地结合其底物蛋白，这种更紧密的结合似乎促进靶蛋白折叠，部分是通过防止它与其他未折叠蛋白聚集（图 3-17a 步骤 2）。接着 ATP 交换伴侣结合的 ADP（步骤 3）引起伴侣构象变化，释放靶蛋白并再生一个"空的"、结合 ATP 的 Hsp70，准备帮助折叠另一个蛋白质（步骤 4）。如果靶蛋白现已正确折叠，它无法再结合 Hsp70。如果它仍至少部分未折叠，可再次结合以给伴侣另一次帮助其正确折叠的机会。如本章稍后所见，多种蛋白质使用三核苷酸水解为二核苷酸、随后二核苷酸/三核苷酸交换的循环来控制其活性。本章稍后，我们将讨论一组称为 GTP 酶的蛋白质，它们依赖 GTP（而非 ATP）交换结合的 GDP（而非 ADP）来诱导构象变化，这些变化极大影响蛋白质的活性，以及随后结合 GTP 水解为 GDP。</p>
-<figure>
+<figure id="fig-3-17">
   <img class="zoomable" src="figures/fig_3-17_1.png" alt="图 3-17" onclick="lightbox(this.src)">
   <figcaption>图3-17 · 分子伴侣介导的蛋白质折叠。(a) Hsp70。许多蛋白质在 Hsp70 或几种 Hsp70 样蛋白之一的协助下折叠成正确的三维结构。这些分子伴侣瞬时结合从核糖体出来的新生多肽，或以其他方式未折叠的蛋白质。在 Hsp70 循环中，当 ATP（紫色）结合在 Hsp70 的核苷酸结合域（浅蓝色）时，未折叠底物蛋白以快速平衡结合（步骤 1）到 Hsp70 底物结合域（浅橙和深橙色）开放构象中的底物结合位点（红色）。底物结合域包含两个亚域（浅橙和深橙），在循环过程中改变相对位置和构象。共伴侣辅助蛋白（DnaJ/Hsp40）刺激 ATP 水解为 ADP（黄色），诱导底物结合域发生大的构象变化，导致闭合构象，其中底物被锁定在底物结合域中；此处促进正确折叠（步骤 2 和 3）。ATP 交换结合的 ADP，由其他辅助共伴侣蛋白（GrpE/BAG1）刺激，使 Hsp70 转回开放构象（步骤 4），释放正确折叠的底物（步骤 5），并再生开放构象，后者随后可与额外的底物相互作用。(b) Hsp90。二聚体 Hsp90 分子伴侣的三种构象状态，认为参与底物（也称为客户）重塑。客户蛋白结合在底物结合域（橙色）和 C 端二聚化域（白色）共享的底物结合位点（客户结合区域），并认为在 ATP 结合和水解时发生重塑。Hsp90 循环始于核苷酸结合域（浅蓝色）未结合核苷酸时，二聚体处于非常柔性的开放构型（步骤 1），可结合客户。快速 ATP 结合导致构象变化（步骤 2），核苷酸结合域和底物结合域靠拢（步骤 3 所示中间体）进入闭合构象，其中核苷酸结合域二聚化（步骤 4）。Hsp90 上客户结合的精确位置因不同客户而异，但结合表面（包括底物结合域和 C 端二聚化域的交界处，以红色着色突出显示）可结合多种客户。ATP 水解导致 Hsp90 构象变化（步骤 5），可能包括高度紧凑形式、客户的折叠和客户蛋白的释放。ADP 结合形式的 Hsp90 可采取多种构象，包括高度紧凑形式。ADP 的释放（步骤 6）再生初始柔性开放状态，后者随后可与额外客户相互作用。参见 E. D. Kirschke et al., 2014, Cell 157:1685 和 M. Taipale, D. F. Jarosz, and S. Lindquist, 2010, Nat. Rev. Mol. Cell Biol. 11:515。[HSP90 的溶剂可及表面模型由 Elaine Kirschke 和 David A. Agard（UCSF）提供。开放（ATP）PDB ID 2ior，闭合（ATP）PDB ID 2cg9，闭合（ADP）基于 PDB ID 2cg9。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -510,7 +624,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>与单体 Hsp70 不同，Hsp90 以二聚体发挥作用，在一个循环中，ATP 结合、水解和 ADP 释放与重大构象变化以及客户的结合、折叠或激活和释放相偶联（图 3-17b）。尽管 Hsp90 的机制仍有许多待了解，但清楚的是：客户在伴侣处于"开放"构象时结合到底物结合结构域（图 3-17b 步骤 1），ATP 结合导致 ATP 结合结构域相互作用并形成"闭合"构象（步骤 1 和 2），ATP 水解在某些客户蛋白的激活及其随后从 Hsp90 释放中起重要作用（步骤 3）。我们还知道至少有 20 种共伴侣可对 Hsp90 活性产生深远影响，包括调节其 ATP 酶活性和决定哪些蛋白质将成为客户（客户特异性）。共伴侣还可帮助协调 Hsp90 和 Hsp70 的活性。例如，Hsp70 可帮助开始一个客户的折叠，然后该客户由共伴侣移交给 Hsp90 进行进一步加工。Hsp90 活性也可受其被小分子共价修饰的影响。最后，Hsp90 可帮助细胞识别无法复性的错误折叠蛋白，并通过本章稍后讨论的机制促进其降解。因此，作为细胞质量控制系统的一部分，分子伴侣可帮助正确折叠蛋白质或促进破坏那些无法正确折叠的蛋白质。</p>
 <p>伴侣蛋白 大量新合成蛋白质的正确折叠还需要另一类蛋白质--伴侣蛋白（也称 Hsp60）的协助。这些巨大的圆柱形超分子组装体由两个寡聚体环形成。有两组在结构、详细分子机制和位置上略有不同的伴侣蛋白。I 组伴侣蛋白见于原核生物、叶绿体和线粒体，由两个环组成，每个环有七个亚基，与一个同源七聚体共伴侣"盖"相互作用。细菌 I 组伴侣蛋白称为 GroEL/GroES，见图 3-18a。在大肠杆菌中，GroEL 据认为参与约 10% 所有蛋白质的折叠。II 组伴侣蛋白见于真核细胞细胞质（如哺乳动物中的 TriC）和古菌中，每个环可有 8 至 9 个同聚或异聚亚基，"盖"功能整合到这些亚基自身中--无需单独的盖蛋白。看来 ATP 水解触发 II 组伴侣蛋白盖的闭合。</p>
 <p>图 3-18b 展示了 GroEL/GroES 的蛋白质折叠循环。质量小于 60 kDa 的部分折叠或错误折叠多肽被 GroEL 腔入口附近的疏水残基捕获，进入一个折叠腔（图 3-18b 上腔）。第二个腔被 GroES 盖封堵。GroEL 的 14 个亚基每个都能结合 ATP、水解它、随后释放 ADP。这些反应对单环中每组七个亚基是协同的，并导致重大构象变化。这些变化既控制封堵该腔的 GroES 盖的结合，也控制多肽折叠发生的腔环境。多肽留在被盖封顶的腔内。在那里它可以进行折叠，直到该腔中的 ATP 水解（循环中最慢的限速步骤，t½ 约 10 s）诱导 ATP 和另一个 GroES 结合到另一个环。这随后导致结合在含肽环上的 GroES 盖和 ADP 释放，打开腔并允许折叠好的蛋白质扩散出腔。如果多肽已正确折叠，它可继续在细胞中发挥功能。如果它仍部分折叠或错误折叠，可重新结合到一个空闲的 GroEL，循环可重复。一个 GroEL 复合物中两个环之间存在互反关系。GroES 封堵一个腔以允许在该腔中隔离底物折叠，伴随着第二个环腔中底物多肽的释放（第二个腔的同时结合、折叠和释放未在图 3-18b 中展示）。GroEL/GroES 的加盖桶状设计（蛋白质被隔离以</p>
-<figure>
+<figure id="fig-3-18">
   <img class="zoomable" src="figures/fig_3-18_1.png" alt="图 3-18" onclick="lightbox(this.src)">
   <figcaption>图3-18 · 伴侣蛋白介导的蛋白质折叠。某些蛋白质的折叠依赖于伴侣蛋白，如原核 I 组伴侣蛋白 GroEL。(a) GroEL 是一个桶形复合物，由十四个相同的 60,000 分子量亚基组成，排列成两个各含七亚基的堆叠环（蓝色），形成两个独立的内部多肽折叠腔。同源七聚体盖（10,000 分子量亚基）GroES（红色）可结合到桶的任一端并封堵该侧的腔。(b) GroEL-GroES 折叠循环。部分折叠或错误折叠的多肽进入一个折叠腔（步骤 1）。第二个腔被 GroES 盖阻挡。每环七个 GroEL 亚基结合七个 ATP，将其水解，然后以与 GroES 结合和释放、多肽结合、折叠和释放协调的固定顺序释放 ADP。GroEL 环中发生的主要构象变化控制 GroES 盖的结合以封堵腔（步骤 2）。多肽留在被盖封顶的腔内，可进行折叠直到 ATP 水解——循环中最慢的限速步骤（t½ 约 10 s）（步骤 3）——诱导 ATP 和另一个 GroES 结合到另一个环（方括号中所示瞬时中间体）。此结合随后导致结合在含肽环上的 GroES 盖和 ADP 释放，打开腔使折叠好的蛋白质扩散出腔（步骤 4）。若多肽已正确折叠，它可继续在细胞中发挥功能；若仍部分折叠或错误折叠，可重新结合到空闲的 GroEL 并重复循环。参见 D. L. Nelson and M. M. Cox, 2013, Lehninger Principles of Biochemistry, 6th ed., Macmillan。[部分 (a) 数据来自 Z. Xu, A. L. Horwich, and P. B. Siegler, 1997, Nature 388:741–750, PDB ID 1aon。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -537,7 +651,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>折叠）与参与蛋白质降解的 26S 蛋白酶体（在 3.4 节讨论）的结构之间有惊人相似。此外，AAA+ 家族 ATP 酶的一组蛋白质由具中央孔的六聚体环组成，底物可进入其中进行折叠或展开，或在某些情况下进行蛋白水解；这些例子将在 3.4 节和第 13 章讨论。</p>
 <p>蛋白质折叠由脯氨酸异构酶促进</p>
 <p>如前所学，肽键两侧的多肽链部分（P1 和 P2）几乎总是取反式构型（图 3-19a）。然而，当 P2 为脯氨酸时，反式构型在能量上并不比顺式构型明显更有利（图 3-19b）。在已测定结构的折叠蛋白质中，P2 为脯氨酸的肽键约 5% 表现顺式构型，而 P2 非脯氨酸的所有其他肽键仅 0.03% 表现顺式。由于顺式和反式构型之间的异构化速率相对慢，细胞使用脯氨酸异构酶蛋白来催化这些顺/反异构化，以促进以正确异构体折叠。脯氨酰异构化已被提出作为开关来改变已稳定折叠蛋白质的构象从而改变其活性。事实上，此类异构化可大幅改变某些蛋白质的结构（图 3-19c）。</p>
-<figure>
+<figure id="fig-3-19">
   <img class="zoomable" src="figures/fig_3-19_1.png" alt="图 3-19" onclick="lightbox(this.src)">
   <figcaption>图3-19 · 脯氨酸顺/反异构化影响蛋白质折叠和结构。(a) 肽键的平面、类双键特性导致其两侧多肽链部分（P₁ 和 P₂）可能具有顺式或反式构型。当 P₂ 为非脯氨酸残基时，有序蛋白质中约 99.97% 的肽键呈反式构型。(b) 当 P₂ 为脯氨酸时，约 5% 的肽键呈顺式构型。脯氨酸异构酶催化顺/反异构化以促进蛋白质折叠。(c) 蛋白质一部分的结构（此处为 SH2 蛋白结构域，见第 16 章）可因单个脯氨酸的顺/反异构化而发生显著改变，这种结构变化可影响蛋白质的活性。[部分 (c) 反式数据来自 E. V. Pletneva et al., 2006, J. Mol. Biol. 357:550-561, PDB ID 2etz. 部分 (c) 顺式数据来自 R. J. Mallis et al., 2002, Nat. Struct. Biol. 9:900–905, PDB ID 1lui.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -556,7 +670,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>异常折叠的蛋白质可形成与疾病相关的淀粉样物</p>
 <p>蛋白质合成后，可能由于突变、不当的共价修饰或其环境的化学（如 pH）或物理（如热）改变，折叠成另一种异常的三维结构。错误折叠或变性可导致蛋白质正常功能丧失，并可导致蛋白质被标记销毁（蛋白水解降解），如本章稍后所述。然而，当降解不完全或跟不上错误折叠蛋白的产生速度时，错误折叠的蛋白质或其蛋白水解片段可在细胞内或细胞外的聚集体或斑块中积累，见于各种器官，包括骨关节、肝脏和大脑。即使是通常高度抗聚集的蛋白质或蛋白质片段（如本征无序蛋白或蛋白质片段），当其浓度足够高或环境条件发生变化时，也会形成聚集体。如上所述，此类聚集体可为无定形或具有良好组织的结构，后者最常见的是淀粉样状态。引人注目的是，许多不同的蛋白质都能各自聚集成具有共同结构--称为交叉 β 折叠片（图 3-20a）--的淀粉样纤维。未折叠或错误折叠蛋白质中通常长 6–12 个残基的短片段彼此氢键结合，形成 β 折叠片的长阵列或丝。在这些阵列中，每条 β 链几乎垂直于丝的长轴，两个长而近乎平坦的 β 折叠片紧密堆叠并相互扭转形成原丝，原丝再一起装配成更粗的丝，称为淀粉样纤维。在每个原丝内，β 链可为平行或反平行（见图 3-5）。尽管某些蛋白质在其天然有功能状态下形成淀粉样纤维，但大多数淀粉样物被认为是蛋白质错误折叠的后果。</p>
 <p>淀粉样物最早在沉积于组织中、抗酶降解、并与数十种称为淀粉样变性病的疾病相关的蛋白质聚集体中被认识到。这些疾病包括神经退行性疾病，如人类的阿尔茨海默病和帕金森病，以及牛和羊的可传播性海绵状脑病（"疯牛病"）。这些疾病各自的特征是退化大脑中存在丝状斑块（图 3-20b）。淀粉样变性病最常随衰老发生；然而，编码聚集蛋白的基因突变可导致早期淀粉样形成和疾病发作。组成斑块的淀粉样纤维源自丰富的天然蛋白质。例如，嵌入质膜的淀粉样前体蛋白的片段形成阿尔茨海默病患者大脑中的斑块；而朊蛋白--一种"感染性"蛋白质--在朊病毒病中形成纤维。在阿尔茨海默病中，过度磷酸化的 tau 蛋白（正常情况下是微管结合蛋白，见第 18 章）形式形成称为"缠结"的扭曲纤维。这些淀粉样物，无论是作为相对短、水溶性的原丝还是作为长、不溶的纤维，都被认为具有毒性并直接促成淀粉样变性病的病理。■</p>
-<figure>
+<figure id="fig-3-20">
   <img class="zoomable" src="figures/fig_3-20_1.png" alt="图 3-20" onclick="lightbox(this.src)">
   <figcaption>图3-20 · 错误折叠的蛋白质可形成基于交叉 β 片层结构的有序淀粉样聚集体。(a) 在蛋白质和多肽的未折叠片段中，暴露的长 6–12 残基片段（短扁箭头）可组装成 β 片层（另见图 3-5），其中每条 β 链几乎垂直于所得淀粉样原丝的长轴（本图中为垂直方向），并与上下链形成氢键（浅色）。两个长而近乎平坦的 β 片层紧密堆叠并相互扭转形成淀粉样原丝，原丝再组装成更粗的丝状结构，称为淀粉样纤维 (b)。淀粉样纤维可由不同数量的原丝组成。含四条原丝的纤维模型拟合到酸变性胰岛素纤维的电子密度中（左），以及 transthyretin 片段的含两条原丝纤维的冷冻电子显微图像与基于 NMR 的模型（黄色）。纤维可聚集成宏观的斑块和缠结，沉积在组织中，染色后足够大，可用光学显微镜观察。(c) 阿尔茨海默病患者人脑组织切片的显微视图，显示多个淀粉样斑块和纤维性缠结。[部分 (b, 左) 经 Elsevier 许可转载，来自 Dobson, C.M., "Protein misfolding, evolution and disease," Trends in Biochemical Sciences, 1999, 24(9):329-332. Fig. 3. 部分 (b, 右) 经 Macmillan Publishers Ltd 许可转载，来自 Knowles et al., Nat. Rev. Mol. Cell Biol. 2014, 15(6):384-396. Fig. 3a. 部分 (c) Thomas Deerinck, NCMIR/Science Source.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -589,7 +703,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 体内蛋白质折叠在依赖 ATP 的分子伴侣协助下进行。分子伴侣能以多种方式影响蛋白质，包括防止错误折叠和聚集、促进正确折叠，以及维持后续蛋白质活性所需的适当稳定结构（见图 3-17）。</p>
 <p>● 有两大类分子伴侣：(1) 分子伴侣，结合底物蛋白的一个短片段；(2) 伴侣蛋白，形成折叠腔，未折叠蛋白的全部或部分可被隔离其中，给予它时间和适当环境以正确折叠。ATP 结合和水解的循环，以及所产生的 ADP 与新 ATP 分子的交换，在分子伴侣促进蛋白质折叠的机制中起关键作用。</p>
 <p>● 许多错误折叠或变性的蛋白质可形成组织良好的聚集体--淀粉样纤维，由形成近乎垂直于纤维轴的长 β 折叠片阵列的短多肽片段构成，称为交叉 β 结构。形成抗多种酶降解的淀粉样纤维与数十种称为淀粉样变性病的疾病相关。例子包括神经退行性疾病阿尔茨海默病和帕金森病。</p>
-<h2>3.3 蛋白质结合与酶催化</h2>
+<h2 id="sec-3.3">3.3 蛋白质结合与酶催化</h2>
 <p>蛋白质在细胞内外执行极其多样的活动，但大多数这些多样功能都建立在蛋白质进行一种共同活动的能力之上：结合。蛋白质彼此结合、与其他大分子结合、与小分子结合、与离子结合。本节描述蛋白质结合的一些关键特征，然后更详细地考察一类蛋白质--酶。其他功能类别的蛋白质（结构、骨架、运输、调节、马达）的活性将在后续章节描述。</p>
 <p>配体的特异性结合是大多数蛋白质功能的基础</p>
 <p>蛋白质结合的分子称为其配体。在某些情况下，配体结合引起蛋白质形状变化。这种构象变化是许多蛋白质作用机制不可或缺的部分，在调节蛋白质活性中也很重要。</p>
@@ -599,7 +713,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>抗体是 Y 形分子，通常由两条相同的较长链（重链）和两条相同的较短链（轻链）组成。在 IgG 抗体（也称免疫球蛋白，见图 3-21a）中，每条重链有四个球状结构域，每条轻链有两个，这些都称为免疫球蛋白（Ig）结构域。IgG 抗体的两个分叉臂各含一条轻链，通过二硫键与一条重链相连，两个二硫键共价连接两条重链。每个臂的末端附近有六个高度可变的环，称为互补决定区（CDR），形成抗原结合位点。这六个环的序列在抗体间高度可变，产生独特的互补配体结合位点，使其对不同表位具有特异性（图 3-21b）。抗体与表位表面之间的紧密接触，由众多非共价相互作用稳定，是抗体表现出极其精确结合特异性的原因。</p>
 <p>抗体的特异性如此精确，以至于它们能区分同一物种不同个体成员的细胞，在某些情况下能区分仅相差一个氨基酸的蛋白质，甚至能区分序列相同但翻译后修饰不同的蛋白质。由于其特异性和易于产生（见第 23 章），抗体是后续章节讨论的许多实验中高度有用的试剂。</p>
 <p>我们将在全书看到许多蛋白质-配体结合的例子，包括激素与受体的结合（见第 15 章）、调节分子与 DNA 的结合（见第 9 章）、细胞黏附分子与细胞外基质的结合（见第 20 章）等等。此处我们聚焦于一类蛋白质--酶--与配体结合如何导致对细胞存活和功能至关重要的化学反应的催化。</p>
-<figure>
+<figure id="fig-3-21">
   <img class="zoomable" src="figures/fig_3-21_1.png" alt="图 3-21" onclick="lightbox(this.src)">
   <figcaption>图3-21 · 抗体的蛋白质-配体结合。(a) 抗体的（表面和丝带）模型。免疫球蛋白 G（IgG）类的每个抗体分子由两条相同的重链（中蓝和深蓝）和两条相同的轻链（浅蓝）组成，由二硫键（黄色）共价连接。定义抗原结合位点的互补决定区（CDR）以红色着色表示。(b) 卡通图显示整体结构，含两条重链（较长）和两条轻链（较短），黄色条代表二硫键。(c) 抗体与其靶抗原上结合位点（表位）之间的"手入式手套"契合——此例为鸡蛋清溶菌酶。抗体以其 CDR 的残基接触抗原。[部分 (a) 数据来自 L. J. Harris, et al., 1997, Biochemistry 36:1581-1597, PDB ID 1igt. 部分 (b) 数据来自 E. A. Padlan et al., 1989, P. Natl. Acad. Sci. USA 86:5938–5942, PDB ID 3hfm.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -622,7 +736,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>催化化学反应--共价键的形成与断裂--的蛋白质称为酶，酶的配体称为底物。酶构成一个庞大且非常重要的蛋白质功能类别--事实上，细胞中几乎每个化学反应都由一种特定的催化剂（通常是酶）催化。细胞中另一种催化大分子由 RNA 构成，这些 RNA 称为核酶（见第 5 章）。</p>
 <p>已鉴定出数千种不同类型的酶，每种催化单一化学反应或一组密切相关的反应。某些酶见于大多数细胞，因为它们催化常见细胞产物（如蛋白质、核酸和磷脂）的合成，或参与从营养物中获取能量（如细胞呼吸中将葡萄糖和氧转化为二氧化碳和水）。其他酶仅存在于特定类型细胞，因为它们催化该细胞类型独有的化学反应（如神经元中将酪氨酸转化为神经递质多巴胺的酶）。尽管大多数酶位于细胞内，一些被分泌并在胞外位点发挥作用，如血液、消化道，甚至在生物体外（如毒蛇毒液中的毒性酶）。</p>
 <p>与所有催化剂一样（见第 2 章），酶提高反应速率，但不影响反应的程度（由反应物与产物之间的自由能变化 ΔG 决定），且酶本身不因所催化的反应而发生永久性改变。酶通过降低过渡态的能量，从而降低达到过渡态所需的活化能来提高反应速率（图 3-22）。在试管中，木炭和铂等催化剂促进反应，但通常只在高温或高压、极端高或低 pH、或有机溶剂中进行。然而在细胞内，酶必须在 37 °C</p>
-<figure>
+<figure id="fig-3-22">
   <img class="zoomable" src="figures/fig_3-22_1.png" alt="图 3-22" onclick="lightbox(this.src)">
   <figcaption>图3-22 · 酶对化学反应活化能的影响。此假设反应路径描绘了反应进行时自由能 G 的变化。只有当产物的总 G 低于反应物（负 ΔG）时反应才自发进行。然而，所有化学反应都经过一个或多个高能过渡态，反应速率与活化能（ΔG‡）成反比，后者是反应物与过渡态（路径上的最高点）之间的自由能差。酶和其他催化剂通过降低过渡态的自由能从而降低 ΔG‡ 来加速反应速率。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -645,7 +759,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>酶的某些氨基酸在决定其特异性和催化能力方面尤为重要。在酶的天然构象中，至关重要的氨基酸（通常来自多肽线性序列的不同部分）被带到邻近位置，在酶表面形成一个裂隙，称为活性位点（图 3-23）。活性位点通常只占整个蛋白质的一小部分；其余部分参与多肽的折叠、活性位点的调节以及与其他分子的相互作用。</p>
 <p>活性位点由两个功能重要的区域组成：底物结合位点（识别并结合底物）和催化位点（底物结合后执行化学反应）。催化位点中的催化基团是氨基酸侧链和主链的羧基和氨基。在某些酶中，催化位点和底物结合位点重叠；在其他酶中，这两个区域在结构上是分开的。</p>
 <p>底物结合位点负责酶显著的特异性。仅改变酶底物结构中的一个或几个原子，或底物几何（如立体化学）的细微变化，就可产生不再是该酶底物的变体分子。如同上所述抗体对抗原的特异性，酶对底物的特异性是</p>
-<figure>
+<figure id="fig-3-23">
   <img class="zoomable" src="figures/fig_3-23_1.png" alt="图 3-23" onclick="lightbox(this.src)">
   <figcaption>图3-23 · 酶胰蛋白酶的活性位点。(a) 酶的活性位点（以虚线勾勒）由底物结合位点（蓝色，特异结合底物）和催化位点（紫色，执行催化）组成。(b) 丝氨酸蛋白酶胰蛋白酶一部分的混合表面/丝带表示。可见含催化位点（紫色，包括关键催化三联体 Ser-195、Asp-102 和 His-57，另见图 3-27）的活性位点裂隙和底物结合位点中称为侧链特异性结合口袋的部分（蓝色）。[数据来自 B. Sandler, M. Murakami, and J. Clardy, 1998, J. Am. Chem. Soc. 120:595-596, PDB ID 1aq7.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -665,7 +779,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>酶的底物结合位点与底物之间精确分子互补性的结果。通常只有一种或少数几种底物能精确嵌入结合位点。</p>
 <p>底物可能以钥匙插入锁的方式与酶结合的想法，最早由 Emil Fischer 于 1894 年提出。Daniel Koshland 于 1958 年对此提出修正，称为诱导契合，认为底物结合位点不像锁那样刚性，而是柔性的，当底物结合时被诱导改变形状以更优化催化。1913 年，Leonor Michaelis 和 Maud Leonora Menten 提供了支持酶-底物结合假说的关键证据。他们表明，在低底物浓度下酶促反应速率与底物浓度成正比，但随着底物浓度增加，速率达到平台即最大速度 Vmax，并变得与底物浓度无关，Vmax 的值与反应混合物中酶的量成正比（图 3-24）。</p>
-<figure>
+<figure id="fig-3-24">
   <img class="zoomable" src="figures/fig_3-24_1.png" alt="图 3-24" onclick="lightbox(this.src)">
   <figcaption>图3-24 · 酶催化反应的 Km 和 Vmax。Vmax 和 Km 由分析初始反应速率对底物浓度的依赖来确定。这些假设动力学曲线的形状是简单酶催化反应（一个底物 S 转化为产物 P）的特征。初始反应速度在酶加入底物后立即测量，此时底物浓度尚未明显变化。(a) 在两种不同酶浓度 [E] 下初始反应速度对底物浓度 [S] 的曲线。产生半最大反应速率的 [S] 即米氏常数 Km，是 E 将 S 转化为 P 的亲和力的量度。酶浓度增加四倍使反应速率成比例增加，因此最大速度 Vmax 也增加四倍；但 Km 不变。(b) 初始反应速度对底物浓度的曲线，分别使用酶对其具有高亲和力的底物 S 和酶对其具有较低亲和力的底物 S'。注意两种底物的 Vmax 相同，因为 [E] 相同，但 Km' 对于 S'（低亲和力底物）更高。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -688,7 +802,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>E + S ⇌ ES → E + P</p>
 <p>而在特定底物浓度 [S] 下产物生成的速率 V0 由现称为 Michaelis-Menten 方程的式子给出：</p>
 <p>V0 = Vmax [S] / ([S] + Km)    (3-1)</p>
-<figure>
+<figure id="fig-3-25">
   <img class="zoomable" src="figures/fig_3-25_1.png" alt="图 3-25" onclick="lightbox(this.src)">
   <figcaption>图3-25 · 酶反应机制的示意模型。酶动力学表明酶（E）在固定且有限数目的位点--酶的活性位点--结合底物分子（S）。结合的物种称为酶-底物（ES）复合物。ES 复合物与未结合的酶和底物处于平衡（双箭头），是底物转化为产物（P）的中间步骤。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -702,7 +816,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">enzyme kinetics</td><td class="gl-zh">酶动力学</td></tr>
   </table>
 </figure>
-<div class="boximg">
+<div class="boximg" id="box-G3-3">
   <img class="zoomable" src="figures/box_G3-3_1.png" alt="G3-3" onclick="lightbox(this.src)">
 </div>
 <p>其中 Michaelis 常数 Km，是衡量酶对其底物亲和力的指标，是产生半最大反应速率（即图 3-24 中的 ½ Vmax）的底物浓度。Km 在性质上与解离常数 Kd 相似但不相同（见第 2 章）。Km 值越小，酶从稀底物溶液中生成产物的效率越高，达到半最大速度所需的底物浓度越低。Kd 越小，达到 50% 结合所需的配体浓度越低。细胞中各种小分子的浓度差异很大，作用于它们的不同酶的 Km 值也如此。一个有用的经验法则是，底物的胞内浓度通常与结合酶的 Km 值大致相同或略高。</p>
@@ -712,7 +826,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>此类多步反应的能量曲线涉及多个峰谷（图 3-26）。已开发出捕获此类反应中间体的方法，以了解更多关于酶如何催化反应的细节。</p>
 <p>丝氨酸蛋白酶展示酶活性位点如何工作</p>
 <p>丝氨酸蛋白酶是一大类切割蛋白质（蛋白水解）的酶，在整个生物世界中被使用--消化食物（胰腺酶胰蛋白酶、胰凝乳蛋白酶和弹性蛋白酶）、控制血液凝固（酶凝血酶），甚至帮助蚕蛾咬破茧（茧酶）。这类酶很好地说明了酶的底物结合位点和催化位点如何在多步反应中协同将底物转化为产物。此处我们考察胰蛋白酶及其两个进化上密切相关的胰腺蛋白酶--胰凝乳蛋白酶和弹性蛋白酶--如何催化多肽底物中肽键的切割。</p>
-<figure>
+<figure id="fig-3-26">
   <img class="zoomable" src="figures/fig_3-26_1.png" alt="图 3-26" onclick="lightbox(this.src)">
   <figcaption>图3-26 · 未催化和多步酶催化反应的自由能反应曲线。(a) 假设的简单未催化反应（底物 S 经单一高能过渡态转化为产物 P）的自由能反应曲线。(b) 许多酶通过将过程分为多个离散步骤来催化此类反应，此例中初始形成 ES 复合物，随后经单一过渡态（EX‡）转化为游离酶（E）和 P。这些步骤中每一步的活化能都显著低于未催化反应的活化能；因此酶极大增强反应速率。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -732,7 +846,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>其中 P1 是待切割肽键 N 端侧的蛋白质部分，P2 是 C 端侧的部分。我们首先考虑丝氨酸蛋白酶如何特异结合其底物，然后详细展示催化如何发生。</p>
 <p>图 3-27a 展示了底物多肽如何结合到胰蛋白酶活性位点的底物结合位点。有两个关键结合相互作用。第一，底物（黑色多肽主链）和酶（蓝色多肽主链）形成类似于 β 折叠片的氢键。第二，决定底物中哪个肽键被切割的底物关键侧链，伸入酶的侧链特异性结合口袋，口袋底部有胰蛋白酶 Asp-189 的带负电侧链。胰蛋白酶明显偏好水解具有长、带正电侧链（精氨酸或赖氨酸）的氨基酸的羧基（C=O）侧的底物，因为该侧链被带负电的 Asp-189 稳定在酶的侧链特异性结合口袋中。</p>
-<figure>
+<figure id="fig-3-27">
   <img class="zoomable" src="figures/fig_3-27_1.png" alt="图 3-27" onclick="lightbox(this.src)">
   <img class="zoomable" src="figures/fig_3-27_2.png" alt="图 3-27" onclick="lightbox(this.src)">
   <figcaption>图3-27 · 胰蛋白酶样丝氨酸蛋白酶活性位点中的底物结合。(a) 胰蛋白酶（紫色和蓝色分子）的活性位点与结合的底物（黑色分子）。底物与胰蛋白酶的底物结合位点形成双链 β 片层，底物中精氨酸（R₃）的侧链结合在结合位点的侧链特异性结合口袋中。其带正电的胍基被酶 Asp-189 侧链的负电荷所稳定。此结合使精氨酸的肽键适当排列，以便被酶活性位点的催化三联体（Ser-195、His-57 和 Asp-102 的侧链）催化水解。(b) 衬于侧链特异性结合口袋的氨基酸决定其形状和电荷，从而决定其结合特性。胰蛋白酶容纳精氨酸和赖氨酸的带正电侧链；胰凝乳蛋白酶容纳大的疏水侧链如苯丙氨酸；弹性蛋白酶容纳小的侧链如甘氨酸和丙氨酸。参见 J. J. Perona and C. S. Craik, 1997, J. Biol. Chem. 272:29987–29990.</figcaption>
@@ -766,7 +880,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>其他方面相似的结合口袋结构的细微差异，有助于解释与胰蛋白酶相关的两种丝氨酸蛋白酶的不同底物特异性：胰凝乳蛋白酶偏好大的芳香基团（如 Phe、Tyr、Trp），弹性蛋白酶偏好 Gly 和 Ala 的小侧链（图 3-27b）。胰凝乳蛋白酶中不带电的 Ser-189 允许大的、不带电的疏水侧链稳定地结合在口袋中。弹性蛋白酶的特异性受胰蛋白酶结合口袋侧面的甘氨酸被缬氨酸的分支脂肪族侧链（Val-216 和 Val-190）取代的影响，这些侧链阻塞结合口袋（见图 3-27b）。结果是，底物中的大侧链无法嵌入弹性蛋白酶的结合口袋，而在此位置具有短丙氨酸或甘氨酸侧链的底物能很好结合并被随后的切割。</p>
 <p>在催化位点，所有三种酶都使用 195 位丝氨酸侧链上的羟基来催化底物蛋白质中肽键的水解。由 Ser-195、His-57 和 Asp-102 三个侧链形成的催化三联体参与本质上是两步的水解反应。图 3-28 展示了</p>
-<figure>
+<figure id="fig-3-28">
   <img class="zoomable" src="figures/fig_3-28_1.png" alt="图 3-28" onclick="lightbox(this.src)">
   <figcaption>图3-28 · 丝氨酸蛋白酶介导的肽键水解机制。丝氨酸蛋白酶活性位点中 Ser-195、His-57 和 Asp-102 的催化三联体采用多步机制水解靶蛋白质中的肽键。(a) 多肽底物结合到活性位点（见图 3-27）形成 ES 复合物后，Ser-195 的羟基氧攻击底物靶肽键（黄色）的羰基碳。电子移动以箭头表示。(b) 此攻击导致形成四面体中间体（过渡态），其中底物氧上的负电荷被酶氧负离子洞形成的氢键所稳定。(c) 后续电子移动导致肽键断裂、释放一个反应产物（NH₂−P₂），并形成酰基酶（ES' 复合物）。(d) 溶剂水分子的氧随后攻击酰基酶的羰基碳。(e) 此攻击导致形成第二个四面体中间体。(f) 额外的电子移动导致 Ser-195-底物键断裂（形成 EP 复合物）并释放最终反应产物（P₁−COOH）。His-57 的侧链通过与 Asp-102 侧链的氢键保持在正确取向，通过在整个反应中夺取和提供质子来促进催化（插图）。若 pH 过低且 His-57 侧链被质子化，则无法参与催化，酶无活性。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -795,7 +909,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>催化三联体如何协同断裂肽键，Asp-102 和 His-57 支持 Ser-195 羟基氧对底物羰基碳的攻击。此攻击最初形成碳上连接四个基团的不稳定过渡态（四面体中间体）。随后 C−N 肽键断裂释放底物蛋白质的一部分（NH3−P2），而另一部分通过酯键与丝氨酸的氧共价连接，形成相对稳定的酰基酶中间体。随后在涉及另一个不稳定四面体中间体的反应中，用来自水的氧替换此氧，导致最终产物（P1−COOH）的释放。四面体中间体过渡态通过与酶主链氨基基团的氢键被部分稳定，此处称为氧负离子洞。丝氨酸蛋白酶大家族及相关酶（都具有活性位点丝氨酸）说明，高效反应机制如何被不同酶反复用于催化相似反应。</p>
 <p>丝氨酸蛋白酶机制指出了酶催化的几个关键特征。第一，酶催化位点进化为稳定过渡态的结合，从而降低活化能并加速整体反应。第二，多个侧链连同多肽主链，在三维中精心组织，协同将底物化学转化为产物，常通过多步反应。</p>
 <p>第三，由一个或多个氨基酸侧链介导的酸碱催化常被酶使用，如丝氨酸蛋白酶中 His-57 的咪唑基作为碱去除 Ser-195 羟基的氢。结果是，催化位点中一个或多个氨基酸侧链的特定电离状态（质子化或非质子化）可能才与催化兼容，因此酶的活性可能依赖于 pH。例如，丝氨酸蛋白酶中 His-57 的咪唑基（pKa 约 6.8）只有在非质子化时才能帮助 Ser-195 羟基攻击底物。因此蛋白酶的活性在 pH < 6.8（咪唑基质子化）时低，pH 4–8 范围内的 pH 活性曲线形状与 His-57 侧链的滴定相符（由 Henderson-Hasselbalch 方程支配，在 pH 6.8 附近有转折点）（见胰凝乳蛋白酶数据，图 3-29，并见第 2 章）。在更高 pH 值下活性下降，产生钟形活性曲线，因为蛋白质氨基末端的氨基（pKa 约 9）</p>
-<figure>
+<figure id="fig-3-29">
   <img class="zoomable" src="figures/fig_3-29_1.png" alt="图 3-29" onclick="lightbox(this.src)">
   <figcaption>图3-29 · 酶活性的 pH 依赖性。在某些情况下，酶活性位点或其他部位的可电离（pH 可滴定）基团必须质子化或去质子化，以允许正确的底物结合或催化，或允许酶采取正确构象。测量酶活性随 pH 的变化可鉴定这些基团的 pKa。胰腺丝氨酸蛋白酶（如胰凝乳蛋白酶）在 pH 约 8 处表现最大活性，这是因为活性位点 His-57（催化所需，pKa 约 6.8）和蛋白质氨基端（正确构象所需，pKa 约 9）的滴定。许多溶酶体水解酶进化为具有较低的 pH 最适值（约 4.5），以匹配其发挥功能的溶酶体内的低 pH。[数据来自 P. Lozano, T. De Diego, and J. L. Iborra, 1997, Eur. J. Biochem. 248:80–85, 和 W. A. Judice et al., 2004, Eur. J. Biochem. 271:1046–1053.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -826,7 +940,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>小分子对蛋白质活性的抑制是许多药物以及化学战剂的基础。阿司匹林抑制称为环加氧酶的酶，其产物可引起疼痛。沙林和其他神经毒剂与丝氨酸蛋白酶和相关酶乙酰胆碱酯酶（调节神经传导的关键酶，见第 22 章）的活性丝氨酸羟基反应。■</p>
 <p>同一通路中的酶常彼此物理结合</p>
 <p>参与共同代谢过程的酶（如糖酵解中葡萄糖降解为丙酮酸，见第 12 章）通常位于同一细胞区室，无论是细胞质、膜上还是某特定细胞器内。在此区室内，一个反应的产物可通过扩散移动到代谢通路的下一个酶。然而，扩散涉及随机运动，对在酶之间移动分子而言可能是缓慢、相对低效的过程（图 3-30a）。</p>
-<figure>
+<figure id="fig-3-30">
   <img class="zoomable" src="figures/fig_3-30_1.png" alt="图 3-30" onclick="lightbox(this.src)">
   <figcaption>图3-30 · 酶组装成高效多酶复合物。此处所示的假设反应通路中，初始反应物通过三种酶 A、B、C 的顺序作用转化为最终产物。(a) 当酶游离于溶液中，或甚至限制在同一细胞区室内时，反应序列中的中间体必须从一个酶扩散到下一个，这是一个固有缓慢的过程。(b) 当各个酶自身缔合或借助骨架蛋白组装成多亚基复合物时，扩散被大大减少或消除。(c) 不同催化活性的最紧密整合发生在酶在遗传水平上融合，成为单一多肽链中的结构域时。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -861,7 +975,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 酶常使用由一个或多个氨基酸侧链介导的酸碱催化来催化反应，如丝氨酸蛋白酶中 His-57 的咪唑基。催化基团质子化的 pH 依赖性（pKa）常反映在酶活性的 pH-速率曲线中。</p>
 <p>● 非多肽小分子或离子（称为辅因子或辅基）结合某些酶的活性位点，在酶催化中起重要作用。酶中的小有机辅基也称为辅酶；许多不能在高等动物细胞中合成的维生素起辅酶作用或用于生成辅酶。</p>
 <p>● 共同代谢通路中的酶常位于同一细胞区室内，并可能进一步作为单体蛋白的结构域、多聚体蛋白的亚基或组装在共同骨架上的蛋白质复合物的组分而结合（见图 3-30）。</p>
-<h2>3.4 蛋白质功能的调控</h2>
+<h2 id="sec-3.4">3.4 蛋白质功能的调控</h2>
 <p>细胞中的大多数过程并非彼此独立或以恒定速率进行。所有蛋白质和其他生物分子的活性都受到调控，以整合其功能，实现最佳生存性能。例如，酶的催化活性受调控，使反应产物的量恰好满足细胞需要。因此，底物和产物的稳态浓度可因细胞条件而异。非酶蛋白质的调控--如膜通道的开闭或大分子复合物的组装--同样至关重要。</p>
 <p>一般而言，有三种方式调控蛋白质活性。第一，细胞可通过改变蛋白质的合成速率、降解速率或两者来提高或降低其稳态水平。第二，细胞可改变蛋白质的内在活性（区别于其数量）。例如，通过非共价和共价相互作用，细胞可改变底物结合的亲和力，或蛋白质处于活性与非活性构象的时间比例。第三，可改变蛋白质本身、蛋白质活性靶标（如酶的底物）或蛋白质活性所需的其他分子（如酶的辅因子）在细胞内的位置或浓度。这三种调控都在细胞的生命和功能中起重要作用。本节首先讨论调控蛋白质数量的机制，然后转向调控蛋白质活性的非共价和共价相互作用。</p>
 <p>受调控的蛋白质合成与降解是细胞的基本特性</p>
@@ -871,7 +985,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>真核细胞有几条降解蛋白质的途径。一条主要途径是由溶酶体内的酶降解，溶酶体是膜限定的细胞器，其酸性内部（pH 约 4.5）充满大量水解酶。溶酶体降解主要针对细胞老化或有缺陷的细胞器--称为自噬的过程（见第 14 章）--以及细胞摄取的胞外蛋白质。溶酶体将在后续章节详述。此处我们聚焦另一条重要的降解途径：蛋白酶体进行的胞质蛋白质降解，它可占哺乳动物细胞蛋白质降解的 90%。</p>
 <p>蛋白酶体是用于降解蛋白质的分子机器</p>
 <p>蛋白酶体是非常大的蛋白质降解分子机器，影响许多不同的细胞功能，</p>
-<figure>
+<figure id="fig-3-31">
   <img class="zoomable" src="figures/fig_3-31_1.png" alt="图 3-31" onclick="lightbox(this.src)">
   <figcaption>图3-31 · 实验性图：泛素和蛋白酶体介导的蛋白水解。(a) [右：] 26S 蛋白酶体具有圆柱形结构，20S 核心颗粒的一端或两端有 19S 帽。19S 帽的十九个不同亚基（多色显示）包括六个 AAA-ATP 酶亚基（Rpt1–6，红色），组装成异六聚体环；两个泛素（Ub）受体（Rpn10 和 Rpn13，黄色）；和一个去泛素化酶（DUB，Rpn11，绿色），后者与其进化相关的对应物 Rpn8 形成异二聚体。此外，19S 帽含有骨架蛋白和其他蛋白质（棕褐色）。所示两个 19S 帽相对于页面平面朝向相反方向。20S 核心由四个堆叠的七聚体环组成（直径约 110 Å × 长 160 Å），每个环含 α（外环）或 β（内环）亚基（蓝色）。[左：] 20S 核心的剖面图，显示内腔。蛋白水解发生在由 β 环形成的核心中央内腔中。(b) 蛋白质通过多聚泛素化被靶向蛋白酶体降解。酶 E1 通过 ATP 依赖性连接泛素（Ub）分子而被激活（步骤 1），然后将此 Ub 分子转移到 E2 的半胱氨酸残基上（步骤 2）。泛素连接酶（E3）将 E2 上结合的 Ub 分子转移到靶蛋白赖氨酸残基侧链的 –NH₂ 上，形成异肽键（步骤 3）。通过重复步骤 1–3，额外的 Ub 分子经异肽键加到先前添加的 Ub 上，形成多聚泛素链（步骤 4）。多聚泛素化的靶蛋白被蛋白酶体 19S 帽中的 Ub 受体识别（步骤 5），Ub 基团被去泛素化酶去除（步骤 6）。在步骤 7，ATP 水解使六个蛋白质（六聚体）ATP 酶亚基（红色）能够展开底物，并通过六聚体中的孔将展开的蛋白质转移到 20S 核心的蛋白水解腔中（步骤 7a），在某些情况下与步骤 6 协调进行，蛋白质被切割成短肽消化片段（步骤 7b），然后被释放（步骤 7c）。[部分 (a) 由 Antje Aufderheide 和 Friedrich Foerster 提供，数据来自 P. Unverdorben et al., 2014, P. Natl. Acad. Sci. USA 111:(15):5544–5549, PDB ID 4cr2。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -928,7 +1042,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>非共价结合允许蛋白质的别构或协同调控</p>
 <p>除调控蛋白质数量外，细胞还可调控蛋白质的内在活性。调控蛋白质功能最重要的机制之一是通过别构相互作用。广义而言，别构（源自希腊语"其他形状"）指由配体的非共价结合诱导的蛋白质三级或四级结构（或两者）的任何变化。当配体结合到蛋白质的一个位点（A）并诱导构象变化从而改变不同位点（B）的活性时，该配体称为该蛋白质的别构效应物，位点 A 称为别构结合位点，该蛋白质称为别构蛋白。根据定义，别构蛋白有多个结合位点，至少一个用于别构效应物，至少一个用于该蛋白质相互作用的其他分子。别构活性变化可为正或负；即可以是蛋白质活性的增加或减少。负别构常涉及多步生化途径的终产物结合并降低催化该途径早期限速步骤的酶的活性。这样可防止产物的过度积累。这种代谢途径的调控也称为终产物抑制或反馈抑制。别构调控在多聚体酶和其他蛋白质中尤为普遍，其中一个亚基的构象变化传递到相邻亚基。</p>
 <p>协同性（常与别构同义使用）通常指一个位点上配体的结合对不同位点上同类型配体另一分子结合的影响（正或负）。血红蛋白是正协同结合的经典例子：单个配体--分子氧（O₂）--的结合增加血红蛋白对下一个氧分子的亲和力。血红蛋白四个亚基各含一个血红素分子。血红素基团是血红蛋白的结合氧组分（见图 3-14a）。氧与血红蛋白四个亚基之一中血红素分子的结合诱导局部构象变化，其效应传播到其他亚基，降低额外氧分子与剩余血红素结合的 Kd（增加亲和力），产生 S 形氧结合曲线（图 3-32）。由于氧饱和曲线的 S 形，仅需氧浓度增加四倍即可使血红蛋白中氧结合位点的饱和度从 10% 升至 90%。反之，若无协同性且曲线形状为典型的 Michaelis-Menten（见图 3-24）或非协同结合形状，则需要氧浓度增加八十一倍才能实现其结合位点装载的相同增加。这种协同性使血红蛋白能在氧浓度高的肺部非常高效地摄取氧，并在氧浓度低的组织中卸载氧。</p>
-<figure>
+<figure id="fig-3-32">
   <img class="zoomable" src="figures/fig_3-32_1.png" alt="图 3-32" onclick="lightbox(this.src)">
   <figcaption>图3-32 · 实验性图：血红蛋白协同结合氧。每个四聚体血红蛋白分子有四个氧结合位点；饱和时所有位点都装载氧。组织中的氧浓度通常以氧分压（pO₂）的 torr 单位测量（一种标准压力度量，标准条件下相当于 1 mm 汞柱）。P₅₀ 是半数氧结合位点被占据时的 pO₂；它类似于酶催化反应的 Km。在小的 pO₂ 范围内结合氧量的大变化使得在肌肉等外周组织中有效卸载氧。饱和度对配体浓度曲线的 S 形表明协同结合，即一个氧分子的结合别构影响后续氧的结合。在无协同结合时，结合曲线为双曲线，类似于图 3-24 中的曲线。参见 J. M. Berg et al., 2015, Biochemistry, 8th ed., Macmillan.</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -959,7 +1073,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>与氧引起血红蛋白活性分级别构变化不同，一些其他别构效应物作为开关，通过非共价结合将许多不同蛋白质的活性开启或关闭。我们在全书（尤其是在细胞信号通路语境中，见第 15、16 章）将多次遇到的两个重要别构开关是 Ca²⁺ 和 GTP。</p>
 <p>Ca²⁺/钙调蛋白介导的开关 胞质中游离（非与水以外分子结合）的 Ca²⁺ 浓度被专门的膜运输蛋白保持在很低水平（约 10⁻⁷ M），这些蛋白持续将多余 Ca²⁺ 泵出胞质（见第 11、15 章）。然而，如我们将在第 11、15 章所学，当细胞表面膜上的 Ca²⁺ 通道开放允许胞外 Ca²⁺ 流入细胞时，胞质 Ca²⁺ 浓度可增加 10 至 100 倍。这种胞质 Ca²⁺ 的升高被专门的 Ca²⁺ 结合蛋白感知，这些蛋白通过开启或关闭其他蛋白质的活性来改变细胞行为。胞外 Ca²⁺ 对细胞活性的重要性最早由 S. Ringer 于 1883 年记录，他发现悬浮在用"硬"（富含 Ca²⁺）伦敦自来水配制的 NaCl 溶液中的离体大鼠心脏收缩良好，而使用蒸馏、贫 Ca²⁺ 的水时则跳动微弱且很快停止。</p>
 <p>许多 Ca²⁺ 结合蛋白使用前述的 EF 手/螺旋-环-螺旋结构基序结合 Ca²⁺（见图 3-10b）。一种研究充分的 EF 手蛋白--钙调蛋白--见于所有真核细胞，它可作为单独的单体蛋白或多聚体蛋白的亚基存在。这种哑铃形分子含四个 Kd 约 10⁻⁶ M 的 Ca²⁺ 结合 EF 手。Ca²⁺ 与钙调蛋白的结合引起构象变化，使 Ca²⁺/钙调蛋白能结合各种靶蛋白质中的保守序列（图 3-33），从而开启或关闭其活性。钙调蛋白和类似 EF 手蛋白因此作为开关蛋白，与 Ca²⁺ 水平变化协同调节其他蛋白质的活性。</p>
-<figure>
+<figure id="fig-3-33">
   <img class="zoomable" src="figures/fig_3-33_1.png" alt="图 3-33" onclick="lightbox(this.src)">
   <figcaption>图3-33 · Ca²⁺ 结合钙调蛋白诱导的构象变化。钙调蛋白是一种广泛分布的胞质蛋白，含四个 Ca²⁺ 结合位点，每个在其 EF 手（螺旋-环-螺旋）基序中（EF1–EF4，另见图 3-10）。在胞质 Ca²⁺ 浓度高于约 5 × 10⁻⁷ M 时，Ca²⁺ 与钙调蛋白的结合使蛋白质构象从哑铃形、无 Ca²⁺ 形式 (a) 变为疏水侧链更暴露于溶剂的形式。所得 Ca²⁺/钙调蛋白复合物可包裹各种靶蛋白中具有特化序列的暴露螺旋（靶肽）(b)，从而改变其活性。[部分 (a) 数据来自 H. Kuboniwa et al., 1995, Nat. Struct. Biol. 2:768–776, PDB ID 1cfd. 部分 (b) 数据来自 W. E. Meador, A. R. Means, and F. A. Quiocho, 1992, Science 257:1251–1255, PDB ID 1cdl.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -979,7 +1093,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>鸟苷酸结合蛋白介导的开关 另一组胞内开关蛋白构成 GTP 酶超家族。顾名思义，这些蛋白质是酶--GTP 酶--能将 GTP（鸟苷三磷酸）水解为 GDP（鸟苷二磷酸）。它们包括单体 Ras 蛋白（其结构见图 3-9，结合的 GDP 以蓝色显示）和三聚体 G 蛋白的 Gα 亚基，二者在第 15、16 章详述。Ras 和 Gα 都能结合质膜，在细胞信号传导中发挥作用，并在细胞增殖和分化中起关键作用。GTP 酶超家族的其他成员在蛋白质合成、蛋白质在细胞核与细胞质间运输、网格蛋白包被囊泡的形成及其与靶膜融合、以及肌动蛋白细胞骨架重排中发挥作用。一些 GTP 酶蛋白有共价附着的脂质链（见图 7-19），介导其与膜的结合。我们在后续数章考察各种 GTP 酶开关蛋白在调控胞内信号和其他过程中的作用。</p>
 <p>所有 GTP 酶开关蛋白都以两种形式或构象存在（图 3-34）：(1) 结合 GTP 的活性（"开"）形式，能影响其结合的特定靶蛋白质的活性；(2) 结合 GDP 的非活性（"关"）形式。当一个 GTP 分子替换非活性构象中结合的 GDP 时，开关被开启--即蛋白质构象从非活性变为活性。当蛋白质相对缓慢的 GTP 酶活性水解结合的 GTP，将其转化为 GDP 并导致构象变为非活性形式时，开关被关闭。任何给定 GTP 酶开关保持活性、结合 GTP 形式的时间取决于其 GTP 酶活性的速率。因此 GTP 酶活性作为计时器控制此开关。细胞含多种能调节任何给定 GTP 酶开关基线（或内在）GTP 酶活性速率的蛋白质，从而能控制开关保持开启的时间。</p>
-<figure>
+<figure id="fig-3-34">
   <img class="zoomable" src="figures/fig_3-34_1.png" alt="图 3-34" onclick="lightbox(this.src)">
   <figcaption>图3-34 · GTP 酶开关。GTP 酶是结合 GTP 并将其水解为 GDP 的酶。结合 GTP 时，GTP 酶蛋白采取活性或"开"构象，可与靶蛋白相互作用以调控其活性。当结合的 GTP 被蛋白质内在 GTP 酶活性水解为 GDP 时，结合 GDP 的 GTP 酶采取非活性或"关"构象。当另一种称为 GEF（鸟苷酸交换因子）的蛋白质介导结合的 GDP 被周围液体中的 GTP 分子替换（交换）时，GTP 酶开关可重新开启。GTP 酶激活蛋白（GAP）可影响 GTP 水解速率。活性形式 GTP 酶与其靶标的结合是一种非共价调控形式。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1003,7 +1117,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>磷酸化和去磷酸化共价调控蛋白质活性</p>
 <p>除利用上述非共价调节因子外，细胞可使用共价修饰来调控蛋白质的内在活性。调控蛋白质活性最常见的共价机制之一是磷酸化--可逆地将磷酸基团加到丝氨酸、苏氨酸或酪氨酸残基侧链的羟基上。被磷酸化的蛋白质称为磷蛋白。磷酸化由称为蛋白激酶的酶催化，而磷酸的去除（称为去磷酸化）由磷酸酶催化。激酶和磷酸酶的对抗活性为细胞提供一个"开关"，可开启或关闭作为这些酶底物（或靶标）的各种蛋白质的功能（图 3-35）。有时磷酸化位点被 N-乙酰葡糖胺（称为 O-GlcNAc 糖基化）的可逆共价修饰暂时掩盖，这是共价调控的额外手段。磷酸化改变蛋白质的电荷并在某种程度上改变其表面形状；它还可导致构象变化。因此，磷酸化（或去磷酸化）可影响蛋白质在细胞内的位置（如其附着于质膜内表面）、其内在（如酶）活性、其与其他分子（包括代谢物、DNA 或其他蛋白质）结合的能力、其进一步共价修饰的能力、或其稳定性（降解速率）。此外，几种保守的蛋白质结构域（如 SH2 结构域，见图 16-11）特异结合磷酸化肽。因此磷酸化可介导蛋白质复合物的形成，从而产生或消除多种细胞活性，这将在后续许多章节讨论。</p>
 <p>所有酵母蛋白质中近 3% 是蛋白激酶或磷酸酶，表明磷酸化和去磷酸化反应即使在这些简单细胞中的重要性。人基因组分析表明有约 500 种人蛋白激酶（人"激酶组"）。所有类别的蛋白质--包括结构蛋白、骨架、酶、膜通道和信号分子--都有受激酶/磷酸酶修饰调控的成员。不同的蛋白激酶和磷酸酶对不同的靶蛋白质特异，常识别待磷酸化残基嵌入的不同线性序列，因此可调控不同的细胞通路，如后续章节所述。一些激酶有许多靶标，因此单一激酶可同时整合许多靶标的活性。激酶或磷酸酶的靶标常是另一个激酶或磷酸酶，产生级联效应。此类激酶级联有许多例子，允许信号放大和多层次精细调控（见第 15、16 章）。</p>
-<figure>
+<figure id="fig-3-35">
   <img class="zoomable" src="figures/fig_3-35_1.png" alt="图 3-35" onclick="lightbox(this.src)">
   <figcaption>图3-35 · 通过磷酸化和去磷酸化调控蛋白质活性。蛋白质的循环磷酸化和去磷酸化是调控蛋白质活性的常见细胞机制。在此例中，靶蛋白磷酸化时（上）有活性，去磷酸化时（下）无活性；某些蛋白质对磷酸化有相反的响应。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1024,7 +1138,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>泛素化和去泛素化共价调控蛋白质活性</p>
 <p>泛素和泛素样蛋白（人类中有十多种）可以受调控方式共价连接到靶蛋白质，类似于磷酸化。去泛素化酶可以类似于磷酸酶作用的方式逆转泛素化。然而，这些泛素修饰在结构上远比磷酸化复杂，因此可介导泛素化蛋白质与其他细胞蛋白质之间的多种不同相互作用。泛素化可涉及将单个泛素附着到蛋白质上（单泛素化）、将多个单个泛素分子加到一个靶蛋白质的不同位点（多泛素化）、或将泛素聚合物链加到蛋白质上（多聚泛素化）。另一个变异来源是泛素分子中不同的氨基可用于与另一个泛素中 C 端 Gly-76 形成异肽键以形成多聚泛素链。泛素中所有七个赖氨酸残基（Lys-6、Lys-11、Lys-27、Lys-29、Lys-33、Lys-48 和 Lys-63）及其 N 端氨基都可参与泛素间连接。不同的泛素连接酶对要泛素化的靶标（底物）和参与泛素间异肽连接的泛素上的赖氨酸侧链（Lys-63 或 Lys-48 等）都特异（图 3-36）。这些多种形式的泛素化导致产生多种识别表面，可参与与含十多种不同泛素结合结构域（UBD）的数百种蛋白质（人类中 >200 种）的许多蛋白质-蛋白质相互作用。此外，任何给定多聚泛素链都有可能同时结合不止一种含 UBD 的蛋白质，导致形成依赖泛素化的多蛋白复合物。一些去泛素化酶可从修饰的蛋白质上去除完整的多聚泛素链（"锚定"链），从而产生不与其他蛋白质共价连接的多聚泛素链（"未锚定"链）。即使这些未锚定链也可能起调控作用。鉴于这种巨大的结构多样性，细胞使用泛素化和去泛素化来控制许多不同的细胞功能并不令人惊讶。</p>
 <p>我们已经看到通过 Lys-48 残基的多聚泛素化如何用于标记蛋白质进行蛋白酶体降解。</p>
-<figure>
+<figure id="fig-3-36">
   <img class="zoomable" src="figures/fig_3-36_1.png" alt="图 3-36" onclick="lightbox(this.src)">
   <figcaption>图3-36 · 通过泛素间异肽键所用赖氨酸确定多聚泛素功能。泛素连接酶催化不同靶（底物）蛋白（彩色椭圆）的多聚泛素化，使用泛素分子（紫色）的不同赖氨酸侧链与相邻泛素的 Gly-76 生成泛素间异肽连接（蓝色）。蓝色虚线箭头代表链中未显示的额外泛素。用于异肽键的赖氨酸决定多聚泛素化的功能。例如，含 Lys-48:Gly-76 异肽键的多聚泛素将靶蛋白导向蛋白酶体进行降解。使用 Lys-63、Lys-33 和 Lys-11 的多聚泛素分别影响信号传导、T 淋巴细胞调控和细胞分裂。涉及泛素 Lys-6、Lys-27 和 Lys-29 的异肽键以及使用其 N 端氨基（未显示）的键也可用于生成多聚泛素链。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1070,7 +1184,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 泛素与蛋白质共价附着性质的变化（单泛素化、多泛素化和涉及泛素单体之间多种连接的多聚泛素化）参与多种细胞功能，而非仅蛋白酶体介导的降解，如蛋白质位置或活性的变化（见图 3-36）。</p>
 <p>● 许多类型的共价和非共价调控是可逆的，但某些形式的调控（如蛋白水解切割）是不可逆的。</p>
 <p>● 高阶调控包括蛋白质的胞内位置或区室化。</p>
-<h2>3.5 蛋白质的纯化、检测与表征</h2>
+<h2 id="sec-3.5">3.5 蛋白质的纯化、检测与表征</h2>
 <p>蛋白质通常必须先被纯化，才能详细研究其结构和作用机制。然而，由于蛋白质在大小、形状、寡聚状态、电荷和水溶性上各不相同，没有单一方法可用于分离所有蛋白质。从某特定类型细胞中估计的 10,000 种不同蛋白质中分离出某一种特定蛋白质是一项艰巨任务，需要既分离蛋白质又检测特定蛋白质存在的方法。</p>
 <p>任何分子（无论是蛋白质、碳水化合物还是核酸）都可基于其一种或多种物理或化学特性的差异与其他分子分离（解析）。两种蛋白质之间差异越大越多，分离越容易高效。实际操作中，某种蛋白质在生物样本中越丰富，将其与样本中其他分子分离就越容易。用于分离蛋白质的三个最广泛使用的特性是：大小（定义为长度或质量）；净电荷；以及对特定配体的亲和力。本节简要概述几种重要的蛋白质分离技术；这些分离技术也适用于核酸和其他生物分子的分离。然后考虑使用放射性化合物追踪生物活性。最后，考虑几种表征蛋白质质量、序列和三维结构的技术。</p>
 <p>离心可分离质量或密度不同的颗粒和分子</p>
@@ -1082,7 +1196,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>电泳基于荷质比分离分子</p>
 <p>电泳（在电场影响下分离混合物中分子的技术）是研究蛋白质和核酸最常用的技术之一。溶解的分子在电场中以由其荷质比和迁移介质物理性质决定的速度移动。若两种分子质量和形状相同，净电荷较大者更快向相反极性电极移动。</p>
 <p>SDS-聚丙烯酰胺凝胶电泳 由于许多大小和形状不同的蛋白质有几乎相同的荷质比，在液体溶液中电泳几乎不能分离不同长度的分子。然而，成功分离可通过</p>
-<figure>
+<figure id="fig-3-37">
   <img class="zoomable" src="figures/fig_3-37_1.png" alt="图 3-37" onclick="lightbox(this.src)">
   <figcaption>图3-37 · 实验性图：离心技术分离质量或密度不同的颗粒。(a) 在差速离心中，细胞匀浆或其他混合物被离心足够长时间以沉降较大颗粒（如细胞器、细胞），后者作为沉淀收集在管底（步骤 2）。较小颗粒（如可溶性蛋白质、核酸）留在液体上清中，可转移到另一管中（步骤 3）。(b) 在速率区带离心中，混合物被离心（步骤 1）刚好足够长的时间，以将质量不同但形状和密度可能相似的分子（如球状蛋白、RNA 分子）分离到密度梯度（通常由浓缩蔗糖溶液形成）中的离散区带内。级分从管底移取并进行测试（测定）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1107,7 +1221,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>在各种凝胶中电泳实现。凝胶作为筛子，允许较小分子比大分子更快通过其孔。蛋白质的电泳分离最常在聚丙烯酰胺凝胶中进行。通过适当调整聚丙烯酰胺和交联试剂浓度及电场强度，大小差异很大的蛋白质可通过聚丙烯酰胺凝胶电泳（PAGE）解析。</p>
 <p>在解析蛋白质混合物最强大的技术中，蛋白质在凝胶电泳前和过程中暴露于离子去垢剂 SDS（十二烷基硫酸钠）（图 3-38）。SDS 使蛋白质变性，因为它结合疏水侧链，破坏稳定构象的疏水相互作用。SDS 处理通常与加热和断裂二硫键的还原剂结合。这些条件下大多数多聚体蛋白质解离成亚基。通常结合到蛋白质的 SDS 量与多肽链长度成正比，赋予每种蛋白质恒定荷质比（带负电的十二烷基硫酸根是主要电荷贡献者）。因此链长度（与质量成正比）是 SDS-PAGE 中迁移速率的主要决定因素。即使分子量差异小于 10% 的链也可解析。蛋白质分子量可通过比较其迁移距离与已知分子量标准（"分子量标准"）的迁移距离估算（迁移距离与分子量对数大致呈线性关系）。</p>
-<figure>
+<figure id="fig-3-38">
   <img class="zoomable" src="figures/fig_3-38_1.png" alt="图 3-38" onclick="lightbox(this.src)">
   <figcaption>图3-38 · 实验性图：SDS-聚丙烯酰胺凝胶电泳（SDS-PAGE）主要基于质量分离蛋白质。(a) 初始用 SDS（一种带负电荷的去垢剂）处理，解离多聚体蛋白并变性所有多肽链（步骤 1）。电泳时，SDS-蛋白复合物通过聚丙烯酰胺凝胶迁移（步骤 2）。小复合物比大复合物能更快通过孔。因此蛋白质在迁移时按大小分离成条带。分离的蛋白条带通过染色用染料可视化（步骤 3）。(b) SDS-PAGE 分离全细胞裂解物（去垢剂增溶的细胞）中所有蛋白质的示例。（左）许多分离的染色蛋白几乎呈连续状。（右）通过单步抗体亲和色谱从裂解物中纯化的单一蛋白质。蛋白质通过银基染料染色可视化。[部分 (b) 数据来自 B. Liu and M. Krieger, 2002, J. Biol. Chem. 277:34125–34135.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1130,7 +1244,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>双向凝胶电泳 SDS-PAGE 可分离质量差异较大的蛋白质，但不能轻易解析质量相似的蛋白质。为分离质量相似的蛋白质，必须利用另一种物理特性，最常用的是电荷。两个质量相似的不相关蛋白质不太可能有相同净电荷，因为其序列因而酸碱残基数目不同。在双向凝胶电泳中，蛋白质先按电荷再按质量依次分离（图 3-39a）。第一步用等电聚焦（IEF）：蛋白质在 pH 梯度中迁移直到达到等电点（pI，净电荷为零时的 pH）。IEF 可解析仅相差一个电荷单位的蛋白质，甚至能分离同一蛋白质的磷酸化和非磷酸化版本。然后 IEF 凝胶条纵向放在 SDS-聚丙烯酰胺凝胶板边缘，按质量做第二维分离。依次按电荷和质量解析可实现细胞蛋白质的出色分离（图 3-39b）。如今精密质谱方法常代替双向凝胶电泳。</p>
-<figure>
+<figure id="fig-3-39">
   <img class="zoomable" src="figures/fig_3-39_1.png" alt="图 3-39" onclick="lightbox(this.src)">
   <figcaption>图3-39 · 实验性图：双向凝胶电泳基于电荷和质量分离蛋白质。在此技术中，蛋白质首先通过等电聚焦按电荷分离成条带（步骤 1）。所得凝胶条施加于 SDS-聚丙烯酰胺凝胶（步骤 2），蛋白质按质量分离成斑点（步骤 3）。(b) 在此培养细胞蛋白质提取物的双向凝胶电泳凝胶中，每个斑点代表单一多肽。多肽可通过染料检测（如此处所示），或通过其他技术如放射自显影检测。每个多肽由其等电点（pI）和分子量表征。[部分 (b) Michael J. Dunn.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1154,7 +1268,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>凝胶过滤色谱 在多孔珠柱（聚丙烯酰胺、葡聚糖或琼脂糖）上分离质量不同的蛋白质。较小蛋白质更容易穿透珠表面凹陷，通过柱更慢（图 3-40a）。若用已知质量蛋白质校准柱，洗脱体积可估算蛋白质质量。</p>
 <p>离子交换色谱 基于电荷差异分离。带正电珠（NH₃⁺）保留带负电（酸性）蛋白质；带负电珠（COO⁻）保留带正电（碱性）蛋白质。用浓度递增的盐梯度洗脱：弱结合蛋白质先洗脱，高电荷蛋白质最后洗脱（图 3-40b）。</p>
 <p>亲和色谱 基于蛋白质特异结合其他分子的能力。结合目的蛋白质的配体共价附着到珠上。免疫亲和色谱中，附着到珠上的是对目的蛋白质特异的抗体（图 3-40c）。亲和柱只保留结合珠上分子的蛋白质；通过加过量可溶配体、去垢剂、或改变盐浓度/pH 破坏结合来洗脱。</p>
-<figure>
+<figure id="fig-3-40">
   <img class="zoomable" src="figures/fig_3-40_1.png" alt="图 3-40" onclick="lightbox(this.src)">
   <figcaption>图3-40 · 实验性图：三种常用液相色谱技术基于质量、电荷或对特定结合伙伴的亲和力分离蛋白质。(a) 凝胶过滤色谱分离大小不同的蛋白质。蛋白质混合物小心地放置（即上样）在装有填充多孔珠的圆柱顶部。较小蛋白质比大蛋白质通过柱的速度更慢。因此，在不同时间（不同洗脱体积）从柱底流出的洗脱液中出现的不同蛋白质可收集到单独的管中，称为级分。(b) 离子交换色谱在装有带正电（如此处所示）或带负电珠的柱中分离净电荷不同的蛋白质。与珠具有相同净电荷的蛋白质被排斥并流过柱，而具有相反电荷的蛋白质或多或少紧密地结合到珠上，取决于其结构。结合的蛋白质--此例中为带负电的蛋白质--随后通过在柱中通过盐梯度（通常为 NaCl 或 KCl）洗脱。当离子结合到珠上时，它们置换蛋白质；结合更紧密的蛋白质需要更高的盐浓度才能被释放。(c) 在抗体亲和色谱中，蛋白质混合物通过装有共价连接特异性抗体的珠的柱。只有对抗体具有高亲和力的蛋白质被柱保留；所有非结合蛋白质流过。洗涤柱后，结合的蛋白质用酸性溶液或其他破坏抗原-抗体复合物的溶液洗脱；释放的蛋白质随后流出柱并被收集。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1189,7 +1303,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>通过附着绿色荧光蛋白检测蛋白质 检测活细胞内特定蛋白质可使用绿色荧光蛋白（GFP，水母中的天然荧光蛋白，见图 4-16）。含目的蛋白质和 GFP 的嵌合蛋白在细胞中表达，可确定其量和胞内分布（第 4 章描述）。</p>
 <p>检测凝胶中的蛋白质 凝胶中蛋白质通常用有机染料（如考马斯蓝，检测约 1000 ng，下限 4–10 ng）或银染/荧光染色（下限约 1 ng）染色。膜上可视化最常用免疫印迹。</p>
 <p>免疫印迹（Western 印迹）结合凝胶电泳的解析能力和抗体特异性。用一抗（对目的蛋白质特异）和标记二抗，二抗所连酶产生有色产物或化学发光（图 3-41）。</p>
-<figure>
+<figure id="fig-3-41">
   <img class="zoomable" src="figures/fig_3-41_1.png" alt="图 3-41" onclick="lightbox(this.src)">
   <figcaption>图3-41 · 实验性图：免疫印迹（Western 印迹）和共免疫沉淀（co-IP）可检测特定蛋白质及其结合伙伴。(a) 免疫印迹的一般方法。步骤 1：蛋白质混合物经 SDS 凝胶电泳后，分离的条带（或双向凝胶电泳的斑点）从凝胶转移（印迹）到蛋白质不易被移除的多孔膜上。此时单个蛋白质（以蓝色椭圆表示）不可见。步骤 2：膜浸没在特异于目的蛋白的抗体（Ab₁）溶液中并孵育一段时间。Ab₁ 结合目的蛋白（从上数第二个），但不结合膜上的其他任何蛋白质，形成与蛋白质位置重合的抗体分子层（此时仍无法看到其位置）。然后洗涤膜以去除未结合的 Ab₁。步骤 3：膜与第二抗体（Ab₂）孵育，后者特异识别并结合第一抗体（Ab₁）。第二抗体共价连接一种催化显色反应或释放光（如化学发光）的酶、放射性同位素或其他可高灵敏检测其存在的物质。步骤 4：最后，检测结合的 Ab₂ 的位置和量（如通过显色反应的颜色，或通过测量化学发光释放光的检测器或胶片），从而确定目的蛋白的电泳迁移率（进而确定其质量）及其量（基于条带强度）。(b) 裂解细胞的免疫印迹以检测胞内受体。在此实验中，作为红细胞前体的细胞在体外培养皿中维持，然后用无配体（−，最左和最右泳道）或结合 GR（糖皮质激素受体）的配体（+，中间泳道）处理。细胞然后用去垢剂裂解，用三种不同抗体对总细胞裂解物进行免疫印迹（Western 印迹）：结合 GR 的抗体（anti-GR）、结合称为 PPARα 的受体的抗体（anti-PPARα）、或结合丰富胞内蛋白肌动蛋白的抗体（anti-actin），后者的存在和丰度预期对配体处理不敏感。用 anti-actin 抗体检测到的免疫印迹条带的相等强度（下方框）提供了"上样对照"，证实在凝胶的每个泳道中上样了基本等量的细胞裂解物。GR 和 PPARα 条带在有无预先用 GR 配体孵育细胞时的大致相等强度表明，配体未实质改变细胞中这两种蛋白质的量。用于 (b) 部分免疫印迹的同一细胞裂解物的部分也用于 (c) 部分所示的免疫沉淀/免疫印迹。(c) 免疫沉淀（IP）后进行免疫印迹（合称 co-IP）用于确定 GR 配体是否能诱导形成含 GR 和 PPARα 的稳定复合物。细胞裂解物的部分用抗 GR 抗体（左泳道和中泳道）或不能结合 GR 或 PPARα 的对照抗体（右泳道）进行免疫沉淀。免疫沉淀物通过离心与裂解物的其余部分分离，然后用 anti-GR（上方框）或 anti-PPARα（下方框）进行免疫印迹分析。如预期，上方框显示当同一 anti-GR 抗体用于免疫印迹时，GR 蛋白在使用 anti-GR 生成的免疫沉淀物中被检测到，但在用对照抗体生成的免疫沉淀物中未检测到（未观察到条带）。令人瞩目的是，当用 anti-PPARα 抗体检查免疫沉淀物的免疫印迹时（下方框），当 GR 配体存在时（中泳道）可见大量 PPARα，而在无 GR 配体时（左泳道）或在对照免疫沉淀物中（右泳道）共沉淀很少。这些结果表明 GR 配体诱导形成含糖皮质激素受体和 PPARα 两种蛋白的复合物。这些结果不能确定当 GR 配体存在时 GR 和 PPARα 蛋白是否直接结合，还是复合物中有其他分子作为中间体在配体存在时将 GR 和 PPARα 紧密连接在一起。[部分 (b) 和 (c) 经 Macmillan Publishers Ltd 许可转载，来自 Lee, H.Y. et al., "PPAR-α and glucocorticoid receptor synergize to promote erythroid progenitor self-renewal," Nature, 2015, 522:474–477.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1224,7 +1338,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>免疫沉淀（IP）利用抗体特异性从复杂混合物分离目的蛋白质。抗体结合靶蛋白后，加试剂使抗体-靶复合物沉淀。若靶紧密结合其他分子，它们共沉淀（共免疫沉淀，co-IP），常用于鉴定四级结构和超分子复合物。</p>
 <p>放射性同位素是检测生物分子不可或缺的工具</p>
 <p>追踪分子的灵敏方法是检测放射标记发出的放射性。生物研究中有用的放射性同位素包括磷-32（半衰期 14.3 天）、碘-125（60.4 天）、硫-35（87.5 天）、氚（12.4 年）、碳-14（5730.4 年）（表 3-1）。半衰期越短，比活越高。</p>
-<figure class="table">
+<figure class="table" id="tab-T3-1">
   <img class="zoomable" src="figures/tab_T3-1_1.png" alt="表 T3-1" onclick="lightbox(this.src)">
   <figcaption>表T3-1 · 生物研究中常用的放射性同位素。同位素 半衰期：磷-32 14.3 天；碘-125 60.4 天；硫-35 87.5 天；氚（氢-3）12.4 年；碳-14 5730.4 年。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1241,7 +1355,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>放射标记大分子的常见方法是向培养基加放射标记前体（如 [³⁵S]甲硫氨酸/半胱氨酸标记蛋白质、³²P-磷酸标记 ATP/磷蛋白、³H-核苷酸前体标记核酸）。用硫-35 标记的甲硫氨酸和半胱氨酸广泛用于标记蛋白质（高比活 >10¹⁵ dpm/mmol）。放射性同位素替换正常原子的标记化合物化学性质几乎不变（如 [³H]亮氨酸）；而 ¹²⁵I 需共价加到不含碘的分子上（如 ¹²⁵I-胰蛋白酶），可能改变生物活性。</p>
 <p>放射自显影用二维检测器（照相乳胶或电子检测器）检测放射标记分子。盖革计数器测量 β 粒子/γ 射线产生的离子（手持，用于实验室安全监测）。液体闪烁计数器用荧光化合物将衰变能量转为闪光由光电管计数。磷屏成像仪用二维阵列检测器存储每像素衰变数。</p>
-<figure>
+<figure id="fig-3-42">
   <img class="zoomable" src="figures/fig_3-42_1.png" alt="图 3-42" onclick="lightbox(this.src)">
   <figcaption>图3-42 · 实验性图：脉冲追踪实验可追踪细胞内蛋白质修饰的途径。(a) 为追踪细胞中特定新合成蛋白质的命运，细胞与 [³⁵S]甲硫氨酸孵育 0.5 小时（脉冲）以标记所有新合成蛋白质，然后洗去未掺入细胞的放射性氨基酸。细胞继续孵育（追踪）不同时间至 24 小时，每个追踪时间的样品通过免疫沉淀分离一种特定蛋白质（此处为低密度脂蛋白受体）。免疫沉淀物的 SDS-PAGE 后放射自显影允许可视化靶蛋白，该蛋白初始合成为较小的前体（p），然后通过添加碳水化合物迅速修饰为较大的成熟形式（m）。约一半标记蛋白在脉冲期间从 p 转化为 m；其余在 0.5 小时追踪后转化。蛋白质保持稳定 6–8 小时后开始被降解（如条带强度降低所示）。(b) 在产生突变形式蛋白的细胞中进行了相同实验。突变形式不能正确转化为 m 形式，且比正常蛋白更快被降解。[© Kozarsky et al., The Journal of Cell Biology 102: 1567–1575. doi:10.1083/jcb.102.5.1567.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1267,7 +1381,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>脉冲追踪实验追踪蛋白质胞内位置或修饰随时间的变化。细胞暴露于放射标记化合物（"脉冲"），洗去后加过量未标记化合物（"追踪"），定期取样测定放射标记的位置或化学形式。脉冲追踪结合免疫沉淀和 SDS-PAGE 放射自显影常用于追踪蛋白质合成、修饰和降解速率。经典用途是阐明分泌蛋白从内质网到细胞表面的途径（见第 14 章）。</p>
 <p>质谱可测定蛋白质的质量和序列</p>
 <p>质谱（MS）是表征蛋白质的强大技术，测定蛋白质或片段的质量，由此可确定部分或全部序列。质谱仪有四个关键部件：离子源、质量分析器、检测器和计算机化数据系统。产生离子最常用 MALDI（基质辅助激光解吸/电离）和 ES（电喷雾）。质量分析器最常用 TOF（飞行时间）和离子阱。MS 高度灵敏，能检测少至 100 阿托摩尔肽。MS/MS（串联质谱）可选择母离子断裂成片段，由片段质量差推断短肽（<25 残基）序列。</p>
-<figure>
+<figure id="fig-3-43">
   <img class="zoomable" src="figures/fig_3-43_1.png" alt="图 3-43" onclick="lightbox(this.src)">
   <figcaption>图3-43 · 实验性图：分子质量可由基质辅助激光解吸/电离飞行时间（MALDI-TOF）质谱确定。在 MALDI-TOF 质谱仪中，激光光脉冲电离吸附在金属靶上的蛋白或肽混合物（步骤 1）。质量分析器中的电场加速样品中的离子向检测器移动（步骤 2 和 3）。离子到达检测器所需的时间与质荷比（m/z）的平方根成正比。在具有相同电荷的离子中，较小的离子移动更快（到达检测器时间更短）。样品中每个离子的分子量使用标准品的飞行时间计算。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1287,7 +1401,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">protein/peptide mixture</td><td class="gl-zh">蛋白/肽混合物</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-3-44">
   <img class="zoomable" src="figures/fig_3-44_1.png" alt="图 3-44" onclick="lightbox(this.src)">
   <figcaption>图3-44 · 实验性图：蛋白质和肽的分子质量可由电喷雾电离离子阱质谱确定。(a) 电喷雾（ES）电离通过将溶液通过加有高压的针（形成液滴并使液滴带电），将溶液中的蛋白质和肽转化为高度带电的气态离子。溶剂蒸发产生气态离子进入质谱仪。离子由离子阱质量分析器分析，后者随后将离子导向检测器。(b) [上面板：] 小鼠 H-2 I 类组织相容性抗原 Q10 α 链的三种主要肽和若干次要肽混合物的质谱，以打击检测器的离子的相对丰度（y 轴）作为质荷比（m/z）的函数（x 轴）呈现。[下面板：] 在如 (a) 部分所示离子阱等 MS/MS 仪器中，可选择特定肽离子进行断裂成较小离子，然后进行分析和检测。MS/MS 谱（也称为产物离子谱）提供关于母离子的详细结构信息，包括肽的序列信息。此处选择了 m/z 为 836.47 的离子进行断裂，并测定了产物离子的 m/z 质谱。注意不再存在 m/z 为 836.47 的离子，因为它已被断裂。从产物离子大小的变化、对此类实验中肽键常被断裂的理解、已知单个氨基酸片段的 m/z 值以及数据库信息，可推断出肽的序列 FIIVGYVDDTQFVR。[部分 (b)，未发表数据来自 S. Carr.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1320,7 +1434,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>经典方法是 Edman 降解：标记 N 端氨基酸、切下、用 HPLC 鉴定，循环重复。约 1985 年前常用，现主要通过基因组和 mRNA 序列分析确定。结合 MS 的肽质量指纹（用特定蛋白酶消化的肽分子量列表）搜索基因组数据库可鉴定蛋白质。</p>
 <p>蛋白质构象由精密物理方法确定</p>
 <p>X 射线晶体学 由 Max Perutz 和 John Kendrew 于 1950 年代开创。X 射线（波长约 0.1–0.2 nm）穿过蛋白质晶体，电子散射产生衍射斑点图（图 3-45）。由衍射图计算电子密度图，将分子模型拟合到电子密度。迄今已建立超过 90,000 个三维结构（含 35,000 多种蛋白质序列），存于 Protein Data Bank（http://www.rcsb.org）。</p>
-<figure>
+<figure id="fig-3-45">
   <img class="zoomable" src="figures/fig_3-45_1.png" alt="图 3-45" onclick="lightbox(this.src)">
   <figcaption>图3-45 · 实验性图：X 射线晶体学提供衍射数据，可由此确定蛋白质的三维结构。(a) X 射线晶体学测定的基本部件。当窄 X 射线束撞击晶体时，部分直接穿过，其余被散射（衍射）到各方向。形成衍射斑点周期排列的衍射波强度被记录在 X 射线胶片上或由固态电子检测器记录。(b) 在固态检测器上收集的蛋白质晶体 X 射线衍射图。从如此类衍射斑点图的复杂分析中，可确定蛋白质中原子的位置。参见 J. M. Berg, J. L. Tymoczko, G. J. Gatto, and L. Stryer, 2015, Biochemistry, 8th ed., Macmillan。[部分 (b) 由 James M. Berger 提供]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1340,7 +1454,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>冷冻电子显微镜 对难结晶的大蛋白质复合物有用。稀蛋白质样品薄层涂于载网，在液氦中快速冷冻，在冷冻水合状态检查（图 3-46）。用低电子剂量记录图像，计算机算法按取向分组并计算平均图像，重建三维结构。最新进展可辨别主链和侧链。</p>
-<figure>
+<figure id="fig-3-46">
   <img class="zoomable" src="figures/fig_3-46_1.png" alt="图 3-46" onclick="lightbox(this.src)">
   <figcaption>图3-46 · 实验性图：人线粒体核糖体结构的冷冻电子显微镜分析。线粒体是复杂的、多功能的胞内细胞器，以合成能量载体 ATP 的能力最为人知（见第 12 章）。人线粒体可使用大型（1.7 MDa）、多蛋白（至少 78 种）和多数酸复合物（称为线粒体核糖体）合成线粒体 DNA 编码的蛋白质，线粒体核糖体与细胞质核糖体有所不同。(a) 分离的人线粒体核糖体的冷冻电子显微照片。核糖体与缓冲液之间的低对比度使得难以清楚看到单个冷冻核糖体颗粒，后者在图像中随机取向。(b) 323,292 个单独颗粒的自动图像处理允许基于取向将其分组为类别，并对每类内的图像取平均以生成更清晰的核糖体图像。(c) 额外的计算分析生成不同的结构，每个基于数万个单独颗粒（每个结构分析的颗粒数以千 [K] 为单位显示在下方）。框中的结构被选择用于额外分析，产生了 (d) 中所示两个非常相似的模型，含几乎相同的大亚基。(e) 大（蓝色）和小（黄色）亚基电子密度的彩色编码低分辨率模型。小亚基的构象异质性阻碍了从此处所示数据确定其高分辨率结构。(f) 大亚基中一种蛋白质一部分的实验测定电子密度（网格）的高倍放大视图，说明如何用电子密度构建叠加的多肽链分子模型。在大亚基中一种蛋白质的这个极小部分中，脯氨酸（Pro）、苯丙氨酸（Phe）、缬氨酸（Val）和酪氨酸（Tyr）残基的侧链清晰可见，展示了冷冻电子显微镜以极高分辨率确定蛋白质结构的能力。(g) 以 3.4 Å 分辨率确定的大亚基中 48 个蛋白质亚基（不同颜色）的模型。[经美国科学促进会许可转载，来自 Brown, A., et al., "Structure of the large ribosomal subunit from human mitochondria." Science, 2014, 346(6210): 718-722; 许可通过 Copyright Clearance Center, Inc. 转达。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1390,7 +1504,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 放射自显影用二维检测器检测放射标记分子。脉冲追踪实验确定蛋白质胞内命运（见图 3-42）。</p>
 <p>● 质谱是检测、鉴定和表征蛋白质和肽的非常灵敏高精度方法。</p>
 <p>● 蛋白质三维结构由 X 射线晶体学、冷冻电子显微镜和 NMR 光谱法获得。X 射线晶体学最详细但需结晶；冷冻电镜对大复合物有用；NMR 限于相对小的蛋白质。</p>
-<h2>3.6 蛋白质组学</h2>
+<h2 id="sec-3.6">3.6 蛋白质组学</h2>
 <p>20 世纪大部分时间，蛋白质研究主要限于分析单个蛋白质。例如，通过确定酶的酶活性（底物、产物、反应速率、辅因子需求、pH 等）、结构和作用机制来研究酶。有时也研究参与代谢通路的少数酶之间的关系。在更大尺度上，在细胞或组织背景下考察酶的定位和活性。突变、疾病或药物对酶表达和活性的影响也可能是研究主题。这种多管齐下的方法为单个蛋白质或相对少数相互作用蛋白质的功能和作用机制提供了深入见解。然而，这种逐个研究蛋白质的方法不能轻易提供细胞、组织或整个生物体蛋白质组中所发生情况的全局图景。</p>
 <p>蛋白质组学是研究生物系统中全部或大子集蛋白质的学科</p>
 <p>基因组学（基因组 DNA 测序及其相关技术，如同时分析细胞和组织中所有 mRNA 水平）的出现清楚地表明，全局或系统生物学方法可提供独特且极具价值的见解。许多科学家认识到，生物系统中蛋白质的全局分析有可能为我们的理解做出同样有价值的贡献。于是诞生了一个新领域--蛋白质组学。蛋白质组学是在整个生物体、组织、细胞和亚细胞水平上，系统研究全部或子集蛋白质的量、修饰、相互作用、定位和功能。</p>
@@ -1405,7 +1519,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>这些只是可用蛋白质组学解决的少数问题。用于回答这些问题的方法与问题本身一样多样，且数量正在迅速增长。</p>
 <p>质谱先进技术对蛋白质组分析至关重要</p>
 <p>蛋白质组学技术（如质谱）的进步深刻影响可实际研究的问题类型。多年来，双向凝胶电泳允许研究者分离、展示和表征复杂蛋白质混合物（见图 3-39）。双向电泳凝胶上的斑点可被切下，蛋白质通过蛋白水解（如胰蛋白酶消化）片段化，片段由 MS 鉴定。此双向凝胶电泳方法的替代是高通量 LC-MS/MS。图 3-47 概述了一般 LC-MS/MS 方法：复杂蛋白质混合物用蛋白酶消化；由此产生的无数肽由 LC 分馏成多个较不复杂的级分，这些级分通过电喷雾电离缓慢但连续地注入串联质谱仪。然后级分依次经受多个</p>
-<figure>
+<figure id="fig-3-47">
   <img class="zoomable" src="figures/fig_3-47_1.png" alt="图 3-47" onclick="lightbox(this.src)">
   <figcaption>图3-47 · 实验性图：LC-MS/MS 通过与蛋白质数据库比较用于鉴定复杂生物样品中的蛋白质。生物样品中的复杂蛋白质混合物（如分离的高尔基体制备物）用蛋白酶消化。所得肽混合物通过液相色谱（LC）分馏成多个较不复杂的级分，这些级分通过电喷雾电离缓慢但连续地注入串联质谱仪。级分随后依次经受多个 MS/MS 循环，直到许多肽的质量和序列被确定，并通过与蛋白质数据库比较鉴定原始生物样品中的蛋白质。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1431,7 +1545,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>MS/MS 循环，直到许多肽的序列被确定并用于鉴定原始生物样品中的蛋白质。目前检测全细胞或组织中相当一部分蛋白质需要含 50 μg 以上蛋白质的样品，相当于约 70,000–200,000 个哺乳动物细胞的蛋白质含量。提高方法灵敏度的工作正在进行，以便最终能分析单个细胞的蛋白质组。</p>
 <p>LC-MS/MS 用于鉴定每个细胞器中许多蛋白质的例子见图 3-48。来自小鼠肝组织的细胞被机械破碎以释放细胞器，细胞器通过密度梯度离心部分分离。梯度中细胞器的位置用识别先前鉴定的细胞器特异蛋白的抗体进行免疫印迹确定。然后梯度级分经受 LC-MS/MS 鉴定每个级分中的蛋白质，并将许多</p>
-<figure>
+<figure id="fig-3-48">
   <img class="zoomable" src="figures/fig_3-48_1.png" alt="图 3-48" onclick="lightbox(this.src)">
   <figcaption>图3-48 · 实验性图：密度梯度离心和 LC-MS/MS 可用于鉴定细胞器中的许多蛋白质。(a) 肝组织中的细胞被机械破碎以释放细胞器，细胞器通过密度梯度离心部分分离。细胞器在梯度中的位置--它们分散在整个梯度中且彼此有些重叠--通过用识别先前鉴定的细胞器特异蛋白的抗体进行免疫印迹来确定。来自梯度的级分经受蛋白水解和 LC-MS/MS 以鉴定每个级分中的肽，从而鉴定蛋白质。与梯度中细胞器位置的比较（称为蛋白质相关性分析）允许将许多单个蛋白质分配到一个或多个细胞器（细胞器蛋白质组鉴定）。(b) 由 (a) 部分程序所得数据的层次分解。注意并非所有鉴定的蛋白质都能被分配到细胞器，且某些蛋白质被分配到不止一个细胞器。[数据来自 L. J. Foster et al., 2006, Cell 125:187–199.]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1506,6 +1620,45 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mousemove',onMove);
     document.removeEventListener('mouseup',onUp);
   }
+})();
+/* 阅读索引滚动监视 */
+(function(){
+  var tocLinks=document.querySelectorAll('#toc a');
+  var targets=[];
+  tocLinks.forEach(function(a){
+    var id=a.getAttribute('href');
+    if(!id)return;
+    var el=document.getElementById(id.replace('#',''));
+    if(el)targets.push({el:el,link:a});
+  });
+  function onScroll(){
+    var scrollY=window.scrollY+120;
+    var active=null;
+    for(var i=targets.length-1;i>=0;i--){
+      if(targets[i].el.offsetTop<=scrollY){active=targets[i].link;break;}
+    }
+    tocLinks.forEach(function(a){a.classList.remove('active');});
+    if(active)active.classList.add('active');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+  tocLinks.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').replace('#','');
+      var el=document.getElementById(id);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+      var toc=document.getElementById('toc');
+      if(toc)toc.classList.remove('open');
+    });
+  });
+  /* 点击正文区域关闭移动端侧栏 */
+  document.addEventListener('click',function(e){
+    var toc=document.getElementById('toc');
+    if(!toc||!toc.classList.contains('open'))return;
+    if(!toc.contains(e.target))toc.classList.remove('open');
+  });
 })();
 </script>
 </body></html>

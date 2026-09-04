@@ -3,21 +3,21 @@
 <style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; padding-left: 245px; }
 article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
-@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+@media print { body { padding-left: 0; } article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
 h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
-h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; }
+h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
 h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
 p { margin: 0 0 0.7em 0; text-align: justify; text-indent: 2em; }
 p.ni { text-indent: 0; }
 hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
-figure { margin: 1.5em 0; text-align: center; }
+figure { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 figure.table { border-left: 4px solid #3b82f6; padding: 6px 0 6px 12px; text-align: left; background: #f8faff; }
 figure img, .boximg img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; }
 img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
 img.zoomable:hover { opacity: 0.88; }
-.boximg { margin: 1.5em 0; text-align: center; }
+.boximg { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 .boximg img { border: 1px solid #d8b4fe; }
 .intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
 .intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
@@ -51,18 +51,128 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
-#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }</style></head><body><article>
+#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
+/* 左侧阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 245px; height: 100vh; overflow-y: auto;
+  background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin; }
+#toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+#toc ul { list-style: none; padding: 0; margin: 0; }
+#toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
+  border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
+#toc li a:hover { background: #f0ede6; color: #333; }
+#toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
+  font-size: 13.5px; border-left-color: transparent; }
+#toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
+#toc li.toc-fig > a, #toc li.toc-tab > a, #toc li.toc-box > a {
+  padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
+#toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
+#toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
+#toc li.toc-box > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #a855f7; }
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active, #toc li.toc-box > a.active {
+  border-left-color: #999; background: #eee9e0; color: #555; }
+#toc-toggle { display: none; position: fixed; left: 10px; top: 10px; z-index: 101;
+  background: #333; color: #fff; border: none; border-radius: 4px;
+  padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1; }
+@media print { #toc, #toc-toggle { display: none !important; } body { padding-left: 0; } }
+@media (max-width: 1050px) {
+  body { padding-left: 0; }
+  #toc { left: -255px; transition: left 0.2s; box-shadow: none; }
+  #toc.open { left: 0; box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
+  #toc-toggle { display: block; }
+  article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
+}</style></head><body>
+<button id="toc-toggle" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
+<nav id="toc">
+<div class="toc-title">目录</div>
+<ul>
+<li class="toc-box"><a href="#box-G2-1">第2章 化学基础"大卫之星"索烃。两个由碳、氢、氮组成的三重…</a></li>
+<li class="toc-fig"><a href="#fig-2-1">图2-1 · 生命的化学：四个关键概念。(a) 分子互补性位…</a></li>
+<li class="toc-sec"><a href="#sec-2.1">2.1 共价键与非共价相互作用</a>
+<ul>
+<li class="toc-fig"><a href="#fig-2-3">图2-3 · 碳与三个或四个其他原子共价连接时的键几何。(a…</a></li>
+<li class="toc-fig"><a href="#fig-2-2">图2-2 · 共价键通过电子共享形成。共价键是将原子维系在分…</a></li>
+<li class="toc-fig"><a href="#fig-2-4">图2-4 · 立体异构体。细胞中的许多分子含至少一个不对称碳…</a></li>
+<li class="toc-tab"><a href="#tab-T2-1">表2-1 · 生物分子中最丰富原子的成键性质。列出各原子（H…</a></li>
+<li class="toc-tab"><a href="#tab-T2-2">表2-2 · 生物分子中的常见官能团和连接。包括羟基（−OH…</a></li>
+<li class="toc-box"><a href="#box-G2-2">G2-2</a></li>
+<li class="toc-fig"><a href="#fig-2-5">图2-5 · 水分子的偶极性质。符号 δ 表示部分电荷（弱于…</a></li>
+<li class="toc-fig"><a href="#fig-2-6">图2-6 · 共价键和非共价相互作用的相对能量。键能定义为断…</a></li>
+<li class="toc-fig"><a href="#fig-2-7">图2-7 · 盐（NaCl）带相反电荷离子在晶体和水溶液中的…</a></li>
+<li class="toc-box"><a href="#box-G2-3">G2-3</a></li>
+<li class="toc-fig"><a href="#fig-2-8">图2-8 · 水与自身及与其他化合物的氢键。氧或氮原子中每对…</a></li>
+<li class="toc-fig"><a href="#fig-2-9">图2-9 · 肽键中成键电子和外层非键合电子的分布。所示为蛋…</a></li>
+<li class="toc-fig"><a href="#fig-2-10">图2-10 · 处于范德华接触的两个氧分子。此模型中红色表示…</a></li>
+<li class="toc-fig"><a href="#fig-2-11">图2-11 · 疏水效应示意。溶液中非极性分子周围形成的水分…</a></li>
+<li class="toc-fig"><a href="#fig-2-12">图2-12 · 分子互补性通过多个非共价相互作用实现蛋白质紧…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-2.2">2.2 细胞的化学构建块</a>
+<ul>
+<li class="toc-fig"><a href="#fig-2-13">图2-13 · 细胞主要化学构建块概述。(a) 三大类生物大…</a></li>
+<li class="toc-fig"><a href="#fig-2-14">图2-14 · 蛋白质的 20 种氨基酸。按侧链性质分类：非…</a></li>
+<li class="toc-box"><a href="#box-G2-4">G2-4</a></li>
+<li class="toc-box"><a href="#box-G2-5">G2-5</a></li>
+<li class="toc-fig"><a href="#fig-2-15">图2-15 · 蛋白质中氨基酸侧链的常见修饰。这些修饰残基及…</a></li>
+<li class="toc-box"><a href="#box-G2-6">G2-6</a></li>
+<li class="toc-fig"><a href="#fig-2-16">图2-16 · 核苷酸的共同结构。(a) 腺苷 5'-一磷酸…</a></li>
+<li class="toc-fig"><a href="#fig-2-17">图2-17 · 核酸中主要碱基的化学结构。核酸和核苷酸中，嘌…</a></li>
+<li class="toc-box"><a href="#box-G2-7">G2-7</a></li>
+<li class="toc-tab"><a href="#tab-T2-3">表2-3 · 核苷和核苷酸术语。列出碱基、RNA/DNA 中…</a></li>
+<li class="toc-box"><a href="#box-G2-8">G2-8</a></li>
+<li class="toc-box"><a href="#box-G2-9">G2-9</a></li>
+<li class="toc-fig"><a href="#fig-2-18">图2-18 · 己糖的化学结构。所有己糖有相同化学式（C₆H…</a></li>
+<li class="toc-fig"><a href="#fig-2-19">图2-19 · 二糖乳糖和蔗糖的形成。任何糖苷键中，一种糖分…</a></li>
+<li class="toc-box"><a href="#box-G2-10">G2-10</a></li>
+<li class="toc-fig"><a href="#fig-2-20">图2-20 · 磷脂酰胆碱，典型磷酸甘油酯。所有磷酸甘油酯都…</a></li>
+<li class="toc-box"><a href="#box-G2-11">G2-11</a></li>
+<li class="toc-tab"><a href="#tab-T2-4">表2-4 · 磷脂中主要脂肪酸。列出饱和（豆蔻酸 C14:0…</a></li>
+<li class="toc-tab"><a href="#tab-T2-5">表2-5 · 常见磷酸甘油酯及头基。磷脂酰胆碱（头基胆碱）、…</a></li>
+<li class="toc-box"><a href="#box-G2-12">G2-12</a></li>
+<li class="toc-box"><a href="#box-G2-13">G2-13</a></li>
+<li class="toc-box"><a href="#box-G2-14">G2-14</a></li>
+<li class="toc-fig"><a href="#fig-2-21">图2-21 · 双键对脂肪酸形状的影响。所示为饱和脂肪酸棕榈…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-2.3">2.3 化学反应与化学平衡</a>
+<ul>
+<li class="toc-fig"><a href="#fig-2-22">图2-22 · 化学反应速率的时间依赖性。反应的正向和逆向速…</a></li>
+<li class="toc-fig"><a href="#fig-2-23">图2-23 · 平衡与稳态反应的比较。(a) 试管中生化反应…</a></li>
+<li class="toc-fig"><a href="#fig-2-24">图2-24 · 大分子可有多个配体的独立结合位点。大型大分子…</a></li>
+<li class="toc-fig"><a href="#fig-2-25">图2-25 · 常见溶液的 pH 值。水溶液 pH 是氢离子…</a></li>
+<li class="toc-fig"><a href="#fig-2-26">图2-26 · pH、pKa 和酸解离之间的关系。随碳酸溶液…</a></li>
+<li class="toc-box"><a href="#box-G2-15">G2-15</a></li>
+<li class="toc-fig"><a href="#fig-2-27">图2-27 · 缓冲液醋酸（CH₃COOH）的滴定曲线。醋酸…</a></li>
+<li class="toc-fig"><a href="#fig-2-28">图2-28 · 磷酸（H₃PO₄）的滴定曲线，生物系统中常见…</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-2.4">2.4 生化能学</a>
+<ul>
+<li class="toc-fig"><a href="#fig-2-29">图2-29 · 放能和吸能反应的自由能（ΔG）变化。(a) …</a></li>
+<li class="toc-fig"><a href="#fig-2-30">图2-30 · 未催化和催化化学反应的活化能。此假设反应路径…</a></li>
+<li class="toc-box"><a href="#box-G2-16">G2-16</a></li>
+<li class="toc-fig"><a href="#fig-2-31">图2-31 · 腺苷三磷酸（ATP）的水解。ATP 中连接三…</a></li>
+<li class="toc-box"><a href="#box-G2-17">G2-17</a></li>
+<li class="toc-fig"><a href="#fig-2-32">图2-32 · 琥珀酸转化为延胡索酸。此氧化反应发生在线粒体…</a></li>
+<li class="toc-fig"><a href="#fig-2-33">图2-33 · 电子载体辅酶 NAD⁺ 和 FAD。(a) …</a></li>
+<li class="toc-box"><a href="#box-G2-18">G2-18</a></li>
+</ul>
+</li>
+</ul></nav>
+<article>
 <h1>第2章 化学基础</h1>
 <p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Chemical Foundations · 保留全部图表（点击图片可放大）</p>
 <hr>
-<div class="boximg">
+<div class="boximg" id="box-G2-1">
   <img class="zoomable" src="figures/box_G2-1_1.png" alt="G2-1" onclick="lightbox(this.src)">
 </div>
 <div class="intro-block"><span class="intro-title">第2章 化学基础</span>"大卫之星"索烃。两个由碳、氢、氮组成的三重缠绕环，通过桥连铁原子经复杂化学合成途径相互交叉六次形成六角星（六角星）。左侧为化学结构，两个独立环分别染成蓝色和橙色。右侧为 X 射线晶体学确定的三维结构，一个环的碳原子为蓝色，另一个为浅灰色；铁为粉色，氮为紫色。中心是非共价结合的带负电六氟化磷（青色和绿色）。参见 D. A. Leigh, R. G. Pritchard, and A. J. Stephens, 2014, Nature Chem. 6:978–982.</div>
 <p>细胞的生存依赖于数千种在时间和空间上精妙协调的化学相互作用与反应，并受细胞遗传指令及其环境的影响。通过在分子水平上理解这些相互作用与反应，我们就能开始回答关于细胞生命的一些基本问题：细胞如何从环境中摄取营养物与信息？细胞如何将储存在营养物中的能量转化为运动或代谢的功？细胞如何将营养物转化为其生存所需的细胞组分？细胞如何与其他细胞相连形成组织？细胞之间又如何通讯，使一个复杂而高效运作的生物体得以发育</p>
 <p>和繁衍？《分子细胞生物学》的目标之一，就是用单个分子与离子的性质来回答这些以及其他关于细胞与生物体结构与功能的问题。</p>
 <p>例如，水这一分子的性质控制着所有细胞的演化、结构和功能。若不理解水的性质如何主宰生命的化学，就无法理解生物学。生命最早起源于水环境。水占大多数细胞重量的 70%–80%，是生物系统中含量最丰富的分子。正是在这一水性介质中，占生命物质重量约 7% 的小分子和离子结合成</p>
-<figure>
+<figure id="fig-2-1">
   <img class="zoomable" src="figures/fig_2-1_1.png" alt="图 2-1" onclick="lightbox(this.src)">
   <figcaption>图2-1 · 生命的化学：四个关键概念。(a) 分子互补性位于所有生物分子相互作用的中心（见 2.1 节），如两个形状和化学性质互补的蛋白质结合形成紧密结合的复合物。(b) 小分子作为较大结构的构建块（见 2.2 节）；例如，四种核苷酸构建块共价连接成多核苷酸链，然后包装成 DNA 双螺旋。(c) 化学反应由起始反应物（左）与反应产物（右）之间的速率常数决定。正向反应速率受正向速率常数 kf 控制，逆向反应速率受逆向速率常数 kr 控制。平衡常数 Keq = kf/kr 提供平衡时产物与反应物相对量的度量（见 2.3 节）。(d) 细胞中化学反应的能量来源是 ATP 分子的水解（见 2.4 节）。ATP 中 β 和 γ 磷酸间的高能磷酸酐键（红色）断裂时释放能量，这些能量可用于驱动需能过程。细胞是远离平衡的稳态系统，持续从环境获取能量以维持其高度有序的状态。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -93,11 +203,11 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>构成细胞机器与建筑结构、从而构成生物体其余质量的较大大分子和大分子组装体。这些小分子包括氨基酸（蛋白质的构建块）、核苷酸（DNA 和 RNA 的构建块）、脂质（生物膜的构建块）和糖（复杂碳水化合物的构建块）。</p>
 <p>细胞的许多生物分子（如糖）易溶于水，这类分子被称为亲水的（"喜水"）。另一些（如胆固醇）是油性、脂肪样物质，疏远水，被称为疏水的（"怕水"）。还有一些生物分子（如磷脂）既含亲水区又含疏水区，被称为两亲性或双亲性（"兼喜"）。细胞、组织和生物体的顺畅运转有赖于从最小到最大的所有这些分子。事实上，简单质子（H⁺）的化学对于人细胞的生存，其重要性可能不亚于每个巨大的 DNA 分子（人 1 号染色体 DNA 分子的质量是质子的 8.6 × 10¹⁰ 倍！）。所有这些大大小小的分子与水以及彼此之间的化学相互作用，定义了生命的本质。</p>
 <p>幸运的是，尽管许多类型的生物分子在众多复杂通路中相互作用与反应以形成有功能的细胞和生物体，但理解分子水平的细胞过程只需相对少数的化学原理（图 2-1）。本章我们回顾这些关键原理，其中一些你已熟知。我们从将原子连接成分子的共价键、以及稳定分子内和分子间原子基团的非共价相互作用开始。然后考察大分子和大分子组装体的基本化学构建块。在回顾与生物系统最相关的化学平衡方面之后，本章以生化能学的基本原理结尾，包括 ATP（腺苷三磷酸）在细胞代谢中捕获和转移能量的核心作用。</p>
-<h2>2.1 共价键与非共价相互作用</h2>
+<h2 id="sec-2.1">2.1 共价键与非共价相互作用</h2>
 <p>原子之间的强吸引力与弱吸引力是将单个分子维系在一起、并允许不同分子间相互作用的"胶水"。当两个原子共享一对电子时，形成共价键--一种将原子维系在分子中的强作用力。共享多对电子则形成多重共价键（如"双键"或"三键"）。非共价相互作用的弱吸引力在决定蛋白质、核酸、碳水化合物和脂质等生物分子的性质和功能方面同样重要。本节首先回顾共价键，然后讨论四大类非共价相互作用：离子键、氢键、范德华相互作用和疏水效应。</p>
 <p>原子的电子结构决定其能形成共价键的数目和几何</p>
 <p>氢、氧、碳、氮、磷和硫是生物分子中最丰富的元素。这些原子很少以孤立实体存在，而是利用其核周围最外层电子轨道中的电子轻易形成共价键（图 2-2）。一般来说，每种原子与其他原子形成特征数目的共价键。这些键具有由原子大小、核周围电子分布及可共享电子数共同决定的明确几何。在某些情况下，原子能形成的稳定共价键数目是固定的；例如碳总是形成四个共价键。在其他情况下，可形成不同数目的稳定共价键；例如硫可形成两个、四个或六个稳定共价键。</p>
-<figure>
+<figure id="fig-2-3">
   <img class="zoomable" src="figures/fig_2-3_1.png" alt="图 2-3" onclick="lightbox(this.src)">
   <figcaption>图2-3 · 碳与三个或四个其他原子共价连接时的键几何。(a) 碳可与三个原子键合，如甲醛（CH₂O）。此情况下碳的两个成键电子参与两个单键和一个双键，都在同一平面内。在无其他约束的情况下，单键连接的原子通常可绕键轴自由旋转，而双键连接的原子不能。双键施加的刚性平面性对磷脂、蛋白质和核酸等生物分子的形状和柔性具有巨大意义。(b) 碳可与四个原子键合，如甲烷（CH₄），四个键合原子的位置构成四面体的四个顶点。这种几何决定了许多生物分子的结构。与四个不同原子或基团键合的碳（或任何其他）原子在非平面构型中被称为不对称原子。由不对称碳原子形成的键的四面体取向可在三维空间中以两种不同方式排列，产生互为镜像的分子，这一性质称为手性。这样的分子称为旋光异构体或立体异构体。通常只有一种立体异构体在生物中大量存在。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -116,7 +226,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>所有生物构建块都以碳原子为中心组织，碳形成四个共价键。在这些</p>
-<figure>
+<figure id="fig-2-2">
   <img class="zoomable" src="figures/fig_2-2_1.png" alt="图 2-2" onclick="lightbox(this.src)">
   <figcaption>图2-2 · 共价键通过电子共享形成。共价键是将原子维系在分子中的强力，当原子共享其最外层电子轨道的电子时形成。每种原子形成确定数目和几何的共价键。图中原子以球体表示，但代表原子及其非键合电子的球的直径被不切实际地缩小，以便清晰显示成键和未成键电子的位置。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -128,7 +238,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>有机生物分子中，每个碳通常与三个或四个其他原子键合。[碳也可与两个其他原子键合，如线性分子二氧化碳 CO₂，它有两个碳-氧双键（O=C=O）；然而碳的这种键排列不见于生物构建块。] 如图 2-3a（甲醛）所示，碳可与三个原子键合，且都在同一平面内。碳原子与两个原子形成两个单键，与第三个原子形成一个双键（两对共享电子）。在无其他约束时，单键连接的原子通常可绕键轴自由旋转，而双键连接的原子不能。双键施加的刚性平面性对磷脂、蛋白质和核酸等生物分子的形状和柔性具有巨大意义。</p>
 <p>碳还可与四个而非三个原子键合。如甲烷（CH₄）所示，当碳与四个其他原子键合时，任两键之间的夹角为 109.5°，键合原子的位置定义四面体的四个顶点（图 2-3b）。这种几何决定了许多生物分子的结构。与四个不同原子或基团键合的碳（或任何其他）原子在非平面</p>
-<figure>
+<figure id="fig-2-4">
   <img class="zoomable" src="figures/fig_2-4_1.png" alt="图 2-4" onclick="lightbox(this.src)">
   <figcaption>图2-4 · 立体异构体。细胞中的许多分子含至少一个不对称碳原子。由不对称碳原子形成的键的四面体取向可在三维空间中以两种不同方式排列，产生互为镜像的分子，这一性质称为手性。这样的分子称为旋光异构体或立体异构体。通常只有一种立体异构体在生物中大量存在。细胞使用具有高度特异性的酶来区分立体异构体并仅将其中一种掺入大分子。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -146,7 +256,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>构型中被称为不对称原子。由不对称碳原子形成的键的四面体取向可在三维空间中以两种不同方式排列，产生互为镜像的分子，这一性质称为手性（"handedness"，源自希腊语 cheir，意为"手"）（图 2-4）。此类分子称为旋光异构体或立体异构体。细胞中的许多分子含至少一个不对称碳原子，常称为手性碳原子。一分子的不同立体异构体通常具有完全不同的生物活性，因为其结构内原子的排列、因而与其他分子相互作用的能力不同。</p>
 <p>一些药物是小分子立体异构体的混合物，其中只有一种立体异构体具有所关注的生物活性。用该化学物质的纯单一立体异构体代替混合物，可能产生效力更强、副作用更小的药物。例如，抗抑郁药西酞普兰（Celexa）的一种立体异构体比另一种强 170 倍。一些立体异构体活性迥异：Darvon 是止痛药，而其立体异构体 Novrad（Darvon 倒拼）是镇咳药。氯胺酮的一种立体异构体是麻醉剂，另一种则引起幻觉。■</p>
 <p>生物分子中常见其他原子形成的共价键的典型数目见表 2-1。氢原子只形成一个共价键。氧原子通常只形成两个共价键，但有两个额外的电子对可参与</p>
-<figure class="table">
+<figure class="table" id="tab-T2-1">
   <img class="zoomable" src="figures/tab_T2-1_1.png" alt="表 T2-1" onclick="lightbox(this.src)">
   <figcaption>表2-1 · 生物分子中最丰富原子的成键性质。列出各原子（H、O、S、N、P、C）的典型外层电子、共价键数目和键几何。氢形成 1 个共价键，氧 2 个，硫 2/4/6 个，氮 3/4 个，磷 5 个，碳 4 个。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -160,7 +270,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>共价键中电子可均等或不均等共享</p>
 <p>原子吸引电子的能力称为电负性。在电负性相同或相近的原子间的键中，成键电子基本在两原子间均等共享，如大多数碳-碳单键（C−C）和碳-氢单键（C−H）。此类键称为非极性键。然而在许多分子中，键合原子的电负性不同，导致电子不均等共享，它们之间的键称为极性键。</p>
 <p>极性键的一端带部分负电荷（δ−），另一端带部分正电荷（δ+）。例如在 O−H 键中，氧原子相对氢原子的较大电负性使电子在氧原子周围停留的时间比在氢周围长。因此 O−H 键具有</p>
-<figure class="table">
+<figure class="table" id="tab-T2-2">
   <img class="zoomable" src="figures/tab_T2-2_1.png" alt="表 T2-2" onclick="lightbox(this.src)">
   <figcaption>表2-2 · 生物分子中的常见官能团和连接。包括羟基（−OH，醇）、酰基（−C(=O)R，三酰甘油）、巯基（−SH，硫醇）、氨基（−NH₂，胺）、酯（−C(=O)O−）、羰基（−C(=O)−，酮/醛）、磷酸（−OPO₃²⁻，磷酸化分子）、酰胺（−C(=O)NH−）、羧基（−COO⁻）、醚（−O−）等。官能团赋予分子独特化学性质。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -188,10 +298,10 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>电偶极，即正电荷与等量相反的负电荷分离。O−H 偶极氧原子上的 δ− 电荷约为一个电子的 25%，氢原子上有等量相反的 δ+ 电荷。衡量电荷分离程度或偶极强度的常用定量指标称为偶极矩 μ，对于一个化学键，它等于每个原子上的部分电荷与两原子间距离的乘积。对于含多个偶极的分子，整个分子的电荷分离程度部分取决于其所有单个化学键的偶极矩，部分取决于分子的几何（各偶极矩的相对取向）。</p>
 <p>以水（H₂O）为例，它有两个 O−H 键，因而有两个单键偶极矩。如果水是线性分子，两个键在氧原子正对的两侧，则分子两端的两个偶极强度相同但方向相反，会相互抵消，整个分子的偶极矩为零。然而，由于水是 V 形分子，两个 O−H 键的单个偶极都指向氧，水分子的一端（含氧原子的一端）带部分负电荷，另一端（含两个氢原子的一端）带部分正电荷。因此，整个分子是一个具有明确偶极矩的偶极（图 2-5）。该偶极矩以及氧和氢原子的电子性质使水能与其他</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-2">
   <img class="zoomable" src="figures/box_G2-2_1.png" alt="G2-2" onclick="lightbox(this.src)">
 </div>
-<figure>
+<figure id="fig-2-5">
   <img class="zoomable" src="figures/fig_2-5_1.png" alt="图 2-5" onclick="lightbox(this.src)">
   <figcaption>图2-5 · 水分子的偶极性质。符号 δ 表示部分电荷（弱于电子或质子上的电荷）。由于 H 和 O 的电负性差异，水中每个极性 H−O 键都是偶极。水的 V 形分子中两个 H−O 偶极的大小和方向使它们不会相互抵消，因此整个分子是具有明确偶极矩的偶极（约 1.85 D）。水分子间偶极-偶极相互作用产生氢键。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -205,7 +315,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>水分子及其他类型分子形成静电的、非共价相互作用。这些相互作用在细胞和生物体几乎每一个生化相互作用中都起关键作用，我们将很快看到。</p>
 <p>极性的另一个重要例子是 H₃PO₄ 中的 O=P 双键。在左侧 H₃PO₄ 的结构中，线代表单键和双键，非键合电子以成对的点表示（每个点代表一个电子）：</p>
-<figure>
+<figure id="fig-2-6">
   <img class="zoomable" src="figures/fig_2-6_1.png" alt="图 2-6" onclick="lightbox(this.src)">
   <figcaption>图2-6 · 共价键和非共价相互作用的相对能量。键能定义为断裂特定类型连接所需能量。此处以对数刻度显示断裂多种连接所需能量。共价键（包括单键 C−C 和双键 C=C）所需能量远大于非共价相互作用（氢键约 5 kcal/mol、范德华相互作用约 1 kcal/mol、离子相互作用）。25 °C 下的热能约 0.6 kcal/mol，远小于共价键能，但与某些非共价相互作用相当。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -228,7 +338,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>离子相互作用是带相反电荷离子间的吸引</p>
 <p>离子相互作用源于带正电离子（阳离子）与带负电离子（阴离子）之间的吸引。例如在氯化钠（NaCl）中，钠原子贡献的成键电子完全转移到氯原子（图 2-7a）。与共价键不同，离子相互作用没有固定或特定的几何取向，因为离子周围的静电场--其对相反电荷的吸引--在所有方向上均匀。在固态 NaCl 中，带相反电荷的离子以交替模式紧密堆叠，形成高度有序的晶格，这是盐晶体的典型特征（图 2-7b）。断裂离子相互作用所需能量取决于离子间距离和离子环境的电学性质。</p>
 <p>当固态盐溶于水时，离子彼此分离并被与水分子的相互作用稳定。在水溶液中，具有生物学意义的简单离子（如 Na⁺、K⁺、Ca²⁺、Mg²⁺ 和 Cl⁻）被水合，被一层稳定的水分子壳包围，水分子壳由中心离子与水分子偶极的相反电荷端之间的离子相互作用维系（图 2-7c）。大多数离子化合物易溶于水，因为水合能--离子紧密结合水分子并在水溶液中分散时释放的能量--大于稳定晶体结构的晶格能。当离子与蛋白质直接相互作用时，必须去除溶液中离子水合壳的部分或全部。例如，</p>
-<figure>
+<figure id="fig-2-7">
   <img class="zoomable" src="figures/fig_2-7_1.png" alt="图 2-7" onclick="lightbox(this.src)">
   <figcaption>图2-7 · 盐（NaCl）带相反电荷离子在晶体和水溶液中的静电相互作用。(a) 固态（晶体）NaCl 中 Na⁺ 和 Cl⁻ 离子。(b) 固态 NaCl 中离子以交替模式紧密堆叠形成高度有序的晶格。(c) 晶体溶于水时，离子分离，其电荷不再被相邻相反电荷离子平衡，而被与极性水分子的相互作用稳定。水分子和离子通过离子电荷与水氧/氢原子上部分电荷间的静电相互作用维系。水溶液中所有离子被水合水分子壳包围。水合能大于晶格能，故盐易溶于水。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -248,13 +358,13 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>两个带相反电荷离子 A⁻ 和 C⁺ 之间相互作用的相对强度取决于溶液中其他离子的浓度。其他离子（如 Na⁺ 和 Cl⁻）浓度越高，A⁻ 和 C⁺ 与这些其他离子发生离子相互作用的机会越多，因而断裂 A⁻ 与 C⁺ 之间相互作用所需能量越低。因此，增加生物分子溶液中 NaCl 等盐的浓度可削弱甚至破坏维系生物分子的离子相互作用。这一原理可被利用来将蛋白质等相互作用分子的复杂混合物分离成各自的纯组分。</p>
 <p>氢键是决定不带电分子水溶性的非共价相互作用</p>
 <p>氢键是偶极（如水）中带部分正电荷的氢原子与同一或不同分子中另一原子的未配对电子之间的相互作用。通常，氢原子只与一个其他原子形成共价键。然而，与电负性供体原子 D 共价键合的氢原子可与受体原子 A 形成额外的弱结合--氢键，受体原子必须有可用于该相互作用的非键合电子对：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-3">
   <img class="zoomable" src="figures/box_G2-3_1.png" alt="G2-3" onclick="lightbox(this.src)">
 </div>
 <p>共价 D−H 键的长度比没有氢键时略长，因为受体将氢从供体"拉"开。所有氢键的一个重要特征是方向性。在最强氢键中，供体原子、氢原子和受体原子都在一条直线上。非线性氢键比线性弱；但多个非线性氢键有助于稳定许多蛋白质的三维结构。</p>
 <p>氢键比相同原子间的共价键更长且更弱。例如在水中，相邻氢键水分子的氢和氧原子核间距离约 0.27 nm，约为单个水分子内共价 O−H 键长的两倍（图 2-8a）。水分子间氢键（约 5 kcal/mol）比共价 O−H 键（约 110 kcal/mol）弱得多，尽管它比生物分子中许多其他氢键（1–2 kcal/mol）强。水分子间广泛的分子间氢键解释了水的许多关键性质，包括异常高的熔点和沸点以及溶解许多其他分子的能力。</p>
 <p>不带电物质在水环境中的溶解度很大程度上取决于其与水形成氢键的能力。例如，醇（−CH₂OH）中的羟基（−OH）和胺（−CH₂NH₂）中的氨基（−NH₂）能与水形成多个氢键，使这些分子能高浓度溶于水（图 2-8b）。一般来说，具有易与水形成氢键的极性键的分子，以及与水偶极相互作用的带电分子和离子</p>
-<figure>
+<figure id="fig-2-8">
   <img class="zoomable" src="figures/fig_2-8_1.png" alt="图 2-8" onclick="lightbox(this.src)">
   <figcaption>图2-8 · 水与自身及与其他化合物的氢键。氧或氮原子中每对非键合外层电子可在氢键中接受一个氢原子。羟基和氨基也能与水形成氢键。(a) 液态水中的水-水氢键。(b) 水与醇（−CH₂OH）和胺（−CH₂NH₂）形成氢键，解释这些化合物的高溶解度。(c) 肽键和酯键（存在于许多生物分子中）常与水或其他分子极性基团形成氢键，通过羰基氧上原本非键合的电子。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -274,7 +384,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>都易溶于水，即亲水。许多生物分子除羟基和氨基外，还含肽键和酯键，它们通过羰基氧上原本非键合的电子与水形成氢键（图 2-8c）。X 射线晶体学结合计算分析可准确描绘能参与氢键的原子最外层未键合电子以及共价键中电子的分布，如图 2-9 所示。</p>
 <p>范德华相互作用是由瞬时偶极引起的弱吸引力</p>
 <p>当任意两个原子彼此接近时，它们产生一种弱的、非特异的吸引力，称为范德华相互作用。这些非特异相互作用源于</p>
-<figure>
+<figure id="fig-2-9">
   <img class="zoomable" src="figures/fig_2-9_1.png" alt="图 2-9" onclick="lightbox(this.src)">
   <figcaption>图2-9 · 肽键中成键电子和外层非键合电子的分布。所示为蛋白质 crambin 中连接两个氨基酸的肽键。没有蛋白质的结构被如此高分辨率地表征。X 射线晶体学结合计算分析可准确描绘能参与氢键的原子最外层未键合电子以及共价键中电子的分布。[来自美国国家科学院。] 肽键的 N−H 和 C=O 通过氢键与相邻肽键相互作用的能力是蛋白质二级结构的基础。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -295,7 +405,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>任何原子电子分布的瞬时随机涨落，造成电子瞬时不均等分布。如果两个非共价键合原子足够接近，一个原子的电子会扰动另一个的电子。这种扰动在第二个原子中产生瞬时偶极，两个偶极微弱相互吸引（图 2-10）。类似地，一个分子中的极性共价键吸引另一个分子中反向取向的偶极。</p>
 <p>范德华相互作用（涉及瞬时或永久偶极）发生于所有类型分子中，极性和非极性皆有。特别是，范德华相互作用是庚烷 CH₃−(CH₂)₅−CH₃ 等不能彼此形成氢键或离子相互作用的非极性分子间内聚的原因。范德华相互作用的强度随距离增加而迅速减弱；因此这些非共价相互作用</p>
-<figure>
+<figure id="fig-2-10">
   <img class="zoomable" src="figures/fig_2-10_1.png" alt="图 2-10" onclick="lightbox(this.src)">
   <figcaption>图2-10 · 处于范德华接触的两个氧分子。此模型中红色表示负电荷，蓝色表示正电荷。所有原子电子云中的瞬时偶极产生弱吸引力，称为范德华相互作用。每种原子有特征的共价半径和范德华半径。当两原子间范德华吸引力恰好平衡其两电子云间排斥力时，称原子处于范德华接触。范德华相互作用强度约 1 kcal/mol，比典型氢键弱。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -315,7 +425,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>非极性分子或分子的非极性部分由于称为疏水效应的现象而倾向于在水中聚集。由于水分子不能与非极性物质形成氢键，它们倾向于在非极性分子周围形成相对刚性的、氢键连接的五边形和六边形"笼"（图 2-11，左）。这种状态在能量上不利，因为它降低了水分子群体的熵或无序度。（熵在化学系统中的作用在 2.4 节讨论。）如果水环境中的非极性分子以疏水面彼此相对聚集，暴露于水的净疏水表面积减少（图 2-11，右）。因此，形成围绕非极性分子的笼所需的水减少，熵相对于未聚集状态增加，达到能量更有利的状态。从某种意义上说，水将非极性分子挤压成聚集体。与氢键中的吸引力不同，疏水效应源于避免不稳定状态--即围绕单个非极性分子的大量水笼。</p>
 <p>非极性分子也可通过范德华相互作用结合，尽管较弱。疏水效应和范德华相互作用的净结果是疏水分子彼此相互作用的强烈倾向，而非与水相互作用。简言之，相似相溶。极性分子溶于水等极性溶剂；非极性分子溶于己烷等非极性溶剂。</p>
 <p>一种著名的疏水分子是胆固醇（见 2.2 节的结构）。胆固醇、甘油三酯和其他难溶于水的分子称为脂质。与葡萄糖或</p>
-<figure>
+<figure id="fig-2-11">
   <img class="zoomable" src="figures/fig_2-11_1.png" alt="图 2-11" onclick="lightbox(this.src)">
   <figcaption>图2-11 · 疏水效应示意。溶液中非极性分子周围形成的水分子笼比周围体液水分子更有序（低熵）。非极性分子的聚集减少了参与形成高度有序笼的水分子数目，导致比未聚集状态（左）更高熵、能量更有利的状态（右）。从某种意义上说，水将非极性分子挤压成聚集体。疏水效应是蛋白质折叠和膜形成的主要驱动力。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -332,7 +442,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>非共价相互作用导致的分子互补性产生生物分子间的锁钥契合</p>
 <p>在细胞内外，离子和分子不断碰撞。任意两类分子浓度越高，它们相遇的可能性越大。当两个分子相遇时，最可能只是弹开，因为结合它们的非共价相互作用弱且在生理温度下短暂存在。然而，表现出分子互补性--形状、电荷或其他物理性质间的锁钥式契合--的分子可在近距离形成多个非共价相互作用。当两个结构互补的分子相碰时，这些多重相互作用使它们粘附或结合。</p>
 <p>图 2-12 展示了多个不同弱相互作用如何使两个假设蛋白质紧密结合。此类蛋白质-蛋白质分子互补的众多例子可见于全书（例如图 16-8、16-9、16-11）。几乎任何其他相同分子基团在两个表面上的排列都不允许分子如此紧密结合。蛋白质分子内区域间的此类分子互补使其折叠成独特的三维形状（见第 3 章）；它也将 DNA 的两条链维系在双螺旋中（见第 5 章）。类似相互作用是分子基团缔合成多分子组装体或复合物的基础，例如形成肌纤维、固体组织中细胞间的胶样结合以及众多其他细胞结构。帮助中和病原体的抗体（见第 23 章）也利用互补分子形状的类似原理与之结合。</p>
-<figure>
+<figure id="fig-2-12">
   <img class="zoomable" src="figures/fig_2-12_1.png" alt="图 2-12" onclick="lightbox(this.src)">
   <figcaption>图2-12 · 分子互补性通过多个非共价相互作用实现蛋白质紧密结合。两个蛋白质表面的互补形状、电荷、极性和疏水性允许形成多个弱相互作用，这些相互作用组合产生强相互作用和紧密结合。几乎任何其他相同基团排列都不允许分子如此紧密结合。分子互补性是蛋白质-蛋白质、蛋白质-核酸和酶-底物特异结合的基础。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -362,11 +472,11 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 弱且相对非特异的范德华相互作用源于所有分子相关的瞬时偶极间的吸引。两原子彼此接近时可形成（见图 2-10）。</p>
 <p>● 在水环境中，非极性分子或较大分子的非极性部分被疏水效应驱到一起，从而减少与水分子的直接接触（见图 2-11）。</p>
 <p>● 分子互补性是形状、电荷和其他物理性质互补的分子间的锁钥契合。互补分子间可形成多个非共价相互作用使其紧密结合（见图 2-12），非互补分子间则不能。</p>
-<h2>2.2 细胞的化学构建块</h2>
+<h2 id="sec-2.2">2.2 细胞的化学构建块</h2>
 <p>生物学的一个共同主题是由较小分子亚基构建大分子和大分子结构，这些亚基可视为构建块。这些亚基常常相似或相同。三大类生物大分子--蛋白质、核酸和多糖--都是由多个共价连接的小分子（单体）组成的多聚物（图 2-13）。蛋白质是含多达数千个由肽键连接的氨基酸的线性多聚物。核酸是含数百至数百万个由磷酸二酯键连接的核苷酸的线性多聚物。多糖是由糖苷键连接的单糖（如葡萄糖）的线性或分枝多聚物。</p>
 <p>尽管单体间共价键形成的实际机制复杂（如我们将见），两个单体间共价键的形成通常涉及一个单体净失去一个氢（H）、另一个单体净失去一个羟基（OH）--即净失去一分子水--因此可视为脱水反应。聚合物中释放单体亚基的共价键断裂涉及逆反应，即加水，称为水解。连接单体的共价键在正常生物条件（如 37 °C、中性 pH）下通常稳定，因此这些生物聚合物稳定，能在细胞中执行多种功能，如储存信息、催化化学反应、作为定义细胞形状和运动的结构元件等。大分子结构也可由非共价相互作用组装。细胞膜的双层结构由数千个称为磷脂的小分子的非共价组装构建（见图 2-13）。</p>
 <p>本章我们聚焦构成细胞的化学构建块--氨基酸、核苷酸、糖和磷脂。蛋白质、核酸、多糖和生物膜的结构、功能和组装在后续章节讨论。</p>
-<figure>
+<figure id="fig-2-13">
   <img class="zoomable" src="figures/fig_2-13_1.png" alt="图 2-13" onclick="lightbox(this.src)">
   <figcaption>图2-13 · 细胞主要化学构建块概述。(a) 三大类生物大分子各自由多个小分子（单体）聚合组装：蛋白质由氨基酸构成（见第 3 章），核酸由核苷酸构成（见第 5 章），多糖由糖构成。(b) 磷脂非共价组装成生物膜双层。每个磷脂分子有亲水头和疏水尾。双层中亲水头朝向膜两侧水环境，疏水尾埋在内部。膜中还有胆固醇和蛋白质。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -401,7 +511,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>仅侧链不同的氨基酸组成蛋白质</p>
 <p>蛋白质的单体构建块是 20 种氨基酸，当掺入蛋白质多聚物时常称为残基。所有氨基酸都有一个特征结构：中央 α 碳原子（Cα）与四个不同化学基团键合--氨基（−NH₂）、羧基或羧酸基（−COOH）（故称氨基酸）、氢原子（H）和一个可变基团（称为侧链或 R 基）。由于除甘氨酸外所有氨基酸的 α 碳都不对称，这些分子可以两种镜像形式存在，按惯例称为 d（右）和 l（左）异构体（见图 2-4）。两种异构体不能在不断裂并重新形成化学键的情况下相互转化。除罕见例外，蛋白质中只有 l 型氨基酸。但 d 型氨基酸常见于细菌细胞壁和其他微生物产物。</p>
 <p>要理解蛋白质的三维结构和功能（第 3 章详述），你必须熟悉氨基酸的一些独特性质，这些性质部分由其侧链决定。你不必记忆每种侧链的详细结构</p>
-<figure>
+<figure id="fig-2-14">
   <img class="zoomable" src="figures/fig_2-14_1.png" alt="图 2-14" onclick="lightbox(this.src)">
   <figcaption>图2-14 · 蛋白质的 20 种氨基酸。按侧链性质分类：非极性（疏水）氨基酸（含脂肪族：丙氨酸、缬氨酸、亮氨酸、异亮氨酸、甲硫氨酸；芳香族：苯丙氨酸、酪氨酸、色氨酸）、极性不带电氨基酸（丝氨酸、苏氨酸、天冬酰胺、谷氨酰胺、半胱氨酸）、带电氨基酸（碱性：精氨酸、赖氨酸、组氨酸；酸性：天冬氨酸、谷氨酸）、以及特殊氨基酸（甘氨酸、脯氨酸）。图中标注三字母和单字母缩写。除甘氨酸外所有氨基酸的 α 碳都不对称，存在 d 和 l 立体异构体，蛋白质中只用 l 型。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -442,19 +552,19 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>也能理解蛋白质如何工作，因为氨基酸可根据其侧链的大小、形状、电荷、疏水性（水溶性的度量）和化学反应性分为几大类（图 2-14）。</p>
 <p>含非极性侧链的氨基酸称为疏水氨基酸，在水中难溶。非极性侧链越大，氨基酸越疏水。丙氨酸、缬氨酸、亮氨酸和异亮氨酸的侧链是不成环的线性或分枝烃，因此称为脂肪族氨基酸。这些氨基酸都是非极性的，甲硫氨酸也如此（除含一个硫原子外与它们相似）。苯丙氨酸、酪氨酸和色氨酸的侧链含大的疏水性芳香环。后续章节将详述疏水侧链在疏水效应影响下如何常堆叠到蛋白质内部或排列于镶嵌在生物膜疏水区域的蛋白质表面。</p>
 <p>含极性侧链的氨基酸称为亲水氨基酸；最亲水的是侧链在细胞内外生物体液典型 pH（约 7）下带电荷（电离）的亚类（见 2.3 节）。精氨酸和赖氨酸有带正电的侧链，称为碱性氨基酸；天冬氨酸和谷氨酸由于侧链中的羧酸基而带负电（其带电形式称为天冬氨酸根和谷氨酸根），称为酸性氨基酸。第五种氨基酸组氨酸的侧链含一个带两个氮的环（称为咪唑），可根据环境酸度的微小变化从带正电转变为不带电：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-4">
   <img class="zoomable" src="figures/box_G2-4_1.png" alt="G2-4" onclick="lightbox(this.src)">
 </div>
 <p>许多蛋白质的活性通过组氨酸侧链的质子化或去质子化受环境酸度（pH）变化调节。天冬酰胺和谷氨酰胺不带电但有含酰胺基的极性侧链，具有广泛的氢键能力。类似地，丝氨酸和苏氨酸不带电但有极性羟基，也参与与其他极性分子的氢键。</p>
 <p>最后，半胱氨酸、甘氨酸和脯氨酸因其侧链的独特性质在蛋白质中发挥特殊作用。半胱氨酸的侧链含一个反应性巯基（−SH）。释放一个质子（H⁺）时，巯基转化为硫醇阴离子（S⁻）。硫醇阴离子在催化中起重要作用，特别是在某些破坏蛋白质的酶（蛋白酶）中。在蛋白质中，两个相邻巯基各自可被氧化（各释放一个质子和一个电子），形成共价二硫键（−S−S−）：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-5">
   <img class="zoomable" src="figures/box_G2-5_1.png" alt="G2-5" onclick="lightbox(this.src)">
 </div>
 <p>二硫键用于"交联"单个多肽链内的区域（分子内交联）或两条独立链之间（分子间交联）。二硫键稳定某些蛋白质的折叠结构。最小的氨基酸甘氨酸的 R 基是单个氢原子，其小尺寸使其能嵌入狭小空间。与其他常见氨基酸不同，脯氨酸的侧链弯曲形成环，共价键合到连接 Cα 的氨基中的氮原子。结果脯氨酸非常刚性，其氨基不能用于典型氢键。脯氨酸在蛋白质中的存在在多聚物链中造成固定弯折，限制其在脯氨酸残基附近的折叠方式。</p>
 <p>某些氨基酸在蛋白质中比其他更丰富。半胱氨酸、色氨酸和甲硫氨酸不常见：三者合计约占典型蛋白质中氨基酸的 5%。四种氨基酸--亮氨酸、丝氨酸、赖氨酸和谷氨酸--是最丰富的，占典型蛋白质所有残基的 32%。但特定蛋白质的氨基酸组成可能与这些值差异很大。</p>
 <p>人和其他哺乳动物能合成 20 种氨基酸中的 11 种。其余九种称为必需氨基酸，必须包含在饮食中以允许正常蛋白质生产。这些必需氨基酸是苯丙氨酸、缬氨酸、苏氨酸、色氨酸、异亮氨酸、甲硫氨酸、亮氨酸、赖氨酸和组氨酸。饲料中这些必需氨基酸的充分供给是畜牧业的关键。事实上，一种高赖氨酸含量的基因工程玉米品种现已用作促进动物生长的"强化"饲料。■</p>
 <p>尽管细胞在蛋白质初始合成中使用图 2-14 所示的 20 种氨基酸，但细胞蛋白质分析显示它们含 100 多种不同氨基酸。差异源于某些氨基酸掺入蛋白质后通过添加多种化学基团的化学修饰（图 2-15）。一种重要修饰是向氨基酸添加乙酰基（CH₃CO），即乙酰化。另一种是向丝氨酸、苏氨酸和酪氨酸残基的羟基添加磷酸基（PO₄），即磷酸化。我们将遇到许多通过可逆磷酸化和去磷酸化调节活性的蛋白质。组氨酸侧链氮的磷酸化在细菌、真菌和植物中广为人知，但在哺乳动物中研究较少--可能因磷酸化组氨酸相对不稳定--且显然罕见。称为组蛋白的蛋白质上精氨酸和赖氨酸侧链的甲基化是真核生物基因表达的重要调节因子（见第 9 章）。与磷酸化和去磷酸化一样，受控的甲基化和去甲基化是重要的调节过程。天冬酰胺、丝氨酸和苏氨酸的侧链是糖基化位点（附着线性和分枝碳水化合物链）。许多分泌蛋白和膜蛋白含糖基化残基，特定丝氨酸和苏氨酸上羟基被 N-乙酰葡糖胺可逆修饰也调节蛋白质活性。其他见于特定蛋白质的氨基酸修饰包括胶原中脯氨酸和赖氨酸残基的羟基化（见第 19 章）、膜受体中组氨酸残基的甲基化，以及凝血因子（如凝血酶原）中谷氨酸的 γ-羧化。天冬酰胺和</p>
-<figure>
+<figure id="fig-2-15">
   <img class="zoomable" src="figures/fig_2-15_1.png" alt="图 2-15" onclick="lightbox(this.src)">
   <figcaption>图2-15 · 蛋白质中氨基酸侧链的常见修饰。这些修饰残基及众多其他修饰残基通过在多肽链合成中或合成后向氨基酸侧链添加各种化学基团（红色）形成。包括磷酸化（丝氨酸、苏氨酸、酪氨酸、组氨酸）、乙酰化（赖氨酸、N 端）、甲基化（精氨酸、赖氨酸、组氨酸）、糖基化（天冬酰胺、丝氨酸、苏氨酸）、羟基化（脯氨酸、赖氨酸）、γ-羧化（谷氨酸）、泛素化（赖氨酸）等。这些可逆修饰是调节蛋白质活性的重要机制。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -474,14 +584,14 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>谷氨酰胺脱氨形成相应酸性氨基酸（天冬氨酸根和谷氨酸根）也是常见现象。</p>
 <p>N 端残基氨基的乙酰化是最常见的氨基酸化学修饰形式，影响约 80% 的蛋白质：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-6">
   <img class="zoomable" src="figures/box_G2-6_1.png" alt="G2-6" onclick="lightbox(this.src)">
 </div>
 <p>此修饰可能在控制细胞内蛋白质寿命方面起重要作用，因为许多非乙酰化蛋白质被迅速降解。</p>
 <p>五种不同核苷酸用于构建核酸</p>
 <p>两类化学上相似的核酸--DNA（脱氧核糖核酸）和 RNA（核糖核酸）--是细胞携带遗传信息的主要分子。构建 DNA 和 RNA 多聚物的单体称为核苷酸，都有共同结构：一个磷酸基通过磷酸酯键连接到戊糖（五碳糖），后者再连接到含氮和碳的环结构（常称为碱基）（图 2-16a）。RNA 中戊糖是核糖；DNA 中是脱氧核糖，其在 2' 位是质子而非羟基（图 2-16b）。碱基腺嘌呤、鸟嘌呤和胞嘧啶（图 2-17）见于 DNA 和 RNA；胸腺嘧啶仅见于 DNA，尿嘧啶仅见于 RNA。</p>
 <p>腺嘌呤和鸟嘌呤是嘌呤（含一对稠合环）；胞嘧啶、胸腺嘧啶和尿嘧啶是嘧啶（含单环，见图 2-17）。碱基常缩写为 A、G、C、T 和 U；这些单字母缩写也常用于表示核酸多聚物中的整个核苷酸。核苷酸中，糖（核糖或脱氧核糖）的 1' 碳原子连接到嘌呤的 9 位氮（N9）或嘧啶的 1 位氮（N1）。核苷酸的酸性特征源于磷酸基，在正常胞内条件下释放氢</p>
-<figure>
+<figure id="fig-2-16">
   <img class="zoomable" src="figures/fig_2-16_1.png" alt="图 2-16" onclick="lightbox(this.src)">
   <figcaption>图2-16 · 核苷酸的共同结构。(a) 腺苷 5'-一磷酸（AMP），RNA 中的核苷酸。戊糖的碳原子以带撇号数字编号。天然核苷酸中，1' 碳通过 β 构型连接与碱基相连。核苷酸由磷酸基、戊糖和含氮碱基三部分组成。(b) RNA 中戊糖为核糖，DNA 中为脱氧核糖（2' 位为 H 而非 OH）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -501,7 +611,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">sugar ring</td><td class="gl-zh">糖环</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-2-17">
   <img class="zoomable" src="figures/fig_2-17_1.png" alt="图 2-17" onclick="lightbox(this.src)">
   <figcaption>图2-17 · 核酸中主要碱基的化学结构。核酸和核苷酸中，嘌呤的 9 位氮和嘧啶的 1 位氮（红色）键合到核糖或脱氧核糖的 1' 碳。U 只见于 RNA，T 只见于 DNA。RNA 和 DNA 都含 A、G、C。腺嘌呤（A）和鸟嘌呤（G）是嘌呤（含两环）；胞嘧啶（C）、胸腺嘧啶（T）和尿嘧啶（U）是嘧啶（含一环）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -518,12 +628,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">deoxyribose</td><td class="gl-zh">脱氧核糖</td></tr>
   </table>
 </figure>
-<div class="boximg">
+<div class="boximg" id="box-G2-7">
   <img class="zoomable" src="figures/box_G2-7_1.png" alt="G2-7" onclick="lightbox(this.src)">
 </div>
 <p>离子（H⁺），使磷酸带负电（见图 2-16a）。细胞中大多数核酸与蛋白质结合，蛋白质与带负电磷酸形成离子相互作用。</p>
 <p>生物体的细胞和胞外液体含低浓度的核苷--碱基与糖的组合（不含磷酸）。核苷酸是 5' 羟基上酯化有一个、两个或三个磷酸基的核苷。酯化（酯的形成）涉及酸（如羧酸或磷酸）与醇的共价连接，伴随酸释放羟基（−OH）和另一分子羟基释放 H，共同形成水分子。此处磷酸与核糖的 5' 羟基酯化。核苷一磷酸有单个酯化磷酸（见图 2-16a）；核苷二磷酸含焦磷酸基：</p>
-<figure class="table">
+<figure class="table" id="tab-T2-3">
   <img class="zoomable" src="figures/tab_T2-3_1.png" alt="表 T2-3" onclick="lightbox(this.src)">
   <figcaption>表2-3 · 核苷和核苷酸术语。列出碱基、RNA/DNA 中核苷、核苷一/二/三磷酸、脱氧核苷一/二/三磷酸的命名对照。嘌呤（腺嘌呤 A、鸟嘌呤 G），嘧啶（胞嘧啶 C、胸腺嘧啶 T、尿嘧啶 U）。核苷 = 碱基 + 糖；核苷酸 = 核苷 + 磷酸。ATP/GTP/CTP/UTP 用于 RNA 合成，dATP/dGTP/dCTP/dTTP 用于 DNA 合成。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -558,15 +668,15 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>核苷三磷酸有第三个磷酸。表 2-3 列出核酸中核苷和核苷酸的名称及各种核苷磷酸形式。核苷三磷酸用于核酸合成（第 5 章）。GTP 参与胞内信号传导并作为能量储库（特别是蛋白质合成），ATP（本章稍后讨论）是使用最广泛的生物能量载体。</p>
 <p>单糖共价组装成线性和分枝多糖</p>
 <p>多糖的构建块是简单糖或单糖。单糖是碳水化合物，字面意思是碳与水的一比一共价结合（CH₂O）ₙ，n 等于 3、4、5、6 或 7。己糖（n=6）和戊糖（n=5）是最常见的单糖。所有单糖含羟基（−OH）和醛基或酮基：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-8">
   <img class="zoomable" src="figures/box_G2-8_1.png" alt="G2-8" onclick="lightbox(this.src)">
 </div>
 <p>许多生物学重要的糖是己糖，包括葡萄糖、甘露糖和半乳糖（图 2-18）。甘露糖与葡萄糖的差别仅在碳 2 上基团取向相反。类似地，半乳糖与葡萄糖的差别仅在碳 4 上基团取向。葡萄糖与甘露糖或半乳糖的互变需要断裂和形成共价键；此类反应由差向异构酶催化。</p>
 <p>d-葡萄糖（C₆H₁₂O₆）是复杂多细胞生物中大多数细胞的主要外部能源。它可存在三种形式：线性结构和两种不同的半缩醛环结构（图 2-18a）。碳 1 的醛基与碳 5 的羟基结合，形成的半缩醛 d-葡萄吡喃糖含六元环。d-葡萄吡喃糖的 α 异头物中，碳 1 的羟基从环"向下"；</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-9">
   <img class="zoomable" src="figures/box_G2-9_1.png" alt="G2-9" onclick="lightbox(this.src)">
 </div>
-<figure>
+<figure id="fig-2-18">
   <img class="zoomable" src="figures/fig_2-18_1.png" alt="图 2-18" onclick="lightbox(this.src)">
   <figcaption>图2-18 · 己糖的化学结构。所有己糖有相同化学式（C₆H₁₂O₆）并含醛基或酮基。(a) d-葡萄糖的环形式由线性分子经碳 1 醛基与碳 5 或碳 4 羟基反应生成。α 和 β 异头物及开链形式在溶液中互变。生物系统中 d-葡萄糖的吡喃糖（六元环）形式占主导。(b) 甘露糖与葡萄糖的差别仅在碳 2 上基团取向。半乳糖与葡萄糖的差别在碳 4。差向异构酶催化这些糖的互变。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -588,7 +698,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>图 2-18a 的吡喃糖环描绘为平面。实际上，由于碳原子的四面体几何，吡喃糖环最稳定构象是非平面的椅形。此构象中，从环碳到非环原子（如 H 或 O）的每个键要么近乎垂直于环（轴向 a），要么近乎在环平面内（赤道 e）：</p>
 <p>由两个单糖形成的二糖是最简单的多糖。二糖乳糖由半乳糖和葡萄糖组成，是奶中的主要糖；二糖蔗糖由葡萄糖和果糖组成，是植物光合作用的主要产物，精制为普通食糖（图 2-19）。</p>
 <p>较大的多糖（含数十至数百个单糖单位）可作为葡萄糖储库、结构组分或帮助组织中细胞结合的黏合剂。动物细胞中最常见的储存碳水化合物是糖原（葡萄糖的高度分枝多聚物）。肝脏重量的 10% 可为糖原。植物细胞中的主要储存碳水化合物淀粉也是葡萄糖多聚物，有不分枝（直链淀粉）和轻度分枝（支链淀粉）形式。糖原和淀粉都由葡萄糖的 α 异头物组成。相反，植物细胞壁的主要成分纤维素（赋予许多植物结构硬度，见第 19 章）是葡萄糖 β 异头物的不分枝多聚物。人消化酶能水解淀粉中的 α 糖苷键但不能水解纤维素中的 β 糖苷键。许多植物、细菌和霉菌产生纤维素降解酶。牛和白蚁能分解纤维素，因为肠道内有纤维素降解细菌。细菌细胞壁由肽聚糖（被肽交联桥交联的多糖链）组成，赋予刚性和细胞形状。人泪和胃肠液含溶菌酶，能水解细菌细胞壁中的肽聚糖。</p>
-<figure>
+<figure id="fig-2-19">
   <img class="zoomable" src="figures/fig_2-19_1.png" alt="图 2-19" onclick="lightbox(this.src)">
   <figcaption>图2-19 · 二糖乳糖和蔗糖的形成。任何糖苷键中，一种糖分子的异头碳（α 或 β 构型）连接到另一种糖的羟基氧。连接据此命名；乳糖含 β(1→4) 糖苷键，蔗糖含 α,β(1→2) 糖苷键。乳糖由半乳糖 + 葡萄糖组成，蔗糖由葡萄糖 + 果糖组成。糖苷键由糖苷键形成酶催化，对 α 或 β 异头物特异。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -606,7 +716,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>形成糖苷键（将单糖连接成多糖）的酶对一种糖的 α 或 β 异头物和另一种糖的特定羟基特异。原则上，任意两个糖分子可以多种方式连接，因为每个单糖有多个可参与糖苷键形成的羟基。此外，任一单糖可能连接到两个以上其他单糖，从而产生分枝点和非线性多聚物。糖苷键通常在生长的多糖链与单糖的共价修饰形式之间形成。此类修饰包括添加磷酸（如葡萄糖-6-磷酸）或核苷酸（如 UDP-半乳糖）：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-10">
   <img class="zoomable" src="figures/box_G2-10_1.png" alt="G2-10" onclick="lightbox(this.src)">
 </div>
 <p>互转不同单糖的差向异构酶常使用核苷酸糖而非未修饰的"游离"糖。</p>
@@ -616,7 +726,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>要理解磷脂分子结构，我们必须理解其每个组成部分及如何组装。磷脂分子由两个长链非极性脂肪酸基（通常经酯键）连接到小的强极性基团组成，包括短有机分子如甘油（三羟丙烷）、一个磷酸基，以及通常一个小的有机分子（图 2-20）。</p>
 <p>脂肪酸由连接到羧基（−COOH）的烃链组成。与葡萄糖一样，脂肪酸是许多细胞的重要能源（见第 12 章）。它们长度不同，但细胞中主要脂肪酸含偶数碳原子，通常 14、16、18 或 20。磷脂中主要脂肪酸见表 2-4。脂肪酸常以缩写 Cx:y 表示，x 为链中碳数，y 为双键数。含 12 个或更多碳原子的脂肪酸因长疏水烃链而在水溶液中几乎不溶。</p>
 <p>所有碳-碳键都是单键（即无碳-碳双键）的脂肪酸称为饱和；含至少一个碳-碳双键的称为不饱和。</p>
-<figure>
+<figure id="fig-2-20">
   <img class="zoomable" src="figures/fig_2-20_1.png" alt="图 2-20" onclick="lightbox(this.src)">
   <figcaption>图2-20 · 磷脂酰胆碱，典型磷酸甘油酯。所有磷酸甘油酯都是两亲性磷脂，有疏水尾（黄色，两条脂肪酸链）和亲水头（蓝色），甘油通过磷酸基连接到醇（胆碱）。脂肪酸通过酯键连接到甘油。磷酸和其酯化基团构成亲水头，脂肪酸链为疏水尾。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -638,10 +748,10 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>含多个碳-碳双键的不饱和脂肪酸称为多不饱和。两种"必需"多不饱和脂肪酸--亚油酸（C18:2）和亚麻酸（C18:3）--哺乳动物不能合成，必须由饮食供给。哺乳动物能合成其他常见脂肪酸。</p>
 <p>磷脂中，脂肪酸通过酯化共价连接到另一分子。此反应形成的组合分子中，来自脂肪酸的部分称为酰基或脂肪酰基。最常见磷脂形式--磷酸甘油酯-- illustrate 此结构，它含两个酰基连接到甘油三个羟基中的两个（见图 2-20）。</p>
 <p>磷酸甘油酯中，甘油的一个羟基酯化到磷酸，另两个通常酯化到脂肪酸。最简单的磷脂磷脂酸仅含这些组分。磷脂酸等磷脂不仅是膜构建块，还是重要信号分子。溶血磷脂酸（2 位酰链被去除）相对水溶，可是细胞分裂的有效诱导剂（促细胞分裂剂）。在膜中发现的大多数磷脂中，磷酸基也酯化到另一亲水化合物的羟基。例如磷脂酰胆碱，</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-11">
   <img class="zoomable" src="figures/box_G2-11_1.png" alt="G2-11" onclick="lightbox(this.src)">
 </div>
-<figure class="table">
+<figure class="table" id="tab-T2-4">
   <img class="zoomable" src="figures/tab_T2-4_1.png" alt="表 T2-4" onclick="lightbox(this.src)">
   <figcaption>表2-4 · 磷脂中主要脂肪酸。列出饱和（豆蔻酸 C14:0、棕榈酸 C16:0、硬脂酸 C18:0）和不饱和（油酸 C18:1、亚油酸 C18:2、花生四烯酸 C20:4）脂肪酸的常用名、离子化形式、缩写（Cx:y）、碳数和双键数。亚油酸和亚麻酸是必需脂肪酸（哺乳动物不能合成）。Cx:y 中 x 为碳数，y 为双键数。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -661,7 +771,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>胆碱连接到磷酸（见图 2-20）。带负电的磷酸及酯化到它的带电或极性基团能与水强烈相互作用。磷酸及其相关酯化基团构成磷脂的"头"基（亲水），而脂肪酰链（"尾"）疏水。其他常见磷酸甘油酯及相关头基见表 2-5。像磷脂这样既有疏水区又有亲水区的分子称为两亲性。第 7 章将见磷脂的两亲性如何使其组装成片状双层，脂肪酰尾指向片中心，头基指向外的水环境（见图 2-13）。</p>
 <p>脂肪酰基也可共价连接到其他脂肪分子，包括三酰甘油（含三个酯化到甘油的酰基）：</p>
-<figure class="table">
+<figure class="table" id="tab-T2-5">
   <img class="zoomable" src="figures/tab_T2-5_1.png" alt="表 T2-5" onclick="lightbox(this.src)">
   <figcaption>表2-5 · 常见磷酸甘油酯及头基。磷脂酰胆碱（头基胆碱）、磷脂酰乙醇胺（乙醇胺）、磷脂酰丝氨酸（丝氨酸）、磷脂酰肌醇（肌醇）等。头基决定磷脂的化学性质和功能。磷脂酰胆碱是膜中最丰富的磷脂之一。磷脂酰肌醇在信号传导中重要（可被磷酸化生成 PIP₂、IP₃、DAG 等第二信使）。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -677,20 +787,20 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">inositol</td><td class="gl-zh">肌醇</td></tr>
   </table>
 </figure>
-<div class="boximg">
+<div class="boximg" id="box-G2-12">
   <img class="zoomable" src="figures/box_G2-12_1.png" alt="G2-12" onclick="lightbox(this.src)">
 </div>
 <p>它们也可共价连接到强疏水分子胆固醇（一种醇）形成胆固醇酯：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-13">
   <img class="zoomable" src="figures/box_G2-13_1.png" alt="G2-13" onclick="lightbox(this.src)">
 </div>
-<div class="boximg">
+<div class="boximg" id="box-G2-14">
   <img class="zoomable" src="figures/box_G2-14_1.png" alt="G2-14" onclick="lightbox(this.src)">
 </div>
 <p>三酰甘油和胆固醇酯是极不溶于水的分子，脂肪酸和胆固醇在其中储存或运输。三酰甘油是脂肪细胞中脂肪酸的储存形式，是膳食脂肪的主要成分。胆固醇酯和三酰甘油通过血流在专门载体（脂蛋白）中在组织间运输（见第 14 章）。</p>
 <p>如上所述，作为磷脂和三酰甘油关键组分的脂肪酸可为饱和或不饱和。不饱和脂肪酸中碳-碳双键（C=C）的一个重要后果是每个双键周围可能有两种立体异构构型（顺式和反式）：</p>
 <p>顺式双键在饱和脂肪酸原本柔性的直酰链中引入刚性弯折（图 2-21）。一般来说，生物系统中的不饱和脂肪酸只含顺式双键。无双折的饱和脂肪酸可紧密堆叠，熔点高于不饱和脂肪酸。黄油中的主要脂肪分子是含饱和脂肪酰链的三酰甘油，故黄油常温下通常为固态。含顺式双键折的不饱和脂肪酰链不能像饱和链那样紧密堆叠。故由含不饱和脂肪酰基三酰甘油组成的植物油常温下通常为液态。植物油可部分氢化以将部分不饱和脂肪酰链转化为饱和脂肪酰链。结果氢化植物油可塑造成人造黄油固体条。氢化反应的副产品是一些脂肪酰链转化为反式脂肪酸（俗称"反式脂肪"）。这些"反式脂肪"见于部分氢化人造黄油和其他食品，非天然。饱和和反式脂肪酸物理性质相似，如常温下常为固态。相对于不饱和脂肪，其消费与血浆胆固醇水平升高相关，一些营养学家不鼓励。■</p>
-<figure>
+<figure id="fig-2-21">
   <img class="zoomable" src="figures/fig_2-21_1.png" alt="图 2-21" onclick="lightbox(this.src)">
   <figcaption>图2-21 · 双键对脂肪酸形状的影响。所示为饱和脂肪酸棕榈酸（16C，C16:0）和不饱和脂肪酸油酸（18:1，含顺式双键）的离子化形式化学结构。顺式双键在 otherwise 柔性直酰链中引入刚性弯折。饱和脂肪酸可紧密堆叠（高熔点，如黄油固态）；不饱和脂肪酸因弯折不能紧密堆叠（低熔点，如植物油液态）。部分氢化产生反式脂肪。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -716,12 +826,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 葡萄糖和其他己糖可存在三种形式：开链线性结构、六元（吡喃糖）环和五元（呋喃糖）环（见图 2-18）。生物系统中 d-葡萄糖的吡喃糖形式占主导。</p>
 <p>● 糖苷键在一种糖的 α 或 β 异头物与另一种糖的羟基之间形成，导致二糖和其他多糖形成（见图 2-19）。</p>
 <p>● 磷脂是两亲性分子，疏水尾（常两条脂肪酰链）通过小有机分子（常甘油）连接到亲水头（见图 2-20）。</p>
-<h2>2.3 化学反应与化学平衡</h2>
+<h2 id="sec-2.3">2.3 化学反应与化学平衡</h2>
 <p>我们现在转向化学反应，其中反应物化学物质中的键（主要是共价键）被断裂、新键形成以产生反应产物。任何时刻，每个细胞中同时发生数百种不同化学反应，许多化学物质原则上可经历多种化学反应。反应能进行的程度和发生的速率共同决定细胞的化学组成。本节讨论平衡和稳态的概念，以及解离常数和 pH。这些概念在全书反复出现，熟悉它们很重要。2.4 节我们讨论能量如何影响化学反应的程度和速率。</p>
 <p>化学反应在正向和逆向反应速率相等时处于平衡</p>
 <p>当反应物最初混合（尚无产物形成）时，形成产物的正向反应速率部分由反应物初始浓度决定，后者决定反应物相碰并反应的可能性（图 2-22）。随着反应产物积累，每个反应物浓度降低，正向反应速率也降低。同时，一些产物分子开始参与逆向反应，重新形成反应物。反应"倒退"的能力称为微观可逆性。逆反应起初慢，但随产物浓度增加而加速。最终，正向和逆向反应速率相等，反应物和产物浓度停止变化。此时称系统处于化学平衡。</p>
 <p>达到平衡时产物浓度与反应物浓度之比称为平衡常数（Keq），是固定值。因此 Keq 提供了反应达到平衡时所进行程度的度量。催化剂可增加化学反应速率，但不改变平衡常数（见 2.4 节）。催化剂加速共价键的形成和断裂，但本身在反应中不被永久改变。</p>
-<figure>
+<figure id="fig-2-22">
   <img class="zoomable" src="figures/fig_2-22_1.png" alt="图 2-22" onclick="lightbox(this.src)">
   <figcaption>图2-22 · 化学反应速率的时间依赖性。反应的正向和逆向速率部分取决于反应物和产物的初始浓度。随反应物浓度降低，净正向反应速率减慢；而随产物积累，净逆向反应速率加快。最终正向和逆向速率相等，反应物和产物浓度不再变化，系统达到化学平衡。此时平衡常数 Keq = [产物]/[反应物] 为固定值。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -749,7 +859,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>当我们想思考化学反应发生时释放或吸收的能量时，Keq 概念特别有用。2.4 节将详细讨论。</p>
 <p>细胞中的化学反应处于稳态</p>
 <p>在适当条件下并给予足够时间，试管中进行的单一生化反应最终达到平衡，此时反应物和产物浓度不随时间变化，因为</p>
-<figure>
+<figure id="fig-2-23">
   <img class="zoomable" src="figures/fig_2-23_1.png" alt="图 2-23" onclick="lightbox(this.src)">
   <figcaption>图2-23 · 平衡与稳态反应的比较。(a) 试管中生化反应（A ⇌ B）最终达到平衡，正向和逆向反应速率相等（等长反应箭头表示）。(b) 细胞中相连反应处于稳态：产物被后续反应消耗或移除，故浓度保持恒定但非平衡。稳态下中间体形成速率等于消耗速率，浓度不随时间变化。稳态防止中间体过度积累。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -773,7 +883,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>值得注意的是，在此类结合反应中，当一半 DNA 与蛋白质结合（[PD] = [D]）时，P 的浓度等于 Kd。Kd 越低，结合一半 D 所需的 P 浓度越低。换言之，Kd 越低，P 与 D 的结合越紧（亲和力越高）。</p>
 <p>通常，蛋白质与特定 DNA 序列的结合表现出 Kd 为 10⁻¹⁰ M（M 表示摩尔浓度，即摩尔每升 mol/L）。为将此解离常数的量级与胞内结合/未结合 DNA 比率联系起来，让我们考虑一个简单例子：体积为 1.5 × 10⁻¹⁵ L 的细菌细胞，含 1 个 DNA 分子和 10 个 DNA 结合蛋白 P 分子。此情况下，给定 Kd 为 10⁻¹⁰ M 且细胞中 P 总浓度（约 111 × 10⁻¹⁰ M，约比 Kd 高百倍），99% 的时间该特定 DNA 序列将有蛋白分子结合，1% 的时间没有，尽管细胞只含 10 个蛋白分子！显然 P 和 D 彼此高亲和力、紧密结合，这反映在其结合反应的低解离常数值上。对于蛋白质-蛋白质和蛋白质-DNA 结合，Kd 约 10⁻⁹ M（纳摩尔）被视为紧密，约 10⁻⁶ M（微摩尔）中等紧密，约 10⁻³ M（毫摩尔）相对较弱。</p>
 <p>像蛋白质这样的大型生物大分子可有多个结合表面，同时结合多个分子（图 2-24）。某些情况下，这些结合反应独立，各有独立的 Kd 值且互不影响。其他情况下，一个分子在大分子某位点结合可改变远处位点的三维形状或构象，从而改变该远处位点与其他分子的结合相互作用。</p>
-<figure>
+<figure id="fig-2-24">
   <img class="zoomable" src="figures/fig_2-24_1.png" alt="图 2-24" onclick="lightbox(this.src)">
   <figcaption>图2-24 · 大分子可有多个配体的独立结合位点。大型大分子（如蛋白质，蓝色）有三个独立结合位点（A–C），每个结合不同配体，各有独立 Kd。分子互补性决定结合特异性。一个分子在某位点结合可改变远处位点构象从而改变其结合（别构效应）。氨基酸侧链修饰常贡献于此类结合相互作用所需的分子形状。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -788,7 +898,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">polysaccharide</td><td class="gl-zh">多糖</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-2-25">
   <img class="zoomable" src="figures/fig_2-25_1.png" alt="图 2-25" onclick="lightbox(this.src)">
   <figcaption>图2-25 · 常见溶液的 pH 值。水溶液 pH 是氢离子浓度的负对数。大多数胞内和胞外生物液体 pH 值近 7，被精心调节以允许细胞、细胞器和酶正常运作。pH 7 为中性，低于 7 酸性（如胃液 pH 约 1），高于 7 碱性。pH 相差 1 表示质子浓度差 10 倍。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -826,7 +936,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>pH = −log [H⁺] = log(1/[H⁺]) = log(1/10⁻⁷) = 7</p>
 <p>重要的是记住，pH 相差一个单位代表质子浓度相差十倍。在 pH 标度上，7.0 为中性：低于 7.0 表示酸性溶液（[H⁺] 较高），高于 7.0 表示碱性溶液（图 2-25）。例如，富含盐酸（HCl）的胃液 pH 约 1，其 [H⁺] 约为 pH 约 7.2–7.4 的细胞质的 100 万倍。</p>
 <p>虽然细胞质 pH 通常约 7.2，但真核细胞中某些细胞器（见第 1 章）内部可有低得多的 pH。例如溶酶体内部（腔）液体 pH 约 4.5。</p>
-<figure>
+<figure id="fig-2-26">
   <img class="zoomable" src="figures/fig_2-26_1.png" alt="图 2-26" onclick="lightbox(this.src)">
   <figcaption>图2-26 · pH、pKa 和酸解离之间的关系。随碳酸溶液 pH 从 0 升至 8.5，未解离形式（H₂CO₃）从 100% 减少，电离形式增加。pKa 等于半数分子解离时的 pH。当 [A⁻] = [HA] 时，log([A⁻]/[HA]) = 0，故 pKa = pH。Henderson-Hasselbalch 方程（pH = pKa + log[A⁻]/[HA]）允许计算给定 pH 和 pKa 下的解离程度。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -843,7 +953,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>氢离子由酸释放、被碱摄取</p>
 <p>一般而言，酸是倾向于释放氢离子（H⁺）的任何分子、离子或化学基团，如羧基（−COOH）倾向于解离形成带负电的羧酸根离子（−COO⁻）；或盐酸（HCl）。相反，碱是易于结合 H⁺ 的任何分子、离子或化学基团，如氢氧根离子（OH⁻）；氨（NH₃）形成铵离子（NH₄⁺）；或氨基（−NH₂）。向水溶液加酸时，[H⁺] 增加，pH 下降。相反，加碱时 [H⁺] 减少，pH 上升。因 [H⁺][OH⁻] = 10⁻¹⁴ M²，[H⁺] 的任何增加都伴随 [OH⁻] 的相应减少，反之亦然。</p>
 <p>许多生物分子既含酸性基团又含碱性基团。例如在中性溶液（pH = 7.0）中，许多氨基酸主要以双重电离形式存在，其中羧基失去一个质子、氨基接受一个质子：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-15">
   <img class="zoomable" src="figures/box_G2-15_1.png" alt="G2-15" onclick="lightbox(this.src)">
 </div>
 <p>其中 R 代表不带电侧链。这种含等量正负离子的分子称为两性离子。两性离子无净电荷，呈中性。在极端 pH 值下，氨基酸这两个可电离基团中只有一个带电：低 pH 时为 −NH₃⁺，高 pH 时为 −COO⁻。酸（或较大分子中的酸基）HA 的解离反应可写为 HA ⇌ H⁺ + A⁻。此反应的平衡常数记为 Ka（下标 a 代表"acid"），定义为 Ka = [H⁺][A⁻]/[HA]。两边取对数并重排，得到平衡常数与 pH 之间非常有用的关系：</p>
@@ -852,7 +962,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>由此表达式（通常称为 Henderson-Hasselbalch 方程）可见，任何酸的 pKa 等于半数分子解离、半数中性（未解离）时的 pH。这是因为当 [A⁻] = [HA] 时，log([A⁻]/[HA]) = 0，故 pKa = pH。Henderson-Hasselbalch 方程允许我们在已知溶液 pH 和酸 pKa 时计算酸的解离程度（即解离和未解离形式之比）。实验上，通过测量 [A⁻] 和 [HA] 随溶液 pH 的变化，可计算酸的 pKa，从而得到解离反应的平衡常数 Ka（图 2-26）。知道分子的 pKa 不仅提供了其性质的重要描述，还允许我们利用这些性质来操控水溶液的酸度，并理解生物系统如何控制其水溶液的这一关键特征。</p>
 <p>缓冲液维持胞内和胞外液体的 pH</p>
 <p>活的、活跃代谢的细胞必须在细胞质中维持约 7.2–7.4 的恒定 pH，即使其代谢产生许多酸。细胞有弱碱和弱酸的储备，称为缓冲液，确保细胞质 pH 保持相对恒定，尽管代谢产生或细胞摄取/分泌分子和离子产生的 H⁺ 或 OH⁻ 量有小波动。缓冲液通过"吸收"代谢产生或添加到细胞的过量 H⁺ 或 OH⁻ 来实现。如下所见，当溶液 pH 与缓冲液 pKa 相近时，缓冲液在防止 pH 变化方面最有效。</p>
-<figure>
+<figure id="fig-2-27">
   <img class="zoomable" src="figures/fig_2-27_1.png" alt="图 2-27" onclick="lightbox(this.src)">
   <figcaption>图2-27 · 缓冲液醋酸（CH₃COOH）的滴定曲线。醋酸解离为氢和醋酸根离子的 pKa 为 4.75。此 pH 时一半酸分子解离。因 pH 为对数标度，溶液从 91% CH₃COOH（pH 3.75，pKa 以下 1 单位）变为 91% CH₃COO⁻（pH 5.75，pKa 以上 1 单位）。在 pKa 附近一个 pH 单位内缓冲容量最大。pKa 上下超过一个单位的 pH 值缓冲容量迅速下降。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -867,7 +977,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <p>若向 pH 等于缓冲液 pKa（[HA] = [A⁻]）的缓冲溶液加额外酸（或碱），溶液 pH 会变化，但变化比无缓冲液时小。这是因为加入酸释放的质子被缓冲液电离形式（A⁻）吸收；同样，加碱产生的氢氧根离子被未解离缓冲液（HA）释放的质子中和。缓冲液或任何其他物质释放或吸收氢离子的能力部分取决于该物质已吸收或释放质子的程度，后者又取决于溶液 pH 相对于该物质 pKa 的关系。缓冲液最小化 pH 变化的能力（缓冲容量）取决于缓冲液浓度及其 pKa 值与 pH 的关系，由 Henderson-Hasselbalch 方程表达。</p>
-<figure>
+<figure id="fig-2-28">
   <img class="zoomable" src="figures/fig_2-28_1.png" alt="图 2-28" onclick="lightbox(this.src)">
   <figcaption>图2-28 · 磷酸（H₃PO₄）的滴定曲线，生物系统中常见缓冲液。此生物普遍存在的分子有三个在不同 pH 解离的氢原子，故磷酸有三个 pKa 值（约 2.2、7.2、12.4）。着色区域表示有效缓冲范围。pH 7.2 时（第二 pKa），约 50% 细胞磷酸为 H₂PO₄⁻、约 50% 为 HPO₄²⁻，故磷酸是胞质（pH 约 7.2）和血液（pH 7.4）的优秀缓冲液。蛋白质的氨基酸侧链也可作缓冲液。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -893,7 +1003,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 两分子非共价结合的解离常数 Kd 是所形成复合物（如配体-受体或蛋白质-DNA 复合物）稳定性的度量。Kd 约 10⁻⁹ M（纳摩尔）为紧密，约 10⁻⁶ M（微摩尔）中等紧密，约 10⁻³ M（毫摩尔）相对较弱。</p>
 <p>● pH 是氢离子浓度的负对数（−log [H⁺]）。细胞质 pH 通常约 7.2–7.4，而溶酶体内部 pH 约 4.5。</p>
 <p>● 酸释放质子（H⁺），碱结合质子。</p>
-<h2>2.4 生化能学</h2>
+<h2 id="sec-2.4">2.4 生化能学</h2>
 <p>能量的转化、储存和使用是细胞经济学的核心。能量可定义为做功的能力，这一概念对细胞与对汽车引擎和发电厂同样适用。储存在化学键内的能量可被利用以支持化学工作和细胞的物理运动。</p>
 <p>本节回顾能量如何影响化学反应的程度（化学热力学）和化学反应的速率（化学动力学）。</p>
 <p>几种能量形式在生物系统中重要</p>
@@ -918,7 +1028,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>● 若 ΔG 为正，正向反应不自发进行；必须向系统加能以迫使反应物变成产物（吸能反应）。</p>
 <p>● 若 ΔG 为零，正向和逆向反应以等速率进行，反应物无自发净转化为产物或反之；系统处于平衡。</p>
 <p>按惯例，反应的标准自由能变化（ΔG°′）是</p>
-<figure>
+<figure id="fig-2-29">
   <img class="zoomable" src="figures/fig_2-29_1.png" alt="图 2-29" onclick="lightbox(this.src)">
   <figcaption>图2-29 · 放能和吸能反应的自由能（ΔG）变化。(a) 放能反应中，产物自由能低于反应物，故自发进行，反应时释放能量（ΔG 为负）。(b) 吸能反应中，产物自由能高于反应物，需输入能量才能进行（ΔG 为正）。ΔG = G产物 − G反应物。ΔG 为负的反应称热力学有利。标准自由能变化 ΔG°′ = −2.3RT log Keq。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -948,7 +1058,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>反应的 ΔG°′ 可从其 Keq 计算 处于平衡的化学混合物处于最低自由能的稳定状态。对于标准条件下平衡系统（ΔG = 0，Q = Keq），可写</p>
 <p>ΔG°′ = −2.3RT log Keq = −1362 log Keq    (2-8)</p>
 <p>（注意改为以 10 为底对数）。因此，若测定平衡时反应物和产物浓度（即 Keq），可计算 ΔG°′。例如，3-磷酸甘油醛与磷酸二羟丙酮互转（G3P ⇌ DHAP）的标准 Keq 为 22.2。代入方程 2-8，易算出该反应 ΔG°′ 为 −1840 cal/mol。</p>
-<figure>
+<figure id="fig-2-30">
   <img class="zoomable" src="figures/fig_2-30_1.png" alt="图 2-30" onclick="lightbox(this.src)">
   <figcaption>图2-30 · 未催化和催化化学反应的活化能。此假设反应路径（蓝色）描绘反应进行时自由能 G 的变化。反应仅在产物自由能低于反应物时自发进行（ΔG < 0）。反应物须被激发到过渡态（最高能级）才能转化为产物。激发所需能量为活化能 ΔG‡。催化剂（酶）降低过渡态能量从而降低活化能，加速反应但不改变 ΔG。ΔG‡ 降低 1.36 kcal/mol 使速率增加 10 倍。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -983,10 +1093,10 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>ATP 水解释放大量自由能并驱动许多细胞过程</p>
 <p>几乎所有生物中，核苷三磷酸腺苷三磷酸或 ATP（图 2-31）是捕获、瞬时储存并随后转移能量做功（如生物合成、机械运动）的最重要分子。ATP 常被称为细胞的能量"货币"，是细胞可"花费"以驱动其活动的可用势能。ATP 的传奇历史始于 1929 年其发现，显然由德国与伟大生化学家 Otto Meyerhof 共事并率先发表的 Kurt Lohmann，以及美国的 Cyrus Fiske 和 Yellapragada SubbaRow 同时发现。1930 年代证明肌肉收缩依赖 ATP。ATP 是细胞能量转移主要中介的提议归功于约 1941 年的 Fritz Lipmann。许多诺贝尔奖授予 ATP 及其在细胞能量代谢中作用的研究，其在理解分子细胞生物学中的重要性怎么强调都不为过。</p>
 <p>ATP 分子中的有用能量含在磷酸酐键中，磷酸酐键是两分子磷酸通过失去水缩合形成的共价键：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-16">
   <img class="zoomable" src="figures/box_G2-16_1.png" alt="G2-16" onclick="lightbox(this.src)">
 </div>
-<figure>
+<figure id="fig-2-31">
   <img class="zoomable" src="figures/fig_2-31_1.png" alt="图 2-31" onclick="lightbox(this.src)">
   <figcaption>图2-31 · 腺苷三磷酸（ATP）的水解。ATP 中连接三个磷酸基的两个磷酸酐键（红色），每个水解的 ΔG°′ 约 −7.3 kcal/mol。ATP 水解为 ADP + Pi（或 AMP + PPi）释放大量自由能，驱动许多细胞过程。ATP 及其水解产物 ADP 和 Pi 在中性 pH 下带电，合成 ATP 需大量能量迫使负电荷靠拢，水解时释放。ATP 水解能量通过磷酸化中间体或构象应力偶联驱动需能反应。ATP 在光合作用和细胞呼吸中生成。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1007,7 +1117,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>Ap∼p + H₂O → Ap + Pi + H⁺    (ADP → AMP)</p>
 <p>Pi 代表无机磷酸（PO₄³⁻），PPi 代表无机焦磷酸（两个磷酸基由磷酸酐键连接）。如上两反应所示，从 ATP 去除一个磷酸基留下腺苷二磷酸（ADP），从 ATP 去除一个焦磷酸基留下腺苷一磷酸（AMP）。</p>
 <p>磷酸酐键或其他"高能键"（常以 ∼ 表示）与其他共价键无本质不同。高能键仅在水解时释放大量能量。例如，ATP 中磷酸酐键水解的 ΔG°′（−7.3 kcal/mol）是甘油 3-磷酸中磷酸酯键（红）水解 ΔG°′（−2.2 kcal/mol）的三倍多：</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-17">
   <img class="zoomable" src="figures/box_G2-17_1.png" alt="G2-17" onclick="lightbox(this.src)">
 </div>
 <p>此差异的一个主要原因 是 ATP 及其水解产物 ADP 和 Pi 在中性 pH 下带电。ATP 合成时，必须用大量能量迫使 ADP 和 Pi 中的负电荷靠拢。反之，ATP 水解为 ADP 和 Pi 时此能量释放。相比之下，甘油中不带电羟基与 Pi 间磷酸酯键形成需能量较少，水解时释放能量也较少。</p>
@@ -1037,7 +1147,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>故 Fe²⁺ 被氧化，O₂ 被还原。此类一分子被还原另一分子被氧化的反应常称为氧化还原反应。有氧条件下细胞中许多氧化还原反应中氧是电子受体。</p>
 <p>许多生物学重要的氧化还原反应涉及氢原子（质子加电子）的去除或添加，而非孤立电子的转移。琥珀酸氧化为延胡索酸（发生在线粒体中）是一例（图 2-32）。质子在水溶液中可溶（以 H₃O⁺ 形式），但电子不可溶，故必须直接从一个原子或分子转移到另一个而无水溶解中间体。在此类氧化反应中，电子常转移给小电子载体分子（有时称为辅酶）。最常见的是 NAD⁺（烟酰胺腺嘌呤二核苷酸，还原为 NADH）和 FAD（黄素腺嘌呤二核苷酸，还原为 FADH₂，图 2-33）。这些辅酶的还原形式可将质子和电子转移给其他分子，从而还原它们。</p>
 <p>为描述氧化还原反应（如亚铁离子 Fe²⁺ 与氧 O₂ 的反应），最易将其分为两个半反应：</p>
-<figure>
+<figure id="fig-2-32">
   <img class="zoomable" src="figures/fig_2-32_1.png" alt="图 2-32" onclick="lightbox(this.src)">
   <figcaption>图2-32 · 琥珀酸转化为延胡索酸。此氧化反应发生在线粒体中（柠檬酸循环的一部分），琥珀酸失去两个电子和两个质子。这些质子和电子转移给 FAD，还原为 FADH₂。生物氧化还原反应常涉及氢原子（质子加电子）的去除或添加，电子转移给 NAD⁺ 或 FAD 等电子载体辅酶。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1055,7 +1165,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">citric acid cycle</td><td class="gl-zh">柠檬酸循环</td></tr>
   </table>
 </figure>
-<figure>
+<figure id="fig-2-33">
   <img class="zoomable" src="figures/fig_2-33_1.png" alt="图 2-33" onclick="lightbox(this.src)">
   <figcaption>图2-33 · 电子载体辅酶 NAD⁺ 和 FAD。(a) NAD⁺（烟酰胺腺嘌呤二核苷酸）通过同时添加两个电子和一个质子还原为 NADH。许多生物氧化还原反应中，一对氢原子（两个质子和两个电子）从一个分子去除。NAD⁺ 的烟酰胺环接受一个氢负离子（H⁻，一个质子加两个电子），另一个质子释放到溶液中。NADH 可将质子和电子转移给其他分子从而还原它们。(b) FAD（黄素腺嘌呤二核苷酸）还原为 FADH₂，接受两个氢原子。NAD⁺/NADH 和 FAD/FADH₂ 是细胞中最常见的电子载体，在代谢中偶联氧化还原反应。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
@@ -1087,7 +1197,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>氧化还原反应中，电子自发移向还原电位更正的原子或分子。换言之，还原电位更负的分子可自发将电子转移给（还原）还原电位更正的分子。此类反应中，电势变化 ΔE 是两个半反应还原和氧化电位之和。氧化还原反应的 ΔE 与自由能变化 ΔG 的关系为：</p>
 <p>ΔG (cal/mol) = −n(23,064)ΔE (volts)    (2-11)</p>
 <p>其中 n 是转移电子数。注意 ΔE 为正的氧化还原反应 ΔG 为负，故趋向自发从左到右进行。</p>
-<div class="boximg">
+<div class="boximg" id="box-G2-18">
   <img class="zoomable" src="figures/box_G2-18_1.png" alt="G2-18" onclick="lightbox(this.src)">
 </div>
 <p>第 2.4 节关键概念</p>
@@ -1133,6 +1243,45 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.get
     document.removeEventListener('mousemove',onMove);
     document.removeEventListener('mouseup',onUp);
   }
+})();
+/* 阅读索引滚动监视 */
+(function(){
+  var tocLinks=document.querySelectorAll('#toc a');
+  var targets=[];
+  tocLinks.forEach(function(a){
+    var id=a.getAttribute('href');
+    if(!id)return;
+    var el=document.getElementById(id.replace('#',''));
+    if(el)targets.push({el:el,link:a});
+  });
+  function onScroll(){
+    var scrollY=window.scrollY+120;
+    var active=null;
+    for(var i=targets.length-1;i>=0;i--){
+      if(targets[i].el.offsetTop<=scrollY){active=targets[i].link;break;}
+    }
+    tocLinks.forEach(function(a){a.classList.remove('active');});
+    if(active)active.classList.add('active');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  /* 平滑滚动 + 移动端点击后关闭侧栏 */
+  tocLinks.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').replace('#','');
+      var el=document.getElementById(id);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+      var toc=document.getElementById('toc');
+      if(toc)toc.classList.remove('open');
+    });
+  });
+  /* 点击正文区域关闭移动端侧栏 */
+  document.addEventListener('click',function(e){
+    var toc=document.getElementById('toc');
+    if(!toc||!toc.classList.contains('open'))return;
+    if(!toc.contains(e.target))toc.classList.remove('open');
+  });
 })();
 </script>
 </body></html>
