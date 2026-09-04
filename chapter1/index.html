@@ -28,6 +28,26 @@ table.glossary caption { font-size: 0.75em; color: #999; margin-bottom: 2px; tex
 table.glossary td { padding: 1px 4px; vertical-align: top; line-height: 1.25; border: none; font-style: italic; }
 table.glossary td.gl-en { color: #7a9aad; font-family: "Times New Roman", serif; white-space: nowrap; }
 table.glossary td.gl-zh { color: #999; font-style: normal; }
+table.data-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.78em; line-height: 1.5; table-layout: fixed; }
+table.data-table col.col-cat { width: 16%; }
+table.data-table col.col-en { width: 26%; }
+table.data-table col.col-zh { width: 22%; }
+table.data-table col.col-mech { width: 36%; }
+table.data-table thead th { background: #3b82f6; color: #fff; padding: 8px 24px 8px 10px; text-align: left; font-weight: bold; font-size: 0.95em; position: relative; overflow: visible; }
+table.data-table thead th .resize-handle { position: absolute; right: 0; top: 0; bottom: 0; width: 8px; cursor: col-resize; z-index: 2; }
+table.data-table thead th .resize-handle::after { content: ""; position: absolute; right: 2px; top: 20%; bottom: 20%; width: 2px; background: rgba(255,255,255,0.4); border-radius: 1px; }
+table.data-table thead th .resize-handle:hover::after { background: rgba(255,255,255,0.8); width: 3px; right: 1px; }
+body.resizing { cursor: col-resize; user-select: none; -webkit-user-select: none; }
+body.resizing .data-table * { cursor: col-resize; }
+table.data-table tbody td { padding: 5px 10px; border-bottom: 1px solid #e8ecf0; vertical-align: top; }
+table.data-table tbody tr:hover { background: #f8faff; }
+table.data-table .cat-cell { font-weight: bold; color: #1e40af; background: #eff6ff; vertical-align: middle; text-align: center; word-break: break-all; }
+table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: #666; display: block; }
+table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
+table.data-table .zh-name { color: #1a1a1a; }
+table.data-table .mechanism { color: #777; font-size: 0.92em; }
+table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+@media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
@@ -41,7 +61,6 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <p>"若无进化之光，生物学中的一切都毫无意义。"</p>
 <p>——西奥多修斯·杜布赞斯基，1973，《美国生物学教师》35:125–129</p>
 <p>生物学是一门与物理学或化学根本不同的科学，后两者处理可用数学方程描述的物质不变性质。生物系统当然遵循化学和物理规律，但生物学是一门历史性科学，因为今日生命世界的形态和结构是数十亿年演化的结果。通过演化，所有生物都处在一棵家族树上，从远古生存的原始单细胞生物延伸到当今多样化的植物、动物和微生物（图 1-1、表 1-1）。查尔斯·达尔文（图 1-2）的伟大洞见是自然选择原理：生物随机变异并在其环境中竞争资源。只有存活并繁殖者才能传下其遗传特征。</p>
-<p>OUTLINE</p>
 <p>乍看之下，生物世界确实极为多样--从微小蕨类到高大冷杉，从显微镜下可见的单细胞细菌和原生动物到各种多细胞动物。事实上，细胞的大小和形状令人惊叹地多样（图 1-3）。一些细胞移动迅速且结构快速变化，如我们在阿米巴和轮虫影片中所见。另一些基本静止且结构稳定。氧会杀死某些细胞但对另一些却是绝对必需。多细胞生物中的大多数细胞与其他细胞密切相关。虽然一些单细胞生物孤立生存（图 1-3a），另一些形成群落或与其他类型生物密切共生（图 1-3b、d），如帮助植物从空气中固氮的细菌或生活在我们肠道帮助消化食物的细菌。</p>
 <p>然而，令人眼花缭乱的外部生物形态之下隐藏着强大的统一性：由于共同祖先，所有生物系统都由含相同类型化学分子、并在细胞水平采用相似组织原理的细胞组成。尽管</p>
 <figure>
@@ -1059,5 +1078,32 @@ eyeless 和 Pax6 编码高度相关的主转录因子，调节其他基因的活
 <script>
 function lightbox(src){var lb=document.getElementById('lightbox');lb.querySelector('img').src=src;lb.style.display='flex';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lightbox').style.display='none';});
+(function(){
+  var handles=document.querySelectorAll('.data-table .resize-handle');
+  var startX,startW,col,table;
+  handles.forEach(function(h){
+    h.addEventListener('mousedown',function(e){
+      e.preventDefault();e.stopPropagation();
+      col=h.parentNode;table=col.closest('table');
+      startX=e.clientX;startW=col.offsetWidth;
+      document.body.classList.add('resizing');
+      document.addEventListener('mousemove',onMove);
+      document.addEventListener('mouseup',onUp);
+    });
+  });
+  function onMove(e){
+    var dx=e.clientX-startX;
+    var newW=Math.max(40,startW+dx);
+    var idx=Array.from(table.querySelectorAll('thead th')).indexOf(col);
+    var cg=table.querySelector('colgroup');
+    if(cg&&cg.children[idx])cg.children[idx].style.width=newW+'px';
+    table.style.tableLayout='auto';
+  }
+  function onUp(){
+    document.body.classList.remove('resizing');
+    document.removeEventListener('mousemove',onMove);
+    document.removeEventListener('mouseup',onUp);
+  }
+})();
 </script>
 </body></html>

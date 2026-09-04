@@ -28,6 +28,26 @@ table.glossary caption { font-size: 0.75em; color: #999; margin-bottom: 2px; tex
 table.glossary td { padding: 1px 4px; vertical-align: top; line-height: 1.25; border: none; font-style: italic; }
 table.glossary td.gl-en { color: #7a9aad; font-family: "Times New Roman", serif; white-space: nowrap; }
 table.glossary td.gl-zh { color: #999; font-style: normal; }
+table.data-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.78em; line-height: 1.5; table-layout: fixed; }
+table.data-table col.col-cat { width: 16%; }
+table.data-table col.col-en { width: 26%; }
+table.data-table col.col-zh { width: 22%; }
+table.data-table col.col-mech { width: 36%; }
+table.data-table thead th { background: #3b82f6; color: #fff; padding: 8px 24px 8px 10px; text-align: left; font-weight: bold; font-size: 0.95em; position: relative; overflow: visible; }
+table.data-table thead th .resize-handle { position: absolute; right: 0; top: 0; bottom: 0; width: 8px; cursor: col-resize; z-index: 2; }
+table.data-table thead th .resize-handle::after { content: ""; position: absolute; right: 2px; top: 20%; bottom: 20%; width: 2px; background: rgba(255,255,255,0.4); border-radius: 1px; }
+table.data-table thead th .resize-handle:hover::after { background: rgba(255,255,255,0.8); width: 3px; right: 1px; }
+body.resizing { cursor: col-resize; user-select: none; -webkit-user-select: none; }
+body.resizing .data-table * { cursor: col-resize; }
+table.data-table tbody td { padding: 5px 10px; border-bottom: 1px solid #e8ecf0; vertical-align: top; }
+table.data-table tbody tr:hover { background: #f8faff; }
+table.data-table .cat-cell { font-weight: bold; color: #1e40af; background: #eff6ff; vertical-align: middle; text-align: center; word-break: break-all; }
+table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: #666; display: block; }
+table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
+table.data-table .zh-name { color: #1a1a1a; }
+table.data-table .mechanism { color: #777; font-size: 0.92em; }
+table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+@media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
@@ -40,7 +60,6 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 </div>
 <div class="intro-block"><span class="intro-title">第2章 化学基础</span>"大卫之星"索烃。两个由碳、氢、氮组成的三重缠绕环，通过桥连铁原子经复杂化学合成途径相互交叉六次形成六角星（六角星）。左侧为化学结构，两个独立环分别染成蓝色和橙色。右侧为 X 射线晶体学确定的三维结构，一个环的碳原子为蓝色，另一个为浅灰色；铁为粉色，氮为紫色。中心是非共价结合的带负电六氟化磷（青色和绿色）。参见 D. A. Leigh, R. G. Pritchard, and A. J. Stephens, 2014, Nature Chem. 6:978–982.</div>
 <p>细胞的生存依赖于数千种在时间和空间上精妙协调的化学相互作用与反应，并受细胞遗传指令及其环境的影响。通过在分子水平上理解这些相互作用与反应，我们就能开始回答关于细胞生命的一些基本问题：细胞如何从环境中摄取营养物与信息？细胞如何将储存在营养物中的能量转化为运动或代谢的功？细胞如何将营养物转化为其生存所需的细胞组分？细胞如何与其他细胞相连形成组织？细胞之间又如何通讯，使一个复杂而高效运作的生物体得以发育</p>
-<p>OUTLINE</p>
 <p>和繁衍？《分子细胞生物学》的目标之一，就是用单个分子与离子的性质来回答这些以及其他关于细胞与生物体结构与功能的问题。</p>
 <p>例如，水这一分子的性质控制着所有细胞的演化、结构和功能。若不理解水的性质如何主宰生命的化学，就无法理解生物学。生命最早起源于水环境。水占大多数细胞重量的 70%–80%，是生物系统中含量最丰富的分子。正是在这一水性介质中，占生命物质重量约 7% 的小分子和离子结合成</p>
 <figure>
@@ -1088,5 +1107,32 @@ table.glossary td.gl-zh { color: #999; font-style: normal; }
 <script>
 function lightbox(src){var lb=document.getElementById('lightbox');lb.querySelector('img').src=src;lb.style.display='flex';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lightbox').style.display='none';});
+(function(){
+  var handles=document.querySelectorAll('.data-table .resize-handle');
+  var startX,startW,col,table;
+  handles.forEach(function(h){
+    h.addEventListener('mousedown',function(e){
+      e.preventDefault();e.stopPropagation();
+      col=h.parentNode;table=col.closest('table');
+      startX=e.clientX;startW=col.offsetWidth;
+      document.body.classList.add('resizing');
+      document.addEventListener('mousemove',onMove);
+      document.addEventListener('mouseup',onUp);
+    });
+  });
+  function onMove(e){
+    var dx=e.clientX-startX;
+    var newW=Math.max(40,startW+dx);
+    var idx=Array.from(table.querySelectorAll('thead th')).indexOf(col);
+    var cg=table.querySelector('colgroup');
+    if(cg&&cg.children[idx])cg.children[idx].style.width=newW+'px';
+    table.style.tableLayout='auto';
+  }
+  function onUp(){
+    document.body.classList.remove('resizing');
+    document.removeEventListener('mousemove',onMove);
+    document.removeEventListener('mouseup',onUp);
+  }
+})();
 </script>
 </body></html>
