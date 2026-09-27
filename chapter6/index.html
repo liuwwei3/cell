@@ -48,6 +48,50 @@ table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
 table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
+/* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
+.key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
+  background: #edf1f1; border: 1px solid #d5dddd; border-left: 4px solid #7d0052;
+  border-radius: 0 3px 3px 0; page-break-inside: avoid; }
+.key-concepts .kc-head { font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78em; font-weight: 800; letter-spacing: 1.6px; color: #7d0052; margin-bottom: 0.45em; }
+.key-concepts .kc-title { font-size: 1.06em; font-weight: bold; color: #00668f; margin-bottom: 0.75em;
+  line-height: 1.5; }
+.key-concepts ul { list-style: none; margin: 0; padding: 0; }
+.key-concepts li { position: relative; padding-left: 1.3em; margin-bottom: 0.7em;
+  font-size: 0.93em; line-height: 1.9; text-align: justify; }
+.key-concepts li:last-child { margin-bottom: 0; }
+.key-concepts li::before { content: "▸"; position: absolute; left: 0.15em; top: 0;
+  color: #00668f; font-size: 0.9em; }
+/* 章末学习附录：关键术语 / 复习题 / 参考文献 */
+.endmatter { margin-top: 3.2em; padding-top: 1.6em; border-top: 3px double #cfd8d8; }
+.em-title { font-size: 1.28em; font-weight: bold; color: #00668f; margin: 1.8em 0 0.85em 0;
+  padding: 0 0 0.28em 0; border-left: none; border-bottom: 1px solid #d8e4e8; scroll-margin-top: 20px; }
+.em-title:first-child { margin-top: 0; }
+.em-title::before { content: ""; display: inline-block; width: 5px; height: 0.9em;
+  background: #00668f; margin-right: 0.5em; vertical-align: -0.06em; border-radius: 1px; }
+.kt-grid { column-count: 2; column-gap: 2.4em; font-size: 0.87em; line-height: 1.75; }
+.kt-item { display: flex; justify-content: space-between; gap: 0.6em; padding: 0.5px 0;
+  break-inside: avoid; page-break-inside: avoid; }
+.kt-term { color: #1a1a1a; }
+.kt-page { flex: none; color: #9aa5a8; font-family: "Times New Roman", serif; font-size: 0.92em; }
+.review-list { list-style: none; margin: 0; padding: 0; }
+.review-list li, .review-list p.rv-item { position: relative; padding-left: 2.1em; margin: 0 0 1em 0;
+  font-size: 0.93em; line-height: 1.95; text-align: justify; text-indent: 0; }
+.review-list .rv-num { position: absolute; left: 0; color: #00668f; font-weight: bold;
+  font-family: "Times New Roman", serif; }
+.review-list .rv-sub { color: #00668f; font-weight: bold; }
+.references { font-size: 0.8em; line-height: 1.62; }
+.ref-sec { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 1.08em;
+  font-weight: normal; color: #00668f; margin: 1.2em 0 0.5em 0; padding-bottom: 0.15em;
+  border-bottom: 1px dotted #dde5e7; page-break-after: avoid; }
+.ref-list { column-count: 2; column-gap: 2.4em; }
+.ref-item { text-indent: -1.3em; padding-left: 1.3em; margin: 0 0 0.38em 0; text-align: left;
+  color: #333; break-inside: avoid; page-break-inside: avoid; }
+.ref-item.ref-note { text-indent: 0; padding-left: 0; color: #8a9599; font-style: italic; }
+@media (max-width: 700px) { .kt-grid, .ref-list { column-count: 1; } }
+.launchpad { text-indent: 0; text-align: center; font-size: 0.82em; color: #8899a6; font-style: italic;
+  margin: 2.4em 0 0 0; padding: 0.75em 1.1em; background: #f7fafb; border-radius: 3px; }
+.running-footer { text-indent: 0; text-align: center; font-size: 0.72em; color: #c8c8c8; margin: 2.2em 0 0 0; }
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
@@ -159,6 +203,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <li class="toc-fig"><a href="#fig-6-42">实验图 6-42 RNA 干扰（RNAi）可以在秀丽隐杆线虫（C</a></li>
 <li class="toc-fig"><a href="#fig-6-43">图 6-43 使用工程化的 CRISPR-Cas9 系统可以将单核苷酸突变引入基…</a></li>
 </ul>
+</li>
+<li class="toc-sec"><a href="#key-terms">关键术语</a>
+</li>
+<li class="toc-sec"><a href="#review-concepts">复习题</a>
+</li>
+<li class="toc-sec"><a href="#references">参考文献</a>
 </li>
 </ul>
 </div></nav>
@@ -365,18 +415,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>对遗传作图方法的完整讨论超出了本导论性讨论的范围；然而，重组作图的两个特征需要特别强调。首先，两个基因座之间遗传交换的频率仅在基因座相对靠近时（例如，小于约10 cM）才与它们之间以碱基对计算的物理距离成比例。对于比此相距更远的连锁基因座，通过遗传交换频率测量的距离往往会低估物理距离，因为有可能在一个区间内发生两次或更多次交叉。</p>
 <p>解释不同生物体中遗传作图实验所需的第二个重要概念是，虽然遗传距离对不同生物体以相同方式定义，但重组频率（即遗传图谱距离）与物理距离之间的关系在不同生物体之间有所不同。例如，1%重组频率（即1 cM的遗传距离）在酵母中代表约2.8 kb的物理距离，而在果蝇中代表约400 kb，在人类中代表约780 kb。</p>
 <p>遗传作图研究的主要用途之一是定位受感兴趣突变影响的基因。沿染色体长度分布许多不同已作图的遗传性状或遗传标记（genetic markers）的存在，使得未作图的突变的位置可以通过评估其在减数分裂期间相对于这些标记基因的分离来确定。因此，可用的标记越多，突变就能被越精确地定位。在第6.4节中，我们将看到如何利用此类方法鉴定遗传性人类疾病中受影响的基因。作图实验的第二个一般用途是确定两个不同突变是否在同一基因中。如果两个突变在同一基因中，它们将在作图实验中表现出紧密连锁，但如果它们在不同基因中，它们通常将是非连锁的或表现出弱连锁。</p>
-<p>6.1节 关键概念</p>
-<p>突变的遗传分析：鉴定和研究基因</p>
-<p>r 二倍体生物体携带每个基因的两个拷贝（等位基因），而单倍体生物体仅携带一个拷贝。</p>
-<p>r 隐性突变通常导致功能丧失，如果存在该基因的野生型等位基因，这种功能丧失则被掩盖。要观察到突变表型，两个等位基因都必须携带突变。</p>
-<p>r 显性突变在野生型等位基因存在的情况下导致突变表型。与显性突变相关的表型通常代表功能获得。</p>
-<p>r 在减数分裂中，一个二倍体细胞经历一次DNA复制和两次细胞分裂，产生四个单倍体细胞，其中母本和父本染色体及其相关等位基因被随机分配（见图6-3）。</p>
-<p>r 显性和隐性突变在遗传杂交中表现出特征性的分离模式（见图6-4）。</p>
-<p>r 在单倍体酵母中，温度敏感突变对于鉴定和研究生存所必需的基因特别有用。</p>
-<p>r 参与一个过程的功能相关基因的数量可以通过互补分析来定义（见图6-7）。</p>
-<p>r 基因在生物合成或信号传导途径中发挥功能的顺序可以从受影响过程中两个步骤存在缺陷的双突变体的表型推断出来。</p>
-<p>r 蛋白质之间功能上重要的相互作用可以从等位基因特异性抑制突变或合成致死突变的表型效应推断出来。</p>
-<p>r 遗传作图实验利用减数分裂期间同源染色体之间的交叉来测量同一染色体上两个不同突变之间的遗传距离。</p>
+<div class="key-concepts" id="kc-6-1"><div class="kc-head">第 6.1 节 · 关键概念</div><div class="kc-title">突变的遗传分析：鉴定和研究基因</div><ul><li>二倍体生物体携带每个基因的两个拷贝（等位基因），而单倍体生物体仅携带一个拷贝。</li><li>隐性突变通常导致功能丧失，如果存在该基因的野生型等位基因，这种功能丧失则被掩盖。要观察到突变表型，两个等位基因都必须携带突变。</li><li>显性突变在野生型等位基因存在的情况下导致突变表型。与显性突变相关的表型通常代表功能获得。</li><li>在减数分裂中，一个二倍体细胞经历一次DNA复制和两次细胞分裂，产生四个单倍体细胞，其中母本和父本染色体及其相关等位基因被随机分配（见图6-3）。</li><li>显性和隐性突变在遗传杂交中表现出特征性的分离模式（见图6-4）。</li><li>在单倍体酵母中，温度敏感突变对于鉴定和研究生存所必需的基因特别有用。</li><li>参与一个过程的功能相关基因的数量可以通过互补分析来定义（见图6-7）。</li><li>基因在生物合成或信号传导途径中发挥功能的顺序可以从受影响过程中两个步骤存在缺陷的双突变体的表型推断出来。</li><li>蛋白质之间功能上重要的相互作用可以从等位基因特异性抑制突变或合成致死突变的表型效应推断出来。</li><li>遗传作图实验利用减数分裂期间同源染色体之间的交叉来测量同一染色体上两个不同突变之间的遗传距离。</li></ul></div>
 <h2 id="sec-6.2">6.2 DNA克隆与鉴定</h2>
 <p>在分子水平上对基因结构和功能的详细研究需要大量纯化形式的单个基因。多种技术（通常统称为重组DNA技术）被用于DNA克隆，使研究人员能够制备大量相同的DNA分子。重组DNA即任何由不同来源的序列组成的DNA分子。</p>
 <p>克隆目标DNA片段的关键是将其连接到能在宿主细胞内复制的载体DNA分子上。单个重组DNA分子（由载体加上插入的DNA片段组成）被引入宿主细胞后，插入的DNA随载体一起复制，产生大量相同的DNA分子。基本方案可概括如下：</p>
@@ -652,8 +691,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Fluorophore</td><td class="gl-zh">荧光基团</td></tr>
   </table>
 </figure>
-<p>6.2节 关键概念</p>
-<p>DNA克隆与鉴定</p>
+<div class="key-concepts" id="kc-6-2"><div class="kc-head">第 6.2 节 · 关键概念</div><div class="kc-title">DNA克隆与鉴定</div><ul></ul></div>
 <p>- 在DNA克隆中，重组DNA分子通过将DNA片段插入载体DNA分子在体外形成。然后将重组DNA分子引入宿主细胞，在其中复制，产生大量重组DNA分子。</p>
 <p>- 限制酶（内切核酸酶）通常在特定的4-8 bp回文序列处切割DNA，产生具有自互补单链尾巴（粘性末端）的确定片段。</p>
 <p>- 两个具有互补末端的限制片段可以用DNA连接酶连接形成重组DNA分子（见图6-12）。</p>
@@ -810,14 +848,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>直接连接到GFP的编码序列上（通常称为启动子融合），GFP在特定神经元中表达，充满这些神经元的细胞质。相比之下，当杂合基因通过将GFP连接到气味受体的编码序列上构建时，由此产生的蛋白融合可以通过GFP荧光定位在感觉神经元远端纤毛——即该受体蛋白通常所在的位置。</p>
 <p>替代GFP标签来检测蛋白质细胞内位置的另一种方法是，通过在目标基因上附加一段编码短氨基酸序列的短DNA序列来修饰它，该氨基酸序列可被已知的单克隆抗体识别。这种可以被抗体结合的短肽称为表位；因此该方法被称为表位标签。用含有修饰基因的质粒表达载体转染细胞后，表达的表位标签形式的蛋白质可以通过用对该表位特异的单克隆抗体对细胞进行免疫荧光标记来检测。选择用短表位还是GFP来标记特定蛋白质，通常取决于克隆基因能够耐受哪种类型的修饰而仍然保持功能。</p>
-<p>6.3节 关键概念</p>
-<p>利用克隆DNA片段研究基因表达</p>
-<p>r Southern印迹法可以在复杂混合物中检测到单个特定DNA片段，它结合了凝胶电泳、将分离的条带转移（印迹）到滤膜上以及与互补的标记DNA探针杂交（见图6-24）。类似的技术Northern印迹法可以检测混合物中的特定RNA。</p>
-<p>r 特定mRNA的存在和分布可以通过原位杂交在活细胞中检测到。</p>
-<p>r DNA微阵列分析可以同时检测不同类型细胞或相同细胞在不同条件下数千个基因的相对表达水平（见图6-26）。</p>
-<p>r 对来自多次微阵列表达实验的数据进行聚类分析，可以鉴定出在多种条件下受到相似调控的基因。此类协同调控的基因通常编码具有生物学相关功能的蛋白质。</p>
-<p>r 源自质粒的表达载体可以从克隆基因中大量生产蛋白质。</p>
-<p>r 真核表达载体可用于在酵母或哺乳动物细胞中表达克隆基因。这些方法的一个重要应用是用GFP或用于抗体检测的表位来标记蛋白质。</p>
+<div class="key-concepts" id="kc-6-3"><div class="kc-head">第 6.3 节 · 关键概念</div><div class="kc-title">利用克隆DNA片段研究基因表达</div><ul><li>Southern印迹法可以在复杂混合物中检测到单个特定DNA片段，它结合了凝胶电泳、将分离的条带转移（印迹）到滤膜上以及与互补的标记DNA探针杂交（见图6-24）。类似的技术Northern印迹法可以检测混合物中的特定RNA。</li><li>特定mRNA的存在和分布可以通过原位杂交在活细胞中检测到。</li><li>DNA微阵列分析可以同时检测不同类型细胞或相同细胞在不同条件下数千个基因的相对表达水平（见图6-26）。</li><li>对来自多次微阵列表达实验的数据进行聚类分析，可以鉴定出在多种条件下受到相似调控的基因。此类协同调控的基因通常编码具有生物学相关功能的蛋白质。</li><li>源自质粒的表达载体可以从克隆基因中大量生产蛋白质。</li><li>真核表达载体可用于在酵母或哺乳动物细胞中表达克隆基因。这些方法的一个重要应用是用GFP或用于抗体检测的表位来标记蛋白质。</li></ul></div>
 <h2 id="sec-6.4">6.4 人类疾病基因的定位与鉴定</h2>
 <p>遗传性人类疾病是缺陷性人类基因的表型结果。表6-2列出了几种最常见的遗传性疾病。虽然"疾病"基因可能源于上一代产生的新突变，但大多数遗传性疾病病例是由预先存在的突变等位基因引起的，这些等位基因已经代代相传了许多代。■</p>
 <figure class="table" id="tab-T6-2">
@@ -924,14 +955,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>研究表现出遗传异质性或多基因疾病的最有希望的方法之一是使用一种称为全基因组关联研究（GWAS）的方法，寻找染色体特定区域的遗传与疾病易感性之间的统计相关性。通过GWAS鉴定致病基因</p>
 <p>依赖于前面描述的连锁不平衡现象。如果一个导致疾病或甚至使个体易患疾病的等位基因在人类进化过程中相对较近地起源，那么该致病等位基因将倾向于与其染色体位置附近的特定DNA标记集保持关联。通过检查患特定疾病的人群以及未患该疾病的对照人群中大量的DNA标记，研究人员可以识别出倾向于与疾病发生相关的染色体区域。这种方法的威力在于计算机算法，这些算法扫描来自大量个体的数据，以识别疾病与基因组特定区域遗传之间微小但显著的相关性。然后可以使用基因组测序和其他方法来鉴定这些区域中可能的致病突变。通过这种方式，可以鉴定出使某些（但不一定是所有）患病个体易患该疾病的等位基因。虽然GWAS可以是鉴定候选疾病基因的强大工具，但还需要大量进一步的工作来确定携带特定突变的个体如何可能易患该疾病。</p>
 <p>实验生物中的人类疾病模型也可能有助于揭示肥胖或糖尿病等复杂性状的遗传学。例如，在小鼠中进行的大规模受控育种实验可以鉴定出与人类疾病类似的小鼠疾病相关基因。在此类研究中鉴定出的小鼠基因的人类直系同源基因将是参与相应人类疾病的可能候选基因。然后可以检查人类群体的DNA，以确定候选基因的特定等位基因是否倾向于在患病个体中存在而在未患病个体中不存在。这种"候选基因"方法目前正被广泛用于搜索可能对主要的人类多基因疾病有贡献的基因。</p>
-<p>6.4节 关键概念</p>
-<p>人类疾病基因的定位与鉴定</p>
-<p>r 人类的遗传性疾病和其他性状表现出三种主要的遗传模式：常染色体显性、常染色体隐性和X连锁隐性（见图6-32）。</p>
-<p>r 人类疾病和其他性状的基因可以通过确定它们与基因组中位置已知的标记的共分离来定位。基因与特定标记越近，它们共分离的可能性就越大。</p>
-<p>r 对人类基因进行高精度定位需要数千个沿染色体分布的分子标记。最有用的标记是个体之间在基因组非编码区域中的DNA序列差异（多态性）。</p>
-<p>r 用于人类基因定位的有用DNA多态性包括单核苷酸多态性（SNP）和短串联重复序列（STR）。</p>
-<p>r 连锁定位通常可以将人类疾病基因定位到包含多达10个基因的染色体区域。要在该候选区域内鉴定目标基因，通常需要进行表达分析和野生型与患病个体之间DNA序列的比较。</p>
-<p>r 一些遗传性疾病可能由不同个体中不同基因的突变引起（遗传异质性）。其他疾病的发生和严重程度取决于同一个体中多个基因突变等位基因的存在（多基因性状）。与此类疾病相关的基因可以通过在全基因组关联研究中寻找疾病与特定染色体位置之间的统计相关性来定位。</p>
+<div class="key-concepts" id="kc-6-4"><div class="kc-head">第 6.4 节 · 关键概念</div><div class="kc-title">人类疾病基因的定位与鉴定</div><ul><li>人类的遗传性疾病和其他性状表现出三种主要的遗传模式：常染色体显性、常染色体隐性和X连锁隐性（见图6-32）。</li><li>人类疾病和其他性状的基因可以通过确定它们与基因组中位置已知的标记的共分离来定位。基因与特定标记越近，它们共分离的可能性就越大。</li><li>对人类基因进行高精度定位需要数千个沿染色体分布的分子标记。最有用的标记是个体之间在基因组非编码区域中的DNA序列差异（多态性）。</li><li>用于人类基因定位的有用DNA多态性包括单核苷酸多态性（SNP）和短串联重复序列（STR）。</li><li>连锁定位通常可以将人类疾病基因定位到包含多达10个基因的染色体区域。要在该候选区域内鉴定目标基因，通常需要进行表达分析和野生型与患病个体之间DNA序列的比较。</li><li>一些遗传性疾病可能由不同个体中不同基因的突变引起（遗传异质性）。其他疾病的发生和严重程度取决于同一个体中多个基因突变等位基因的存在（多基因性状）。与此类疾病相关的基因可以通过在全基因组关联研究中寻找疾病与特定染色体位置之间的统计相关性来定位。</li></ul></div>
 <h2 id="sec-6.5">6.5 真核生物中特定基因功能的失活</h2>
 <p>近年来，DNA和蛋白质序列的阐明导致了许多基因的鉴定，这些鉴定利用基因组DNA中的序列模式以及编码蛋白质与已知功能蛋白质的序列相似性。如第8章所述，通过序列搜索鉴定的蛋白质的一般功能可以通过与已知蛋白质进行类比来预测。然而，在缺乏相应基因突变形式的情况下，这些"新"蛋白质的精确体内作用可能仍不清楚。在本节中，我们描述了破坏生物体基因组中特定基因正常功能的几种方法。对所得突变表型的分析通常有助于揭示正常基因及其编码蛋白质的体内功能。</p>
 <p>这些基因失活技术基于三种基本方法：（1）用其他序列替换正常基因，（2）引入一个等位基因，其编码的蛋白质抑制表达的正常蛋白质的功能，以及（3）促进从基因转录的mRNA的降解。在基于第一种方法的技术中，正常内源基因被修饰，但在其他方法中不被修饰。</p>
@@ -1116,8 +1140,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>（见图6-43d）。通过适当设计引导RNA以指定切割位点，并在添加的同源DNA片段中引入适当的序列改变，可以产生目标DNA中精确的单碱基改变。在这种基因组编辑方法的一个引人注目的演示中，导致白内障形成的γ-晶状体蛋白基因Crygc中的单碱基突变，通过向突变小鼠受精卵注射Cas9 mRNA、指导在突变位点切割的引导RNA，以及跨越切割位点并含有野生型Crygc序列的90-nt DNA片段，被修正回野生型形式（见本章开头照片）。该实验还说明了CRISPR-Cas9靶向的显著选择性，因为修正突变等位基因需要引导RNA区分仅相差一个碱基对的突变和野生型等位基因。</p>
 <p>在第6.4节中，我们看到人类遗传定位和关联研究已经鉴定出大量遗传变异，其中许多代表使人们易患某种遗传病的单核苷酸多态性。使用CRISPR-Cas9系统在哺乳动物生殖系中产生特定单碱基改变的能力，现在开启了在良好控制的实验生物体（如小鼠）中创建等效等位基因的可能性。</p>
-<p>6.5节 关键概念</p>
-<p>真核生物中特定基因功能的失活</p>
+<div class="key-concepts" id="kc-6-5"><div class="kc-head">第 6.5 节 · 关键概念</div><div class="kc-title">真核生物中特定基因功能的失活</div><ul></ul></div>
 <p>- 一旦基因被克隆，关于其正常体内功能的重要线索可以从突变该基因的观察到的表型效应推断出来。</p>
 <p>- 酵母中的基因可以通过同源重组将选择标记基因插入野生型基因的一个拷贝来破坏，产生杂合突变体。当这种杂合子形成孢子时，将产生两个不可存活的单倍体孢子（见图6-36）。</p>
 <p>- 酵母基因可以通过使用GAL1启动子在细胞转移到葡萄糖培养基时关闭基因转录，以受控方式失活。</p>
@@ -1126,22 +1149,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>- 在转基因细胞或生物体的生产中，外源DNA通过非同源重组整合到宿主基因组中（见图6-40）。以这种方式引入显性负效等位基因可以在不改变其序列的情况下功能性失活基因。</p>
 <p>- 在许多生物体中，包括秀丽隐杆线虫，双链RNA触发所有具有相同序列的mRNA分子的破坏（见图6-42）。这种现象称为RNAi（RNA干扰），提供了一种特异性且有效的方法，在不改变基因结构的情况下功能性失活基因。</p>
 <p>- 一种进化来精确靶向和切割外源DNA的细菌系统（称为CRISPR）已被改造用于许多生物体，以实现对基因组DNA的特定改变。CRISPR-Cas9在特定位点切割染色体DNA通常导致切割位点的短缺失。如果通过转染提供适当设计的DNA片段，可以在切割位点引入特定DNA改变，如点突变（见图6-43）。</p>
-<p>访问LaunchPad获取学习工具并了解更多本章内容：展望未来、分析数据、扩展参考文献、附加学习工具（包括视频、动画和测验）</p>
-<p>关键术语</p>
-<p>Northern印迹 247 表型 224 质粒 236 点突变 225 聚合酶链式反应</p>
-<p>等位基因 224 克隆 237 互补DNA</p>
-<p>（PCR）239 隐性 225 重组DNA 234 重组 232 限制性内切酶 234 RNA干扰</p>
-<p>（cDNA）239 CRISPR 266 DNA克隆 234 DNA文库 237 DNA微阵列 247 显性 225 功能互补 237 基因敲除 261 基因型 224 杂合的 225 纯合的 225 杂交 246 原位杂交 247 连锁 232 诱变剂 224 突变 224</p>
-<p>（RNAi）264 分离 227 Southern印迹 246 转染 251 转化 236 转基因 263 载体 234 野生型 224</p>
-<p>复习题</p>
-<p>1. 遗传突变可以为理解复杂的细胞或发育过程提供机制方面的洞见。根据特定突变是隐性还是显性，你对遗传突变的分析会有什么不同？ 2. 什么是温度敏感突变？为什么温度敏感突变对揭示基因功能很有用？ 3. 描述如何利用互补分析揭示两个突变是位于同一基因还是不同基因中。解释为什么互补分析对显性突变不起作用。 4. Jane分离了一个酵母突变株，在平板上生长时形成红色菌落而非正常的白色菌落。为了确定突变基因，她决定使用含有赖氨酸选择标记的DNA文库进行功能互补。除了未知的基因突变外，该酵母还缺乏合成亮氨酸和赖氨酸所需的基因。Jane应该将酵母培养在什么培养基上以确保它们获得了文库质粒？她如何知道文库质粒何时互补了她的酵母突变？ 5. 限制性内切酶和DNA连接酶在DNA克隆中发挥关键作用。为什么产生限制性内切酶的细菌不会切割自身的DNA？描述限制性位点的一些一般特征。用限制性内切酶切割DNA后可以产生哪三种类型的DNA末端？DNA连接酶催化什么反应？ 6. 细菌质粒通常用作克隆载体。描述质粒载体的基本特征。质粒作为克隆载体有哪些优势和应用？ 7. DNA文库是克隆的集合，每个克隆含有插入克隆载体的不同DNA片段。cDNA文库和基因组DNA文库之间有什么区别？假设你想将基因X（一个仅在神经元中表达的基因）克隆到载体中，使用文库作为插入片段的来源。你手头有以下文库：来自皮肤细胞的基因组文库、来自皮肤细胞的cDNA文库、来自神经元的基因组文库和来自神经元的cDNA文库。你可以使用哪些文库？为什么？ 8. 1993年，Kary Mullis因发明PCR过程而获得诺贝尔化学奖。描述PCR反应每个循环中的三个步骤。为什么热稳定DNA聚合酶的发现对PCR的发展如此重要？ 9. Southern印迹和Northern印迹是基于核酸杂交的强大分子生物学工具。这两种技术有何相同之处？又有何不同？给出每种印迹技术的具体应用。 10. 许多外源蛋白质已在细菌和哺乳动物细胞中表达。描述表达外源基因所需的重组质粒的基本特征。如何修饰外源蛋白质以促进其纯化？在哺乳动物细胞中表达蛋白质相比在细菌中表达有什么优势？ 11. Northern印迹、RT-PCR和微阵列可用于分析基因表达。一个实验室研究酵母细胞在两种不同糖类（葡萄糖和半乳糖）中的生长情况。一位学生正在比较HMG2基因在这两种条件下的表达。他可以使用哪些技术？为什么？另一位学生想比较4号染色体上所有基因的表达，该染色体约有800个基因。她可以使用哪些技术？为什么？ 12. 在确定与新发现基因对应的蛋白质身份时，了解该基因的组织表达模式通常很有帮助。例如，研究人员发现一个名为SERPINA6的基因在肝脏、肾脏和胰腺中表达，但在其他组织中不表达。研究人员可以使用哪些技术来找出哪些组织表达特定基因？ 13. DNA多态性可用作DNA标记。描述SNP和STR多态性之间的差异。这些标记如何用于DNA定位研究？ 14. 连锁不平衡定位如何有时能提供比经典连锁定位高得多的基因定位分辨率？ 15. 遗传连锁研究通常只能粗略定位疾病基因的染色体位置。表达分析和DNA序列分析如何帮助在连锁定位确定的区域内定位疾病基因？ 16. 选择性修饰小鼠基因组的能力彻底改变了小鼠遗传学。概述在特定遗传位点产生敲除小鼠的程序。如何利用loxP-Cre系统条件性敲除基因？敲除小鼠的重要医学应用是什么？ 17. 两种在不改变基因序列的情况下功能性失活基因的方法涉及显性负效等位基因和RNA干扰（RNAi）。描述每种方法如何抑制基因的表达。</p>
-<p>参考文献</p>
-<p>Genetic Analysis of Mutations to Identify and Study Genes</p>
-<p>Hartwell, L. H. 1967. Macromolecular synthesis of temperature-sensitive mutants of yeast. J. Bacteriol. 93:1662.</p>
-<p>Nüsslein-Volhard, C., and E. Wieschaus. 1980. Mutations affecting segment number and polarity in Drosophila. Nature 287:795–801. Tong, A. H., et al. 2001. Systematic genetic analysis with or- dered arrays of yeast deletion mutants. Science 294:2364–2368.</p>
-<p>DNA Cloning and Characterization</p>
-<p>Maniatis, T., et al. 1978. The isolation of structural genes from libraries of eucaryotic DNA. Cell 15:687–701.</p>
-<p>参考文献 269</p>
+<p class="launchpad">访问LaunchPad获取学习工具并了解更多本章内容：展望未来、分析数据、扩展参考文献、附加学习工具（包括视频、动画和测验）</p>
+<div class="endmatter">
+<h2 class="em-title" id="key-terms">关键术语</h2><div class="kt-grid"><div class="kt-item"><span class="kt-term">等位基因</span><span class="kt-page">224</span></div><div class="kt-item"><span class="kt-term">克隆</span><span class="kt-page">237</span></div><div class="kt-item"><span class="kt-term">互补DNA（cDNA）</span><span class="kt-page">239</span></div><div class="kt-item"><span class="kt-term">CRISPR</span><span class="kt-page">266</span></div><div class="kt-item"><span class="kt-term">DNA克隆</span><span class="kt-page">234</span></div><div class="kt-item"><span class="kt-term">DNA文库</span><span class="kt-page">237</span></div><div class="kt-item"><span class="kt-term">DNA微阵列</span><span class="kt-page">247</span></div><div class="kt-item"><span class="kt-term">显性</span><span class="kt-page">225</span></div><div class="kt-item"><span class="kt-term">功能互补</span><span class="kt-page">237</span></div><div class="kt-item"><span class="kt-term">基因敲除</span><span class="kt-page">261</span></div><div class="kt-item"><span class="kt-term">基因型</span><span class="kt-page">224</span></div><div class="kt-item"><span class="kt-term">杂合的</span><span class="kt-page">225</span></div><div class="kt-item"><span class="kt-term">纯合的</span><span class="kt-page">225</span></div><div class="kt-item"><span class="kt-term">杂交</span><span class="kt-page">246</span></div><div class="kt-item"><span class="kt-term">原位杂交</span><span class="kt-page">247</span></div><div class="kt-item"><span class="kt-term">连锁</span><span class="kt-page">232</span></div><div class="kt-item"><span class="kt-term">诱变剂</span><span class="kt-page">224</span></div><div class="kt-item"><span class="kt-term">突变</span><span class="kt-page">224</span></div><div class="kt-item"><span class="kt-term">Northern印迹</span><span class="kt-page">247</span></div><div class="kt-item"><span class="kt-term">表型</span><span class="kt-page">224</span></div><div class="kt-item"><span class="kt-term">质粒</span><span class="kt-page">236</span></div><div class="kt-item"><span class="kt-term">点突变</span><span class="kt-page">225</span></div><div class="kt-item"><span class="kt-term">聚合酶链式反应（PCR）</span><span class="kt-page">239</span></div><div class="kt-item"><span class="kt-term">隐性</span><span class="kt-page">225</span></div><div class="kt-item"><span class="kt-term">重组DNA</span><span class="kt-page">234</span></div><div class="kt-item"><span class="kt-term">重组</span><span class="kt-page">232</span></div><div class="kt-item"><span class="kt-term">限制性内切酶</span><span class="kt-page">234</span></div><div class="kt-item"><span class="kt-term">RNA干扰（RNAi）</span><span class="kt-page">264</span></div><div class="kt-item"><span class="kt-term">分离</span><span class="kt-page">227</span></div><div class="kt-item"><span class="kt-term">Southern印迹</span><span class="kt-page">246</span></div><div class="kt-item"><span class="kt-term">转染</span><span class="kt-page">251</span></div><div class="kt-item"><span class="kt-term">转化</span><span class="kt-page">236</span></div><div class="kt-item"><span class="kt-term">转基因</span><span class="kt-page">263</span></div><div class="kt-item"><span class="kt-term">载体</span><span class="kt-page">234</span></div><div class="kt-item"><span class="kt-term">野生型</span><span class="kt-page">224</span></div></div>
+<h2 class="em-title" id="review-concepts">复习题</h2><ol class="review-list"><p class="rv-item">1. 遗传突变可以为理解复杂的细胞或发育过程提供机制方面的洞见。根据特定突变是隐性还是显性，你对遗传突变的分析会有什么不同？ 2. 什么是温度敏感突变？为什么温度敏感突变对揭示基因功能很有用？ 3. 描述如何利用互补分析揭示两个突变是位于同一基因还是不同基因中。解释为什么互补分析对显性突变不起作用。 4. Jane分离了一个酵母突变株，在平板上生长时形成红色菌落而非正常的白色菌落。为了确定突变基因，她决定使用含有赖氨酸选择标记的DNA文库进行功能互补。除了未知的基因突变外，该酵母还缺乏合成亮氨酸和赖氨酸所需的基因。Jane应该将酵母培养在什么培养基上以确保它们获得了文库质粒？她如何知道文库质粒何时互补了她的酵母突变？ 5. 限制性内切酶和DNA连接酶在DNA克隆中发挥关键作用。为什么产生限制性内切酶的细菌不会切割自身的DNA？描述限制性位点的一些一般特征。用限制性内切酶切割DNA后可以产生哪三种类型的DNA末端？DNA连接酶催化什么反应？ 6. 细菌质粒通常用作克隆载体。描述质粒载体的基本特征。质粒作为克隆载体有哪些优势和应用？ 7. DNA文库是克隆的集合，每个克隆含有插入克隆载体的不同DNA片段。cDNA文库和基因组DNA文库之间有什么区别？假设你想将基因X（一个仅在神经元中表达的基因）克隆到载体中，使用文库作为插入片段的来源。你手头有以下文库：来自皮肤细胞的基因组文库、来自皮肤细胞的cDNA文库、来自神经元的基因组文库和来自神经元的cDNA文库。你可以使用哪些文库？为什么？ 8. 1993年，Kary Mullis因发明PCR过程而获得诺贝尔化学奖。描述PCR反应每个循环中的三个步骤。为什么热稳定DNA聚合酶的发现对PCR的发展如此重要？ 9. Southern印迹和Northern印迹是基于核酸杂交的强大分子生物学工具。这两种技术有何相同之处？又有何不同？给出每种印迹技术的具体应用。 10. 许多外源蛋白质已在细菌和哺乳动物细胞中表达。描述表达外源基因所需的重组质粒的基本特征。如何修饰外源蛋白质以促进其纯化？在哺乳动物细胞中表达蛋白质相比在细菌中表达有什么优势？ 11. Northern印迹、RT-PCR和微阵列可用于分析基因表达。一个实验室研究酵母细胞在两种不同糖类（葡萄糖和半乳糖）中的生长情况。一位学生正在比较HMG2基因在这两种条件下的表达。他可以使用哪些技术？为什么？另一位学生想比较4号染色体上所有基因的表达，该染色体约有800个基因。她可以使用哪些技术？为什么？ 12. 在确定与新发现基因对应的蛋白质身份时，了解该基因的组织表达模式通常很有帮助。例如，研究人员发现一个名为SERPINA6的基因在肝脏、肾脏和胰腺中表达，但在其他组织中不表达。研究人员可以使用哪些技术来找出哪些组织表达特定基因？ 13. DNA多态性可用作DNA标记。描述SNP和STR多态性之间的差异。这些标记如何用于DNA定位研究？ 14. 连锁不平衡定位如何有时能提供比经典连锁定位高得多的基因定位分辨率？ 15. 遗传连锁研究通常只能粗略定位疾病基因的染色体位置。表达分析和DNA序列分析如何帮助在连锁定位确定的区域内定位疾病基因？ 16. 选择性修饰小鼠基因组的能力彻底改变了小鼠遗传学。概述在特定遗传位点产生敲除小鼠的程序。如何利用loxP-Cre系统条件性敲除基因？敲除小鼠的重要医学应用是什么？ 17. 两种在不改变基因序列的情况下功能性失活基因的方法涉及显性负效等位基因和RNA干扰（RNAi）。描述每种方法如何抑制基因的表达。</p></ol>
+<div class="references"><h2 class="em-title" id="references">参考文献</h2><h3 class="ref-sec">Genetic Analysis of Mutations to Identify and Study Genes</h3><div class="ref-list"><p class="ref-item">Hartwell, L. H. 1967. Macromolecular synthesis of temperature-sensitive mutants of yeast. J. Bacteriol. 93:1662.</p><p class="ref-item">Nüsslein-Volhard, C., and E. Wieschaus. 1980. Mutations affecting segment number and polarity in Drosophila. Nature 287:795–801.</p><p class="ref-item">Tong, A. H., et al. 2001. Systematic genetic analysis with or- dered arrays of yeast deletion mutants. Science 294:2364–2368.</p></div><h3 class="ref-sec">DNA Cloning and Characterization</h3><div class="ref-list"><p class="ref-item">Maniatis, T., et al. 1978. The isolation of structural genes from libraries of eucaryotic DNA. Cell 15:687–701.</p></div></div>
+<p class="running-footer">参考文献 269</p>
 <p>Nasmyth, K. A., and S. I. Reed. 1980. Isolation of genes by complementation in yeast: molecular cloning of a cell-cycle gene. P. Natl. Acad. Sci. USA 77:2119–2123.</p>
 <p>Nathans, D., and H. O. Smith. 1975. Restriction endonucleases in the analysis and restructuring of DNA molecules. Annu. Rev. Biochem. 44:273–293.</p>
 <p>Using Cloned DNA Fragments to Study Gene Expression</p>
@@ -1155,6 +1168,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>Capecchi, M. R. 1989. Altering the genome by homologous recombination. Science 244:1288–1292.</p>
 <p>Fire, A., et al. 1998. Potent and specific genetic interference by double-stranded RNA in Caenorhabditis elegans. Nature 391: 806–811. Jinek, M., et al. 2012. A programmable dual-RNA-guided DNA endonuclease in adaptive bacterial immunity. Science 337: 816–821. Zamore, P. D., et al. 2000. RNAi: double-stranded RNA directs the ATP-dependent cleavage of mRNA at 21 to 23 nucleotide inter- vals. Cell 101:25–33.</p>
 <p>Zimmer, A. 1992. Manipulating the genome by homologous recombination in embryonic stem cells. Annu. Rev. Neurosci. 15:115.</p>
+</div>
 <div class="footer">分子细胞生物学（第8版）中文翻译 · 非营利学习用途</div>
 </article>
 <div id="lightbox" onclick="this.style.display='none'"><span class="close">&times;</span><img src=""></div>

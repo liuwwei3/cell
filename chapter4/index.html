@@ -48,6 +48,50 @@ table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
 table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
+/* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
+.key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
+  background: #edf1f1; border: 1px solid #d5dddd; border-left: 4px solid #7d0052;
+  border-radius: 0 3px 3px 0; page-break-inside: avoid; }
+.key-concepts .kc-head { font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78em; font-weight: 800; letter-spacing: 1.6px; color: #7d0052; margin-bottom: 0.45em; }
+.key-concepts .kc-title { font-size: 1.06em; font-weight: bold; color: #00668f; margin-bottom: 0.75em;
+  line-height: 1.5; }
+.key-concepts ul { list-style: none; margin: 0; padding: 0; }
+.key-concepts li { position: relative; padding-left: 1.3em; margin-bottom: 0.7em;
+  font-size: 0.93em; line-height: 1.9; text-align: justify; }
+.key-concepts li:last-child { margin-bottom: 0; }
+.key-concepts li::before { content: "▸"; position: absolute; left: 0.15em; top: 0;
+  color: #00668f; font-size: 0.9em; }
+/* 章末学习附录：关键术语 / 复习题 / 参考文献 */
+.endmatter { margin-top: 3.2em; padding-top: 1.6em; border-top: 3px double #cfd8d8; }
+.em-title { font-size: 1.28em; font-weight: bold; color: #00668f; margin: 1.8em 0 0.85em 0;
+  padding: 0 0 0.28em 0; border-left: none; border-bottom: 1px solid #d8e4e8; scroll-margin-top: 20px; }
+.em-title:first-child { margin-top: 0; }
+.em-title::before { content: ""; display: inline-block; width: 5px; height: 0.9em;
+  background: #00668f; margin-right: 0.5em; vertical-align: -0.06em; border-radius: 1px; }
+.kt-grid { column-count: 2; column-gap: 2.4em; font-size: 0.87em; line-height: 1.75; }
+.kt-item { display: flex; justify-content: space-between; gap: 0.6em; padding: 0.5px 0;
+  break-inside: avoid; page-break-inside: avoid; }
+.kt-term { color: #1a1a1a; }
+.kt-page { flex: none; color: #9aa5a8; font-family: "Times New Roman", serif; font-size: 0.92em; }
+.review-list { list-style: none; margin: 0; padding: 0; }
+.review-list li, .review-list p.rv-item { position: relative; padding-left: 2.1em; margin: 0 0 1em 0;
+  font-size: 0.93em; line-height: 1.95; text-align: justify; text-indent: 0; }
+.review-list .rv-num { position: absolute; left: 0; color: #00668f; font-weight: bold;
+  font-family: "Times New Roman", serif; }
+.review-list .rv-sub { color: #00668f; font-weight: bold; }
+.references { font-size: 0.8em; line-height: 1.62; }
+.ref-sec { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 1.08em;
+  font-weight: normal; color: #00668f; margin: 1.2em 0 0.5em 0; padding-bottom: 0.15em;
+  border-bottom: 1px dotted #dde5e7; page-break-after: avoid; }
+.ref-list { column-count: 2; column-gap: 2.4em; }
+.ref-item { text-indent: -1.3em; padding-left: 1.3em; margin: 0 0 0.38em 0; text-align: left;
+  color: #333; break-inside: avoid; page-break-inside: avoid; }
+.ref-item.ref-note { text-indent: 0; padding-left: 0; color: #8a9599; font-style: italic; }
+@media (max-width: 700px) { .kt-grid, .ref-list { column-count: 1; } }
+.launchpad { text-indent: 0; text-align: center; font-size: 0.82em; color: #8899a6; font-style: italic;
+  margin: 2.4em 0 0 0; padding: 0.75em 1.1em; background: #f7fafb; border-radius: 3px; }
+.running-footer { text-indent: 0; text-align: center; font-size: 0.72em; color: #c8c8c8; margin: 2.2em 0 0 0; }
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
@@ -657,16 +701,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>结合高通量显微技术现已成为新药发现线索的主要途径之一。此处我们给一个案例说明此类方法如何工作。</p>
 <p>在我们的例子中（图 4-7a），研究者想鉴定抑制有丝分裂（复制染色体被基于微管的机器即有丝分裂纺锤体精确分配的过程，第 18 章讨论）的化合物。已知若纺锤体组装受损，细胞被阻滞在有丝分裂。故筛选首先用自动化机器人方法寻找将细胞阻滞于有丝分裂的化合物。然后探索候选化合物抑制有丝分裂的基础，看它们是否影响微管组装。因微管组装抑制不感兴趣，用微管蛋白（微管主要蛋白）抗体的免疫荧光显微术确定其余候选化合物对纺锤体结构的影响。筛选了 16000 多种化合物，鉴定出一种导致细胞纺锤体异常的化合物--非两个星体，而是单个星体，形成所谓单星阵列（图 4-7b）。此药现称 monastrol，发现通过抑制基于微管的马达蛋白 kinesin-5 来干扰纺锤体组装。（有丝分裂纺锤体更多细节见第 18 章。）monastrol 衍生物现正作为抗肿瘤剂测试治疗某些癌症。</p>
-<p>第 4.1 节关键概念</p>
-<p>细胞的培养与研究</p>
-<p>● 动物细胞必须在模拟其自然环境的条件下培养，通常需提供必需氨基酸和生长因子。</p>
-<p>● 大多数动物细胞需附着固体表面才能生长。</p>
-<p>● 原代细胞（直接从组织分离）寿命有限。</p>
-<p>● 转化细胞（如源自肿瘤的细胞）可在培养中无限生长。</p>
-<p>● 可无限生长的细胞称为细胞系。</p>
-<p>● 许多细胞系非整倍体，染色体数不同于其来源亲本细胞。</p>
-<p>● 表达荧光蛋白的细胞可在荧光激活细胞分拣器（FACS）上分拣。</p>
-<p>● 不同细胞类型在细胞表面表达不同标记蛋白，可用荧光标记标记，在 FACS 机器上分拣。</p>
+<div class="key-concepts" id="kc-4-1"><div class="kc-head">第 4.1 节 · 关键概念</div><div class="kc-title">细胞的培养与研究</div><ul><li>动物细胞必须在模拟其自然环境的条件下培养，通常需提供必需氨基酸和生长因子。</li><li>大多数动物细胞需附着固体表面才能生长。</li><li>原代细胞（直接从组织分离）寿命有限。</li><li>转化细胞（如源自肿瘤的细胞）可在培养中无限生长。</li><li>可无限生长的细胞称为细胞系。</li><li>许多细胞系非整倍体，染色体数不同于其来源亲本细胞。</li><li>表达荧光蛋白的细胞可在荧光激活细胞分拣器（FACS）上分拣。</li><li>不同细胞类型在细胞表面表达不同标记蛋白，可用荧光标记标记，在 FACS 机器上分拣。</li></ul></div>
 <p>● 上皮细胞常在特殊容器中培养以模拟其功能极性。细胞也可在三维基质上生长以更准确反映其正常环境。</p>
 <p>● 单克隆抗体（结合抗原上一个表位）可由杂交瘤培养细胞分泌。这些杂交细胞通过融合抗体产生 B 淋巴细胞与永生骨髓瘤细胞，然后鉴定产生所需抗体的克隆制成。单克隆抗体对基础研究和治疗剂重要。</p>
 <p>● 培养细胞比完整动物中的细胞更容易操作。</p>
@@ -1106,24 +1141,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>照亮单个面。检测物镜与照亮面成直角，然后对样本成像。为生成三维图像，须对样本所有面成像。这通过协调地步进照亮光片和检测物镜穿过样本生成图像栈实现，然后可计算组装成三维渲染。</p>
 <p>此技术使用一例中，科学家对活斑马鱼脑细胞中 Ca²⁺ 浓度成像。斑马鱼脑中神经元使其表达 Ca²⁺ 生物传感器 GCaMP，它基于无 Ca²⁺ 时不荧光但设计为其存在时荧光的 GFP（图 4-27b）。此生物传感器由 GFP 组成，其中 N 端和 C 端结构域连接但蛋白中间被打断，Ca²⁺ 传感结构域附于一端，配体结构域附于另一端。因 GFP 结构被打断，蛋白在适当照明光激发下不再荧光。传感结构域源自小 Ca²⁺ 结合蛋白钙调蛋白（见图 3-31），结合四个 Ca²⁺ 离子时改变构象。配体结构域是钙调蛋白只在被 Ca²⁺ 结合激活时才结合的靶序列。当活性钙调蛋白结合配体结构域时，它改变被打断 GFP 的结构使其现在可被激发并荧光。这样，每当 Ca²⁺ 水平升至足以激活钙调蛋白时报告荧光信号。如第 22 章讨论，神经元通讯时，部分通讯涉及 Ca²⁺ 水平升高。此神经元通讯可通过在表达 GCaMP 生物传感器的斑马鱼脑中用光片显微术活体成像（图 4-27c）。</p>
-<p>第 4.2 节关键概念</p>
-<p>光学显微术：探索细胞结构与细胞内蛋白质可视化</p>
-<p>● 光显微镜分辨率约 0.2 μm，受光波长限制。</p>
-<p>● 折射率差异可通过相差和微分干涉相差显微术观察单细胞部分。</p>
-<p>● 组织通常须固定、切片和染色才能观察细胞和亚细胞结构。</p>
-<p>● 荧光显微术利用一波长吸光并更长波长发光的化合物。</p>
-<p>● 离子敏感荧光染料可测量胞内离子浓度（如 Ca²⁺）。</p>
-<p>● 免疫荧光显微术用抗体在固定和透化细胞中定位特定组分。</p>
-<p>● 间接免疫荧光显微术用未标记一抗，后跟识别一抗并允许其定位的荧光标记二抗。</p>
-<p>● 编码表位标签的短序列可附加到蛋白编码序列，允许用表位标签抗体定位表达的蛋白。</p>
-<p>● 绿色荧光蛋白（GFP）及其衍生物是天然荧光蛋白。</p>
-<p>● 将 GFP 融合到目的蛋白允许在活细胞中探索其定位和动态。</p>
-<p>● 去卷积和共聚焦显微术通过去除失焦荧光光，提供荧光图像大幅改善的清晰度。</p>
-<p>● 全内反射荧光（TIRF）显微术允许以极清晰度看到盖玻片旁荧光样本。</p>
-<p>● 荧光漂白后恢复（FRAP）允许分析分子群体动态。</p>
-<p>● 福斯特共振能量转移（FRET）是两荧光蛋白非常接近时光能从一转移到另一的技术，从而揭示两分子在细胞中何时接近。</p>
-<p>● 超分辨率显微术允许纳米分辨率详细荧光图像。</p>
-<p>● 光片显微术可通过从侧面用光片照亮样本提供厚样本荧光图像。</p>
+<div class="key-concepts" id="kc-4-2"><div class="kc-head">第 4.2 节 · 关键概念</div><div class="kc-title">光学显微术：探索细胞结构与细胞内蛋白质可视化</div><ul><li>光显微镜分辨率约 0.2 μm，受光波长限制。</li><li>折射率差异可通过相差和微分干涉相差显微术观察单细胞部分。</li><li>组织通常须固定、切片和染色才能观察细胞和亚细胞结构。</li><li>荧光显微术利用一波长吸光并更长波长发光的化合物。</li><li>离子敏感荧光染料可测量胞内离子浓度（如 Ca²⁺）。</li><li>免疫荧光显微术用抗体在固定和透化细胞中定位特定组分。</li><li>间接免疫荧光显微术用未标记一抗，后跟识别一抗并允许其定位的荧光标记二抗。</li><li>编码表位标签的短序列可附加到蛋白编码序列，允许用表位标签抗体定位表达的蛋白。</li><li>绿色荧光蛋白（GFP）及其衍生物是天然荧光蛋白。</li><li>将 GFP 融合到目的蛋白允许在活细胞中探索其定位和动态。</li><li>去卷积和共聚焦显微术通过去除失焦荧光光，提供荧光图像大幅改善的清晰度。</li><li>全内反射荧光（TIRF）显微术允许以极清晰度看到盖玻片旁荧光样本。</li><li>荧光漂白后恢复（FRAP）允许分析分子群体动态。</li><li>福斯特共振能量转移（FRET）是两荧光蛋白非常接近时光能从一转移到另一的技术，从而揭示两分子在细胞中何时接近。</li><li>超分辨率显微术允许纳米分辨率详细荧光图像。</li><li>光片显微术可通过从侧面用光片照亮样本提供厚样本荧光图像。</li></ul></div>
 <h2 id="sec-4.3">4.3 电子显微术：高分辨率成像</h2>
 <p>生物样本（如单蛋白、细胞器、细胞和组织）的电子显微成像提供比光显微术高得多的超微结构分辨率。电子的短波长意味着透射电子显微镜分辨率极限理论上 0.005 nm（远小于单个原子直径），即比光显微镜好 40000 倍，比未辅助人眼好 200 万倍。但透射电子显微镜在生物系统研究中的有效分辨率远低于此理想。最佳条件下，透射电子显微镜可获得 0.10 nm 分辨率，比常规光显微镜好约 2000 倍，至少比当前超分辨率显微镜好 300 倍。</p>
 <p>电子显微术基本原理与光显微术相似；主要区别是电子显微镜中电磁透镜聚焦高速电子束而非光显微镜所用可见光。</p>
@@ -1275,14 +1293,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>为称断层图的三维重建（图 4-34c、d）。冷冻电子断层术的缺点是样本须相对薄，约 200 nm；这比共聚焦光显微术可研究的样本（200 μm 厚）薄得多。</p>
 <p>金属包被标本的扫描电子显微术揭示表面特征</p>
 <p>扫描电子显微术（SEM）允许研究者观察未切片金属包被标本的表面。显微镜内强电子束在样本上快速扫描。涂层分子被激发释放二次电子，聚焦到闪烁探测器；所得信号显示在阴极射线管（类似常规电视，见图 4-28 右）。所得扫描电子显微图有三维外观，因样本任一点产生的二次电子数取决于电子束相对表面的角度（图 4-35）。扫描电子显微镜的分辨能力（受金属涂层厚度限制）仅约 10 nm，远低于透射仪器。</p>
-<p>第 4.3 节关键概念</p>
-<p>电子显微术：高分辨率成像</p>
-<p>● 电子显微术因用于成像样本的高能电子短波长而提供极高分辨率图像。</p>
-<p>● 简单标本（如蛋白或病毒）可负染或重金属投影供透射电子显微镜（TEM）检查。</p>
-<p>● 较厚切片通常须固定、脱水、塑料包埋、切片，然后用电子致密重金属染色后 TEM 观察。</p>
-<p>● 特定蛋白质可用附着重金属标记（如小金颗粒）的特异抗体通过 TEM 定位。</p>
-<p>● 冷冻电子显微术通过在极低温保持样本，允许在 TEM 中检查水合、未固定、未染色生物标本。</p>
-<p>● 金属投影材料的扫描电子显微术（SEM）揭示标本表面特征。</p>
+<div class="key-concepts" id="kc-4-3"><div class="kc-head">第 4.3 节 · 关键概念</div><div class="kc-title">电子显微术：高分辨率成像</div><ul><li>电子显微术因用于成像样本的高能电子短波长而提供极高分辨率图像。</li><li>简单标本（如蛋白或病毒）可负染或重金属投影供透射电子显微镜（TEM）检查。</li><li>较厚切片通常须固定、脱水、塑料包埋、切片，然后用电子致密重金属染色后 TEM 观察。</li><li>特定蛋白质可用附着重金属标记（如小金颗粒）的特异抗体通过 TEM 定位。</li><li>冷冻电子显微术通过在极低温保持样本，允许在 TEM 中检查水合、未固定、未染色生物标本。</li><li>金属投影材料的扫描电子显微术（SEM）揭示标本表面特征。</li></ul></div>
 <h2 id="sec-4.4">4.4 细胞器的分离</h2>
 <p>光和电子显微术对细胞的检查导致认识到真核细胞含一组共同细胞器（见第 1 章图 1-12a）。但用显微术观察细胞器和记录其详细结构并不清楚揭示它们扮演的角色及如何工作。为此，需在天然状态分离细胞器并鉴定和剖析每个组分功能。因此，与显微术进展并行，分离和表征细胞器的方法被开发。例如溶酶体是生物分子被降解的细胞器（第 1 章描述）。溶酶体已用显微术看到，但其功能只有在开发分离方法后才被发现。</p>
 <figure id="fig-4-35">
@@ -1382,14 +1393,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>蛋白质组学揭示细胞器蛋白质组成</p>
 <p>本节开头我们强调分离细胞器以鉴定其组分多么重要。多年来，技术不够精密无法产生每个细胞器蛋白质的完整清单，但基因组学和质谱的近期进展现已使之成为可能。此方法将细胞器分离与第 3 章讨论的蛋白质组学技术结合。</p>
 <p>鉴定细胞器中所有蛋白需三步。首先，须能高度纯化地分离细胞器。其次，须有方法鉴定细胞器中所有蛋白序列。此鉴定通常通过用蛋白酶（如胰蛋白酶，在赖氨酸和精氨酸残基切割所有多肽）消化所有蛋白，然后用质谱测定所有所得肽的质量和序列完成。第三，须有基因组序列以鉴定所有肽来自的蛋白。这样，许多细胞器的蛋白质组已被确定。一例，最近对从小鼠脑、心、肾、肝纯化的线粒体蛋白质组学研究揭示 591 个线粒体蛋白，包括 163 个以前不知与此细胞器相关的蛋白。几种蛋白只在特定细胞类型的线粒体中发现。确定这些新鉴定线粒体蛋白相关功能是当前此细胞器研究的主要目标。</p>
-<p>第 4.4 节关键概念</p>
-<p>细胞器的分离</p>
-<p>● 显微术揭示了真核细胞中存在一组共同细胞器。</p>
-<p>● 通过强力匀浆、超声或其他技术破裂细胞释放其细胞器。细胞在低渗溶液中膨胀削弱质膜，便于破裂。</p>
-<p>● 细胞匀浆的序贯差速离心产生部分纯化细胞器组分（按质量和密度不同）。</p>
-<p>● 平衡密度梯度离心（按密度分离细胞组分）可进一步纯化差速离心所得细胞组分。</p>
-<p>● 使用针对细胞器特异膜蛋白抗体的免疫技术对纯化大小和密度相似的细胞器和囊泡特别有用。</p>
-<p>● 蛋白质组学分析可鉴定纯化细胞器制备物中所有蛋白组分。</p>
+<div class="key-concepts" id="kc-4-4"><div class="kc-head">第 4.4 节 · 关键概念</div><div class="kc-title">细胞器的分离</div><ul><li>显微术揭示了真核细胞中存在一组共同细胞器。</li><li>通过强力匀浆、超声或其他技术破裂细胞释放其细胞器。细胞在低渗溶液中膨胀削弱质膜，便于破裂。</li><li>细胞匀浆的序贯差速离心产生部分纯化细胞器组分（按质量和密度不同）。</li><li>平衡密度梯度离心（按密度分离细胞组分）可进一步纯化差速离心所得细胞组分。</li><li>使用针对细胞器特异膜蛋白抗体的免疫技术对纯化大小和密度相似的细胞器和囊泡特别有用。</li><li>蛋白质组学分析可鉴定纯化细胞器制备物中所有蛋白组分。</li></ul></div>
 <div class="footer">分子细胞生物学（第8版）中文翻译 · 非营利学习用途</div>
 </article>
 <div id="lightbox" onclick="this.style.display='none'"><span class="close">&times;</span><img src=""></div>

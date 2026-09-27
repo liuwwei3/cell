@@ -48,6 +48,50 @@ table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
 table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
+/* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
+.key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
+  background: #edf1f1; border: 1px solid #d5dddd; border-left: 4px solid #7d0052;
+  border-radius: 0 3px 3px 0; page-break-inside: avoid; }
+.key-concepts .kc-head { font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78em; font-weight: 800; letter-spacing: 1.6px; color: #7d0052; margin-bottom: 0.45em; }
+.key-concepts .kc-title { font-size: 1.06em; font-weight: bold; color: #00668f; margin-bottom: 0.75em;
+  line-height: 1.5; }
+.key-concepts ul { list-style: none; margin: 0; padding: 0; }
+.key-concepts li { position: relative; padding-left: 1.3em; margin-bottom: 0.7em;
+  font-size: 0.93em; line-height: 1.9; text-align: justify; }
+.key-concepts li:last-child { margin-bottom: 0; }
+.key-concepts li::before { content: "▸"; position: absolute; left: 0.15em; top: 0;
+  color: #00668f; font-size: 0.9em; }
+/* 章末学习附录：关键术语 / 复习题 / 参考文献 */
+.endmatter { margin-top: 3.2em; padding-top: 1.6em; border-top: 3px double #cfd8d8; }
+.em-title { font-size: 1.28em; font-weight: bold; color: #00668f; margin: 1.8em 0 0.85em 0;
+  padding: 0 0 0.28em 0; border-left: none; border-bottom: 1px solid #d8e4e8; scroll-margin-top: 20px; }
+.em-title:first-child { margin-top: 0; }
+.em-title::before { content: ""; display: inline-block; width: 5px; height: 0.9em;
+  background: #00668f; margin-right: 0.5em; vertical-align: -0.06em; border-radius: 1px; }
+.kt-grid { column-count: 2; column-gap: 2.4em; font-size: 0.87em; line-height: 1.75; }
+.kt-item { display: flex; justify-content: space-between; gap: 0.6em; padding: 0.5px 0;
+  break-inside: avoid; page-break-inside: avoid; }
+.kt-term { color: #1a1a1a; }
+.kt-page { flex: none; color: #9aa5a8; font-family: "Times New Roman", serif; font-size: 0.92em; }
+.review-list { list-style: none; margin: 0; padding: 0; }
+.review-list li, .review-list p.rv-item { position: relative; padding-left: 2.1em; margin: 0 0 1em 0;
+  font-size: 0.93em; line-height: 1.95; text-align: justify; text-indent: 0; }
+.review-list .rv-num { position: absolute; left: 0; color: #00668f; font-weight: bold;
+  font-family: "Times New Roman", serif; }
+.review-list .rv-sub { color: #00668f; font-weight: bold; }
+.references { font-size: 0.8em; line-height: 1.62; }
+.ref-sec { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 1.08em;
+  font-weight: normal; color: #00668f; margin: 1.2em 0 0.5em 0; padding-bottom: 0.15em;
+  border-bottom: 1px dotted #dde5e7; page-break-after: avoid; }
+.ref-list { column-count: 2; column-gap: 2.4em; }
+.ref-item { text-indent: -1.3em; padding-left: 1.3em; margin: 0 0 0.38em 0; text-align: left;
+  color: #333; break-inside: avoid; page-break-inside: avoid; }
+.ref-item.ref-note { text-indent: 0; padding-left: 0; color: #8a9599; font-style: italic; }
+@media (max-width: 700px) { .kt-grid, .ref-list { column-count: 1; } }
+.launchpad { text-indent: 0; text-align: center; font-size: 0.82em; color: #8899a6; font-style: italic;
+  margin: 2.4em 0 0 0; padding: 0.75em 1.1em; background: #f7fafb; border-radius: 3px; }
+.running-footer { text-indent: 0; text-align: center; font-size: 0.72em; color: #c8c8c8; margin: 2.2em 0 0 0; }
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
@@ -135,6 +179,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <li class="toc-fig"><a href="#fig-7-26">图 7-26 胆固醇生物合成途径</a></li>
 <li class="toc-fig"><a href="#fig-7-27">图 7-27 胆固醇和磷脂在膜之间运输的几种提出机制</a></li>
 </ul>
+</li>
+<li class="toc-sec"><a href="#key-terms">关键术语</a>
+</li>
+<li class="toc-sec"><a href="#review-concepts">复习题</a>
+</li>
+<li class="toc-sec"><a href="#references">参考文献</a>
 </li>
 </ul>
 </div></nav>
@@ -401,15 +451,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>细胞将多余的脂质储存在脂滴中</p>
 <p>脂滴是囊泡状结构，由甘油三酯和胆固醇酯组成，起源于ER，具有脂质储存功能。当细胞的脂质供应超过膜构建的即时需要时，多余的脂质被转移到这些脂滴中，可用刚果红等亲脂性染料染色在活细胞中轻易观察到。用油酸（一种脂肪酸）喂养细胞会促进脂滴形成。脂滴不仅是甘油三酯和胆固醇酯的储存区室，还可能作为待降解蛋白质的储存平台。脂滴的生物发生始于通过插入甘油三酯和胆固醇酯使ER的脂质双层分层（图7-13）。脂质"透镜"通过插入更多脂质继续生长，直到最终通过从ER上断裂而孵化出一个脂滴。由此产生的细胞质脂滴因而被一个磷脂单层包围。脂滴生物发生的细节及其功能仍有待更清晰地界定。</p>
-<p>7.1节 关键概念</p>
-<p>脂双层：组成与结构组织</p>
-<p>r 膜对细胞结构和功能至关重要。真核细胞通过质膜与外部环境划界，并组织成由膜界定的内部区室（细胞器和囊泡）。</p>
-<p>r 磷脂双层是所有生物膜的基本结构单元，是一种双层脂质片层，具有亲水面和疏水核心，对水溶性分子和离子不可通透。嵌入双层的蛋白质赋予膜特定功能（见图7-1）。</p>
-<p>r 磷脂自发形成双层以及包围水相空间的封闭区室（见图7-3）。</p>
-<p>r 作为双层，所有生物膜都有一个内部（胞质）面和一个外部（外质）面（见图7-5）。有些细胞器由两层而非一层膜双层包围。</p>
-<p>r 生物膜的主要脂质成分是磷酸甘油酯、鞘脂和诸如胆固醇的固醇。术语"磷脂"适用于任何具有脂肪酰基烃尾部和基于磷酸的极性头基的两亲性脂质分子（见图7-8）。</p>
-<p>r 生物膜可以随温度和膜组成的不同而经历从类流体到类凝胶态的相变（见图7-9）。</p>
-<p>r 大多数脂质和许多蛋白质在生物膜中可侧向移动（见图7-10）。</p>
+<div class="key-concepts" id="kc-7-1"><div class="kc-head">第 7.1 节 · 关键概念</div><div class="kc-title">脂双层：组成与结构组织</div><ul><li>膜对细胞结构和功能至关重要。真核细胞通过质膜与外部环境划界，并组织成由膜界定的内部区室（细胞器和囊泡）。</li><li>磷脂双层是所有生物膜的基本结构单元，是一种双层脂质片层，具有亲水面和疏水核心，对水溶性分子和离子不可通透。嵌入双层的蛋白质赋予膜特定功能（见图7-1）。</li><li>磷脂自发形成双层以及包围水相空间的封闭区室（见图7-3）。</li><li>作为双层，所有生物膜都有一个内部（胞质）面和一个外部（外质）面（见图7-5）。有些细胞器由两层而非一层膜双层包围。</li><li>生物膜的主要脂质成分是磷酸甘油酯、鞘脂和诸如胆固醇的固醇。术语"磷脂"适用于任何具有脂肪酰基烃尾部和基于磷酸的极性头基的两亲性脂质分子（见图7-8）。</li><li>生物膜可以随温度和膜组成的不同而经历从类流体到类凝胶态的相变（见图7-9）。</li><li>大多数脂质和许多蛋白质在生物膜中可侧向移动（见图7-10）。</li></ul></div>
 <p>r 不同细胞膜的脂质组成各不相同（见表7-1）。磷脂和鞘脂在双层两个单层中不对称分布，而胆固醇在两个单层中分布相当均匀。</p>
 <p>r 天然生物膜一般具有粘稠的稠度和类流体性质。一般来说，膜流动性被鞘脂和胆固醇降低，被磷酸甘油酯提高。膜的脂质组成还影响其厚度和曲率（见图7-11）。</p>
 <p>r 脂筏是含有胆固醇、鞘脂和某些膜蛋白的微结构域，在双层平面内形成。这些脂质-蛋白质聚集体可能促进某些质膜受体的信号传导。</p>
@@ -611,16 +653,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>去污剂、磷脂和整合膜蛋白的混合胶束来增溶生物膜，这些是体积庞大的疏水结构，不溶于水（图7-23，上）。在低浓度（低于CMC）下，这些去污剂结合大多数整合膜蛋白的疏水区域，但不形成胶束，从而使蛋白质保持可溶（图7-23，下）。制备这样的整合膜蛋白水溶液是蛋白质纯化必需的第一步。</p>
 <p>用含有非离子型去污剂（如Triton X-100）的缓冲盐溶液处理培养细胞，可将水溶性蛋白以及整合膜蛋白从细胞膜中提取出来。如前所述，整合膜蛋白的外质结构域和胞质结构域通常是亲水的、可溶于水的。然而，跨膜结构域富含疏水和不带电残基（见图7-14）。当与膜分离时，这些暴露的疏水区段倾向于彼此相互作用，导致蛋白质分子聚集并从水溶液中沉淀出来。非离子型去污剂分子的疏水部分优先结合跨膜蛋白的疏水区段，防止蛋白质聚集并使蛋白质保持在水溶液中。去污剂增溶的跨膜蛋白随后可通过亲和层析以及用于纯化水溶性蛋白的其他技术进行纯化（见第3章）。</p>
 <p>如前所述，大多数周边膜蛋白通过离子或其他弱非共价相互作用结合到特定的跨膜蛋白或膜磷脂上。一般来说，周边蛋白可以通过高离子强度溶液（高盐浓度，它破坏离子键）或通过结合二价阳离子（如Mg²⁺）的化学试剂从膜上移除。与整合膜蛋白不同，大多数周边蛋白可溶于水，无需用非离子型去污剂增溶。</p>
-<p>7.2节 关键概念</p>
-<p>膜蛋白：结构与基本功能</p>
-<p>r 生物膜通常含有整合（跨膜）蛋白，以及不进入双层疏水核心的脂锚定蛋白和周边膜蛋白（见图7-1）。</p>
-<p>r 大多数整合膜蛋白含有一个或多个跨膜疏水α螺旋，其两侧是延伸到膜胞质面和外质面周围水性环境中的亲水结构域（见图7-14、7-15和7-17）。</p>
-<p>r 膜脂质的脂肪酰基侧链以及极性头基紧密而不规则地堆积在整合膜蛋白的疏水区段周围（见图7-16）。</p>
-<p>r 与其他整合膜蛋白不同，孔蛋白含有跨膜β片层，形成穿过双层的桶状通道（见图7-18）。</p>
-<p>r 连接在某些氨基酸上的脂质将一些蛋白质锚定到膜的一层或另一层单层（见图7-19）。</p>
-<p>r 所有跨膜蛋白和糖脂在双层中都是不对称取向的。糖链无例外地只存在于糖蛋白或糖脂的外质表面。</p>
-<p>r 许多以磷脂为底物的水溶性酶（如磷脂酶）必须结合到膜表面才能执行其功能。这种结合通常是由于蛋白质中赖氨酸和精氨酸残基上的正电荷与双层中磷脂头基上的负电荷之间的吸引。</p>
-<p>r 跨膜蛋白可用非离子型去污剂选择性地从膜中提取。</p>
+<div class="key-concepts" id="kc-7-2"><div class="kc-head">第 7.2 节 · 关键概念</div><div class="kc-title">膜蛋白：结构与基本功能</div><ul><li>生物膜通常含有整合（跨膜）蛋白，以及不进入双层疏水核心的脂锚定蛋白和周边膜蛋白（见图7-1）。</li><li>大多数整合膜蛋白含有一个或多个跨膜疏水α螺旋，其两侧是延伸到膜胞质面和外质面周围水性环境中的亲水结构域（见图7-14、7-15和7-17）。</li><li>膜脂质的脂肪酰基侧链以及极性头基紧密而不规则地堆积在整合膜蛋白的疏水区段周围（见图7-16）。</li><li>与其他整合膜蛋白不同，孔蛋白含有跨膜β片层，形成穿过双层的桶状通道（见图7-18）。</li><li>连接在某些氨基酸上的脂质将一些蛋白质锚定到膜的一层或另一层单层（见图7-19）。</li><li>所有跨膜蛋白和糖脂在双层中都是不对称取向的。糖链无例外地只存在于糖蛋白或糖脂的外质表面。</li><li>许多以磷脂为底物的水溶性酶（如磷脂酶）必须结合到膜表面才能执行其功能。这种结合通常是由于蛋白质中赖氨酸和精氨酸残基上的正电荷与双层中磷脂头基上的负电荷之间的吸引。</li><li>跨膜蛋白可用非离子型去污剂选择性地从膜中提取。</li></ul></div>
 <h2 id="sec-7.3">7.3 磷脂、鞘脂和胆固醇：合成与胞内运输</h2>
 <p>在本节中，我们考察细胞在合成和运输脂质时面临的一些特殊挑战，这些脂质在细胞的水性内部溶解性很差。我们讨论的重点将是细胞膜中主要脂质——磷脂、鞘脂和胆固醇——及其前体的生物合成与运输。在脂质生物合成中，水溶性前体被组装成膜相关的中间体，随后转变为膜脂质产物。这些脂质（尤其是膜成分）在不同细胞器之间的运输，对于维持膜的适当组成和性质以及整体细胞结构至关重要。</p>
 <p>膜生物合成的一个基本原理是，细胞只通过现有膜的扩展来合成新膜。[唯一的例外可能是自噬，其中新膜首先通过形成自噬新月体而产生，其构建涉及用类泛素修饰物Atg8修饰磷脂酰乙醇胺（见图14-35）。]尽管膜脂质合成的某些早期步骤在胞质溶胶中进行，但最后步骤由结合在预先存在的细胞膜上的酶催化，产物一经生成即被整合到膜中。当细胞短暂暴露于放射性标记的前体（如磷酸或脂肪酸）时，可以看到这一过程的证据：所有掺入这些标记前体的磷脂和鞘脂都与胞内膜相关联；正如从脂肪酰基链的疏水性所预期的那样，没有一种游离存在于胞质溶胶中。</p>
@@ -708,53 +741,14 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>如前所述，胆固醇和磷脂合成的最后步骤主要发生在ER中。因此，质膜和包围其他细胞器的膜必须通过一种或多种胞内运输过程获得这些脂质。膜脂质能够也的确伴随着可溶性蛋白和膜蛋白沿第14章描述的分泌途径移动：膜囊泡从ER出芽并与高尔基体中的膜融合，其他膜囊泡从高尔基体出芽并与质膜融合（图7-27a）。然而，若干证据表明，胆固醇和磷脂通过其他机制存在大量的细胞器间移动。例如，经典分泌途径的化学抑制剂以及阻碍沿该途径囊泡运输的突变，并不能阻止膜之间的胆固醇或磷脂运输。</p>
 <p>第二种提出的脂质移动机制涉及ER或ER衍生膜与其他细胞器膜之间直接的蛋白质介导接触（图7-27b）。第三种提出的机制中，小的脂质转移蛋白促进不同膜之间磷脂或胆固醇的交换（图7-27c）。尽管这类脂质转移蛋白已在体外实验中被鉴定出来，但它们在大多数磷脂胞内移动中的作用尚未得到很好的界定。例如，编码磷脂酰胆碱转移蛋白的基因带有敲除突变的小鼠在大多数方面似乎正常，表明该蛋白质对细胞磷脂代谢并非必需。</p>
 <p>如前所述，不同细胞器膜的脂质组成差异相当大（见表7-1）。其中一些差异归因于合成部位不同。例如，一种称为心磷脂的磷脂定位于线粒体膜，只在线粒体中制造，且很少转移到其他细胞器。脂质的差异性运输也在决定不同细胞膜的脂质组成中发挥作用。例如，尽管胆固醇在ER中制造，但质膜中的胆固醇浓度（胆固醇与磷脂的摩尔比）比其他细胞器（ER、高尔基体、线粒体、溶酶体）高1.5–13倍。尽管造成和维持这些差异的机制尚不很清楚，但我们已经看到，每种膜独特的脂质组成对其物理和生物学性质有重大影响。</p>
-<p>7.3节 关键概念</p>
-<p>磷脂、鞘脂和胆固醇：合成与胞内运输</p>
-<p>r 各种链长的饱和和不饱和脂肪酸是磷脂和鞘脂的成分。</p>
-<p>r 脂肪酸由水溶性酶从乙酰CoA合成，并在内质网（ER）中通过延长和去饱和作用加以修饰。</p>
-<p>r 游离脂肪酸在细胞内由脂肪酸结合蛋白（FABP）运输。</p>
-<p>r 脂肪酸通过多步过程被整合到磷脂中。磷酸甘油酯和鞘脂合成的最后步骤主要由ER胞质面上与膜相关联的酶催化（见图7-25）。</p>
-<p>r 每种新合成的脂质都被整合到其生成所在的预先存在的膜中；因此，膜本身就是合成新膜材料的平台。</p>
-<p>r 大多数膜磷脂优先分布在外质单层或胞质单层中。这种不对称性部分源于翻转酶的作用，后者将磷脂从一层单层翻到另一层。</p>
-<p>r 胆固醇生物合成的初始步骤在胞质溶胶中进行，而最后步骤由与ER膜相关联的酶催化。</p>
-<p>r 胆固醇生物合成的限速步骤由HMG-CoA还原酶催化，其跨膜区段嵌入ER膜并含有一个固醇感应结构域。</p>
-<p>r 相当多的证据表明，囊泡运输、不同膜之间直接的蛋白质介导接触、可溶性脂质转移蛋白，或这三者共同，可能解释胆固醇和磷脂的部分细胞器间运输（见图7-27）。</p>
-<p>访问LaunchPad获取学习工具并了解更多本章内容：展望未来、分析数据、附加学习工具（包括视频、动画和测验）</p>
-<p>关键术语</p>
-<p>脂筏 282 脂质体 273 腔 275 膜转运蛋白 271 两亲性的 273 水通道蛋白 286 动脉粥样硬化 296 胆固醇 278 纤毛 276 细胞骨架 271 胞质面 275 外质面 275 鞭毛 276 翻转酶 282 糖脂 278 糖蛋白 289 亲水的 273 疏水的 273 整合膜蛋白 271 胶束 273 周边膜蛋白 284 磷酸甘油酯 276 磷脂酶 282 磷脂双层 273 质膜 271 孔蛋白 288 受体蛋白 271 饱和的 293 鞘脂 278 他汀类 296 固醇 278 不饱和的 293 凝集素 289 脂锚定膜蛋白 284 脂滴 283</p>
-<p>复习题</p>
-<p>1. 用电子显微镜观察时，脂双层常被描述为看起来像铁轨。解释双层结构如何形成这一图像。 2. 解释以下说法：所有生物膜的结构取决于磷脂的化学性质，而每种特定生物膜的功能则取决于与该膜相关联的特定蛋白质。 3. 生物膜含有许多不同类型的脂质分子。生物膜中发现的三种主要类型脂质分子是什么？这三种类型有何相似之处，又有何不同？ 4. 据说脂双层的行为像二维流体。这是什么意思？是什么驱动了脂质分子和蛋白质在双层内的运动？这种运动如何测量？哪些因素影响膜的流动性程度？ 5. 为什么水溶性物质不能自由穿过质膜的脂双层？细胞如何克服这一通透性屏障？ 6. 说出膜相关蛋白可以被划分成的三个类别。解释每个类别与生物膜结合的机制。 7. 根据结构鉴定下列膜相关蛋白：(a) 相同亚基的四聚体，每个亚基有六个跨膜α螺旋；(b) 相同亚基的三聚体，每个亚基有16条β链形成桶状结构。 8. 蛋白质可以通过共价连接的脂质结合到质膜的外质面或胞质面。负责将蛋白质拴系到质膜双层的三类脂质锚是什么？面向外部介质的细胞表面蛋白使用哪一类？糖基化蛋白聚糖使用哪一类？ 9. 尽管生物膜的两个面都由相同的一般类型大分子（主要是脂质和蛋白质）组成，但双层的两个面并不相同。是什么造成了两个面之间的不对称性？ 10. 什么是去污剂？离子型和非离子型去污剂在破坏生物膜结构的能力上有何不同？ 11. 下列膜相关蛋白的可能身份是什么：(a) 一种用高盐溶液处理膜后从膜上释放的蛋白质，高盐溶液造成离子键断裂；(b) 一种仅暴露于高盐溶液时不会从膜上释放，但与切割磷酸-甘油键的酶共孵育、共价键被破坏后即被释放的蛋白质；(c) 一种暴露于高盐溶液时不会从膜上释放，但加入去污剂十二烷基硫酸钠（SDS）后被释放的蛋白质。(c) 中被释放的蛋白质的活性在其释放后会被保留吗？</p>
-<p>12. 使用非离子型去污剂Triton X-100制备膜提取物后，你通过质谱分析膜裂解物，注意到胆固醇和鞘脂含量很高。此外，裂解物的生化分析显示存在潜在的激酶活性。你很可能分离到了什么？ 13. 内质网（ER）与胞质溶胶界面处的磷脂生物合成提出了若干细胞必须解决的挑战。解释下列每一项是如何被处理的。</p>
-<p>a. 磷脂生物合成的底物都是水溶性的，但终产物不是。 b. 所有新合成磷脂的直接整合位点是ER膜的胞质单层，但磷脂必须被整合到两个单层中。 c. 细胞中的许多膜系统，如质膜，无法合成自己的磷脂，但如果细胞要生长和分裂，这些膜也必须扩展。 14. 磷酸甘油酯中常见的脂肪酸链有哪些，为什么这些脂肪酸链的碳原子数相差2的倍数？ 15. 脂肪酸必须与脂质伴侣结合才能在细胞内移动。为什么需要这些伴侣，负责这种脂肪酸胞内运输的一组蛋白质叫什么？这些蛋白质使脂肪酸得以在细胞内移动的关键区别性特征是什么？ 16. 胆固醇的生物合成是一个高度受调控的过程。胆固醇生物合成中的关键调节酶是什么？这种酶受反馈抑制的调节。什么是反馈抑制？这种酶如何感知细胞中的胆固醇水平？ 17. 磷脂和胆固醇必须从其合成部位运输到细胞内的各种膜系统。一种方式是通过囊泡运输，如经典分泌途径中许多蛋白质的情况（见第14章）。然而，细胞中磷脂和胆固醇的膜间运输并不完全通过囊泡运输发生。这一说法的证据是什么？磷脂和胆固醇运输的主要机制似乎是什么？ 18. 解释他汀类药物降低"坏"胆固醇的机制。</p>
-<p>参考文献</p>
-<p>The Lipid Bilayer: Composition and Structural Organization</p>
-<p>McMahon, H., and J. L. Gallop. 2005. Membrane curvature and mechanisms of dynamic cell membrane remodeling. Nature 438:590–596. Mukherjee, S., and F. R. Maxfield. 2004. Membrane domains. Annu. Rev. Cell Dev. Biol. 20:839–866.</p>
-<p>Ploegh, H. 2007. A lipid-based model for the creation of an escape hatch from the endoplasmic reticulum. Nature 448:435–438.</p>
-<p>Simons, K., and D. Toomre. 2000. Lipid rafts and signal trans- duction. Nat. Rev. Mol. Cell Biol. 1:31–41.</p>
-<p>Simons, K., and W. L. C. Vaz. 2004. Model systems, lipid rafts, and cell membranes. Annu. Rev. Biophys. Biomol. Struct. 33:269–295.</p>
-<p>Tamm, L. K., V. K. Kiessling, and M. L. Wagner. 2001. Membrane dynamics. Encyclopedia of Life Sciences. Nature Publishing Group.</p>
-<p>Vance, D. E., and J. E. Vance. 2002. Biochemistry of Lipids, Lipoproteins, and Membranes, 4th ed. Elsevier.</p>
-<p>Van Meer, G. 2006. Cellular lipidomics. EMBO J. 24:3159–3165. Yeager, P. L. 2001. Lipids. Encyclopedia of Life Sciences. Na- ture Publishing Group.</p>
-<p>Zimmerberg, J., and M. M. Kozlov. 2006. How proteins pro- duce cellular membrane curvature. Nat. Rev. Mol. Cell Biol. 7:9–19.</p>
-<p>Membrane Proteins: Structure and Basic Functions</p>
-<p>Bowie, J. 2005. Solving the membrane protein folding problem. Nature 438:581–589.</p>
-<p>Cullen, P. J., G. E. Cozier, G. Banting, and H. Mellor. 2001. Modular phosphoinositide-binding domains: their role in signalling and membrane trafficking. Curr. Biol. 11:R882–R893.</p>
-<p>Engelman, D. 2005. Membranes are more mosaic than fluid. Nature 438:578–580.</p>
-<p>Lanyi, J. K., and H. Luecke. 2001. Bacteriorhodopsin. Curr. Opin. Struct. Biol. 11:415–519.</p>
-<p>Lee, A. G. 2005. A greasy grip. Nature 438:569–570. MacKenzie, K. R., J. H. Prestegard, and D. M. Engelman. 1997. A transmembrane helix dimer: structure and implications. Science 276:131–133. McIntosh, T. J., and S. A. Simon. 2006. Roles of bilayer mate- rial properties in function and distribution of membrane proteins. Annu. Rev. Biophys. Biomol. Struct. 35:177–198.</p>
-<p>Schulz, G. E. 2000. β-Barrel membrane proteins. Curr. Opin. Struct. Biol. 10:443–447.</p>
-<p>Wucherpfennig, K. W., et al. 2010. Cold Spring Harb. Perspect. Biol. 2:a005140.</p>
-<p>Phospholipids, Sphingolipids, and Cholesterol: Synthesis and Intracellular Movement</p>
-<p>Bloch, K. 1965. The biological synthesis of cholesterol. Science 150:19–28. Daleke, D. L., and J. V. Lyles. 2000. Identification and puri- fication of aminophospholipid flippases. Biochim. Biophys. Acta 1486:108–127. Futerman, A., and H. Riezman. 2005. The ins and outs of sphingolipid synthesis. Trends Cell Biol. 15:312–318.</p>
-<p>Hajri, T., and N. A. Abumrad. 2002. Fatty acid transport across membranes: relevance to nutrition and metabolic pathology. Annu. Rev. Nutr. 22:383–415.</p>
-<p>Henneberry, A. L., M. M. Wright, and C. R. McMaster. 2002. The major sites of cellular phospholipid synthesis and molecular determinants of fatty acid and lipid head group specificity. Mol. Biol. Cell 13:3148–3161.</p>
-<p>Holthuis, J. C. M., and T. P. Levine. 2005. Lipid traffic: floppy drives and a superhighway. Nat. Rev. Mol. Cell Biol. 6:209–220.</p>
-<p>Ioannou, Y. A. 2001. Multidrug permeases and subcellular cho- lesterol transport. Nature Rev. Mol. Cell Biol. 2:657–668.</p>
-<p>Kent, C. 1995. Eukaryotic phospholipid biosynthesis. Annu. Rev. Biochem. 64:315–343.</p>
-<p>Maxfield, F. R., and I. Tabas. 2005. Role of cholesterol and lipid organization in disease. Nature 438:612–621.</p>
-<p>Stahl, A., et al. 2001. Fatty acid transport proteins: a current view of a growing family. Trends Endocrin. Met. 12(6):266–273.</p>
-<p>van Meer, G., and H. Sprong. 2004. Membrane lipids and vesicular traffic. Curr. Opin. Cell Biol. 16:373–378.</p>
-<p>参考文献 299</p>
+<div class="key-concepts" id="kc-7-3"><div class="kc-head">第 7.3 节 · 关键概念</div><div class="kc-title">磷脂、鞘脂和胆固醇：合成与胞内运输</div><ul><li>各种链长的饱和和不饱和脂肪酸是磷脂和鞘脂的成分。</li><li>脂肪酸由水溶性酶从乙酰CoA合成，并在内质网（ER）中通过延长和去饱和作用加以修饰。</li><li>游离脂肪酸在细胞内由脂肪酸结合蛋白（FABP）运输。</li><li>脂肪酸通过多步过程被整合到磷脂中。磷酸甘油酯和鞘脂合成的最后步骤主要由ER胞质面上与膜相关联的酶催化（见图7-25）。</li><li>每种新合成的脂质都被整合到其生成所在的预先存在的膜中；因此，膜本身就是合成新膜材料的平台。</li><li>大多数膜磷脂优先分布在外质单层或胞质单层中。这种不对称性部分源于翻转酶的作用，后者将磷脂从一层单层翻到另一层。</li><li>胆固醇生物合成的初始步骤在胞质溶胶中进行，而最后步骤由与ER膜相关联的酶催化。</li><li>胆固醇生物合成的限速步骤由HMG-CoA还原酶催化，其跨膜区段嵌入ER膜并含有一个固醇感应结构域。</li><li>相当多的证据表明，囊泡运输、不同膜之间直接的蛋白质介导接触、可溶性脂质转移蛋白，或这三者共同，可能解释胆固醇和磷脂的部分细胞器间运输（见图7-27）。</li></ul></div>
+<p class="launchpad">访问LaunchPad获取学习工具并了解更多本章内容：展望未来、分析数据、附加学习工具（包括视频、动画和测验）</p>
+<div class="endmatter">
+<h2 class="em-title" id="key-terms">关键术语</h2><div class="kt-grid"><div class="kt-item"><span class="kt-term">脂筏</span><span class="kt-page">282</span></div><div class="kt-item"><span class="kt-term">脂质体</span><span class="kt-page">273</span></div><div class="kt-item"><span class="kt-term">腔</span><span class="kt-page">275</span></div><div class="kt-item"><span class="kt-term">膜转运蛋白</span><span class="kt-page">271</span></div><div class="kt-item"><span class="kt-term">两亲性的</span><span class="kt-page">273</span></div><div class="kt-item"><span class="kt-term">水通道蛋白</span><span class="kt-page">286</span></div><div class="kt-item"><span class="kt-term">动脉粥样硬化</span><span class="kt-page">296</span></div><div class="kt-item"><span class="kt-term">胆固醇</span><span class="kt-page">278</span></div><div class="kt-item"><span class="kt-term">纤毛</span><span class="kt-page">276</span></div><div class="kt-item"><span class="kt-term">细胞骨架</span><span class="kt-page">271</span></div><div class="kt-item"><span class="kt-term">胞质面</span><span class="kt-page">275</span></div><div class="kt-item"><span class="kt-term">外质面</span><span class="kt-page">275</span></div><div class="kt-item"><span class="kt-term">鞭毛</span><span class="kt-page">276</span></div><div class="kt-item"><span class="kt-term">翻转酶</span><span class="kt-page">282</span></div><div class="kt-item"><span class="kt-term">糖脂</span><span class="kt-page">278</span></div><div class="kt-item"><span class="kt-term">糖蛋白</span><span class="kt-page">289</span></div><div class="kt-item"><span class="kt-term">亲水的</span><span class="kt-page">273</span></div><div class="kt-item"><span class="kt-term">疏水的</span><span class="kt-page">273</span></div><div class="kt-item"><span class="kt-term">整合膜蛋白</span><span class="kt-page">271</span></div><div class="kt-item"><span class="kt-term">胶束</span><span class="kt-page">273</span></div><div class="kt-item"><span class="kt-term">周边膜蛋白</span><span class="kt-page">284</span></div><div class="kt-item"><span class="kt-term">磷酸甘油酯</span><span class="kt-page">276</span></div><div class="kt-item"><span class="kt-term">磷脂酶</span><span class="kt-page">282</span></div><div class="kt-item"><span class="kt-term">磷脂双层</span><span class="kt-page">273</span></div><div class="kt-item"><span class="kt-term">质膜</span><span class="kt-page">271</span></div><div class="kt-item"><span class="kt-term">孔蛋白</span><span class="kt-page">288</span></div><div class="kt-item"><span class="kt-term">受体蛋白</span><span class="kt-page">271</span></div><div class="kt-item"><span class="kt-term">饱和的</span><span class="kt-page">293</span></div><div class="kt-item"><span class="kt-term">鞘脂</span><span class="kt-page">278</span></div><div class="kt-item"><span class="kt-term">他汀类</span><span class="kt-page">296</span></div><div class="kt-item"><span class="kt-term">固醇</span><span class="kt-page">278</span></div><div class="kt-item"><span class="kt-term">不饱和的</span><span class="kt-page">293</span></div><div class="kt-item"><span class="kt-term">凝集素</span><span class="kt-page">289</span></div><div class="kt-item"><span class="kt-term">脂锚定膜蛋白</span><span class="kt-page">284</span></div><div class="kt-item"><span class="kt-term">脂滴</span><span class="kt-page">283</span></div></div>
+<h2 class="em-title" id="review-concepts">复习题</h2><ol class="review-list"><li><span class="rv-num">1.</span>用电子显微镜观察时，脂双层常被描述为看起来像铁轨。解释双层结构如何形成这一图像。</li><li><span class="rv-num">2.</span>解释以下说法：所有生物膜的结构取决于磷脂的化学性质，而每种特定生物膜的功能则取决于与该膜相关联的特定蛋白质。</li><li><span class="rv-num">3.</span>生物膜含有许多不同类型的脂质分子。生物膜中发现的三种主要类型脂质分子是什么？这三种类型有何相似之处，又有何不同？</li><li><span class="rv-num">4.</span>据说脂双层的行为像二维流体。这是什么意思？是什么驱动了脂质分子和蛋白质在双层内的运动？这种运动如何测量？哪些因素影响膜的流动性程度？</li><li><span class="rv-num">5.</span>为什么水溶性物质不能自由穿过质膜的脂双层？细胞如何克服这一通透性屏障？</li><li><span class="rv-num">6.</span>说出膜相关蛋白可以被划分成的三个类别。解释每个类别与生物膜结合的机制。</li><li><span class="rv-num">7.</span>根据结构鉴定下列膜相关蛋白：(a) 相同亚基的四聚体，每个亚基有六个跨膜α螺旋；(b) 相同亚基的三聚体，每个亚基有16条β链形成桶状结构。</li><li><span class="rv-num">8.</span>蛋白质可以通过共价连接的脂质结合到质膜的外质面或胞质面。负责将蛋白质拴系到质膜双层的三类脂质锚是什么？面向外部介质的细胞表面蛋白使用哪一类？糖基化蛋白聚糖使用哪一类？</li><li><span class="rv-num">9.</span>尽管生物膜的两个面都由相同的一般类型大分子（主要是脂质和蛋白质）组成，但双层的两个面并不相同。是什么造成了两个面之间的不对称性？</li><li><span class="rv-num">10.</span>什么是去污剂？离子型和非离子型去污剂在破坏生物膜结构的能力上有何不同？</li><li><span class="rv-num">11.</span>下列膜相关蛋白的可能身份是什么：(a) 一种用高盐溶液处理膜后从膜上释放的蛋白质，高盐溶液造成离子键断裂；(b) 一种仅暴露于高盐溶液时不会从膜上释放，但与切割磷酸-甘油键的酶共孵育、共价键被破坏后即被释放的蛋白质；(c) 一种暴露于高盐溶液时不会从膜上释放，但加入去污剂十二烷基硫酸钠（SDS）后被释放的蛋白质。(c) 中被释放的蛋白质的活性在其释放后会被保留吗？</li><li><span class="rv-num">12.</span>使用非离子型去污剂Triton X-100制备膜提取物后，你通过质谱分析膜裂解物，注意到胆固醇和鞘脂含量很高。此外，裂解物的生化分析显示存在潜在的激酶活性。你很可能分离到了什么？</li><li><span class="rv-num">13.</span>内质网（ER）与胞质溶胶界面处的磷脂生物合成提出了若干细胞必须解决的挑战。解释下列每一项是如何被处理的。<br><span class="rv-sub">a.</span> 磷脂生物合成的底物都是水溶性的，但终产物不是。<br><span class="rv-sub">b.</span> 所有新合成磷脂的直接整合位点是ER膜的胞质单层，但磷脂必须被整合到两个单层中。<br><span class="rv-sub">c.</span> 细胞中的许多膜系统，如质膜，无法合成自己的磷脂，但如果细胞要生长和分裂，这些膜也必须扩展。</li><li><span class="rv-num">14.</span>磷酸甘油酯中常见的脂肪酸链有哪些，为什么这些脂肪酸链的碳原子数相差2的倍数？</li><li><span class="rv-num">15.</span>脂肪酸必须与脂质伴侣结合才能在细胞内移动。为什么需要这些伴侣，负责这种脂肪酸胞内运输的一组蛋白质叫什么？这些蛋白质使脂肪酸得以在细胞内移动的关键区别性特征是什么？</li><li><span class="rv-num">16.</span>胆固醇的生物合成是一个高度受调控的过程。胆固醇生物合成中的关键调节酶是什么？这种酶受反馈抑制的调节。什么是反馈抑制？这种酶如何感知细胞中的胆固醇水平？</li><li><span class="rv-num">17.</span>磷脂和胆固醇必须从其合成部位运输到细胞内的各种膜系统。一种方式是通过囊泡运输，如经典分泌途径中许多蛋白质的情况（见第14章）。然而，细胞中磷脂和胆固醇的膜间运输并不完全通过囊泡运输发生。这一说法的证据是什么？磷脂和胆固醇运输的主要机制似乎是什么？</li><li><span class="rv-num">18.</span>解释他汀类药物降低"坏"胆固醇的机制。</li></ol>
+<div class="references"><h2 class="em-title" id="references">参考文献</h2><h3 class="ref-sec">The Lipid Bilayer: Composition and Structural Organization</h3><div class="ref-list"><p class="ref-item">McMahon, H., and J. L. Gallop. 2005. Membrane curvature and mechanisms of dynamic cell membrane remodeling. Nature 438:590–596.</p><p class="ref-item">Mukherjee, S., and F. R. Maxfield. 2004. Membrane domains. Annu. Rev. Cell Dev. Biol. 20:839–866.</p><p class="ref-item">Ploegh, H. 2007. A lipid-based model for the creation of an escape hatch from the endoplasmic reticulum. Nature 448:435–438.</p><p class="ref-item">Simons, K., and D. Toomre. 2000. Lipid rafts and signal trans- duction. Nat. Rev. Mol. Cell Biol. 1:31–41.</p><p class="ref-item">Simons, K., and W. L. C. Vaz. 2004. Model systems, lipid rafts, and cell membranes. Annu. Rev. Biophys. Biomol. Struct. 33:269–295.</p><p class="ref-item">Tamm, L. K., V. K. Kiessling, and M. L. Wagner. 2001. Membrane dynamics. Encyclopedia of Life Sciences. Nature Publishing Group.</p><p class="ref-item">Vance, D. E., and J. E. Vance. 2002. Biochemistry of Lipids, Lipoproteins, and Membranes, 4th ed. Elsevier.</p><p class="ref-item">Van Meer, G. 2006. Cellular lipidomics. EMBO J. 24:3159–3165.</p><p class="ref-item">Yeager, P. L. 2001. Lipids. Encyclopedia of Life Sciences. Na- ture Publishing Group.</p><p class="ref-item">Zimmerberg, J., and M. M. Kozlov. 2006. How proteins pro- duce cellular membrane curvature. Nat. Rev. Mol. Cell Biol. 7:9–19.</p></div><h3 class="ref-sec">Membrane Proteins: Structure and Basic Functions</h3><div class="ref-list"><p class="ref-item">Bowie, J. 2005. Solving the membrane protein folding problem. Nature 438:581–589.</p><p class="ref-item">Cullen, P. J., G. E. Cozier, G. Banting, and H. Mellor. 2001. Modular phosphoinositide-binding domains: their role in signalling and membrane trafficking. Curr. Biol. 11:R882–R893.</p><p class="ref-item">Engelman, D. 2005. Membranes are more mosaic than fluid. Nature 438:578–580.</p><p class="ref-item">Lanyi, J. K., and H. Luecke. 2001. Bacteriorhodopsin. Curr. Opin. Struct. Biol. 11:415–519.</p><p class="ref-item">Lee, A. G. 2005. A greasy grip. Nature 438:569–570.</p><p class="ref-item">MacKenzie, K. R., J. H. Prestegard, and D. M. Engelman. 1997. A transmembrane helix dimer: structure and implications. Science 276:131–133.</p><p class="ref-item">McIntosh, T. J., and S. A. Simon. 2006. Roles of bilayer mate- rial properties in function and distribution of membrane proteins. Annu. Rev. Biophys. Biomol. Struct. 35:177–198.</p><p class="ref-item">Schulz, G. E. 2000. β-Barrel membrane proteins. Curr. Opin. Struct. Biol. 10:443–447.</p><p class="ref-item">Wucherpfennig, K. W., et al. 2010. Cold Spring Harb. Perspect. Biol. 2:a005140.</p></div><h3 class="ref-sec">Phospholipids, Sphingolipids, and Cholesterol: Synthesis and Intracellular Movement</h3><div class="ref-list"><p class="ref-item">Bloch, K. 1965. The biological synthesis of cholesterol. Science 150:19–28.</p><p class="ref-item">Daleke, D. L., and J. V. Lyles. 2000. Identification and puri- fication of aminophospholipid flippases. Biochim. Biophys. Acta 1486:108–127.</p><p class="ref-item">Futerman, A., and H. Riezman. 2005. The ins and outs of sphingolipid synthesis. Trends Cell Biol. 15:312–318.</p><p class="ref-item">Hajri, T., and N. A. Abumrad. 2002. Fatty acid transport across membranes: relevance to nutrition and metabolic pathology. Annu. Rev. Nutr. 22:383–415.</p><p class="ref-item">Henneberry, A. L., M. M. Wright, and C. R. McMaster. 2002. The major sites of cellular phospholipid synthesis and molecular determinants of fatty acid and lipid head group specificity. Mol. Biol. Cell 13:3148–3161.</p><p class="ref-item">Holthuis, J. C. M., and T. P. Levine. 2005. Lipid traffic: floppy drives and a superhighway. Nat. Rev. Mol. Cell Biol. 6:209–220.</p><p class="ref-item">Ioannou, Y. A. 2001. Multidrug permeases and subcellular cho- lesterol transport. Nature Rev. Mol. Cell Biol. 2:657–668.</p><p class="ref-item">Kent, C. 1995. Eukaryotic phospholipid biosynthesis. Annu. Rev. Biochem. 64:315–343.</p><p class="ref-item">Maxfield, F. R., and I. Tabas. 2005. Role of cholesterol and lipid organization in disease. Nature 438:612–621.</p><p class="ref-item">Stahl, A., et al. 2001. Fatty acid transport proteins: a current view of a growing family. Trends Endocrin. Met. 12(6):266–273.</p><p class="ref-item">van Meer, G., and H. Sprong. 2004. Membrane lipids and vesicular traffic. Curr. Opin. Cell Biol. 16:373–378.</p></div></div>
+<p class="running-footer">参考文献 299</p>
+</div>
 <div class="footer">分子细胞生物学（第8版）中文翻译 · 非营利学习用途</div>
 </article>
 <div id="lightbox" onclick="this.style.display='none'"><span class="close">&times;</span><img src=""></div>

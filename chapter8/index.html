@@ -48,6 +48,50 @@ table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
 table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
+/* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
+.key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
+  background: #edf1f1; border: 1px solid #d5dddd; border-left: 4px solid #7d0052;
+  border-radius: 0 3px 3px 0; page-break-inside: avoid; }
+.key-concepts .kc-head { font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78em; font-weight: 800; letter-spacing: 1.6px; color: #7d0052; margin-bottom: 0.45em; }
+.key-concepts .kc-title { font-size: 1.06em; font-weight: bold; color: #00668f; margin-bottom: 0.75em;
+  line-height: 1.5; }
+.key-concepts ul { list-style: none; margin: 0; padding: 0; }
+.key-concepts li { position: relative; padding-left: 1.3em; margin-bottom: 0.7em;
+  font-size: 0.93em; line-height: 1.9; text-align: justify; }
+.key-concepts li:last-child { margin-bottom: 0; }
+.key-concepts li::before { content: "▸"; position: absolute; left: 0.15em; top: 0;
+  color: #00668f; font-size: 0.9em; }
+/* 章末学习附录：关键术语 / 复习题 / 参考文献 */
+.endmatter { margin-top: 3.2em; padding-top: 1.6em; border-top: 3px double #cfd8d8; }
+.em-title { font-size: 1.28em; font-weight: bold; color: #00668f; margin: 1.8em 0 0.85em 0;
+  padding: 0 0 0.28em 0; border-left: none; border-bottom: 1px solid #d8e4e8; scroll-margin-top: 20px; }
+.em-title:first-child { margin-top: 0; }
+.em-title::before { content: ""; display: inline-block; width: 5px; height: 0.9em;
+  background: #00668f; margin-right: 0.5em; vertical-align: -0.06em; border-radius: 1px; }
+.kt-grid { column-count: 2; column-gap: 2.4em; font-size: 0.87em; line-height: 1.75; }
+.kt-item { display: flex; justify-content: space-between; gap: 0.6em; padding: 0.5px 0;
+  break-inside: avoid; page-break-inside: avoid; }
+.kt-term { color: #1a1a1a; }
+.kt-page { flex: none; color: #9aa5a8; font-family: "Times New Roman", serif; font-size: 0.92em; }
+.review-list { list-style: none; margin: 0; padding: 0; }
+.review-list li, .review-list p.rv-item { position: relative; padding-left: 2.1em; margin: 0 0 1em 0;
+  font-size: 0.93em; line-height: 1.95; text-align: justify; text-indent: 0; }
+.review-list .rv-num { position: absolute; left: 0; color: #00668f; font-weight: bold;
+  font-family: "Times New Roman", serif; }
+.review-list .rv-sub { color: #00668f; font-weight: bold; }
+.references { font-size: 0.8em; line-height: 1.62; }
+.ref-sec { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 1.08em;
+  font-weight: normal; color: #00668f; margin: 1.2em 0 0.5em 0; padding-bottom: 0.15em;
+  border-bottom: 1px dotted #dde5e7; page-break-after: avoid; }
+.ref-list { column-count: 2; column-gap: 2.4em; }
+.ref-item { text-indent: -1.3em; padding-left: 1.3em; margin: 0 0 0.38em 0; text-align: left;
+  color: #333; break-inside: avoid; page-break-inside: avoid; }
+.ref-item.ref-note { text-indent: 0; padding-left: 0; color: #8a9599; font-style: italic; }
+@media (max-width: 700px) { .kt-grid, .ref-list { column-count: 1; } }
+.launchpad { text-indent: 0; text-align: center; font-size: 0.82em; color: #8899a6; font-style: italic;
+  margin: 2.4em 0 0 0; padding: 0.75em 1.1em; background: #f7fafb; border-radius: 3px; }
+.running-footer { text-indent: 0; text-align: center; font-size: 0.72em; color: #c8c8c8; margin: 2.2em 0 0 0; }
 .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
 #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
 #lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
@@ -164,6 +208,12 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <li class="toc-fig"><a href="#fig-8-43">图 8-43 标准的DNA复制导致线性DNA分子每条链5′端的DNA丢失</a></li>
 <li class="toc-fig"><a href="#fig-8-44">图 8-44 端粒酶的作用机制</a></li>
 </ul>
+</li>
+<li class="toc-sec"><a href="#key-terms">关键术语</a>
+</li>
+<li class="toc-sec"><a href="#review-concepts">复习题</a>
+</li>
+<li class="toc-sec"><a href="#references">参考文献</a>
 </li>
 </ul>
 </div></nav>
@@ -329,15 +379,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>非蛋白编码基因编码功能性RNA</p>
 <p>除rRNA和tRNA基因外，还有数千个其他被转录成非蛋白编码RNA的基因，其中一些具有已知的各种功能，许多功能尚不清楚。例如，小核RNA（snRNA）在RNA剪接中发挥作用，小核仁RNA（snoRNA）在核仁中参与rRNA加工和碱基修饰。RNase P RNA在tRNA加工中发挥作用，而一个庞大的家族（人类约2000个）——短微RNA（miRNA）——调控特定mRNA的翻译和稳定性。这些非蛋白编码RNA的功能将在第10章讨论。端粒酶中发现的一种RNA（见下文图8-44）在维持染色体末端序列方面发挥作用，而7SL RNA则参与分泌蛋白和大多数膜蛋白向内质网的转运（见第13章）。人类基因组中编码的这些及其他非蛋白编码RNA，以及已知其功能者，列于表8-2。DNA测序的最新进展已导致在哺乳动物细胞核中发现约10,000种长非编码RNA（lncRNA）。其中一些已被发现在调控特定蛋白编码基因的表达中发挥作用。</p>
 <p>探究lncRNA的功能目前是一个非常活跃的研究领域。</p>
-<p>8.1节 关键概念</p>
-<p>真核基因结构</p>
-<p>r 从分子角度，基因是合成功能性蛋白质或RNA分子所需的全部DNA序列。除编码区（外显子）外，基因还包括控制区；在多细胞动物和植物中，大多数基因还包含内含子。</p>
-<p>r 简单真核转录单位产生单一的、单顺反子的mRNA，它被翻译成一种蛋白质。</p>
-<p>r 复杂真核转录单位被转录成初级转录本，后者可根据剪接位点或多聚腺苷酸化位点的选择，被加工成两种或更多种不同的单顺反子mRNA。带有可变启动子的复杂转录单位在不同细胞类型中产生两种或更多种不同的mRNA（见图8-3b）。</p>
-<p>r 许多复杂转录单位（例如纤连蛋白基因）在一种细胞类型中表达一种mRNA，在另一种细胞类型中表达一种可变mRNA。</p>
-<p>r 脊椎动物基因组DNA中约一半的蛋白编码基因是孤立基因，每个在单倍体基因组中只出现一次。其余的是重复基因，它们由一个祖先基因重复并随后发生独立突变而产生（见图8-2b）。基因家族所编码的蛋白质具有同源但不相同的氨基酸序列，表现出相似而略有差异的性质。</p>
-<p>r 在无脊椎动物和脊椎动物中，rRNA由位于基因组DNA串联阵列中的多个基因拷贝编码。tRNA、snRNA和组蛋白基因也存在多个拷贝，常常成簇，但一般不以串联阵列形式存在。</p>
-<p>r 许多基因还编码不被翻译成蛋白质、但执行重要功能的功能性RNA，如rRNA、tRNA和snRNA。其中包括微RNA，其在调控基因表达方面的生物学意义直到最近才被认识到。理解数千种新发现的核内长非编码RNA（lncRNA）的功能，目前是一个研究热点。</p>
+<div class="key-concepts" id="kc-8-1"><div class="kc-head">第 8.1 节 · 关键概念</div><div class="kc-title">真核基因结构</div><ul><li>从分子角度，基因是合成功能性蛋白质或RNA分子所需的全部DNA序列。除编码区（外显子）外，基因还包括控制区；在多细胞动物和植物中，大多数基因还包含内含子。</li><li>简单真核转录单位产生单一的、单顺反子的mRNA，它被翻译成一种蛋白质。</li><li>复杂真核转录单位被转录成初级转录本，后者可根据剪接位点或多聚腺苷酸化位点的选择，被加工成两种或更多种不同的单顺反子mRNA。带有可变启动子的复杂转录单位在不同细胞类型中产生两种或更多种不同的mRNA（见图8-3b）。</li><li>许多复杂转录单位（例如纤连蛋白基因）在一种细胞类型中表达一种mRNA，在另一种细胞类型中表达一种可变mRNA。</li><li>脊椎动物基因组DNA中约一半的蛋白编码基因是孤立基因，每个在单倍体基因组中只出现一次。其余的是重复基因，它们由一个祖先基因重复并随后发生独立突变而产生（见图8-2b）。基因家族所编码的蛋白质具有同源但不相同的氨基酸序列，表现出相似而略有差异的性质。</li><li>在无脊椎动物和脊椎动物中，rRNA由位于基因组DNA串联阵列中的多个基因拷贝编码。tRNA、snRNA和组蛋白基因也存在多个拷贝，常常成簇，但一般不以串联阵列形式存在。</li><li>许多基因还编码不被翻译成蛋白质、但执行重要功能的功能性RNA，如rRNA、tRNA和snRNA。其中包括微RNA，其在调控基因表达方面的生物学意义直到最近才被认识到。理解数千种新发现的核内长非编码RNA（lncRNA）的功能，目前是一个研究热点。</li></ul></div>
 <h2 id="sec-8.2">8.2 基因与非编码DNA的染色体组织</h2>
 <p>在回顾了转录单位与基因之间的关系之后，我们现在考察基因在染色体上的组织，以及非编码DNA序列与编码序列的关系。</p>
 <p>许多生物的基因组含有无功能DNA</p>
@@ -384,13 +426,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>来自单个个体样本中的DNA。所得PCR产物长度的混合物在人群中是独一无二的，同卵双胞胎除外。PCR的使用使得能够分析微量DNA，个体可以被比传统指纹法更精确、更可靠地区分。</p>
 <p>未分类的基因间DNA占据基因组的相当一部分</p>
 <p>约45%的人类DNA位于转录单位之间。这段序列的大部分在基因组其他任何地方都不重复。长度约50–200 bp、帮助调控远处启动子转录的增强子，就出现在这些长的基因间DNA片段中，也出现在内含子中。这些增强子（将在第9章讨论）在进化中常常是保守的，而邻近的基因间序列则不保守。其他保守的基因间区域可能执行尚未被理解的重要功能。例如，它们可能参与8.6节所讨论的染色体结构。</p>
-<p>8.2节 关键概念</p>
-<p>基因与非编码DNA的染色体组织</p>
-<p>r 在原核生物和大多数低等真核生物的基因组中，无功能序列很少，编码区密集排列在基因组DNA上。</p>
-<p>r 相反，多细胞动物和植物的基因组含有许多显然不编码功能性RNA、也不具有任何调控功能的序列。这些无功能DNA大部分由重复序列构成。在人类中，只有约2.9%的总DNA（外显子）真正编码蛋白质或功能性RNA。</p>
-<p>r 不同物种基因组中无功能DNA数量的差异，在很大程度上造成了动物或植物单倍体染色体DNA量与系统发生复杂性之间缺乏一致关系。</p>
-<p>r 简单序列DNA由短序列以长串联阵列重复构成，优先位于着丝粒和端粒。</p>
-<p>r 某一特定简单序列串联阵列的长度在物种内个体之间相当多变，很可能是减数分裂期间不等交换所致。某些简单序列串联阵列长度的差异构成了DNA指纹的基础（见图8-7）。</p>
+<div class="key-concepts" id="kc-8-2"><div class="kc-head">第 8.2 节 · 关键概念</div><div class="kc-title">基因与非编码DNA的染色体组织</div><ul><li>在原核生物和大多数低等真核生物的基因组中，无功能序列很少，编码区密集排列在基因组DNA上。</li><li>相反，多细胞动物和植物的基因组含有许多显然不编码功能性RNA、也不具有任何调控功能的序列。这些无功能DNA大部分由重复序列构成。在人类中，只有约2.9%的总DNA（外显子）真正编码蛋白质或功能性RNA。</li><li>不同物种基因组中无功能DNA数量的差异，在很大程度上造成了动物或植物单倍体染色体DNA量与系统发生复杂性之间缺乏一致关系。</li><li>简单序列DNA由短序列以长串联阵列重复构成，优先位于着丝粒和端粒。</li><li>某一特定简单序列串联阵列的长度在物种内个体之间相当多变，很可能是减数分裂期间不等交换所致。某些简单序列串联阵列长度的差异构成了DNA指纹的基础（见图8-7）。</li></ul></div>
 <h2 id="sec-8.3">8.3 转座（移动）DNA元件</h2>
 <p>散在重复是真核基因组中第二类重复DNA，由相对少数几个序列家族的极大量拷贝构成（见表8-1）。这类序列也称为中度重复DNA或中间重复DNA，散布于哺乳动物基因组各处，占哺乳动物DNA的25–50%（约占人类DNA的45%）。</p>
 <p>由于散在重复具有在基因组中"移动"的独特能力，它们被统称为转座DNA元件或移动DNA元件（本书中这两个术语互换使用）。虽然转座DNA元件最初是在真核生物中发现的，但在原核生物中也能找到，只是频率较低。这些序列被复制并插入基因组新位点的过程称为转座。转座DNA元件本质上是分子共生体，在大多数情况下似乎对其宿主生物的生物学没有特定功能，其存在只是为了维持自身。正因如此，Francis Crick 称它们为"自私DNA"。</p>
@@ -609,18 +645,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>这些考虑表明，早期把移动DNA元件视为完全自私的分子寄生物的观点并不准确。相反，这些元件通过促进以下三方面，对高等生物的进化作出了深刻贡献：(1) 通过基因重复产生基因家族；(2) 通过既有外显子的洗牌创造新基因；(3) 形成更复杂的调控区，从而对基因表达提供多方面的控制。今天，研究者正试图利用转座机制将治疗性基因导入患者体内，作为基因治疗的一种形式。</p>
 <p>一个与图8-19a所示过程类似的过程，在很大程度上造成了抗生素抗性在致病细菌中的迅速传播，这是现代医学的一个重大问题。编码使抗生素失活的酶的细菌基因（抗药基因）变得两侧有插入序列，从而产生抗药转座子。医学中抗生素的广泛使用——在治疗病毒感染时常常并无必要（抗生素对病毒无效），以及在健康农业动物中用于预防感染——对这种抗药转座子形成了正选择，它们已插入接合质粒。接合质粒编码的蛋白质使其得以复制，并通过一种称为性菌毛的复杂大分子管道转移到其他细菌细胞——甚至是其他相关细菌物种的细胞。</p>
 <p>这些质粒称为R因子（R代表抗药性），可含有由转座引入的多个抗药基因，并在诸如医院这类使用抗生素对表面进行消毒的环境中受到选择。这些R因子导致了多种抗生素抗性在致病细菌之间的迅速传播。应对R因子的传播是现代医学的一大挑战。</p>
-<p>8.3节 关键概念</p>
-<p>转座（移动）DNA元件</p>
-<p>r 转座DNA元件是中度重复序列，散布于高等真核生物基因组的多个位点上。它们在原核基因组中出现频率较低。</p>
-<p>r DNA转座子直接以DNA形式移动到新位点；逆转座子先被转录成该元件的RNA拷贝，再逆转录为DNA（见图8-8）。</p>
-<p>r 所有移动元件的共同特征是元件两侧存在短同向重复，它们是在转座过程中由DNA聚合酶填补靶位点DNA交错切口而产生的（见图8-10）。</p>
-<p>r 由转座子自身编码的酶催化这些序列插入基因组DNA的新位点。</p>
-<p>r 虽然在真核生物中也存在结构上与细菌IS元件相似的DNA转座子（如果蝇P元件），但逆转座子通常丰富得多，在脊椎动物中尤其如此。</p>
-<p>r LTR逆转座子两侧有类似于逆转录病毒DNA中的长末端重复（LTR）；与逆转录病毒一样，它们编码逆转录酶和整合酶。它们在基因组中的移动方式是：先转录成RNA，随后在胞质溶胶中逆转录，产生的带LTR的DNA被输入细胞核，并整合进宿主细胞染色体（见图8-14）。</p>
-<p>r 非LTR逆转座子包括长散在元件（LINE）和短散在元件（SINE），它们缺少LTR，且一端有一段富含AT的序列。据认为它们通过一种非病毒逆转座机制移动，该机制由LINE编码的蛋白介导，涉及由染色体DNA引发逆转录（见图8-17）。</p>
-<p>r SINE序列与细胞内小RNA具有广泛同源性，并由同一种RNA聚合酶转录。Alu元件是人类中最常见的SINE，长度约300 bp，散布于人类基因组约160万个位点（见图8-4a）。</p>
-<p>r 有些散在重复源自细胞RNA，后者在进化史的某一时期被逆转录并插入基因组DNA。源自mRNA的加工假基因不含内含子，这一特征使其区别于由重复基因序列漂移而来的假基因。</p>
-<p>r 移动DNA元件很可能通过以下方式显著影响了进化：作为不等交换期间同源重组的位点，导致基因与外显子重复（见图8-2）和外显子洗牌（见图8-18）；以及动员相邻DNA序列（见图8-19）。</p>
+<div class="key-concepts" id="kc-8-3"><div class="kc-head">第 8.3 节 · 关键概念</div><div class="kc-title">转座（移动）DNA元件</div><ul><li>转座DNA元件是中度重复序列，散布于高等真核生物基因组的多个位点上。它们在原核基因组中出现频率较低。</li><li>DNA转座子直接以DNA形式移动到新位点；逆转座子先被转录成该元件的RNA拷贝，再逆转录为DNA（见图8-8）。</li><li>所有移动元件的共同特征是元件两侧存在短同向重复，它们是在转座过程中由DNA聚合酶填补靶位点DNA交错切口而产生的（见图8-10）。</li><li>由转座子自身编码的酶催化这些序列插入基因组DNA的新位点。</li><li>虽然在真核生物中也存在结构上与细菌IS元件相似的DNA转座子（如果蝇P元件），但逆转座子通常丰富得多，在脊椎动物中尤其如此。</li><li>LTR逆转座子两侧有类似于逆转录病毒DNA中的长末端重复（LTR）；与逆转录病毒一样，它们编码逆转录酶和整合酶。它们在基因组中的移动方式是：先转录成RNA，随后在胞质溶胶中逆转录，产生的带LTR的DNA被输入细胞核，并整合进宿主细胞染色体（见图8-14）。</li><li>非LTR逆转座子包括长散在元件（LINE）和短散在元件（SINE），它们缺少LTR，且一端有一段富含AT的序列。据认为它们通过一种非病毒逆转座机制移动，该机制由LINE编码的蛋白介导，涉及由染色体DNA引发逆转录（见图8-17）。</li><li>SINE序列与细胞内小RNA具有广泛同源性，并由同一种RNA聚合酶转录。Alu元件是人类中最常见的SINE，长度约300 bp，散布于人类基因组约160万个位点（见图8-4a）。</li><li>有些散在重复源自细胞RNA，后者在进化史的某一时期被逆转录并插入基因组DNA。源自mRNA的加工假基因不含内含子，这一特征使其区别于由重复基因序列漂移而来的假基因。</li><li>移动DNA元件很可能通过以下方式显著影响了进化：作为不等交换期间同源重组的位点，导致基因与外显子重复（见图8-2）和外显子洗牌（见图8-18）；以及动员相邻DNA序列（见图8-19）。</li></ul></div>
 <h2 id="sec-8.4">8.4 基因组学：基因结构与功能的基因组范围分析</h2>
 <p>通过使用自动化DNA测序技术和计算机算法来拼接序列数据，研究者已经测定了海量DNA序列，包括人类以及许多关键实验生物的几乎全部基因组序列。这一以飞快速度增长的巨量数据，由美国国立卫生研究院的国家生物技术信息中心（NCBI）、德国海德堡欧洲分子生物学实验室的欧洲生物信息学研究所，以及日本DNA数据库存储与组织。这些数据库不断交换新报告的序列，并通过互联网提供给全世界的科学家。到目前为止，数百种病毒和细菌、数十种古菌、酵母（真核生物）、包括水稻和玉米在内的植物、重要的模式多细胞真核生物（如线虫C. elegans、果蝇Drosophila melanogaster和小鼠）、人类，以及约35个后生动物门各一个代表物种，其基因组序列已完全或接近完全测定。测定1兆碱基DNA的成本已降到如此之低，以至于人们已经对癌细胞的整个基因组进行测序，并将其与来自同一患者的正常细胞基因组比较，以确定该患者肿瘤细胞中积累的全部突变。这一方法正在揭示在所有癌症中都常见突变的基因，以及在同一类型癌症（如乳腺癌或结肠癌）不同患者肿瘤中常见突变的基因。这一方法最终可能带来高度个体化的癌症治疗，针对特定患者肿瘤细胞中的具体突变量身定制。最新的自动化DNA测序技术如此强大，以至于一项名为"千人基因组计划"的项目目前正在进行，其目标是测定来自全世界25个人群的2500名随机挑选个体的大部分基因组，以确定人类遗传变异的程度，作为研究人类基因型与表型关系的基础。此外，一些私营公司已经成立，它们将以约100美元的价格测定一个人大部分基因组的序列，</p>
 <p>以搜寻可能影响该个体罹患特定疾病概率的序列变异。</p>
@@ -688,16 +713,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>人类也只比C. elegans多约5%的蛋白编码基因。当人类比简单的线虫只多这么少的蛋白编码基因这一点最初变得明朗时，人们很难理解，蛋白质数目如此小的增加怎能产生如此惊人的复杂性差异。</p>
 <p>显然，仅凭不同生物基因组中蛋白编码基因数目的简单数量差异，不足以解释生物学复杂性的差异。然而有若干现象可以使高等真核生物所表达的蛋白质产生比其基因组所预测的更多的复杂性。第一，pre-mRNA的可变剪接可以产生对应于某一特定基因的多种功能性mRNA（见第10章）。在人类中，每个基因所表达的可变剪接mRNA的平均数目约为6种。第二，许多蛋白质的翻译后修饰差异可能产生功能差异。最后，生物学复杂性的增加还源于由同类蛋白质构建的细胞数目的增加。更多的细胞可以以更复杂的组合方式相互作用，正如比较小鼠与人的大脑皮层所看到的那样：小鼠和人类大脑皮层中存在相似的细胞，但在人类中，更多这样的细胞建立了更复杂的连接。多细胞生物生物学复杂性不断增加这一进化过程，很可能要求对细胞复制进行日益复杂的调控，并对构成生物体的细胞中基因表达进行日益复杂的时间与空间调控，从而导致胚胎发育的复杂性不断增加。</p>
 <p>通过分析基因组序列所鉴定出的许多基因和蛋白质，其具体功能仍未确定。随着研究者阐明不同生物中各个蛋白质的功能、并进一步细化它们与其他蛋白质的相互作用，由此产生的进展将可立即应用于其他生物中的所有同源蛋白质。当每一个蛋白质的功能都为人所知时，毫无疑问，对复杂生物系统分子基础的理解将更加深入。</p>
-<p>8.4节 关键概念</p>
-<p>基因组学：基因结构与功能的基因组范围分析</p>
-<p>r 一个尚未被分离的蛋白质（查询序列）的功能，常常可以根据其氨基酸序列与已知功能蛋白质序列的相似性来预测。</p>
-<p>r 一种称为BLAST的计算机算法能快速检索已知蛋白序列数据库，找出与查询蛋白有显著相似性的序列。</p>
-<p>r 具有共同功能基序的蛋白质（基序往往很短）在典型的BLAST搜索中可能无法被识别。这类短序列可以通过检索结构基序数据库来定位。</p>
-<p>r 一个蛋白质家族包含多个源自同一祖先蛋白的蛋白质。编码这些蛋白质的基因构成相应的基因家族，它们由一个初始的基因重复事件以及物种形成过程中随后的分歧而产生（见图8-21）。</p>
-<p>r 在某一生物中表达的、源自一次基因重复事件的相关基因及其编码蛋白称为旁系同源，例如在血红蛋白（α2β2）中组合的α-和β-珠蛋白。源自物种形成过程中所积累突变的则称为直系同源。直系同源蛋白在不同生物中通常具有相似的功能。</p>
-<p>r 开放阅读框（ORF）是基因组DNA中位于起始密码子与终止密码子之间、至少含100个密码子的区域。</p>
-<p>r 对细菌和酵母全基因组序列进行开放阅读框（ORF）的计算机检索，能正确鉴定出大多数蛋白编码基因。对于人类和其他高等真核生物的基因组序列，由于其基因结构更复杂——相对短的编码外显子被相对长的非编码内含子隔开——必须使用若干类附加数据来鉴定可能的（推定的）基因。</p>
-<p>r 对若干不同生物完整基因组序列的分析表明，生物学复杂性并不与蛋白编码基因的数目直接相关（见图8-22）。</p>
+<div class="key-concepts" id="kc-8-4"><div class="kc-head">第 8.4 节 · 关键概念</div><div class="kc-title">基因组学：基因结构与功能的基因组范围分析</div><ul><li>一个尚未被分离的蛋白质（查询序列）的功能，常常可以根据其氨基酸序列与已知功能蛋白质序列的相似性来预测。</li><li>一种称为BLAST的计算机算法能快速检索已知蛋白序列数据库，找出与查询蛋白有显著相似性的序列。</li><li>具有共同功能基序的蛋白质（基序往往很短）在典型的BLAST搜索中可能无法被识别。这类短序列可以通过检索结构基序数据库来定位。</li><li>一个蛋白质家族包含多个源自同一祖先蛋白的蛋白质。编码这些蛋白质的基因构成相应的基因家族，它们由一个初始的基因重复事件以及物种形成过程中随后的分歧而产生（见图8-21）。</li><li>在某一生物中表达的、源自一次基因重复事件的相关基因及其编码蛋白称为旁系同源，例如在血红蛋白（α2β2）中组合的α-和β-珠蛋白。源自物种形成过程中所积累突变的则称为直系同源。直系同源蛋白在不同生物中通常具有相似的功能。</li><li>开放阅读框（ORF）是基因组DNA中位于起始密码子与终止密码子之间、至少含100个密码子的区域。</li><li>对细菌和酵母全基因组序列进行开放阅读框（ORF）的计算机检索，能正确鉴定出大多数蛋白编码基因。对于人类和其他高等真核生物的基因组序列，由于其基因结构更复杂——相对短的编码外显子被相对长的非编码内含子隔开——必须使用若干类附加数据来鉴定可能的（推定的）基因。</li><li>对若干不同生物完整基因组序列的分析表明，生物学复杂性并不与蛋白编码基因的数目直接相关（见图8-22）。</li></ul></div>
 <h2 id="sec-8.5">8.5 真核染色体的结构组织</h2>
 <p>既然我们已经考察了真核基因组中各种类型的DNA序列以及它们在基因组内如何组织，接下来就转向DNA分子作为一个整体在真核细胞中如何组织这一问题。由于细胞DNA的总长度可达细胞直径的十万倍，DNA的包装对细胞结构至关重要。同样关键的是，要防止这些长DNA分子在细胞分裂期间彼此打结或缠结——此时它们必须被精确地分配到子细胞。压缩并组织染色体DNA这一任务，由称为组蛋白的丰富核蛋白完成。组蛋白与DNA的复合物称为染色质。</p>
 <p>按质量计约一半是DNA、一半是蛋白质的染色质，在间期细胞（即未进行有丝分裂的细胞）中分散于细胞核的大部分区域。有丝分裂期间染色质进一步折叠与压缩（见图6-3），产生可见的中期染色体，其形态与染色特征曾由早期细胞遗传学家详细描述。虽然每条真核</p>
@@ -894,15 +910,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Nuclear envelope</td><td class="gl-zh">核被膜</td></tr>
   </table>
 </figure>
-<p>8.5节 关键概念</p>
-<p>真核染色体的结构组织</p>
-<p>r 在真核细胞中，DNA与大约等质量的组蛋白结合，形成一种高度压缩的核蛋白复合物，称为染色质。染色质的构建单元是核小体，由组蛋白八聚体及其上缠绕的约147 bp DNA组成（见图8-24）。</p>
-<p>r 细胞内DNA转录失活区域的染色质被认为以压缩的30 nm纤维形式及由它构建的高级结构存在（见图8-25和8-36）。</p>
-<p>r 细胞内DNA转录活跃区域的染色质被认为以开放的伸展形式存在。</p>
-<p>r 组蛋白柔性、内在无序的N端尾部——尤其是H4第16位赖氨酸——是串珠状染色质（10 nm染色质纤维）折叠成30 nm纤维所必需的。</p>
-<p>r 组蛋白尾部可被乙酰化、甲基化、磷酸化和泛素化修饰（见图8-26）。这些修饰通过调控组蛋白尾部与其他丰度较低的染色质相关蛋白的结合来影响染色质结构。</p>
-<p>r 核心组蛋白N端尾部赖氨酸残基的可逆乙酰化与去乙酰化调控染色质压缩。参与转录、复制和修复的蛋白质以及DNase I等酶，能比接近低乙酰化组蛋白尾部的染色质（异染色质）更容易地接近高乙酰化组蛋白尾部的染色质（常染色质）。</p>
-<p>r 当中期染色体在间期去压缩时，异染色质区域仍比常染色质区域压缩得多。</p>
+<div class="key-concepts" id="kc-8-5"><div class="kc-head">第 8.5 节 · 关键概念</div><div class="kc-title">真核染色体的结构组织</div><ul><li>在真核细胞中，DNA与大约等质量的组蛋白结合，形成一种高度压缩的核蛋白复合物，称为染色质。染色质的构建单元是核小体，由组蛋白八聚体及其上缠绕的约147 bp DNA组成（见图8-24）。</li><li>细胞内DNA转录失活区域的染色质被认为以压缩的30 nm纤维形式及由它构建的高级结构存在（见图8-25和8-36）。</li><li>细胞内DNA转录活跃区域的染色质被认为以开放的伸展形式存在。</li><li>组蛋白柔性、内在无序的N端尾部——尤其是H4第16位赖氨酸——是串珠状染色质（10 nm染色质纤维）折叠成30 nm纤维所必需的。</li><li>组蛋白尾部可被乙酰化、甲基化、磷酸化和泛素化修饰（见图8-26）。这些修饰通过调控组蛋白尾部与其他丰度较低的染色质相关蛋白的结合来影响染色质结构。</li><li>核心组蛋白N端尾部赖氨酸残基的可逆乙酰化与去乙酰化调控染色质压缩。参与转录、复制和修复的蛋白质以及DNase I等酶，能比接近低乙酰化组蛋白尾部的染色质（异染色质）更容易地接近高乙酰化组蛋白尾部的染色质（常染色质）。</li><li>当中期染色体在间期去压缩时，异染色质区域仍比常染色质区域压缩得多。</li></ul></div>
 <p>r 异染色质蛋白1（HP1）利用染色质结构域结合第9位赖氨酸三甲基化的组蛋白H3。HP1的染色质阴影结构域与自身以及与使H3第9位赖氨酸甲基化的组蛋白甲基转移酶缔合。这些相互作用导致30 nm染色质纤维的压缩，并使异染色质结构沿染色体扩散，直至遇到边界元件（见图8-29）。</p>
 <p>r 雌性哺乳动物几乎所有细胞中的一条X染色体由高度压缩的异染色质构成，导致该失活染色体上几乎所有基因的表达被抑制。这种失活导致剂量补偿，使X染色体上的基因在雄性和雌性中以相同水平表达。</p>
 <p>r 每条真核染色体含有一个DNA分子，它被包装进核小体并折叠成30 nm染色质纤维，后者与染色体结构维持（SMC）蛋白相关联——据认为SMC蛋白将其组织成通过荧光标记DNA探针杂交所观察到的兆碱基级环，以及在卵母细胞中观察到的灯刷染色体中的环（见图8-30、8-31和8-32c）。染色体的进一步折叠将结构进一步压缩成中期染色体的高度压缩形式（见图8-36）。</p>
@@ -1048,70 +1056,14 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>表达端粒酶蛋白和端粒酶相关RNA的人类基因在生殖细胞和干细胞中有活性，但在成年组织中大多数只复制有限次数、或将永不复制（此类细胞称为分裂后细胞）的细胞中被关闭。</p>
 <p>然而，这些基因在大多数人类癌细胞中被激活，在那里端粒酶是形成肿瘤所需的多次细胞分裂所必需的。这一现象激发人们寻找人类端粒酶抑制剂，作为治疗癌症的潜在药物。</p>
 <p>尽管端粒酶在大多数真核生物中防止端粒缩短，有些生物采用替代策略。果蝇属物种通过将非LTR逆转座子受调控地插入端粒来维持端粒长度。这是移动元件在其宿主生物中具有特定功能的少数实例之一。</p>
-<p>8.6节 关键概念</p>
-<p>真核染色体的形态与功能元件</p>
-<p>r 在中期，真核染色体压缩到足以在光学显微镜下被单独观察。</p>
-<p>r 染色体核型是每个物种的特征。亲缘关系很近的物种可以有显著不同的核型，表明相似的遗传信息可以以不同方式组织在染色体上。</p>
-<p>r 带型分析和染色体涂染用于鉴定不同的人类中期染色体，并检测易位和缺失（见图8-37和8-38）。</p>
-<p>r 对相关物种之间染色体重排和保守共线性区域的分析，使科学家能够对染色体的进化作出预测（见图8-39c）。这些研究所示生物之间的进化关系，与基于化石记录和DNA序列分析提出的进化关系一致。</p>
-<p>r 多线染色体高度可重复的带型，使人们能够将染色体缺失和重排可视化为正常带型的改变。</p>
-<p>r 一个长线状DNA分子要作为染色体发挥功能，需要三类DNA序列：复制起点（在酵母中称为ARS）、着丝粒（CEN）序列，以及DNA两端的两个端粒（TEL）序列（见图8-41）。</p>
-<p>r 端粒酶是一种蛋白质–RNA复合物，具有特殊的逆转录酶活性，可在DNA合成期间完成端粒的复制（见图8-44）。在缺乏端粒酶时，大多数真核生物中由后随链合成产生的子代DNA链会在每次细胞分裂时被缩短（见图8-43）。</p>
-<p>访问LaunchPad获取学习工具并了解更多本章内容：展望未来、分析数据、附加学习工具（包括视频、动画和测验）</p>
-<p>关键术语</p>
-<p>着丝粒 345 染色单体 341 染色质 327 DNA转座子 313 常染色质 332 外显子洗牌 322 荧光原位杂交（FISH） 342 基因家族 306 基因组学 302 异染色质 332 组蛋白 327 核型 341 长散在元件（LINE） 318 长末端重复（LTR） 316 核小体 328 开放阅读框（ORF） 326 多线染色体 343 蛋白质家族 306 假基因 307 逆转座子 313 简单序列（卫星）DNA 310 短散在元件（SINE） 318 SMC蛋白 336 端粒 345 转录单位 303 转座（移动）DNA元件 312</p>
-<p>复习题</p>
-<p>1. 基因可以被转录成mRNA（就蛋白编码基因而言），或转录成RNA（就编码核糖体RNA或转运RNA等的基因而言）。请给基因下定义。对于以下特征，请说明它们适用于 (a) 连续转录单位、(b) 简单转录单位，还是 (c) 复杂转录单位。 i. 存在于真核生物中 ii. 含内含子 iii. 能够从给定基因只制造一种蛋白质 2. 人类基因组的测序揭示了许多关于基因组织的信息。描述孤立基因、基因家族、假基因和串联重复基因之间的差异。 3. 人类基因组很大一部分由重复DNA构成。描述微卫星DNA与小卫星DNA之间的差异。这种重复DNA如何通过DNA指纹技术用于个体识别？</p>
-<p>4. 能够直接以DNA形式移动或转座到新位点的移动DNA元件称为DNA转座子。描述称为插入序列的细菌DNA转座子能够转座的机制。 5. 逆转座子是一类经由RNA中间体转座的移动元件。比较含长末端重复（LTR）与不含LTR的逆转座子之间的转座机制。 6. 讨论转座子可能在现代生物进化中发挥的作用。什么是外显子洗牌？转座子在外显子洗牌过程中起什么作用？ 7. 什么是旁系同源基因和直系同源基因？人类是比线虫C. elegans复杂得多的生物，却只多约5%的蛋白编码基因（21,000对20,000），对这一发现有哪些解释？ 8. 细胞中的DNA与蛋白质结合形成染色质。什么是核小体？组蛋白在核小体中起什么作用？核小体在压缩的30 nm纤维中如何排列？ 9. 染色质修饰如何调控转录？在基因组中被活跃转录的区域观察到哪些修饰？在未被活跃转录的区域呢？ 10. 什么是FISH？简要描述它如何工作。FISH如何用于表征与某些遗传病和特定类型癌症相关的染色体易位？ 11. 什么是染色体涂染，这项技术有何用处？染色体涂染探针如何用于分析哺乳动物染色体的进化？ 12. 某些生物含有具有多线染色体的细胞。什么是多线染色体，它们在哪里被发现，起什么作用？ 13. 真核染色体的复制和分离需要三种功能元件：复制起点、着丝粒和端粒。如果一条染色体缺少 (a) 复制起点或 (b) 着丝粒，它会受到什么影响？ 14. 描述DNA复制在染色体末端所发生的问题。端粒与这一问题有何关系？</p>
-<p>参考文献</p>
-<p>Eukaryotic Gene Structure</p>
-<p>Black, D. L. 2003. Mechanisms of alternative pre-messenger RNA splicing. Ann. Rev. Biochem. 72:291–336.</p>
-<p>Davuluri, R. V., et al. 2008. The functional consequences of alternative promoter use in mammalian genomes. Trends Genet. 24:167–177. Wang, E. T., et al. 2008. Alternative isoform regulation in human tissue transcriptomes. Nature 456:470–476.</p>
-<p>Chromosomal Organization of Genes and Noncoding DNA</p>
-<p>Celniker, S. E., and G. M. Rubin. 2003. The Drosophila melanogaster genome. Ann. Rev. Genomics Hum. Genet. 4:89–117.</p>
-<p>Crook, Z. R., and D. Housman. 2011. Huntington's disease: can mice lead the way to treatment? Neuron 69:423–435.</p>
-<p>Feuillet, C., et al. 2011. Crop genome sequencing: lessons and rationales. Trends Plant Sci. 16:77–88.</p>
-<p>Giardina, E., A. Spinella, and G. Novelli. 2011. Past, present and future of forensic DNA typing. Nanomedicine (Lond.) 6:257–270.</p>
-<p>Hannan, A. J. 2010. TRPing up the genome: tandem repeat polymorphisms as dynamic sources of genetic variability in health and disease. Discov. Med. 10:314–321.</p>
-<p>International Human Genome Sequencing Consortium. 2004. Finishing the euchromatic sequence of the human genome. Nature 431:931–945. Jobling, M. A., and P. Gill. 2004. Encoded evidence: DNA in forensic analysis. Nature Rev. Genet. 5:739–751.</p>
-<p>Lander, E. S., et al. 2001. Initial sequencing and analysis of the human genome. Nature 409:860–921.</p>
-<p>Todd, P. K., and H. L. Paulson. 2010. RNA-mediated neurodegeneration in repeat expansion disorders. Ann. Neurol. 67:291–300.</p>
-<p>Venter, J. C., et al. 2001. The sequence of the human genome. Science 291:1304–1351.</p>
-<p>Transposable (Mobile) DNA Elements</p>
-<p>Curcio, M. J., and K. M. Derbyshire. 2003. The outs and ins of transposition: from mu to kangaroo. Nature Rev. Mol. Cell Biol. 4:865–877. Goodier, J. L., and H. H. Kazazian, Jr. 2008. Retrotransposons revisited: the restraint and rehabilitation of parasites. Cell 135:23–35.</p>
-<p>Jones, R. N. 2005. McClintock's controlling elements: the full story. Cytogenet. Genome Res. 109:90–103.</p>
-<p>Lisch, D. 2009. Epigenetic regulation of transposable elements in plants. Ann. Rev. Plant Biol. 60:43–66.</p>
-<p>Genomics: Genome-Wide Analysis of Gene Structure and Function</p>
-<p>BLAST Information can be found at: http://blast.ncbi.nlm.nih.gov/Blast.cgi.</p>
-<p>1000 Genomes Project Consortium. 2010. A map of human genome variation from population-scale sequencing. Nature 467:1061–1073. Alkan, C., B. P. Coe, and E. E. Eichler. 2011. Genome structural variation discovery and genotyping. Nature Rev. Genet. 12: 363–376. Chimpanzee Sequencing and Analysis Consortium. 2005. Initial sequence of the chimpanzee genome and comparison with the human genome. Nature 437:69–87.</p>
-<p>du Plessis, L., N. Skunca, and C. Dessimoz. 2011. The what, where, how and why of gene ontology—a primer for bioinformaticians. Brief Bioinform. 12:723–735.</p>
-<p>Ideker, T., J. Dutkowski, and L. Hood. 2011. Boosting signal-to-noise in complex biology: prior knowledge is power. Cell 144:860–863. Lander, E. S. 2011. Initial impact of the sequencing of the human genome. Nature 470:187–197.</p>
-<p>Mills, R. E., et al. 2011. Mapping copy number variation by population-scale genome sequencing. Nature 470:59–65.</p>
-<p>Picardi, E., and G. Pesole. 2010. Computational methods for ab initio and comparative gene finding. Meth. Mol. Biol. 609:269–284.</p>
-<p>Ramskold, D., et al. 2009. An abundance of ubiquitously expressed genes revealed by tissue transcriptome sequence data. PLoS Comput. Biol. 5:e1000598.</p>
-<p>Raney, B. J., et al. 2011. ENCODE whole-genome data in the UCSC genome browser (2011 update). Nucl. Acids Res. 39: D871–D875.</p>
-<p>Sleator, R. D. 2010. An overview of the current status of eukaryote gene prediction strategies. Gene 461:1–4.</p>
-<p>Sonah, H., et al. 2011. Genomic resources in horticultural crops: status, utility and challenges. Biotechnol. Adv. 29:199–209.</p>
-<p>Stratton, M. R. 2011. Exploring the genomes of cancer cells: progress and promise. Science 331:1553–1558.</p>
-<p>Venter, J. C. 2011. Genome-sequencing anniversary. The human genome at 10: successes and challenges. Science 331:546–547.</p>
-<p>Structural Organization of Eukaryotic Chromosomes</p>
-<p>Bannister, A. J., and T. Kouzarides. 2011. Regulation of chromatin by histone modifications. Cell Res. 21:381–395.</p>
-<p>Bernstein, B. E., A. Meissner, and E. S. Lander. 2007. The mammalian epigenome. Cell 128:669–681.</p>
-<p>Horn, P. J., and C. L. Peterson. 2006. Heterochromatin assembly: a new twist on an old model. Chromosome Res. 14:83–94.</p>
-<p>Kurdistani, S. K. 2011. Histone modifications in cancer biology and prognosis. Prog. Drug Res. 67:91–106.</p>
-<p>Luger, K. 2006. Dynamic nucleosomes. Chromosome Res. 14:5–16. Luger, K., and T. J. Richmond. 1998. The histone tails of the nucleosome. Curr. Opin. Genet. Devel. 8:140–146.</p>
-<p>Nasmyth, K., and C. H. Haering. 2005. The structure and function of SMC and kleisin complexes. Ann. Rev. Biochem. 74:595–648.</p>
-<p>Schalch, T., et al. 2005. X-ray structure of a tetranucleosome and its implications for the chromatin fibre. Nature 436:138–141.</p>
-<p>Woodcock, C. L., and R. P. Ghosh. 2010. Chromatin higher-order structure and dynamics. Cold Spring Harbor Perspect. Biol. 2:a000596.</p>
-<p>Morphology and Functional Elements of Eukaryotic Chromosomes</p>
-<p>Armanios, M., and C. W. Greider. 2005. Telomerase and cancer stem cells. Cold Spring Harbor Symp. Quant. Biol. 70:205–208.</p>
-<p>Belmont, A. S. 2006. Mitotic chromosome structure and condensation. Curr. Opin. Cell Biol. 18:632–638.</p>
-<p>Blackburn, E. H. 2005. Telomeres and telomerase: their mechanisms of action and the effects of altering their functions. FEBS Lett. 579:859–862. Cvetic, C., and J. C. Walter. 2005. Eukaryotic origins of DNA replication: could you please be more specific? Semin. Cell Dev. Biol. 16:343–353.</p>
-<p>Froenicke, L. 2005. Origins of primate chromosomes as delineated by Zoo-FISH and alignments of human and mouse draft genome sequences. Cytogenet. Genome Res. 108:122–138.</p>
-<p>MacAlpine, D. M., and S. P. Bell. 2005. A genomic view of eukaryotic DNA replication. Chromosome Res. 13:309–326.</p>
-<p>Ohta, S., et al. 2011. Building mitotic chromosomes. Curr. Opin. Cell Biol. 23:114–121.</p>
-<p>Tanaka, T. U. 2010. Kinetochore-microtubule interactions: steps towards bi-orientation. EMBO J. 29:4070–4082.</p>
-<p>参考文献 351</p>
+<div class="key-concepts" id="kc-8-6"><div class="kc-head">第 8.6 节 · 关键概念</div><div class="kc-title">真核染色体的形态与功能元件</div><ul><li>在中期，真核染色体压缩到足以在光学显微镜下被单独观察。</li><li>染色体核型是每个物种的特征。亲缘关系很近的物种可以有显著不同的核型，表明相似的遗传信息可以以不同方式组织在染色体上。</li><li>带型分析和染色体涂染用于鉴定不同的人类中期染色体，并检测易位和缺失（见图8-37和8-38）。</li><li>对相关物种之间染色体重排和保守共线性区域的分析，使科学家能够对染色体的进化作出预测（见图8-39c）。这些研究所示生物之间的进化关系，与基于化石记录和DNA序列分析提出的进化关系一致。</li><li>多线染色体高度可重复的带型，使人们能够将染色体缺失和重排可视化为正常带型的改变。</li><li>一个长线状DNA分子要作为染色体发挥功能，需要三类DNA序列：复制起点（在酵母中称为ARS）、着丝粒（CEN）序列，以及DNA两端的两个端粒（TEL）序列（见图8-41）。</li><li>端粒酶是一种蛋白质–RNA复合物，具有特殊的逆转录酶活性，可在DNA合成期间完成端粒的复制（见图8-44）。在缺乏端粒酶时，大多数真核生物中由后随链合成产生的子代DNA链会在每次细胞分裂时被缩短（见图8-43）。</li></ul></div>
+<p class="launchpad">访问LaunchPad获取学习工具并了解更多本章内容：展望未来、分析数据、附加学习工具（包括视频、动画和测验）</p>
+<div class="endmatter">
+<h2 class="em-title" id="key-terms">关键术语</h2><div class="kt-grid"><div class="kt-item"><span class="kt-term">着丝粒</span><span class="kt-page">345</span></div><div class="kt-item"><span class="kt-term">染色单体</span><span class="kt-page">341</span></div><div class="kt-item"><span class="kt-term">染色质</span><span class="kt-page">327</span></div><div class="kt-item"><span class="kt-term">DNA转座子</span><span class="kt-page">313</span></div><div class="kt-item"><span class="kt-term">常染色质</span><span class="kt-page">332</span></div><div class="kt-item"><span class="kt-term">外显子洗牌</span><span class="kt-page">322</span></div><div class="kt-item"><span class="kt-term">荧光原位杂交（FISH）</span><span class="kt-page">342</span></div><div class="kt-item"><span class="kt-term">基因家族</span><span class="kt-page">306</span></div><div class="kt-item"><span class="kt-term">基因组学</span><span class="kt-page">302</span></div><div class="kt-item"><span class="kt-term">异染色质</span><span class="kt-page">332</span></div><div class="kt-item"><span class="kt-term">组蛋白</span><span class="kt-page">327</span></div><div class="kt-item"><span class="kt-term">核型</span><span class="kt-page">341</span></div><div class="kt-item"><span class="kt-term">长散在元件（LINE）</span><span class="kt-page">318</span></div><div class="kt-item"><span class="kt-term">长末端重复（LTR）</span><span class="kt-page">316</span></div><div class="kt-item"><span class="kt-term">核小体</span><span class="kt-page">328</span></div><div class="kt-item"><span class="kt-term">开放阅读框（ORF）</span><span class="kt-page">326</span></div><div class="kt-item"><span class="kt-term">多线染色体</span><span class="kt-page">343</span></div><div class="kt-item"><span class="kt-term">蛋白质家族</span><span class="kt-page">306</span></div><div class="kt-item"><span class="kt-term">假基因</span><span class="kt-page">307</span></div><div class="kt-item"><span class="kt-term">逆转座子</span><span class="kt-page">313</span></div><div class="kt-item"><span class="kt-term">简单序列（卫星）DNA</span><span class="kt-page">310</span></div><div class="kt-item"><span class="kt-term">短散在元件（SINE）</span><span class="kt-page">318</span></div><div class="kt-item"><span class="kt-term">SMC蛋白</span><span class="kt-page">336</span></div><div class="kt-item"><span class="kt-term">端粒</span><span class="kt-page">345</span></div><div class="kt-item"><span class="kt-term">转录单位</span><span class="kt-page">303</span></div><div class="kt-item"><span class="kt-term">转座（移动）DNA元件</span><span class="kt-page">312</span></div></div>
+<h2 class="em-title" id="review-concepts">复习题</h2><ol class="review-list"><li><span class="rv-num">1.</span>基因可以被转录成mRNA（就蛋白编码基因而言），或转录成RNA（就编码核糖体RNA或转运RNA等的基因而言）。请给基因下定义。对于以下特征，请说明它们适用于 (a) 连续转录单位、(b) 简单转录单位，还是 (c) 复杂转录单位。<br><span class="rv-sub">i.</span> 存在于真核生物中<br><span class="rv-sub">ii.</span> 含内含子<br><span class="rv-sub">iii.</span> 能够从给定基因只制造一种蛋白质</li><li><span class="rv-num">2.</span>人类基因组的测序揭示了许多关于基因组织的信息。描述孤立基因、基因家族、假基因和串联重复基因之间的差异。</li><li><span class="rv-num">3.</span>人类基因组很大一部分由重复DNA构成。描述微卫星DNA与小卫星DNA之间的差异。这种重复DNA如何通过DNA指纹技术用于个体识别？</li><li><span class="rv-num">4.</span>能够直接以DNA形式移动或转座到新位点的移动DNA元件称为DNA转座子。描述称为插入序列的细菌DNA转座子能够转座的机制。</li><li><span class="rv-num">5.</span>逆转座子是一类经由RNA中间体转座的移动元件。比较含长末端重复（LTR）与不含LTR的逆转座子之间的转座机制。</li><li><span class="rv-num">6.</span>讨论转座子可能在现代生物进化中发挥的作用。什么是外显子洗牌？转座子在外显子洗牌过程中起什么作用？</li><li><span class="rv-num">7.</span>什么是旁系同源基因和直系同源基因？人类是比线虫C. elegans复杂得多的生物，却只多约5%的蛋白编码基因（21,000对20,000），对这一发现有哪些解释？</li><li><span class="rv-num">8.</span>细胞中的DNA与蛋白质结合形成染色质。什么是核小体？组蛋白在核小体中起什么作用？核小体在压缩的30 nm纤维中如何排列？</li><li><span class="rv-num">9.</span>染色质修饰如何调控转录？在基因组中被活跃转录的区域观察到哪些修饰？在未被活跃转录的区域呢？</li><li><span class="rv-num">10.</span>什么是FISH？简要描述它如何工作。FISH如何用于表征与某些遗传病和特定类型癌症相关的染色体易位？</li><li><span class="rv-num">11.</span>什么是染色体涂染，这项技术有何用处？染色体涂染探针如何用于分析哺乳动物染色体的进化？</li><li><span class="rv-num">12.</span>某些生物含有具有多线染色体的细胞。什么是多线染色体，它们在哪里被发现，起什么作用？</li><li><span class="rv-num">13.</span>真核染色体的复制和分离需要三种功能元件：复制起点、着丝粒和端粒。如果一条染色体缺少 (a) 复制起点或 (b) 着丝粒，它会受到什么影响？</li><li><span class="rv-num">14.</span>描述DNA复制在染色体末端所发生的问题。端粒与这一问题有何关系？</li></ol>
+<div class="references"><h2 class="em-title" id="references">参考文献</h2><h3 class="ref-sec">Eukaryotic Gene Structure</h3><div class="ref-list"><p class="ref-item">Black, D. L. 2003. Mechanisms of alternative pre-messenger RNA splicing. Ann. Rev. Biochem. 72:291–336.</p><p class="ref-item">Davuluri, R. V., et al. 2008. The functional consequences of alternative promoter use in mammalian genomes. Trends Genet. 24:167–177.</p><p class="ref-item">Wang, E. T., et al. 2008. Alternative isoform regulation in human tissue transcriptomes. Nature 456:470–476.</p></div><h3 class="ref-sec">Chromosomal Organization of Genes and Noncoding DNA</h3><div class="ref-list"><p class="ref-item">Celniker, S. E., and G. M. Rubin. 2003. The Drosophila melanogaster genome. Ann. Rev. Genomics Hum. Genet. 4:89–117.</p><p class="ref-item">Crook, Z. R., and D. Housman. 2011. Huntington's disease: can mice lead the way to treatment? Neuron 69:423–435.</p><p class="ref-item">Feuillet, C., et al. 2011. Crop genome sequencing: lessons and rationales. Trends Plant Sci. 16:77–88.</p><p class="ref-item">Giardina, E., A. Spinella, and G. Novelli. 2011. Past, present and future of forensic DNA typing. Nanomedicine (Lond.) 6:257–270.</p><p class="ref-item">Hannan, A. J. 2010. TRPing up the genome: tandem repeat polymorphisms as dynamic sources of genetic variability in health and disease. Discov. Med. 10:314–321.</p><p class="ref-item">International Human Genome Sequencing Consortium. 2004. Finishing the euchromatic sequence of the human genome. Nature 431:931–945.</p><p class="ref-item">Jobling, M. A., and P. Gill. 2004. Encoded evidence: DNA in forensic analysis. Nature Rev. Genet. 5:739–751.</p><p class="ref-item">Lander, E. S., et al. 2001. Initial sequencing and analysis of the human genome. Nature 409:860–921.</p><p class="ref-item">Todd, P. K., and H. L. Paulson. 2010. RNA-mediated neurodegeneration in repeat expansion disorders. Ann. Neurol. 67:291–300.</p><p class="ref-item">Venter, J. C., et al. 2001. The sequence of the human genome. Science 291:1304–1351.</p></div><h3 class="ref-sec">Transposable (Mobile) DNA Elements</h3><div class="ref-list"><p class="ref-item">Curcio, M. J., and K. M. Derbyshire. 2003. The outs and ins of transposition: from mu to kangaroo. Nature Rev. Mol. Cell Biol. 4:865–877.</p><p class="ref-item">Goodier, J. L., and H. H. Kazazian, Jr. 2008. Retrotransposons revisited: the restraint and rehabilitation of parasites. Cell 135:23–35.</p><p class="ref-item">Jones, R. N. 2005. McClintock's controlling elements: the full story. Cytogenet. Genome Res. 109:90–103.</p><p class="ref-item">Lisch, D. 2009. Epigenetic regulation of transposable elements in plants. Ann. Rev. Plant Biol. 60:43–66.</p></div><h3 class="ref-sec">Genomics: Genome-Wide Analysis of Gene Structure and Function</h3><div class="ref-list"><p class="ref-item ref-note">BLAST Information can be found at: http://blast.ncbi.nlm.nih.gov/Blast.cgi.</p><p class="ref-item">1000 Genomes Project Consortium. 2010. A map of human genome variation from population-scale sequencing. Nature 467:1061–1073.</p><p class="ref-item">Alkan, C., B. P. Coe, and E. E. Eichler. 2011. Genome structural variation discovery and genotyping. Nature Rev. Genet. 12: 363–376. Chimpanzee Sequencing and Analysis Consortium. 2005. Initial sequence of the chimpanzee genome and comparison with the human genome. Nature 437:69–87.</p><p class="ref-item">du Plessis, L., N. Skunca, and C. Dessimoz. 2011. The what, where, how and why of gene ontology—a primer for bioinformaticians. Brief Bioinform. 12:723–735.</p><p class="ref-item">Ideker, T., J. Dutkowski, and L. Hood. 2011. Boosting signal-to-noise in complex biology: prior knowledge is power. Cell 144:860–863.</p><p class="ref-item">Lander, E. S. 2011. Initial impact of the sequencing of the human genome. Nature 470:187–197.</p><p class="ref-item">Mills, R. E., et al. 2011. Mapping copy number variation by population-scale genome sequencing. Nature 470:59–65.</p><p class="ref-item">Picardi, E., and G. Pesole. 2010. Computational methods for ab initio and comparative gene finding. Meth. Mol. Biol. 609:269–284.</p><p class="ref-item">Ramskold, D., et al. 2009. An abundance of ubiquitously expressed genes revealed by tissue transcriptome sequence data. PLoS Comput. Biol. 5:e1000598.</p><p class="ref-item">Raney, B. J., et al. 2011. ENCODE whole-genome data in the UCSC genome browser (2011 update). Nucl. Acids Res. 39: D871–D875.</p><p class="ref-item">Sleator, R. D. 2010. An overview of the current status of eukaryote gene prediction strategies. Gene 461:1–4.</p><p class="ref-item">Sonah, H., et al. 2011. Genomic resources in horticultural crops: status, utility and challenges. Biotechnol. Adv. 29:199–209.</p><p class="ref-item">Stratton, M. R. 2011. Exploring the genomes of cancer cells: progress and promise. Science 331:1553–1558.</p><p class="ref-item">Venter, J. C. 2011. Genome-sequencing anniversary. The human genome at 10: successes and challenges. Science 331:546–547.</p></div><h3 class="ref-sec">Structural Organization of Eukaryotic Chromosomes</h3><div class="ref-list"><p class="ref-item">Bannister, A. J., and T. Kouzarides. 2011. Regulation of chromatin by histone modifications. Cell Res. 21:381–395.</p><p class="ref-item">Bernstein, B. E., A. Meissner, and E. S. Lander. 2007. The mammalian epigenome. Cell 128:669–681.</p><p class="ref-item">Horn, P. J., and C. L. Peterson. 2006. Heterochromatin assembly: a new twist on an old model. Chromosome Res. 14:83–94.</p><p class="ref-item">Kurdistani, S. K. 2011. Histone modifications in cancer biology and prognosis. Prog. Drug Res. 67:91–106.</p><p class="ref-item">Luger, K. 2006. Dynamic nucleosomes. Chromosome Res. 14:5–16.</p><p class="ref-item">Luger, K., and T. J. Richmond. 1998. The histone tails of the nucleosome. Curr. Opin. Genet. Devel. 8:140–146.</p><p class="ref-item">Nasmyth, K., and C. H. Haering. 2005. The structure and function of SMC and kleisin complexes. Ann. Rev. Biochem. 74:595–648.</p><p class="ref-item">Schalch, T., et al. 2005. X-ray structure of a tetranucleosome and its implications for the chromatin fibre. Nature 436:138–141.</p><p class="ref-item">Woodcock, C. L., and R. P. Ghosh. 2010. Chromatin higher-order structure and dynamics. Cold Spring Harbor Perspect. Biol. 2:a000596.</p></div><h3 class="ref-sec">Morphology and Functional Elements of Eukaryotic Chromosomes</h3><div class="ref-list"><p class="ref-item">Armanios, M., and C. W. Greider. 2005. Telomerase and cancer stem cells. Cold Spring Harbor Symp. Quant. Biol. 70:205–208.</p><p class="ref-item">Belmont, A. S. 2006. Mitotic chromosome structure and condensation. Curr. Opin. Cell Biol. 18:632–638.</p><p class="ref-item">Blackburn, E. H. 2005. Telomeres and telomerase: their mechanisms of action and the effects of altering their functions. FEBS Lett. 579:859–862.</p><p class="ref-item">Cvetic, C., and J. C. Walter. 2005. Eukaryotic origins of DNA replication: could you please be more specific? Semin. Cell Dev. Biol. 16:343–353.</p><p class="ref-item">Froenicke, L. 2005. Origins of primate chromosomes as delineated by Zoo-FISH and alignments of human and mouse draft genome sequences. Cytogenet. Genome Res. 108:122–138.</p><p class="ref-item">MacAlpine, D. M., and S. P. Bell. 2005. A genomic view of eukaryotic DNA replication. Chromosome Res. 13:309–326.</p><p class="ref-item">Ohta, S., et al. 2011. Building mitotic chromosomes. Curr. Opin. Cell Biol. 23:114–121.</p><p class="ref-item">Tanaka, T. U. 2010. Kinetochore-microtubule interactions: steps towards bi-orientation. EMBO J. 29:4070–4082.</p></div></div>
+<p class="running-footer">参考文献 351</p>
+</div>
 <div class="footer">分子细胞生物学（第8版）中文翻译 · 非营利学习用途</div>
 </article>
 <div id="lightbox" onclick="this.style.display='none'"><span class="close">&times;</span><img src=""></div>
