@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
 <title>分子细胞生物学 · 第4章 细胞培养与可视化</title>
-<style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
+<link rel="stylesheet" href="../katex/katex.min.css"><style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
@@ -12,6 +12,13 @@ h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
 p { margin: 0 0 0.7em 0; text-align: justify; text-indent: 2em; }
 p.ni { text-indent: 0; }
 hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
+/* overflow-y **必须**显式写成 hidden：CSS 规定一轴非 visible、另一轴 visible 时，
+   visible 会算成 auto —— 只写 overflow-x:auto 会让每条公式右边都长出一条竖向滚动条
+   （内容只差 1px 亚像素也会触发）。纵向留 2px 内边距，防高公式（rac）被裁到。
+   横向仍可滚：手机上 article 只剩 ~270px，长公式需要它。 */
+.eq { margin: 1.1em 0; text-align: center; text-indent: 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0 4px; }
+.eq .katex-display { margin: 0; }
+.eq-raw { font-family: "SF Mono", Menlo, monospace; font-size: 0.85em; color: #b91c1c; background: #fef2f2; padding: 6px 10px; border-radius: 4px; }
 figure { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
 figure.table { border-left: 4px solid #3b82f6; padding: 6px 0 6px 12px; text-align: left; background: #f8faff; }
 figure img, .boximg img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; }
@@ -753,7 +760,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>图像到相机的投影透镜放大 10 倍，最终放大率 1000 倍。或者，若光导向放大 10 倍的目镜，人眼记录的最终放大率也是 1000 倍。</p>
 <p>但任何显微镜最重要的性质不是放大率，而是分辨能力（分辨率）：区分两个非常接近物体的能力。若图像模糊，仅放大标本图像无济于事。显微镜透镜的分辨率数值上等价于 D（两个可区分物体间最小距离）。D 值越小，分辨率越好。D 值由方程给出</p>
-<p>D = 0.61λ / (N sin α)    (4-1)</p>
+<div class="eq"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mi>D</mi><mo>=</mo><mfrac><mrow><mn>0.61</mn><mi>λ</mi></mrow><mrow><mi>N</mi><mi>sin</mi><mo>⁡</mo><mi>α</mi></mrow></mfrac></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(4-1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">D = \frac{0.61\lambda}{N\sin\alpha} \tag{4-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0.61</span><span class="mord mathnormal">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="tag"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">4-1</span></span><span class="mord">)</span></span></span></span></span></span></div>
 <p>其中 α 是从标本进入物镜的光锥的角孔径（半角）（图 4-9a），N 是标本与物镜间介质的折射率（即介质中光速与空气中光速之比），λ 是入射光波长。通过用更短波长光（减小 λ）或收集更多光（增大 N 或 α）改善分辨率。高分辨率显微术透镜设计为在透镜和标本间用油（因油折射率更高，1.56，空气 1.0，水 1.3）。为最大化角度 α 从而 sin α，透镜也设计为聚焦非常接近覆盖标本的薄盖玻片。N sin α 项称为数值孔径（NA），通常标在物镜上。好的高倍透镜 NA 约 1.4，最好的透镜（价值相当于一辆中型车）NA 接近 1.5。注意放大率不在此方程中。</p>
 <p>由于基于光物理性质的 α、λ、N 值限制，使用可见光的光显微镜分辨率极限约 0.2 μm（200 nm）。无论图像放大多少次，常规光显微镜永远无法分辨距离小于约 0.2 μm 的物体或揭示小于约 0.2 μm 的细节。但近几年开发的一些精密技术可"突破"此分辨率屏障，分辨仅几纳米间隔的物体；我们在后面章节讨论此类超分辨率显微镜。</p>
 <p>尽管缺乏分辨率，常规显微镜可跟踪单个物体到几纳米内。若我们知物体的精确大小和形状（如附着于抗体的 5 nm 金球，抗体又结合活细胞表面蛋白），且用相机快速拍摄多张数字图像，则计算机可计算平均位置以揭示物体中心到几纳米内。这样，计算机算法可用于跟踪单个物体（此处是金标抗体标记的细胞表面蛋白的位置和随时间运动），比仅基于光显微镜分辨率更精确。此技术已用于测量分子和囊泡沿细胞骨架丝移动的纳米级步长（见图 17-28、17-29）。</p>
