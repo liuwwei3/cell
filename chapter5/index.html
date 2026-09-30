@@ -54,9 +54,12 @@ figure figcaption { font-size: 0.85em; color: #555; margin-top: 0.5em; text-alig
 figure.table figcaption { text-align: left; }
 table.glossary { margin: 0.2em auto 0.6em auto; border-collapse: collapse; font-size: 0.65em; color: #888; }
 table.glossary caption { font-size: 0.75em; color: #999; margin-bottom: 2px; text-align: center; font-weight: normal; }
-table.glossary td { padding: 1px 4px; vertical-align: top; line-height: 1.25; border: none; font-style: italic; }
-table.glossary td.gl-en { color: #7a9aad; font-family: "Times New Roman", serif; white-space: nowrap; }
-table.glossary td.gl-zh { color: #999; font-style: normal; }
+table.glossary td { padding: 1px 4px; vertical-align: top; line-height: 1.25; border: none; font-style: italic; overflow-wrap: anywhere; }
+/* 英文列原先 white-space:nowrap，遇到原图里的长标注（图 11-22 有一条 118 字符）会把整列撑爆，
+   中文列被挤到几乎没有宽度。改为允许换行 + 限宽；中文列再给一个下限，两头都兜住。
+   注意：只去掉 nowrap 不够——表格是收缩自适应的，按 max-content 比例收缩时长词条仍占 ~78%。 */
+table.glossary td.gl-en { color: #7a9aad; font-family: "Times New Roman", serif; max-width: 20em; }
+table.glossary td.gl-zh { color: #999; font-style: normal; min-width: 8em; }
 table.data-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.78em; line-height: 1.5; table-layout: fixed; }
 table.data-table col.col-cat { width: 16%; }
 table.data-table col.col-en { width: 26%; }
