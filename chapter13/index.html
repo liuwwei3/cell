@@ -1,0 +1,1310 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<title>分子细胞生物学 · 第13章 蛋白质向膜与细胞器的转运</title>
+<style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
+@media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
+article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
+@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
+h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
+h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
+p { margin: 0 0 0.7em 0; text-align: justify; text-indent: 2em; }
+p.ni { text-indent: 0; }
+hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
+/* overflow-y **必须**显式写成 hidden：CSS 规定一轴非 visible、另一轴 visible 时，
+   visible 会算成 auto —— 只写 overflow-x:auto 会让每条公式右边都长出一条竖向滚动条
+   （内容只差 1px 亚像素也会触发）。纵向留 2px 内边距，防高公式（rac）被裁到。
+   横向仍可滚：手机上 article 只剩 ~270px，长公式需要它。 */
+.eq { margin: 1.1em 0; text-align: center; text-indent: 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0 4px; }
+.eq .katex-display { margin: 0; }
+.eq-raw { font-family: "SF Mono", Menlo, monospace; font-size: 0.85em; color: #b91c1c; background: #fef2f2; padding: 6px 10px; border-radius: 4px; }
+figure { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
+figure.table { border-left: 4px solid #3b82f6; padding: 6px 0 6px 12px; text-align: left; background: #f8faff; }
+figure img, .boximg img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; }
+img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
+img.zoomable:hover { opacity: 0.88; }
+.boximg { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
+.boximg img { border: 1px solid #d8b4fe; }
+.intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
+.intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
+figure figcaption { font-size: 0.85em; color: #555; margin-top: 0.5em; text-align: justify; text-indent: 0; line-height: 1.5; }
+figure.table figcaption { text-align: left; }
+table.glossary { margin: 0.2em auto 0.6em auto; border-collapse: collapse; font-size: 0.65em; color: #888; }
+table.glossary caption { font-size: 0.75em; color: #999; margin-bottom: 2px; text-align: center; font-weight: normal; }
+table.glossary td { padding: 1px 4px; vertical-align: top; line-height: 1.25; border: none; font-style: italic; }
+table.glossary td.gl-en { color: #7a9aad; font-family: "Times New Roman", serif; white-space: nowrap; }
+table.glossary td.gl-zh { color: #999; font-style: normal; }
+table.data-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.78em; line-height: 1.5; table-layout: fixed; }
+table.data-table col.col-cat { width: 16%; }
+table.data-table col.col-en { width: 26%; }
+table.data-table col.col-zh { width: 22%; }
+table.data-table col.col-mech { width: 36%; }
+table.data-table thead th { background: #3b82f6; color: #fff; padding: 8px 24px 8px 10px; text-align: left; font-weight: bold; font-size: 0.95em; position: relative; overflow: visible; }
+table.data-table thead th .resize-handle { position: absolute; right: 0; top: 0; bottom: 0; width: 8px; cursor: col-resize; z-index: 2; }
+table.data-table thead th .resize-handle::after { content: ""; position: absolute; right: 2px; top: 20%; bottom: 20%; width: 2px; background: rgba(255,255,255,0.4); border-radius: 1px; }
+table.data-table thead th .resize-handle:hover::after { background: rgba(255,255,255,0.8); width: 3px; right: 1px; }
+body.resizing { cursor: col-resize; user-select: none; -webkit-user-select: none; }
+body.resizing .data-table * { cursor: col-resize; }
+table.data-table tbody td { padding: 5px 10px; border-bottom: 1px solid #e8ecf0; vertical-align: top; }
+table.data-table tbody tr:hover { background: #f8faff; }
+table.data-table .cat-cell { font-weight: bold; color: #1e40af; background: #eff6ff; vertical-align: middle; text-align: center; word-break: break-all; }
+table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: #666; display: block; }
+table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
+table.data-table .zh-name { color: #1a1a1a; }
+table.data-table .mechanism { color: #777; font-size: 0.92em; }
+table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+@media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
+/* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
+.key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
+  background: #edf1f1; border: 1px solid #d5dddd; border-left: 4px solid #7d0052;
+  border-radius: 0 3px 3px 0; page-break-inside: avoid; }
+.key-concepts .kc-head { font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78em; font-weight: 800; letter-spacing: 1.6px; color: #7d0052; margin-bottom: 0.45em; }
+.key-concepts .kc-title { font-size: 1.06em; font-weight: bold; color: #00668f; margin-bottom: 0.75em;
+  line-height: 1.5; }
+.key-concepts ul { list-style: none; margin: 0; padding: 0; }
+.key-concepts li { position: relative; padding-left: 1.3em; margin-bottom: 0.7em;
+  font-size: 0.93em; line-height: 1.9; text-align: justify; }
+.key-concepts li:last-child { margin-bottom: 0; }
+.key-concepts li::before { content: "▸"; position: absolute; left: 0.15em; top: 0;
+  color: #00668f; font-size: 0.9em; }
+/* 章末学习附录：关键术语 / 复习题 / 参考文献 */
+.endmatter { margin-top: 3.2em; padding-top: 1.6em; border-top: 3px double #cfd8d8; }
+.em-title { font-size: 1.28em; font-weight: bold; color: #00668f; margin: 1.8em 0 0.85em 0;
+  padding: 0 0 0.28em 0; border-left: none; border-bottom: 1px solid #d8e4e8; scroll-margin-top: 20px; }
+.em-title:first-child { margin-top: 0; }
+.em-title::before { content: ""; display: inline-block; width: 5px; height: 0.9em;
+  background: #00668f; margin-right: 0.5em; vertical-align: -0.06em; border-radius: 1px; }
+.kt-grid { column-count: 2; column-gap: 2.4em; font-size: 0.87em; line-height: 1.75; }
+.kt-item { display: flex; justify-content: space-between; gap: 0.6em; padding: 0.5px 0;
+  break-inside: avoid; page-break-inside: avoid; }
+.kt-term { color: #1a1a1a; }
+.kt-page { flex: none; color: #9aa5a8; font-family: "Times New Roman", serif; font-size: 0.92em; }
+.review-list { list-style: none; margin: 0; padding: 0; }
+.review-list li, .review-list p.rv-item { position: relative; padding-left: 2.1em; margin: 0 0 1em 0;
+  font-size: 0.93em; line-height: 1.95; text-align: justify; text-indent: 0; }
+.review-list .rv-num { position: absolute; left: 0; color: #00668f; font-weight: bold;
+  font-family: "Times New Roman", serif; }
+.review-list .rv-sub { color: #00668f; font-weight: bold; }
+.references { font-size: 0.8em; line-height: 1.62; }
+.ref-sec { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 1.08em;
+  font-weight: normal; color: #00668f; margin: 1.2em 0 0.5em 0; padding-bottom: 0.15em;
+  border-bottom: 1px dotted #dde5e7; page-break-after: avoid; }
+.ref-list { column-count: 2; column-gap: 2.4em; }
+.ref-item { text-indent: -1.3em; padding-left: 1.3em; margin: 0 0 0.38em 0; text-align: left;
+  color: #333; break-inside: avoid; page-break-inside: avoid; }
+.ref-item.ref-note { text-indent: 0; padding-left: 0; color: #8a9599; font-style: italic; }
+@media (max-width: 700px) { .kt-grid, .ref-list { column-count: 1; } }
+.launchpad { text-indent: 0; text-align: center; font-size: 0.82em; color: #8899a6; font-style: italic;
+  margin: 2.4em 0 0 0; padding: 0.75em 1.1em; background: #f7fafb; border-radius: 3px; }
+.running-footer { text-indent: 0; text-align: center; font-size: 0.72em; color: #c8c8c8; margin: 2.2em 0 0 0; }
+.footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
+#lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
+#lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
+#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
+/* 左侧阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; overflow-y: auto;
+  background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin;
+  transition: left 0.25s ease; }
+#toc.hidden { left: -250px; }
+#toc-inner { padding-bottom: 30px; }
+#toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+#toc ul { list-style: none; padding: 0; margin: 0; }
+#toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
+  border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
+#toc li a:hover { background: #f0ede6; color: #333; }
+#toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
+  font-size: 13.5px; border-left-color: transparent; }
+#toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
+#toc li.toc-fig > a, #toc li.toc-tab > a {
+  padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
+#toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
+#toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active {
+  border-left-color: #999; background: #eee9e0; color: #555; }
+/* 折叠/展开箭头 */
+#toc-toggle { position: fixed; left: 250px; top: 50%; transform: translateY(-50%); z-index: 101;
+  background: #fafaf7; border: 1px solid #e5e2db; border-left: none;
+  color: #666; cursor: pointer; font-size: 24px; padding: 20px 7px;
+  border-radius: 0 7px 7px 0; transition: left 0.25s ease, color 0.12s, background 0.12s;
+  line-height: 1; user-select: none; }
+#toc-toggle:hover { color: #333; background: #f0ede6; }
+#toc.hidden + #toc-toggle { left: 0; }
+@media print { #toc, #toc-toggle { display: none !important; } }
+@media (max-width: 1050px) {
+  #toc { left: -250px; }
+  #toc.open { left: 0; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
+  #toc-toggle { left: 0; font-size: 20px; padding: 16px 6px; }
+  #toc.open + #toc-toggle { left: 250px; }
+  article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
+}</style></head><body>
+<nav id="toc">
+<div id="toc-inner">
+<div class="toc-title">目录</div>
+<ul>
+<li class="toc-fig"><a href="#fig-13-1">图13-1 真核生物中主要蛋白质分选途径概览</a></li>
+<li class="toc-sec"><a href="#sec-13.1">13.1 蛋白质向ER膜的靶向与跨膜转运</a>
+<ul>
+<li class="toc-fig"><a href="#fig-13-2">图13-2 粗面ER的结构</a></li>
+<li class="toc-fig"><a href="#fig-13-3">图13-3 分泌蛋白进入ER腔</a></li>
+<li class="toc-fig"><a href="#fig-13-4">图13-4 翻译与转位同时发生</a></li>
+<li class="toc-fig"><a href="#fig-13-5">图13-5 信号识别颗粒（SRP）的结构</a></li>
+<li class="toc-fig"><a href="#fig-13-6">图13-6 共翻译转位</a></li>
+<li class="toc-fig"><a href="#fig-13-7">图13-7 Sec61α是易位子的一个组分</a></li>
+<li class="toc-fig"><a href="#fig-13-8">图13-8 一种古菌Sec61复合体的结构</a></li>
+<li class="toc-fig"><a href="#fig-13-9">图13-9 翻译后转位</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-13.2">13.2 膜蛋白向ER膜的插入</a>
+<ul>
+<li class="toc-fig"><a href="#fig-13-10">图13-10 ER膜蛋白的类别</a></li>
+<li class="toc-fig"><a href="#fig-13-11">图13-11 I型单次跨膜蛋白的插膜与取向</a></li>
+<li class="toc-fig"><a href="#fig-13-12">图13-12 II型和III型单次跨膜蛋白的插膜与取向</a></li>
+<li class="toc-fig"><a href="#fig-13-13">图13-13 尾锚定蛋白的插入</a></li>
+<li class="toc-fig"><a href="#fig-13-14">图13-14 拓扑发生序列决定ER膜蛋白的取向</a></li>
+<li class="toc-fig"><a href="#fig-13-15">图13-15 GPI锚定蛋白</a></li>
+<li class="toc-fig"><a href="#fig-13-16">图13-16 疏水性分布图</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-13.3">13.3 内质网中蛋白质的修饰、折叠与质量控制</a>
+<ul>
+<li class="toc-fig"><a href="#fig-13-17">图13-17 寡糖前体的生物合成</a></li>
+<li class="toc-fig"><a href="#fig-13-18">图13-18 N-连接寡糖的添加与初始加工</a></li>
+<li class="toc-fig"><a href="#fig-13-19">图13-19 蛋白质二硫键异构酶（PDI）的作用</a></li>
+<li class="toc-fig"><a href="#fig-13-20">图13-20 血凝素的折叠与组装</a></li>
+<li class="toc-fig"><a href="#fig-13-21">图13-21 未折叠蛋白反应</a></li>
+<li class="toc-fig"><a href="#fig-13-22">图13-22 N-连接寡糖的修饰被用来监测折叠并实施质量控制</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-13.4">13.4 蛋白质向线粒体与叶绿体的靶向</a>
+<ul>
+<li class="toc-tab"><a href="#tab-T13-1">表13-1 把蛋白质从胞质溶胶导向细胞器的靶向序列*</a></li>
+<li class="toc-fig"><a href="#fig-13-23">图13-23 线粒体前体蛋白的输入在离体系统中检测</a></li>
+<li class="toc-fig"><a href="#fig-13-24">图13-24 蛋白质输入线粒体基质</a></li>
+<li class="toc-fig"><a href="#fig-13-25">实验图13-25 用嵌合蛋白进行的实验阐明了线粒体蛋白质输入的过程</a></li>
+<li class="toc-fig"><a href="#fig-13-26">图13-26 被输入线粒体的蛋白质中的靶向序列</a></li>
+<li class="toc-fig"><a href="#fig-13-27">图13-27 从胞质溶胶通往线粒体内膜的三条途径</a></li>
+<li class="toc-fig"><a href="#fig-13-28">图13-28 通往线粒体膜间隙的两条途径</a></li>
+<li class="toc-fig"><a href="#fig-13-29">图13-29 把蛋白质转运到叶绿体类囊体</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-13.5">13.5 过氧化物酶体蛋白的靶向</a>
+<ul>
+<li class="toc-fig"><a href="#fig-13-30">图13-30 PTS1指导的过氧化物酶体基质蛋白输入</a></li>
+<li class="toc-fig"><a href="#fig-13-31">实验图13-31 研究揭示了过氧化物酶体膜蛋白与基质蛋白掺入所走的不同途径</a></li>
+<li class="toc-fig"><a href="#fig-13-32">图13-32 过氧化物酶体发生与分裂的模型</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-13.6">13.6 进出细胞核的转运</a>
+<ul>
+<li class="toc-fig"><a href="#fig-13-33">图13-33 不同分辨水平下的核孔复合体</a></li>
+<li class="toc-fig"><a href="#fig-13-34">实验图13-34 核定位信号（NLS）把蛋白质导向细胞核</a></li>
+<li class="toc-fig"><a href="#fig-13-35">实验图13-35 核转运需要胞质溶胶蛋白</a></li>
+<li class="toc-fig"><a href="#fig-13-36">图13-36 蛋白质核输入的机制</a></li>
+<li class="toc-fig"><a href="#fig-13-37">图13-37 依赖Ran和不依赖Ran的核输出</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#key-terms">关键术语</a>
+</li>
+<li class="toc-sec"><a href="#review-concepts">复习题</a>
+</li>
+<li class="toc-sec"><a href="#references">参考文献</a>
+</li>
+</ul>
+</div></nav>
+<button id="toc-toggle" title="隐藏/显示目录">◀</button>
+<article>
+<h1>第13章 蛋白质向膜与细胞器的转运</h1>
+<p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Moving Proteins into Membranes and Organelles · 保留全部图表（点击图片可放大）</p>
+<hr>
+<div class="boximg">
+  <img class="zoomable" src="figures/box_G13-1_1.png" alt="G13-1" onclick="lightbox(this.src)">
+</div>
+<div class="intro-block"><span class="intro-title">第13章 蛋白质向膜与细胞器的转运</span>酵母细胞内部膜结构的三维重建，扫描电镜图像。细胞壁已被去除，各细胞器用伪彩色标出，以显示内质网（黄色）、线粒体（红色）和细胞核（蓝色）。细胞直径为3.5 μm。[From Wei, D. et al., "High-resolution three-dimensional reconstruction of a whole yeast cell using focused-ion beam scanning electron microscopy," Biotechniques, 2012, 53(1):41–48.]</div>
+<p>一个典型的哺乳动物细胞含有最多10,000种不同的蛋白质；而一个酵母细胞约含5000种。这些蛋白质绝大多数由胞质溶胶中的核糖体合成，其中许多留存在胞质溶胶内（见第5章）。然而，在一个典型细胞所产生的不同种类蛋白质中，多达一半会被运送到细胞内的各种膜包被细胞器之一或细胞表面。例如，许多受体蛋白和转运蛋白必须被运送到质膜，一些水溶性酶（如RNA和DNA聚合酶）必须被靶向到细胞核，而细胞外基质的组分以及消化酶和多肽信号分子则必须被运送到细胞表面，以便从细胞分泌出去。这些蛋白质以及细胞产生的所有其他蛋白质</p>
+<p>都必须到达其正确的位置，细胞才能正常行使功能。</p>
+<p>新合成蛋白质向其正确细胞目的地的运送通常称为蛋白质靶向或蛋白质分选，它包含两类非常不同的过程：基于信号的靶向和基于囊泡的运输。第一类过程涉及把新合成的蛋白质从细胞质靶向到某个胞内细胞器。靶向可以发生在翻译过程中，也可以发生在蛋白质合成刚完成之后。对于膜蛋白，靶向导致蛋白质插入膜的脂双层；而对于水溶性蛋白，靶向导致整个蛋白质跨膜转位进入细胞器的水性内部。蛋白质被分选到内质网</p>
+<figure id="fig-13-1">
+  <img class="zoomable" src="figures/fig_13-1_1.png" alt="图 13-1" onclick="lightbox(this.src)">
+  <figcaption>图13-1 真核生物中主要蛋白质分选途径概览。所有由核DNA编码的mRNA都在胞质溶胶的核糖体上翻译。右侧（非分泌途径）：缺乏ER信号序列的蛋白质在游离核糖体上完成合成（步骤1）。那些不含靶向序列的蛋白质被释放到胞质溶胶中并留在那里（步骤2）。带有细胞器特异性靶向序列（粉色）的蛋白质先被释放到胞质溶胶中（步骤2），随后被输入线粒体、叶绿体、过氧化物酶体或细胞核（步骤3–6）。线粒体蛋白和叶绿体蛋白通常分别穿过外膜和内膜，进入线粒体基质或叶绿体基质。其他蛋白质则通过额外的分选步骤被分选到这些细胞器的其他亚区室。核蛋白通过核被膜上可见的核孔进出。左侧（分泌途径）：在分泌途径中合成新生蛋白质的核糖体，被ER信号序列（粉色；步骤1和2）导向粗面内质网（ER）。在ER上完成翻译后，这些蛋白质可以经运输囊泡移动到高尔基复合体（步骤3）。进一步分选把蛋白质运送到质膜或溶酶体（步骤4a或4b）。分泌途径所依赖的基于囊泡的过程（步骤3和4，阴影框）将在第14章讨论。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Ribosomes</td><td class="gl-zh">核糖体</td></tr>
+  <tr><td class="gl-en">mRNA</td><td class="gl-zh">mRNA</td></tr>
+  <tr><td class="gl-en">Golgi complex</td><td class="gl-zh">高尔基复合体</td></tr>
+  <tr><td class="gl-en">Lysosome</td><td class="gl-zh">溶酶体</td></tr>
+  <tr><td class="gl-en">Secretory pathway</td><td class="gl-zh">分泌途径</td></tr>
+  <tr><td class="gl-en">Rough endoplasmic reticulum</td><td class="gl-zh">粗面内质网</td></tr>
+  <tr><td class="gl-en">Plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">ER signal sequence</td><td class="gl-zh">ER信号序列</td></tr>
+  <tr><td class="gl-en">Intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">Outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">Inner membrane</td><td class="gl-zh">内膜</td></tr>
+  <tr><td class="gl-en">Matrix</td><td class="gl-zh">基质</td></tr>
+  <tr><td class="gl-en">Mitochondrion</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">Chloroplast</td><td class="gl-zh">叶绿体</td></tr>
+  <tr><td class="gl-en">Thylakoids</td><td class="gl-zh">类囊体</td></tr>
+  <tr><td class="gl-en">Stroma</td><td class="gl-zh">基质</td></tr>
+  <tr><td class="gl-en">Peroxisome</td><td class="gl-zh">过氧化物酶体</td></tr>
+  <tr><td class="gl-en">Nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">Nuclear pore</td><td class="gl-zh">核孔</td></tr>
+  <tr><td class="gl-en">Inner nuclear membrane</td><td class="gl-zh">内核膜</td></tr>
+  <tr><td class="gl-en">Outer nuclear membrane</td><td class="gl-zh">外核膜</td></tr>
+  <tr><td class="gl-en">Targeting sequence</td><td class="gl-zh">靶向序列</td></tr>
+  <tr><td class="gl-en">Cytosolic protein</td><td class="gl-zh">胞质蛋白</td></tr>
+  </table>
+</figure>
+<p>（ER）、线粒体、叶绿体、过氧化物酶体和细胞核，都是通过这一通用过程完成的（图13-1）。</p>
+<p>第二类通用分选过程称为分泌途径，它涉及蛋白质从ER到其最终目的地的运输，这一运输在膜包被的囊泡内完成。对于许多蛋白质（包括构成细胞外基质的那些蛋白质），最终目的地是细胞外（该途径因此得名）；整合膜蛋白也</p>
+<p>通过这一过程被运送到高尔基复合体、溶酶体和质膜。分泌途径始于ER；因此所有注定要进入分泌途径的蛋白质最初都被靶向到这一细胞器。</p>
+<p>向ER的靶向通常涉及仍在核糖体上合成过程中的新生蛋白质。因此，新生成的蛋白质直接从核糖体挤出进入ER膜。一旦跨ER膜转位，</p>
+<p>蛋白质就由存在于ER腔中的蛋白质折叠催化剂组装成其天然构象。事实上，一个典型细胞中约三分之一的蛋白质就是在ER中折叠成天然构象的，而大多数驻留ER的蛋白质都直接或间接地参与折叠过程。作为折叠过程的一部分，蛋白质还在ER中经历特定的翻译后修饰。这些过程受到仔细监控，只有在折叠和组装完成之后，蛋白质才被允许从ER运出到其他目的地。最终目的地为高尔基复合体、溶酶体、质膜或细胞外的蛋白质，是沿分泌途径、通过小囊泡的作用被运输的：这些小囊泡从一种细胞器的膜上出芽，然后与另一种细胞器的膜融合（见图13-1，阴影框）。我们将在下一章讨论基于囊泡的蛋白质运输，因为它在机制上与向胞内细胞器的非囊泡型蛋白质靶向有显著差异。</p>
+<p>在本章中，我们考察蛋白质如何被靶向到五种胞内细胞器：ER、线粒体、叶绿体、过氧化物酶体和细胞核。这一蛋白质靶向过程有两个特点最初颇为令人困惑：一个特定的蛋白质如何能只被导向某一种特定的膜；以及相对较大的亲水性蛋白质分子如何能跨疏水膜转位，却不破坏双层膜作为离子和小分子屏障的功能。通过把生化纯化方法与用于鉴定无法执行特定转位步骤的突变体的遗传筛选相结合，细胞生物学家已经鉴定出跨各种不同胞内膜转位所需的许多细胞组分。此外，细胞内许多主要的转位过程已通过将其纯化的蛋白质组分掺入人工脂双层而得到重建。这类体外系统可以自由地进行实验操作。</p>
+<p>这些研究表明，尽管存在一些差异，但支配蛋白质分选到所有各种胞内细胞器的是相同的基本机制。例如，我们现在知道，把蛋白质靶向到某一特定细胞器目的地的信息编码在蛋白质自身的氨基酸序列中，通常位于一段约20个氨基酸的序列内，这类序列统称为靶向序列（见图13-1）；这些序列也称为信号序列或信号肽。此类靶向序列通常位于蛋白质的N端，因而也是蛋白质中最早被合成的部分。较为少见的是，靶向序列位于C端或蛋白质序列的内部。每种细胞器都带有一套受体蛋白，它们只（直接或间接地）结合特定种类的靶向序列，从而确保由靶向序列编码的信息决定靶向的特异性。一旦含有靶向序列的蛋白质与相应的受体发生相互作用，多肽链就被转移到某种转位通道，使蛋白质能够进入或穿过膜脂双层。蛋白质的单向转移</p>
+<p>进入细胞器而不滑回细胞质，这一单向性通常是通过把转位与某种能量上有利的过程（如GTP或ATP的水解）相偶联来实现的。有些蛋白质随后还会被进一步分选，以到达靶细胞器内的某个亚区室；这种分选依赖于另外的信号序列和另外的受体蛋白。最后，靶向序列可能被特定的蛋白酶从成熟蛋白质上切除。</p>
+<p>对于本章讨论的每一个蛋白质靶向事件，我们都将设法回答四个基本问题：</p>
+<p>1. 靶向序列的本质是什么？它与其他类型的靶向序列有何区别？</p>
+<p>2. 靶向序列的受体是什么？</p>
+<p>3. 使蛋白质能跨膜脂双层转移的转位通道结构如何？特别是，该通道是否窄到蛋白质只能以未折叠状态通过，还是能容纳已折叠的蛋白质结构域？</p>
+<p>4. 驱动跨膜单向转移的能量来源是什么？</p>
+<p>在本章第一部分，我们讨论蛋白质向ER的靶向，包括蛋白质在进入分泌途径时所经历的翻译后修饰。蛋白质向ER的靶向是蛋白质靶向中了解得最清楚的例子，将作为该过程的一般范例。接着我们描述蛋白质向线粒体、叶绿体和过氧化物酶体的靶向。最后，我们讨论蛋白质通过核孔进入和离开细胞核的运输。</p>
+<h2 id="sec-13.1">13.1 蛋白质向ER膜的靶向与跨膜转运</h2>
+<p>所有真核细胞都有内质网（ER）。ER是一种迂曲的细胞器，由小管和扁平囊组成，其膜与细胞核的膜连续。ER通常具有非常大的表面积，其膜是细胞脂质合成的场所（见第7章）。ER也是大多数膜蛋白组装的地方，包括质膜以及溶酶体、ER和高尔基复合体的膜蛋白。此外，所有最终将从细胞分泌的可溶性蛋白，以及注定要进入ER腔、高尔基复合体或溶酶体的可溶性蛋白，最初都被运送到ER腔（见图13-1）。由于ER在蛋白质分泌中起着如此重要的作用，我们把流经ER的蛋白质运输途径称为分泌途径。为简便起见，我们将把所有最初靶向到ER的蛋白质都称为分泌蛋白，但请记住，并非所有靶向到ER的蛋白质都真的从细胞分泌出去。</p>
+<p>在本章的这一节中，我们讨论蛋白质最初如何被识别为分泌蛋白，以及这类蛋白质如何跨ER膜转位。</p>
+<figure id="fig-13-2">
+  <img class="zoomable" src="figures/fig_13-2_1.png" alt="图 13-2" onclick="lightbox(this.src)">
+  <figcaption>图13-2 粗面ER的结构。(a) 胰腺腺泡细胞中附着在粗面ER上的核糖体的电镜照片。这类细胞合成的大部分蛋白质都是分泌蛋白，它们是在附着于膜的核糖体上生成的。图中可见少数未附着的（游离）核糖体；据推测，这些核糖体正在合成胞质溶胶蛋白或其他非分泌蛋白。(b) ER上蛋白质合成的示意图。注意：膜结合核糖体与游离胞质溶胶核糖体是相同的。膜结合核糖体是在合成含ER信号序列的多肽期间被招募到ER上的。[Part (a) courtesy of Dr. Marilyn G. Farquhar, University of California, San Diego.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Attached ribosomes</td><td class="gl-zh">附着核糖体</td></tr>
+  <tr><td class="gl-en">Free ribosomes</td><td class="gl-zh">游离核糖体</td></tr>
+  <tr><td class="gl-en">ER membrane</td><td class="gl-zh">ER膜</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Ribosomal subunits</td><td class="gl-zh">核糖体亚基</td></tr>
+  </table>
+</figure>
+<p>我们首先讨论可溶性蛋白——即那些完全穿过ER膜进入ER腔的蛋白质。在下一节中，我们讨论整合膜蛋白，它们被插入ER膜中。</p>
+<p>用纯化的ER膜进行的脉冲追踪实验证明分泌蛋白会穿过ER膜</p>
+<p>尽管所有细胞都分泌多种蛋白质（例如细胞外基质蛋白），但某些类型的细胞专司大量特定蛋白质的分泌。胰腺腺泡</p>
+<p>细胞就是一个例子，它们合成大量的多种消化酶，这些酶被分泌到通向肠道的导管中。由于这类分泌细胞含有极其丰富的分泌途径细胞器（如ER和高尔基复合体），它们被广泛用于研究这一途径，包括发生在ER膜上的起始步骤。</p>
+<p>分泌蛋白合成之后紧接着发生的事件序列，最早是通过用胰腺腺泡细胞进行的脉冲追踪实验阐明的。在这些实验中，放射性标记的氨基酸在分泌蛋白于结合在ER表面的核糖体上合成时被掺入这些蛋白质。ER中接收进入分泌途径的蛋白质的那部分称为粗面ER，因为它密布核糖体，其表面在形态上与其他ER膜明显不同（图13-2）。从这些实验可以清楚地看出，分泌蛋白在核糖体上合成期间或刚合成之后，就跨ER膜转位进入ER腔。</p>
+<p>为了厘清转位过程的各个步骤，必须把ER与细胞的其余部分分离开来。完整的ER结构精细如蕾丝，且与其他细胞器相互连接，要分离完整ER并不可行。然而，科学家发现，当细胞被匀浆时，粗面ER会破碎成小的封闭囊泡，核糖体位于外侧，称为微粒体，它们保留了ER的大部分生化特性，包括蛋白质转位的能力。图13-3所示的实验——把从脉冲标记细胞中分离出的微粒体用蛋白酶处理——证明：尽管分泌蛋白是在结合于ER膜胞质面的核糖体上合成的，但这些核糖体产生的多肽最终却位于微粒体的腔内。诸如此类的实验提出了这样的问题：多肽在合成开始后不久是如何被识别为分泌蛋白的，以及新生分泌蛋白是如何被穿引过ER膜的。</p>
+<p>疏水性的N端信号序列把新生分泌蛋白靶向到ER</p>
+<p>分泌蛋白在胞质溶胶中的游离核糖体上开始合成之后，新生蛋白质中一段16–30个残基的ER靶向序列把核糖体导向ER膜，并启动正在生长的多肽跨ER膜转位（见图13-1，左）。ER靶向序列通常位于蛋白质的N端，一般称为信号序列。不同分泌蛋白的信号序列都含有一个或多个带正电荷的氨基酸，它们与一段连续的6–12个疏水残基（称为疏水核心）相邻，除此之外彼此很少有共同之处。大多数分泌蛋白的信号序列在其仍于核糖体上延伸时就被切除；因此，在细胞中发现的成熟蛋白质里通常不存在信号序列。</p>
+<p>ER信号序列的疏水核心对其功能至关重要。例如，从某个信号</p>
+<figure id="fig-13-3">
+  <img class="zoomable" src="figures/fig_13-3_1.png" alt="图 13-3" onclick="lightbox(this.src)">
+  <figcaption>图13-3 分泌蛋白进入ER腔。标记实验证明，分泌蛋白在合成后不久就定位于ER腔。细胞与放射性标记的氨基酸短暂孵育，使只有新合成的蛋白质被标记。随后将细胞匀浆，使质膜破裂并把粗面ER剪切成为称为微粒体的小囊泡。由于微粒体上结合有核糖体，其浮力密度远大于其他膜性细胞器，因此可以通过差速离心与蔗糖密度梯度离心的组合把它们与其他细胞器分开（见第4章）。纯化的微粒体在加入或不加入去垢剂的条件下用蛋白酶处理。只有当微粒体膜先被去垢剂处理破坏时，与微粒体结合的标记分泌蛋白才会被蛋白酶消化。这一发现表明，新生成的蛋白质位于微粒体内部，相当于粗面ER的腔。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Rough ER</td><td class="gl-zh">粗面ER</td></tr>
+  <tr><td class="gl-en">Microsomes with attached ribosomes</td><td class="gl-zh">带附着核糖体的微粒体</td></tr>
+  <tr><td class="gl-en">Labeled secretory protein</td><td class="gl-zh">标记的分泌蛋白</td></tr>
+  <tr><td class="gl-en">Digestion of secretory protein</td><td class="gl-zh">分泌蛋白被消化</td></tr>
+  <tr><td class="gl-en">No digestion of secretory protein</td><td class="gl-zh">分泌蛋白未被消化</td></tr>
+  <tr><td class="gl-en">Add protease</td><td class="gl-zh">加入蛋白酶</td></tr>
+  <tr><td class="gl-en">Treat with detergent</td><td class="gl-zh">用去垢剂处理</td></tr>
+  <tr><td class="gl-en">Homogenization</td><td class="gl-zh">匀浆</td></tr>
+  <tr><td class="gl-en">mRNA</td><td class="gl-zh">mRNA</td></tr>
+  </table>
+</figure>
+<p>序列中特异性地缺失若干个疏水氨基酸，或通过突变向疏水核心中引入带电荷的氨基酸，都能破坏蛋白质N端充当信号序列的能力。结果是，被修饰的蛋白质滞留在胞质溶胶中，无法跨ER膜进入ER腔。反过来，也可以把信号序列加到本来</p>
+<figure id="fig-13-4">
+  <img class="zoomable" src="figures/fig_13-4_1.png" alt="图 13-4" onclick="lightbox(this.src)">
+  <figcaption>图13-4 翻译与转位同时发生。无细胞实验证明，分泌蛋白向微粒体的转位与翻译相偶联。用EDTA（可螯合Mg2+离子）处理微粒体，会把与它们结合的核糖体剥离，从而得以分离出不带核糖体的微粒体，它们相当于ER膜（见图13-3）。蛋白质合成在含有功能性核糖体、tRNA、ATP、GTP和胞质溶胶酶的无细胞系统中进行，并向其中加入编码某种分泌蛋白的mRNA。该分泌蛋白在没有微粒体时被合成（a），但只有当微粒体在蛋白质合成期间存在时，它才会跨囊泡膜转位并失去其信号序列（导致分子量下降）（b）。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Cell-free protein synthesis; no microsomes present</td><td class="gl-zh">无细胞蛋白质合成；无微粒体</td></tr>
+  <tr><td class="gl-en">Cell-free protein synthesis; microsomes present</td><td class="gl-zh">无细胞蛋白质合成；有微粒体</td></tr>
+  <tr><td class="gl-en">No incorporation into microsomes; no removal of signal sequence</td><td class="gl-zh">未掺入微粒体；信号序列未被切除</td></tr>
+  <tr><td class="gl-en">Cotranslational transport of protein into microsome and removal of signal sequence</td><td class="gl-zh">蛋白质被共翻译转运进微粒体并切除信号序列</td></tr>
+  <tr><td class="gl-en">Mature protein chain without signal sequence</td><td class="gl-zh">无信号序列的成熟蛋白链</td></tr>
+  <tr><td class="gl-en">Completed proteins with signal sequences</td><td class="gl-zh">带信号序列的完整蛋白</td></tr>
+  <tr><td class="gl-en">N-terminal signal sequence</td><td class="gl-zh">N端信号序列</td></tr>
+  <tr><td class="gl-en">Add microsomal membranes</td><td class="gl-zh">加入微粒体膜</td></tr>
+  </table>
+</figure>
+<p>位于胞质溶胶的蛋白质上，这要用重组DNA技术来实现。只要所加序列足够长且足够疏水，这样被修饰的胞质蛋白就能获得转位到ER腔的能力。ER信号序列核心中的疏水残基形成一个结合位点，该位点对于信号序列与负责把蛋白质靶向到ER膜的机器之间的相互作用至关重要。</p>
+<p>利用无细胞蛋白质合成系统、编码某种分泌蛋白的mRNA，以及被剥离了自身所结合核糖体的微粒体所进行的生化研究，阐明了ER信号序列的功能与去向。用该系统进行的初期实验证明，只有微粒体在蛋白质合成期间存在时，典型的分泌蛋白才会被摄入微粒体并切除其信号序列。如果在蛋白质合成完成之后才把微粒体加入系统，则不会发生蛋白质向微粒体内的运输（图13-4）。</p>
+<figure id="fig-13-5">
+  <img class="zoomable" src="figures/fig_13-5_1.png" alt="图 13-5" onclick="lightbox(this.src)">
+  <figcaption>图13-5 信号识别颗粒（SRP）的结构。(a) 信号序列结合结构域：细菌Ffh蛋白与真核生物中结合ER信号序列的P54部分同源。这一表面模型显示Ffh中的结合结构域，其中含有一个由疏水氨基酸（紫色）衬里的大裂隙，其侧链与信号序列相互作用。(b) GTP结合与受体结合结构域：结合到FtsY（SRP受体α亚基的古菌同源物）和来自水生栖热菌的Ffh亚基上的GTP结构，说明了这些蛋白质之间的相互作用如何受GTP结合与水解的控制。Ffh和FtsY各能结合一分子GTP，当它们彼此结合时，两分子结合的GTP嵌入蛋白质亚基之间的界面并稳定该二聚体。假对称二聚体的组装使得两个活性位点得以形成，用于水解两分子结合的GTP。水解为GDP会破坏该界面的稳定性，导致二聚体解体。[Part (a) data from R. J. Keenan et al., 1998, Cell 94:181, PDB ID 2ffh. Part (b) data from P. J. Focia et al., 2004, Science 303:373, PDB ID 1okk.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Hydrophobic binding groove</td><td class="gl-zh">疏水结合沟</td></tr>
+  <tr><td class="gl-en">GTP</td><td class="gl-zh">GTP</td></tr>
+  <tr><td class="gl-en">Ffh, signal-sequence-binding domain</td><td class="gl-zh">Ffh信号序列结合结构域</td></tr>
+  <tr><td class="gl-en">Ffh, GTPase domain (homolog of SRP P54 subunit)</td><td class="gl-zh">Ffh GTP酶结构域（SRP P54亚基的同源物）</td></tr>
+  <tr><td class="gl-en">FtsY (homolog of SRP receptor α subunit)</td><td class="gl-zh">FtsY（SRP受体α亚基的同源物）</td></tr>
+  </table>
+</figure>
+<p>随后的实验旨在确定，为了使转位发生，微粒体必须在蛋白质合成的哪个确切阶段存在。在这些实验中，微粒体在蛋白质合成开始后的不同时间被加入反应混合物。这些实验表明，必须在前70个左右氨基酸被翻译之前加入微粒体，完整的分泌蛋白才能定位于微粒体腔中。此时，最初的40个左右氨基酸突出在核糖体之外，其中包括稍后将被切除的信号序列，而接下来的30个左右氨基酸则仍深埋在核糖体内的一个通道中（见图5-26）。因此，大多数分泌蛋白向ER腔的运输在尚未完全合成（新生）的蛋白质仍与核糖体结合时就开始了，这一过程称为共翻译转位。</p>
+<p>共翻译转位由两种水解GTP的蛋白质启动</p>
+<p>鉴于分泌蛋白是与ER膜结合着合成的，而与其他任何细胞</p>
+<p>膜都不结合，因此必然存在某种信号序列识别机制把它们靶向到ER膜。这一靶向过程中的两个关键组分是信号识别颗粒（SRP）及其受体。SRP是一种胞质溶胶核糖核蛋白颗粒，它瞬时结合新生蛋白质中的ER信号序列和核糖体大（60S）亚基，形成一个大的复合体。随后，SRP通过与位于膜中的SRP受体结合，把新生蛋白质–核糖体复合体靶向到ER膜。</p>
+<p>SRP由六个蛋白质结合到一条300个核苷酸的RNA上构成，这条RNA充当该六聚体的支架。SRP蛋白之一（P54）可以与ER信号序列发生化学交联，这表明正是这个亚基结合新生分泌蛋白中的信号序列。P54中一个称为M结构域的区域含有许多甲硫氨酸以及其他带疏水侧链的氨基酸残基，其中有一个裂隙，其内表面衬着一层疏水侧链（图13-5a）。信号序列的疏水核心通过疏水相互作用结合到这个裂隙中。SRP中的其他多肽与核糖体相互作用，或是蛋白质转位进入ER腔所必需的。</p>
+<figure id="fig-13-6">
+  <img class="zoomable" src="figures/fig_13-6_1.png" alt="图 13-6" onclick="lightbox(this.src)">
+  <figcaption>图13-6 共翻译转位。步骤1–2：ER信号序列一旦从核糖体中出现，就被信号识别颗粒（SRP）结合。步骤3：SRP与新生多肽链–核糖体复合体结合到ER膜上的SRP受体。GTP结合到SRP及其受体上会增强这一相互作用。步骤4：新生多肽–核糖体转移到易位子，使这条转位通道打开，让生长中的多肽在信号序列旁边进入，信号序列则被转移到中央孔旁边的疏水结合位点。SRP和SRP受体一旦从易位子上解离，就分别水解其结合的GTP，然后准备好启动另一条多肽链的插入。步骤5：随着多肽链延伸，它穿过易位子通道进入ER腔，在那里信号序列被信号肽酶切除并迅速降解。步骤6：随着mRNA向3′端翻译，肽链继续延伸。由于核糖体附着在易位子上，生长中的链被挤出易位子进入ER腔。步骤7–8：翻译完成后，核糖体被释放，蛋白质的其余部分被拉入ER腔，易位子关闭，蛋白质呈现其天然折叠构象。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">GTP</td><td class="gl-zh">GTP</td></tr>
+  <tr><td class="gl-en">mRNA</td><td class="gl-zh">mRNA</td></tr>
+  <tr><td class="gl-en">Signal sequence</td><td class="gl-zh">信号序列</td></tr>
+  <tr><td class="gl-en">Cleaved signal sequence</td><td class="gl-zh">已切除的信号序列</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">SRP</td><td class="gl-zh">信号识别颗粒</td></tr>
+  <tr><td class="gl-en">SRP receptor</td><td class="gl-zh">SRP受体</td></tr>
+  <tr><td class="gl-en">Signal peptidase</td><td class="gl-zh">信号肽酶</td></tr>
+  <tr><td class="gl-en">Translocon (closed)</td><td class="gl-zh">易位子（关闭）</td></tr>
+  <tr><td class="gl-en">Translocon (open)</td><td class="gl-zh">易位子（开放）</td></tr>
+  <tr><td class="gl-en">Folded protein</td><td class="gl-zh">折叠的蛋白质</td></tr>
+  <tr><td class="gl-en">GDP</td><td class="gl-zh">GDP</td></tr>
+  <tr><td class="gl-en">Pi</td><td class="gl-zh">Pi</td></tr>
+  <tr><td class="gl-en">ER membrane</td><td class="gl-zh">ER膜</td></tr>
+  </table>
+</figure>
+<p>SRP与新生多肽链–核糖体复合体通过与SRP受体对接而结合到ER膜上；SRP受体是ER膜的一种整合蛋白，由两个亚基组成：一个α亚基和一个较小的β亚基。当SRP的P54亚基和SRP受体的α亚基都与GTP结合时，SRP–新生链–核糖体复合体与SRP受体的相互作用会增强。来自古菌水生栖热菌的SRP P54亚基和SRP受体α亚基（FtsY）的结构，为GTP结合与水解的循环如何驱动这些蛋白质的结合与解离提供了启示。图13-5b显示，各自结合一分子GTP的P54和FtsY聚到一起，形成一个假对称的异源二聚体。单独的任一个亚基都不含完整的GTP水解活性位点，但当这两个蛋白质聚到一起时，它们形成两个完整的活性位点，能够水解两分子结合的GTP。</p>
+<p>图13-6总结了我们目前对分泌蛋白合成以及SRP及其受体在该过程中作用的理解。结合的GTP水解伴随着SRP与SRP受体的解聚，并启动新生链和核糖体向ER膜上某一位点的转移，转位就在该位点发生。在彼此解离之后，SRP及其受体各自释放其结合的GDP，SRP被回收到胞质溶胶中，两者都准备好启动下一轮合成新生分泌蛋白的核糖体与ER膜之间的相互作用。</p>
+<p>生长中的多肽穿过易位子由翻译驱动</p>
+<p>一旦SRP及其受体把正在合成某种分泌蛋白的核糖体靶向到ER膜，核糖体和新生多肽链便迅速</p>
+<figure id="fig-13-7">
+  <img class="zoomable" src="figures/fig_13-7_1.png" alt="图 13-7" onclick="lightbox(this.src)">
+  <figcaption>图13-7 Sec61α是易位子的一个组分。交联实验表明，Sec61α是易位子的一个组分，当新生分泌蛋白进入ER腔时会与之接触。编码分泌蛋白催乳素N端70个氨基酸的mRNA，在含有微粒体的无细胞系统（见图13-4b）中被翻译。该mRNA缺少链终止密码子，并且含有一个赖氨酸密码子，位于序列中部附近。反应混合物中含有一种化学修饰的赖氨酰-tRNA，其赖氨酸侧链上连有光激活交联试剂。虽然整条mRNA都被翻译，但完整的多肽由于没有链终止密码子而不能从核糖体上释放，因而在跨ER膜时被“卡住”。随后将反应混合物暴露于强光，使新生多肽链与易位子中靠近它的任何蛋白质共价结合。当实验使用哺乳动物细胞的微粒体时，新生链与Sec61α共价连接。研究者构建了催乳素mRNA的不同版本，使被修饰的赖氨酸残基位于离核糖体不同的距离处；只有被修饰的赖氨酸位于转位通道内时，才观察到与Sec61α的交联。见T. A. Rapoport, 1992, Science 258:931，以及D. Görlich and T. A. Rapoport, 1993, Cell 75:615。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Cross-linking agent</td><td class="gl-zh">交联剂</td></tr>
+  <tr><td class="gl-en">Nascent protein</td><td class="gl-zh">新生蛋白</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Microsomal membrane</td><td class="gl-zh">微粒体膜</td></tr>
+  <tr><td class="gl-en">Microsomal lumen</td><td class="gl-zh">微粒体腔</td></tr>
+  <tr><td class="gl-en">Artificial mRNA</td><td class="gl-zh">人工mRNA</td></tr>
+  <tr><td class="gl-en">Sec61</td><td class="gl-zh">Sec61</td></tr>
+  <tr><td class="gl-en">Ribosome</td><td class="gl-zh">核糖体</td></tr>
+  <tr><td class="gl-en">tRNA</td><td class="gl-zh">tRNA</td></tr>
+  </table>
+</figure>
+<p>被转移到易位子；易位子是一个蛋白质复合体，形成一条嵌在ER膜内的通道。随着翻译的继续，正在延伸的链从核糖体大亚基直接进入易位子的中央孔。核糖体大亚基的排列</p>
+<p>与易位子的孔道相对齐，使得生长中的链从不暴露于细胞质，并在到达ER腔之前一直被阻止折叠（见图13-6）。</p>
+<p>易位子最初是通过酵母中编码一种名为Sec61α的蛋白质的基因发生突变而被鉴定的，该突变导致分泌蛋白向ER腔的转位受阻。随后发现，有三种蛋白质共同构成哺乳动物易位子，统称为Sec61复合体：Sec61α，一种含有10条跨膜α螺旋的整合膜蛋白；以及两种较小的蛋白质，称为Sec61β和Sec61γ。在无细胞转位系统中进行的化学交联实验——新生分泌蛋白的氨基酸侧链与Sec61α亚基共价结合——证明转位中的多肽链与Sec61α蛋白接触，从而确认它就是易位子的孔道（图13-7）。</p>
+<p>当把无细胞转位系统中的微粒体替换为只含SRP受体和Sec61复合体的重建磷脂囊泡时，新生分泌蛋白从其SRP–核糖体复合体转位进入囊泡。这一发现表明，SRP受体和Sec61复合体是转位绝对需要的仅有的两种ER膜蛋白。由于这两种蛋白质都不能水解ATP，也不能以其他方式提供能量来驱动持续进行的转位，因此由核糖体上链延伸所产生的能量似乎就足以推动多肽链朝着一个方向跨膜移动。</p>
+<p>易位子必须能够允许多肽链通过，同时又对小分子（如ATP）保持封闭，以维持ER膜的渗透屏障。此外，必定存在某种方式调控易位子，使其在默认状态下关闭，只有当新生多肽链–核糖体复合体结合时才打开。古菌Sec61复合体的高分辨率结构模型展示了易位子如何维持膜的完整性（图13-8）。Sec61α的10条跨膜螺旋形成一条中央通道，转位中的多肽链从其中穿过。Sec61α要接纳转位中的多肽，需要两个不同的门控步骤。这10条跨膜螺旋组织成两个各含5条螺旋的螺旋束。在第一个门控步骤中，两个螺旋束像打开的蛤壳一样绕铰链分开，在开口边缘暴露出一个供信号序列疏水核心结合的疏水结合口袋。信号序列结合到Sec61α上时，其N端朝向胞质溶胶，而延伸中的多肽则折返穿过中央通道。Sec61复合体的结构模型——它是未带转位肽时分离的，因此被推定为处于关闭构象——揭示出一条短螺旋肽堵塞着中央通道。对Sec61复合体的生化研究表明，在没有转位多肽时，构成堵塞物的这条肽有效地封闭易位子，阻止离子和小分子通过。</p>
+<p>在第二个门控步骤中，信号序列结合到已打开的通道之后，转位中的肽进入通道的中央孔，把堵塞肽挤开，使转位得以进行。中央孔的中部衬着一圈疏水的异亮氨酸残基，它们实际上形成一个垫圈，即使在转位进行时也能防止小极性分子从转位肽周围渗漏。</p>
+<p>当生长中的多肽链进入ER腔时，信号序列被信号肽酶切除；信号肽酶是一种与易位子结合的ER跨膜蛋白（见图13-6，步骤5）。信号肽酶识别信号肽疏水核心C端一侧的序列，并在这条链一旦露出到ER的腔侧空间之后，特异性地在该序列处切断它。信号序列被切除后，生长中的多肽穿过易位子进入</p>
+<figure id="fig-13-8">
+  <img class="zoomable" src="figures/fig_13-8_1.png" alt="图 13-8" onclick="lightbox(this.src)">
+  <figcaption>图13-8 一种古菌Sec61复合体的结构。来自古菌M. jannaschii的、经去垢剂增溶的Sec61复合体（又称SecY复合体）的结构是通过X射线晶体学测定的。(a) 侧视图显示穿过孔中央的沙漏形通道。孔的最窄腰部处有一圈异亮氨酸残基，形成一个垫圈，即使转位多肽正在穿过通道，也能使通道对小分子保持封闭。当没有转位肽存在时，通道被一个短的螺旋堵塞物（红色）封闭。该堵塞物在转位过程中移出通道。在此视图中，蛋白质的前半部分已被移除，以便更好地显示孔。(b) 沿着通道中心看过去的视图显示一个区域（左侧），螺旋在那里可以分开，允许疏水的跨膜结构域侧向进入脂双层。[Data from B. Van den Berg et al., 2004, Nature 427:36-44, PDB ID 1rhz and 1rh5.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Top view</td><td class="gl-zh">俯视图</td></tr>
+  <tr><td class="gl-en">Side view</td><td class="gl-zh">侧视图</td></tr>
+  <tr><td class="gl-en">Plug in place</td><td class="gl-zh">堵塞物在位</td></tr>
+  <tr><td class="gl-en">Plug removed</td><td class="gl-zh">堵塞物已移开</td></tr>
+  <tr><td class="gl-en">Pore</td><td class="gl-zh">孔</td></tr>
+  <tr><td class="gl-en">Pore ring</td><td class="gl-zh">孔环</td></tr>
+  <tr><td class="gl-en">Lateral exit to lipid bilayer</td><td class="gl-zh">侧向出口通向脂双层</td></tr>
+  </table>
+</figure>
+<p>ER腔。易位子保持开放，直到翻译完成、整个多肽链都已进入ER腔。转位完成后，堵塞肽回到孔中，重新封闭易位子通道。</p>
+<p>ATP水解为酵母中某些分泌蛋白的翻译后转位提供动力</p>
+<p>在大多数真核生物中，分泌蛋白通过共翻译转位进入ER。然而在酵母中，有些分泌蛋白在翻译完成之后才进入ER腔。在这种翻译后转位中，转位中的蛋白质穿过与共翻译转位所用相同的Sec61易位子。然而，SRP和SRP受体不参与翻译后转位，在这种情况下，易位子与已完整蛋白质的信号序列之间的直接相互作用似乎就足以把蛋白质靶向到ER膜。此外，跨ER膜单向转位所需的驱动力由一个称为Sec63复合体的额外蛋白质复合体和一个属于Hsp70家族分子伴侣的成员BiP提供（关于分子伴侣的进一步讨论见第3章）。四聚体的Sec63复合体嵌在易位子附近的ER膜中，而BiP位于ER腔内。与其他Hsp70家族成员一样，BiP具有一个肽结合结构域和一个ATP酶结构域。这类分子伴侣结合并稳定未折叠或部分折叠的蛋白质（见图3-17）。</p>
+<p>目前关于蛋白质翻译后转位进入ER的模型概述于图13-9。蛋白质的N端片段一旦进入ER腔，信号肽酶就像在共翻译转位中那样切除信号序列（步骤1）。BiP⋅ATP与Sec63复合体腔侧部分的相互作用引起结合的ATP水解，使BiP发生构象变化，从而促进其与暴露的多肽链结合（步骤2）。由于Sec63复合体位于</p>
+<figure id="fig-13-9">
+  <img class="zoomable" src="figures/fig_13-9_1.png" alt="图 13-9" onclick="lightbox(this.src)">
+  <figcaption>图13-9 翻译后转位。这一机制在酵母中相当常见，在高等真核生物中可能偶尔发生。易位子内部的小箭头代表转位多肽向内和向外的随机滑动。BiP⋅ATP对进入的多肽片段的连续结合，可防止链朝胞质溶胶方向滑出。见K. E. Matlack et al., 1997, Science 277:938。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Cleaved signal sequence</td><td class="gl-zh">已切除的信号序列</td></tr>
+  <tr><td class="gl-en">Translocating polypeptide chain</td><td class="gl-zh">转位中的多肽链</td></tr>
+  <tr><td class="gl-en">Pi</td><td class="gl-zh">Pi</td></tr>
+  <tr><td class="gl-en">Sec63 complex</td><td class="gl-zh">Sec63复合体</td></tr>
+  <tr><td class="gl-en">BiP (bound to ATP)</td><td class="gl-zh">BiP（结合ATP）</td></tr>
+  <tr><td class="gl-en">Translocon</td><td class="gl-zh">易位子</td></tr>
+  </table>
+</figure>
+<p>易位子附近，因此BiP在新生多肽能够进入ER的部位被激活。某些实验提示，在不与BiP结合的情况下，未折叠的多肽可以在易位子通道内自由地来回滑动。这种随机的滑动运动很少能使整个多肽跨过ER膜。一分子BiP⋅ADP结合到多肽的腔侧部分，可防止多肽向ER外倒退。随着进一步向内的随机滑动使多肽更多部分暴露在ER膜的腔侧，BiP⋅ADP分子对多肽链的连续结合就像一个棘轮，最终在几秒钟内把整个多肽拉入ER（步骤3和4）。在较慢的时间尺度上，BiP分子自发地将其结合的ADP换成ATP，导致多肽被释放，随后多肽可以折叠成其天然构象（步骤5和6）。回收的BiP⋅ATP则准备好与Sec63再次相互作用。BiP和Sec63复合体也是共翻译转位所必需的。它们在这一过程中的作用细节尚不十分清楚，但据认为它们作用于该过程的早期阶段，</p>
+<p>例如把信号肽穿引进易位子的孔中。</p>
+<p>BiP所执行的总体反应是一个重要例子，说明ATP水解所释放的化学能如何能驱动蛋白质跨膜的机械运动。细菌细胞也利用一种ATP驱动的过程把已完整的蛋白质跨质膜转位——在这里是为了把蛋白质从细胞中释放出去。在细菌中，转位的驱动力来自一种称为SecA蛋白的胞质溶胶ATP酶。SecA结合到易位子的胞质侧并水解胞质溶胶中的ATP。通过一种类似缝纫机针的机制，SecA蛋白以与ATP水解相偶联的机械循环，把多肽的各个片段推过膜。</p>
+<p>正如我们将看到的，蛋白质跨其他真核细胞器膜（如线粒体和叶绿体的膜）的转位通常也以翻译后转位的方式进行。这就解释了为什么这些其他细胞器上通常看不到像粗面ER那样结合的核糖体。</p>
+<div class="key-concepts" id="kc-13-1"><div class="kc-head">第 13.1 节 · 关键概念</div><div class="kc-title">蛋白质向ER膜的靶向与跨膜转运</div><ul><li>分泌蛋白、整合质膜蛋白，以及注定要进入ER、高尔基复合体或溶酶体的蛋白质，其合成都始于胞质溶胶中的核糖体，这些核糖体随后附着到ER膜上，形成粗面ER（见图13-1，左）。</li><li>新生分泌蛋白上的ER信号序列位于N端，含有一段疏水氨基酸序列。</li><li>在共翻译转位中，信号识别颗粒（SRP）首先识别并结合新生分泌蛋白上的ER信号序列，随后又被ER膜上的SRP受体结合，从而把新生多肽链–核糖体复合体靶向到ER。</li><li>随后，SRP和SRP受体介导新生分泌蛋白插入易位子（Sec61复合体）。SRP及其受体水解两分子GTP，导致SRP解离（见图13-5和图13-6）。当附着在易位子上的核糖体继续翻译时，未折叠的蛋白质链被挤出到ER腔中。转位不需要额外的能量。</li><li>易位子含有一条衬着疏水残基的中央通道，它允许未折叠的蛋白质链通过，同时保持对离子和小亲水分子的封闭。此外，该通道受到门控，只有正在转位多肽时才打开。</li><li>在翻译后转位中，已完整的分泌蛋白通过信号序列与易位子的相互作用被靶向到ER膜。随后，多肽链由一种棘轮机制拉入ER，该机制需要分子伴侣BiP水解ATP，BiP可稳定进入中的多肽（见图13-9）。在细菌中，翻译后转位的驱动力来自SecA，它是一种胞质溶胶ATP酶，把多肽推过易位子通道。</li><li>无论在共翻译转位还是翻译后转位中，ER膜中的信号肽酶都在N端进入ER腔后不久就把ER信号序列从分泌蛋白上切除。</li></ul></div>
+<h2 id="sec-13.2">13.2 膜蛋白向ER膜的插入</h2>
+<p>在前几章中，我们已经遇到过遍布细胞的众多整合膜（跨膜）蛋白。每一种这类蛋白相对于膜的磷脂双层都有独特的取向。位于ER、高尔基复合体和溶酶体中以及</p>
+<p>质膜上的整合膜蛋白，都是在粗面ER上合成的；它们沿着可溶性分泌蛋白所走的同一途径运往最终目的地，在此期间始终嵌在膜中（见图13-1，左）。在这一运输过程中，膜蛋白的取向保持不变；也就是说，该蛋白的某些区段始终朝向胞质溶胶，而另一些区段则始终朝向相反的方向。因此，这些膜蛋白的最终取向是在它们于ER膜上进行生物合成时确立的。本节中，我们先了解整合膜蛋白如何与膜相互作用，然后考察若干类序列——统称为拓扑发生序列——如何指导各种类别的整合膜蛋白插入膜中并决定其取向。这些过程是通过对将可溶性分泌蛋白转位穿过ER膜的基本机制加以修饰而实现的。</p>
+<p>整合膜蛋白有若干拓扑类别，均在ER上合成</p>
+<p>膜蛋白的拓扑结构指的是它的多肽链跨膜次数以及这些跨膜区段在膜内的取向。决定一个蛋白拓扑结构的关键要素就是跨膜区段本身，它们通常是含有20–25个疏水氨基酸的α螺旋，这些螺旋能在磷脂双层内部的疏水环境中形成能量上有利的相互作用。</p>
+<p>大多数整合膜蛋白都属于图13-10所示的五个拓扑类别之一。拓扑类别I、II、III以及尾锚定蛋白都是单次跨膜蛋白，它们只有一个跨膜α螺旋区段。I型蛋白具有可切除的N端ER信号序列，锚定在膜上时其亲水性N端区域位于腔面（又称外质面），亲水性C端区域位于胞质面。II型蛋白不含可切除的ER信号序列，其亲水性N端区域位于胞质面，亲水性C端区域位于外质面（即与I型蛋白相反）。III型蛋白在N端具有一个疏水的跨膜区段，因此与I型蛋白取向相同，但不含可切除的信号序列。最后，尾锚定蛋白在C端有一个疏水区段跨过膜。正如我们稍后会看到的，这些不同的拓扑结构反映了细胞用来确定跨膜区段取向的不同机制。</p>
+<p>构成拓扑类别IV的蛋白含有两个或更多跨膜区段，有时被称为多次跨膜蛋白。例如，第11章讨论的许多膜运输蛋白以及第15章介绍的众多G蛋白偶联受体都属于这一类别。</p>
+<figure id="fig-13-10">
+  <img class="zoomable" src="figures/fig_13-10_1.png" alt="图 13-10" onclick="lightbox(this.src)">
+  <figcaption>图13-10 ER膜蛋白的类别。粗面ER上合成五类拓扑类别的整合膜蛋白，此外还合成由磷脂锚拴在膜上的第六种类型。这些膜蛋白按其膜内取向以及所含用于把它们导向该处的信号类型来分类。在整合膜蛋白中，蛋白链的疏水区段形成嵌入膜双层的α螺旋；膜外的区域是亲水的，并折叠成各种构象。所有IV型蛋白都有多个跨膜α螺旋。这里所示的IV型拓扑结构对应于G蛋白偶联受体的拓扑结构：七个α螺旋，N端位于膜的外质侧，C端位于胞质侧。其他IV型蛋白可能具有不同数目的螺旋，以及N端和C端的各种取向。见 E. Hartmann et al., 1989, P. Natl. Acad. Sci. USA 86:5786, and C. A. Brown and S. D. Black, 1989, J. Biol. Chem. 264:4442。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Cytochrome P450</td><td class="gl-zh">细胞色素P450</td></tr>
+  <tr><td class="gl-en">Asialoglycoprotein receptor</td><td class="gl-zh">去唾液酸糖蛋白受体</td></tr>
+  <tr><td class="gl-en">Transferrin receptor</td><td class="gl-zh">转铁蛋白受体</td></tr>
+  <tr><td class="gl-en">Golgi galactosyltransferase</td><td class="gl-zh">高尔基半乳糖基转移酶</td></tr>
+  <tr><td class="gl-en">Golgi sialyltransferase</td><td class="gl-zh">高尔基唾液酸转移酶</td></tr>
+  <tr><td class="gl-en">Growth hormone receptor</td><td class="gl-zh">生长激素受体</td></tr>
+  <tr><td class="gl-en">Insulin receptor</td><td class="gl-zh">胰岛素受体</td></tr>
+  <tr><td class="gl-en">LDL receptor</td><td class="gl-zh">LDL受体</td></tr>
+  <tr><td class="gl-en">Plasminogen activator receptor</td><td class="gl-zh">纤溶酶原激活物受体</td></tr>
+  <tr><td class="gl-en">GPI-anchored protein</td><td class="gl-zh">GPI锚定蛋白</td></tr>
+  <tr><td class="gl-en">Tail-anchored protein</td><td class="gl-zh">尾锚定蛋白</td></tr>
+  <tr><td class="gl-en">G protein-coupled receptors</td><td class="gl-zh">G蛋白偶联受体</td></tr>
+  <tr><td class="gl-en">Glucose transporters</td><td class="gl-zh">葡萄糖转运蛋白</td></tr>
+  <tr><td class="gl-en">Voltage-gated Ca2+ channels</td><td class="gl-zh">电压门控Ca2+通道</td></tr>
+  <tr><td class="gl-en">ABC small molecule pumps</td><td class="gl-zh">ABC小分子泵</td></tr>
+  <tr><td class="gl-en">CFTR (Cl-) channel</td><td class="gl-zh">CFTR（Cl-）通道</td></tr>
+  <tr><td class="gl-en">Sec61</td><td class="gl-zh">Sec61</td></tr>
+  <tr><td class="gl-en">Cleaved signal sequence</td><td class="gl-zh">可切除信号序列</td></tr>
+  <tr><td class="gl-en">Exoplasmic space</td><td class="gl-zh">外质空间</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Type I</td><td class="gl-zh">I型</td></tr>
+  <tr><td class="gl-en">Type II</td><td class="gl-zh">II型</td></tr>
+  <tr><td class="gl-en">Type III</td><td class="gl-zh">III型</td></tr>
+  <tr><td class="gl-en">Type IV</td><td class="gl-zh">IV型</td></tr>
+  </table>
+</figure>
+<p>有些脂锚定膜蛋白也是在ER上合成的。这些膜蛋白完全没有疏水的跨膜区段；取而代之的是，它们连接在一个嵌入膜中的两亲性磷脂锚上（图13-10，右）。</p>
+<p>内部停止转移锚定序列与信号锚定序列决定单次跨膜蛋白的拓扑结构</p>
+<p>我们从含有单个疏水跨膜区段的整合膜蛋白的插入入手，来讨论膜蛋白的拓扑结构是如何确定的。正如我们将看到的，有三类主要的拓扑发生序列被用来把蛋白导向ER膜并确定其在膜内的取向。我们已经介绍过其中一类，即N端信号序列。另外两类在本节介绍，它们是内部序列，称为停止转移锚定序列和信号锚定序列。与信号序列不同，这两类内部拓扑发生序列在成熟蛋白中会作为跨膜区段存在。不过，这两类序列在膜中的最终取向不同。</p>
+<p>I型蛋白 除了具有把它们靶向到ER的N端信号序列外，所有I型跨膜蛋白还都含有一个约</p>
+<p>22个氨基酸的内部疏水序列，该序列将成为跨膜的α螺旋。新生I型蛋白的N端信号序列与可溶性分泌蛋白的一样，通过SRP与SRP受体的共同作用启动该蛋白的共翻译转位。一旦生长中的多肽的N端进入ER腔，信号序列就被切除，生长中的多肽链继续被挤出、穿过ER膜。然而，当将成为跨膜结构域的那段序列进入易位子时，它使跨膜区段从通道侧向移入膜中，从而停止蛋白通过通道的转移（图13-11）。允许侧向移动的门控机制与易位子开放以接受信号序列的机制相同：Sec61α的两个五螺旋束铰链式打开，使疏水的跨膜区段能够沿着易位子开放的边缘、从疏水的信号序列结合位点旁侧向移出（见图13-8）。当肽以这种方式离开易位子时，跨膜区段的疏水性把它锚定在膜的疏水内部。由于这样的序列既起停止多肽链通过易位子的作用，又会成为膜双层中的疏水跨膜区段，因此它被称为停止转移锚定序列。</p>
+<p>一旦转位被打断，翻译仍在核糖体上继续进行，而核糖体此时仍锚定在如今</p>
+<figure id="fig-13-11">
+  <img class="zoomable" src="figures/fig_13-11_1.png" alt="图 13-11" onclick="lightbox(this.src)">
+  <figcaption>图13-11 I型单次跨膜蛋白的插膜与取向。步骤1：新生多肽链-核糖体复合体与ER膜中的易位子结合后，N端信号序列被切除。这一过程与可溶性分泌蛋白的过程机制相同（见图13-6）。步骤2–3：链延伸，直到疏水的停止转移锚定序列合成完毕并进入易位子，在那里它阻止新生链继续挤入ER腔。步骤4：停止转移锚定序列侧向穿过易位子亚基之间的疏水裂隙，最终锚定在磷脂双层中。此时易位子很可能关闭。步骤5：随着合成的继续，延伸中的链可能通过核糖体与易位子之间的小空隙成环伸入胞质溶胶。步骤6：合成完成时，核糖体亚基释放到胞质溶胶中，蛋白得以在膜中自由地侧向扩散。见 H. Do et al., 1996, Cell 85:369, and W. Mothes et al., 1997, Cell 89:523。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Signal peptidase</td><td class="gl-zh">信号肽酶</td></tr>
+  <tr><td class="gl-en">Open translocon</td><td class="gl-zh">开放的易位子</td></tr>
+  <tr><td class="gl-en">Stop-transfer anchor sequence</td><td class="gl-zh">停止转移锚定序列</td></tr>
+  <tr><td class="gl-en">Cleaved signal sequence</td><td class="gl-zh">可切除信号序列</td></tr>
+  <tr><td class="gl-en">Nascent polypeptide chain</td><td class="gl-zh">新生多肽链</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">mRNA</td><td class="gl-zh">mRNA</td></tr>
+  <tr><td class="gl-en">NH3+</td><td class="gl-zh">NH3+</td></tr>
+  <tr><td class="gl-en">COO-</td><td class="gl-zh">COO-</td></tr>
+  <tr><td class="gl-en">5′</td><td class="gl-zh">5′</td></tr>
+  <tr><td class="gl-en">3′</td><td class="gl-zh">3′</td></tr>
+  </table>
+</figure>
+<p>已空置且关闭的易位子上。随着蛋白链C端的合成，它会在膜的胞质面一侧成环伸出。翻译完成后，核糖体从易位子上释放，新合成的I型蛋白的C端仍留在胞质溶胶中。</p>
+<p>支持这一机制的证据来自这样的研究：把编码各种人生长激素（HGH）受体突变体的cDNA在培养的哺乳动物细胞中表达。野生型HGH受体是一种典型的I型蛋白，能正常运输到质膜。然而，若在单一的跨膜区段中插入带电荷的残基，或把该区段的大部分完全缺失，那么这种突变受体会被全部转位进ER腔，并最终作为可溶性蛋白被细胞分泌出去。这类实验证实，HGH受体以及其他I型蛋白的疏水跨膜区段既起停止转移序列的作用，也起膜锚的作用，阻止蛋白的C端穿过ER膜。</p>
+<p>II型与III型蛋白 与I型蛋白不同，II型和III型蛋白缺少可切除的N端ER信号序列。相反，它们都只拥有一个内部疏水的</p>
+<p>信号锚定序列，它同时起ER信号序列和膜锚的作用。回忆一下，II型和III型蛋白在膜中的取向相反（见图13-10）；这一差异取决于它们各自的信号锚定序列在易位子内所采取的取向。II型蛋白中的内部信号锚定序列把新生多肽链导入ER膜，使链的N端朝向胞质溶胶，所用的是与信号序列相同的、依赖SRP的机制（图13-12a）。不过，这个内部信号锚定序列不被切除，最终会从易位子边缘的信号序列结合位点侧向直接移入磷脂双层，在那里起膜锚的作用。随着延伸继续进行，生长链的C端区域通过易位子被共翻译转位挤出到ER腔中。</p>
+<p>就III型蛋白而言，位于N端附近的信号锚定序列把新生链导入ER膜时，使其N端朝向腔面，取向与II型蛋白中的信号锚定序列相反。III型蛋白的信号锚定序列还像一个</p>
+<figure id="fig-13-12">
+  <img class="zoomable" src="figures/fig_13-12_1.png" alt="图 13-12" onclick="lightbox(this.src)">
+  <figcaption>图13-12 II型和III型单次跨膜蛋白的插膜与取向。(a) II型蛋白。步骤1：内部信号锚定序列在胞质核糖体上合成之后，被SRP（未显示）结合，SRP再结合到ER膜上的SRP受体。这一过程与可溶性分泌蛋白的靶向相似，不同之处在于疏水信号序列并不位于N端，而且随后不被切除。新生多肽链在易位子中以N端朝向胞质溶胶的方式取向。这一取向由图中信号锚定序列N端一侧所示的带正电荷残基决定。步骤2：随着链延伸并被挤入腔中，内部信号锚定序列侧向穿过易位子亚基之间的疏水裂隙，把链锚定在磷脂双层中。步骤3：蛋白合成完成后，多肽的C端被释放到腔中，核糖体亚基被释放到胞质溶胶中。(b) III型蛋白。步骤1：插入过程与II型蛋白相似，只不过信号锚定序列C端一侧的带正电荷残基使跨膜区段在易位子内以C端部分朝向胞质溶胶、N端位于ER腔的方式取向。步骤2–3：多肽链C端部分的延伸在胞质溶胶中完成，核糖体亚基被释放。见 M. Spiess and H. F. Lodish, 1986, Cell 44:177, and H. Do et al., 1996, Cell 85:369。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Signal-anchor sequence</td><td class="gl-zh">信号锚定序列</td></tr>
+  <tr><td class="gl-en">Nascent polypeptide chain</td><td class="gl-zh">新生多肽链</td></tr>
+  <tr><td class="gl-en">Translocon</td><td class="gl-zh">易位子</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">mRNA</td><td class="gl-zh">mRNA</td></tr>
+  <tr><td class="gl-en">NH3+</td><td class="gl-zh">NH3+</td></tr>
+  <tr><td class="gl-en">COO-</td><td class="gl-zh">COO-</td></tr>
+  <tr><td class="gl-en">5′</td><td class="gl-zh">5′</td></tr>
+  <tr><td class="gl-en">3′</td><td class="gl-zh">3′</td></tr>
+  </table>
+</figure>
+<p>停止转移序列那样起作用，阻止延伸中的链进一步挤入ER腔（图13-12b）。信号锚定序列C端一侧的链继续延伸，其过程与I型蛋白相同，疏水序列最终侧向移出易位子，把多肽锚定在ER膜中（见图13-11）。</p>
+<p>II型与III型蛋白的关键差异在于疏水跨膜区段结合到Sec61α边缘的疏水信号序列结合位点时的取向。决定信号锚定序列取向的最重要特征，是疏水区段一端附近有高密度的带正电荷氨基酸。这些带正电荷的残基倾向于留在膜的胞质侧，而不穿过膜进入ER腔。因此，带电荷残基的位置决定了信号锚定序列在易位子内的取向，也决定了多肽链的其余部分是否继续进入ER腔：II型蛋白倾向于</p>
+<p>在信号锚定序列的N端一侧带有正电荷残基，使N端朝向胞质溶胶并允许C端一侧进入ER（见图13-12a），而III型蛋白则倾向于在信号锚定序列的C端一侧带有正电荷残基，从而把C端限制在胞质溶胶中（见图13-12b）。要注意的是，II型信号锚定序列的疏水区段在Sec61α中所采取的取向与分泌蛋白的信号序列相同，而且在多数方面，这些信号锚定序列的行为与信号序列完全一样，只不过它们不被切除。</p>
+<p>神经氨酸酶是流感病毒表面被膜中的一种II型蛋白，它提供了一个引人注目的实验证据，说明侧翼电荷对决定膜内取向的重要性。神经氨酸酶的内部信号锚定序列N端一侧紧接着有三个精氨酸残基。把这三个带正电荷的残基突变为带负电荷的谷氨酸残基，会使神经氨酸酶获得相反的取向。</p>
+<figure id="fig-13-13">
+  <img class="zoomable" src="figures/fig_13-13_1.png" alt="图 13-13" onclick="lightbox(this.src)">
+  <figcaption>图13-13 尾锚定蛋白的插入。对于C端尾锚定蛋白，疏水的C端要等到蛋白合成完成、蛋白从核糖体上释放之后才可用于插膜。步骤1：处于ATP结合状态的Get3结合到蛋白的疏水C端尾部。这一结合反应由另外三种蛋白Sgt2、Get4和Get5组成的复合体协助，该复合体先把疏水的C端尾部隔离起来，再把它转移给Get3⋅ATP（未显示）。步骤2：结合了蛋白的三元复合体Get3⋅ATP停靠到二聚体的Get1/Get2受体上，该受体嵌在ER膜中。步骤3：ATP相继被水解，ADP从Get3上释放。与此同时，疏水的C端尾部从Get3上释放，最终在Get1/Get2的协助下嵌入ER膜。步骤4：Get3结合ATP，Get3⋅ATP以可溶形式从Get1/Get2上释放，准备进行下一轮与疏水C端尾部的结合。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Get3</td><td class="gl-zh">Get3</td></tr>
+  <tr><td class="gl-en">Get1</td><td class="gl-zh">Get1</td></tr>
+  <tr><td class="gl-en">Get2</td><td class="gl-zh">Get2</td></tr>
+  <tr><td class="gl-en">Hydrophobic C-terminal tail</td><td class="gl-zh">疏水C端尾部</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">ER membrane</td><td class="gl-zh">内质网膜</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
+  <tr><td class="gl-en">Pi</td><td class="gl-zh">Pi</td></tr>
+  </table>
+</figure>
+<p>类似的实验表明，其他具有II型或III型取向的蛋白，通过突变内部信号锚定区段两侧的带电荷残基，都能使其在ER膜中的取向发生"翻转"。</p>
+<p>尾锚定蛋白 对于我们迄今讨论过的所有拓扑类别的蛋白，插膜都始于SRP识别从核糖体上露出的一段疏水拓扑发生序列。尾锚定蛋白在C端只有一个疏水拓扑发生序列，识别它们面临一个独特的难题，因为疏水的C端只有在翻译完成、蛋白从核糖体上释放之后才可供识别。尾锚定蛋白插入ER膜不使用SRP、SRP受体或易位子，而是依赖一条专为此目的服务的途径，如图13-13所示。这条途径涉及一种称为Get3的ATP酶，它结合尾锚定蛋白的C端疏水区段。Get3与尾锚定蛋白结合形成的复合体被</p>
+<p>一种称为Get1/Get2的二聚体整合膜受体招募到ER上。尾锚定蛋白从Get3上释放，Get1/Get2的跨膜部分参与把尾锚插入ER膜。这一过程在机制上类似于SRP和SRP受体把II型、III型信号锚定序列靶向到ER的过程。两种靶向过程的一个主要差别是：Get3把尾锚定蛋白的靶向与转移同ATP水解偶联起来，而SRP则把蛋白靶向同GTP水解偶联。此外，SRP受体把SRP-核糖体复合体招募到ER，然后在另一步骤中由易位子把信号锚定序列插入膜；而Get1/Get2显然同时执行这两项功能——把Get3招募到ER膜，并催化把尾锚插入膜双层。</p>
+<p>多次跨膜蛋白含有多个内部拓扑发生序列</p>
+<p>图13-14总结了单次跨膜和多次跨膜蛋白中拓扑发生序列的排布方式。在多次跨膜（IV型）蛋白中，每个跨膜α螺旋都以我们已讨论过的方式充当拓扑发生序列：它可以指导蛋白靶向ER、把蛋白锚定在ER膜中，或停止蛋白通过膜的转移。多次跨膜蛋白分为两种类型，取决于其N端是伸入胞质溶胶还是伸入外质空间（例如ER腔或细胞外）。这一N端拓扑结构通常由最靠近N端的疏水区段以及其两侧序列的电荷决定。如果IV型蛋白含有偶数个跨膜α螺旋，它的N端和C端将朝向膜的同一侧（图13-14d）。反之，如果IV型蛋白含有奇数个α螺旋，它的两端将具有相反的取向（图13-14e）。</p>
+<p>N端位于胞质溶胶中的IV型蛋白 在N端伸入胞质溶胶的多次跨膜蛋白中，有各种葡萄糖转运蛋白（GLUT）以及第11章讨论过的大多数离子通道蛋白。在这些蛋白中，最靠近N端的疏水区段启动新生多肽链插入ER膜，并使N端朝向胞质溶胶；因此这个α螺旋区段的功能类似于II型蛋白的内部信号锚定序列（见图13-12a）。随着第一个α螺旋之后的新生链延伸，它穿过易位子移动，直到第二个疏水α螺旋形成。这个螺旋阻止新生链进一步通过易位子挤出；因此它的功能类似于I型蛋白中停止转移锚定序列的功能（见图13-11）。</p>
+<p>前两个跨膜α螺旋合成之后，新生链的两端都朝向胞质溶胶，而它们之间的环则伸入ER腔。新生链的C端</p>
+<p>随后继续向胞质溶胶中生长，如同I型和III型蛋白合成时那样。第三个跨膜α螺旋充当另一个II型信号锚定序列，第四个则充当另一个停止转移锚定序列（见图13-14d）。显然，一旦多次跨膜多肽的第一个拓扑发生序列开始与易位子结合，核糖体就保持附着在易位子上，此后从核糖体上露出的拓扑发生序列会穿入易位子，不再需要SRP和SRP受体。以一种尚不十分清楚的方式，当新的疏水拓扑发生序列与易位子结合时，先前已结合的序列会侧向移出易位子，所用机制与I型、II型和III型膜蛋白相同。</p>
+<p>利用重组DNA技术交换疏水α螺旋的实验，为理解IV-A型多次跨膜蛋白中拓扑发生序列的功能提供了线索。这些实验表明，生长链中各疏水α螺旋彼此的先后次序，在很大程度上决定某一螺旋是起信号锚定序列的作用还是起停止转移锚定序列的作用。除疏水性之外，某一螺旋的具体氨基酸序列对其功能几乎没有影响。因此，N端的第一个α螺旋以及随后的奇数位螺旋起信号锚定序列的作用，而介于其间的偶数位螺旋则起停止转移锚定序列的作用。信号锚定序列与停止转移锚定序列之间的这种奇偶关系</p>
+<figure id="fig-13-14">
+  <img class="zoomable" src="figures/fig_13-14_1.png" alt="图 13-14" onclick="lightbox(this.src)">
+  <figcaption>图13-14 拓扑发生序列决定ER膜蛋白的取向。拓扑发生序列用红色表示；可溶的亲水序列用蓝色表示。内部拓扑发生序列形成跨膜α螺旋，把蛋白或蛋白的区段锚定在膜中。(a) I型蛋白含有一个可切除的信号序列和一个内部停止转移锚定（STA）序列。(b, c) II型和III型蛋白含有一个内部信号锚定（SA）序列。这两类蛋白取向的差异主要取决于SA序列的N端一侧（II型）还是C端一侧（III型）有高密度的带正电荷氨基酸（+++）。(d, e) 几乎所有多次跨膜蛋白都缺少可切除的信号序列，如此处所示的两个例子。N端朝向胞质溶胶的IV-A型蛋白含有交替的II型SA序列和STA序列。N端朝向腔的IV-B型蛋白以一个III型SA序列开头，其后是交替的II型SA和STA序列。每一类中具有不同数目α螺旋（奇数或偶数）的蛋白都是已知的。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">STA</td><td class="gl-zh">内部停止转移锚定序列（STA）</td></tr>
+  <tr><td class="gl-en">SA</td><td class="gl-zh">内部信号锚定序列（SA）</td></tr>
+  <tr><td class="gl-en">Signal sequence</td><td class="gl-zh">信号序列</td></tr>
+  <tr><td class="gl-en">Type I</td><td class="gl-zh">I型</td></tr>
+  <tr><td class="gl-en">Type II</td><td class="gl-zh">II型</td></tr>
+  <tr><td class="gl-en">Type III</td><td class="gl-zh">III型</td></tr>
+  <tr><td class="gl-en">Type IV-A</td><td class="gl-zh">IV-A型</td></tr>
+  <tr><td class="gl-en">Type IV-B</td><td class="gl-zh">IV-B型</td></tr>
+  <tr><td class="gl-en">Lumen</td><td class="gl-zh">腔</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">NH3+</td><td class="gl-zh">NH3+</td></tr>
+  <tr><td class="gl-en">COO-</td><td class="gl-zh">COO-</td></tr>
+  </table>
+</figure>
+<p>取决于这样一个事实：当多次跨膜蛋白来回穿过膜编织而成时，跨膜α螺旋采取交替的取向；信号锚定序列的N端朝向双层的胞质侧，而停止转移锚定序列的N端则朝向双层的外质侧。</p>
+<p>N端位于外质空间中的IV型蛋白 庞大的G蛋白偶联受体家族都含有七个跨膜α螺旋，构成了数量最多的IV-B型蛋白，其N端伸入外质空间。在这类蛋白中，最靠近N端的疏水α螺旋之后往往跟着一簇带正电荷的氨基酸，就像III型信号锚定序列那样（见图13-12b）。结果，新生多肽链被插入易位子时其N端伸入腔中（见图13-14e）。随着链的延伸，它通过交替的II型信号锚定序列和停止转移序列插入ER膜，正如刚才对IV-A型蛋白所描述的那样。</p>
+<p>磷脂锚把某些细胞表面蛋白拴在膜上</p>
+<p>有些细胞表面蛋白锚定在磷脂双层上，靠的不是一段疏水氨基酸</p>
+<figure id="fig-13-15">
+  <img class="zoomable" src="figures/fig_13-15_1.png" alt="图 13-15" onclick="lightbox(this.src)">
+  <figcaption>图13-15 GPI锚定蛋白。(a) 来自酵母的糖基磷脂酰肌醇（GPI）分子的结构。分子的疏水部分由脂肪酰基链组成，而极性（亲水）部分由糖残基和磷酸基团组成。在其他生物中，酰基链的长度和糖基部分都可能与所示结构有所不同。(b) GPI锚定蛋白在ER膜中形成。该蛋白的合成和最初插入ER膜的方式与I型跨膜蛋白相同，如图13-11所示。一种特异的转酰胺酶在朝向外质面的结构域内、靠近停止转移锚定序列（红色）处同时切割前体蛋白，并把新C端的羧基转移到一个预先形成的GPI锚的末端氨基上。见 C. Abeijon and C. B. Hirschberg, 1992, Trends Biochem. Sci. 17:32, and K. Kodukula et al., 1992, P. Natl. Acad. Sci. USA 89:4982。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Preformed GPI anchor</td><td class="gl-zh">预先形成的GPI锚</td></tr>
+  <tr><td class="gl-en">Precursor protein</td><td class="gl-zh">前体蛋白</td></tr>
+  <tr><td class="gl-en">Mature GPI-linked protein</td><td class="gl-zh">成熟GPI连接蛋白</td></tr>
+  <tr><td class="gl-en">GPI transamidase</td><td class="gl-zh">GPI转酰胺酶</td></tr>
+  <tr><td class="gl-en">Inositol</td><td class="gl-zh">肌醇</td></tr>
+  <tr><td class="gl-en">Glucosamine</td><td class="gl-zh">葡糖胺</td></tr>
+  <tr><td class="gl-en">Mannose</td><td class="gl-zh">甘露糖</td></tr>
+  <tr><td class="gl-en">Phosphoethanolamine</td><td class="gl-zh">磷酸乙醇胺</td></tr>
+  <tr><td class="gl-en">Fatty acyl chains</td><td class="gl-zh">脂肪酰基链</td></tr>
+  <tr><td class="gl-en">Hydrophobic</td><td class="gl-zh">疏水</td></tr>
+  <tr><td class="gl-en">Polar</td><td class="gl-zh">极性</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">COO-</td><td class="gl-zh">COO-</td></tr>
+  <tr><td class="gl-en">NH2</td><td class="gl-zh">NH2</td></tr>
+  <tr><td class="gl-en">NH3</td><td class="gl-zh">NH3</td></tr>
+  <tr><td class="gl-en">PO4</td><td class="gl-zh">PO4</td></tr>
+  </table>
+</figure>
+<p>序列，而是靠一个共价连接的两亲性分子——糖基磷脂酰肌醇（GPI）（图13-15a；另见第7章）。这些蛋白的合成和最初锚定到ER膜的方式与I型跨膜蛋白完全相同，由一个可切除的N端信号序列和一个内部停止转移锚定序列指导这一过程（见图13-11）。然而，腔侧结构域中紧邻跨膜结构域的一小段氨基酸序列会被一个位于ER膜内的转酰胺酶识别。这种酶同时切下原来的停止转移锚定序列，并把蛋白的腔侧部分</p>
+<p>转移到膜中一个预先形成的GPI锚上（图13-15b）。</p>
+<p>为什么要用一种膜锚替换另一种？连接GPI锚会使蛋白失去朝向胞质溶胶的亲水结构域，这可能带来若干后果。例如，带GPI锚的蛋白能在磷脂双层的平面内相对快速地扩散。相比之下，许多由跨膜α螺旋锚定的蛋白，由于朝向胞质溶胶的区段与细胞骨架相互作用，其侧向移动在膜中受到阻碍。此外，在某些极化的上皮细胞中，GPI锚会把所连接的蛋白靶向到质膜的顶端结构域（而不是基底外侧结构域），这一点我们将在第14章讨论。</p>
+<p>膜蛋白的拓扑结构往往可以从其序列推断出来</p>
+<p>正如我们已经看到的，在ER上合成的整合膜蛋白中，各种拓扑发生序列支配着新生多肽链与易位子的相互作用。当科学家开始研究一个功能未知的蛋白时，在相应基因序列中鉴定出可能的拓扑发生序列，可以为该蛋白的拓扑类别和功能提供重要线索。例如，假设某个已知为细胞间信号传递途径所必需的蛋白，其基因中含有编码一个明显的N端信号序列和一个内部疏水序列的核苷酸序列。这些发现提示，该蛋白是一种I型整合膜蛋白，因而可能是针对胞外配体的细胞表面受体。此外，所推断出的I型拓扑结构提示，位于信号序列与内部疏水序列之间的N端区段构成胞外结构域，它很可能参与配体结合；而位于内部疏水序列之后的C端区段可能位于胞质溶胶中，可能参与胞内信号传递。</p>
+<p>鉴定拓扑发生序列需要一种方法，能在序列数据库中扫描出疏水性足以充当信号序列或跨膜锚定序列的区段。拓扑发生序列往往可以借助计算机程序来鉴定，这些程序为目标蛋白生成疏水性分布图。第一步是为蛋白中的每个氨基酸赋予一个称为疏水指数的值。按照惯例，疏水氨基酸赋正值，亲水氨基酸赋负值。尽管存在不同的疏水指数标度，但它们都把最正的值赋给侧链主要由烃基残基组成的氨基酸（如苯丙氨酸和甲硫氨酸），把最负的值赋给带电荷的氨基酸（如精氨酸和天冬氨酸）。第二步是找出整体疏水性足以充当N端信号序列或内部停止转移锚定序列的长区段</p>
+<figure id="fig-13-16">
+  <img class="zoomable" src="figures/fig_13-16_1.png" alt="图 13-16" onclick="lightbox(this.src)">
+  <figcaption>图13-16 疏水性分布图。疏水性分布图可以鉴定整合膜蛋白中可能的拓扑发生序列。它们是把蛋白全长上每20个连续氨基酸区段的总疏水性对位置作图而生成的。正值表示蛋白中相对疏水的部分；负值表示相对极性的部分。可能的拓扑发生序列已标出。对于多次跨膜（IV型）蛋白，如图(c)中的GLUT1，其复杂的分布图往往必须辅以其他分析才能确定这些蛋白的拓扑结构。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Human growth hormone receptor (type I)</td><td class="gl-zh">人生长激素受体（I型）</td></tr>
+  <tr><td class="gl-en">Asialoglycoprotein receptor (type II)</td><td class="gl-zh">去唾液酸糖蛋白受体（II型）</td></tr>
+  <tr><td class="gl-en">GLUT1 (type IV)</td><td class="gl-zh">GLUT1（IV型）</td></tr>
+  <tr><td class="gl-en">N-terminus</td><td class="gl-zh">N端</td></tr>
+  <tr><td class="gl-en">C-terminus</td><td class="gl-zh">C端</td></tr>
+  <tr><td class="gl-en">Signal sequence</td><td class="gl-zh">信号序列</td></tr>
+  <tr><td class="gl-en">Stop-transfer sequence</td><td class="gl-zh">停止转移序列</td></tr>
+  <tr><td class="gl-en">Signal-anchor sequence</td><td class="gl-zh">信号锚定序列</td></tr>
+  <tr><td class="gl-en">Transmembrane sequences</td><td class="gl-zh">跨膜序列</td></tr>
+  </table>
+</figure>
+<p>和信号锚定序列。为此，要沿蛋白的全长计算每20个连续氨基酸区段的总疏水指数。把这些计算值对氨基酸序列中的位置作图，就得到疏水性分布图。</p>
+<p>图13-16显示了三种不同膜蛋白的疏水性分布图。这类图中显著的峰可以鉴定出可能的拓扑发生序列及其位置和大致长度。例如，人生长激素受体的疏水性分布图显示，该蛋白的极N端既有一个疏水信号序列，又有一个内部的疏水停止转移锚定序列（图13-16a）。根据这一分布图，我们可以正确地推断出，HGH受体是一种I型整合膜蛋白。去唾液酸糖蛋白受体是一种介导异常胞外糖蛋白清除的细胞表面蛋白，它的疏水性分布图显示出一个显著的内部疏水信号锚定序列，但没有给出存在疏水N端信号序列的任何迹象（图13-16b）。因此我们可以预测，去唾液酸糖蛋白受体是一种II型或III型膜蛋白。信号锚定序列两侧带电荷残基的分布往往能区分这两种可能，因为跨膜区段两侧带正电荷的氨基酸通常朝向膜的胞质面。例如，就去唾液酸糖蛋白受体而言，检查信号锚定序列两侧的</p>
+<p>残基可以发现，N端一侧的残基带净正电荷，从而正确地预测出这是一种II型蛋白。</p>
+<p>GLUT1葡萄糖转运蛋白是一种多次跨膜蛋白，它的疏水性分布图显示出许多疏水性足以成为跨膜螺旋的区段（图13-16c）。这一分布图的复杂性说明，要明确鉴定出多次跨膜蛋白中所有的跨膜区段，以及预测各个信号锚定序列和停止转移锚定序列的拓扑结构，都很困难。人们已经开发出更复杂的计算机算法，把疏水区段附近存在带正电荷氨基酸、以及区段的长度和区段之间的间距都考虑在内。利用所有这些信息，最好的算法能以高于75%的准确率预测多次跨膜蛋白的复杂拓扑结构。</p>
+<p>最后，与某个已知蛋白的序列同源性可能有助于准确预测新发现的多次跨膜蛋白的拓扑结构。例如，多细胞生物的基因组编码数量极多的、带有七个跨膜α螺旋的多次跨膜蛋白。这些蛋白之间序列的相似性强烈提示，它们都具有与研究得很充分的G蛋白偶联受体相同的拓扑结构，即N端朝向膜的外质侧，C端朝向膜的胞质侧。</p>
+<div class="key-concepts" id="kc-13-2"><div class="kc-head">第 13.2 节 · 关键概念</div><div class="kc-title">膜蛋白向ER膜的插入</div><ul><li>在粗面ER上合成的蛋白包括五个拓扑类别的整合膜蛋白，以及一种脂锚定类型（见图13-10）。</li><li>拓扑发生序列——N端信号序列、内部停止转移锚定序列和内部信号锚定序列——指导新生蛋白插入ER膜并决定其在膜内的取向。在已完成的膜蛋白运输到最终目的地（如质膜）的过程中，这一取向一直保持。</li><li>单次跨膜蛋白含有一个或两个拓扑发生序列。在多次跨膜蛋白中，每个α螺旋区段都可以充当内部拓扑发生序列，这取决于它在多肽链中的位置以及相邻是否存在带正电荷的残基（见图13-14）。</li><li>有些细胞表面蛋白最初以I型蛋白的形式合成，但随后被切割，其腔侧结构域被转移到GPI锚上（见图13-15）。</li><li>膜蛋白的拓扑结构往往可由计算机程序正确预测，这些程序能在氨基酸序列中鉴定出疏水的拓扑发生区段并生成疏水性分布图（见图13-16）。</li></ul></div>
+<h2 id="sec-13.3">13.3 内质网中蛋白质的修饰、折叠与质量控制</h2>
+<p>在粗面内质网（ER）上合成的膜蛋白和可溶性分泌蛋白，在到达最终目的地之前要经历四类主要修饰：（1）在内质网和高尔基复合体中对碳水化合物进行共价加成与加工（糖基化）；（2）在内质网中形成二硫键；（3）在内质网中把多肽链正确折叠，并把多亚基蛋白组装起来；（4）在内质网、高尔基复合体和分泌小泡中进行特定的蛋白水解切割。一般来说，这些修饰促进分泌蛋白折叠成其天然结构，并为暴露于细胞外环境的蛋白质增添结构稳定性。诸如糖基化这样的修饰还使细胞能够在细胞表面产生大量化学性质各异的分子，这些分子是细胞间黏附与通讯中所用的特定分子相互作用的基础。</p>
+<p>在粗面内质网上合成并进入内质网腔的蛋白质，绝大多数都通过添加一条或多条糖链而被修饰。带有连接碳水化合物的蛋白质称为糖蛋白。糖蛋白中连接到羟基</p>
+<p>（–OH）基团（在丝氨酸和苏氨酸残基中）上的糖链称为O-连接寡糖，而连接在天冬酰胺的酰胺氮上的糖链称为N-连接寡糖。O-连接寡糖有若干类型，包括黏蛋白型O-连接链（得名于黏液中所含的丰富糖蛋白）以及第20章所描述的蛋白聚糖上的碳水化合物修饰。O-连接链通常仅由1至4个糖残基组成，呈线性排列，由位于高尔基复合体腔中、称为糖基转移酶的酶加到蛋白质上。更为常见的N-连接寡糖则更大、更复杂，含有若干分支。本节我们着重讨论N-连接寡糖，其最初的合成发生在内质网中。蛋白质在内质网中完成最初的N-糖基化后，寡糖链会在内质网中、并且通常也在高尔基复合体中受到修饰。</p>
+<p>二硫键的形成、蛋白质的折叠以及多聚体蛋白的组装都只发生在粗面内质网中，本节也将讨论这些内容。只有正确折叠并组装好的蛋白质，才能从粗面内质网经由分泌途径被运输到高尔基复合体，并最终到达细胞表面或其他最终目的地。未折叠、错误折叠或只部分折叠与组装的蛋白质则被选择性地滞留在粗面内质网中，并被标记以便降解。我们将在本节后半部分讨论这种"质量控制"的几个特征。</p>
+<p>如前所述，可溶性分泌蛋白和I型膜蛋白的N端ER信号序列会在内质网中被切除。有些蛋白质还会在高尔基复合体或分泌小泡中经历其他特定的蛋白水解切割。这些切割，以及主要或仅在高尔基复合体中发生的碳水化合物修饰，我们将在下一章讨论。</p>
+<p>一条预先形成的N-连接寡糖被加到粗面内质网中的许多蛋白质上</p>
+<p>所有N-连接寡糖的生物合成都始于粗面内质网中一条预先形成的、含14个残基的寡糖前体（图13-17）。这一前体的结构在植物、动物和单细胞真核生物中都相同：一条分支寡糖，含有3个葡萄糖（Glc）、9个甘露糖（Man）和2个N-乙酰葡糖胺（GlcNAc）分子，可写作Glc3Man9(GlcNAc)2。一旦加到蛋白质上，这条分支的碳水化合物结构就会在内质网和高尔基复合体中通过添加或移除单糖而被修饰。不同糖蛋白之间以及不同生物之间，N-连接链的修饰各不相同，但在分泌蛋白和膜蛋白上所有N-连接寡糖的结构中，14个残基里有5个所组成的核心是保守的。</p>
+<p>在被转移到内质网腔中的新生链上之前，寡糖前体先组装在一个连接于膜的锚上，该锚称为多萜醇磷酸，是一种长链聚异戊二烯脂质（见第7章）。在第一个</p>
+<figure id="fig-13-17">
+  <img class="zoomable" src="figures/fig_13-17_1.png" alt="图 13-17" onclick="lightbox(this.src)">
+  <figcaption>图13-17 寡糖前体的生物合成。磷酸多萜醇是一种强疏水性的脂质，含75–95个碳原子，嵌在内质网膜中。两个N-乙酰葡糖胺（GlcNAc）和五个甘露糖残基在内质网膜的胞质面上被逐个加到一分子磷酸多萜醇上（步骤1–3）。这些反应以及后续反应中的核苷酸-糖供体都在胞质溶胶中合成。注意，第一个糖残基是通过一个高能焦磷酸键连接到多萜醇上的。衣霉素阻断该途径中的第一个酶，从而抑制细胞中所有N-连接寡糖的合成。七残基的多萜醇焦磷酸中间体被翻转至腔面后（步骤4），其余四个甘露糖残基和全部三个葡萄糖残基被逐个加上（步骤5–6）。在后续反应中，待添加的糖先从核苷酸糖转移到内质网胞质面上的载体磷酸多萜醇上；随后载体被翻转至腔面，在那里把糖转移给正在延伸的寡糖，之后“空”载体再翻转回胞质面。参见C. Abeijon和C. B. Hirschberg, 1992, Trends Biochem. Sci. 17:32。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Dolichol phosphate</td><td class="gl-zh">磷酸多萜醇</td></tr>
+  <tr><td class="gl-en">N-Acetylglucosamine</td><td class="gl-zh">N-乙酰葡糖胺</td></tr>
+  <tr><td class="gl-en">Mannose</td><td class="gl-zh">甘露糖</td></tr>
+  <tr><td class="gl-en">Glucose</td><td class="gl-zh">葡萄糖</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Blocked by tunicamycin</td><td class="gl-zh">被衣霉素阻断</td></tr>
+  <tr><td class="gl-en">Flip</td><td class="gl-zh">翻转</td></tr>
+  <tr><td class="gl-en">Completed precursor</td><td class="gl-zh">完整前体</td></tr>
+  <tr><td class="gl-en">UDP</td><td class="gl-zh">UDP</td></tr>
+  <tr><td class="gl-en">UMP</td><td class="gl-zh">UMP</td></tr>
+  <tr><td class="gl-en">GDP</td><td class="gl-zh">GDP</td></tr>
+  </table>
+</figure>
+<p>糖——GlcNAc——通过焦磷酸键连接到多萜醇磷酸上之后，其余糖通过糖苷键在一系列复杂的反应中被加上去，这些反应由附着在粗面内质网膜胞质面或腔面的酶催化（见图13-17）。最终的多萜醇焦磷酸寡糖的取向使寡糖部分朝向内质网腔。</p>
+<p>当新生多肽刚露出到内质网腔中时，整条14残基前体便从多萜醇载体转移到新生多肽上的一个天冬酰胺残基（图13-18，步骤1）。只有三肽序列Asn-X-Ser和Asn-X-Thr中的天冬酰胺残基（其中X是除脯氨酸外的任何氨基酸）才是寡糖转移酶的底物，该酶催化这一反应。这种酶的三个亚基中有两个是内质网膜蛋白，其朝向胞质溶胶的结构域与核糖体结合，从而把该转移酶的第三个亚基——催化亚基——定位在内质网腔中正在延伸的多肽链附近。并非所有Asn-X-Ser/Thr序列都会被糖基化，而且仅凭氨基酸序列无法预测哪些潜在的N-连接糖基化位点会被修饰；例如，含Asn-X-Ser/Thr序列的一段蛋白质若快速折叠，就可能阻止寡糖前体转移到其上。</p>
+<p>整条前体Glc3Man9(GlcNAc)2被转移到新生多肽上之后，三种不同的酶——称为糖苷酶——立即移除全部三个葡萄糖残基和一个特定的甘露糖残基（图13-18，步骤2–4）。</p>
+<p>这三个葡萄糖残基是在多萜醇载体上合成该前体时最后加上的残基，它们似乎充当一个信号，表明该寡糖已经完整、可以转移到蛋白质上了。</p>
+<p>寡糖侧链可促进糖蛋白的折叠与稳定性</p>
+<p>连接到糖蛋白上的寡糖具有多种功能。例如，有些蛋白质需要N-连接寡糖才能在内质网中正确折叠。这一功能已在抗生素衣霉素的研究中得到证明：衣霉素阻断多萜醇连接的寡糖前体形成的第一步，从而抑制细胞中所有N-连接寡糖的合成（见图13-17，左上）。例如，在衣霉素存在时，流感病毒血凝素前体多肽（HA0）仍能被合成，但无法正确折叠并形成正常的三聚体；此时该蛋白质以错误折叠状态滞留在粗面内质网中。此外，把血凝素序列中某个特定的天冬酰胺突变为谷氨酰胺残基，会阻止N-连接寡糖加到该位点，并使该蛋白质以未折叠状态在内质网中积累。</p>
+<p>除了促进正确折叠之外，N-连接寡糖还为许多分泌型糖蛋白赋予稳定性。许多分泌蛋白即使所有N-连接</p>
+<figure id="fig-13-18">
+  <img class="zoomable" src="figures/fig_13-18_1.png" alt="图 13-18" onclick="lightbox(this.src)">
+  <figcaption>图13-18 N-连接寡糖的添加与初始加工。在脊椎动物细胞的粗面内质网中，一旦天冬酰胺跨越到内质网的腔侧，Glc3Man9(GlcNAc)2前体就会从多萜醇载体转移到新生蛋白质上易感的天冬酰胺残基（步骤1）。在三个彼此分开的反应中，先移除一个葡萄糖残基（步骤2），再移除两个葡萄糖残基（步骤3），最后移除一个甘露糖残基（步骤4）。重新加回一个葡萄糖残基（步骤3a）在许多蛋白质于内质网中的正确折叠中起作用，后文将对此加以讨论。这里展示的是可溶性分泌蛋白的N-连接糖基化过程，但整合膜蛋白朝向腔内的部分也能以同样的机制在天冬酰胺残基上被修饰。参见R. Kornfeld和S. Kornfeld, 1985, Annu. Rev. Biochem. 45:631，以及M. Sousa和A. J. Parodi, 1995, EMBO J. 14:4196。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Dolichol</td><td class="gl-zh">多萜醇</td></tr>
+  <tr><td class="gl-en">N-Acetylglucosamine</td><td class="gl-zh">N-乙酰葡糖胺</td></tr>
+  <tr><td class="gl-en">Mannose</td><td class="gl-zh">甘露糖</td></tr>
+  <tr><td class="gl-en">Glucose</td><td class="gl-zh">葡萄糖</td></tr>
+  <tr><td class="gl-en">cis-Golgi</td><td class="gl-zh">顺面高尔基体</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Glc3Man9(GlcNAc)2</td><td class="gl-zh">Glc3Man9(GlcNAc)2</td></tr>
+  <tr><td class="gl-en">Man8(GlcNAc)2</td><td class="gl-zh">Man8(GlcNAc)2</td></tr>
+  </table>
+</figure>
+<p>寡糖的添加被阻断（例如用衣霉素处理），也仍能正确折叠并被运输到最终目的地。然而，这类未糖基化的蛋白质已被证明比其糖基化形式更不稳定。例如，纤连蛋白是细胞外基质的正常组分，糖基化的纤连蛋白被组织蛋白酶降解的速度远慢于未糖基化的纤连蛋白。</p>
+<p>某些细胞表面糖蛋白上的寡糖也在细胞间黏附中发挥作用。例如，白细胞（leukocyte）的质膜含有被大量糖基化的细胞黏附分子（CAM）。这些分子中的寡糖与衬贴在血管内壁的内皮细胞上某些其他CAM中的糖结合结构域相互作用。这种相互作用把白细胞系留在内皮上，并在对感染的炎症反应过程中帮助它们迁移进入组织（见图20-40）。其他细胞表面糖蛋白则具有可诱导免疫应答的寡糖侧链。一个常见的例子是ABO血型抗原，它们是连接在红细胞及其他类型细胞表面的糖蛋白和糖脂上的O-连接寡糖（见图7-20）。在这两种情况下，寡糖都被加到这些膜蛋白的腔面，方式与图13-18中可溶性蛋白所示类似。这些膜蛋白的腔面在拓扑上等同于质膜的外侧面，也就是这些蛋白质最终所处的位置。</p>
+<p>二硫键由内质网腔中的蛋白质形成并重排</p>
+<p>在第3章中我们了解到，分子内和分子间的二硫键（–S–S–）都有助于稳定许多蛋白质的三级</p>
+<p>和四级结构。这些共价键通过同一条或不同多肽链上两个半胱氨酸残基的巯基（–SH，又称硫醇基）氧化连接而形成。只有当存在合适的氧化剂时，这一反应才能进行。在真核细胞中，二硫键只在粗面内质网的腔中形成。因此，二硫键只存在于可溶性分泌蛋白以及膜蛋白的外质侧结构域中。胞质溶胶蛋白和在游离核糖体上合成的细胞器蛋白（即那些将运往线粒体、叶绿体、过氧化物酶体等的蛋白质）通常不含二硫键。</p>
+<p>内质网腔中二硫键的高效形成依赖于蛋白质二硫键异构酶（PDI），这种酶存在于所有真核细胞中。在肝、胰等器官的分泌细胞的内质网中，这种酶尤为丰富，因为这些细胞产生大量含二硫键的蛋白质。如图13-19a所示，PDI活性位点中的二硫键可通过两次连续的硫醇-二硫键转移反应，很容易地转移到一个蛋白质上。该反应生成的还原型PDI，由一种驻留于内质网的蛋白质Ero1的作用恢复为氧化型；Ero1带有一个可以转移给PDI的二硫键。Ero1自身则通过与扩散进入内质网的分子氧反应而被氧化。</p>
+<p>在含有不止一个二硫键的蛋白质中，半胱氨酸残基的正确配对对于正常结构与活性至关重要。当多肽仍在核糖体上延伸时，二硫键通常是在氨基酸序列中先后相邻出现的半胱氨酸之间形成。然而，这种按顺序的形成方式</p>
+<p>有时会在错误的半胱氨酸之间产生二硫键。例如，胰岛素原——肽类激素胰岛素的前体——有三个二硫键，分别连接半胱氨酸1和4、2和6、3和5。在这种情况下，最初按顺序形成的二硫键（例如半胱氨酸1和2之间的那个）就必须重排，蛋白质才能获得正确的折叠构象。在细胞中，二硫键的重排同样由PDI加速，PDI作用于范围广泛的蛋白质底物，使它们达到热力学上最稳定的构象（图13-19b）。二硫键通常按特定顺序形成，先稳定多肽中的小结构域，再稳定相距较远的区段之间的相互作用；这一现象由下一节讨论的流感血凝素（HA）蛋白的折叠加以说明。</p>
+<figure id="fig-13-19">
+  <img class="zoomable" src="figures/fig_13-19_1.png" alt="图 13-19" onclick="lightbox(this.src)">
+  <figcaption>图13-19 蛋白质二硫键异构酶（PDI）的作用。PDI经由一个活性位点形成并重排二硫键，该位点含有两个彼此靠近的半胱氨酸残基，它们很容易在还原型二硫醇形式与氧化型二硫键形式之间相互转换。编号的红色箭头表示电子传递的顺序。黄色条棒代表二硫键。（a）在二硫键形成过程中，底物蛋白中半胱氨酸硫醇的离子化形式（–S−）与氧化型PDI中的二硫键（S–S）反应，形成以二硫键相连的PDI-底物蛋白中间体。底物蛋白中第二个离子化硫醇随后与该中间体反应，在底物蛋白内部形成一个二硫键，并释放出还原型PDI。PDI则把电子转移给腔侧蛋白Ero1中的一个二硫键，从而再生出氧化型PDI。（b）还原型PDI可通过类似的硫醇-二硫键转移反应，催化不正确形成的二硫键发生重排。在这种情况下，还原型PDI既引发反应，又在反应途径中再生。这些反应反复进行，直到蛋白质达到最稳定的构象。参见M. M. Lyles和H. F. Gilbert, 1991, Biochemistry 30:619。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Formation of a disulfide bond</td><td class="gl-zh">二硫键的形成</td></tr>
+  <tr><td class="gl-en">Rearrangement of disulfide bonds</td><td class="gl-zh">二硫键的重排</td></tr>
+  <tr><td class="gl-en">Oxidized PDI</td><td class="gl-zh">氧化型PDI</td></tr>
+  <tr><td class="gl-en">Reduced PDI</td><td class="gl-zh">还原型PDI</td></tr>
+  <tr><td class="gl-en">Oxidized substrate protein</td><td class="gl-zh">氧化型底物蛋白</td></tr>
+  <tr><td class="gl-en">Reduced substrate protein</td><td class="gl-zh">还原型底物蛋白</td></tr>
+  <tr><td class="gl-en">Protein with incorrect disulfide bonds</td><td class="gl-zh">带有错误二硫键的蛋白质</td></tr>
+  <tr><td class="gl-en">Protein with correct disulfide bonds</td><td class="gl-zh">带有正确二硫键的蛋白质</td></tr>
+  <tr><td class="gl-en">Oxidized Ero1</td><td class="gl-zh">氧化型Ero1</td></tr>
+  </table>
+</figure>
+<p>分子伴侣与其他内质网蛋白促进蛋白质的折叠与组装</p>
+<p>尽管许多变性蛋白在体外能自发重新折叠成天然状态，但这种重折叠通常需要数小时才能完成。然而，内质网中产生的蛋白质一般在合成后几分钟内就折叠成正确构象。这些新合成蛋白质在细胞中的快速折叠，依赖于内质网腔内若干蛋白质的依次作用。我们已经看到，分子伴侣BiP如何在酵母中驱动翻译后转位：它在完全合成好的多肽进入内质网时与之结合（见图13-9）。在共翻译转位过程中，BiP也能短暂地结合到进入内质网的新生多肽链上。结合上去的BiP被认为可以防止</p>
+<p>新生链的各个区段发生错误折叠或形成聚集体，从而促进整条多肽折叠成正确构象。PDI也对正确折叠有所贡献，因为在许多蛋白质中，正确的三维构象是由二硫键稳定的。</p>
+<p>如图13-20所示，另外两种内质网蛋白——同源的凝集素（碳水化合物结合蛋白）钙联蛋白和钙网蛋白——选择性地结合到正在延伸的多肽链上的某些N-连接寡糖。这两种蛋白质的配体由内质网腔中一种特定的葡萄糖基转移酶生成，它类似于N-连接寡糖前体，但只有一个葡萄糖残基[Glc1Man9(GlcNAc)2]（见图13-18，步骤3a）。</p>
+<figure id="fig-13-20">
+  <img class="zoomable" src="figures/fig_13-20_1.png" alt="图 13-20" onclick="lightbox(this.src)">
+  <figcaption>图13-20 血凝素的折叠与组装。（a）(HA0)三聚体的组装机制。分子伴侣BiP短暂结合到新生多肽链上（步骤1a），两种凝集素钙联蛋白和钙网蛋白短暂结合到某些寡糖链上（步骤1b），从而促进HA0相邻区段的正确折叠。在共翻译转位过程中，共有七条N-连接寡糖链被加到新生链的腔内部分，PDI催化每个单体形成六个二硫键。组装完成的HA0单体通过一个跨膜α螺旋锚定在膜中，其N端位于腔内（步骤2）。三条HA0链彼此相互作用，最初是通过它们的跨膜α螺旋，这显然触发了长茎部的形成，该茎部含有来自每条HA0多肽腔内部分的一个α螺旋。最后，三个球状头部之间发生相互作用，生成稳定的HA0三聚体（步骤3）。（b）完整流感病毒粒子的电镜照片（伪彩色），显示HA蛋白三聚体以刺突形式从病毒膜表面突出。参见U. Tatu et al., 1995, EMBO J. 14:1340，以及D. Hebert et al., 1997, J. Cell Biol. 139:613。[Part (b), Chris Bjornberg/Science Source.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Membrane-spanning α helix</td><td class="gl-zh">跨膜α螺旋</td></tr>
+  <tr><td class="gl-en">Luminal α helix</td><td class="gl-zh">腔侧α螺旋</td></tr>
+  <tr><td class="gl-en">Completed HA0 monomer</td><td class="gl-zh">组装完成的HA0单体</td></tr>
+  <tr><td class="gl-en">HA0 trimer</td><td class="gl-zh">HA0三聚体</td></tr>
+  <tr><td class="gl-en">Calnexin</td><td class="gl-zh">钙联蛋白</td></tr>
+  <tr><td class="gl-en">Calreticulin</td><td class="gl-zh">钙网蛋白</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Oligosaccharyl transferase</td><td class="gl-zh">寡糖转移酶</td></tr>
+  <tr><td class="gl-en">Dolichol oligosaccharide</td><td class="gl-zh">多萜醇寡糖</td></tr>
+  <tr><td class="gl-en">BiP</td><td class="gl-zh">免疫球蛋白重链结合蛋白（BiP）</td></tr>
+  <tr><td class="gl-en">PDI</td><td class="gl-zh">蛋白质二硫键异构酶（PDI）</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  </table>
+</figure>
+<p>这种酶只作用于未折叠或错误折叠的多肽链；就此而言，葡萄糖基转移酶充当确保内质网中蛋白质折叠质量控制的若干主要监视机制之一。未折叠的蛋白质常常暴露出一些疏水区段，这些区段在正确折叠状态下被埋藏在蛋白质的疏水核心中。葡萄糖基转移酶大概是通过结合这些暴露的疏水区段来识别未折叠蛋白的。钙联蛋白和钙网蛋白结合到带有葡萄糖基化N-连接寡糖标记的未折叠新生链上，可防止蛋白质在内质网上合成时其相邻区段发生聚集。因此，钙联蛋白和钙网蛋白像BiP一样，有助于防止新合成蛋白质的某些区段过早地错误折叠。</p>
+<p>内质网腔中另外一些重要的蛋白质折叠催化剂是肽基脯氨酰异构酶，这一家族的酶能加速多肽未折叠区段中脯氨酸残基处绕肽基-脯氨酰键的旋转：</p>
+<p>这类异构化有时是蛋白质结构域折叠中的限速步骤。许多肽基脯氨酰异构酶能不加区分地催化众多蛋白质中暴露的肽基-脯氨酰键的旋转，但有些酶具有非常特定的蛋白质底物。</p>
+<p>在粗面内质网上合成的许多重要的可溶性分泌蛋白和膜蛋白，由两个或多个多肽亚基构成。在所有情况下，构成这些多亚基（多聚体）蛋白的亚基的组装都发生在内质网中。免疫球蛋白含有两条重链（H）和两条轻链（L），全部通过链内二硫键连接，就是以这种方式组装的。血凝素（HA）是另一种多聚体蛋白，为折叠和亚基组装提供了很好的例证（见图13-20）。这种三聚体蛋白形成从流感病毒颗粒表面突出的刺突。HA三聚体在受感染宿主细胞的内质网内，由三份称为HA0的前体蛋白形成，HA0含有一个跨膜的α螺旋。在高尔基复合体中，三个HA0蛋白各被切割成两条多肽，即HA1和HA2；因此，最终位于病毒表面的每个HA分子都含有三份HA1和三份HA2（见图3-11）。该三聚体由组成它的多肽的大外质侧结构域之间的相互作用所稳定，这些结构域伸入内质网腔；HA被运输到细胞表面后，这些结构域则伸入细胞外空间。HA亚基中较小的胞质溶胶部分与跨膜部分之间的相互作用也有助于稳定该三聚体蛋白。研究表明，HA0多肽仅需10分钟就能折叠并组装成正确的三聚体构象。</p>
+<p>内质网中错误折叠的蛋白质诱导蛋白质折叠催化剂的表达</p>
+<p>在粗面内质网上合成的野生型蛋白质，在达到完全折叠的构象之前无法离开这一区室。同样，几乎所有妨碍蛋白质在内质网中正确折叠的突变，也会阻断该蛋白质从内质网腔或</p>
+<figure id="fig-13-21">
+  <img class="zoomable" src="figures/fig_13-21_1.png" alt="图 13-21" onclick="lightbox(this.src)">
+  <figcaption>图13-21 未折叠蛋白反应。Ire1是内质网膜中的一种跨膜蛋白，其腔侧结构域上有一个BiP结合位点；其胞质溶胶结构域含有一种特异性的RNA内切核酸酶。步骤1：在内质网腔中不断积累的未折叠蛋白结合BiP分子，使BiP从单体Ire1上释放出来。Ire1二聚化随即激活其内切核酸酶活性。步骤2–3：编码转录因子Hac1的未剪接mRNA前体被二聚体Ire1切割，两个外显子连接起来，形成有功能的Hac1 mRNA。目前的证据表明这一加工发生在胞质溶胶中，尽管前体mRNA的加工通常发生在细胞核中。步骤4：Hac1被翻译成Hac1蛋白，后者再移回细胞核，激活编码若干蛋白质折叠催化剂的基因的转录。参见U. Ruegsegger et al., 2001, Cell 107:103；A. Bertolotti et al., 2000, Nat. Cell Biol. 2:326；以及C. Sidrauski和P. Walter, 1997, Cell 90:1031。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Unspliced Hac1 mRNA</td><td class="gl-zh">未剪接的Hac1 mRNA</td></tr>
+  <tr><td class="gl-en">Spliced Hac1 mRNA</td><td class="gl-zh">已剪接的Hac1 mRNA</td></tr>
+  <tr><td class="gl-en">Endonuclease-cut Hac1 mRNA</td><td class="gl-zh">被内切核酸酶切割的Hac1 mRNA</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Endonuclease</td><td class="gl-zh">内切核酸酶</td></tr>
+  <tr><td class="gl-en">Ire1 monomer</td><td class="gl-zh">Ire1单体</td></tr>
+  <tr><td class="gl-en">Ire1 dimer</td><td class="gl-zh">Ire1二聚体</td></tr>
+  <tr><td class="gl-en">Unfolded proteins</td><td class="gl-zh">未折叠蛋白</td></tr>
+  <tr><td class="gl-en">Unfolded proteins with BiP bound</td><td class="gl-zh">结合了BiP的未折叠蛋白</td></tr>
+  <tr><td class="gl-en">Hac1 transcription factor</td><td class="gl-zh">Hac1转录因子</td></tr>
+  <tr><td class="gl-en">BiP</td><td class="gl-zh">免疫球蛋白重链结合蛋白（BiP）</td></tr>
+  <tr><td class="gl-en">Translation</td><td class="gl-zh">翻译</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  </table>
+</figure>
+<p>膜向高尔基复合体的移动。把未折叠或未完全折叠的蛋白质滞留在内质网内的机制，可能通过使中间形态保持在折叠催化剂附近，从而提高折叠的总体效率，而折叠催化剂在内质网中最为丰富。滞留在内质网中的错误折叠蛋白质通常可见与内质网分子伴侣BiP和钙联蛋白结合。因此，这些腔内的折叠催化剂执行两项相关的功能：通过防止正常蛋白质聚集来协助其折叠，以及结合错误折叠的蛋白质把它们滞留在内质网中。</p>
+<p>哺乳动物细胞和酵母都会对粗面内质网中出现未折叠蛋白作出反应，即提高若干个编码内质网分子伴侣和其他折叠催化剂的基因的转录。这一未折叠蛋白反应的一个关键参与者是Ire1，它是一种内质网膜蛋白，既以单体形式存在，也以二聚体形式存在。二聚体形式，而</p>
+<figure id="fig-13-22">
+  <img class="zoomable" src="figures/fig_13-22_1.png" alt="图 13-22" onclick="lightbox(this.src)">
+  <figcaption>图13-22 N-连接寡糖的修饰被用来监测折叠并实施质量控制。内质网中N-连接寡糖上的三个葡萄糖残基被移除后，一个葡萄糖可被葡萄糖基转移酶重新加回，形成Glc1Man9(GlcNAc)2（见图13-18，步骤3a）。这一经修饰的N-连接寡糖结合凝集素钙联蛋白（CNX）和钙网蛋白（CRT），从而使蛋白质滞留在内质网中并招募折叠分子伴侣。不能正确折叠、因而在内质网中滞留时间较长的蛋白质，会被内质网α-甘露糖苷酶修剪掉甘露糖，形成Man5–6(GlcNAc)2，后者被OS-9识别。被OS-9识别后，错误折叠的蛋白质便被从内质网脱位出去、泛素化，并被蛋白酶体降解。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">N-Acetylglucosamine</td><td class="gl-zh">N-乙酰葡糖胺</td></tr>
+  <tr><td class="gl-en">Mannose</td><td class="gl-zh">甘露糖</td></tr>
+  <tr><td class="gl-en">Glucose</td><td class="gl-zh">葡萄糖</td></tr>
+  <tr><td class="gl-en">Folding/retention</td><td class="gl-zh">折叠/滞留</td></tr>
+  <tr><td class="gl-en">Glucosidase I & II</td><td class="gl-zh">葡糖苷酶I和II</td></tr>
+  <tr><td class="gl-en">Glucosidase II</td><td class="gl-zh">葡糖苷酶II</td></tr>
+  <tr><td class="gl-en">ER α-mannosidases</td><td class="gl-zh">内质网α-甘露糖苷酶</td></tr>
+  <tr><td class="gl-en">ER lumen</td><td class="gl-zh">内质网腔</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">CNX/CRT</td><td class="gl-zh">钙联蛋白/钙网蛋白（CNX/CRT）</td></tr>
+  <tr><td class="gl-en">Degradation</td><td class="gl-zh">降解</td></tr>
+  <tr><td class="gl-en">OS-9</td><td class="gl-zh">OS-9</td></tr>
+  <tr><td class="gl-en">Glc3Man9(GlcNAc)2</td><td class="gl-zh">Glc3Man9(GlcNAc)2</td></tr>
+  <tr><td class="gl-en">Glc1Man9(GlcNAc)2</td><td class="gl-zh">Glc1Man9(GlcNAc)2</td></tr>
+  <tr><td class="gl-en">Man5–6(GlcNAc)2</td><td class="gl-zh">Man5–6(GlcNAc)2</td></tr>
+  </table>
+</figure>
+<p>不是单体形式，能促进Hac1的形成，Hac1是酵母中的一种转录因子，可激活未折叠蛋白反应中所诱导基因的表达。如图13-21所示，BiP结合到单体Ire1的腔侧结构域上会阻止Ire1二聚体的形成。因此，内质网腔中游离BiP的数量决定了单体与二聚体Ire1的相对比例。未折叠蛋白在内质网腔中积累会螯合BiP分子，使其无法与Ire1结合。结果，二聚体Ire1的水平升高，导致Hac1水平升高，并产生有助于蛋白质折叠的蛋白质。</p>
+<p>哺乳动物细胞还有一条额外的调控途径，响应内质网中的未折叠蛋白而发挥作用。在这条途径中，未折叠蛋白在内质网中的积累会触发ATF6的蛋白水解，ATF6是内质网膜中的一种跨膜蛋白，切割位点位于其跨膜区段内。蛋白水解释放出的ATF6胞质溶胶结构域随后移动到细胞核，在那里刺激编码内质网分子伴侣的基因转录。通过这种受调控的膜内蛋白水解来激活转录因子，也见于Notch信号途径以及胆固醇响应性转录因子SREBP的激活过程中（见图16-36和图16-38）。</p>
+<p>一种遗传性肺气肿说明了内质网中蛋白质错误折叠可能带来的有害后果。这种疾病由α1-抗胰蛋白酶的一个点突变引起，该蛋白通常由肝细胞和巨噬细胞分泌。野生型蛋白结合并抑制胰蛋白酶以及血液蛋白酶弹性蛋白酶。在缺乏正常α1-抗胰蛋白酶的情况下，弹性蛋白酶会降解肺内参与氧吸收的精细组织，最终产生肺气肿的症状。虽然突变的α1-抗胰蛋白酶是在粗面内质网上合成的，但它不能正确</p>
+<p>折叠，形成一种几乎呈结晶状的聚集体，无法从内质网输出。在肝细胞中，随着粗面内质网被聚集的α1-抗胰蛋白酶充满，其他蛋白质的分泌也受到损害。■</p>
+<p>内质网中未组装的或错误折叠的蛋白质常被运往胞质溶胶进行降解</p>
+<p>错误折叠的可溶性分泌蛋白和膜蛋白，以及多聚体蛋白中未组装的亚基，常常在粗面内质网中合成后一两小时内被降解。最初人们认为，内质网腔中的蛋白水解酶催化错误折叠或未组装多肽的降解，但从未发现过这类蛋白酶。较新的研究表明，错误折叠的分泌蛋白被特定的内质网膜蛋白识别，并通过一种称为脱位的过程被靶向运出内质网腔、进入胞质溶胶。</p>
+<p>错误折叠蛋白的脱位和降解依赖于一组位于内质网膜和胞质溶胶中的蛋白质，它们执行三项基本功能。第一项功能是识别错误折叠的蛋白质。一种识别机制涉及由位于内质网中的甘露糖苷酶对N-连接糖链进行修剪（图13-22）。结构为Man5–6(GlcNAc)2的修剪后聚糖被一种称为OS-9的蛋白质识别，OS-9把修剪过的糖蛋白靶向送去除位。EDEM和OS-9都能把修剪过的糖蛋白靶向送去除位。目前尚不清楚内质网α-甘露糖苷酶究竟如何把不能正确折叠、因而成为脱位过程合法底物的蛋白质，与那些在获得完全折叠构象过程中具有短暂部分折叠状态的正常蛋白质区分开来。一种可能是，内质网α-甘露糖苷酶作用缓慢，因此只有那些</p>
+<p>在内质网腔中保持错误折叠状态足够长时间的糖蛋白才被修剪，从而被靶向送去降解。完全不含寡糖的腔内蛋白质同样能被靶向送去降解，这表明一定还存在其他识别未折叠蛋白的过程。那些其他机制不可能涉及N-连接寡糖的修剪，因为完全不含N-连接寡糖的错误折叠膜蛋白仍然能被靶向送去降解。</p>
+<p>错误折叠蛋白脱位所需的第二项功能，是把被标记的蛋白质从内质网腔运过内质网膜、送入胞质溶胶。一个由至少四种整合膜蛋白组成的复合体——称为ERAD（内质网相关降解）复合体——使错误折叠蛋白能够跨内质网膜脱位。错误折叠蛋白穿越内质网膜的机制尚不清楚，但没有证据表明ERAD复合体形成用于脱位的蛋白质通道；脱位可能涉及胞质溶胶中强力的牵拉与解折叠蛋白机器，它们直接把错误折叠的蛋白质拖过脂双层。</p>
+<p>最后，当脱位多肽的各个区段暴露到胞质溶胶中时，它们会遇到使其降解的胞质溶胶酶。其中一种酶是p97，它属于一个称为AAA ATP酶家族的蛋白质家族，该家族把ATP水解的能量与蛋白质复合体的解体偶联起来。在多肽从内质网脱位的过程中，p97水解ATP可能提供驱动力，把错误折叠的蛋白质从内质网膜拉入胞质溶胶。当错误折叠的蛋白质进入胞质溶胶时，作为ERAD复合体组分的特定泛素连接酶把泛素残基加到脱位的肽上。与p97的作用一样，泛素化反应也与ATP水解偶联；这种能量的释放也可能有助于把蛋白质捕获在胞质溶胶中。由此产生的多聚泛素化多肽此时已完全位于胞质溶胶中，它们通过在蛋白酶体中的降解而被从细胞中彻底清除。多聚泛素化在把蛋白质靶向到蛋白酶体中的作用，将在第3章更详细地讨论（见图3-31和图3-36）。</p>
+<div class="key-concepts" id="kc-13-3"><div class="kc-head">第 13.3 节 · 关键概念</div><div class="kc-title">内质网中蛋白质的修饰、折叠与质量控制</div><ul><li>所有N-连接寡糖都连接在天冬酰胺残基上，它们含有一个由两个N-乙酰葡糖胺和至少三个甘露糖残基组成的核心，通常还有若干分支。O-连接寡糖连接在丝氨酸或苏氨酸残基上，一般较短，往往只含1至4个糖残基。</li><li>N-连接寡糖的形成始于一条保守的14残基高甘露糖寡糖前体在多萜醇上的组装，多萜醇是粗面内质网膜中的一种脂质（见图13-17）。这条预先形成的寡糖被转移到内质网腔中新生多肽链的特定天冬酰胺残基上之后，三个葡萄糖残基和一个甘露糖残基被移除（见图13-18）。</li><li>寡糖侧链可协助糖蛋白的正确折叠，帮助保护成熟蛋白质免受蛋白水解，参与细胞间黏附，并作为抗原发挥功能。</li><li>二硫键被加到许多可溶性分泌蛋白以及膜蛋白的外质侧结构域上，这一过程在内质网中发生。存在于内质网腔中的蛋白质二硫键异构酶（PDI）既催化二硫键的形成，也催化其重排（见图13-19）。</li><li>分子伴侣BiP、凝集素钙联蛋白和钙网蛋白以及肽基脯氨酰异构酶共同作用，确保新合成的分泌蛋白和膜蛋白在内质网中正确折叠。多聚体蛋白的亚基也在内质网中组装（见图13-20）。</li><li>只有正确折叠的蛋白质和组装好的亚基才以囊泡形式从粗面内质网运输到高尔基复合体。</li><li>异常折叠的蛋白质和未组装的亚基在内质网中积累，可通过未折叠蛋白反应诱导内质网蛋白质折叠催化剂表达增加（见图13-21）。</li><li>内质网中未组装或错误折叠的蛋白质常被运回胞质溶胶，在那里经泛素-蛋白酶体途径降解（见图13-22）。</li></ul></div>
+<h2 id="sec-13.4">13.4 蛋白质向线粒体与叶绿体的靶向</h2>
+<p>在本章的其余部分，我们考察在胞质溶胶核糖体上合成的蛋白质如何被分选到各个分立的细胞器：线粒体、叶绿体、过氧化物酶体和细胞核（见图13-1）。线粒体和叶绿体是密切相关的细胞器，它们含有一个内部腔室，称为基质，被双层膜所包围。相比之下，我们接下来讨论的过氧化物酶体只由单层膜包被，只有一个腔侧的基质区室。蛋白质进出细胞核的转运机制在许多方面不同于向其他细胞器的分选，将在本章最后一节讨论。</p>
+<p>除由两层膜包被之外，线粒体和叶绿体还具有相似类型的电子传递蛋白，并使用F类ATP酶来合成</p>
+<p>ATP（见图12-30）。值得注意的是，革兰氏阴性菌也具备这些特征。此外，与细菌细胞一样，线粒体和叶绿体含有自己的DNA，它编码细胞器的rRNA、tRNA和某些蛋白质（见第8章）。而且，线粒体和叶绿体的生长与分裂并不与核分裂相偶联。相反，这些细胞器通过掺入细胞内的蛋白质和脂质而生长，新的细胞器由已有的细胞器分裂形成。这些与自由生活的细菌细胞之间的大量相似性，使人们认识到线粒体和叶绿体起源于细菌被并入祖先真核细胞之时，形成内共生细胞器（见图12-7）。线粒体、叶绿体和细菌所共有的大量膜转位蛋白在序列上的相似性，为这一古老的进化关系提供了最有力的证据。在本节中，我们详细考察这些膜转位蛋白。</p>
+<p>由线粒体DNA或叶绿体DNA编码的蛋白质在细胞器内的核糖体上合成，并在合成后立即被导向亲本细胞器内正确的亚区室。然而，位于线粒体和叶绿体中的大多数蛋白质由细胞核中的基因编码，在胞质溶胶中合成之后被输入细胞器。显然，随着真核细胞在十亿多年间不断进化，这些内共生细胞器中祖先细菌DNA的大部分遗传信息，通过某种未知机制转移到了细胞核中。在胞质溶胶中合成、目的地为线粒体基质或叶绿体中与之相当的空间（即基质）的那些前体蛋白，通常含有特异的N端靶向序列，这些序列决定其与细胞器表面受体蛋白的结合。一般来说，蛋白质一旦到达线粒体基质或叶绿体基质，这些序列就会被切除。显然，这些靶向序列在位置和一般功能上都与那些引导新生蛋白进入内质网腔的信号</p>
+<figure class="table" id="tab-T13-1">
+  <img class="zoomable" src="figures/tab_T13-1_1.png" alt="表 T13-1" onclick="lightbox(this.src)">
+  <figcaption>表13-1 把蛋白质从胞质溶胶导向细胞器的靶向序列*</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Target Organelle</td><td class="gl-zh">靶向细胞器</td></tr>
+  <tr><td class="gl-en">Location of Sequence</td><td class="gl-zh">序列位置</td></tr>
+  <tr><td class="gl-en">Removal of Sequence</td><td class="gl-zh">序列的切除</td></tr>
+  <tr><td class="gl-en">Nature of Sequence</td><td class="gl-zh">序列的性质</td></tr>
+  <tr><td class="gl-en">Endoplasmic reticulum (lumen)</td><td class="gl-zh">内质网（腔）</td></tr>
+  <tr><td class="gl-en">Mitochondrion</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">Chloroplast</td><td class="gl-zh">叶绿体</td></tr>
+  <tr><td class="gl-en">Peroxisome</td><td class="gl-zh">过氧化物酶体</td></tr>
+  <tr><td class="gl-en">Nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">N-terminus</td><td class="gl-zh">N端</td></tr>
+  <tr><td class="gl-en">C-terminus</td><td class="gl-zh">C端</td></tr>
+  <tr><td class="gl-en">Amphipathic helix</td><td class="gl-zh">两亲性螺旋</td></tr>
+  <tr><td class="gl-en">PTS1 signal</td><td class="gl-zh">PTS1信号</td></tr>
+  <tr><td class="gl-en">PTS2 signal</td><td class="gl-zh">PTS2信号</td></tr>
+  <tr><td class="gl-en">Varies</td><td class="gl-zh">不定</td></tr>
+  </table>
+</figure>
+<p>序列相似。尽管这三类信号共有某些序列特征，但它们的具体序列差异相当大，如表13-1所总结。</p>
+<p>在线粒体和叶绿体中，蛋白质输入都需要能量，并且发生在细胞器外膜与内膜直接接触的部位。由于线粒体和叶绿体含有多层膜以及由膜界定的多个空间，把许多蛋白质分选到其正确位置需要两个靶向序列和两个膜结合转位系统的依次作用：一个把蛋白质导入细胞器，另一个把它导入正确的细胞器亚区室或膜。正如我们将看到的，把各种蛋白质分选到线粒体和叶绿体的机制，与前面讨论过的某些机制相关。</p>
+<p>两亲性N端靶向序列把蛋白质导向线粒体基质</p>
+<p>所有从胞质溶胶运往线粒体同一目的地的蛋白质，其靶向信号都共有一些共同的基序，尽管这些信号序列并不完全相同。因此，识别这类信号的受体能够与若干不同但相关的序列结合。研究得最充分的把蛋白质定位到线粒体的序列是基质靶向序列。这些序列位于N端，通常长20–50个氨基酸。它们富含疏水性氨基酸、带正电荷的碱性氨基酸（精氨酸和赖氨酸）以及被羟化的氨基酸（丝氨酸和苏氨酸），但往往缺少带负电荷的酸性残基（天冬氨酸和谷氨酸）。</p>
+<p>线粒体基质靶向序列被认为采取α螺旋构象，其中带正电荷的氨基酸主要分布在螺旋的一侧</p>
+<p>而疏水性氨基酸在另一侧。像这样同时含有疏水区和亲水区的序列被称为两亲性。破坏这些序列两亲性的突变通常会破坏向基质的靶向，而许多其他氨基酸替换则不会。这些发现表明，基质靶向序列的两亲性对其功能至关重要。</p>
+<p>图13-23所示的离体（无细胞）分析已被广泛用来确定线粒体前体蛋白输入过程中的生化步骤。从细胞中提取的进行呼吸（有能量供应）的线粒体，能够摄入那些在无线粒体存在时合成、但携带适当靶向序列的线粒体前体蛋白。前体成功掺入细胞器可以通过其对所加蛋白酶（如胰蛋白酶）消化的抗性来检测。在其他分析中，前体蛋白的成功输入可以通过特异性线粒体蛋白酶对N端靶向序列的正确切除来显示。在该系统中，细胞器对完全预先生成的线粒体前体蛋白的摄取，与分泌蛋白向ER的离体共翻译转位形成对照：后者一般只有在合成过程中存在微粒体（来源于ER的）膜时才会发生（见图13-4）。</p>
+<p>线粒体蛋白质输入需要外膜受体和两层膜中的易位子</p>
+<p>图13-24概述了蛋白质从胞质溶胶输入线粒体基质的过程，这是大多数被输入蛋白进入线粒体所走的途径。</p>
+<figure id="fig-13-23">
+  <img class="zoomable" src="figures/fig_13-23_1.png" alt="图 13-23" onclick="lightbox(this.src)">
+  <figcaption>图13-23 线粒体前体蛋白的输入在离体系统中检测。带有摄取靶向信号的线粒体前体蛋白可以在离体反应中于核糖体上合成。当把进行呼吸的线粒体加入到这些合成好的线粒体前体蛋白中时（上），这些蛋白质被线粒体摄取。在线粒体内部，这些蛋白质受到保护，不受胰蛋白酶等蛋白酶的作用。当没有线粒体存在时（下），线粒体蛋白被所加的蛋白酶降解。只有被供能（进行呼吸）、即在内膜两侧具有质子电化学梯度（质子动力势）的线粒体，才能摄取这些蛋白质。此外，被输入的蛋白质必须含有适当的摄取靶向序列。摄取还需要ATP以及含有分子伴侣蛋白的胞质溶胶提取物，后者使前体蛋白保持未折叠构象。该分析已被用来研究靶向序列以及转位过程的其他特征。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Mitochondrial protein</td><td class="gl-zh">线粒体蛋白</td></tr>
+  <tr><td class="gl-en">Uptake-targeting sequence</td><td class="gl-zh">摄取靶向序列</td></tr>
+  <tr><td class="gl-en">Cytoplasmic ribosomes</td><td class="gl-zh">胞质核糖体</td></tr>
+  <tr><td class="gl-en">Trypsin</td><td class="gl-zh">胰蛋白酶</td></tr>
+  <tr><td class="gl-en">Add energized yeast mitochondria</td><td class="gl-zh">加入有能量的酵母线粒体</td></tr>
+  </table>
+</figure>
+<p>这里我们详细讨论蛋白质转运进入基质的每一步，然后考察某些蛋白质随后如何被靶向到线粒体的其他区室。</p>
+<p>线粒体蛋白的可溶性前体（包括疏水性的整合膜蛋白）在胞质溶胶中合成后，能够直接与线粒体膜相互作用。未折叠的线粒体前体蛋白的输入，由线粒体靶向序列与线粒体外膜上的输入受体结合而启动。这些输入受体最初是通过以下实验鉴定出来的：针对线粒体外膜特定蛋白质的抗体被证明能抑制蛋白质输入离体的线粒体。随后的遗传学实验通过突变线粒体外膜特定蛋白质的基因表明，特定的受体蛋白负责不同类别线粒体蛋白的输入。例如，N端基质靶向序列由Tom20和Tom22识别。（线粒体膜上参与靶向和输入的蛋白质被命名为Tom蛋白，即外膜转位酶。）</p>
+<p>许多蛋白质只能以未折叠状态被输入线粒体。诸如胞质溶胶Hsp70和Hsp90之类的分子伴侣蛋白利用ATP水解产生的能量，使新生蛋白和新合成的蛋白质保持在去聚集状态，从而可被线粒体摄取。对某些线粒体前体蛋白而言，线粒体外膜蛋白Tom70同时结合Hsp90和未折叠前体蛋白的部分区段，充当输入受体。</p>
+<p>输入受体随后把前体蛋白转移到外膜中的输入通道。</p>
+<p>这一通道主要由Tom40蛋白组成，被称为通用输入孔，因为所有已知的线粒体前体蛋白都经由它进入线粒体的内部区室。当Tom40被纯化并掺入脂质体时，它形成一个跨膜通道，其孔道宽到足以容纳一条未折叠的多肽链。通用输入孔穿过线粒体外膜，形成的基本上是一个被动通道；单向运输的驱动力来自线粒体内部，我们很快就会看到这一点。对于目的地为线粒体基质的前体而言，穿过外膜的转移与穿过由Tim23和Tim17蛋白组成的内膜通道的转移同时发生。（Tim代表内膜转位酶。）因此，向基质的转位发生在</p>
+<figure id="fig-13-24">
+  <img class="zoomable" src="figures/fig_13-24_1.png" alt="图 13-24" onclick="lightbox(this.src)">
+  <figcaption>图13-24 蛋白质输入线粒体基质。在胞质溶胶核糖体上合成的前体蛋白，通过与胞质溶胶Hsp70等分子伴侣结合而保持未折叠或部分折叠状态（第1步）。前体蛋白结合到与内膜接触位点附近的输入受体后（第2步），被转移到通用输入孔中（第3步）。正在转位的蛋白质随后穿过这一通道以及内膜中相邻的通道（第4—5步）。注意，转位发生在内外膜看来相互接触的罕见“接触位点”处。基质Hsp70结合正在转位的蛋白质，随后Hsp70水解ATP，有助于驱动蛋白质输入基质。一旦靶向序列被基质蛋白酶切除、Hsp70从新输入的蛋白质上释放（第6步），该蛋白质就在基质中折叠成成熟的活性构象（第7步）。某些蛋白质的折叠依赖于基质伴侣蛋白。参见G. Schatz, 1996, J. Biol. Chem. 271:31763，以及N. Pfanner et al., 1997, Annu. Rev. Cell Dev. Biol. 13:25。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">Mitochondrial matrix</td><td class="gl-zh">线粒体基质</td></tr>
+  <tr><td class="gl-en">Outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">Inner membrane</td><td class="gl-zh">内膜</td></tr>
+  <tr><td class="gl-en">Precursor protein</td><td class="gl-zh">前体蛋白</td></tr>
+  <tr><td class="gl-en">Cytosolic Hsp70</td><td class="gl-zh">胞质溶胶Hsp70</td></tr>
+  <tr><td class="gl-en">Matrix Hsp70</td><td class="gl-zh">基质Hsp70</td></tr>
+  <tr><td class="gl-en">Matrix-targeting sequence</td><td class="gl-zh">基质靶向序列</td></tr>
+  <tr><td class="gl-en">Import receptor (Tom20/22)</td><td class="gl-zh">输入受体（Tom20/22）</td></tr>
+  <tr><td class="gl-en">General import pore (Tom40)</td><td class="gl-zh">通用输入孔（Tom40）</td></tr>
+  <tr><td class="gl-en">Matrix processing peptidase</td><td class="gl-zh">基质加工肽酶</td></tr>
+  <tr><td class="gl-en">Contact site</td><td class="gl-zh">接触位点</td></tr>
+  <tr><td class="gl-en">Cleaved targeting sequence</td><td class="gl-zh">被切除的靶向序列</td></tr>
+  <tr><td class="gl-en">Active protein</td><td class="gl-zh">活性蛋白</td></tr>
+  <tr><td class="gl-en">Tim23/17</td><td class="gl-zh">Tim23/17</td></tr>
+  <tr><td class="gl-en">Tim44</td><td class="gl-zh">Tim44</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
+  <tr><td class="gl-en">Pi</td><td class="gl-zh">Pi</td></tr>
+  </table>
+</figure>
+<p>"接触位点"，在那里外膜和内膜紧邻。</p>
+<p>蛋白质的N端基质靶向序列进入线粒体基质后不久，就被一种驻留在基质中的蛋白酶切除。新出现的蛋白质还会被基质Hsp70结合，这种分子伴侣通过与跨膜蛋白Tim44相互作用而被定位到线粒体内膜中的转位通道上。这种结合刺激基质Hsp70水解ATP，人们认为Tim44和Hsp70共同为蛋白质向基质的转位提供动力。</p>
+<p>有些被输入的蛋白质无需进一步协助就能折叠成最终的活性构象。然而，许多基质蛋白的最终折叠需要伴侣蛋白。如第3章所讨论的，伴侣蛋白</p>
+<p>通过一个依赖ATP的过程主动促进蛋白质折叠。在酵母中，线粒体基质里的一种伴侣蛋白Hsc60发生缺陷的突变体，能够正常输入基质蛋白并切除其靶向序列，但被输入的多肽无法折叠并组装成其天然的三级和四级结构。</p>
+<p>嵌合蛋白研究揭示了线粒体蛋白质输入的重要特征</p>
+<p>线粒体基质靶向序列能够指导蛋白质输入，这一结论的有力证据来自用重组DNA技术产生的嵌合蛋白。例如，可以把乙醇脱氢酶的基质靶向序列融合到二氢叶酸还原酶（DHFR）的N端，后者通常存在于胞质溶胶中。离体转位分析显示，在分子伴侣存在时（这些分子伴侣阻止C端的DHFR区段在胞质溶胶中折叠），该嵌合蛋白被转运进基质（图13-25a）。抑制剂</p>
+<figure id="fig-13-25">
+  <img class="zoomable" src="figures/fig_13-25_1.png" alt="图 13-25" onclick="lightbox(this.src)">
+  <figcaption>实验图13-25 用嵌合蛋白进行的实验阐明了线粒体蛋白质输入的过程。这些实验表明，仅凭一个基质靶向序列就能把蛋白质导向线粒体基质，而且只有未折叠的蛋白质才能被转位穿过两层线粒体膜。这些实验中的嵌合蛋白在其N端含有一个基质靶向信号（红色），其后是一段无特定功能的间隔序列（黑色），再后是二氢叶酸还原酶（DHFR）——一种通常只存在于胞质溶胶中的酶。(a) 当DHFR区段未折叠时，嵌合蛋白穿过两层膜进入被供能的线粒体的基质，随后基质靶向信号被切除。(b) 当嵌合蛋白的C端因甲氨蝶呤结合而被锁定在折叠状态时，转位被阻断。如果间隔序列长到足以跨过两条转运通道，则在甲氨蝶呤存在下会生成一种稳定的转位中间体，其靶向序列已被切除，如图所示。(c) 可以通过以下方式检测(b)中转位中间体的C端：把线粒体与结合DHFR区段的抗体一起孵育，随后加入包被有细菌蛋白A的金颗粒——蛋白A能非特异性地结合抗体分子（见图4-33）。对切片样品拍摄的电镜照片显示，金颗粒（红色箭头）结合在内外膜之间接触位点处的转位中间体上。其他接触位点（黑色箭头）也清晰可见。参见J. Rassow et al., 1990, FEBS Lett. 275:190。[Part (c) ©1987 M. Schweiger et al., The Journal of Cell Biology 105:235–246. doi: 10.1083/jcb.105.1.235]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Mitochondrial matrix</td><td class="gl-zh">线粒体基质</td></tr>
+  <tr><td class="gl-en">Outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">Inner membrane</td><td class="gl-zh">内膜</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">Cleaved targeting sequence</td><td class="gl-zh">被切除的靶向序列</td></tr>
+  <tr><td class="gl-en">Translocation intermediate</td><td class="gl-zh">转位中间体</td></tr>
+  <tr><td class="gl-en">Folded DHFR</td><td class="gl-zh">折叠的DHFR</td></tr>
+  <tr><td class="gl-en">Unfolded DHFR</td><td class="gl-zh">未折叠的DHFR</td></tr>
+  <tr><td class="gl-en">Spacer sequence</td><td class="gl-zh">间隔序列</td></tr>
+  <tr><td class="gl-en">Methotrexate</td><td class="gl-zh">甲氨蝶呤</td></tr>
+  <tr><td class="gl-en">Bound methotrexate inhibitor</td><td class="gl-zh">结合的甲氨蝶呤抑制剂</td></tr>
+  </table>
+</figure>
+<p>甲氨蝶呤能紧密结合DHFR的活性位点并极大地稳定其折叠构象，它使该嵌合蛋白抵抗胞质溶胶分子伴侣的解析叠作用。当转位分析在甲氨蝶呤存在下进行时，该嵌合蛋白不能完全进入基质。这一发现表明，前体必须处于未折叠状态才能穿过两层线粒体膜中的输入孔。</p>
+<p>进一步的研究揭示，如果有足够长的间隔序列把嵌合蛋白的N端基质靶向序列与DHFR部分隔开，那么在甲氨蝶呤存在下，只要有多肽足够长的部分伸入基质（可能是通过与基质Hsp70稳定结合）从而阻止多肽链滑回胞质溶胶，就能捕获到一种跨越两层膜的转位中间体（图13-25b）。要形成这样一种稳定的转位中间体，间隔序列必须长到足以跨越两层膜；一个50个氨基酸的间隔序列伸展到其最大可能长度就足以做到这一点。如果嵌合体含有一个较短的间隔序列——比如说，</p>
+<p>35个氨基酸——则得不到稳定的转位中间体，因为该间隔序列无法跨越两层膜。这些观察进一步证明，被转位的蛋白质能够同时跨越线粒体内膜和外膜，并且只能以未折叠状态穿过这些膜。</p>
+<p>对稳定转位中间体的显微研究表明，它们聚集在线粒体内膜与外膜彼此靠近的部位（图13-25c）。由于在一个典型的酵母线粒体中，这些接触位点上可以观察到大约一千个被卡住的嵌合蛋白，因此人们认为，线粒体大约有一千个用于摄取线粒体蛋白的通用输入孔。</p>
+<p>把蛋白质输入线粒体需要三种能量输入</p>
+<p>如前所述并在图13-24中标明，线粒体蛋白的输入需要胞质溶胶和线粒体基质中Hsp70分子伴侣蛋白水解ATP。胞质溶胶Hsp70消耗能量使结合的前体蛋白保持未折叠状态，以便它们能被转位进基质。ATP对这一功能的重要性在以下研究中得到证明：把一种线粒体前体蛋白纯化，然后用尿素使其变性（解析叠）。在离体线粒体转位系统中检测时，变性蛋白在无ATP的情况下被掺入基质。相反，同样的前体蛋白处于天然未变性状态时，在无ATP的情况下不能被输入，即使有胞质溶胶分子伴侣存在也是如此。</p>
+<p>多个基质Hsp70分子对一个正在转位的蛋白质依次结合并由ATP驱动释放，可能只是把未折叠的蛋白质捕获在基质中。另一种可能是，由Tim44蛋白锚定在膜上的基质Hsp70可能充当分子马达，把蛋白质拉入基质（见图13-24）。在这种情况下，基质Hsp70和Tim44的功能将分别类似于分子伴侣BiP和Sec63复合体在翻译后转位进入内质网腔过程中的功能（见图13-9）。</p>
+<p>线粒体蛋白质输入所需的第三种能量输入，是跨内膜的H+电化学梯度，即质子动力势。回忆第12章的内容：在电子传递过程中，质子从基质被泵入膜间隙，从而在内膜两侧产生电势。一般来说，只有正在积极进行呼吸、因而在内膜两侧产生了质子动力势的线粒体，才能把前体蛋白从胞质溶胶转位进线粒体基质。用氧化磷酸化的抑制剂或解偶联剂（如氰化物或二硝基苯酚）处理线粒体，会耗散这种质子动力势。虽然前体蛋白仍能紧密地结合到这种中毒线粒体上的受体，但蛋白质无法被输入，</p>
+<p>无论是在完整细胞中还是在离体系统中，即使在ATP和分子伴侣蛋白存在时也是如此。科学家们并不完全理解质子动力势如何被用来促进前体蛋白进入基质。蛋白质一旦部分插入内膜，就会受到200 mV的膜电位作用（基质侧为负）。这一看似很小的电位是跨脂质双层极窄的疏水核心建立的，由此产生巨大的电化学梯度，相当于约400,000 V/cm。一种假说是，两亲性基质靶向序列中的正电荷只是被内侧为负的膜电位"电泳"或拉入基质。</p>
+<p>多种信号和途径把蛋白质靶向到线粒体亚区室</p>
+<p>与向基质的靶向不同，把蛋白质靶向到线粒体的膜间隙、内膜或外膜，通常需要不止一个靶向序列，并通过若干途径之一发生。图13-26总结了被分选到线粒体不同位置的蛋白质中靶向序列的组织方式。</p>
+<p>内膜蛋白 已知有三条不同的途径把蛋白质靶向到线粒体内膜。一条途径利用与基质蛋白靶向相同的机器（图13-27，途径A）。一种称为CoxVa的细胞色素氧化酶亚基就是经由这条途径转运的蛋白质之一。CoxVa的前体形式含有一个由Tom20/22输入受体识别的N端基质靶向序列，它经由外膜的Tom40通用输入孔和内膜的Tim23/17转位复合体被转运。除在输入过程中被切除的基质靶向序列之外，CoxVa还含有一个疏水性的停止转移锚定序列。当蛋白质穿过Tim23/17通道时，停止转移锚定序列阻断C端跨内膜的转位。随后，这个锚定在膜上的中间体被侧向转移进内膜的双层中，就像I型整合膜蛋白被掺入ER膜那样（见图13-11）。</p>
+<p>第二条通往内膜的途径为那些前体同时含有基质靶向序列和被一种称为Oxa1的内膜蛋白识别的内部疏水结构域的蛋白质（例如ATP合酶亚基9）所采用。这条途径被认为涉及至少把前体的一部分经由Tom40和Tim23/17通道转位进基质。在基质靶向序列被切除后，蛋白质通过一个需要与Oxa1以及可能还有其他内膜蛋白相互作用的过程插入内膜（图13-27，途径B）。Oxa1与一种参与把某些质膜蛋白插入细菌膜的蛋白质相关。这种相关性提示，Oxa1可能源自最终成为线粒体的</p>
+<p>内共生细菌中的转位机器。然而，构成线粒体内膜通道的蛋白质与细菌易位子中的蛋白质并无亲缘关系。Oxa1还参与某些蛋白质（例如细胞色素氧化酶亚基II）在内膜中的插入，这些蛋白质由线粒体DNA编码并在基质中由线粒体核糖体合成。</p>
+<p>插入线粒体内膜的最后一条途径为含有六个跨膜结构域的多次跨膜蛋白（如ATP/ADP反向转运蛋白）所采用。这些蛋白质缺少通常的N端基质靶向序列，而是含有多个</p>
+<figure id="fig-13-26">
+  <img class="zoomable" src="figures/fig_13-26_1.png" alt="图 13-26" onclick="lightbox(this.src)">
+  <figcaption>图13-26 被输入线粒体的蛋白质中的靶向序列。大多数线粒体蛋白都有一个N端基质靶向序列（粉红色），它在不同蛋白质中相似但并不相同。目的地为内膜、膜间隙或外膜的蛋白质还含有一个或多个额外的靶向序列，其作用是通过若干不同途径把这些蛋白质导向上述位置。标有字母的途径对应于图13-27和图13-28中所示的途径。参见W. Neupert, 1997, Annu. Rev. Biochem. 66:863。前体蛋白中靶向序列的位置 被输入的蛋白</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Mature protein</td><td class="gl-zh">成熟蛋白</td></tr>
+  <tr><td class="gl-en">Imported protein</td><td class="gl-zh">被输入的蛋白</td></tr>
+  <tr><td class="gl-en">Locations of targeting sequences in preprotein</td><td class="gl-zh">前体蛋白中靶向序列的位置</td></tr>
+  <tr><td class="gl-en">Cleavage by matrix protease</td><td class="gl-zh">被基质蛋白酶切割</td></tr>
+  <tr><td class="gl-en">Matrix-targeting sequence</td><td class="gl-zh">基质靶向序列</td></tr>
+  <tr><td class="gl-en">Alcohol dehydrogenase III</td><td class="gl-zh">乙醇脱氢酶III</td></tr>
+  <tr><td class="gl-en">Cytochrome oxidase subunit CoxVa</td><td class="gl-zh">细胞色素氧化酶亚基CoxVa</td></tr>
+  <tr><td class="gl-en">Cytochrome b2</td><td class="gl-zh">细胞色素b2</td></tr>
+  <tr><td class="gl-en">Porin (P70)</td><td class="gl-zh">孔蛋白（P70）</td></tr>
+  <tr><td class="gl-en">ATP synthase subunit 9</td><td class="gl-zh">ATP合酶亚基9</td></tr>
+  <tr><td class="gl-en">ADP/ATP antiporter</td><td class="gl-zh">ADP/ATP反向转运蛋白</td></tr>
+  <tr><td class="gl-en">Tim9, Tim10</td><td class="gl-zh">Tim9、Tim10</td></tr>
+  <tr><td class="gl-en">General import pore targeting sequence</td><td class="gl-zh">通用输入孔靶向序列</td></tr>
+  <tr><td class="gl-en">Internal sequences recognized by Tom70/Tim22</td><td class="gl-zh">被Tom70/Tim22识别的内部序列</td></tr>
+  <tr><td class="gl-en">Stop-transfer and outer-membrane localization sequence</td><td class="gl-zh">停止转移及外膜定位序列</td></tr>
+  <tr><td class="gl-en">Hydrophobic stop-transfer anchor sequence</td><td class="gl-zh">疏水性停止转移锚定序列</td></tr>
+  <tr><td class="gl-en">First cleavage by matrix protease</td><td class="gl-zh">由基质蛋白酶进行的第一次切割</td></tr>
+  <tr><td class="gl-en">Second cleavage in intermembrane space</td><td class="gl-zh">膜间隙中的第二次切割</td></tr>
+  <tr><td class="gl-en">Intermembrane-space-targeting sequence</td><td class="gl-zh">膜间隙靶向序列</td></tr>
+  <tr><td class="gl-en">Internal sequences recognized by Oxa1</td><td class="gl-zh">被Oxa1识别的内部序列</td></tr>
+  <tr><td class="gl-en">Matrix</td><td class="gl-zh">基质</td></tr>
+  <tr><td class="gl-en">Inner membrane</td><td class="gl-zh">内膜</td></tr>
+  <tr><td class="gl-en">Outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">Intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">Path A</td><td class="gl-zh">途径A</td></tr>
+  <tr><td class="gl-en">Path B</td><td class="gl-zh">途径B</td></tr>
+  <tr><td class="gl-en">Path C</td><td class="gl-zh">途径C</td></tr>
+  </table>
+</figure>
+<p>内部的线粒体靶向序列。在这些内部序列被由外膜蛋白Tom70和Tom22组成的第二个输入受体识别后，被输入的蛋白质经由通用输入孔穿过外膜（图13-27，途径C）。随后该蛋白质被转移到内膜中由Tim22、Tim18和Tim54蛋白组成的第二个转位复合体。向Tim22/18/54复合体的转移依赖于一个由两种小蛋白Tim9和Tim10组成的多聚复合体，它们驻留在膜间隙。这些小的Tim蛋白被认为充当分子伴侣，把被输入的前体蛋白从通用输入孔引导到Tim22/18/54复合体，</p>
+<figure id="fig-13-27">
+  <img class="zoomable" src="figures/fig_13-27_1.png" alt="图 13-27" onclick="lightbox(this.src)">
+  <figcaption>图13-27 从胞质溶胶通往线粒体内膜的三条途径。带有不同靶向序列的蛋白质经由不同途径被导向内膜。在所有三条途径中，蛋白质都经由Tom40通用输入孔穿过外膜。由途径A和途径B递送的蛋白质含有一个N端基质靶向序列，由外膜中的Tom20/22输入受体识别。尽管这两条途径都使用Tim23/17内膜通道，它们的区别在于：在途径B中，整个前体蛋白进入基质，随后被重新导向内膜。基质Hsp70所起的作用类似于它在可溶性基质蛋白输入中的作用（见图13-23）。由途径C递送的蛋白质含有内部序列，由Tom70/Tom22输入受体识别；这条途径使用另一种内膜转位通道（Tim22/54）。两种膜间隙蛋白（Tim9和Tim10）促进外通道与内通道之间的转移。详见正文讨论。参见R. E. Dalbey and A. Kuhn, 2000, Annu. Rev. Cell Dev. Biol. 16:51，以及N. Pfanner and A. Geissler, 2001, Nat. Rev. Mol. Cell Biol. 2:339。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Tom40</td><td class="gl-zh">Tom40</td></tr>
+  <tr><td class="gl-en">Tom20</td><td class="gl-zh">Tom20</td></tr>
+  <tr><td class="gl-en">Tom22</td><td class="gl-zh">Tom22</td></tr>
+  <tr><td class="gl-en">Tom70</td><td class="gl-zh">Tom70</td></tr>
+  <tr><td class="gl-en">Tim23/17</td><td class="gl-zh">Tim23/17</td></tr>
+  <tr><td class="gl-en">Tim22</td><td class="gl-zh">Tim22</td></tr>
+  <tr><td class="gl-en">Tim54</td><td class="gl-zh">Tim54</td></tr>
+  <tr><td class="gl-en">Tim44</td><td class="gl-zh">Tim44</td></tr>
+  <tr><td class="gl-en">Tim9/10</td><td class="gl-zh">Tim9/10</td></tr>
+  <tr><td class="gl-en">Oxa1</td><td class="gl-zh">Oxa1</td></tr>
+  <tr><td class="gl-en">Hsp70</td><td class="gl-zh">Hsp70</td></tr>
+  <tr><td class="gl-en">Precursor protein</td><td class="gl-zh">前体蛋白</td></tr>
+  <tr><td class="gl-en">Assembled protein</td><td class="gl-zh">组装好的蛋白</td></tr>
+  <tr><td class="gl-en">Cleaved matrix-targeting sequence</td><td class="gl-zh">被切除的基质靶向序列</td></tr>
+  <tr><td class="gl-en">Stop-transfer anchor sequence</td><td class="gl-zh">停止转移锚定序列</td></tr>
+  <tr><td class="gl-en">Oxa1-targeting sequence</td><td class="gl-zh">Oxa1靶向序列</td></tr>
+  <tr><td class="gl-en">Internal targeting sequences</td><td class="gl-zh">内部靶向序列</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">Mitochondrial matrix</td><td class="gl-zh">线粒体基质</td></tr>
+  <tr><td class="gl-en">Inner membrane</td><td class="gl-zh">内膜</td></tr>
+  <tr><td class="gl-en">Outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">Path A</td><td class="gl-zh">途径A</td></tr>
+  <tr><td class="gl-en">Path B</td><td class="gl-zh">途径B</td></tr>
+  <tr><td class="gl-en">Path C</td><td class="gl-zh">途径C</td></tr>
+  </table>
+</figure>
+<p>并在内膜中通过结合它们的疏水区，防止它们在膜间隙的水相环境中形成不溶性聚集体。最终，Tim22/18/54复合体负责把被输入蛋白的多个疏水区段掺入内膜。</p>
+<p>膜间隙蛋白 有两条途径把胞质溶胶蛋白运送到线粒体内膜与外膜之间的空间。主要途径为</p>
+<p>细胞色素b2这类蛋白质所采用，它们的前体携带两个不同的N端靶向序列，二者最终都会被切除。两个序列中最靠近N端的是基质靶向序列，由基质蛋白酶切除。第二个靶向序列是一个疏水区段，它阻断蛋白质完全跨内膜的转位（图13-28，途径A）。在由此产生的、嵌入膜的中间体侧向扩散离开Tim23/17转位通道之后，膜中的一种蛋白酶在靠近</p>
+<figure id="fig-13-28">
+  <img class="zoomable" src="figures/fig_13-28_1.png" alt="图 13-28" onclick="lightbox(this.src)">
+  <figcaption>图13-28 通往线粒体膜间隙的两条途径。途径A是把蛋白质从胞质溶胶递送到膜间隙的主要途径，它与递送到内膜的途径A相似（见图13-26）。主要区别在于，这些蛋白质（如细胞色素b2）中的内部靶向序列由一种内膜蛋白酶识别，该蛋白酶在膜的膜间隙一侧切割蛋白质。被释放的蛋白质随后在膜间隙中折叠并结合其血红素辅因子。途径B是把蛋白Tim9和Tim10递送到膜间隙的一条特化途径。这些蛋白质容易穿过Tom40通用输入孔，一旦进入膜间隙，它们就折叠并形成二硫键，从而阻止其逆向穿过Tom40转位。二硫键由Erv1生成，并由Mia40转移给Tim9和Tim10。参见R. E. Dalbey and A. Kuhn, 2000, Annu. Rev. Cell Dev. Biol. 16:51；N. Pfanner and A. Geissler, 2001, Nat. Rev. Mol. Cell Biol. 2:339；以及K. Tokatlidis, 2005, Cell 121:965–967。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Protease</td><td class="gl-zh">蛋白酶</td></tr>
+  <tr><td class="gl-en">Preprotein</td><td class="gl-zh">前体蛋白</td></tr>
+  <tr><td class="gl-en">Tom20</td><td class="gl-zh">Tom20</td></tr>
+  <tr><td class="gl-en">Tom22</td><td class="gl-zh">Tom22</td></tr>
+  <tr><td class="gl-en">Tom40</td><td class="gl-zh">Tom40</td></tr>
+  <tr><td class="gl-en">Tim23/17</td><td class="gl-zh">Tim23/17</td></tr>
+  <tr><td class="gl-en">Tim44</td><td class="gl-zh">Tim44</td></tr>
+  <tr><td class="gl-en">Tim9 or Tim10 protein</td><td class="gl-zh">Tim9或Tim10蛋白</td></tr>
+  <tr><td class="gl-en">Mia40</td><td class="gl-zh">Mia40</td></tr>
+  <tr><td class="gl-en">Erv1</td><td class="gl-zh">Erv1</td></tr>
+  <tr><td class="gl-en">Heme</td><td class="gl-zh">血红素</td></tr>
+  <tr><td class="gl-en">Matrix-targeting sequence</td><td class="gl-zh">基质靶向序列</td></tr>
+  <tr><td class="gl-en">Intermembrane-space-targeting sequence</td><td class="gl-zh">膜间隙靶向序列</td></tr>
+  <tr><td class="gl-en">Cleaved matrix-targeting sequence</td><td class="gl-zh">被切除的基质靶向序列</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">Mitochondrial matrix</td><td class="gl-zh">线粒体基质</td></tr>
+  <tr><td class="gl-en">Outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">Inner membrane</td><td class="gl-zh">内膜</td></tr>
+  <tr><td class="gl-en">Path A</td><td class="gl-zh">途径A</td></tr>
+  <tr><td class="gl-en">Path B</td><td class="gl-zh">途径B</td></tr>
+  </table>
+</figure>
+<p>疏水跨膜区段处切割该蛋白，把成熟蛋白以可溶形式释放到膜间隙。除第二次蛋白水解切割之外，这条途径与CoxVa等内膜蛋白的途径相似（见图13-27，途径A）。</p>
+<p>驻留在膜间隙的小蛋白Tim9和Tim10，说明了靶向到膜间隙的第二条途径。经这条途径输入的蛋白质不含N端基质靶向序列，而是经由通用输入孔直接被送到膜间隙，不涉及任何内膜转位因子（图13-28，途径B）。穿过Tom40通用输入孔的转位似乎并不与任何产能过程相偶联；然而，一旦进入膜间隙，Tim9和Tim10蛋白各获得两个二硫键，并折叠成紧凑、稳定的结构。显然，驱动它们单向穿过外膜的机制包括被动扩散穿过外膜，随后发生折叠和二硫键形成，从而不可逆地把这些蛋白质捕获在膜间隙中。在许多方面，膜间隙中二硫键形成的过程与</p>
+<p>内质网腔中的过程相似，并涉及一种生成二硫键的蛋白Erv1和一种二硫键转移蛋白Mia40。</p>
+<p>外膜蛋白 驻留在线粒体外膜中的许多蛋白质，包括Tom40孔本身和线粒体孔蛋白，都具有β桶结构，其中反平行β链形成环绕中央通道的疏水跨膜区段。这类蛋白质先与通用输入孔Tom40相互作用而被掺入外膜；随后它们被转移到SAM（分选与组装机器）复合体，该复合体由至少三种外膜蛋白组成。这三种蛋白之一Sam50与细菌蛋白BamA密切相关，后者是把β桶蛋白插入革兰氏阴性菌外膜所必需的。这种相关性提供了细菌与线粒体之间膜蛋白插入机制保守的又一个例子。据推测，正是β桶蛋白非常稳定的疏水性最终使它们被稳定地掺入外膜，但SAM复合体究竟如何促进这一过程尚不清楚。</p>
+<p>叶绿体基质蛋白的输入与线粒体基质蛋白的输入相似</p>
+<p>叶绿体基质中所含的蛋白质包括卡尔文循环的酶，它们的功能是在光合作用中固定二氧化碳（见第12章）。核酮糖-1,5-二磷酸羧化酶（rubisco）的大（L）亚基由叶绿体DNA编码，并在基质空间中的叶绿体核糖体上合成。rubisco的小（S）亚基以及所有其他卡尔文循环的酶由核基因编码，在胞质溶胶中合成后被运送到叶绿体。这些基质蛋白的前体形式含有一个N端基质输入序列（见表13-1）。</p>
+<p>与图13-23所示用线粒体进行的实验类似，用离体叶绿体进行的实验表明，它们能在rubisco S亚基前体合成后将其输入。未折叠的前体进入基质空间后，瞬时结合到一种基质Hsp70分子伴侣上，N端基质输入序列被切除。在驻留在基质空间中的Hsp60伴侣蛋白促进的反应中，八个S亚基与八个L亚基结合，生成有活性的rubisco酶。</p>
+<p>基质输入的一般过程似乎与蛋白质输入线粒体基质的过程非常相似（见图13-24）。已知至少三种叶绿体外膜蛋白（包括一个结合基质输入序列的受体和一种转位通道蛋白）以及五种叶绿体内膜蛋白，是把蛋白质导向基质所必需的。虽然这些蛋白质在功能上类似于线粒体膜中的受体和通道蛋白，但它们在结构上并不同源。这些叶绿体蛋白与线粒体蛋白之间缺乏序列相似性，提示它们可能是在进化过程中独立产生的。</p>
+<p>现有证据提示，叶绿体基质蛋白与线粒体基质蛋白一样，是以未折叠状态被输入的。向基质的输入依赖于一种基质Hsp70分子伴侣催化的ATP水解，其功能类似于线粒体基质中的Hsp70和内质网腔中的BiP。与线粒体不同，叶绿体不在其内膜两侧产生电化学梯度（质子动力势）。因此，蛋白质向叶绿体基质的输入似乎仅由ATP水解提供动力。</p>
+<p>蛋白质通过与细菌蛋白质转位相关的机制被靶向到类囊体</p>
+<p>除包围它们的双层膜之外，叶绿体还含有一系列内部相互连通的膜性囊，即类囊体（见图12-37）。光合作用的所有化学反应都发生在类囊体膜或类囊体腔中，并由定位到这个特化亚区室的蛋白质催化。这些蛋白质中有许多是在胞质溶胶中作为前体合成的，</p>
+<p>这些前体含有多个靶向序列。例如，质体蓝素和其他目的地为类囊体腔的蛋白质需要两个靶向序列的依次作用。第一个是N端基质输入序列，它通过与输入rubisco S亚基相同的途径把蛋白质导向基质。第二个序列把蛋白质从基质靶向到类囊体腔。这些靶向序列的作用已在测量重组DNA技术产生的突变蛋白被离体叶绿体摄取的实验中得到证明。例如，缺少类囊体靶向序列但含有完整基质输入序列的突变质体蓝素，会在基质中积累，而不被转运进类囊体腔。</p>
+<p>已鉴定出四条把蛋白质从基质转运进类囊体的不同途径。所有四条途径都被发现与细菌中相应的转运机制密切相关，这说明了基质膜与细菌质膜之间密切的进化关系。质体蓝素及相关蛋白从基质转运进类囊体腔，是通过一条依赖SRP的途径进行的，该途径使用一个类似于SecY的易位子，即Sec61复合体的细菌版本（图13-29，左）。第二条把蛋白质转运进类囊体腔的途径涉及一种与细菌蛋白SecA相关的蛋白质，它利用ATP水解的能量驱动蛋白质穿过SecY易位子。第三条途径把蛋白质靶向到类囊体膜，依赖于一种与线粒体Oxa1蛋白及同源的细菌蛋白相关的蛋白质（见图13-27，途径B）。某些由叶绿体DNA编码并在基质中合成、或从胞质溶胶转运进基质的蛋白质，经由这条途径被插入类囊体膜。</p>
+<p>最后，结合含金属辅因子的类囊体蛋白经由另一条途径进入类囊体腔（图13-29，右）。这些蛋白质的未折叠前体首先被靶向到基质，在那里N端基质输入序列被切除，随后蛋白质折叠并结合其辅因子。一组类囊体膜蛋白协助把折叠的蛋白质和结合的辅因子转位进类囊体腔。这一过程由通常维持在类囊体膜两侧的H+电化学梯度提供动力。把蛋白质导向这条途径的类囊体靶向序列包含两个相距很近的精氨酸残基，它们对识别至关重要。细菌细胞也有一种机制，能把带有类似含精氨酸序列的折叠蛋白质转运穿过质膜，称为Tat（双精氨酸转位）途径。这些大型折叠球状蛋白究竟是如何被转位穿过类囊体膜的分子机制尚未完全清楚，但一个带有合适双精氨酸信号的折叠蛋白的存在，似乎能诱导膜中Tat蛋白寡聚化，形成孔样结构。在这方面，Tat途径类似于下一节将要描述的、把折叠蛋白输入过氧化物酶体的途径。</p>
+<figure id="fig-13-29">
+  <img class="zoomable" src="figures/fig_13-29_1.png" alt="图 13-29" onclick="lightbox(this.src)">
+  <figcaption>图13-29 把蛋白质转运到叶绿体类囊体。这里显示了把蛋白质从胞质溶胶转运到类囊体腔的四条途径中的两条。在这些途径中，未折叠的前体经由与输入基质定位蛋白相同的外膜蛋白被递送到基质。N端基质输入序列被一种基质蛋白酶切除后，暴露出类囊体靶向序列（第1步）。此时两条途径分道扬镳。在依赖SRP的途径（左）中，质体蓝素及类似蛋白质由一组分子伴侣（未显示）保持在基质空间中的未折叠状态，类囊体靶向序列结合到与细菌SRP、SRP受体和SecY易位子密切相关的蛋白质上，这些蛋白质介导蛋白质进入类囊体腔（第2步）。类囊体靶向序列在类囊体腔中被一种单独的内切蛋白酶切除后，蛋白质折叠成其成熟构象（第3步）。在依赖pH的途径（右）中，金属结合蛋白在基质中折叠，并加上复杂的氧化还原辅因子（第2步）。类囊体靶向序列N端的两个精氨酸残基（RR）以及跨内膜的pH梯度，是把折叠的蛋白质转运进类囊体腔所必需的（第3步）。类囊体膜中的易位子至少由四种与细菌质膜中蛋白质相关的蛋白质组成。含有两个精氨酸残基的类囊体靶向序列在类囊体腔中被切除（第4步）。参见R. Dalbey and C. Robinson, 1999, Trends Biochem. Sci. 24:17；R. E. Dalbey and A. Kuhn, 2000, Annu. Rev. Cell Dev. Biol. 16:51；以及C. Robinson and A. Bolhuis, 2001, Nat. Rev. Mol. Cell Biol. 2:350。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Plastocyanin</td><td class="gl-zh">质体蓝素</td></tr>
+  <tr><td class="gl-en">Plastocyanin precursor</td><td class="gl-zh">质体蓝素前体</td></tr>
+  <tr><td class="gl-en">Metal-binding protein</td><td class="gl-zh">金属结合蛋白</td></tr>
+  <tr><td class="gl-en">Metal-binding precursor</td><td class="gl-zh">金属结合蛋白前体</td></tr>
+  <tr><td class="gl-en">Mature plastocyanin</td><td class="gl-zh">成熟质体蓝素</td></tr>
+  <tr><td class="gl-en">Mature metal-binding protein</td><td class="gl-zh">成熟金属结合蛋白</td></tr>
+  <tr><td class="gl-en">Bound metal ions</td><td class="gl-zh">结合的金属离子</td></tr>
+  <tr><td class="gl-en">Chloroplast SRP</td><td class="gl-zh">叶绿体SRP</td></tr>
+  <tr><td class="gl-en">Chloroplast SRP receptor</td><td class="gl-zh">叶绿体SRP受体</td></tr>
+  <tr><td class="gl-en">SRP-dependent pathway</td><td class="gl-zh">依赖SRP的途径</td></tr>
+  <tr><td class="gl-en">pH-dependent pathway</td><td class="gl-zh">依赖pH的途径</td></tr>
+  <tr><td class="gl-en">Stromal-import sequence</td><td class="gl-zh">基质输入序列</td></tr>
+  <tr><td class="gl-en">Thylakoid-targeting sequence</td><td class="gl-zh">类囊体靶向序列</td></tr>
+  <tr><td class="gl-en">Cleaved import sequence</td><td class="gl-zh">被切除的输入序列</td></tr>
+  <tr><td class="gl-en">Toc complex</td><td class="gl-zh">TOC复合体</td></tr>
+  <tr><td class="gl-en">Tic complex</td><td class="gl-zh">TIC复合体</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">Stroma</td><td class="gl-zh">基质</td></tr>
+  <tr><td class="gl-en">Thylakoid lumen</td><td class="gl-zh">类囊体腔</td></tr>
+  <tr><td class="gl-en">Thylakoid membrane</td><td class="gl-zh">类囊体膜</td></tr>
+  <tr><td class="gl-en">Outer membrane</td><td class="gl-zh">外膜</td></tr>
+  <tr><td class="gl-en">Inner membrane</td><td class="gl-zh">内膜</td></tr>
+  </table>
+</figure>
+<div class="key-concepts" id="kc-13-4"><div class="kc-head">第 13.4 节 · 关键概念</div><div class="kc-title">蛋白质向线粒体与叶绿体的靶向</div><ul><li>大多数线粒体和叶绿体蛋白由核基因编码，在胞质溶胶核糖体上合成，并以翻译后方式被输入细胞器。</li><li>把前体蛋白从胞质溶胶靶向到线粒体基质或叶绿体基质所需的全部信息，都包含在其N端靶向序列之中。蛋白质输入之后，靶向序列被基质中的蛋白酶切除。</li><li>胞质溶胶分子伴侣使线粒体和叶绿体蛋白的前体保持未折叠状态。只有未折叠的蛋白质才能被输入这些细胞器。线粒体中的转位发生在细胞器外膜与内膜彼此靠近的部位。</li><li>目的地为线粒体基质的蛋白质结合到线粒体外膜上的受体，随后被转移到外膜中的通用输入孔（Tom40）。穿过外膜与穿过内膜的转位同时发生。转位由基质中Hsp70水解ATP（见图13-24）以及跨内膜的质子动力势驱动。</li><li>被分选到线粒体除基质以外其他目的地的蛋白质，通常含有两个或更多靶向序列，其中之一可能是N端基质靶向序列（见图13-26）。</li><li>某些目的地为膜间隙或内膜的线粒体蛋白先被输入基质，然后被重新导向；另一些则从不进入基质，而是直接前往其最终位置。</li><li>蛋白质输入叶绿体基质经由外膜和内膜转位通道进行，这些通道在功能上类似于线粒体通道，但由与相应线粒体蛋白在序列上无关的蛋白质组成。</li><li>目的地为类囊体的蛋白质具有次级靶向序列。这些蛋白质进入基质后，基质靶向序列被切除，从而暴露出类囊体靶向序列。</li><li>已知的四条把蛋白质从叶绿体基质运往类囊体的途径，与穿过细菌质膜的转位非常相似（见图13-29）。其中一个系统能够转位折叠的蛋白质。</li></ul></div>
+<h2 id="sec-13.5">13.5 过氧化物酶体蛋白的靶向</h2>
+<p>过氧化物酶体是由单层膜包被的小细胞器。与线粒体和叶绿体不同，过氧化物酶体不含DNA和核糖体。因此，所有过氧化物酶体腔内蛋白</p>
+<p>都由核基因编码，在胞质溶胶的游离核糖体上合成，然后被掺入已存在的或新生成的过氧化物酶体中。过氧化物酶体通过添加蛋白（和脂质）而增大，最终发生分裂，形成新的过氧化物酶体，这与线粒体和叶绿体的情况相同。</p>
+<p>不同类型细胞中过氧化物酶体的大小和酶含量差别很大。不过，所有过氧化物酶体都含有利用分子氧氧化各种底物（如氨基酸和脂肪酸）的酶，把它们分解成更小的组分，以供生物合成途径使用。这些氧化反应产生的过氧化氢（H2O2）反应性极强，对细胞组分有潜在危害；不过，过氧化物酶体中含有过氧化氢酶等其他酶，能高效地把H2O2转化为H2O。在哺乳动物中，过氧化物酶体在肝细胞中最为丰富，约占细胞体积的1–2%。</p>
+<p>一种胞质溶胶受体把带有C端SKL序列的蛋白靶向到过氧化物酶体基质</p>
+<p>过氧化物酶体靶向序列最初是通过检测带缺失的过氧化物酶体蛋白是否存在过氧化物酶体靶向的特异性缺陷而鉴定出来的。在一项早期研究中，萤火虫萤光素酶的基因在培养的昆虫细胞中表达，所得蛋白被证明能正确地靶向到过氧化物酶体。然而，表达一个缺失了编码该蛋白C端序列的一小部分的基因，所产生的萤光素酶不能靶向到过氧化物酶体，而是滞留在细胞质中。通过在该系统中检测各种突变的萤光素酶蛋白，研究者发现，C端的Ser-Lys-Leu序列（单字母代码为SKL）或与之相关的序列是过氧化物酶体靶向所必需的。此外，把一个SKL序列加到通常位于胞质溶胶的蛋白的C端，会使培养细胞中的过氧化物酶体摄取这种被改造的蛋白。众多不同的过氧化物酶体蛋白中，除少数几种外，都带有这类序列，称为过氧化物酶体靶向序列1，或简称PTS1。</p>
+<p>过氧化氢酶和其他带PTS1的蛋白输入过氧化物酶体基质的途径如图13-30所示。在胞质溶胶中，PTS1与一种称为Pex5的受体结合。Pex5具有一个显著特性：它能够从可溶的单体形式，转变为与膜蛋白Pex14形成复合体、嵌入过氧化物酶体膜中的寡聚形式。以一种尚不十分清楚的方式，带PTS1的蛋白从Pex5的寡聚形式中释放出来，进入过氧化物酶体内部。与介导蛋白输入ER、线粒体和叶绿体的大多数系统不同，这套过氧化物酶体输入机器能够把折叠的蛋白转位跨膜。例如，过氧化氢酶在穿过过氧化物酶体膜之前，就在细胞质中折叠成一定构象并结合血红素。无细胞研究显示，过氧化物酶体输入机器可以运输大的高分子物体，包括直径约9 nm的金颗粒，只要它们连有PTS1标签。</p>
+<figure id="fig-13-30">
+  <img class="zoomable" src="figures/fig_13-30_1.png" alt="图 13-30" onclick="lightbox(this.src)">
+  <figcaption>图13-30 PTS1指导的过氧化物酶体基质蛋白输入。步骤1：大多数过氧化物酶体基质蛋白含有一个C端PTS1靶向序列（红色），它与胞质溶胶受体Pex5结合。步骤2：带有结合基质蛋白的Pex5与位于过氧化物酶体膜上的Pex14受体形成多聚体复合体。步骤3：基质蛋白-Pex5-Pex14复合体组装完成后，基质蛋白从Pex5上解离，被释放到过氧化物酶体基质中。步骤4和5：随后，Pex5通过一个过程返回胞质溶胶，该过程涉及膜蛋白Pex2、Pex10和Pex12对其进行的泛素化，接着由AAA-ATP酶蛋白Pex1和Pex6以ATP依赖的方式把它从膜上移除。注意，折叠的蛋白可以被输入过氧化物酶体，而且靶向序列在基质中不被切除。参见P. E. Purdue and P. B. Lazarow, 2001, Annu. Rev. Cell Dev. Biol. 17:701; S. Subramani et al., 2000, Annu. Rev. Biochem. 69:399; and V. Dammai and S. Subramani, 2001, Cell 105:187.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">PTS1</td><td class="gl-zh">过氧化物酶体靶向信号1（PTS1）</td></tr>
+  <tr><td class="gl-en">Peroxisomal targeting sequence</td><td class="gl-zh">过氧化物酶体靶向序列</td></tr>
+  <tr><td class="gl-en">Peroxisomal matrix protein</td><td class="gl-zh">过氧化物酶体基质蛋白</td></tr>
+  <tr><td class="gl-en">Peroxisomal matrix</td><td class="gl-zh">过氧化物酶体基质</td></tr>
+  <tr><td class="gl-en">Pex5 receptor</td><td class="gl-zh">Pex5受体</td></tr>
+  <tr><td class="gl-en">Pex14</td><td class="gl-zh">Pex14</td></tr>
+  <tr><td class="gl-en">Pex12</td><td class="gl-zh">Pex12</td></tr>
+  <tr><td class="gl-en">Pex10</td><td class="gl-zh">Pex10</td></tr>
+  <tr><td class="gl-en">Pex2</td><td class="gl-zh">Pex2</td></tr>
+  <tr><td class="gl-en">Pex1</td><td class="gl-zh">Pex1</td></tr>
+  <tr><td class="gl-en">Pex6</td><td class="gl-zh">Pex6</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质溶胶</td></tr>
+  <tr><td class="gl-en">Ubiquitin</td><td class="gl-zh">泛素</td></tr>
+  <tr><td class="gl-en">Ub</td><td class="gl-zh">泛素（Ub）</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">ADP</td><td class="gl-zh">ADP</td></tr>
+  <tr><td class="gl-en">Pi</td><td class="gl-zh">Pi</td></tr>
+  </table>
+</figure>
+<p>有证据表明，与带PTS1的货物分子结合的Pex5寡聚体以及Pex14的大小，会根据带PTS1货物分子的大小进行调整。寡聚体的动态形成显然是这样一种关键机制：它使带PTS1的货物分子能够被容纳进来，而无需形成会破坏过氧化物酶体膜完整性的大的稳定孔道。</p>
+<p>一旦带PTS1的货物分子被释放到过氧化物酶体内部，Pex5与Pex14的寡聚复合体就被主动解离，从而把Pex5以可溶状态释放回细胞质。Pex5的循环利用涉及膜结合Pex5被泛素化修饰。过氧化物酶体膜蛋白Pex10、Pex12和Pex2组成的复合体把一个泛素基团转移到Pex5上。由Pex15锚定在过氧化物酶体膜上的AAA-ATP酶Pex1和Pex6识别泛素化的Pex5，并利用来自ATP的</p>
+<figure id="fig-13-31">
+  <img class="zoomable" src="figures/fig_13-31_1.png" alt="图 13-31" onclick="lightbox(this.src)">
+  <figcaption>实验图13-31 研究揭示了过氧化物酶体膜蛋白与基质蛋白掺入所走的不同途径。用针对PMP70（一种过氧化物酶体膜蛋白）的荧光抗体，或用针对过氧化氢酶（一种过氧化物酶体基质蛋白）的荧光抗体对细胞进行染色，然后在荧光显微镜下观察。(a) 在野生型细胞中，过氧化物酶体膜蛋白和基质蛋白都表现为众多过氧化物酶体小体中明亮的焦点。(b) 在来自Pex12缺陷患者的细胞中，过氧化氢酶均匀分布于整个胞质溶胶，而PMP70则正常定位于过氧化物酶体小体。(c) 在来自Pex3缺陷患者的细胞中，过氧化物酶体膜无法组装，因此过氧化物酶体小体不能形成。于是过氧化氢酶和PMP70都错误定位到了胞质溶胶中。[Courtesy of Stephen Gould, Johns Hopkins University School of Medicine.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Wild-type cells</td><td class="gl-zh">野生型细胞</td></tr>
+  <tr><td class="gl-en">Pex12 mutants (deficient in matrix protein import)</td><td class="gl-zh">Pex12突变体（基质蛋白输入缺陷）</td></tr>
+  <tr><td class="gl-en">Pex3 mutants (deficient in membrane biogenesis)</td><td class="gl-zh">Pex3突变体（膜发生缺陷）</td></tr>
+  <tr><td class="gl-en">Peroxisome</td><td class="gl-zh">过氧化物酶体</td></tr>
+  <tr><td class="gl-en">PMP70</td><td class="gl-zh">过氧化物酶体膜蛋白70（PMP70）</td></tr>
+  <tr><td class="gl-en">Catalase</td><td class="gl-zh">过氧化氢酶</td></tr>
+  </table>
+</figure>
+<p>水解能量把它从与Pex14的寡聚复合体中移出，释放到胞质溶胶中。去除泛素修饰后，胞质溶胶中的Pex5就可以进行下一轮与带PTS1蛋白的结合。</p>
+<p>用纯化组分进行的过氧化物酶体输入研究显示，Pex5与带PTS1蛋白的结合、Pex5与Pex14寡聚复合体的组装，以及带PTS1蛋白向过氧化物酶体内部的释放，都能在没有ATP这类化学能源的情况下自发发生。相比之下，Pex5的泛素修饰和Pex5由AAA-ATP酶介导的循环利用，都由ATP水解提供动力。显然，输入过程中的循环利用步骤消耗能量，以驱动</p>
+<figure id="fig-13-32">
+  <img class="zoomable" src="figures/fig_13-32_1.png" alt="图 13-32" onclick="lightbox(this.src)">
+  <figcaption>图13-32 过氧化物酶体发生与分裂的模型。从头形成过氧化物酶体的第一阶段，是把过氧化物酶体膜蛋白掺入源自ER的前体膜。Pex19作为膜靶向序列的受体。把蛋白（如PMP70）正确插入正在形成的过氧化物酶体膜，需要Pex3与Pex16组成的复合体。所有过氧化物酶体膜蛋白插入后，产生一个过氧化物酶体“幽灵”，它能够输入靶向到基质的蛋白。输入带PTS1和带PTS2基质蛋白的途径，只在结合靶向序列的胞质溶胶受体的身份上不同（分别为Pex5和Pex7）（见图13-30）。基质蛋白完全掺入后，产生成熟的过氧化物酶体。虽然过氧化物酶体可以如前所述从头形成，但在大多数条件下，过氧化物酶体的增殖都涉及成熟过氧化物酶体的分裂，这一过程依赖于Pex11蛋白。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Pex3</td><td class="gl-zh">Pex3</td></tr>
+  <tr><td class="gl-en">Pex16</td><td class="gl-zh">Pex16</td></tr>
+  <tr><td class="gl-en">Pex19</td><td class="gl-zh">Pex19</td></tr>
+  <tr><td class="gl-en">Pex5</td><td class="gl-zh">Pex5</td></tr>
+  <tr><td class="gl-en">Pex7</td><td class="gl-zh">Pex7</td></tr>
+  <tr><td class="gl-en">Pex14</td><td class="gl-zh">Pex14</td></tr>
+  <tr><td class="gl-en">Pex15</td><td class="gl-zh">Pex15</td></tr>
+  <tr><td class="gl-en">Pex10</td><td class="gl-zh">Pex10</td></tr>
+  <tr><td class="gl-en">Pex12</td><td class="gl-zh">Pex12</td></tr>
+  <tr><td class="gl-en">Pex2</td><td class="gl-zh">Pex2</td></tr>
+  <tr><td class="gl-en">Pex1</td><td class="gl-zh">Pex1</td></tr>
+  <tr><td class="gl-en">Pex6</td><td class="gl-zh">Pex6</td></tr>
+  <tr><td class="gl-en">Pex11</td><td class="gl-zh">Pex11</td></tr>
+  <tr><td class="gl-en">Peroxisomal membrane proteins</td><td class="gl-zh">过氧化物酶体膜蛋白</td></tr>
+  <tr><td class="gl-en">Peroxisomal ghost</td><td class="gl-zh">过氧化物酶体幽灵</td></tr>
+  <tr><td class="gl-en">PTS1-bearing matrix protein</td><td class="gl-zh">带PTS1的基质蛋白</td></tr>
+  <tr><td class="gl-en">PTS2-bearing matrix protein</td><td class="gl-zh">带PTS2的基质蛋白</td></tr>
+  <tr><td class="gl-en">Mature peroxisome</td><td class="gl-zh">成熟过氧化物酶体</td></tr>
+  <tr><td class="gl-en">Precursor membrane derived from the ER</td><td class="gl-zh">源自ER的前体膜</td></tr>
+  <tr><td class="gl-en">PMP70</td><td class="gl-zh">过氧化物酶体膜蛋白70（PMP70）</td></tr>
+  <tr><td class="gl-en">Catalase</td><td class="gl-zh">过氧化氢酶</td></tr>
+  </table>
+</figure>
+<p>货物分子单向跨过过氧化物酶体膜转位。</p>
+<p>少数过氧化物酶体基质蛋白，如硫解酶，是以带有称为PTS2的N端靶向序列的前体形式合成的。这些蛋白与另一种胞质溶胶受体蛋白结合，但除此之外，它们的输入被认为与含PTS1的蛋白按相同机制进行。</p>
+<p>过氧化物酶体膜蛋白与基质蛋白通过不同途径被掺入</p>
+<p>引起过氧化物酶体组装缺陷的常染色体隐性突变在人群中自然发生。这类突变可导致严重的发育缺陷，常伴有颅面畸形。例如，在泽尔韦格综合征及相关疾病中，许多或所有蛋白进入过氧化物酶体基质的运输都受到损害：新合成的过氧化物酶体酶滞留在胞质溶胶中，并最终被降解。对来自泽尔韦格综合征患者的培养细胞以及携带类似突变的酵母细胞进行的遗传学分析，已鉴定出20多个过氧化物酶体发生所必需的基因。■</p>
+<p>对过氧化物酶体组装突变体的研究显示，输入过氧化物酶体基质蛋白和把蛋白插入过氧化物酶体膜使用的是不同途径（图13-31）。例如，对某些泽尔韦格综合征患者细胞的分析，鉴定出了编码Pex5的基因，以及Pex5循环利用所需的许多Pex基因。在这些蛋白中任何一个有缺陷的突变细胞都无法把基质蛋白掺入过氧化物酶体；尽管如此，这些细胞仍含有空的过氧化物酶体，它们具有正常的过氧化物酶体膜蛋白组分（图13-31b）。</p>
+<p>研究发现，另外三个基因中任何一个发生突变，都会同时阻断过氧化物酶体膜蛋白的插入和基质蛋白的输入（图13-31c）。这些发现表明，有一组蛋白把可溶蛋白转位到过氧化物酶体基质中，而把蛋白插入过氧化物酶体膜则需要另一组不同的蛋白。这种情况与ER、线粒体和叶绿体明显不同——后者的膜蛋白和可溶蛋白在插入这些细胞器时共用许多相同的组分。</p>
+<p>虽然大多数过氧化物酶体是由已有细胞器分裂产生的，但这些细胞器也可以通过图13-32所示的三阶段过程从头产生。在这种情况下，过氧化物酶体的组装始于ER。至少有两种过氧化物酶体膜蛋白，Pex3和Pex16，通过13.2节所述的机制插入ER膜。随后Pex3和Pex16招募Pex19，形成ER膜上一个特化的区域，该区域可以从ER上出芽，形成过氧化物酶体前体膜。过氧化物酶体膜蛋白组装到成熟过氧化物酶体中还需要Pex19，它似乎作为过氧化物酶体膜蛋白靶向序列的可溶性受体起作用；此外还需要Pex3和Pex16，它们作为Pex19的膜受体。一整套过氧化物酶体膜蛋白的插入，产生了具备基质蛋白输入所需全部组分的膜，从而导致成熟、有功能的过氧化物酶体的形成。</p>
+<p>成熟过氧化物酶体的分裂在很大程度上决定了一个细胞内过氧化物酶体的数量，它依赖于又一个蛋白——Pex11。Pex11蛋白的过表达会导致过氧化物酶体数量大幅增加，提示该蛋白控制着过氧化物酶体分裂的程度。由分裂产生的小过氧化物酶体，可以通过前面所述的相同途径掺入额外的基质蛋白和膜蛋白而增大。</p>
+<div class="key-concepts" id="kc-13-5"><div class="kc-head">第 13.5 节 · 关键概念</div><div class="kc-title">过氧化物酶体蛋白的靶向</div><ul><li>所有过氧化物酶体腔内蛋白都在胞质溶胶的游离核糖体上合成，并以翻译后方式掺入该细胞器。</li><li>大多数过氧化物酶体基质蛋白含有一个称为PTS1的C端靶向序列；少数具有N端PTS2靶向序列。这两种靶向序列在输入后都不被切除。</li><li>所有目的地为过氧化物酶体基质的蛋白都与一种胞质溶胶受体蛋白结合（带PTS1和带PTS2的蛋白所结合的受体不同），随后被导向过氧化物酶体膜上共同的转位机器（见图13-30）。</li><li>基质蛋白跨过氧化物酶体膜的转位依赖ATP水解。与输入到ER、线粒体或叶绿体的蛋白不同，许多过氧化物酶体基质蛋白在胞质溶胶中折叠，并以折叠的构象穿过膜。</li><li>目的地为过氧化物酶体膜的蛋白所含的靶向序列与过氧化物酶体基质蛋白不同，并通过不同的途径被输入。</li><li>与线粒体和叶绿体不同，过氧化物酶体既可以从源自ER的前体膜从头产生，也可以由已有细胞器分裂而来（见图13-32）。</li></ul></div>
+<h2 id="sec-13.6">13.6 进出细胞核的转运</h2>
+<p>细胞核由两层膜与细胞质隔开，这两层膜构成核被膜（见图1-12a）。核被膜与ER连续，并构成ER的一部分。蛋白质从细胞质进入细胞核的转运，以及包括mRNA、tRNA和核糖体亚基在内的大分子从细胞核向外的移动，都通过核孔进行，核孔贯穿核被膜的两层膜。蛋白质输入细胞核与蛋白质输入其他细胞器共有一些基本特征。例如，被输入的核蛋白携带特定的靶向序列，称为核定位信号（NLS）。然而，蛋白质是以折叠状态被输入细胞核的，因此核输入与蛋白质跨ER、线粒体和叶绿体膜的转位有本质区别，后者在转位时蛋白质是未折叠的。本节讨论蛋白质进出细胞核的主要机制。我们还将讨论mRNA和其他核糖核蛋白复合物被输出细胞核的过程，该过程在机制上与核蛋白输入不同。</p>
+<p>大分子和小分子经核孔复合体进出细胞核</p>
+<p>在所有真核细胞中，许多核孔贯穿核被膜。每个核孔都由一种精细的结构形成，该结构称为核孔复合体（NPC），是细胞中最大的蛋白质组装体之一。在脊椎动物中，孔结构的总质量为60,000–80,000 kDa，约为一个核糖体的16倍。一个NPC由约30种不同蛋白质的多个拷贝组成，这些蛋白质称为核孔蛋白。核孔复合体的电镜照片显示出一个包埋在膜中的环状结构，它围绕着一个以水相为主的孔（图13-33）。八条约100 nm长的纤丝伸入核质，这些纤丝的远端由终末环连接，形成一种称为核篮的结构。胞质丝从NPC的胞质侧伸入胞质溶胶。</p>
+<p>离子、小代谢物以及分子量不超过约40 kDa的球状蛋白，可以被动扩散通过核孔复合体的中央水相区域。然而，大蛋白和核糖核蛋白复合物不能扩散进出细胞核。相反，这些大分子在可溶性转运蛋白的协助下被主动转运通过NPC，这些转运蛋白结合大分子，同时也与核孔蛋白相互作用。NPC进行这种主动转运的能力和效率十分惊人。据估计，每个NPC每分钟向细胞核内输入60,000个蛋白质分子，同时向细胞核外输出50–250个mRNA分子、10–20个核糖体亚基和1000个tRNA。</p>
+<p>总的来说，核孔蛋白分为三类：结构性核孔蛋白、膜性核孔蛋白和FG核孔蛋白。结构性核孔蛋白构成核孔的骨架，是一个具有八重旋转对称性的环，横跨核被膜的两层膜，形成一个环带。核被膜的内膜和外膜在NPC处由一片高度弯曲的膜区域相连，该区域含有嵌入膜中的膜性核孔蛋白（图13-33b）。一组七种结构性核孔蛋白形成一个大小与核糖体相当的Y形结构，称为Y复合体。16个Y复合体拷贝构成孔的基本结构骨架，它在核被膜两侧具有双侧对称性，在核被膜平面内具有八重旋转对称性（图13-33c）。Y复合体内多次重复的一个结构基序与驱动细胞内包被囊泡形成的COPII蛋白中的一种结构密切相关（见第14章）。结构性核孔蛋白与囊泡包被蛋白之间的这种原始关系提示，这两类膜包被复合体具有共同的起源。该元件的基本功能可能是形成一种蛋白质晶格，它与膜性核孔蛋白形成复合物，使膜变形为高度弯曲的结构。</p>
+<p>FG核孔蛋白衬于核孔复合体的通道内，也见于核篮和胞质丝上，它们含有多个短疏水序列的重复，这些序列富含苯丙氨酸（F）和甘氨酸（G）残基（FG重复序列）。</p>
+<figure id="fig-13-33">
+  <img class="zoomable" src="figures/fig_13-33_1.png" alt="图 13-33" onclick="lightbox(this.src)">
+  <figcaption>图13-33 不同分辨水平下的核孔复合体。（a）用扫描电镜观察到的非洲爪蟾卵母细胞大细胞核的核被膜。上：胞质面的视图显示出核孔复合体包埋在膜中部分的八边形形状。下：核质面的视图显示出从包埋在膜中的部分伸出的核篮。（b）核孔复合体的剖切模型，显示由膜性核孔蛋白、结构性核孔蛋白和FG核孔蛋白形成的主要结构特征。（c）16个Y复合体拷贝构成核孔复合体结构骨架的主要部分。Y复合体的三维结构被建模到孔结构中。注意跨细胞核双层膜的两重对称性（左）以及绕孔轴线的八重旋转对称性（右）。（d）FG核孔蛋白具有延伸的无序结构，由Phe–Gly序列的重复与亲水区域交错组成（左）。FG核孔蛋白在孔的中央部分最为丰富，据认为FG重复序列以凝胶状基质充满中央通道（右）。见 K. Ribbeck and D. Görlich, 2001, EMBO J. 20:1320–1330 and M. P. Rout and J. D. Atchison, 2001, J. Biol. Chem. 276:16593. [Part (a) republished with permission of Elsevier, from Doye, V. and Hurt, E., “Nucleoporins to Nuclear Pore Complexes,” Curr. Opin. Cell Biol. 9(3):401-411, 1997; permission conveyed through the Copyright Clearance Center, Inc.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Cytoplasm</td><td class="gl-zh">细胞质</td></tr>
+  <tr><td class="gl-en">Nucleoplasm</td><td class="gl-zh">核质</td></tr>
+  <tr><td class="gl-en">Cytoplasmic filaments</td><td class="gl-zh">胞质丝</td></tr>
+  <tr><td class="gl-en">FG-nucleoporins</td><td class="gl-zh">FG核孔蛋白</td></tr>
+  <tr><td class="gl-en">Structural nucleoporins</td><td class="gl-zh">结构性核孔蛋白</td></tr>
+  <tr><td class="gl-en">Membrane nucleoporins</td><td class="gl-zh">膜性核孔蛋白</td></tr>
+  <tr><td class="gl-en">Y-complexes</td><td class="gl-zh">Y复合体</td></tr>
+  <tr><td class="gl-en">Outer nuclear membrane</td><td class="gl-zh">外核膜</td></tr>
+  <tr><td class="gl-en">Inner nuclear membrane</td><td class="gl-zh">内核膜</td></tr>
+  <tr><td class="gl-en">Nuclear envelope</td><td class="gl-zh">核被膜</td></tr>
+  <tr><td class="gl-en">Nuclear basket</td><td class="gl-zh">核篮</td></tr>
+  <tr><td class="gl-en">Terminal ring</td><td class="gl-zh">终末环</td></tr>
+  <tr><td class="gl-en">Nuclear lamina</td><td class="gl-zh">核纤层</td></tr>
+  <tr><td class="gl-en">FG-repeat</td><td class="gl-zh">FG重复序列</td></tr>
+  <tr><td class="gl-en">Matrix of FG-repeats</td><td class="gl-zh">FG重复序列基质</td></tr>
+  <tr><td class="gl-en">Central channel of pore</td><td class="gl-zh">孔中央通道</td></tr>
+  <tr><td class="gl-en">Hydrophilic region</td><td class="gl-zh">亲水区域</td></tr>
+  </table>
+</figure>
+<p>疏水的FG重复序列被认为位于延伸的、除此之外为亲水的多肽链区域中，这些多肽链充满中央转运通道。FG核孔蛋白对NPC的功能是必需的；然而，即使多达一半的FG重复序列被删除，NPC仍保持功能。据认为，FG核孔蛋白形成一种柔性的凝胶状基质，其总体性质允许小分子扩散，同时排斥大于40 kDa的、无分子伴侣陪伴的亲水蛋白（图13-33d）。</p>
+<p>核转运受体护送含核定位信号的蛋白质进入细胞核</p>
+<p>细胞核中的所有蛋白质——例如组蛋白、转录因子以及DNA和RNA聚合酶——都在细胞质中合成，并通过核孔复合体输入细胞核。这类蛋白质含有核定位信号，指导它们选择性地转运进入细胞核。NLS最早是通过分析猿猴病毒40（SV40）编码的大T抗原基因的突变而被发现的。野生型大T抗原在病毒感染的细胞中定位于细胞核，而某些突变型大T抗原则在细胞质中积累（图13-34）。造成这种细胞定位改变的突变都发生在靠近</p>
+<figure id="fig-13-34">
+  <img class="zoomable" src="figures/fig_13-34_1.png" alt="图 13-34" onclick="lightbox(this.src)">
+  <figcaption>实验图13-34 核定位信号（NLS）把蛋白质导向细胞核。细胞质蛋白如果与核定位信号融合，就能被转运到细胞核。（a）正常的丙酮酸激酶（此处用免疫荧光显示，培养细胞经特异性抗体处理，黄色）定位于细胞质。这种非常大的胞质蛋白在糖类代谢中起作用。（b）当在N端含有SV40 NLS的嵌合丙酮酸激酶在细胞中表达时，它定位于细胞核。该嵌合蛋白由一种转染的工程化基因表达而来，该基因是把编码SV40 NLS的病毒基因片段与丙酮酸激酶基因融合而制成的。[Republished with permission of Elsevier, from D. Kalderon et al., “A Short Amino Acid Sequence Able to Specify Nuclear Location,” Cell 39(3 Pt 2): 499–509, 1984; permission conveyed through the Copyright Clearance Center Inc.]</figcaption>
+</figure>
+<p>该蛋白质C端的一段富含碱性氨基酸的特定七残基序列内：Pro-Lys-Lys-Lys-Arg-Lys-Val。用嵌合蛋白进行的实验表明，把这段序列与一种胞质蛋白融合后，它能指导转运进入细胞核，因而起NLS的作用。随后在众多其他被输入细胞核的蛋白质中也鉴定出了NLS序列。其中许多序列与SV40大T抗原中的碱性NLS相似，而另一些在化学性质上则相当不同。例如，RNA结合蛋白hnRNP A1中的NLS是疏水的。因此，识别这些极为不同的序列存在多种机制。</p>
+<p>关于核输入机制的早期工作表明，含有与SV40大T抗原中相似的碱性NLS的蛋白质，只有在提供胞质溶胶提取物时才能被高效转运进分离的细胞核（图13-35）。利用这一测定体系，研究人员纯化出两种必需的胞质溶胶组分：Ran和一种核转运受体。Ran是一种小的单体G蛋白，它存在</p>
+<figure id="fig-13-35">
+  <img class="zoomable" src="figures/fig_13-35_1.png" alt="图 13-35" onclick="lightbox(this.src)">
+  <figcaption>实验图13-35 核转运需要胞质溶胶蛋白。在无细胞裂解物的情况下，通透化培养细胞中核转运不能发生，这证明可溶性胞质溶胶组分参与了该过程。（a）未处理和洋地黄皂苷通透化HeLa细胞的相差显微照片。用温和的非离子型去垢剂洋地黄皂苷处理培养细胞单层，可使质膜通透化，让胞质溶胶成分漏出，但保持核被膜和NPC完整。（b）在存在和不存在细胞裂解物（胞质溶胶）的条件下，用化学偶联到合成SV40 T抗原NLS肽的荧光蛋白孵育洋地黄皂苷通透化HeLa细胞的荧光显微照片。只有当存在胞质溶胶时，转运底物才在细胞核中积累（右）。[©1990 S. Adam et al., The Journal of Cell Biology 111:807–816. doi:10.1083/jcb.111.3.807.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Digitonin</td><td class="gl-zh">洋地黄皂苷</td></tr>
+  <tr><td class="gl-en">+ Lysate</td><td class="gl-zh">+裂解物</td></tr>
+  <tr><td class="gl-en">− Lysate</td><td class="gl-zh">−裂解物</td></tr>
+  <tr><td class="gl-en">Effect of digitonin</td><td class="gl-zh">洋地黄皂苷的作用</td></tr>
+  <tr><td class="gl-en">Nuclear import by permeabilized cells</td><td class="gl-zh">通透化细胞的核输入</td></tr>
+  </table>
+</figure>
+<figure id="fig-13-36">
+  <img class="zoomable" src="figures/fig_13-36_1.png" alt="图 13-36" onclick="lightbox(this.src)">
+  <figcaption>图13-36 蛋白质核输入的机制。在细胞质中（上），游离的输入蛋白与货物蛋白的NLS结合，形成输入蛋白-货物复合物。输入蛋白-货物复合物通过与FG核孔蛋白的瞬时相互作用而扩散通过NPC。在核质中，Ran⋅GTP与输入蛋白结合，引起构象改变，降低输入蛋白对NLS的亲和力并释放货物。为支持下一轮输入，输入蛋白-Ran⋅GTP复合物被转运回细胞质。与NPC胞质丝相连的一种GTP酶激活蛋白（GAP）刺激Ran水解其结合的GTP。由此产生的构象改变使Ran从核转运受体上解离，后者随后可以启动另一轮输入。Ran⋅GDP被送回核质，在那里一种鸟嘌呤核苷酸交换因子（GEF）促使GDP释放并重新结合GTP。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Nucleoplasm</td><td class="gl-zh">核质</td></tr>
+  <tr><td class="gl-en">Cytoplasm</td><td class="gl-zh">细胞质</td></tr>
+  <tr><td class="gl-en">NPC</td><td class="gl-zh">核孔复合体</td></tr>
+  <tr><td class="gl-en">FG-nucleoporins</td><td class="gl-zh">FG核孔蛋白</td></tr>
+  <tr><td class="gl-en">Ran⋅GTP</td><td class="gl-zh">Ran⋅GTP</td></tr>
+  <tr><td class="gl-en">Ran⋅GDP</td><td class="gl-zh">Ran⋅GDP</td></tr>
+  <tr><td class="gl-en">Cargo</td><td class="gl-zh">货物</td></tr>
+  <tr><td class="gl-en">NLS</td><td class="gl-zh">核定位信号</td></tr>
+  <tr><td class="gl-en">Importin</td><td class="gl-zh">输入蛋白</td></tr>
+  <tr><td class="gl-en">GAP</td><td class="gl-zh">GAP</td></tr>
+  <tr><td class="gl-en">GEF</td><td class="gl-zh">GEF</td></tr>
+  <tr><td class="gl-en">GTP</td><td class="gl-zh">GTP</td></tr>
+  <tr><td class="gl-en">GDP</td><td class="gl-zh">GDP</td></tr>
+  <tr><td class="gl-en">Pi</td><td class="gl-zh">Pi</td></tr>
+  <tr><td class="gl-en">H2O</td><td class="gl-zh">H2O</td></tr>
+  </table>
+</figure>
+<p>于结合GTP或结合GDP两种构象之一（见图3-34）。正是Ran在结合GTP与结合GDP两种构象之间的循环、并导致GTP净水解为GDP，最终提供了驱动大分子单向通过核孔转运的能量。核转运受体既结合待转运入核的货物蛋白上的NLS，也结合核孔蛋白上的FG重复序列。通过一种尚不十分清楚的物理过程，核转运受体借助与FG重复序列的瞬时结合，能够快速穿过核孔中央通道中富含FG重复序列的基质；而缺乏这一性质、大小相似的蛋白质则被排斥在中央通道之外。核转运受体可以是单体，由一条多肽</p>
+<p>组成，该多肽既能结合NLS，也能结合FG重复序列；核转运受体也可以是二聚体，一个亚基结合NLS，另一个亚基结合FG重复序列。</p>
+<p>由一种称为输入蛋白的核转运受体介导的细胞质货物蛋白输入机制如图13-36所示。细胞质中游离的输入蛋白与货物蛋白上同源的NLS结合，形成输入蛋白-货物复合物。当输入蛋白与FG重复序列相互作用时，货物复合物便转位穿过NPC通道。货物复合物迅速到达核质，在那里输入蛋白与Ran⋅GTP相互作用，引起输入蛋白构象改变，从而置换出NLS，把货物蛋白释放到核质中。输入蛋白-Ran⋅GTP复合物随后扩散返回穿过NPC。一旦输入蛋白-Ran⋅GTP复合物到达NPC的胞质侧，Ran便与一种特异性的GTP酶激活蛋白（Ran-GAP）相互作用，后者是NPC胞质丝的一个组分。这一相互作用刺激Ran把它结合的GTP水解为GDP，使Ran转变为对输入蛋白低亲和力的构象，于是输入蛋白被释放到细胞质中，在那里它可以参与下一轮输入。Ran⋅GDP穿过孔返回核质，在那里遇到一种特异性的鸟嘌呤核苷酸交换因子（Ran-GEF），后者使Ran释放其结合的GDP而换结合GTP。这一系列反应的净结果是把GTP的水解与携带NLS的蛋白质从细胞质向核内的转移偶联起来，从而提供驱动核输入的能量。</p>
+<p>尽管输入蛋白-货物复合物是通过随机扩散穿过核孔的，但货物进入细胞核的整体转运过程是单向的。由于复合物到达核质时迅速解离，NPC两侧存在输入蛋白-货物复合物的浓度梯度：在复合物组装之处即细胞质中浓度高，在复合物解离之处即核质中浓度低。这一浓度梯度造成了核输入的单向性。类似的浓度梯度负责驱动输入蛋白从细胞核返回细胞质。输入蛋白-Ran⋅GTP复合物的浓度在它组装的核质中高于它解离的NPC胞质侧。最终，转运过程的方向取决于Ran-GEF主要位于核质、而Ran-GAP主要位于细胞质。核质中的Ran-GEF使Ran维持在Ran⋅GTP状态，在那里它促进货物复合物解离。NPC胞质侧的Ran-GAP把Ran⋅GTP转变为Ran⋅GDP，使输入蛋白-Ran⋅GTP复合物解离，把游离的输入蛋白释放到胞质溶胶中。</p>
+<p>第二类核转运受体护送含核输出信号的蛋白质出细胞核</p>
+<p>一种与我们刚才所述非常相似的机制被用来把蛋白质、tRNA和核糖体亚基从细胞核输出到细胞质。这一机制最初是通过研究某些在细胞核与细胞质之间</p>
+<p>穿梭的核糖核蛋白复合物而被阐明的。这类"穿梭"蛋白除了含有一个使其被摄取入核的NLS之外，还含有一个核输出信号（NES），后者刺激它们通过核孔从细胞核输出到细胞质。用编码一个核内限定蛋白</p>
+<figure id="fig-13-37">
+  <img class="zoomable" src="figures/fig_13-37_1.png" alt="图 13-37" onclick="lightbox(this.src)">
+  <figcaption>图13-37 依赖Ran和不依赖Ran的核输出。（a）含富含亮氨酸核输出信号（NES）的货物蛋白进行核输出的依赖Ran机制。在核质中（下），输出蛋白1协同结合待转运货物蛋白的NES和Ran⋅GTP。由此形成的货物复合物经由与FG核孔蛋白中FG重复序列的瞬时相互作用扩散通过NPC后，与NPC胞质丝相连的GAP刺激GTP水解，把Ran⋅GTP转变为Ran⋅GDP。Ran随之发生的构象改变导致复合物解离。含NES的货物蛋白被释放到胞质溶胶中，而输出蛋白1和Ran⋅GDP则通过NPC被转运回细胞核。核质中的Ran-GEF随后刺激Ran⋅GDP转变为Ran⋅GTP。（b）mRNA的不依赖Ran的核输出。异二聚体NXF1/NXT1复合物在细胞核中与mRNA-蛋白质复合物（mRNP）结合。NXF1/NXT1起核转运受体的作用，通过与FG核孔蛋白的瞬时相互作用，把与之结合的mRNP引导到NPC的中央通道。位于NPC胞质侧的RNA解旋酶（Dbp5）以ATP水解驱动的反应把NXF1和NXT1从mRNA上移除。游离的NXF1和NXT1蛋白通过图13-36所示依赖Ran的输入过程被回收回细胞核。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Ran⋅GTP</td><td class="gl-zh">Ran⋅GTP</td></tr>
+  <tr><td class="gl-en">Ran⋅GDP</td><td class="gl-zh">Ran⋅GDP</td></tr>
+  <tr><td class="gl-en">Nucleoplasm</td><td class="gl-zh">核质</td></tr>
+  <tr><td class="gl-en">Cytoplasm</td><td class="gl-zh">细胞质</td></tr>
+  <tr><td class="gl-en">Cargo complex</td><td class="gl-zh">货物复合物</td></tr>
+  <tr><td class="gl-en">NES</td><td class="gl-zh">核输出信号</td></tr>
+  <tr><td class="gl-en">Exportin 1</td><td class="gl-zh">输出蛋白1</td></tr>
+  <tr><td class="gl-en">GAP</td><td class="gl-zh">GAP</td></tr>
+  <tr><td class="gl-en">GEF</td><td class="gl-zh">GEF</td></tr>
+  <tr><td class="gl-en">ATP</td><td class="gl-zh">ATP</td></tr>
+  <tr><td class="gl-en">NPC</td><td class="gl-zh">核孔复合体</td></tr>
+  <tr><td class="gl-en">Ribosome</td><td class="gl-zh">核糖体</td></tr>
+  <tr><td class="gl-en">Dbp5</td><td class="gl-zh">Dbp5</td></tr>
+  <tr><td class="gl-en">NXF1</td><td class="gl-zh">NXF1</td></tr>
+  <tr><td class="gl-en">NXT1</td><td class="gl-zh">NXT1</td></tr>
+  <tr><td class="gl-en">Assembly on processed mRNA</td><td class="gl-zh">在加工后的mRNA上组装</td></tr>
+  <tr><td class="gl-en">Re-import</td><td class="gl-zh">再输入</td></tr>
+  <tr><td class="gl-en">mRNP remodeling</td><td class="gl-zh">mRNP重塑</td></tr>
+  </table>
+</figure>
+<p>与穿梭蛋白各片段融合而成的工程化杂合基因进行的实验，已鉴定出至少三种不同类型的NES：在PKI（一种蛋白激酶A的抑制物）以及人类免疫缺陷病毒（HIV）的Rev蛋白中发现的一段富含亮氨酸的序列，和在两种不同的异质核糖核蛋白颗粒（hnRNP）中鉴定出的另外两段序列。精确的</p>
+<p>决定每种序列被识别以进行核输出的结构特征，仍了解甚少。</p>
+<p>对于含有富含亮氨酸NES的穿梭蛋白，其从细胞核输出的机制了解得最为清楚。根据图13-37a所示的当前模型，一种称为输出蛋白1的特异性核转运受体首先在细胞核中与Ran⋅GTP形成复合物，然后结合货物蛋白上的NES。输出蛋白1与Ran⋅GTP的结合引起输出蛋白1构象改变，增加其对NES的亲和力，从而形成三分子货物复合物。与其他核转运受体一样，输出蛋白1与FG核孔蛋白中的FG重复序列瞬时相互作用，并扩散通过NPC。当货物复合物遇到与NPC胞质丝相连的Ran-GAP时便解离，Ran-GAP刺激Ran水解其结合的GTP，使Ran转变为对输出蛋白1低亲和力的构象。Ran⋅GDP从三分子货物复合物解离后，输出蛋白1改变构象，变为对NES低亲和力的状态，把货物释放到胞质溶胶中。输出过程的方向由细胞质中货物与输出蛋白1的这种解离所驱动，它在NPC两侧造成货物复合物的浓度梯度：核质中高，细胞质中低。输出蛋白1和Ran⋅GDP随后通过NPC被转运回细胞核。</p>
+<p>把这一核输出模型与图13-36中的核输入模型相比较，我们可以看到一处明显的差别：在输出过程中Ran⋅GTP是货物复合物的一部分，而在输入过程中则不是。除此差别之外，这两种转运过程极为相似。在两个过程中，核转运受体在核质中与Ran⋅GTP结合都会引起构象改变，从而影响其与转运信号的亲和力。在输入过程中，这种相互作用导致货物释放；而在输出过程中，这种相互作用则促进与货物的结合。无论在输出还是输入中，Ran-GAP在细胞质中刺激Ran⋅GTP水解都会使Ran发生构象改变，从而释放核转运受体。在核输出过程中，货物也随之释放。Ran-GAP定位于细胞质、Ran-GEF定位于细胞核，是货物蛋白跨NPC单向输入和输出的基础。</p>
+<p>与其功能上的相似性一致，两类核转运受体——输入蛋白和输出蛋白——在序列和结构上高度同源。核转运受体家族在酵母中有14个成员，在哺乳动物细胞中有20多个。人们只确定了其中一小部分受体所结合的NES或NLS。有些单个核转运受体同时兼具输入和输出功能。</p>
+<p>一种类似的穿梭机制已被证明能把其他货物输出细胞核。例如，输出蛋白t的功能是输出tRNA。输出蛋白t与Ran⋅GTP形成复合物结合完全加工好的tRNA，该复合物扩散通过NPC，并在与NPC胞质丝中的Ran-GAP相互作用时解离，把tRNA释放到</p>
+<p>胞质溶胶中。一旦蛋白质和RNA组分在核仁中被正确组装，核糖体亚基通过NPC输出细胞核也需要一个依赖Ran的过程。同样，某些与特定hnRNP蛋白结合的特定mRNA也可以通过依赖Ran的机制被输出。</p>
+<p>大多数mRNA通过不依赖Ran的机制输出细胞核</p>
+<p>mRNA在细胞核中加工完成后，仍与特定蛋白质结合，形成信使核糖核蛋白复合物（mRNP）。把mRNP输出细胞核的主要转运体是mRNP输出蛋白，这是一种异二聚体蛋白，由一个大亚基（称为核输出因子1，NXF1）和一个小亚基（称为核输出转运体1，NXT1）组成。多个NXF1/NXT1二聚体通过与RNA以及其他mRNP衔接蛋白的协同相互作用而结合核内mRNP，这些衔接蛋白在转录延伸和pre-mRNA加工期间与新生pre-mRNA结合。在许多方面，NXF1/NXT1的亚基就像一种结合NLS或NES的核转运受体，因为这两个亚基都与FG核孔蛋白的FG重复序列相互作用，而这种相互作用使它们能够扩散通过NPC的中央通道。</p>
+<p>mRNP输出过程不需要Ran，因此mRNA单向转运出核所需的能量来源不是Ran对GTP的水解。一旦mRNP-NXF1/NXT1复合物到达NPC的胞质侧，NXF1和NXT1便在RNA解旋酶Dbp5的帮助下从mRNP上解离，Dbp5与胞质NPC丝相连。回忆一下，RNA解旋酶利用ATP水解产生的能量沿RNA分子移动，分开双链RNA链并解离RNA-蛋白质复合物（见第5章）。这就引出一种简单的想法：与核孔复合体胞质侧相连的Dpb5作为一种ATP驱动的马达，在mRNP复合物出现在NPC胞质侧时把NXF1/NXT1从中移除。NXF1/NXT1在NPC核质侧组装到mRNP上，随后又在NPC胞质侧以ATP依赖的方式从mRNP上移除，由此形成mRNP-NXF1/NXT1的浓度梯度，驱动单向输出。从mRNP上移除后，被Dbp5解旋酶从mRNA上剥落的游离NXF1和NXT1亚基，通过一个依赖Ran和核转运受体的过程被输入回细胞核（图13-37b）。</p>
+<p>在依赖Ran的核输出中（已在上一个小节讨论），Ran在NPC胞质侧水解GTP，导致核转运受体与其货物解离。就其基本轮廓而言，这里讨论的不依赖Ran的核输出以相似的机制运行，只不过NPC胞质侧的Dbp5p利用ATP水解来使mRNP输出蛋白与mRNA解离。</p>
+<div class="key-concepts" id="kc-13-6"><div class="kc-head">第 13.6 节 · 关键概念</div><div class="kc-title">进出细胞核的转运</div><ul><li>核被膜上含有许多核孔复合体（NPC），它们是由30种不同蛋白质（称为核孔蛋白）的多个拷贝组成的大型复杂结构（见图13-33）。FG核孔蛋白含有多个短疏水序列（FG重复序列）的重复，衬于中央转运通道，在所有大分子通过核孔的转运中发挥作用。</li><li>大于40 kDa的大分子通过核孔的转运，需要核转运受体的协助，这些受体既与被转运的分子相互作用，也与FG核孔蛋白的FG重复序列相互作用。</li><li>被输入细胞核或从细胞核输出的蛋白质含有特定的氨基酸序列，起核定位信号（NLS）或核输出信号（NES）的作用。核内限定蛋白含有NLS但不含NES，而在细胞核与细胞质之间穿梭的蛋白质则同时含有这两种信号。</li><li>已鉴定出若干不同类型的NES和NLS。每一类核转运信号被认为与一种特异性的核转运受体相互作用，这些受体属于一个同源蛋白家族。</li><li>携带NES或NLS的货物蛋白与其同源的核转运受体结合后转位通过核孔。核转运受体与FG重复序列之间的瞬时相互作用，使核转运受体-货物复合物能非常快速地扩散通过NPC的中央通道，该通道充满由FG重复序列构成的疏水基质。</li><li>蛋白质通过核孔的输出与输入之所以是单向的，源于Ran的参与；Ran是一种单体G蛋白，与GTP或GDP结合时存在不同的构象。Ran鸟嘌呤核苷酸交换因子（Ran-GEF）位于细胞核、Ran GTP酶激活蛋白（Ran-GAP）位于细胞质，由此形成一个梯度：核质中Ran⋅GTP浓度高，细胞质中Ran⋅GDP浓度高。货物复合物在核质中与Ran⋅GTP相互作用会导致复合物解离，把货物释放到核质中（见图13-36）；而输出货物复合物的组装则由核质中与Ran⋅GTP的相互作用所促进（见图13-37）。</li><li>大多数mRNP在核质中与一种异二聚体mRNP输出蛋白结合而被输出细胞核，该输出蛋白与FG重复序列相互作用。转运方向（从细胞核到细胞质）源于一种与NPC胞质丝相连的RNA解旋酶的作用，一旦转运复合物到达细胞质，该解旋酶就把异二聚体mRNP输出蛋白移除。</li></ul></div>
+<p class="launchpad">访问LaunchPad可获取学习工具并进一步了解本章内容：展望未来、分析数据，以及包括视频、动画和</p>
+<p>测验在内的附加学习工具。</p>
+<div class="endmatter">
+<h2 class="em-title" id="key-terms">关键术语</h2><div class="kt-grid"><div class="kt-item"><span class="kt-term">共翻译转位</span><span class="kt-page">588</span></div><div class="kt-item"><span class="kt-term">脱位</span><span class="kt-page">607</span></div><div class="kt-item"><span class="kt-term">多萜醇磷酸</span><span class="kt-page">601</span></div><div class="kt-item"><span class="kt-term">FG核孔蛋白</span><span class="kt-page">622</span></div><div class="kt-item"><span class="kt-term">通用输入孔</span><span class="kt-page">611</span></div><div class="kt-item"><span class="kt-term">疏水性图谱</span><span class="kt-page">599</span></div><div class="kt-item"><span class="kt-term">微粒体</span><span class="kt-page">586</span></div><div class="kt-item"><span class="kt-term">多次跨膜蛋白</span><span class="kt-page">593</span></div><div class="kt-item"><span class="kt-term">N-连接寡糖</span><span class="kt-page">601</span></div><div class="kt-item"><span class="kt-term">核孔复合体（NPC）</span><span class="kt-page">622</span></div><div class="kt-item"><span class="kt-term">核转运受体</span><span class="kt-page">625</span></div><div class="kt-item"><span class="kt-term">O-连接寡糖</span><span class="kt-page">601</span></div><div class="kt-item"><span class="kt-term">翻译后转位</span><span class="kt-page">591</span></div><div class="kt-item"><span class="kt-term">蛋白质二硫键异构酶（PDI）</span><span class="kt-page">603</span></div><div class="kt-item"><span class="kt-term">Ran蛋白</span><span class="kt-page">625</span></div><div class="kt-item"><span class="kt-term">粗面内质网</span><span class="kt-page">586</span></div><div class="kt-item"><span class="kt-term">信号锚定序列</span><span class="kt-page">595</span></div><div class="kt-item"><span class="kt-term">信号识别颗粒（SRP）</span><span class="kt-page">588</span></div><div class="kt-item"><span class="kt-term">单次跨膜蛋白</span><span class="kt-page">593</span></div><div class="kt-item"><span class="kt-term">停止转移锚定序列</span><span class="kt-page">594</span></div><div class="kt-item"><span class="kt-term">靶向序列</span><span class="kt-page">585</span></div><div class="kt-item"><span class="kt-term">拓扑发生序列</span><span class="kt-page">593</span></div><div class="kt-item"><span class="kt-term">拓扑结构</span><span class="kt-page">593</span></div><div class="kt-item"><span class="kt-term">易位子</span><span class="kt-page">590</span></div><div class="kt-item"><span class="kt-term">未折叠蛋白反应</span><span class="kt-page">606</span></div></div>
+<h2 class="em-title" id="review-concepts">复习题</h2><ol class="review-list"><li><span class="rv-num">1.</span>在早期关于分泌蛋白翻译的研究中得到了以下结果。根据我们如今对这一过程的了解，解释每个结果出现的原因。<br><span class="rv-sub">a.</span> 仅由mRNA和核糖体组成的体外翻译系统所得到的分泌蛋白，比在细胞中翻译同一种蛋白时得到的产物更大。<br><span class="rv-sub">b.</span> 一个同样含有微粒体的类似系统所产生的分泌蛋白，其大小与在细胞中发现的相同。<br><span class="rv-sub">c.</span> 如果在体外翻译之后才加入微粒体，合成的蛋白又比在细胞中生成的更大。</li><li><span class="rv-num">2.</span>描述下列过程中跨膜单向转位所需的能量来源：(a) 向内质网（ER）的共翻译转位；(b) 向ER的翻译后转位；(c) 向线粒体基质的转位。</li><li><span class="rv-num">3.</span>向大多数细胞器的转位通常需要一种或多种胞质溶胶蛋白的活性。请描述分别用于向内质网、线粒体和过氧化物酶体转位的三种不同胞质因子的基本功能。</li><li><span class="rv-num">4.</span>描述用于识别蛋白质内拓扑发生序列的典型原则，以及如何利用这些原则开发计算机算法。拓扑发生序列的识别如何导致对多次跨膜蛋白膜内排布的预测？相对于信号锚定序列的膜取向，正电荷的排布为什么重要？</li><li><span class="rv-num">5.</span>内质网中大量错误折叠的蛋白可导致未折叠蛋白反应（UPR）和内质网相关降解（ERAD）途径被激活。UPR通过改变哪一类基因的表达来减少未折叠蛋白的数量？ERAD可能以哪一种方式识别错误折叠的蛋白？为什么必须把这些错误折叠的蛋白脱位到细胞质中？</li><li><span class="rv-num">6.</span>已分离到温度敏感型酵母突变体，它们分别阻断N-连接糖基化所需多萜醇连接寡糖前体合成中的每一个酶促步骤。请提出一种解释，说明为什么阻断结构为dolichol-PP-(GlcNAc)2Man5的中间产物合成的突变会完全阻止N-连接寡糖链加到分泌蛋白上，而阻断该中间产物转变成完整前体——dolichol-PP-(GlcNAc)2Man9Glc3——的突变却允许N-连接寡糖链加到分泌性糖蛋白上。</li><li><span class="rv-num">7.</span>请说出四种在内质网腔内促进分泌蛋白修饰或折叠的不同蛋白。指出这些蛋白中哪些对底物蛋白进行共价修饰，哪些只引起底物蛋白的构象变化。</li><li><span class="rv-num">8.</span>描述在下列类型的线粒体突变体中，线粒体基质蛋白的前体会发生什么：(a) Tom22信号受体突变；(b) Tom70信号受体突变；(c) 基质Hsp70突变；(d) 基质信号肽酶突变。</li><li><span class="rv-num">9.</span>描述输入线粒体基质与输入叶绿体基质的机制之间的相同点和不同点。</li><li><span class="rv-num">10.</span>设计一组使用嵌合蛋白的实验，该嵌合蛋白由线粒体前体蛋白与二氢叶酸还原酶（DHFR）融合而成，用这些实验可以确定前体蛋白必须有多少部分伸入线粒体基质，基质靶向序列才能被基质加工蛋白酶切除。</li><li><span class="rv-num">11.</span>过氧化物酶体含有利用分子氧氧化各种底物的酶，但在此过程中会生成过氧化氢——一种能损伤DNA和蛋白质的化合物。负责把过氧化氢分解为水的酶叫什么名字？这种蛋白输入过氧化物酶体的机制是什么？还涉及哪些其他蛋白？</li><li><span class="rv-num">12.</span>假设你鉴定出一株缺乏功能性过氧化物酶体的新突变细胞系。请描述你可以如何通过实验确定，该突变体的缺陷主要在于过氧化物酶体膜蛋白的插入/组装，还是在于基质蛋白。</li><li><span class="rv-num">13.</span>大于40 kDa的蛋白质入核需要什么氨基酸序列的存在？描述入核的机制。核转运受体如何能够穿过核孔复合体？</li><li><span class="rv-num">14.</span>为什么把Ran-GAP定位在细胞核内、把Ran-GEF定位在细胞质中，是含核输出信号（NES）的货物蛋白单向运输所必需的？</li></ol>
+<div class="references"><h2 class="em-title" id="references">参考文献</h2><h3 class="ref-sec">蛋白质向ER膜的靶向与跨膜转运</h3><div class="ref-list"><p class="ref-item">Egea, P. F., R. M. Stroud, and P. Walter. 2005. Targeting proteins to membranes: structure of the signal recognition particle. Curr. Opin. Struct. Biol.15:213–220.</p><p class="ref-item">Osborne, A. R., T. A. Rapoport, and B. van den Berg. 2005. Protein translocation by the Sec61/SecY channel. Annu. Rev. Cell Dev. Biol.21:529–550.</p><p class="ref-item">Wickner, W., and R. Schekman. 2005. Protein translocation across biological membranes. Science310:1452–1456.</p></div><h3 class="ref-sec">膜蛋白插入内质网</h3><div class="ref-list"><p class="ref-item">Englund, P. T. 1993. The structure and biosynthesis of glycosylphosphatidylinositol protein anchors. Annu. Rev. Biochem. 62:121–138.</p><p class="ref-item">Mothes, W., et al. 1997. Molecular mechanism of membrane protein integration into the endoplasmic reticulum. Cell89:523–533.</p><p class="ref-item">Shao, S., and R. S. Hegde. 2011. Membrane protein insertion at the endoplasmic reticulum. Annu. Rev. Cell Dev. Biol. 27:25–56.</p><p class="ref-item">Wang, F., et al. 2011. The mechanism of tail-anchored protein insertion into the ER membrane. Mol. Cell43:738–750.</p></div><h3 class="ref-sec">内质网中的蛋白质修饰、折叠与质量控制</h3><div class="ref-list"><p class="ref-item">Braakman, I., and N. J. Bulleid. 2011. Protein folding and modification in the mammalian endoplasmic reticulum. Annu. Rev. Biochem.80:71–99.</p><p class="ref-item">Hegde, R. S., and H. L. Ploegh. 2010. Quality and quan- tity control at the endoplasmic reticulum. Curr. Opin. Cell Biol. 22:437–446.</p><p class="ref-item">Helenius, A., and M. Aebi. 2004. Roles of N-linked glycans in the endoplasmic reticulum. Annu. Rev. Biochem.73:1019–1049.</p><p class="ref-item">Kornfeld, R., and S. Kornfeld. 1985. Assembly of asparagine- linked oligosaccharides. Annu. Rev. Biochem.45:631–664.</p><p class="ref-item">Patil, C., and P. Walter. 2001. Intracellular signaling from the endoplasmic reticulum to the nucleus: the unfolded protein response in yeast and mammals. Curr. Opin. Cell Biol.13:349–355.</p><p class="ref-item">Sevier, C. S., and C. A. Kaiser. 2002. Formation and transfer of disulphide bonds in living cells. Nat. Rev. Mol. Cell Biol.3:836–847.</p><p class="ref-item">Smith, M. H., H. L. Ploegh, and J. S. Weissman. 2011. Road to ruin: targeting proteins for degradation in the endoplasmic reticulum. Science334:1086–1090.</p></div><h3 class="ref-sec">蛋白质向线粒体与叶绿体的靶向</h3><div class="ref-list"><p class="ref-item">Dalbey, R. E., and A. Kuhn. 2000. Evolutionarily related insertion pathways of bacterial, mitochondrial, and thylakoid membrane proteins. Annu. Rev. Cell Dev. Biol.16:51–87.</p><p class="ref-item">Dolezal, P., et al. 2006. Evolution of the molecular machines for protein import into mitochondria. Science313:314–318.</p><p class="ref-item">Koehler, C. M. 2004. New developments in mitochondrial assembly. Annu. Rev. Cell Dev. Biol.20:309–335.</p><p class="ref-item">Li, H.-M., and C.-C. Chiu. 2010. Protein transport into chloroplasts. Ann. Rev. Plant Biol. 61:157–180.</p><p class="ref-item">Matouschek, A., N. Pfanner, and W. Voos. 2000. Protein unfolding by mitochondria: the Hsp70 import motor. EMBO Rep. 1:404–410.</p><p class="ref-item">Neupert, W., and M. Brunner. 2002. The protein import motor of mitochondria. Nat. Rev. Mol. Cell Biol.3:555–565.</p><p class="ref-item">Robinson, C., and A. Bolhuis. 2001. Protein targeting by the twin-arginine translocation pathway. Nat. Rev. Mol. Cell Biol. 2:350–356.</p><p class="ref-item">Schmidt, O., N. Pfanner, and C. Meisinger. 2010. Mitochondrial protein import: from proteomics to functional mechanisms. Nat. Rev. Mol. Cell Biol.11:655–667.</p></div><h3 class="ref-sec">过氧化物酶体蛋白的靶向</h3><div class="ref-list"><p class="ref-item">Dammai, V., and S. Subramani. 2001. The human peroxisomal targeting signal receptor, Pex5p, is translocated into the peroxisomal matrix and recycled to the cytosol. Cell105:187–196.</p><p class="ref-item">Gould, S. J., and D. Valle. 2000. Peroxisome biogenesis disorders: genetics and cell biology. Trends Genet.16:340–345.</p><p class="ref-item">Hoepfner, D., et al. 2005. Contribution of the endoplasmic reticulum to peroxisome formation. Cell122:85–95.</p><p class="ref-item">Ma, C., G. Agrawal, and S. Subramani. 2011. Peroxisome assembly: matrix and membrane protein biogenesis. J. Cell Biol. 193:7–16.</p><p class="ref-item">Purdue, P. E., and P. B. Lazarow. 2001. Peroxisome biogenesis. Annu. Rev. Cell Dev. Biol.17:701–752.</p><p class="ref-item">Smith, J. J., and J. D. Aitchison. 2013. Peroxisomes take shape. Nat. Rev. Mol. Cell Biol. 14:803–817.</p></div><h3 class="ref-sec">进出细胞核的运输</h3><div class="ref-list"><p class="ref-item">Chook, Y. M., and G. Blobel. 2001. Karyopherins and nuclear import. Curr. Opin. Struct. Biol.11:703–715.</p><p class="ref-item">Cole, C. N., and J. J. Scarcelli. 2006. Transport of messenger RNA from the nucleus to the cytoplasm. Curr. Opin. Cell Biol.18:299–306.</p><p class="ref-item">Johnson, A. W., E. Lund, and J. Dahlberg. 2002. Nuclear export of ribosomal subunits. Trends Biochem. Sci.27:580–585.</p><p class="ref-item">Ribbeck, K., and D. Gorlich. 2001. Kinetic analysis of translo- cation through nuclear pore complexes. EMBO J.20:1320–1330.</p><p class="ref-item">Rout, M. P., and J. D. Aitchison. 2001. The nuclear pore complex as a transport machine. J. Biol. Chem.276:16593–16596.</p><p class="ref-item">Schwartz, T. U. 2005. Modularity within the architecture of the nuclear pore complex. Curr. Opin. Struct. Biol.15:221–226.</p><p class="ref-item">Stewart, M. 2010. Nuclear export of mRNA. Trends Biochem. Sci.35:609–617.</p><p class="ref-item">Terry, L. J., and S. R. Wente. 2009. Flexible gates: dynamic topologies and functions for FG nucleoporins in nucleocytoplasmic transport. Eukaryot. Cell8:1814–1827.</p></div></div>
+</div>
+<div class="footer">分子细胞生物学（第8版）中文翻译 · 非营利学习用途</div>
+</article>
+<div id="lightbox" onclick="this.style.display='none'"><span class="close">&times;</span><img src=""></div>
+<script>
+function lightbox(src){var lb=document.getElementById('lightbox');lb.querySelector('img').src=src;lb.style.display='flex';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lightbox').style.display='none';});
+(function(){
+  var handles=document.querySelectorAll('.data-table .resize-handle');
+  var startX,startW,col,table;
+  handles.forEach(function(h){
+    h.addEventListener('mousedown',function(e){
+      e.preventDefault();e.stopPropagation();
+      col=h.parentNode;table=col.closest('table');
+      startX=e.clientX;startW=col.offsetWidth;
+      document.body.classList.add('resizing');
+      document.addEventListener('mousemove',onMove);
+      document.addEventListener('mouseup',onUp);
+    });
+  });
+  function onMove(e){
+    var dx=e.clientX-startX;
+    var newW=Math.max(40,startW+dx);
+    var idx=Array.from(table.querySelectorAll('thead th')).indexOf(col);
+    var cg=table.querySelector('colgroup');
+    if(cg&&cg.children[idx])cg.children[idx].style.width=newW+'px';
+    table.style.tableLayout='auto';
+  }
+  function onUp(){
+    document.body.classList.remove('resizing');
+    document.removeEventListener('mousemove',onMove);
+    document.removeEventListener('mouseup',onUp);
+  }
+})();
+/* 阅读索引：折叠切换 + 滚动监视 */
+(function(){
+  var toc=document.getElementById('toc');
+  var toggle=document.getElementById('toc-toggle');
+  if(toggle){
+    toggle.addEventListener('click',function(){
+      if(window.innerWidth<=1050){
+        toc.classList.toggle('open');
+        toggle.textContent=toc.classList.contains('open')?'◀':'▶';
+      }else{
+        toc.classList.toggle('hidden');
+        toggle.textContent=toc.classList.contains('hidden')?'▶':'◀';
+      }
+    });
+  }
+
+  var tocLinks=document.querySelectorAll('#toc a');
+  var targets=[];
+  tocLinks.forEach(function(a){
+    var id=a.getAttribute('href');
+    if(!id)return;
+    var el=document.getElementById(id.replace('#',''));
+    if(el)targets.push({el:el,link:a});
+  });
+  function onScroll(){
+    var scrollY=window.scrollY+120;
+    var active=null;
+    for(var i=targets.length-1;i>=0;i--){
+      if(targets[i].el.offsetTop<=scrollY){active=targets[i].link;break;}
+    }
+    tocLinks.forEach(function(a){a.classList.remove('active');});
+    if(active)active.classList.add('active');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  tocLinks.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').replace('#','');
+      var el=document.getElementById(id);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+      if(window.innerWidth<=1050)toc.classList.remove('open');
+    });
+  });
+  /* 移动端点击正文关闭侧栏 */
+  document.addEventListener('click',function(e){
+    if(!toc.classList.contains('open'))return;
+    if(!toc.contains(e.target)&&e.target!==toggle)toc.classList.remove('open');
+  });
+})();
+</script>
+</body></html>
