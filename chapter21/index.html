@@ -1,0 +1,1249 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<title>分子细胞生物学 · 第21章 干细胞、细胞不对称与细胞死亡</title>
+<style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
+@media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
+article { max-width: 750px; margin: 40px auto; padding: 60px 65px; background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,0.12); border-radius: 2px; }
+@media print { article { max-width: none; margin: 0; padding: 0; box-shadow: none; } }
+h1 { text-align: center; font-size: 1.8em; font-weight: bold; margin: 0 0 0.3em 0; padding: 0 0 0.3em 0; border-bottom: 2px solid #333; }
+h2 { font-size: 1.35em; margin: 0.8em 0 0.5em 0; padding: 6px 0 4px 12px; border-left: 4px solid #333; font-weight: bold; scroll-margin-top: 20px; }
+h3 { font-size: 1.1em; margin: 1.2em 0 0.5em 0; font-weight: bold; }
+/* 小标题（原书用 MyriadPro-Semibold 12pt 排的「题内标题」run-in heading，
+   `### ` 行由 scripts/fix_para.py 标出，这里渲染成 class="subhead" 的 h3）。
+   正文是衬线体，这里换无衬线体 + 一道浅色短竖线：层级一眼可辨，
+   又比 h2 的 4px 黑竖线轻，不跟小节标题抢戏。
+   text-indent:0 是必需的——p 有 2em 首行缩进，h3 不继承，但要显式写死以防改动。 */
+h3.subhead { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 1.02em; font-weight: 700; color: #262626; line-height: 1.55;
+  margin: 1.7em 0 0.55em 0; padding-left: 10px; text-indent: 0;
+  border-left: 3px solid #c8c1b4; }
+p { margin: 0 0 0.7em 0; text-align: justify; text-indent: 2em; }
+p.ni { text-indent: 0; }
+hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
+/* overflow-y **必须**显式写成 hidden：CSS 规定一轴非 visible、另一轴 visible 时，
+   visible 会算成 auto —— 只写 overflow-x:auto 会让每条公式右边都长出一条竖向滚动条
+   （内容只差 1px 亚像素也会触发）。纵向留 2px 内边距，防高公式（\frac）被裁到。
+   横向仍可滚：手机上 article 只剩 ~270px，长公式需要它。 */
+.eq { margin: 1.1em 0; text-align: center; text-indent: 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0 4px; }
+.eq .katex-display { margin: 0; }
+.eq-raw { font-family: "SF Mono", Menlo, monospace; font-size: 0.85em; color: #b91c1c; background: #fef2f2; padding: 6px 10px; border-radius: 4px; }
+figure { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
+figure.table { border-left: 4px solid #3b82f6; padding: 6px 0 6px 12px; text-align: left; background: #f8faff; }
+/* 图片区域：与表格区域同构 —— 整块左侧一道色条 + 极浅底色，只是换个颜色
+   （表格蓝 #3b82f6 / 图片绿 #10b981），读者一眼分得清是哪种区域。
+   内边距**左右对称**：只给左边距的话，居中的图会整体偏右 8px。 */
+figure.fig { border-left: 4px solid #10b981; padding: 8px 14px; background: #f6fdfa; border-radius: 0 6px 6px 0; }
+/* 正文/图注里的「图X-X · 表X-X」引用：彩色可点，颜色与各自的区域色条一致，
+   于是「这个引用指向哪种区域」不用看字就成立。跨章的在右上角加一个 ↗。 */
+a.xref { text-decoration: none; border-bottom: 1px solid transparent; border-radius: 2px; padding: 0 1px; }
+a.xref-fig { color: #0b8f63; border-bottom-color: rgba(16,185,129,0.45); }
+a.xref-tab { color: #2563eb; border-bottom-color: rgba(59,130,246,0.45); }
+a.xref-fig:hover { background: rgba(16,185,129,0.13); }
+a.xref-tab:hover { background: rgba(59,130,246,0.13); }
+a.xref-ext::after { content: "↗"; font-size: 0.72em; vertical-align: super; margin-left: 1px; opacity: 0.7; }
+@media print { a.xref { color: inherit; border-bottom: none; } a.xref-ext::after { content: ""; } }
+figure img, .boximg img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; }
+img.zoomable { cursor: zoom-in; transition: opacity 0.15s; }
+img.zoomable:hover { opacity: 0.88; }
+.boximg { margin: 1.5em 0; text-align: center; scroll-margin-top: 20px; }
+.boximg img { border: 1px solid #d8b4fe; }
+.intro-block { margin: 1.2em 0; padding: 0.9em 1.5em; border-left: 3px solid #a855f7; background: linear-gradient(135deg,#faf8ff,#f5f0fa); font-style: italic; color: #555; font-size: 0.92em; line-height: 1.75; border-radius: 0 6px 6px 0; }
+.intro-block .intro-title { display: block; font-style: normal; font-weight: bold; color: #4a2c6e; font-size: 1.2em; margin-bottom: 0.5em; letter-spacing: 0.5px; }
+figure figcaption { font-size: 0.85em; color: #555; margin-top: 0.5em; text-align: justify; text-indent: 0; line-height: 1.5; }
+figure.table figcaption { text-align: left; }
+table.glossary { margin: 0.2em auto 0.6em auto; border-collapse: collapse; font-size: 0.65em; color: #888; }
+table.glossary caption { font-size: 0.75em; color: #999; margin-bottom: 2px; text-align: center; font-weight: normal; }
+table.glossary td { padding: 1px 4px; vertical-align: top; line-height: 1.25; border: none; font-style: italic; overflow-wrap: anywhere; }
+/* 英文列原先 white-space:nowrap，遇到原图里的长标注（图 11-22 有一条 118 字符）会把整列撑爆，
+   中文列被挤到几乎没有宽度。改为允许换行 + 限宽；中文列再给一个下限，两头都兜住。
+   注意：只去掉 nowrap 不够——表格是收缩自适应的，按 max-content 比例收缩时长词条仍占 ~78%。 */
+table.glossary td.gl-en { color: #7a9aad; font-family: "Times New Roman", serif; max-width: 20em; }
+table.glossary td.gl-zh { color: #999; font-style: normal; min-width: 8em; }
+table.data-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.78em; line-height: 1.5; table-layout: fixed; }
+table.data-table col.col-cat { width: 16%; }
+table.data-table col.col-en { width: 26%; }
+table.data-table col.col-zh { width: 22%; }
+table.data-table col.col-mech { width: 36%; }
+table.data-table thead th { background: #3b82f6; color: #fff; padding: 8px 24px 8px 10px; text-align: left; font-weight: bold; font-size: 0.95em; position: relative; overflow: visible; }
+table.data-table thead th .resize-handle { position: absolute; right: 0; top: 0; bottom: 0; width: 8px; cursor: col-resize; z-index: 2; }
+table.data-table thead th .resize-handle::after { content: ""; position: absolute; right: 2px; top: 20%; bottom: 20%; width: 2px; background: rgba(255,255,255,0.4); border-radius: 1px; }
+table.data-table thead th .resize-handle:hover::after { background: rgba(255,255,255,0.8); width: 3px; right: 1px; }
+body.resizing { cursor: col-resize; user-select: none; -webkit-user-select: none; }
+body.resizing .data-table * { cursor: col-resize; }
+table.data-table tbody td { padding: 5px 10px; border-bottom: 1px solid #e8ecf0; vertical-align: top; }
+table.data-table tbody tr:hover { background: #f8faff; }
+table.data-table .cat-cell { font-weight: bold; color: #1e40af; background: #eff6ff; vertical-align: middle; text-align: center; word-break: break-all; }
+table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: #666; display: block; }
+table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
+table.data-table .zh-name { color: #1a1a1a; }
+table.data-table .mechanism { color: #777; font-size: 0.92em; }
+table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+@media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
+/* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
+.key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
+  background: #edf1f1; border: 1px solid #d5dddd; border-left: 4px solid #7d0052;
+  border-radius: 0 3px 3px 0; page-break-inside: avoid; }
+.key-concepts .kc-head { font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78em; font-weight: 800; letter-spacing: 1.6px; color: #7d0052; margin-bottom: 0.45em; }
+.key-concepts .kc-title { font-size: 1.06em; font-weight: bold; color: #00668f; margin-bottom: 0.75em;
+  line-height: 1.5; }
+.key-concepts ul { list-style: none; margin: 0; padding: 0; }
+.key-concepts li { position: relative; padding-left: 1.3em; margin-bottom: 0.7em;
+  font-size: 0.93em; line-height: 1.9; text-align: justify; }
+.key-concepts li:last-child { margin-bottom: 0; }
+.key-concepts li::before { content: "▸"; position: absolute; left: 0.15em; top: 0;
+  color: #00668f; font-size: 0.9em; }
+/* 章末学习附录：关键术语 / 复习题 / 参考文献 */
+.endmatter { margin-top: 3.2em; padding-top: 1.6em; border-top: 3px double #cfd8d8; }
+.em-title { font-size: 1.28em; font-weight: bold; color: #00668f; margin: 1.8em 0 0.85em 0;
+  padding: 0 0 0.28em 0; border-left: none; border-bottom: 1px solid #d8e4e8; scroll-margin-top: 20px; }
+.em-title:first-child { margin-top: 0; }
+.em-title::before { content: ""; display: inline-block; width: 5px; height: 0.9em;
+  background: #00668f; margin-right: 0.5em; vertical-align: -0.06em; border-radius: 1px; }
+.kt-grid { column-count: 2; column-gap: 2.4em; font-size: 0.87em; line-height: 1.75; }
+.kt-item { display: flex; justify-content: space-between; gap: 0.6em; padding: 0.5px 0;
+  break-inside: avoid; page-break-inside: avoid; }
+.kt-term { color: #1a1a1a; }
+.kt-page { flex: none; color: #9aa5a8; font-family: "Times New Roman", serif; font-size: 0.92em; }
+.review-list { list-style: none; margin: 0; padding: 0; }
+.review-list li, .review-list p.rv-item { position: relative; padding-left: 2.1em; margin: 0 0 1em 0;
+  font-size: 0.93em; line-height: 1.95; text-align: justify; text-indent: 0; }
+.review-list .rv-num { position: absolute; left: 0; color: #00668f; font-weight: bold;
+  font-family: "Times New Roman", serif; }
+.review-list .rv-sub { color: #00668f; font-weight: bold; }
+.references { font-size: 0.8em; line-height: 1.62; }
+.ref-sec { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 1.08em;
+  font-weight: normal; color: #00668f; margin: 1.2em 0 0.5em 0; padding-bottom: 0.15em;
+  border-bottom: 1px dotted #dde5e7; page-break-after: avoid; }
+.ref-list { column-count: 2; column-gap: 2.4em; }
+.ref-item { text-indent: -1.3em; padding-left: 1.3em; margin: 0 0 0.38em 0; text-align: left;
+  color: #333; break-inside: avoid; page-break-inside: avoid; }
+.ref-item.ref-note { text-indent: 0; padding-left: 0; color: #8a9599; font-style: italic; }
+@media (max-width: 700px) { .kt-grid, .ref-list { column-count: 1; } }
+.launchpad { text-indent: 0; text-align: center; font-size: 0.82em; color: #8899a6; font-style: italic;
+  margin: 2.4em 0 0 0; padding: 0.75em 1.1em; background: #f7fafb; border-radius: 3px; }
+.running-footer { text-indent: 0; text-align: center; font-size: 0.72em; color: #c8c8c8; margin: 2.2em 0 0 0; }
+.footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; }
+#lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; }
+#lightbox img { max-width: 92vw; max-height: 92vh; box-shadow: 0 0 30px rgba(0,0,0,0.6); }
+#lightbox .close { position: absolute; top: 12px; right: 28px; color: #fff; font-size: 40px; line-height: 1; }
+/* 左侧阅读索引 */
+#toc { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; overflow-y: auto;
+  background: #fafaf7; border-right: 1px solid #e5e2db; z-index: 100;
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px; line-height: 1.55; scrollbar-width: thin;
+  transition: left 0.25s ease; }
+#toc.hidden { left: -250px; }
+#toc-inner { padding-bottom: 30px; }
+#toc .toc-title { font-size: 15px; font-weight: 700; color: #333; padding: 18px 18px 10px;
+  margin-bottom: 8px; border-bottom: 1px solid #e0dcd5; letter-spacing: 0.5px; }
+#toc ul { list-style: none; padding: 0; margin: 0; }
+#toc li a { display: block; padding: 3px 18px; color: #555; text-decoration: none;
+  border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; }
+#toc li a:hover { background: #f0ede6; color: #333; }
+#toc li.toc-sec > a { font-weight: 600; color: #333; padding: 6px 18px; margin-top: 4px;
+  font-size: 13.5px; border-left-color: transparent; }
+#toc li.toc-sec > a.active { border-left-color: #333; background: #eee9e0; }
+#toc li.toc-fig > a, #toc li.toc-tab > a {
+  padding: 2px 18px 2px 26px; font-size: 12px; color: #777; }
+#toc li.toc-fig > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #22c55e; }
+#toc li.toc-tab > a::before { content: "▦"; margin-right: 5px; font-size: 10px; color: #3b82f6; }
+#toc li.toc-fig > a.active, #toc li.toc-tab > a.active {
+  border-left-color: #999; background: #eee9e0; color: #555; }
+/* 折叠/展开箭头 */
+#toc-toggle { position: fixed; left: 250px; top: 50%; transform: translateY(-50%); z-index: 101;
+  background: #fafaf7; border: 1px solid #e5e2db; border-left: none;
+  color: #666; cursor: pointer; font-size: 24px; padding: 20px 7px;
+  border-radius: 0 7px 7px 0; transition: left 0.25s ease, color 0.12s, background 0.12s;
+  line-height: 1; user-select: none; }
+#toc-toggle:hover { color: #333; background: #f0ede6; }
+#toc.hidden + #toc-toggle { left: 0; }
+@media print { #toc, #toc-toggle { display: none !important; } }
+@media (max-width: 1050px) {
+  #toc { left: -250px; }
+  #toc.open { left: 0; box-shadow: 2px 0 16px rgba(0,0,0,0.15); }
+  #toc-toggle { left: 0; font-size: 20px; padding: 16px 6px; }
+  #toc.open + #toc-toggle { left: 250px; }
+  article { max-width: 100%; margin: 40px 10px; padding: 30px 20px; }
+}
+/* 章节导航：fixed 定位，不随滚动移动；默认半透明，悬停/聚焦变实。打印时不出现。
+   宽屏下 article 只有 750px 居中，这里落在右侧灰色页边上，压不到正文。 */
+#chapnav { position: fixed; right: 16px; bottom: 16px; z-index: 150;
+  display: flex; flex-direction: column; gap: 6px;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 12.5px; line-height: 1; opacity: 0.38; transition: opacity 0.18s ease; }
+#chapnav:hover, #chapnav:focus-within { opacity: 1; }
+#chapnav .nav-btn { display: block; padding: 7px 12px; text-align: center; white-space: nowrap;
+  background: rgba(250,250,247,0.97); border: 1px solid #e5e2db; border-radius: 6px;
+  color: #555; text-decoration: none; box-shadow: 0 1px 6px rgba(0,0,0,0.10); }
+#chapnav a.nav-btn:hover { background: #f0ede6; color: #222; border-color: #d5d0c6; }
+#chapnav .nav-btn.disabled { color: #bcb7ae; background: rgba(250,250,247,0.8);
+  border-color: #ece9e3; box-shadow: none; cursor: not-allowed; }
+@media print { #chapnav { display: none !important; } }
+@media (max-width: 1050px) {
+  /* 正文此宽度下已占满屏：改为底部居中的横排小胶囊，更小更透（文字仍可透过它读） */
+  #chapnav { right: auto; left: 50%; transform: translateX(-50%); bottom: 10px;
+    flex-direction: row; gap: 4px; font-size: 12px; opacity: 0.3; }
+  #chapnav .nav-btn { padding: 6px 9px; }
+}</style></head><body>
+<nav id="toc">
+<div id="toc-inner">
+<div class="toc-title">目录</div>
+<ul>
+<li class="toc-fig"><a href="#fig-21-1">图21-1 细胞诞生、谱系与死亡的概述</a></li>
+<li class="toc-sec"><a href="#sec-21.1">21.1 早期哺乳动物发育</a>
+<ul>
+<li class="toc-fig"><a href="#fig-21-2">图21-2 受精过程中的配子融合</a></li>
+<li class="toc-fig"><a href="#fig-21-3">图21-3 小鼠胚胎中的卵裂分裂</a></li>
+<li class="toc-fig"><a href="#fig-21-4">实验图21-4 细胞位置决定早期胚胎中的细胞命运</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-21.2">21.2 胚胎干细胞与诱导多能干细胞</a>
+<ul>
+<li class="toc-fig"><a href="#fig-21-5">实验图21-5 胚胎干细胞（ES细胞）可在培养中维持，并能形成分化细胞类型</a></li>
+<li class="toc-fig"><a href="#fig-21-6">图21-6 调控ES细胞多能性的转录网络</a></li>
+<li class="toc-fig"><a href="#fig-21-7">实验图21-7 可通过来自嗅觉神经元的体细胞核移植克隆小鼠</a></li>
+<li class="toc-fig"><a href="#fig-21-8">图21-8 iPS细胞的医学应用</a></li>
+<li class="toc-fig"><a href="#fig-21-9">图21-9 从人iPS或ES细胞产生正常的分泌胰岛素的β胰岛细胞</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-21.3">21.3 多细胞生物中的干细胞与龛</a>
+<ul>
+<li class="toc-fig"><a href="#fig-21-10">图21-10 从干细胞到谱系受限祖细胞再到分化细胞的途径</a></li>
+<li class="toc-fig"><a href="#fig-21-11">图21-11 干细胞分化的模式</a></li>
+<li class="toc-fig"><a href="#fig-21-12">图21-12 果蝇生殖区</a></li>
+<li class="toc-fig"><a href="#fig-21-13">图21-13 肠道干细胞及其龛</a></li>
+<li class="toc-fig"><a href="#fig-21-14">实验图21-14 在脉冲-追踪实验中可以证明肠上皮由干细胞再生</a></li>
+<li class="toc-fig"><a href="#fig-21-15">实验图21-15 谱系追踪研究表明，隐窝底部的表达Lgr5的细胞就是肠道干细胞</a></li>
+<li class="toc-fig"><a href="#fig-21-16">实验图21-16 单个表达Lgr5的肠道干细胞在没有龛细胞的培养条件下构建隐窝-…</a></li>
+<li class="toc-fig"><a href="#fig-21-17">图21-17 骨髓中由造血干细胞形成血细胞</a></li>
+<li class="toc-fig"><a href="#fig-21-18">实验图21-18 通过骨髓移植对造血干细胞进行功能分析</a></li>
+<li class="toc-fig"><a href="#fig-21-19">实验图21-19 骨髓中的造血干细胞龛</a></li>
+<li class="toc-fig"><a href="#fig-21-20">图21-20 拟南芥茎端和根端分生组织的结构</a></li>
+<li class="toc-fig"><a href="#fig-21-21">图21-21 拟南芥茎端分生组织干细胞龛中的调控网络</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-21.4">21.4 细胞极性机制与不对称细胞分裂</a>
+<ul>
+<li class="toc-fig"><a href="#fig-21-22">图21-22 芽殖酵母的内在极性程序涉及一个激活GTP酶Cdc42的正反馈环</a></li>
+<li class="toc-fig"><a href="#fig-21-23">图21-23 细胞极性与不对称细胞分裂的一般特征</a></li>
+<li class="toc-fig"><a href="#fig-21-24">图21-24 酵母中shmoo形成的机制</a></li>
+<li class="toc-fig"><a href="#fig-21-25">图21-25 线虫秀丽隐杆线虫（C</a></li>
+<li class="toc-fig"><a href="#fig-21-26">实验图21-26 Par蛋白在单细胞线虫胚胎中不对称定位</a></li>
+<li class="toc-fig"><a href="#fig-21-27">图21-27 单细胞线虫胚胎中前部Par复合物分离的机制</a></li>
+<li class="toc-fig"><a href="#fig-21-28">图21-28 上皮细胞极性的建立</a></li>
+<li class="toc-fig"><a href="#fig-21-29">实验图21-29 平面细胞极性（PCP）决定细胞的取向</a></li>
+<li class="toc-fig"><a href="#fig-21-30">图21-30 诱导干细胞不对称分裂的两种方式</a></li>
+<li class="toc-fig"><a href="#fig-21-31">图21-31 神经母细胞不对称分裂，在中枢神经系统中产生神经元和胶质细胞</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#sec-21.5">21.5 细胞死亡及其调控</a>
+<ul>
+<li class="toc-fig"><a href="#fig-21-32">实验图21-32 一只蹼足鸡</a></li>
+<li class="toc-fig"><a href="#fig-21-33">图21-33 细胞凋亡性死亡的超微结构特征</a></li>
+<li class="toc-fig"><a href="#fig-21-34">实验图21-34 ced-3基因的突变阻断C</a></li>
+<li class="toc-fig"><a href="#fig-21-35">图21-35 凋亡通路的进化保守性</a></li>
+<li class="toc-fig"><a href="#fig-21-36">图21-36 C</a></li>
+<li class="toc-fig"><a href="#fig-21-37">实验图21-37 在脊椎动物中，运动神经元的存活取决于它们所支配的肌肉靶场的体积</a></li>
+<li class="toc-fig"><a href="#fig-21-38">实验图21-38 缺乏不同营养因子或其受体的敲除小鼠中会丢失不同类别的感觉神经元</a></li>
+<li class="toc-fig"><a href="#fig-21-39">图21-39 Bcl-2蛋白家族成员的结构</a></li>
+<li class="toc-fig"><a href="#fig-21-40">图21-40 调控线粒体外膜通透性和凋亡的多种信号通路在脊椎动物细胞中的整合</a></li>
+<li class="toc-fig"><a href="#fig-21-41">图21-41 线虫凋亡体的结构以及哺乳动物Apaf-1凋亡体结构的模型</a></li>
+<li class="toc-fig"><a href="#fig-21-42">图21-42 细胞谋杀：外源性凋亡通路</a></li>
+</ul>
+</li>
+<li class="toc-sec"><a href="#key-terms">关键术语</a>
+</li>
+<li class="toc-sec"><a href="#review-concepts">复习题</a>
+</li>
+<li class="toc-sec"><a href="#references">参考文献</a>
+</li>
+</ul>
+</div></nav>
+<button id="toc-toggle" title="隐藏/显示目录">◀</button>
+<article>
+<h1>第21章 干细胞、细胞不对称与细胞死亡</h1>
+<p class="ni">译自 <em>Molecular Cell Biology</em>, 第8版 · Lodish et al. · Stem Cells, Cell Asymmetry, and Cell Death · 保留全部图表（点击图片可放大）</p>
+<hr>
+<div class="boximg">
+  <img class="zoomable" src="figures/box_G21-1_1.png" alt="G21-1" onclick="lightbox(this.src)">
+</div>
+<div class="intro-block"><span class="intro-title">第21章 干细胞、细胞不对称与细胞死亡</span>称为新生细胞（neoblast）的多能干细胞为涡虫的再生提供了细胞基础。图中所示为一群新生细胞（红色），全部源自单个新生细胞，拍摄于截肢启动尾部再生后14天；图中还显示了正在分化的细胞（蓝色）。[Courtesy Daniel E. Wagner and Peter W. Reddien, MIT, Whitehead Institute.]</div>
+<p>许多关于细胞分裂的描述都暗示，亲代细胞产生两个在形态和功能上与亲代细胞完全相同的子细胞。换言之，它们暗示细胞分裂是对称的，而且子代具有与亲代相似的特性（<a class="xref xref-fig" href="#fig-21-1">图21-1</a>a）。许多酵母、真菌和其他单细胞真核生物确实以这种方式分裂。成熟的肝细胞（hepatocytes）也进行对称分裂，各自产生两个子代肝细胞。</p>
+<p>但如果情况总是如此，复杂多细胞植物和动物中存在的数百种分化细胞类型和行使功能的组织就永远不会形成。当两个最初相同的子细胞因接受不同的发育信号或环境信号而发生分歧时，细胞间的差异便可产生。或者，两个子细胞可能从"出生"起就不同，各自继承亲代细胞的不同部分（<a class="xref xref-fig" href="#fig-21-1">图21-1</a>b）。由这种不对称细胞分裂产生的子细胞可能在大小、形状或蛋白质组成上有所不同，或者它们的基因可能处于不同的活性状态或潜在活性状态。这些内部信号的差异赋予两个细胞不同的命运。在某些不对称细胞分裂中，其中一个子细胞与亲代细胞相似，另一个则形成不同类型的细胞。</p>
+<p>在多细胞生物中，无论在发育过程中还是在细胞更替过程中，功能性组织和器官的形成都取决于有丝分裂的特定模式。一系列类似于家谱的此类细胞分裂称为细胞谱系。细胞谱系追踪细胞的诞生顺序，在此过程中细胞的发育潜能逐渐受到更多限制，并分化成特化的细胞类型，如皮肤细胞、神经元或肌细胞（<a class="xref xref-fig" href="#fig-21-1">图21-1</a>c）。</p>
+<p>一个新的后生动物的发育始于卵，即卵母细胞，它携带来自母本的一套染色体，以及精子，它携带一套染色体来自父本。这些配子，即性细胞，是单倍体的，因为它们经历了减数分裂（见第19章）。在称为受精的过程中，它们结合产生最初的单个细胞，即受精卵，它有两套染色体，因此是二倍体。在胚胎发生过程中，受精卵经历许多次细胞分裂，既有对称的也有不对称的，最终产生一个完整的生物体。正如我们将在本章后面看到的（见下文<a class="xref xref-fig" href="#fig-21-25">图21-25</a>），线虫秀丽隐杆线虫的许多早期分裂遵循镶嵌式发育策略，其中所有早期细胞分裂都是不对称的，每个子细胞产生一组特定的分化细胞类型，原因是位于细胞质颗粒中的调节蛋白被不均等地分配给子细胞。</p>
+<figure class="fig" id="fig-21-1">
+  <img class="zoomable" src="figures/fig_21-1_1.png" alt="图 21-1" onclick="lightbox(this.src)">
+  <figcaption>图21-1 细胞诞生、谱系与死亡的概述。生长之后，子细胞作为对称或不对称细胞分裂的结果而“诞生”。(a)由对称分裂产生的两个子细胞彼此之间以及与亲代细胞基本相同。如果暴露于不同的信号，这样的子细胞随后可能具有不同的命运。(b)由不对称细胞分裂产生的两个子细胞从诞生起就不同，因而具有不同的命运。在某些情况下（左），两个子细胞彼此不同，也与亲代细胞不同。在另一些情况下（右），一个子细胞与亲代细胞基本相同，另一个则采取不同的命运。当亲代细胞是干细胞时，不对称分裂很常见；这使得干细胞（黄色）的数量保持不变，同时它们继续产生其他细胞（橙色），这些细胞成熟为一种或多种分化细胞类型。(c)一系列对称和不对称的细胞分裂构成细胞谱系，产生多细胞生物中每一种特化的细胞类型。细胞谱系可以受到严格的遗传控制。程序性细胞死亡发生在正常发育过程中（例如，手指生长时最初形成的蹼中），也发生在对感染或毒素作出反应时。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Cell growth</td><td class="gl-zh">细胞生长</td></tr>
+  <tr><td class="gl-en">Cell lineage</td><td class="gl-zh">细胞谱系</td></tr>
+  <tr><td class="gl-en">Cell death</td><td class="gl-zh">细胞死亡</td></tr>
+  <tr><td class="gl-en">Symmetric cell division</td><td class="gl-zh">对称细胞分裂</td></tr>
+  <tr><td class="gl-en">Asymmetric cell division</td><td class="gl-zh">不对称细胞分裂</td></tr>
+  </table>
+</figure>
+<p>本章第一节的重点是早期哺乳动物发育及其受细胞间相互作用的调控。小鼠和人胚胎都要经过八细胞期，此时每个细胞仍能形成所有组织（胚胎组织和胚外组织都有）；也就是说，八个细胞都是全能性的。到十六细胞期，情况就不再如此：其中一些细胞已经定向于特定的分化途径。在调整型发育中，起重要作用的决定细胞命运的因素是特定细胞的位置，而不是形态发生素的分离。一群称为内细胞团的细胞最终将产生胚胎本体的所有组织，另一群细胞将形成胎盘组织。像内细胞团中那些能产生所有胚胎组织、但不能产生胚外组织的细胞，称为多能性细胞。</p>
+<p>干细胞在后生动物发育和成年生活中都很重要。它们是非特化的细胞，既能自我复制，也能产生特定类型的更特化的细胞（见<a class="xref xref-fig" href="#fig-21-1">图21-1</a>b）。它们的名字来自植物茎的形象，茎向上生长，继续形成更多的茎，同时还向侧面长出叶和枝。在本章第二、三节中，我们探讨几种干细胞，它们能形成的特化细胞类型的范围各不相同。干细胞可以进行对称分裂，此时两个子细胞都是干细胞。动物和植物中许多类型的干细胞进行不对称分裂，其中一个子细胞是干细胞。因此，在生物体的一生中，干细胞的数量可以保持恒定，也可以增加。受精卵是全能的，因为它有能力产生体内的每一种细胞类型以及胚胎发育所需的支持性胎盘细胞，但由于受精卵不能自我更新（产生更多自身），所以它不被视为干细胞。</p>
+<p>在21.2节中我们将了解到，内细胞团的细胞可以在确定成分的培养基中培养，形成胚胎干细胞（ES细胞）。ES细胞可以在培养中无限期生长，它们在那里进行对称分裂，因此每个子细胞都保持多能性，并有可能产生动物的所有组织。我们将讨论ES细胞在揭示多能性背后的基因表达转录网络方面的用途，以及在为研究目的而形成特定类型的分化细胞方面的用途，或者有潜力作为患者的衰老或病变细胞的"替换部件"。</p>
+<p>许多年来，动物细胞分化一直被认为是单向的，但最近的数据表明，分化可以在实验上被逆转。通过重组表达特定的转录因子，一种特化的分化细胞可以转变成另一种分化细胞。引人注目的是，在确定的条件下，仅将少数控制ES细胞多能性的转录因子导入多种类型的分化细胞，就能把其中至少一些体细胞转变成诱导多能干细胞（iPS细胞），其特性看起来与ES细胞无法区分。正如我们将在21.2节看到的，iPS细胞对实验生物学和医学具有重大用途。</p>
+<p>许多类型细胞的寿命远短于整个生物体的寿命，因此需要不断被替换。例如，在哺乳动物中，衬在肠道内的细胞和具有吞噬作用的巨噬细胞只能存活几天。因此，干细胞不仅在发育过程中重要，对于成年生物体中衰老细胞的替换也很重要。与ES细胞不同，成体中的干细胞是多潜能性的：它们能产生生物体中存在的部分类型的分化细胞，但不是全部。在本章第三节中，我们讨论几个多潜能干细胞的例子，包括那些产生生殖细胞、肠道细胞以及血液中各种细胞类型的干细胞。</p>
+<p>我们已经提到，动物中细胞类型的多样性需要不对称细胞分裂，其中两个子细胞的命运不同。这一过程要求亲代细胞在细胞分裂前变得不对称，即极化，以便细胞内容物在两个子细胞之间不均等分配。这一极化过程不仅在发育过程中至关重要，而且对几乎所有细胞的功能都至关重要。例如，转运上皮细胞，如衬在肠道内的那些细胞，是极化的，其游离的顶端表面朝向管腔以吸收营养物质，其基底外侧表面接触细胞外基质以将营养物质向血液转运（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter11/index.html#fig-11-30">图11-30</a>和<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-1">图20-1</a>）。其他例子包括沿趋化梯度迁移的细胞（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter18/index.html#fig-18-53">图18-53</a>）和神经元，后者有多个树突从细胞体的一侧伸出以接收信号，还有一根轴突从另一侧伸出以将信号传递给靶细胞（见第22章）。因此，细胞用于极化的机制是其功能的重要而普遍的方面。毫不奇怪，这些机制整合了细胞信号转导途径（见第15、16章）、细胞骨架重排（见第17、18章）和膜运输（见第14章）等要素。在本章第四节中，我们讨论细胞如何极化，以及不对称细胞分裂对维持干细胞和产生分化细胞的重要性。</p>
+<p>通常，我们从所形成的分化细胞类型的角度来考虑细胞命运。一种完全不同的细胞命运，即程序性细胞死亡，在许多组织的形成和维持中也绝对关键。一个精确的、有制衡机制的遗传调控系统控制着细胞死亡，正如其他遗传程序控制细胞分裂和分化一样。在本章最后一节中，我们讨论细胞死亡的机制及其调控。</p>
+<p>细胞生物学的这些方面——细胞诞生、细胞极性的建立以及程序性细胞死亡——与发育生物学交汇，它们是前面章节所讨论的信号途径所调控的最重要的过程之一。</p>
+<h2 id="sec-21.1">21.1 早期哺乳动物发育</h2>
+<p>本节的主要焦点是早期哺乳动物发育中的最初几次细胞分裂；下一节讨论胚胎干细胞和iPS细胞的特性。我们首先解释单个精子如何被允许与卵融合，从这两个单倍体生殖细胞产生一个具有二倍体基因组的受精卵。</p>
+<h3 class="subhead">受精使基因组合为一体</h3>
+<p>哺乳动物精子竟能到达并穿入卵，这很不寻常。其一，在人类中，每个精子都要与超过1亿个其他精子竞争一个卵母细胞。此外，精子必须游过令人难以置信的距离才能到达卵（如果精子有人那么大，所游的距离相当于好几英里！）。而且到达之后，精子还必须奋力穿过卵周围阻止精子进入的多层结构（<a class="xref xref-fig" href="#fig-21-2">图21-2</a>a）。精子的构造是为速度和游泳能力而优化的。人精子鞭毛（见第18章）含有约9000个动力蛋白马达，它们在50 μm的轴丝中使微管弯曲。尽管如此，只有几十个精子能够到达卵母细胞。</p>
+<p>如<a class="xref xref-fig" href="#fig-21-2">图21-2</a>所示，精子到达卵后，必须首先穿入环绕卵母细胞的卵丘细胞层，然后穿入透明带，后者是一种凝胶状的细胞外基质，主要由三种称为ZP1、ZP2和ZP3的糖蛋白组成。顶体位于精子的前端，是一个有膜包被的区室，专门用于与卵母细胞相互作用。顶体膜的一侧紧贴在精子头部的质膜下方；顶体膜的另一侧紧邻核膜。顶体内部有可溶性酶，包括水解酶和蛋白酶。一旦接近卵母细胞，顶体就发生胞吐，将其内容物释放到卵母细胞表面（<a class="xref xref-fig" href="#fig-21-2">图21-2</a>b，步骤2）。这些酶消化卵表面的多层结构，从而开始精子进入的过程。这是一场竞赛，第一个成功的精子会触发卵母细胞做出剧烈反应，阻止多精入卵，即阻止其他精子进入而带入多余的染色体。</p>
+<figure class="fig" id="fig-21-2">
+  <img class="zoomable" src="figures/fig_21-2_1.png" alt="图 21-2" onclick="lightbox(this.src)">
+  <figcaption>图21-2 受精过程中的配子融合。(a)哺乳动物卵，例如这里所示的小鼠卵母细胞，被一圈半透明的物质即透明带所包围，透明带为精子提供结合基质。小鼠卵的直径约为70 μm，透明带厚约6 μm。极体是减数分裂的无功能产物。(b)在受精的初始阶段（步骤1），精子穿入环绕卵的卵丘细胞层，到达透明带。精子表面的蛋白GalT与透明带中的糖蛋白ZP3之间的相互作用触发顶体反应（步骤2），从顶体释放酶。顶体反应释放的水解酶和蛋白酶降解透明带，使精子得以开始进入卵（步骤3）。卵和精子表面的特异性识别蛋白促进二者质膜的融合。膜融合以及随后第一个精子核进入卵细胞质（步骤4和5）触发卵母细胞内Ca2+的释放。皮质颗粒（橙色）对Ca2+激增作出反应，与卵母细胞膜融合并释放作用于透明带的酶，阻止更多精子结合。[Part (a) Douglas Kline.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Zona pellucida</td><td class="gl-zh">透明带</td></tr>
+  <tr><td class="gl-en">Oocyte</td><td class="gl-zh">卵母细胞</td></tr>
+  <tr><td class="gl-en">Polar body</td><td class="gl-zh">极体</td></tr>
+  <tr><td class="gl-en">Acrosome</td><td class="gl-zh">顶体</td></tr>
+  <tr><td class="gl-en">Cortical granule</td><td class="gl-zh">皮质颗粒</td></tr>
+  <tr><td class="gl-en">Egg nucleus</td><td class="gl-zh">卵核</td></tr>
+  <tr><td class="gl-en">Sperm nucleus</td><td class="gl-zh">精核</td></tr>
+  <tr><td class="gl-en">Follicle cell</td><td class="gl-zh">卵泡细胞</td></tr>
+  <tr><td class="gl-en">Cumulus cell layer</td><td class="gl-zh">卵丘细胞层</td></tr>
+  <tr><td class="gl-en">Basal body</td><td class="gl-zh">基体</td></tr>
+  <tr><td class="gl-en">Sperm plasma membrane</td><td class="gl-zh">精子的质膜</td></tr>
+  <tr><td class="gl-en">Egg plasma membrane</td><td class="gl-zh">卵的质膜</td></tr>
+  <tr><td class="gl-en">Acrosomal reaction</td><td class="gl-zh">顶体反应</td></tr>
+  <tr><td class="gl-en">Binding of sperm to zona pellucida</td><td class="gl-zh">精子与透明带结合</td></tr>
+  <tr><td class="gl-en">Penetration through zona pellucida</td><td class="gl-zh">穿入透明带</td></tr>
+  </table>
+</figure>
+<p>第一个精子成功与卵母细胞膜融合后，一股钙流进入卵母细胞胞质溶胶，并从精子进入的部位向外扩散。与其他受调控的分泌途径一样，钙升高的一项效应是触发位于卵质膜正下方的囊泡，即皮质颗粒，与质膜融合，将其内容物释放到质膜外侧，并形成一层起屏障作用的受精膜，阻止其他精子进入。最后，精子核进入卵细胞质，卵核与精核很快融合，形成二倍体的受精卵核。</p>
+<p>卵母细胞在结合时带来了相当可观的"嫁妆"。它们含有多个线粒体及其线粒体DNA，后者的遗传完全是母系的；在哺乳动物和许多其他物种中，没有精子线粒体DNA进入卵母细胞（见第12章）。女性特有的线粒体DNA遗传已被用于追踪人类历史中的母系血统；例如，它被用来追踪早期人类从非洲起源后的迁徙。卵细胞质中还充满了母源mRNA：其产物对最早发育阶段至关重要的基因的转录本。在卵母细胞减数分裂和最初的胚胎卵裂期间，几乎没有或完全没有转录，因此在这段时间里，卵母细胞的mRNA至关重要。</p>
+<h3 class="subhead">哺乳动物胚胎的卵裂引发最初的分化事件</h3>
+<p>受精卵不会长时间保持为单个细胞。受精之后很快发生卵裂，即一系列每次约需一天的细胞分裂（<a class="xref xref-fig" href="#fig-21-3">图21-3</a>）；这些分裂发生在胚胎植入子宫壁之前。最初，细胞相当圆，彼此松散地附着。正如在绵羊中实验证明的那样，8细胞期的每个细胞都是全能性的，当植入假孕动物（经激素处理使其子宫对胚胎有反应的动物）的子宫内时，有潜力产生一个完整的动物。</p>
+<figure class="fig" id="fig-21-3">
+  <img class="zoomable" src="figures/fig_21-3_1.png" alt="图 21-3" onclick="lightbox(this.src)">
+  <figcaption>图21-3 小鼠胚胎中的卵裂分裂。在这些早期分裂期间几乎没有细胞生长，因此细胞变得越来越小。讨论见正文。[Courtesy Tom P. Fleming.]</figcaption>
+</figure>
+<p>受精三天后，8细胞胚胎再次分裂，形成16细胞的桑椹胚（源自希腊语"覆盆子"），此后细胞彼此之间的亲和力大幅增加，胚胎发生致密化，这一过程部分依赖于细胞表面的同型细胞黏附蛋白E-cadherin（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-14">图20-14</a>）。由细胞间黏附增强驱动的致密化过程最初产生一个更致密的细胞团，即致密桑椹胚。在下一步中，一些细胞间黏附在局部减弱，液体开始流入一个称为囊胚腔的内部腔室。进一步的分裂产生囊胚（见<a class="xref xref-fig" href="#fig-21-3">图21-3</a>）。</p>
+<p>囊胚由大约64个细胞组成，它们已分成两种细胞类型：滋养外胚层（TE），将形成胎盘等胚外组织；以及内细胞团（ICM）（小鼠中仅10～15个细胞），它产生胚胎本体（<a class="xref xref-fig" href="#fig-21-4">图21-4</a>a）。在囊胚中，ICM位于囊胚腔的一侧，而TE细胞在ICM和囊胚腔周围形成一个中空的球。此时，TE细胞处于一个上皮片中，而ICM细胞是一个松散细胞团，可描述为间充质。间充质这一术语最常用于中胚层来源的细胞，指的是组织松散、附着松散的细胞。</p>
+<p>早期胚胎中细胞的命运——TE还是ICM——由细胞的位置决定。如果把一个被标记的细胞放在极早期胚胎的外部，它很可能形成胚外组织；而放在胚胎内部的细胞则很可能形成胚胎组织（<a class="xref xref-fig" href="#fig-21-4">图21-4</a>b、c）。对早期发育各阶段的基因表达测定显示，哪些基因被表达发生了剧烈变化。即使是这些极早期的胚胎也利用Wnt、Notch和TGF-β信号来调控基因表达（见第16章）。</p>
+<p>ICM细胞和TE细胞都是干细胞：各自起始自己独特的谱系，并大量分裂以产生多样的细胞群体。下一节我们要关注的就是ICM干细胞。</p>
+<figure class="fig" id="fig-21-4">
+  <img class="zoomable" src="figures/fig_21-4_1.png" alt="图 21-4" onclick="lightbox(this.src)">
+  <figcaption>实验图21-4 细胞位置决定早期胚胎中的细胞命运。(a)四细胞胚胎通常发育成囊胚，由外部的滋养外胚层（TE）细胞和内部的内细胞团（ICM）细胞组成。(b)为了弄清位置是否影响细胞的命运，用小鼠胚胎进行了移植实验。首先，去除受体桑椹胚期胚胎中的一些细胞，为植入的细胞腾出空间。然后，将供体桑椹胚期（十六细胞）胚胎浸泡在一种不会在细胞间转移的染料中。最后，将来自供体胚胎的被标记细胞注入受体胚胎的内部或外部区域，如显微照片所示。受体胚胎通过施加到持卵管上的轻微负压固定就位。(c)追踪移植的标记细胞后代随后的命运。为简单起见，图中画的是四细胞受体胚胎，尽管供体和受体使用的都是桑椹胚期胚胎。总结在图表中的结果表明，外部细胞绝大多数形成滋养外胚层，内部细胞倾向于成为ICM的一部分，但也形成相当多的滋养外胚层。[Part (b) R. L. Gardner & J. Nichols, “An investigation of the fate of cells transplanted orthotopically between morulae/nascent blastocysts in the mouse,” 1991, Human Reproduction 6(1):25–35, by permission of Oxford University Press.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Four-cell embryo</td><td class="gl-zh">四细胞胚胎</td></tr>
+  <tr><td class="gl-en">Trophectoderm (TE)</td><td class="gl-zh">滋养外胚层（TE）</td></tr>
+  <tr><td class="gl-en">Inner cell mass (ICM)</td><td class="gl-zh">内细胞团（ICM）</td></tr>
+  <tr><td class="gl-en">Labeled cells</td><td class="gl-zh">标记细胞</td></tr>
+  <tr><td class="gl-en">Holding pipette</td><td class="gl-zh">持卵管</td></tr>
+  <tr><td class="gl-en">Recipient embryo</td><td class="gl-zh">受体胚胎</td></tr>
+  <tr><td class="gl-en">Injection pipette</td><td class="gl-zh">注射管</td></tr>
+  </table>
+</figure>
+<div class="key-concepts" id="kc-21-1"><div class="kc-head">第 21.1 节 · 关键概念</div><div class="kc-title">早期哺乳动物发育</div><ul><li>在不对称细胞分裂中，由一个亲代细胞形成两种不同类型的子细胞。相反，对称细胞分裂中形成的两个子细胞是相同的，但如果暴露于不同的外部信号，它们可能具有不同的命运（见<a class="xref xref-fig" href="#fig-21-1">图21-1</a>）。</li><li>特化的精子与卵表面蛋白使单个哺乳动物精子的核得以进入卵的细胞质。单倍体精核与单倍体卵核融合，产生二倍体受精卵（见<a class="xref xref-fig" href="#fig-21-2">图21-2</a>）。</li><li>哺乳动物胚胎的最初几次分裂产生等同的全能性细胞，但随后的分裂产生第一个分化事件，即滋养外胚层与内细胞团的分离（见<a class="xref xref-fig" href="#fig-21-3">图21-3</a>和<a class="xref xref-fig" href="#fig-21-4">图21-4</a>）。</li></ul></div>
+<h2 id="sec-21.2">21.2 胚胎干细胞与诱导多能干细胞</h2>
+<p>本节我们讨论两类多能性哺乳动物细胞：胚胎干细胞（ES细胞）与诱导多能干细胞（iPS细胞）。我们的关注点在于调控这些细胞多能性状态、并可进而产生多种分化细胞类型的基因与蛋白网络。在培养中，这两类多能细胞可用于形成特定类型的分化细胞以供研究之用，或者有朝一日用作"替换零件"，替换患者体内磨损或患病的细胞。iPS细胞可由患多种疾病的患者制备，然后分化成该疾病所累及的那种特定细胞类型；在此我们可以看到，对这类细胞的研究如何能够阐明某个具体个体疾病的深层关键病因。</p>
+<h3 class="subhead">内细胞团是ES细胞的来源</h3>
+<p>胚胎干细胞可从早期哺乳动物胚胎的内细胞团中分离出来，并在附着于一层提供某些必需生长因子的饲养细胞层时在培养中无限期生长（<a class="xref xref-fig" href="#fig-21-5">图21-5</a>a）。正如章首引言所述，培养的ES细胞是多能性的：无论在培养中还是在重新植入宿主胚胎之后，它们都能分化成三个原胚层的多种细胞类型。更具体地说，小鼠ES细胞可注射到早期小鼠胚胎的囊胚腔中，随后将该细胞聚集体通过手术移植到假孕雌鼠的子宫内。注射的ES细胞将参与形成所得嵌合小鼠的绝大多数（即使不是全部）组织（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter6/index.html#fig-6-38">图6-38</a>）。此外，注射的ES细胞常常会产生功能性的精子和卵子，后者又能产生正常的活小鼠。</p>
+<p>在这些实验的一个较新的变体中，宿主囊胚用暂时阻断有丝分裂的药物处理，使其细胞变成四倍体（每条染色体有四个拷贝，不能形成分化的细胞和组织），而注射进去的ES细胞则是二倍体注入囊胚。在这种情况下，囊胚聚集体移植后所出生的小鼠体内所有细胞都源自供体ES细胞。这一发现是有力证据，表明单个小鼠ES细胞确实具有多能性。由于伦理考量以及许多国家的法律限制不允许对人ES细胞进行类似的移植实验，因此缺乏它们具有多能性的正式证明。</p>
+<figure class="fig" id="fig-21-5">
+  <img class="zoomable" src="figures/fig_21-5_1.png" alt="图 21-5" onclick="lightbox(this.src)">
+  <img class="zoomable" src="figures/fig_21-5_2.png" alt="图 21-5" onclick="lightbox(this.src)">
+  <figcaption>实验图21-5 胚胎干细胞（ES细胞）可在培养中维持，并能形成分化细胞类型。(a) 人或小鼠囊胚由体外受精产生的卵裂期胚胎培养而来。ICM与周围的胚外组织分离，并铺在成纤维细胞层上，成纤维细胞通过提供特定的蛋白激素来帮助滋养胚胎细胞。当单个细胞被重新铺板时，它们形成ES细胞集落，可维持许多代并可冷冻保存。如果添加特定的细胞因子，ES细胞也可以在没有成纤维细胞饲养层的情况下培养；例如，白血病抑制因子（LIF）通过触发Stat3转录因子的激活来支持小鼠ES细胞的生长；见 J. S. Odorico et al., 2001, Stem Cells 19:193。(b) 在悬浮培养中任其分化的胚胎干细胞成为称为拟胚体的多细胞聚集体。(c) 含所有三个胚层衍生结构的拟胚体的苏木精-伊红染色切片，这些胚层是在胚胎发生过程中由ICM形成的。图中箭头指向以下组织类型：（左）肠上皮（内胚层），（中）软骨（中胚层），（右）神经上皮玫瑰花结（外胚层）。黑色标尺＝100 μm。[Parts (b) and (c) courtesy of Dr. Lauren Surface and Dr. Laurie Boyer.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">cleavage-stage embryo</td><td class="gl-zh">卵裂期胚胎</td></tr>
+  <tr><td class="gl-en">blastocyst</td><td class="gl-zh">囊胚</td></tr>
+  <tr><td class="gl-en">inner cell mass</td><td class="gl-zh">内细胞团</td></tr>
+  <tr><td class="gl-en">fibroblast</td><td class="gl-zh">成纤维细胞</td></tr>
+  <tr><td class="gl-en">feeder cell</td><td class="gl-zh">饲养细胞</td></tr>
+  <tr><td class="gl-en">ES cell culture</td><td class="gl-zh">ES细胞培养物</td></tr>
+  <tr><td class="gl-en">blastocoel</td><td class="gl-zh">囊胚腔</td></tr>
+  <tr><td class="gl-en">trophoblast</td><td class="gl-zh">滋养层</td></tr>
+  <tr><td class="gl-en">embryoid body</td><td class="gl-zh">拟胚体</td></tr>
+  <tr><td class="gl-en">endoderm</td><td class="gl-zh">内胚层</td></tr>
+  <tr><td class="gl-en">mesoderm</td><td class="gl-zh">中胚层</td></tr>
+  <tr><td class="gl-en">ectoderm</td><td class="gl-zh">外胚层</td></tr>
+  </table>
+</figure>
+<p>重要的是，人ES细胞和小鼠ES细胞都能在培养中分化成多种细胞类型。在悬浮培养时，ES细胞形成多细胞聚集体，称为拟胚体（<a class="xref xref-fig" href="#fig-21-5">图21-5</a>b），它们所形成组织的多样性类似早期胚胎。当拟胚体随后用各种组合的生长因子处理或转移到固体表面时，它们会产生多种分化细胞类型，包括肠上皮、软骨和神经细胞（<a class="xref xref-fig" href="#fig-21-5">图21-5</a>c）。在其他条件下，ES细胞已被诱导在培养中分化成各种特定细胞类型的前体，包括血细胞和色素上皮；正因如此，ES细胞在鉴定使多能细胞定向分化为某一特定细胞谱系的因子方面极为有用。</p>
+<p>早期胚胎的这些细胞具有何种特性，使它们拥有如此惊人的可塑性？正如我们将在下一节看到的，多种因素都在发挥作用：DNA甲基化、转录因子、染色质调控因子和微小RNA都会影响哪些基因被激活。</p>
+<h3 class="subhead">多种因子控制ES细胞的多能性</h3>
+<p>在胚胎发生的最早阶段，随着受精卵开始分裂，父源和母源的DNA都变得去甲基化（见第9章关于DNA甲基化的讨论）。这部分是因为一种关键的维持性甲基转移酶Dnmt1被暂时排除在细胞核之外，部分是因为在早期发育过程中去甲基化酶主动移除或"擦除"5-甲基胞嘧啶残基上的甲基化标记。因此，DNA甲基化模式在最初几次细胞分裂中即被重置，抹去先前DNA上的表观遗传标记，并创造出细胞具有更大潜力走向多样化发育途径的条件。被改造为缺失Dnmt1的小鼠在早期胚胎期死亡，其DNA甲基化程度严重不足。由此类胚胎制备的ES细胞能够在培养中分裂，但与正常ES细胞不同，不能进行体外分化。</p>
+<p>ES细胞的特性还至关重要地依赖于受精后不久产生的主控转录因子的作用。转录因子Oct4、Sox2和Nanog在早期发育中具有必需作用，它们既是胚胎中ICM细胞特化所必需的，也是培养中ES细胞特化所必需的。Oct4和Nanog的表达仅局限于多能细胞，如ICM细胞和培养的ES细胞。Sox2存在于多能细胞中，但其表达在多潜能神经干细胞中也是必需的，后者专门产生神经元和胶质细胞类型（见第22章讨论）。小鼠遗传学研究提示，这三个调控因子作用各异，但可能通过相关途径发挥作用以维持多能细胞的发育潜能。例如，破坏Oct4或Sox2会导致ICM细胞和ES细胞不恰当地分化成滋养外胚层。然而，在ES细胞中强制表达Oct4所产生的表型与Nanog功能丧失所致的表型相似。因此，了解这些转录因子所调控的基因组有可能揭示它们在发育过程中的必需作用。</p>
+<p>这三个转录因子所结合的基因已通过染色质免疫沉淀实验鉴定出来（见第9章）；每种蛋白都存在于一千多个染色体位点上。靶基因编码多种多样的蛋白，包括Oct4、Nanog和Sox2蛋白本身，形成一个自调控环路，其中这三个转录因子各自既诱导自身的表达，也诱导另外两个的表达（<a class="xref xref-fig" href="#fig-21-6">图21-6</a>）。这些转录因子还结合到许多基因的转录控制区，这些基因编码的蛋白和微小RNA对ES细胞的增殖与自我更新很重要。</p>
+<p>饲养细胞提供若干蛋白激素，或向培养基中添加这些激素，以防止ES细胞分化。这些激素包括白血病抑制因子（LIF），它激活Stat3；Wnt，它激活β-catenin转录因子；以及骨形态发生蛋白4（BMP4），它激活Smad1转录因子（见第16章）。在ES细胞中，这三个转录因子结合于被Oct4、Nanog和Sox2蛋白共同占据的多个基因组位点。因此，细胞表面受体激活的信号通路直接偶联到核心多能性环路中基因的调控；这一观察强化了第16章提出的一个观点：由细胞表面受体激活的转录因子常常结合于该类型细胞特有的主控转录因子所占据的基因组位点。</p>
+<figure class="fig" id="fig-21-6">
+  <img class="zoomable" src="figures/fig_21-6_1.png" alt="图 21-6" onclick="lightbox(this.src)">
+  <figcaption>图21-6 调控ES细胞多能性的转录网络。三个主控转录因子Oct4、Sox2和Nanog中的每一个都结合到其自身的启动子上，也结合到另外两个的启动子上（黑线），形成一个正自调控环路，激活这些基因各自的转录。这些转录因子还结合到许多活性基因的转录控制区，这些基因编码对ES细胞增殖和自我更新重要的蛋白和微小RNA；它们也结合到许多在未分化ES细胞中被沉默的基因的转录控制区，这些基因编码对许多分化细胞类型形成必需的蛋白和微小RNA（品红线）。见 L. A. Boyer et al., 2006, Curr. Opin. Genet. Devel. 16:455–462.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">pluripotency</td><td class="gl-zh">多能性</td></tr>
+  <tr><td class="gl-en">self-renewal</td><td class="gl-zh">自我更新</td></tr>
+  <tr><td class="gl-en">differentiation</td><td class="gl-zh">分化</td></tr>
+  <tr><td class="gl-en">Oct4</td><td class="gl-zh">Oct4</td></tr>
+  <tr><td class="gl-en">Sox2</td><td class="gl-zh">Sox2</td></tr>
+  <tr><td class="gl-en">Nanog</td><td class="gl-zh">Nanog</td></tr>
+  <tr><td class="gl-en">Genes</td><td class="gl-zh">基因</td></tr>
+  <tr><td class="gl-en">Proteins</td><td class="gl-zh">蛋白</td></tr>
+  </table>
+</figure>
+<p>控制基因转录的染色质调控因子（见第9章）在ES细胞中也很重要。在果蝇中，Polycomb组蛋白形成复合物，以维持先前由DNA结合转录因子建立的基因抑制状态。两个与果蝇Polycomb蛋白相关的哺乳动物蛋白复合物PRC1和PRC2（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter9/index.html#fig-9-48">图9-48</a>）在ES细胞中很丰富。缺乏PRC2组分的早期小鼠胚胎表现出早期发育缺陷。PRC2复合物通过向组蛋白H3第27位赖氨酸添加甲基来发挥作用，从而改变染色质结构以抑制基因。（请注意，这里的甲基化发生在蛋白的某个氨基酸上，这种调控类型与DNA中胞嘧啶残基的甲基化不同。）在ES细胞中，PRC1和PRC2都沉默那些所编码的蛋白或微小RNA（miRNA）否则会诱导分化成特定类型细胞的基因；Polycomb蛋白还将这些基因维持在一个表观遗传的"预激活"状态，使它们准备好稍后在特定发育基因表达程序的正确执行过程中被激活。因此，缺乏PRC2功能的ES细胞不能正常分化。</p>
+<p>许多其他调控因子在极早期发育中控制基因表达和维持多能性方面发挥重要作用。例如，编码miRNA let-7的基因在ES细胞中转录，但其前体RNA转录物不被切割形成成熟、有功能的miRNA。ES细胞表达一种受发育调控的RNA结合蛋白，称为Lin28，它结合到let-7前体RNA上并阻止其被切割。在ES细胞中实验性表达成熟的let-7 miRNA会阻断其进行自我更新的能力，因此Lin28对let-7加工的抑制对于多能性是必需的。</p>
+<p>正如我们稍后将看到的，利用胚胎干细胞治疗性地恢复或替换受损组织的可能性，正在推动大量关于如何诱导它们分化成特定细胞类型的研究。除了在治疗疾病方面可能带来的益处外，ES细胞在产生用于研究各种疾病、发育机制、行为和生理学的小鼠突变体方面已证明极为宝贵。利用第6章所述的重组DNA技术，可以消除或修饰ES细胞中某一特定基因的功能（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter6/index.html#fig-6-38">图6-38</a>）。然后可用突变后的ES细胞来产生基因敲除小鼠（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter6/index.html#fig-6-39">图6-39</a>）。以这种方式分析删除或修饰某个基因所产生的效应，常常为该基因及其编码蛋白的正常功能提供线索。</p>
+<h3 class="subhead">动物克隆表明分化是可逆的</h3>
+<p>尽管不同细胞类型可能转录基因组的不同部分，但在大多数情况下基因组在所有细胞中都是相同的。在免疫系统的T淋巴细胞和B淋巴细胞从造血前体发育的过程中，基因组的某些片段会被重排和丢失（见第23章），但大多数体细胞似乎具有完整的基因组，与生殖系中的基因组相当。至少部分体细胞拥有完整且有功能的基因组的证据，来自通过核移植成功产生克隆动物。在这一常被称为体细胞核移植（SCNT）的操作中，一个成体体细胞的核被导入一个已去除核的卵中；经此操作的卵含有二倍体数目的染色体，相当于受精卵，随后被植入寄养母体。指导胚胎发育的唯一遗传信息来源是供体体细胞的核基因组。然而，通过SCNT产生克隆动物的效率很低，加上克隆动物中肥胖等疾病的发生率很高，这令人质疑究竟有多少成体体细胞确实拥有完整且有功能的基因组，以及那些确实拥有的细胞能否被完全重编程为多能性未分化状态。即便是成功的例子，如著名的克隆羊"Dolly"，也存在一些医学问题。即使分化细胞拥有物理上完整的基因组，显然其中只有一部分具有转录活性（见第9章）。例如，一个细胞可能拥有完整的基因组，但由于遗传下来的染色质表观遗传状态而无法正确地重新激活特定基因。</p>
+<p>分化细胞的基因组能够恢复ES细胞所特有的全部发育潜能的进一步证据，来自这样一些实验：嗅觉感觉神经元——通常不会再分裂的有丝分裂后细胞——被用绿色荧光蛋白（GFP）进行遗传标记，然后用作细胞核的供体（<a class="xref xref-fig" href="#fig-21-7">图21-7</a>）。当来自分化嗅觉感觉神经元的细胞核被植入去核的小鼠卵母细胞时，其中一小部分发育成产生GFP的囊胚。这些囊胚被用来建立ES细胞系，后者又被用来产生小鼠胚胎。这些完全源自嗅觉感觉神经元基因组的胚胎形成了健康的、发绿色荧光的小鼠。因此，至少在某些情况下，分化细胞的基因组可以被完全重编程，以形成小鼠的所有组织。</p>
+<h3 class="subhead">体细胞可产生iPS细胞</h3>
+<p>由于体细胞核移植效率低下，人们仍不清楚是否所有类型的哺乳动物体细胞都保留了完整的基因组，以及它们能否被诱导去分化成类似ES细胞的状态。山中伸弥（Shinya Yamanaka）使用逆转录病毒载体在培养的成纤维细胞中单独或组合表达多种转录因子。引人注目的是，他发现人和小鼠成纤维细胞都可通过用只编码四种蛋白——KLF4、Sox2、Oct4和Myc——的逆转录病毒转化，被重编程为一种多能性状态，称为诱导多能干细胞状态，与胚胎干细胞的状态相似。请注意，其中两种，Sox2和Oct4，正是前面讨论过的在ES细胞中表达的两个主控转录因子。除成纤维细胞外，角质形成细胞（形成皮肤的细胞）和其他类型的分化细胞也已被重编程为iPS细胞。与ES细胞一样，单个小鼠iPS细胞可被实验性地导入囊胚并形成小鼠的所有组织，包括生殖细胞，这证明体细胞确实可以被重编程为胚胎多能性状态。</p>
+<p>另外几种转录因子，甚至某些小分子有机化合物，都能在Yamanaka重编程"鸡尾酒"中替代Oct4基因。随后的分析发现，这些因子中的每一个都直接激活内源性（细胞自身的）Oct4基因的转录，从而诱导多能性。因此有人假设，随着时间的推移，强制表达转录因子基因会激活许多细胞基因的表达，包括编码Oct4和其他多能性蛋白的基因；在数周的过程中，这种激活将体细胞重编程为类似ES细胞的状态。为了从实验上确立内源基因的激活导致重编程为ES样状态这一点，培养的角质形成细胞被反复转染编码四种经典的Yamanaka转录因子KLF4、Sox2、Oct4和Myc的合成mRNA。这些培养细胞产生了正常的iPS细胞，其中没有任何外源添加mRNA的痕迹，证明仅通过诱导正常细胞基因的表达即可将角质形成细胞重编程为iPS细胞。</p>
+<p>在成纤维细胞中，大多数与多能性相关的基因的染色质无法被转录因子结合，这主要是由于抑制性的组蛋白H3第9位赖氨酸三甲基化（H3K9Me3）标记。在被Oct4激活的基因中有两个编码H3K9去甲基化酶，它们移除这些抑制性染色质标记，并随时间推移导致多能性基因的激活。与这一观点一致，这些H3K9去甲基化酶的表达在重编程过程中增加，而敲低它们会抑制高效的iPS细胞产生。确实，重编程涉及表观遗传修饰的重大变化，包括DNA甲基化以及其他几种组蛋白修饰，这些修饰用于抑制或允许数百个基因的潜在激活。</p>
+<figure class="fig" id="fig-21-7">
+  <img class="zoomable" src="figures/fig_21-7_1.png" alt="图 21-7" onclick="lightbox(this.src)">
+  <figcaption>实验图21-7 可通过来自嗅觉神经元的体细胞核移植克隆小鼠。(a) 使用来自嗅觉感觉神经元的细胞核产生克隆ES细胞系、并用它们产生克隆小鼠的程序。步骤1：从一只仅在其嗅觉神经元中表达绿色荧光蛋白（GFP）的小鼠中分离出的嗅觉感觉神经元的细胞核，被用来替换小鼠卵的细胞核，所得的受精卵培养至囊胚阶段（步骤2）。ICM细胞——它们全部是原始嗅觉感觉神经元的克隆，且全部表达GFP——被用来建立ES细胞系（步骤3）。步骤4：这些ES细胞被注射到四倍体囊胚中。步骤5：当该囊胚被移植到假孕小鼠的子宫中时，来自宿主囊胚的四倍体细胞能形成胎盘（灰色），但不能形成胚胎本体；因此，胚胎本体以及由其发育而来的小鼠中的所有细胞都表达GFP（步骤6）。(b–c) (b) 核移植囊胚和(c) 从ICM分离得到的ES细胞的明场（上）和荧光（下）图像。(d) 一只对照的12小时龄小鼠（上）和一只由嗅觉感觉神经元克隆而来的小鼠，其所有细胞都表达GFP（下）。[Parts (b–d) reprinted by permission from Macmillan Publishers Lt, from Eggan, K., et al., “Mice cloned from olfactory sensory neurons,” Nature, 2004, 428(6978):44–9.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">olfactory sensory neuron</td><td class="gl-zh">嗅觉感觉神经元</td></tr>
+  <tr><td class="gl-en">mouse egg</td><td class="gl-zh">小鼠卵</td></tr>
+  <tr><td class="gl-en">blastocyst</td><td class="gl-zh">囊胚</td></tr>
+  <tr><td class="gl-en">tetraploid blastocyst</td><td class="gl-zh">四倍体囊胚</td></tr>
+  <tr><td class="gl-en">inner cell mass</td><td class="gl-zh">内细胞团</td></tr>
+  <tr><td class="gl-en">nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">ovum</td><td class="gl-zh">卵</td></tr>
+  <tr><td class="gl-en">placenta</td><td class="gl-zh">胎盘</td></tr>
+  <tr><td class="gl-en">embryo</td><td class="gl-zh">胚胎</td></tr>
+  <tr><td class="gl-en">ES cell</td><td class="gl-zh">ES细胞</td></tr>
+  <tr><td class="gl-en">host cell</td><td class="gl-zh">宿主细胞</td></tr>
+  <tr><td class="gl-en">GFP</td><td class="gl-zh">GFP（绿色荧光蛋白）</td></tr>
+  </table>
+</figure>
+<p>由于iPS细胞可从患有难以理解疾病的患者的体细胞中获得，它们在揭示若干疾病的分子和细胞基础方面已证明极为宝贵（<a class="xref xref-fig" href="#fig-21-8">图21-8</a>）。以肌萎缩侧索硬化（ALS）为例，它常被称为Lou Gehrig病，是一种致死性疾病，其中连接脊髓与身体肌肉的运动神经元逐渐死亡，导致肌无力和死亡、肢体瘫痪，最终因呼吸衰竭而死亡。此病无法治愈。</p>
+<p>在约10%的患者中，该病呈显性遗传（家族性ALS），但在90%的患者中，没有明显的遗传连锁（散发性ALS）。多年来，从分子和细胞水平分析该病的深层病因是不可能的，因为人们无法简单地从活人体内取出神经元或其周围的胶质细胞并对其进行分析或培养。</p>
+<p>在约20%的家族性ALS患者中，编码Cu/Zn超氧化物歧化酶1的基因SOD1存在点突变；突变型SOD1蛋白形成可损伤细胞的聚集体。约40%的家族性ALS患者和10%的非遗传型患者携带C9ORF72基因（功能未知；全称9号染色体开放阅读框72）的突变。这种突变也常出现在额颞叶痴呆患者中，后者是仅次于阿尔茨海默病的第二常见痴呆类型，这解释了为什么有些人会同时患上这两种疾病。正常人C9ORF72基因转录出的mRNA含有最多30个六核苷酸GGGGCC重复，但致ALS的突变基因可有数千个这样的重复。</p>
+<figure class="fig" id="fig-21-8">
+  <img class="zoomable" src="figures/fig_21-8_1.png" alt="图 21-8" onclick="lightbox(this.src)">
+  <figcaption>图21-8 iPS细胞的医学应用。在这个例子中，患者患有由某些神经细胞（神经元）异常引起的神经退行性疾病。患者特异性iPS细胞——本例中是通过在从皮肤活检分离的细胞中重组表达转录因子而获得的——可以以两种方式之一使用。在致病突变已知的情况下（例如家族性帕金森病），可使用基因打靶来修复DNA序列（右）。经基因校正的患者特异性iPS细胞随后将定向分化成受累的神经元亚型（例如中脑多巴胺能神经元），并被移植到患者脑中（以植入黑质纹状体轴）。或者，将患者特异性iPS细胞定向分化成受累的神经元亚型（左），将允许在体外对该患者的疾病进行建模，并可筛选潜在药物，有助于发现新的治疗化合物。见 D. A. Robinton and G. Q. Daley, 2012, Nature 481:295.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">patient-specific iPS cell</td><td class="gl-zh">患者特异性iPS细胞</td></tr>
+  <tr><td class="gl-en">skin biopsy</td><td class="gl-zh">皮肤活检</td></tr>
+  <tr><td class="gl-en">repaired iPS cell</td><td class="gl-zh">修复后的iPS细胞</td></tr>
+  <tr><td class="gl-en">healthy neuron</td><td class="gl-zh">健康神经元</td></tr>
+  <tr><td class="gl-en">affected neuron</td><td class="gl-zh">受累神经元</td></tr>
+  <tr><td class="gl-en">disease-specific drug</td><td class="gl-zh">疾病特异性药物</td></tr>
+  <tr><td class="gl-en">therapeutic compound</td><td class="gl-zh">治疗化合物</td></tr>
+  <tr><td class="gl-en">gene targeting</td><td class="gl-zh">基因打靶</td></tr>
+  <tr><td class="gl-en">in vitro differentiation</td><td class="gl-zh">体外分化</td></tr>
+  <tr><td class="gl-en">MYC</td><td class="gl-zh">MYC</td></tr>
+  <tr><td class="gl-en">OCT4</td><td class="gl-zh">OCT4</td></tr>
+  <tr><td class="gl-en">KLF4</td><td class="gl-zh">KLF4</td></tr>
+  <tr><td class="gl-en">SOX2</td><td class="gl-zh">SOX2</td></tr>
+  </table>
+</figure>
+<p>在数项研究中，源自患有这些及其他家族性和散发性ALS的老年患者皮肤细胞的iPS细胞，被成功地在培养中分化形成运动神经元；这一成功证明了利用iPS细胞的自我更新来产生几乎无限供应的、ALS特异性累及细胞的可行性。一项研究显示，携带几种ALS突变的运动神经元处于超兴奋状态，产生的被称为动作电位的电信号（见第22章）比正常情况更多。这种过度兴奋还使这些神经元在蛋白折叠方面出现更多错误，并积累错误折叠的蛋白，导致细胞功能异常。在来自携带C9ORF72突变的患者的iPS衍生神经元中，含大量重复GGGGCC序列的RNA处于聚集体中，与多种对正常细胞功能重要的RNA结合蛋白结合；这种结合阻止了这些蛋白催化其他细胞mRNA生成中的关键步骤。总体而言，C9ORF72突变使运动神经元产生异常量的许多其他细胞RNA，并使这些细胞对应激非常敏感。</p>
+<p>在一项旨在剖析ALS分子病因的独立研究中，运动神经元由人ES或iPS细胞产生，并与原代人星形胶质细胞共培养，后者是一种围绕神经元并调控其若干功能的胶质细胞（见图22-17）。许多运动神经元在星形胶质细胞表达突变型SOD1时死亡，而在其表达野生型时则不死，提示至少在这种家族性ALS中，缺陷细胞既包括星形胶质细胞也包括运动神经元。确实，表达突变型SOD1的星形胶质细胞分泌了对邻近运动神经元有毒的蛋白因子。</p>
+<p>在这些以及其他几项研究中，研究人员筛选了数千种小分子有机化合物（包括许多已被批准用于治疗其他无关疾病的药物），以寻找能逆转ALS iPS细胞衍生运动神经元异常的化合物。有几种被鉴定出来，并正在临床试验中检验它们能否减缓或阻止ALS的破坏性后果。无论如何，这些实验说明了iPS细胞和ES细胞在建立许多难以研究的人类疾病细胞培养模型方面的价值，这些模型可用于筛选有可能治疗许多目前尚无法治疗的疾病的药物。 ■</p>
+<h3 class="subhead">ES细胞与iPS细胞可产生功能性的人分化细胞</h3>
+<p>源自人iPS细胞的神经元和胶质细胞以及其他细胞类型已被植入小鼠，取得了一些有希望的结果。干细胞衍生的心肌细胞（即心脏的肌肉细胞）可纠正心律失常；某些胶质细胞——少突胶质细胞——在帮助实验性脊髓损伤恢复方面显示出前景；视网膜上皮细胞可部分纠正失明小鼠模型的缺陷。</p>
+<p>一项最新的进展——从人iPS和ES细胞产生正常的分泌胰岛素的β胰岛细胞——显示出治疗1型和2型糖尿病的前景。1型糖尿病由自身免疫性破坏胰腺β细胞所致，而更常见的2型糖尿病由肝脏和肌肉中的胰岛素抵抗所致（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-40">图16-40</a>），最终导致β细胞功能障碍和死亡。接受尸体来源人胰岛移植的患者可在5年或更长时间内不再依赖胰岛素，但这种方法因供体胰岛的稀缺和质量问题而受限；因此，从干细胞获得几乎无限供应的人β细胞的可能性，有可能将这种疗法扩展到数百万新患者。</p>
+<p>成功产生这些β细胞的一个关键，是采用不同生长因子组合的连续处理，刺激iPS或ES细胞走过正常的胚胎发育程序，即未分化ICM细胞的后代形成β细胞的过程（<a class="xref xref-fig" href="#fig-21-9">图21-9</a>a）。所得所谓的SC-β细胞，其结构与正常β胰岛细胞非常相似，包括充满近乎结晶状胰岛素的分泌颗粒（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter14/index.html#fig-14-23">图14-23</a>）；它们还能在培养基葡萄糖水平升高时分泌正常量的胰岛素。移植入小鼠后不久，这些细胞便以受葡萄糖调控的方式向血清中分泌人胰岛素。最重要的是，将这些细胞移植到免疫缺陷糖尿病小鼠体内后，其高血糖水平被降低至正常（<a class="xref xref-fig" href="#fig-21-9">图21-9</a>b），表明这些胰岛细胞——它们可在培养中几乎无限量地产生——有用于治疗糖尿病的潜力。用于鉴定能改善β细胞功能、存活或增殖的新药的筛选，也可以利用这样一批均一的干细胞衍生β细胞。</p>
+<p>这些SC-β细胞无疑是未来发展的先声。未来几年必定会看到从人iPS细胞开发出许多其他类型的分化细胞，可用作治疗各种疾病的"替换零件"。然而，在能够充分评估使用人ES细胞或iPS细胞进行治疗的可行性之前，必须回答许多重要问题。例如，当未分化的人或小鼠ES细胞或iPS细胞被移植到实验小鼠体内时，它们会形成畸胎瘤，这是一种含有大量部分分化细胞类型的肿瘤。因此，必须确保用于植入的所有ES细胞或iPS细胞确实已经分化，并且已失去多能性及其诱导畸胎瘤或引起其他问题的能力。</p>
+<div class="key-concepts" id="kc-21-2"><div class="kc-head">第 21.2 节 · 关键概念</div><div class="kc-title">胚胎干细胞与诱导多能干细胞</div><ul><li>内细胞团既是胚胎本体的来源，也是胚胎干细胞的来源。</li><li>培养的胚胎干细胞（ES细胞）具有多能性，能够产生该生物体除胚外组织以外的所有分化细胞类型。它们在产生遗传改造小鼠方面很有用，并具有治疗用途的潜力。</li><li>ES细胞的多能性受多种因子控制，包括DNA甲基化状态、染色质调控因子、某些微小RNA，以及转录因子Oct4、Sox2和Nanog。</li><li>动物克隆证明细胞分化是可以逆转的。</li><li>诱导多能干细胞（iPS细胞）可通过表达关键转录因子的组合而由体细胞形成，这些转录因子包括KLF4、Sox2、Oct4和Myc。</li><li>正如ALS这一例子所示，由人iPS细胞在培养中产生的分化细胞既可用于了解某种疾病的深层病因，也可用于筛选可能治疗该病的药物。</li><li>由人iPS细胞在培养中产生的β胰岛细胞，能在培养基葡萄糖升高时正常分泌胰岛素，并逆转糖尿病小鼠的高血糖水平。</li></ul></div>
+<figure class="fig" id="fig-21-9">
+  <img class="zoomable" src="figures/fig_21-9_1.png" alt="图 21-9" onclick="lightbox(this.src)">
+  <figcaption>图21-9 从人iPS或ES细胞产生正常的分泌胰岛素的β胰岛细胞。(a) 人ES或iPS细胞定向分化为分泌胰岛素的β胰岛细胞的示意图。数百个人ES或iPS细胞的团簇在含所示生长因子的培养基中依次培养所示的天数，以首先产生定型内胚层细胞，然后产生一系列胰腺祖细胞，接着产生胰腺内分泌祖细胞，最后产生干细胞衍生的、生成胰岛素的β胰岛细胞（称为SC-β细胞）。Act A，激活素A；CHIR，GSK3抑制剂；KGF，角质形成细胞生长因子；RA，维甲酸；SANT1，Sonic Hedgehog通路拮抗剂；LDN，一种BMP 1型受体抑制剂；PdbU，一种蛋白激酶C激活剂；Alk5i，Alk5受体抑制剂II；T3，三碘甲状腺原氨酸，一种甲状腺激素；XXI，γ-分泌酶抑制剂；betacellulin，一种EGF家族成员。(b) SC-β细胞可用于治疗小鼠糖尿病。这些实验使用了一株糖尿病小鼠，其胰岛素基因存在突变，并且若干免疫系统基因也存在突变，使得这些动物不会排斥人体组织移植。此前的工作已表明，这些小鼠升高的血糖水平可通过移植人胰岛而恢复正常。在本实验中，小鼠被移植SC-β细胞（黑圈）或相同数量的对照胰腺祖细胞（白圈）。实验开始时，这些小鼠的平均血糖水平约为11 mM，远高于正常的5 mM。对照组小鼠的平均血糖水平持续上升至约30 mM，表明患有严重糖尿病，而移植了人SC-β细胞的小鼠，血糖降至接近正常的5 mM。[Part (b) data from F. Pagliuca et al., 2014, Cell 159:428.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">definitive endoderm</td><td class="gl-zh">定型内胚层</td></tr>
+  <tr><td class="gl-en">hPSC</td><td class="gl-zh">人多能干细胞（hPSC）</td></tr>
+  <tr><td class="gl-en">pancreatic progenitor cell</td><td class="gl-zh">胰腺祖细胞</td></tr>
+  <tr><td class="gl-en">endocrine progenitor</td><td class="gl-zh">内分泌祖细胞</td></tr>
+  <tr><td class="gl-en">SC-β cell</td><td class="gl-zh">SC-β细胞</td></tr>
+  <tr><td class="gl-en">Act A</td><td class="gl-zh">激活素A</td></tr>
+  <tr><td class="gl-en">CHIR</td><td class="gl-zh">CHIR（GSK3抑制剂）</td></tr>
+  <tr><td class="gl-en">KGF</td><td class="gl-zh">角质形成细胞生长因子（KGF）</td></tr>
+  <tr><td class="gl-en">RA</td><td class="gl-zh">维甲酸（RA）</td></tr>
+  <tr><td class="gl-en">SANT1</td><td class="gl-zh">SANT1（Sonic Hedgehog通路拮抗剂）</td></tr>
+  <tr><td class="gl-en">LDN</td><td class="gl-zh">LDN（BMP 1型受体抑制剂）</td></tr>
+  <tr><td class="gl-en">PdbU</td><td class="gl-zh">PdbU（蛋白激酶C激活剂）</td></tr>
+  <tr><td class="gl-en">Alk5i</td><td class="gl-zh">Alk5i（Alk5受体抑制剂II）</td></tr>
+  <tr><td class="gl-en">T3</td><td class="gl-zh">三碘甲状腺原氨酸（T3）</td></tr>
+  <tr><td class="gl-en">XXI</td><td class="gl-zh">XXI（γ-分泌酶抑制剂）</td></tr>
+  <tr><td class="gl-en">betacellulin</td><td class="gl-zh">betacellulin（EGF家族成员）</td></tr>
+  <tr><td class="gl-en">time post-transplantation</td><td class="gl-zh">移植后时间</td></tr>
+  <tr><td class="gl-en">fasting blood glucose</td><td class="gl-zh">空腹血糖</td></tr>
+  </table>
+</figure>
+<h2 id="sec-21.3">21.3 多细胞生物中的干细胞与龛</h2>
+<p>许多分化细胞类型会从身体脱落，或其寿命短于生物体本身的寿命。疾病和创伤也可导致分化细胞丢失。由于大多数类型的分化细胞不分裂，它们必须由附近的体细胞干细胞群体补充。在脊椎动物和大多数无脊椎动物中，这类干细胞与多能性ES细胞不同，是多潜能性的，因为它们能产生生物体中存在的部分（而非全部）细胞类型。出生后（成体）脊椎动物体内许多组织都含有干细胞，包括血液、肠道、皮肤、卵巢、睾丸和肌肉。甚至成体大脑的某些部位——那里通常很少发生细胞分裂——也有一群干细胞（见第22章）。在横纹肌中，干细胞对愈合最为重要，因为其他时候细胞分裂相对很少。其他一些细胞类型，如肝细胞（hepatocyte）和分泌胰岛素的β胰岛细胞，主要靠已分化细胞的分裂来繁殖，例如手术切除大块肝脏后肝脏的再生。这些组织是否也含有能产生这些类型分化细胞的干细胞，尚存争议。</p>
+<h3 class="subhead">成体涡虫含有多能性干细胞</h3>
+<p>我们在第1章提到，涡虫的小块身体片段能再生出完整的动物。已知再生需要一群遍布成体全身的、称为新生细胞（neoblast）的增殖性干细胞样细胞，但一个关键问题是：再生究竟像大多数具有这种能力的动物那样，由多种谱系受限的干细胞或祖细胞共同活动完成，还是有干细胞参与。最近的实验表明，成体涡虫既有谱系受限的新生细胞，也有多能性干细胞，后者称为cNeoblast。</p>
+<p>关键研究用伽马射线照射来抑制成体涡虫的大部分或全部细胞分裂；处理过的动物无法再生，并因衰老分化细胞无法被替换而出现大量组织丢失。照射后残留的少数有功能的增殖性新生细胞，可通过一个称为smedwi-1的标志基因来识别。照射数天后，单个新生细胞形成了smedwi-1阳性细胞集落，其中含有多种类型的分化体细胞（见章首插图），于是有人推测这个smedwi-1阳性新生细胞亚群是多能性的。为检验这一假说，研究者把单个新生细胞移植到自身新生细胞已被全部杀灭的、受过致死剂量照射的涡虫体内。值得注意的是，若干移植受体存活超过了7周，并从单个移植细胞再生出分布全身的神经元、肠道及其他分化细胞类型。这些动物最终恢复了摄食行为，并再生出包括光感受器在内的复杂组织。这些实验表明，成体涡虫的新生细胞干细胞中至少有一些确实是多能性的，这为涡虫非凡的再生能力提供了细胞学基础。尽管付出很多努力，但从未在任何成体脊椎动物中可靠地鉴定出多能性干细胞。</p>
+<h3 class="subhead">多潜能体细胞干细胞既产生干细胞也产生分化中的细胞</h3>
+<p>成体后生动物中最常见的干细胞类型——多潜能体细胞干细胞——产生构成身体组织的各种特化细胞。多潜能体细胞干细胞有三个关键特性（<a class="xref xref-fig" href="#fig-21-10">图21-10</a>）：1. 它们能产生多种类型的分化细胞；也就是说，它们是多潜能性的。在这个意义上，它们不同于祖细胞（也称前体细胞），后者通常只产生单一类型的分化细胞。干细胞有能力产生若干种不同的细胞类型，但不是所有细胞类型；也就是说，它不像ES细胞那样是多能性的。例如，一个多潜能血液干细胞会生成更多自身以及多种类型的血细胞，但绝不会生成皮肤细胞或肝细胞。</p>
+<p>2. 它们是干细胞，因为未分化；一般来说，它们不表达由其子代所形成的分化细胞类型所特有的蛋白质。</p>
+<p>3. 某一特定类型的干细胞数量通常在胚胎发育期间增加，随后在个体余下的生命里保持相对恒定。在这个意义上，干细胞常被说成是不朽的，尽管没有任何一个干细胞能存活到动物的一生结束。事实上，当慢性组织损伤、反复多轮化疗或损害基因组完整性的遗传缺陷迫使干细胞比正常情况更频繁地分裂时，干细胞始终表现出有限的复制能力。</p>
+<p>干细胞的两个关键特性共同将它们与所有其他细胞区分开来：在许多次细胞分裂中自我复制的能力（自我更新），以及产生潜能更受限的子代的能力。成体体内的许多类型干细胞很少分裂；它们被"储备"起来，以备需要某些类型的分化细胞时使用。相反，它们的非干细胞女儿细胞常常经历许多轮快速细胞分裂。这类细胞常称为短暂扩增细胞（见<a class="xref xref-fig" href="#fig-21-10">图21-10</a>），其自我更新能力可能有限，但最终它们的众多子代形成谱系受限的祖细胞。这些细胞又能分裂，并产生非常特定类型的终末分化细胞。</p>
+<p>干细胞可以表现出几种细胞分裂模式。某些类型的干细胞总是进行不对称分裂，产生一个与亲代细胞相同的细胞和一个能力更受限的女儿干细胞，例如只能分裂有限时间，或产生的子代类型比亲代干细胞少（<a class="xref xref-fig" href="#fig-21-11">图21-11</a>a）。这种类型的干细胞分裂常见于无脊椎动物，如下面将要讨论的果蝇。</p>
+<p>其他常见于脊椎动物的干细胞分裂模式，则允许干细胞或分化细胞的数目随动物的需要而增加或减少（<a class="xref xref-fig" href="#fig-21-11">图21-11</a>b、c）。邻近细胞释放的激素常常调控这些干细胞分裂模式。例如，一个干细胞可进行对称分裂，产生两个命运不同的女儿细胞：取决于其他细胞发出的外部信号，一个可能保持为干细胞，另一个可能产生分化子代。正如我们稍后将更详细看到的，这种情况发生在小肠中：通常其中一个女儿细胞保持为与亲代相同的干细胞，而另一个女儿细胞快速分裂并产生四种类型的分化肠道细胞。另一些干细胞分裂是对称的，产生两个干细胞并增加某一特定类型干细胞的数量；这种干细胞分裂模式在发育过程中很常见。因此，干细胞的有丝分裂既可扩大干细胞群体，也可在持续产生分化细胞流的同时维持干细胞群体。</p>
+<h3 class="subhead">不同组织的干细胞占据维持性龛</h3>
+<p>干细胞需要合适的微环境来保持多潜能性并调控其分裂的时机和模式。除了内在的调控信号——比如某些转录因子和其他调控蛋白的存在——干细胞还依赖来自周围细胞的外源激素信号及其他调控信号来维持其干细胞身份。能维持干细胞命运的位置称为干细胞龛，这是类比于生态龛——即支持某一特定生物存在并具有竞争优势的位置。由龛所赋予的内在调控与外源调控的正确组合，将创建并维持一个干细胞群体。</p>
+<figure class="fig" id="fig-21-10">
+  <img class="zoomable" src="figures/fig_21-10_1.png" alt="图 21-10" onclick="lightbox(this.src)">
+  <figcaption>图21-10 从干细胞到谱系受限祖细胞再到分化细胞的途径。平均而言，在多潜能体细胞干细胞的每一次分裂中，至少有一个女儿细胞成为与亲代细胞一样的干细胞。因此，干细胞进行自我更新分裂，使得某一特定类型干细胞的数量在生物体一生中保持恒定或增加。其他女儿细胞称为短暂扩增细胞，它们快速分裂并经历有限次数的自我更新分裂，但最终产生谱系受限的祖细胞。这些细胞不能进行自我更新分裂，但能分裂并产生某一特定类型的分化细胞。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Stem cell</td><td class="gl-zh">干细胞</td></tr>
+  <tr><td class="gl-en">Transient amplifying cell</td><td class="gl-zh">短暂扩增细胞</td></tr>
+  <tr><td class="gl-en">Lineage-restricted progenitor cell</td><td class="gl-zh">谱系受限祖细胞</td></tr>
+  <tr><td class="gl-en">Cell type A progenitor</td><td class="gl-zh">A型细胞祖细胞</td></tr>
+  <tr><td class="gl-en">Cell type B progenitor</td><td class="gl-zh">B型细胞祖细胞</td></tr>
+  <tr><td class="gl-en">Differentiated cell type A</td><td class="gl-zh">分化细胞类型A</td></tr>
+  <tr><td class="gl-en">Differentiated cell type B</td><td class="gl-zh">分化细胞类型B</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-11">
+  <img class="zoomable" src="figures/fig_21-11_1.png" alt="图 21-11" onclick="lightbox(this.src)">
+  <figcaption>图21-11 干细胞分化的模式。不同的干细胞分裂模式产生不同比例的干细胞（红色）和分化中的细胞（绿色）。干细胞分裂必须满足三个目标：必须维持干细胞群体；有时必须增加干细胞数量；以及在恰当时机产生继续分化的细胞。(a) 干细胞可进行不对称分裂，产生一个干细胞和一个分化中的细胞。这种模式不增加干细胞群体。(b) 一些干细胞可进行对称分裂以增加其群体，这在正常发育中或损伤恢复期间可能有用，同时同一群体中的其他干细胞可按(a)那样进行不对称分裂。(c) 一些干细胞可按(b)那样分裂，同时另一些干细胞产生两个分化子代。见 S. J. Morrison and J. Kimble, 2006, Nature 441:1068–1074.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Maintain stem cell population</td><td class="gl-zh">维持干细胞群体</td></tr>
+  <tr><td class="gl-en">Increase stem cells</td><td class="gl-zh">增加干细胞</td></tr>
+  <tr><td class="gl-en">Increase differentiating cells</td><td class="gl-zh">增加分化中的细胞</td></tr>
+  <tr><td class="gl-en">Stem cell</td><td class="gl-zh">干细胞</td></tr>
+  <tr><td class="gl-en">Differentiated cell</td><td class="gl-zh">分化细胞</td></tr>
+  </table>
+</figure>
+<p>为了研究或利用干细胞，我们必须找到它们并对其进行表征。精确鉴定干细胞往往很困难；它们在细胞中非常稀少，且一般没有独特的形态。大多数干细胞很少分裂，甚至完全不分裂，直到被传达需要新细胞的信号所刺激。例如，氧供应不足可刺激血液干细胞分裂，皮肤损伤可刺激再生性细胞分裂，后者始于干细胞的激活。有些干细胞，包括那些形成持续脱落的肠上皮的干细胞，则持续分裂，通常速率缓慢。在本节余下部分，我们将聚焦于植物和动物中四类已被充分表征的干细胞；未来几年，其他类型的干细胞也将被了解得非常详尽。</p>
+<h3 class="subhead">生殖系干细胞产生精子或卵母细胞</h3>
+<p>生殖系是产生卵母细胞和精子的细胞谱系。它不同于构成所有其他组织但不传给子代的体细胞。生殖系与体细胞谱系一样，始于干细胞，但这些干细胞是单能性的，因为它们只产生生殖细胞。在果蝇和秀丽隐杆线虫的生殖系干细胞（GSC）研究中，干细胞龛被定义得格外清楚。生殖系干细胞存在于成体蝇和蠕虫中，这些干细胞的位置也已众所周知。</p>
+<p>在果蝇中，卵母细胞前体形成并开始分化的龛位于生殖区（germarium）末端附近，生殖区是卵巢中形成卵子的部分（<a class="xref xref-fig" href="#fig-21-12">图21-12</a>a）。此位置有两三个生殖系干细胞，旁边是少数帽细胞（cap cell），帽细胞通过分泌TGF-β家族的两个蛋白Dpp和Gbb以及Hedgehog（Hh）蛋白来创建该龛（<a class="xref xref-fig" href="#fig-21-12">图21-12</a>b）。（这些分泌型蛋白信号在第16章介绍过。）帽细胞之所以能创建龛，是因为它们发出的TGF-β类信号抑制了邻近生殖系干细胞中一个关键分化因子——Bag of marbles（Bam）蛋白——的转录。bam基因被抑制使生殖系干细胞得以进行自我更新分裂，而bam的激活则促进分化。当一个生殖系干细胞分裂时，产生的两个女儿细胞之一仍与帽细胞相邻，因而像亲代细胞一样被维持为干细胞。另一个女儿细胞离帽细胞太远，接收不到帽细胞来源的信号Dpp和Gbb。结果，Bam表达开启，使该女儿细胞进入分化程序。参与其中的信号有一部分是通过果蝇遗传学的威力鉴定出来的：Dpp或Gbb受体、或其下游信号转导蛋白有缺陷的突变生殖系干细胞会过早丢失。反过来，帽细胞过量表达Dpp会阻止生殖系干细胞分化，并导致形成肿瘤样细胞团块。</p>
+<p>干细胞靠跨膜细胞表面蛋白E-cadherin（见第20章）固定于龛中，E-cadherin通过与帽细胞上相似的E-cadherin分子进行同型相互作用而形成黏着连接。这些黏着连接使生殖系干细胞的有丝分裂纺锤体取向，从而使一个女儿细胞保持附着在帽细胞上，另一个则被移出龛；类似的不对称干细胞分裂也发生在果蝇的其他发育阶段，我们稍后会讨论（见下文<a class="xref xref-fig" href="#fig-21-30">图21-30</a>和<a class="xref xref-fig" href="#fig-21-31">图21-31</a>）。Armadillo（Arm），即果蝇的β-catenin，把E-cadherin分子的胞质尾连接到肌动蛋白细胞骨架上；与E-cadherin一样，Arm对维持干细胞龛也很重要。</p>
+<p>生殖区中另有一类体细胞干细胞，它们产生日后构成卵壳的卵泡细胞。体细胞干细胞也有龛，该龛由内鞘细胞（inner sheath cell）创建，内鞘细胞产生Wingless（Wg）蛋白——一种果蝇Wnt信号——和Hh蛋白（<a class="xref xref-fig" href="#fig-21-12">图21-12</a>c）。帽细胞产生的Hedgehog可能也起作用。因此，两个不同的干细胞群体可以紧密协同地工作，以产生卵的不同部分。</p>
+<figure class="fig" id="fig-21-12">
+  <img class="zoomable" src="figures/fig_21-12_1.png" alt="图 21-12" onclick="lightbox(this.src)">
+  <figcaption>图21-12 果蝇生殖区。(a) 生殖区的横切面，显示其龛中的雌性生殖系干细胞（黄色）和一些体细胞干细胞（金色）以及由它们产生的子代细胞。生殖系干细胞产生成包囊细胞（绿色），后者经四轮有丝分裂产生16个相互连接的细胞，其中一个成为卵母细胞；体细胞干细胞产生卵泡细胞（棕色），它们将构成卵壳。帽细胞（深绿色）创建并维持生殖系干细胞的龛，而内鞘细胞（蓝色）产生体细胞干细胞的龛。(b) 控制生殖系干细胞特性的信号通路。信号分子——TGF-β家族蛋白Dpp和Gbb以及Hedgehog（Hh）——由帽细胞产生。这些配体与生殖系干细胞表面受体——分别为TGF-β受体I和II以及Ptc——结合，导致两个转录因子Mad和Med抑制bam基因。bam被抑制使生殖系干细胞得以自我更新，而bam的激活则促进分化。跨膜细胞黏附蛋白E-cadherin在生殖系干细胞与帽细胞之间形成同型黏着连接。Arm（Armadillo），即果蝇的β-catenin，把E-cadherin的胞质尾连接到肌动蛋白细胞骨架；E-cadherin和Arm对维持干细胞龛都很重要。(c) 控制体细胞干细胞特性的信号通路。Wnt信号Wingless（Wg）由内鞘细胞产生，并由体细胞干细胞上的Frizzled受体（Fz）接收。Hh同样被产生，并由Ptc受体接收。这两种信号都导致体细胞干细胞的自我更新。见 L. Li and T. Xie, 2005, Annu. Rev. Cell Devel. Biol. 21:605 and T. Xie, 2013, WIREs Dev. Biol. 2:261.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Stem cells and niches in fly germarium</td><td class="gl-zh">果蝇生殖区中的干细胞与龛</td></tr>
+  <tr><td class="gl-en">Signals that create germ-line stem-cell niche</td><td class="gl-zh">创建生殖系干细胞龛的信号</td></tr>
+  <tr><td class="gl-en">Signals that create somatic stem-cell niche</td><td class="gl-zh">创建体细胞干细胞龛的信号</td></tr>
+  <tr><td class="gl-en">Follicle cell</td><td class="gl-zh">卵泡细胞</td></tr>
+  <tr><td class="gl-en">Somatic stem cell</td><td class="gl-zh">体细胞干细胞</td></tr>
+  <tr><td class="gl-en">Inner sheath cell</td><td class="gl-zh">内鞘细胞</td></tr>
+  <tr><td class="gl-en">Germ-line stem cell</td><td class="gl-zh">生殖系干细胞</td></tr>
+  <tr><td class="gl-en">Cap cell</td><td class="gl-zh">帽细胞</td></tr>
+  <tr><td class="gl-en">Cystoblast</td><td class="gl-zh">成包囊细胞</td></tr>
+  <tr><td class="gl-en">Differentiating cyst</td><td class="gl-zh">分化中的包囊</td></tr>
+  <tr><td class="gl-en">Dpp</td><td class="gl-zh">Dpp</td></tr>
+  <tr><td class="gl-en">Gbb</td><td class="gl-zh">Gbb</td></tr>
+  <tr><td class="gl-en">E-cadherin</td><td class="gl-zh">E-cadherin</td></tr>
+  <tr><td class="gl-en">bam gene off</td><td class="gl-zh">bam基因关闭</td></tr>
+  <tr><td class="gl-en">Arm</td><td class="gl-zh">Arm</td></tr>
+  <tr><td class="gl-en">Wg (Wingless)</td><td class="gl-zh">Wg（Wingless）</td></tr>
+  <tr><td class="gl-en">Hh (Hedgehog)</td><td class="gl-zh">Hh（Hedgehog）</td></tr>
+  </table>
+</figure>
+<p>果蝇生殖系干细胞以及来自秀丽隐杆线虫的类似细胞的鉴定和表征之所以重要，是因为它们令人信服地证明了干细胞龛的存在，并使人们能够通过实验鉴定出那些使细胞成为并保持为自我更新干细胞的、由龛产生的信号。因此，干细胞龛是一组细胞及其产生的信号，而不只是一个位置。</p>
+<h3 class="subhead">肠道干细胞持续产生肠上皮的所有细胞</h3>
+<p>衬在小肠内表面的上皮只有一个细胞厚（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-11">图20-11</a>），由四种类型的分化细胞组成。最丰富的上皮细胞——吸收性肠上皮细胞（enterocyte）——把生存必需的营养物质从肠腔转运到体内（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter11/index.html#fig-11-30">图11-30</a>）。肠上皮是成体哺乳动物中自我更新最快的组织，每5天更新一次；在人类中，每天有多达300,000,000个肠上皮细胞丢失，总重约1克。</p>
+<figure class="fig" id="fig-21-13">
+  <img class="zoomable" src="figures/fig_21-13_1.png" alt="图 21-13" onclick="lightbox(this.src)">
+  <figcaption>图21-13 肠道干细胞及其龛。(a) 肠隐窝和绒毛的示意图，显示表达Lgr5（Lgr5+）的肠道干细胞（深绿色）、其有丝分裂子代、短暂扩增细胞（中蓝色）、终末分化细胞（浅蓝色）以及绒毛中几种类型的分化细胞。隐窝底部是潘氏细胞（黄色）所在的位置，潘氏细胞提供干细胞龛的主要部分，并分泌抗微生物防御蛋白。+4“储备”干细胞（占据从隐窝底部数起的第四个位置，深蓝色）能在损伤后恢复Lgr5+干细胞库，也可由这些干细胞产生。(b) 小肠中细胞的谱系。上皮每3–5天更新一次。新的潘氏细胞每3–6周由短暂扩增细胞补充。见 N. Barker, 2014, Nat. Rev. Mol. Cell Biol. 15:19.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Villus</td><td class="gl-zh">绒毛</td></tr>
+  <tr><td class="gl-en">Crypt</td><td class="gl-zh">隐窝</td></tr>
+  <tr><td class="gl-en">Migration</td><td class="gl-zh">迁移</td></tr>
+  <tr><td class="gl-en">Absorptive enterocytes</td><td class="gl-zh">吸收性肠上皮细胞</td></tr>
+  <tr><td class="gl-en">Enterocyte</td><td class="gl-zh">肠上皮细胞</td></tr>
+  <tr><td class="gl-en">Goblet cell</td><td class="gl-zh">杯状细胞</td></tr>
+  <tr><td class="gl-en">Tuft cell</td><td class="gl-zh">簇细胞</td></tr>
+  <tr><td class="gl-en">Enteroendocrine cell</td><td class="gl-zh">肠内分泌细胞</td></tr>
+  <tr><td class="gl-en">Paneth cell</td><td class="gl-zh">潘氏细胞</td></tr>
+  <tr><td class="gl-en">Transient amplifying cells</td><td class="gl-zh">短暂扩增细胞</td></tr>
+  <tr><td class="gl-en">Differentiating cell</td><td class="gl-zh">分化中的细胞</td></tr>
+  <tr><td class="gl-en">Lgr5+ stem cell</td><td class="gl-zh">Lgr5+干细胞</td></tr>
+  <tr><td class="gl-en">+4 stem cell</td><td class="gl-zh">+4干细胞</td></tr>
+  <tr><td class="gl-en">Cell death</td><td class="gl-zh">细胞死亡</td></tr>
+  </table>
+</figure>
+<p>肠上皮的细胞由一群位于肠壁深处、称为隐窝的凹坑中的干细胞持续再生（<a class="xref xref-fig" href="#fig-21-13">图21-13</a>）。使用放射性标记胸苷的脉冲-追踪实验表明肠道干细胞产生的前体细胞快速分裂，然后沿着隐窝侧壁上移时分化，形成称为绒毛的指状肠道突起的表面层，肠道吸收即在该表面进行。从隐窝中细胞诞生到绒毛顶端死细胞脱落，仅约3至5天（<a class="xref xref-fig" href="#fig-21-14">图21-14</a>）。新细胞的产生受到精确控制：分裂太少会消除绒毛并导致肠表面崩解；分裂太多会生成过大的上皮，也可能是通向癌症的一步。</p>
+<p>诸如"<a class="xref xref-fig" href="#fig-21-14">图21-14</a>"所描绘的实验提示，肠道干细胞位于隐窝底部附近的某处，靠近称为潘氏细胞的分化肠道细胞。但这些推定的干细胞没有任何能显示其非凡能力的特殊形态特征；哪些细胞才是真正的肠道干细胞，哪些是构成龛的支持细胞？</p>
+<p>先前的遗传学实验已表明，Wnt信号对肠道干细胞的维持必不可少。作为这些信号重要性的证据，肠道细胞中活性β-catenin（通常由Wnt信号通路激活；见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-30">图16-30</a>）的过量产生会导致肠上皮过度增殖。反过来，通过突变或抑制Wnt激活的TCF转录因子来阻断β-catenin的功能，会消除肠道中的干细胞，导致肠道退化和最终死亡。因此，Wnt信号在肠道干细胞龛中起关键作用，就像它在皮肤、血液和其他器官中那样。事实上，不适当地激活Wnt信号通路的突变是结肠癌进展的主要促成因素，正如我们将在第24章看到的。</p>
+<p>通过分析一组在肠道中其表达受Wnt信号诱导的基因，研究者把目标锁定在Lgr5上，它编码一种G蛋白偶联受体，因为该基因只在隐窝最底部的一小群细胞中表达。Lgr5结合一类称为R-spondin的分泌激素，并激活胞内信号通路，从而增强Wnt信号。谱系追踪研究表明，这些表达Lgr5的细胞的子代确实产生了所有分化的肠上皮细胞（<a class="xref xref-fig" href="#fig-21-15">图21-15</a>）。这些研究利用了经过遗传改造的小鼠，其中把一种Cre重组蛋白（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter6/index.html#fig-6-39">图6-39</a>）——即雌激素受体（ER）-Cre重组酶嵌合体——置于Lgr5启动子的控制之下；因此ER-Cre重组酶嵌合体只在隐窝底部少数推定的表达Lgr5的干细胞中产生。研究中使用的这种Cre重组酶已被改造，使其失活地驻留在胞质中，只有在加入雌激素类似物后才被转移到细胞核内（<a class="xref xref-fig" href="#fig-21-15">图21-15</a>a）。在核内，Cre切除一段DNA，激活β-半乳糖苷酶报告基因的表达。重要的是，这些细胞的所有子代也都将表达β-半乳糖苷酶。加入雌激素类似物后立即观察，唯一表达β-半乳糖苷酶的是隐窝中的干细胞。但几天之后，所有子代上皮细胞也都表达了β-半乳糖苷酶（<a class="xref xref-fig" href="#fig-21-15">图21-15</a>b），表明Lgr5的表达确实是肠道干细胞的标志物。</p>
+<p>在随后的研究中，单个表达Lgr5的干细胞从肠隐窝中分离出来，培养在含有IV型胶原和层粘连蛋白的细胞外基质（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-23">图20-23</a>）上，该基质与通常位于肠上皮下方并支撑肠上皮的基质相似。这些细胞生成了绒毛样结构，其中含有成熟肠上皮中存在的全部四种分化细胞类型（<a class="xref xref-fig" href="#fig-21-16">图21-16</a>）。综合起来，这些实验确立了Lgr5基因的表达界定了肠道干细胞，并表明这些细胞位于肠隐窝底部，散布在终末分化的潘氏细胞之间（见<a class="xref xref-fig" href="#fig-21-13">图21-13</a>）。表达Lgr5的细胞也存在于胃、结肠和胰腺中——这些器官与小肠一样由胚胎内胚层形成——并被认为是这些组织的干细胞。事实上，在Wnt、R-spondin和其他激素存在下培养来自这些组织的表达Lgr5的细胞，可生成含有这些组织特征性分化细胞的微型类器官。</p>
+<figure class="fig" id="fig-21-14">
+  <img class="zoomable" src="figures/fig_21-14_1.png" alt="图 21-14" onclick="lightbox(this.src)">
+  <figcaption>实验图21-14 在脉冲-追踪实验中可以证明肠上皮由干细胞再生。脉冲-追踪实验的结果，其中把放射性标记的胸苷（脉冲）加入肠上皮组织培养物中。分裂的细胞把标记胸苷掺入其新合成的DNA。短暂时间后洗去标记胸苷并换成未标记的胸苷（追踪）；追踪之后才分裂的细胞不会带上标记。这些显微照片显示，标记后40分钟，所有标记都位于隐窝底部附近的细胞中。在更晚的时间点，可见标记细胞逐渐远离其在隐窝中的诞生位置。顶端的细胞被脱落。这一过程确保肠上皮不断被新细胞补充。[Republished with permission of John Wiley & Sons, Inc., from Kaur, P. and Potten, C. S., “Cell migration velocities in the crypts of the small intestine after cytotoxic insult are not dependent on mitotic activity,” Cell Tissue Kinet., 1986, 6:601–610; permission conveyed through Copyright Clearance Center, Inc.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Villi</td><td class="gl-zh">绒毛</td></tr>
+  <tr><td class="gl-en">Crypt</td><td class="gl-zh">隐窝</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-15">
+  <img class="zoomable" src="figures/fig_21-15_1.png" alt="图 21-15" onclick="lightbox(this.src)">
+  <figcaption>实验图21-15 谱系追踪研究表明，隐窝底部的表达Lgr5的细胞就是肠道干细胞。(a) 实验概要。研究者利用经过遗传改造的ES细胞（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter6/index.html#fig-6-37">图6-37</a>）构建了一个小鼠品系，其中把编码Cre重组酶（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter6/index.html#fig-6-39">图6-39</a>）的基因的一个版本置于Lgr5启动子的控制之下，因此Cre重组酶只在表达Lgr5基因的细胞（如肠道干细胞）中产生。这个版本的Cre重组酶额外含有一个来自雌激素受体（ER）的结构域，可结合雌激素类似物他莫昔芬；与雌激素受体和其他核受体一样（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter9/index.html#fig-9-45">图9-45</a>），ER-Cre嵌合体除非加入他莫昔芬，否则滞留在胞质中。在他莫昔芬存在时，ER-Cre进入细胞核，在那里与染色体DNA中的loxP位点相互作用。第二个报告品系小鼠含有一个细菌β-半乳糖苷酶报告基因，其前面有两个loxP位点。这两个loxP位点之间的阻断DNA片段阻止β-半乳糖苷酶基因的表达，只有当有活性的Cre重组酶切除了两个loxP位点之间的序列时，β-半乳糖苷酶基因才能在该细胞中表达。把这两个小鼠品系交配，鉴定出同时含两种标记转基因的后代。在这些小鼠中，只在Lgr5控制的ER-Cre基因得到表达的细胞中、并且只在给小鼠施用雌激素类似物他莫昔芬之后，β-半乳糖苷酶才表达。因此，只有表达Lgr5的细胞——及其所有子代——会表达β-半乳糖苷酶基因。(b) 实验结果。在给这些小鼠施用他莫昔芬一天后，唯一表达β-半乳糖苷酶（以蓝色组织化学染色显示）的细胞是隐窝底部的表达Lgr5的肠道干细胞（左图）。施用他莫昔芬五天后，可见更多蓝色细胞——肠道干细胞的上皮子代——沿绒毛侧壁上移。一些蓝色干细胞仍留在隐窝底部。[Part (b) Reprinted by permission from Macmillan Publishers Ltd.; from Barner, N. et al., “Identification of stem cells in small intestine and colon by marker gene Lgr5,” Nature, 2007, 449, 1003–1007; permission conveyed through Copyright Clearance Center Inc.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Estrogen-binding domain of the estrogen receptor (ER)</td><td class="gl-zh">雌激素受体的雌激素结合结构域</td></tr>
+  <tr><td class="gl-en">ER-Cre chimera</td><td class="gl-zh">ER-Cre嵌合体</td></tr>
+  <tr><td class="gl-en">Cre protein</td><td class="gl-zh">Cre蛋白</td></tr>
+  <tr><td class="gl-en">Lgr5 promoter</td><td class="gl-zh">Lgr5启动子</td></tr>
+  <tr><td class="gl-en">Tamoxifen</td><td class="gl-zh">他莫昔芬</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质</td></tr>
+  <tr><td class="gl-en">Nucleus</td><td class="gl-zh">细胞核</td></tr>
+  <tr><td class="gl-en">loxP</td><td class="gl-zh">loxP</td></tr>
+  <tr><td class="gl-en">Blocking segment</td><td class="gl-zh">阻断片段</td></tr>
+  <tr><td class="gl-en">Splice donor</td><td class="gl-zh">剪接供体</td></tr>
+  <tr><td class="gl-en">Splice acceptor</td><td class="gl-zh">剪接受体</td></tr>
+  <tr><td class="gl-en">Reporter gene</td><td class="gl-zh">报告基因</td></tr>
+  <tr><td class="gl-en">Promoter</td><td class="gl-zh">启动子</td></tr>
+  <tr><td class="gl-en">β-galactosidase</td><td class="gl-zh">β-半乳糖苷酶</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-16">
+  <img class="zoomable" src="figures/fig_21-16_1.png" alt="图 21-16" onclick="lightbox(this.src)">
+  <figcaption>实验图21-16 单个表达Lgr5的肠道干细胞在没有龛细胞的培养条件下构建隐窝-绒毛结构。从肠隐窝分离出的单个表达Lgr5的细胞被培养在IV型细胞外基质上（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-23">图20-23</a>），这种基质通常位于上皮细胞层下方并支撑上皮细胞层。2周后，这些培养物形成了结构上类似绒毛的上皮细胞层。对这些类器官进行特定标志蛋白染色显示，它们含有全部四种分化上皮细胞类型：(a) villin（绿色）是吸收性肠上皮细胞的标志蛋白，这些细胞定位在类器官的顶端（腔面，Lu）附近；(b) Muc2（红色）标记杯状细胞；(c) 溶菌酶（绿色）标记潘氏细胞；(d) chromogranin A（绿色）标记肠内分泌细胞。类器官还用DAPI（蓝色）染色以显示细胞核。[Reprinted by permission from Macmillan Publishers Ltd.; from Sato, T., et al., “Single Lgr5 stem cells build crypt-villus structures in vitro without a mesenchymal niche,” Nature, 2009, 459(7244):262–5; permission conveyed through Copyright Clearance Center Inc.]</figcaption>
+</figure>
+<p>潘氏细胞比绒毛细胞寿命更长；它们产生几种抗菌蛋白，包括酶溶菌酶，后者降解细菌细胞壁，从而保护肠道免受感染。最近令人惊讶的证据提示，潘氏细胞还构成了肠道干细胞龛的主要部分。培养的潘氏细胞产生Wnt以及维持肠道干细胞所必需的其他激素，如表皮生长因子（EGF）和一种Delta蛋白（见第16章）。将肠道干细胞与潘氏细胞共培养，显著改善了肠道绒毛样结构的形成；而在小鼠中进行导致潘氏细胞数量减少的遗传操作，同时也导致肠道干细胞减少。因此，潘氏细胞——它们是肠道干细胞的子代细胞——构成了肠道干细胞维持所需龛的大部分（即使不是全部）。</p>
+<p>表达Lgr5的细胞可能不是唯一的肠道干细胞类型。有证据表明，位于隐窝中的所谓+4细胞（见<a class="xref xref-fig" href="#fig-21-13">图21-13</a>a）可能是"储备干细胞"，能在肠道损伤（如照射）后产生表达Lgr5的干细胞。反过来，这些+4细胞也可由表达Lgr5的干细胞产生（见<a class="xref xref-fig" href="#fig-21-13">图21-13</a>b）。回忆一下，短暂扩增细胞的自我更新潜能有限（见<a class="xref xref-fig" href="#fig-21-10">图21-10</a>）。在肠道损伤期间，当许多表达Lgr5的干细胞丢失时，一些短暂扩增细胞在Wnt信号的影响下可以"去分化"，回复为表达Lgr5的干细胞并重新定位到潘氏细胞龛！因此，分化细胞转变为干细胞——正如在iPS细胞形成过程中实验所见——可能在应激或损伤期间正常发生于体内。因此，肠道似乎并不依赖单一的从干细胞到分化细胞的谱系（见<a class="xref xref-fig" href="#fig-21-13">图21-13</a>b），而是能够动用几个储备干细胞群体池。未来的工作无疑将阐明这些细胞在肠道上皮细胞生成中的作用。</p>
+<h3 class="subhead">造血干细胞形成所有血细胞</h3>
+<p>另一种持续补充的组织是血液，其干细胞在动物胚胎期位于胚胎肝，在成体中位于骨髓。各种类型的血细胞都源自单一类型的多潜能、自我更新的造血干细胞（HSC）。一个HSC产生另外两种多潜能细胞类型——共同髓系祖细胞和共同淋系祖细胞，它们命运更为受限，但具有有限的自我更新能力（<a class="xref xref-fig" href="#fig-21-17">图21-17</a>）。众多称为细胞因子的胞外生长因子调控HSC的自我更新分裂，也调控各种血细胞谱系前体细胞的增殖和分化。血细胞谱系树的每一分支都有不同的细胞因子调控者，从而可以精细控制特定细胞类型的产生。如果需要所有类型的血细胞——例如在出血性损伤之后——可以产生多种细胞因子。如果只需要一种细胞类型，特定的信号就控制其产生。例如，当人处于高海拔旅行时，肾脏产生促红细胞生成素，刺激CFU-E（红系祖细胞）的增殖和分化，但不刺激其他类型的血细胞前体。促红细胞生成素激活若干不同的胞内信号转导通路，导致基因表达变化，促进红细胞的形成（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-7">图16-7</a>和<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-8">图16-8</a>）。类似地，另一种细胞因子G-CSF刺激双潜能粒细胞-巨噬细胞祖细胞的增殖及其向粒细胞的分化，而M-CSF刺激同一种祖细胞类型产生巨噬细胞。</p>
+<p>造血干细胞最初是通过骨髓移植实验在造血干/祖细胞已被照射清除的小鼠中检出并定量的（<a class="xref xref-fig" href="#fig-21-18">图21-18</a>）。通过把特定类型的造血前体移植到这些小鼠体内并观察哪些血细胞得到恢复，研究者可以推断哪些前体或终末分化细胞（例如红细胞、单核细胞）来自某一特定类型的前体。第一步是分离不同类型的前体。之所以能进行这种分选，是因为HSC和每一种前体都产生独特的细胞表面蛋白组合，可作为细胞类型特异性的标志物。如果用荧光染料标记的抗体处理骨髓提取物以检测这些标志物，便可在荧光激活细胞分选仪（FACS；见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter4/index.html#fig-4-2">图4-2</a>和<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter4/index.html#fig-4-3">图4-3</a>）中分离带有不同标志物的细胞。值得注意的是，这类移植实验揭示，把单个HSC转移到受过致死剂量照射的小鼠体内——其中所有HSC都已被杀死——就足以重建整个血液系统。移植后，HSC在骨髓的一个龛中定居下来，并分裂产生更多HSC以及不同血细胞谱系的祖细胞。</p>
+<figure class="fig" id="fig-21-17">
+  <img class="zoomable" src="figures/fig_21-17_1.png" alt="图 21-17" onclick="lightbox(this.src)">
+  <figcaption>图21-17 骨髓中由造血干细胞形成血细胞。多潜能造血干细胞可进行对称分裂以增加干细胞数目。在成体中，它们一般进行不对称分裂，形成一个像亲代干细胞一样的多潜能女儿细胞，以及另一个命运更受限的女儿细胞。最终，这个女儿细胞产生共同淋系祖细胞或共同髓系祖细胞；尽管这些多潜能细胞具有有限的自我更新能力，但它们已定向于两大造血谱系之一。取决于存在的细胞因子的类型和数量，共同淋系和共同髓系祖细胞经历快速多轮细胞分裂，产生不同类型的祖细胞（浅绿色）。这些祖细胞要么是多潜能性的，要么是单能性的，即它们分别能产生若干种或仅一种类型的分化血细胞；它们对一种或少数几种特定细胞因子作出反应。支持这一过程的某些细胞因子已标出（粉色标签）。CSF = 集落刺激因子；IL = 白细胞介素；SCF = 干细胞因子；Epo = 促红细胞生成素；Tpo = 血小板生成素。见 M. Socolovsky et al., 1998, Proc. Natl. Acad. Sci. USA 95:6573, and N. Noverstern et al., 2011, Cell 144:296.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Multipotent hematopoietic stem cell (HSC)</td><td class="gl-zh">多潜能造血干细胞（HSC）</td></tr>
+  <tr><td class="gl-en">Self-renewing division</td><td class="gl-zh">自我更新分裂</td></tr>
+  <tr><td class="gl-en">Common myeloid progenitor</td><td class="gl-zh">共同髓系祖细胞</td></tr>
+  <tr><td class="gl-en">Common lymphoid progenitor</td><td class="gl-zh">共同淋系祖细胞</td></tr>
+  <tr><td class="gl-en">Erythrocytes (red blood cells)</td><td class="gl-zh">红细胞</td></tr>
+  <tr><td class="gl-en">Monocytes (macrophage precursors)</td><td class="gl-zh">单核细胞（巨噬细胞前体）</td></tr>
+  <tr><td class="gl-en">Granulocytes</td><td class="gl-zh">粒细胞</td></tr>
+  <tr><td class="gl-en">T and B cells of the immune system</td><td class="gl-zh">免疫系统的T细胞和B细胞</td></tr>
+  <tr><td class="gl-en">Granulocyte-macrophage progenitor</td><td class="gl-zh">粒细胞-巨噬细胞祖细胞</td></tr>
+  <tr><td class="gl-en">Eosinophils</td><td class="gl-zh">嗜酸性粒细胞</td></tr>
+  <tr><td class="gl-en">Eosinophil progenitor</td><td class="gl-zh">嗜酸性粒细胞祖细胞</td></tr>
+  <tr><td class="gl-en">Megakaryocytes (platelet-forming cells)</td><td class="gl-zh">巨核细胞（形成血小板的细胞）</td></tr>
+  <tr><td class="gl-en">Megakaryocyte progenitor</td><td class="gl-zh">巨核细胞祖细胞</td></tr>
+  <tr><td class="gl-en">Megakaryocyte erythroid progenitor</td><td class="gl-zh">巨核细胞-红系祖细胞</td></tr>
+  <tr><td class="gl-en">BFU-E</td><td class="gl-zh">BFU-E</td></tr>
+  <tr><td class="gl-en">CFU-E (erythroid progenitors)</td><td class="gl-zh">CFU-E（红系祖细胞）</td></tr>
+  <tr><td class="gl-en">Epo</td><td class="gl-zh">促红细胞生成素</td></tr>
+  <tr><td class="gl-en">Many intermediate progenitors</td><td class="gl-zh">许多中间祖细胞</td></tr>
+  </table>
+</figure>
+<p>首例成功的人类骨髓移植于1959年实施，当时一位患终末期（致死性）白血病的患者接受照射，以摧毁她的癌细胞以及她自身的正常HSC。她接受了来自其同卵双胞胎姐妹的骨髓细胞输注，从而避免了免疫反应，并获得了3个月的缓解。这项开创性工作于1990年被授予诺贝尔医学奖，它带来了今日常常能完全治愈多种癌症的疗法。移植骨髓中的干细胞能产生所有类型的功能性血细胞，因此移植对某些遗传性血液病患者有用，包括许多遗传性贫血（红细胞水平不足）或血液细胞的遗传缺陷，如镰状细胞病（一种血红蛋白病），对接受过照射或化疗的癌症患者也有用，这两种治疗在摧毁癌细胞的同时也摧毁骨髓细胞。■</p>
+<p>在胚胎期，HSC常进行对称分裂，产生两个女儿干细胞（见<a class="xref xref-fig" href="#fig-21-11">图21-11</a>）；这一过程使干细胞数目随时间增加，并产生出生前制造所有必需血细胞所需的大量祖细胞。在成体动物中，HSC大多处于静息状态，"停驻"于骨髓干细胞龛的G0期。当需要更多血细胞时，会产生细胞因子，向HSC发出分裂信号，产生与亲代细胞一样的干细胞以及快速增殖的短暂扩增细胞，后者生成<a class="xref xref-fig" href="#fig-21-17">图21-17</a>所示的祖细胞。单个HSC究竟进行对称分裂还是不对称分裂，尚不清楚。</p>
+<figure class="fig" id="fig-21-18">
+  <img class="zoomable" src="figures/fig_21-18_1.png" alt="图 21-18" onclick="lightbox(this.src)">
+  <figcaption>实验图21-18 通过骨髓移植对造血干细胞进行功能分析。本分析中使用的两个小鼠品系遗传上相同，只是编码一种称为Ly5的蛋白的基因不同，该蛋白存在于所有有核血细胞的表面，包括所有T和B淋巴细胞、粒细胞和单核细胞。该基因两个等位基因（Ly5.1和Ly5.2）所编码的蛋白可用特异性单克隆抗体检测。受体的Ly5.2小鼠接受致死剂量照射以杀死所有HSC，然后注射从Ly5.1品系纯化的干细胞。由于干细胞需要数周或数月才能产生分化血细胞，受体小鼠除非接受来自遗传上相同小鼠的骨髓祖细胞（称为“支持”细胞），否则将会死亡；这些细胞将在移植后最初几周产生成熟血细胞。移植后按间隔采集血液或骨髓，并与抗Ly5.1的蓝色荧光单克隆抗体和抗Ly5.2的红色荧光单克隆抗体反应。由供体干细胞而来的成熟血细胞通过FACS分析检出，此处显示为发蓝色荧光而不发红色荧光的细胞。这些细胞可被分选并用针对不同类型成熟血细胞标志蛋白的荧光抗体染色，以证明干细胞确实是多能性的，即它能产生所有类型的淋系和髓系细胞。[Courtesy Dr. Chengcheng (Alec) Zhang.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Congenic donor</td><td class="gl-zh">同类系供体</td></tr>
+  <tr><td class="gl-en">Supportive donor</td><td class="gl-zh">支持供体</td></tr>
+  <tr><td class="gl-en">Bone marrow cells</td><td class="gl-zh">骨髓细胞</td></tr>
+  <tr><td class="gl-en">Supportive bone marrow cells</td><td class="gl-zh">支持性骨髓细胞</td></tr>
+  <tr><td class="gl-en">Purified hematopoietic stem cells (HSCs)</td><td class="gl-zh">纯化的造血干细胞（HSC）</td></tr>
+  <tr><td class="gl-en">Lethally irradiated recipient</td><td class="gl-zh">致死剂量照射的受体</td></tr>
+  <tr><td class="gl-en">Reconstituted recipient</td><td class="gl-zh">重建的受体</td></tr>
+  <tr><td class="gl-en">FACS</td><td class="gl-zh">FACS</td></tr>
+  <tr><td class="gl-en">FACS analysis at 1, 3, 4, and 6 months post-transplantation</td><td class="gl-zh">移植后1、3、4和6个月的FACS分析</td></tr>
+  <tr><td class="gl-en">Ly5.1</td><td class="gl-zh">Ly5.1</td></tr>
+  <tr><td class="gl-en">Ly5.2</td><td class="gl-zh">Ly5.2</td></tr>
+  <tr><td class="gl-en">Ly5.2/5.1</td><td class="gl-zh">Ly5.2/5.1</td></tr>
+  <tr><td class="gl-en">Ly5.2-FITC</td><td class="gl-zh">Ly5.2-FITC</td></tr>
+  <tr><td class="gl-en">Ly5.1-PE</td><td class="gl-zh">Ly5.1-PE</td></tr>
+  </table>
+</figure>
+<h3 class="subhead">稀有类型的细胞构成造血干细胞的龛</h3>
+<p>与所有干细胞一样，造血干细胞存在于龛中。在胚胎发育晚期，HSC存在于胎肝中；在成体中，大多数定位于骨髓。但鉴定HSC以及构成HSC龛的细胞非常复杂。HSC的频率约为每104个骨髓或胎肝细胞中1个。</p>
+<p>此外，用移植实验以外的任何技术鉴定HSC都很困难，因为没有任何细胞表面蛋白是HSC专一表达的，因此没有可用的标志物。大量工作表明，HSC可以被前瞻性地鉴定和纯化，因为它们表达一种称为CD150的细胞表面蛋白（功能未知），并且不表达其他类型造血祖细胞和分化细胞所特有的十几种"Lin"（谱系受限）蛋白中的任何一种。</p>
+<p>鉴定龛细胞的努力利用了一个事实：HSC存活需要一种称为干细胞因子（SCF）的生长因子；该蛋白结合在相邻信号细胞的表面，激活HSC上的c-Kit蛋白酪氨酸激酶受体。HSC还需要分泌蛋白血小板生成素，后者激活的结构与功能均类似于促红细胞生成素受体的血小板生成素受体；以及CXCL12，它结合G蛋白偶联受体，是把HSC留在龛中所必需的。在胎肝中，只有产生肝细胞（肝脏的主要细胞类型）的祖细胞表达这三种蛋白以及HSC存活所需的其他蛋白。把这些肝祖细胞与HSC共培养，可导致HSC数量扩增并形成其分化子代。因此，肝细胞祖细胞被发现是胎肝中构成HSC龛的主要细胞。</p>
+<p>在成体中，少数间充质细胞围绕着贯穿骨髓的、称为血窦的小血管。这些称为基质细胞（stromal cell）的细胞，其表面表达SCF以及细胞因子瘦素的受体。它们还合成大量CXCL12，被认为是骨髓中主要的HSC龛细胞（<a class="xref xref-fig" href="#fig-21-19">图21-19</a>a）。免疫荧光分析显示，约85%的HSC与这些基质细胞有物理接触（<a class="xref xref-fig" href="#fig-21-19">图21-19</a>b）。骨髓中的其他细胞可能通过释放其他类型的激素来影响干细胞维持或龛的功能。</p>
+<p>你可能已经注意到，我们讨论过的所有干细胞分子调控因子都是熟悉的蛋白（见第15章和第16章），而不是专门从事干细胞控制的专职调控因子。每一类信号都被反复用来控制细胞命运和生长。干细胞受到古老的信号系统调控，这些系统至少有5亿年历史，随着细胞、组织、器官和动物演化出新的变异，它们也出现了新的用途。</p>
+<h3 class="subhead">分生组织是植物干细胞的龛</h3>
+<p>在植物中，如同在其多细胞动物对应物中一样，所有组织和器官的产生都依赖于小群干细胞。与动物干细胞一样，这些干细胞的特征在于能够进行自我更新并产生生成分化组织的女儿细胞。而且与动物干细胞一样，植物干细胞也驻留于特化的微环境——干细胞龛——中，那里产生维持干细胞处于多潜能状态的胞外信号。由于植物和动物的最近共同祖先是一个单细胞真核生物，看来尽管有共同的组织原理，植物和动物中的干细胞及其龛是独立地、通过不同途径演化出来的——这是趋同演化的一个例子。</p>
+<p>植物干细胞所在的龛称为分生组织，在诸如芒松（bristlecone pine）这样的长寿物种中可以持续数千年。植物的体轴由胚胎发生过程中建立的两个初级分生组织界定：茎端分生组织和根端分生组织。与动物发育不同，植物胚胎发生过程中被指定的组织或器官极少。相反，叶、花乃至生殖细胞等器官是随着植物的生长和发育而持续产生的。植物的地上部分源自茎端分生组织，地下部分源自根端分生组织。经典的克隆分析实验已证明植物细胞命运取决于细胞的位置，而非其谱系。细胞的同一性由细胞间信号强化，例如激素、可移动的信号肽和miRNA。■</p>
+<figure class="fig" id="fig-21-19">
+  <img class="zoomable" src="figures/fig_21-19_1.png" alt="图 21-19" onclick="lightbox(this.src)">
+  <figcaption>实验图21-19 骨髓中的造血干细胞龛。(a) 骨髓含有数十种不同类型的细胞，包括分别构建和降解骨的成骨细胞和破骨细胞，以及多种类型的造血细胞、成纤维细胞和其他细胞类型。骨髓中贯穿有称为血窦的小血管。构成HSC龛的主要细胞是极罕见的间充质基质细胞，它们黏附于这些血管，并表达一组细胞表面蛋白，其中包括SCF——即结合并激活HSC上c-Kit蛋白酪氨酸激酶受体的激素。这些基质细胞还表达细胞因子瘦素的受体，并分泌CXCL12，一种HSC的趋化物。见 S. Morrison and D. Scadden, 2014, Nature 505:327。(b–d) 骨髓中HSC与龛细胞的免疫荧光检测，显示HSC定位于表达SCF的细胞旁边。由于没有抗SCF的抗体，为检测SCF的表达，构建了一只小鼠，把GFP的cDNA置于SCF基因位点，并只在通常产生SCF的细胞中表达。然后（b）在荧光显微镜下检查骨髓切片以检测表达SCF的细胞。为检测HSC，切片用抗CD150蛋白（在HSC中表达）的抗体染色（c）。切片还用一组抗体（d）染色，这些抗体特异于不同类型分化血细胞（而非HSC）所表达的蛋白。(e) 当三幅图像合并时，可见HSC（白色箭头）紧邻表达SCF的基质细胞。[Parts (b–e) reprinted by permission from Macmillan Publishers Ltd.; from Ding, L., “Endothelial and perivascular cells maintain haematopoietic stem cells,” Nature, 2012, 481(7382):457–62; permission conveyed through Copyright Clearance Center Inc.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Stromal cell (expresses SCF, CXCL12, leptin receptor)</td><td class="gl-zh">基质细胞（表达SCF、CXCL12、瘦素受体）</td></tr>
+  <tr><td class="gl-en">SCF-expressing stromal cell</td><td class="gl-zh">表达SCF的基质细胞</td></tr>
+  <tr><td class="gl-en">CD150-staining HSC</td><td class="gl-zh">CD150染色的HSC</td></tr>
+  <tr><td class="gl-en">HSC (expresses CD150, c-Kit)</td><td class="gl-zh">HSC（表达CD150、c-Kit）</td></tr>
+  <tr><td class="gl-en">Endothelial cell</td><td class="gl-zh">内皮细胞</td></tr>
+  <tr><td class="gl-en">Fibroblasts</td><td class="gl-zh">成纤维细胞</td></tr>
+  <tr><td class="gl-en">Sinusoid or other blood vessel</td><td class="gl-zh">血窦或其他血管</td></tr>
+  <tr><td class="gl-en">Osteoblast</td><td class="gl-zh">成骨细胞</td></tr>
+  <tr><td class="gl-en">Osteoclast</td><td class="gl-zh">破骨细胞</td></tr>
+  <tr><td class="gl-en">Bone</td><td class="gl-zh">骨</td></tr>
+  </table>
+</figure>
+<p>与后生动物的体细胞干细胞不同，植物的体细胞干细胞产生的是整个器官，而不只是特定的组织或谱系。分裂缓慢的多能性干细胞位于茎端分生组织的顶端，外围则是分裂更快的多潜能短暂扩增女儿细胞。茎干细胞的子代被推向分生组织外围，并被招募形成新器官（包括叶和茎）的原基。当这些细胞获得特定细胞类型的特征时，分裂便停止，而大部分器官生长通过细胞扩张和伸长实现（<a class="xref xref-fig" href="#fig-21-20">图21-20</a>a）。新的茎干细胞龛可以在叶原基的叶腋中形成，随后生长形成侧枝。花分生组织产生四种花器官——萼片、雄蕊、心皮和花瓣——它们构成花。与茎端分生组织不同，花分生组织在产生花器官的过程中逐渐耗竭。</p>
+<h3 class="subhead">负反馈环维持茎端干细胞群体的大小</h3>
+<p>干细胞身份、维持和细胞分化所需的基因，是通过在芥科杂草拟南芥（Arabidopsis thaliana）中筛选表现为分生组织变大、变小或不能补充的突变体（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter1/index.html#fig-1-22">图1-22</a>h）而确定的，也通过最近对分离出的分生组织细胞群体进行的基因表达谱研究而确定。茎端分生组织的一个决定因子是称为WUSCHEL（WUS）的基因，它编码一个同源域转录因子（见第9章）。WUS是维持干细胞群体所必需的，但它表达于干细胞下方的支持细胞中。这些细胞统称为组织中心，类似于后生动物中的龛细胞（见<a class="xref xref-fig" href="#fig-21-20">图21-20</a>a）。虽然WUS的mRNA和蛋白在组织中心细胞中合成，但一系列实验表明，WUS从组织中心细胞移动到干细胞中，推测是通过相互连通的胞间连丝（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-41">图20-41</a>）。在一项研究中，把WUS-GFP融合蛋白在WUS阴性的拟南芥植株中表达，能够拯救突变表型。随后的显微分析显示，这种WUS-GFP嵌合体在干细胞中积累，表明它是从组织中心细胞移动到那里的。</p>
+<figure class="fig" id="fig-21-20">
+  <img class="zoomable" src="figures/fig_21-20_1.png" alt="图 21-20" onclick="lightbox(this.src)">
+  <figcaption>图21-20 拟南芥茎端和根端分生组织的结构。(a) 茎端分生组织顶端的横切面。组织中心细胞发出信号以维持其上方的干细胞。干细胞沿黑色箭头方向分裂产生女儿细胞，生成快速分裂的短暂扩增细胞，后者最终分化并产生整个器官，例如一片叶。(b) 根端分生组织的横切面。干细胞围绕有丝分裂活性较低的静止中心——四个发出信号阻止干细胞分化的细胞。每个干细胞进行不对称分裂：一个女儿细胞保持与静止中心相邻并成为干细胞（自我更新）；另一个女儿细胞成为短暂扩增细胞，它分裂若干次后退出细胞周期、伸长并呈现特定的分化状态。见 R. Heidstra and S. Sabatini, 2014, Nat. Rev. Mol. Cell. Biol. 15:301.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Shoot apical meristem</td><td class="gl-zh">茎端分生组织</td></tr>
+  <tr><td class="gl-en">Root apical meristem</td><td class="gl-zh">根端分生组织</td></tr>
+  <tr><td class="gl-en">Organizing center</td><td class="gl-zh">组织中心</td></tr>
+  <tr><td class="gl-en">Organizing cells</td><td class="gl-zh">组织细胞</td></tr>
+  <tr><td class="gl-en">Quiescent center</td><td class="gl-zh">静止中心</td></tr>
+  <tr><td class="gl-en">Stem cells</td><td class="gl-zh">干细胞</td></tr>
+  <tr><td class="gl-en">Transient amplifying cells</td><td class="gl-zh">短暂扩增细胞</td></tr>
+  <tr><td class="gl-en">Proliferation zone transient amplifying cells</td><td class="gl-zh">增殖区短暂扩增细胞</td></tr>
+  <tr><td class="gl-en">Differentiating cells</td><td class="gl-zh">分化中的细胞</td></tr>
+  <tr><td class="gl-en">Leaf primordium</td><td class="gl-zh">叶原基</td></tr>
+  </table>
+</figure>
+<p>一旦进入干细胞，WUS便结合基因组中的许多位点；它抑制大量在分化细胞中表达的基因，包括一组叶发育所需、促进分化的转录因子。WUS还直接激活干细胞中CLAVATA3（CLV3）的表达。CLV3编码一种小的分泌肽，它结合组织中心细胞表面的CLV1受体，产生一种负向调控WUS表达的胞内信号。WUS的过量表达会导致分生组织干细胞群体大幅扩张，代价是分化细胞的产生减少。因此，一个转录因子WUS与一个信号肽CLV3之间的负反馈环，在植物的一生中维持着干细胞群体的大小及其分裂女儿细胞的数量（<a class="xref xref-fig" href="#fig-21-21">图21-21</a>）。■</p>
+<p>还有几种转录调控蛋白对茎端和根端分生组织细胞的正常功能都必不可少，包括人视网膜母细胞瘤（Rb）肿瘤抑制蛋白（见第24章）在植物中的同源物RBR。与动物细胞一样，RBR结合并抑制一个E2F转录因子的功能；RBR从E2F上释放或RBR的遗传缺失，使E2F因子得以促进多个促进入细胞周期和细胞分裂的基因的转录（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter19/index.html#fig-19-12">图19-12</a>b）。RBR水平降低导致干细胞数量增加，RBR水平升高则导致干细胞分化；这两个观察结果都表明RBR在干细胞维持中起显著作用。</p>
+<figure class="fig" id="fig-21-21">
+  <img class="zoomable" src="figures/fig_21-21_1.png" alt="图 21-21" onclick="lightbox(this.src)">
+  <figcaption>图21-21 拟南芥茎端分生组织干细胞龛中的调控网络。转录因子WUS（橙色圆圈）在组织中心细胞中合成，并经胞间连丝移动到干细胞中，在那里它的功能之一是诱导CLV3激素（绿色圆圈）的表达。分泌的CLV3蛋白与CLV1——组织中心细胞表面的CLV3受体蛋白激酶——结合；在那里它激活一种抑制WUS转录的信号。见 E. Aichinger et al., 2014, Annu. Rev. Plant Biol. 63:615, and R. Heidstra and S. Sabatini, 2014, Nat. Rev. Mol. Cell Biol. 15:301.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">WUS protein</td><td class="gl-zh">WUS蛋白</td></tr>
+  <tr><td class="gl-en">WUS</td><td class="gl-zh">WUS</td></tr>
+  <tr><td class="gl-en">CLV3 protein</td><td class="gl-zh">CLV3蛋白</td></tr>
+  <tr><td class="gl-en">CLV3</td><td class="gl-zh">CLV3</td></tr>
+  <tr><td class="gl-en">CLV1</td><td class="gl-zh">CLV1</td></tr>
+  <tr><td class="gl-en">Organizing center cell</td><td class="gl-zh">组织中心细胞</td></tr>
+  <tr><td class="gl-en">Stem cell</td><td class="gl-zh">干细胞</td></tr>
+  <tr><td class="gl-en">Plasmodesmata</td><td class="gl-zh">胞间连丝</td></tr>
+  <tr><td class="gl-en">Cell wall</td><td class="gl-zh">细胞壁</td></tr>
+  <tr><td class="gl-en">Differentiation specific genes</td><td class="gl-zh">分化特异性基因</td></tr>
+  </table>
+</figure>
+<h3 class="subhead">根端分生组织在结构和功能上类似于茎端分生组织</h3>
+<p>与茎端分生组织不同，根端分生组织由谱系受限的干细胞组成。这些细胞围绕静止中心组织起来，静止中心是四个分裂极慢的细胞，充当干细胞龛（<a class="xref xref-fig" href="#fig-21-20">图21-20</a>b）。干细胞分裂是不对称的（这一点也与茎端不同），失去与静止中心接触的那个女儿细胞再分裂数次，然后分化。一个WUS同源物WOX5在静止中心中表达，是干细胞维持所必需的，不过其他转录因子也很重要。植物激素生长素（吲哚-3-乙酸）协调植物生长和分化涉及的许多过程；特别是，它对根端分生组织龛的形成必不可少。如果静止中心被消融，在高生长素浓度区域会形成一个新的龛。然而，生长素对干细胞的作用取决于具体的细胞类型。例如，在产生根冠的干细胞中，生长素通过生长素响应转录因子抑制WOX5，从而促进细胞分化。</p>
+<p>植物具有惊人的再生能力。家庭园丁会熟悉叶插或茎插只需一杯水和一扇阳光充足的窗台、几乎不需其他诱导就能生根的能力。20世纪中期进行的实验证明，从胡萝卜根中分离出的单个细胞置于含有适当营养和激素配比的培养基上时，能再生出完整的植株。在那之后，一个常被引用的植物细胞与动物细胞的主要区别是：所有植物细胞都是全能性的。然而今天，随着我们从分化的动物细胞生成iPS细胞的能力，以及对参与植物再生的细胞进行更细致的分析——这些分析提示再生组织来自预先存在的干细胞群体，而不是通过去分化过程——这一区别正变得模糊。■</p>
+<div class="key-concepts" id="kc-21-3"><div class="kc-head">第 21.3 节 · 关键概念</div><div class="kc-title">多细胞生物中的干细胞与龛</div><ul><li>涡虫含有多能性干细胞，称为cNeoblast，对截肢去除的身体部位的再生很重要。</li><li>动物中大多数干细胞是多潜能性的，但生殖系干细胞是单能性的。</li><li>干细胞未分化；它们可进行对称或不对称的自我更新分裂，使其数量在生物体一生中保持恒定或增加（见<a class="xref xref-fig" href="#fig-21-11">图21-11</a>）。</li><li>干细胞形成于龛中，龛提供信号以维持一群未分化干细胞；该龛必须在不让干细胞过度增殖的前提下维持干细胞，并阻断分化。</li><li>干细胞通过在龛中起作用的特定控制机制被阻止分化。Wnt信号通路的一个组分β-catenin的高水平，被认为通过把细胞导向自我更新分裂而非分化状态，来保存生殖系和肠道中的干细胞。</li><li>在果蝇生殖区中，少数细胞构成生殖干细胞龛，直接向相邻的干细胞发送信号。被移出龛细胞的女儿细胞进行增殖并分化为生殖细胞（见<a class="xref xref-fig" href="#fig-21-12">图21-12</a>）。</li><li>与肠上皮以及许多其他组织相关的干细胞群体，能再生受损、脱落或衰老的分化组织细胞（见<a class="xref xref-fig" href="#fig-21-13">图21-13</a>）。</li><li>肠道干细胞驻留于肠隐窝底部，紧邻潘氏细胞，后者构成龛的一部分；肠道干细胞以表达Lgr5受体为标志（见<a class="xref xref-fig" href="#fig-21-13">图21-13</a>）。</li><li>在血细胞谱系中，不同类型的前体在各自不同的细胞因子控制下形成并增殖（见<a class="xref xref-fig" href="#fig-21-17">图21-17</a>）。该系统使身体能够特异性地诱导某些或全部所需血细胞类型的补充。</li><li>造血干细胞可通过骨髓移植实验检出并定量（见<a class="xref xref-fig" href="#fig-21-18">图21-18</a>），其龛细胞可通过一组标志表面蛋白的组合来检测（见<a class="xref xref-fig" href="#fig-21-19">图21-19</a>）。</li><li>植物干细胞在分生组织中持续存在植物的一生。分生组织细胞能产生广谱的细胞类型和结构（见<a class="xref xref-fig" href="#fig-21-20">图21-20</a>）。</li><li>一个涉及WUS转录因子的负反馈环维持茎端干细胞群体的大小。</li></ul></div>
+<h2 id="sec-21.4">21.4 细胞极性机制与不对称细胞分裂</h2>
+<p>我们已经讨论过不对称分裂在发育过程中产生细胞多样性以及维持群体中干细胞数量方面的重要性。细胞在分裂之前就变得不对称、从而产生具有不同命运的细胞，其能力背后的机制是什么？细胞不对称性是我们以前遇到过的概念，当时称为细胞极性，所以让我们先回顾一下一个细胞处于极化状态意味着什么。</p>
+<p>细胞极性——细胞组织其内部结构、从而导致细胞形状改变并产生具有不同蛋白质和脂质组成的质膜区域的能力——已在好几章中介绍过。例如，我们已经看到，极化的肠上皮细胞具有一个顶端结构域，其中富含微绒毛，并通过紧密连接与基底外侧结构域隔开（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter17/index.html#fig-17-1">图17-1</a>和<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-11">图20-11</a>）。上皮运输要求这些细胞在顶端膜和基底外侧膜中具有不同的转运蛋白（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter11/index.html#fig-11-30">图11-30</a>）。正如我们将在本节后面看到的，这些上皮细胞是在响应细胞外信号，这些信号指示它们如何极化。这些细胞只是细胞极性的一个例子——动物中几乎所有的细胞都是极化的，我们将讨论几个已经阐明其潜在机制的例子。由此得出细胞极性的三条核心原则。第一，细胞具有内在的极性程序，这从它们在缺乏外部线索时仍能极化的非凡能力可以看出。正如我们将在例子中看到的，该程序的一个共同的主调控因子是小GTP酶Cdc42。第二，这一内在极性程序可以被外部或内部线索所引导。第三，单个细胞的极性通常由细胞内相互拮抗的复合物来维持。我们首先讨论芽殖酵母中的内在极性程序，因为该机制的所有组分都与动物共有，所以在酵母中发现的原理很可能是保守的。然后，我们将讨论一些例子，其中的细胞响应外部线索，依赖拮抗性相互作用来建立细胞极性。最后，我们讨论一个不对称细胞分裂的例子，它产生一个子代干细胞和一个分化细胞。</p>
+<h3 class="subhead">内在极性程序依赖于一个涉及Cdc42的正反馈环</h3>
+<p>芽殖酵母通过在表面选择单个位点来组装新芽而生长（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter19/index.html#fig-19-3">图19-3</a>）。重要的是，它必须可靠地只选择一个位点。如果一个细胞同时长出两个芽，请设想有丝分裂期间会发生什么：复制的染色体可能被分配到母细胞和一个芽之间，使另一个芽得不到染色体，因而无法存活。在单倍体酵母中，这种所谓的出芽单一性由一个留在细胞表面的信号（线索）所引导，它把下一次出芽事件引向与上一次出芽位点相邻的位点。值得注意的是，如果删除那些编码该线索非必需组分的基因，酵母细胞生长得一样好，但每个细胞都在随机位点组装单个芽。这一结果揭示，酵母拥有一个内在的极性程序，即使没有来自上一个出芽周期的线索，它也能引导选择单个位点进行芽的生长。该程序需要Cdc42在芽将从中长出的位点浓集。</p>
+<p>令人惊讶的是，新芽位点上Cdc42的浓集并不依赖于肌动蛋白丝或微管，因为即使两种纤丝系统都被破坏，这种小GTP酶仍然定位于单个位点（<a class="xref xref-fig" href="#fig-21-22">图21-22</a>a）。早在生物学家思考这可能是如何发生之前，杰出的数学家和计算机先驱Alan Turing就考虑过，什么样的机制可以把极性因子的均匀分布转变为在单个位点上的浓集。1952年，Turing提出，如果正反馈反应能放大极性因子浓度的随机升高，就可以实现这样的转变——他确实说对了！</p>
+<p>回忆一下，Cdc42是Rho家族小GTP结合蛋白的成员（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter17/index.html#fig-17-41">图17-41</a>）。它作为分子开关，存在无活性（Cdc42⋅GDP）和有活性（Cdc42⋅GTP）两种状态。与其特异的鸟嘌呤核苷酸交换因子（Cdc42-GEF）结合，使Cdc42释放GDP并结合GTP。有活性的Cdc42⋅GTP结合效应蛋白，从而激活下游信号事件。在无活性状态下，Cdc42⋅GDP处于平衡之中，在结合鸟嘌呤核苷酸解离抑制因子（GDI）的胞质池与膜结合的Cdc42⋅GDP池之间分配（<a class="xref xref-fig" href="#fig-21-22">图21-22</a>b）。偶尔且随机地，膜结合的Cdc42⋅GDP会释放其GDP并结合GTP，这使它转变为有活性的Cdc42⋅GTP状态（<a class="xref xref-fig" href="#fig-21-22">图21-22</a>b，步骤1）。被招募到Cdc42⋅GTP的效应蛋白之一是含有Cdc42-GEF的蛋白复合物（步骤2）。因此，当质膜上出现一个有活性的Cdc42时，它招募Cdc42-GEF，后者局部激活更多的Cdc42，后者又招募更多的Cdc42-GEF，这个简单的正反馈环在细胞表面产生一个高度局部富集Cdc42⋅GTP的位点（步骤3和4）。计算建模——同样由Turing开创——表明该系统可以导致"赢者通吃"的局面，只产生一个极化位点。这个正反馈环是在酵母中产生一个非常稳定的出芽位点的核心机制。</p>
+<figure class="fig" id="fig-21-22">
+  <img class="zoomable" src="figures/fig_21-22_1.png" alt="图 21-22" onclick="lightbox(this.src)">
+  <figcaption>图21-22 芽殖酵母的内在极性程序涉及一个激活GTP酶Cdc42的正反馈环。(a)缺乏极性线索的二倍体酵母在即将组装芽时表现出极化的Cdc42，此处通过免疫荧光显微镜显示。细胞经药物处理以解聚肌动蛋白丝和微管，表明Cdc42的极化不依赖于这些细胞骨架纤丝。(b)激活Cdc42的正反馈环。无活性的Cdc42⋅GDP处于平衡之中，在与其鸟嘌呤核苷酸解离抑制因子（GDI）形成复合物的胞质池与膜结合池之间分配。步骤1：膜结合的Cdc42⋅GDP蛋白之一可能自发变成有活性的Cdc42⋅GTP。步骤2：有活性的Cdc42⋅GTP招募一个含有鸟嘌呤核苷酸交换因子（GEF）的复合物。步骤3：被招募的GEF现在在局部把更多的Cdc42⋅GDP转变成Cdc42⋅GTP。步骤4：这些有活性的Cdc42⋅GTP招募更多的GEF，从而驱动一个正反馈环，导致Cdc42⋅GTP的局部积累。见C.-F. Wu and D. Lew, 2013, Trends Cell Biol. 23:476. [Part (a) reprinted by permission from Macmillan Publishers Ltd.; from Irazoqui, J. E., “Scaffold-mediated symmetry breaking by Cdc42p,” Nat. Cell Biology, 5(12)1062–70(2003).]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Plasma membrane</td><td class="gl-zh">质膜</td></tr>
+  <tr><td class="gl-en">Cytosol</td><td class="gl-zh">胞质</td></tr>
+  <tr><td class="gl-en">Exterior</td><td class="gl-zh">外侧</td></tr>
+  <tr><td class="gl-en">Cdc42</td><td class="gl-zh">Cdc42</td></tr>
+  <tr><td class="gl-en">Effector</td><td class="gl-zh">效应蛋白</td></tr>
+  <tr><td class="gl-en">GEF</td><td class="gl-zh">GEF（鸟嘌呤核苷酸交换因子）</td></tr>
+  <tr><td class="gl-en">GDI</td><td class="gl-zh">GDI（鸟嘌呤核苷酸解离抑制因子）</td></tr>
+  <tr><td class="gl-en">Site of enriched Cdc42-GTP at which bud will form</td><td class="gl-zh">将形成芽的Cdc42-GTP富集位点</td></tr>
+  <tr><td class="gl-en">View from membrane surface</td><td class="gl-zh">从膜表面观察</td></tr>
+  </table>
+</figure>
+<p>正如我们在第18章看到的，Cdc42也是引导迁移细胞极化的主调控因子（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter18/index.html#fig-18-53">图18-53</a>），其中一种类似的反馈环很可能也存在。正如我们将看到的，Cdc42参与调控许多其他的细胞极性例子。重要的是，在极化需要更灵活的情况下，负反馈环确保单个极化位点不会太强，从而在接收到适当信号时，它可以被重新导向细胞表面的另一个位点。例如，除了作用快速的GEF外，Cdc42⋅GTP可能还招募一个作用缓慢的负调控因子，来调节正反馈的程度。事实上，酵母Cdc42招募一种激酶，它磷酸化并抑制被招募的Cdc42-GEF，从而引入一个负反馈环。因此，Cdc42⋅GTP的局部浓度快速升高，随后随着较慢的负调控因子发挥作用而趋于平稳或消失。这些正、负反馈环的生化基础是当前研究活跃而重要的领域。正如我们将看到的，特定的线索通常引导这些内在极性程序，进而导致细胞的物理极化。</p>
+<figure class="fig" id="fig-21-23">
+  <img class="zoomable" src="figures/fig_21-23_1.png" alt="图 21-23" onclick="lightbox(this.src)">
+  <figcaption>图21-23 细胞极性与不对称细胞分裂的一般特征。(a)产生极化细胞各步骤的一般层级。为了知道朝哪个方向极化，细胞必须接受空间线索（步骤1）。它们还必须具有受体或其他机制来感受该线索（步骤2）。一旦细胞感受到线索，信号转导途径（步骤3）便调控细胞骨架（微管和/或微丝，视系统而定），使其以适当的极化方式重组（步骤4）。极化的细胞骨架为细胞内膜运输细胞器和大分子复合物（包括命运决定因子和极性决定因子）的运输提供了框架（步骤5）。在许多情况下，极性通过把已离开浓集位点的极性决定因子送回而得到增强。当决定因子是膜蛋白时，这种强化循环可能涉及通过内吞作用摄取并递送到浓集位点（步骤6）。(b)细胞极性要求特定的决定因子（包括mRNA、蛋白质和脂质）在细胞中不对称定位。如果有丝分裂纺锤体的定位使这些决定因子在细胞分裂时被分离，两个子细胞将具有不同的细胞命运决定因子。然而，如果有丝分裂纺锤体取向不当，决定因子就不会被正确分离，子细胞可能具有相同的命运（未显示）。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Localized cue</td><td class="gl-zh">局部线索</td></tr>
+  <tr><td class="gl-en">Sensing cue</td><td class="gl-zh">感受线索</td></tr>
+  <tr><td class="gl-en">Signal transduction leading to cytoskeletal reorganization</td><td class="gl-zh">导致细胞骨架重组的信号转导</td></tr>
+  <tr><td class="gl-en">Polarized parent cell</td><td class="gl-zh">极化的母细胞</td></tr>
+  <tr><td class="gl-en">Mitotic spindle</td><td class="gl-zh">有丝分裂纺锤体</td></tr>
+  <tr><td class="gl-en">Asymmetric localization of cell fate determinants</td><td class="gl-zh">细胞命运决定因子的不对称定位</td></tr>
+  <tr><td class="gl-en">Localized determinants (protein or mRNA)</td><td class="gl-zh">定位的决定因子（蛋白质或mRNA）</td></tr>
+  <tr><td class="gl-en">Directed movement of polarity determinants</td><td class="gl-zh">极性决定因子的定向移动</td></tr>
+  <tr><td class="gl-en">Reinforcement of polarity determinants</td><td class="gl-zh">极性决定因子的强化</td></tr>
+  <tr><td class="gl-en">Unequal daughter cells</td><td class="gl-zh">不均等的子细胞</td></tr>
+  </table>
+</figure>
+<h3 class="subhead">细胞分裂前的细胞极化遵循共同的步骤层级</h3>
+<p>细胞无论是否进行分裂，其极化都遵循<a class="xref xref-fig" href="#fig-21-23">图21-23</a>a所示的总体模式。为了知道朝哪个方向极化（或变成不对称），细胞通常感受特定的线索，这些线索为它提供空间信息（步骤1）。正如我们将看到的，这类线索可以是来自其他细胞或细胞外基质的可溶性信号。为了能接收这些线索，细胞表面必须具有适当的受体或其他机构（步骤2）。一旦检测到线索，细胞便通过把传入信号输入其极性程序来作出响应，从而确定极性的取向（步骤3）。通常下一步涉及细胞骨架元件（特别是微丝和微管）的局部重组（步骤4）。一旦细胞具有结构上的不对称性，分子马达便将极性因子——取决于系统，这些因子可能是胞质蛋白，也可能是由分泌途径合成的膜蛋白，或两者兼有——运输到它们适当的位置（步骤5）。极性常常可以通过把极性决定因子从浓度较低的位点移回极化位点、以维持该处最高浓度而得到增强或维持（步骤6）。</p>
+<p>如果一个细胞发生极化，随后细胞分裂发生在垂直于极化方向的平面上，那么这个细胞就进行了不对称细胞分裂。通过这种方式，命运决定因子（如特定的蛋白质或mRNA）可以在细胞之间被差异性地分配（<a class="xref xref-fig" href="#fig-21-23">图21-23</a>b）。</p>
+<p>细胞极化可以是一个高度动态的过程。设想一个巨噬细胞追赶细菌，以便通过吞噬作用捕获并消灭它：巨噬细胞必须持续地感受细菌，它是通过追随细菌留下的肽梯度来做到这一点的（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter17/index.html#fig-17-46">图17-46</a>）。这一信号使巨噬细胞定向——或者说极化——从而朝正确的方向移动。这个例子突显了细胞极性一个重要而常见的方面：在许多情况下，它必须是动态的，以便像巨噬细胞的例子那样能够迅速改变方向。尽管我们以巨噬细胞为例说明了细胞极性的动态性，但上皮细胞以及其他看起来非常静态的细胞，当它们被移动到不同环境时，其极性很可能也相当动态。</p>
+<p>在下一节中，我们讨论一个表现出不对称性的简单细胞：交配过程中响应可溶性线索的酵母细胞。在随后的几节中，我们转向动物细胞，其中保守的极性蛋白在解读极性线索以及在细胞分裂之前产生细胞不对称性方面起着关键作用。然后我们描述这些相同的极性蛋白如何被用来使上皮细胞极化。最后，我们讨论干细胞中不对称分裂的若干方面。</p>
+<h3 class="subhead">极化的膜运输使酵母在交配过程中不对称生长</h3>
+<p>最简单、研究得最透彻的细胞不对称形式之一发生在芽殖酵母细胞交配时。正如我们已经看到的，酵母可以以单倍体状态（每条染色体一个拷贝）或二倍体状态（每条染色体两个拷贝）存在。单倍体状态可以是两种交配型（"性别"）之一，即a或α。酵母在自然界中偏好的状态是二倍体状态，所以a细胞总是寻求与α细胞交配，以恢复二倍体状态（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter1/index.html#fig-1-23">图1-23</a>）。每种交配型都分泌一种特定的交配信息素——a细胞分泌a因子，α细胞分泌α因子——并且每种都在其表面表达一种受体，用以感受相反交配型的信息素。因此a细胞有α因子的受体，α细胞有a因子的受体。当相反交配型的细胞被放在彼此附近时，每个细胞上的受体结合并检测另一个细胞的信息素线索，测定其空间上的最高浓度，以了解朝哪个方向交配。当细胞检测到相反的交配因子时，会发生两个重要过程。第一，它们通过在G0期阻滞来使细胞周期同步，这样当它们交配时，两个单倍体基因组将处于细胞周期的同一阶段。第二，它们把细胞生长导向信息素的方向，以组装一个称为shmoo的交配突起。如果相反交配型的正在形成shmoo的细胞相互接触，它们就在shmoo顶端融合，两个单倍体核结合在一起，恢复二倍体状态。</p>
+<p>通过寻找那些不能响应相反交配信息素形成shmoo的酵母单倍体突变体，研究人员发现了shmoo形成所必需的不对称生长是如何发生的（<a class="xref xref-fig" href="#fig-21-24">图21-24</a>）。正如可以预料的那样，这一机制起初涉及一条建立极化细胞骨架的信号转导途径，该骨架反过来把膜运输引导到不对称生长的适当位置。交配因子受体的激活——一个典型的G蛋白偶联受体（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter15/index.html#fig-15-12">图15-12</a>）——导致内在极性程序被激活，进而导致Cdc42在细胞皮层中最靠近信息素来源的区域局部积累并活化（<a class="xref xref-fig" href="#fig-21-24">图21-24</a>，步骤1）。这些有活性的Cdc42⋅GTP导致一种formin蛋白的局部激活（步骤2）。正如我们在第17章看到的，formin蛋白成核组装极化的肌动蛋白丝，其(+)端保持与formin结合（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter17/index.html#fig-17-13">图17-13</a>）。这一过程提供了轨道，供肌球蛋白V马达把分泌小泡运送到纤丝的(+)端，以实现局部生长，从而形成shmoo（步骤3）。请注意，这一机制要求包括Cdc42⋅GTP在内的极性蛋白持续集中在生长中的shmoo顶端。为确保在shmoo生长过程中极性得以维持，据信存在一个定向的内吞循环。在这个循环中，已经从浓集位点扩散开去的Cdc42可能被内吞作用内化，并被运回shmoo顶端，从而强化极性（步骤4）。</p>
+<h3 class="subhead">Par蛋白指导线虫胚胎中的细胞不对称性</h3>
+<p>线虫秀丽隐杆线虫（Caenorhabditis elegans）为理解细胞命运决定提供了一个强有力的模型系统。它被选作研究对象，是因为这种动物身体透明、生活周期短；容易产生和鉴定突变体；而且从单细胞胚胎到成体的细胞谱系是不变的（<a class="xref xref-fig" href="#fig-21-25">图21-25</a>a、c、d）。一个关键方面是这个谱系中的第一次细胞分裂，其中P0细胞——受精卵，或称合子——通过不对称细胞分裂产生AB和P1细胞；这两个细胞随后各自产生不同的谱系。关于这第一次不对称分裂已经知道很多，这也是我们关注的重点。</p>
+<p>在第一次细胞分裂之前，合子就已经明显不对称：称为P颗粒的胞质复合物浓集在将形成胚胎后端的细胞一端（<a class="xref xref-fig" href="#fig-21-25">图21-25</a>b）。结果表明，在随后的细胞分裂中，这些P颗粒总是分配到将形成生殖系的细胞中，它们最终在生殖系发育中发挥重要作用。P0细胞的第一次不对称分裂产生含P颗粒的P1细胞和较大的AB细胞。此后，在两细胞期，有丝分裂纺锤体彼此成直角排列，因此随后的细胞分裂也彼此成直角（<a class="xref xref-fig" href="#fig-21-26">图21-26</a>a）。为了初步理解这第一次至关重要的不对称分裂是如何发生的，人们鉴定出六个不同基因的突变，它们导致第一次分裂变成对称的。由于在这些突变体中P颗粒没有被正确地分配，这项研究鉴定出的基因被称为partition defective即par基因。在这些突变体中，P颗粒没有正确定位于合子的后端，而且有丝分裂纺锤体在为第二次分裂做准备时也没有正确取向（见<a class="xref xref-fig" href="#fig-21-26">图21-26</a>a）。当par基因的产物被定位后，人们获得了关键的洞见。在野生型合子中，许多Par蛋白要么定位于细胞前半部的皮层，要么定位于后半部的皮层。例如，Par3（作为一个更大的复合物的一部分，该复合物包含Cdc42、Par3、Par6和aPKC——非典型蛋白激酶C）定位于前部，而Par2和Par1定位于后部（<a class="xref xref-fig" href="#fig-21-26">图21-26</a>b）。后续工作表明，这些蛋白复合物之间存在相互拮抗的相互作用；也就是说，如果Cdc42-Par3-Par6-aPKC复合物定位于一个区域，它就排斥Par2，反之亦然。这一点由以下发现所证明：在par2突变体中，Par3-Par6-aPKC复合物铺展到整个皮层；而在par3或par6突变体中，Par2铺展到整个皮层。这种拮抗的分子本质尚未被完全理解，但其中一部分是由蛋白激酶aPKC介导的，它磷酸化Par2，从而抑制其与前部皮层结合的能力。</p>
+<figure class="fig" id="fig-21-24">
+  <img class="zoomable" src="figures/fig_21-24_1.png" alt="图 21-24" onclick="lightbox(this.src)">
+  <img class="zoomable" src="figures/fig_21-24_2.png" alt="图 21-24" onclick="lightbox(this.src)">
+  <figcaption>图21-24 酵母中shmoo形成的机制。(a)单倍体酵母细胞必须朝相反交配型交配因子浓度最高的方向生长，因此其表面有一种受体来指示最高浓度所在的位置。这一信号诱导Cdc42的定位和激活，从而在该位点产生更高浓度的Cdc42⋅GTP（步骤1）。Cdc42⋅GTP在局部激活一种formin，后者从该位点成核并延伸肌动蛋白丝（步骤2）。由于formin结合肌动蛋白丝的(+)端，因此(+)端朝向Cdc42⋅GTP，也就是朝向交配因子的最高浓度。肌球蛋白V马达沿着肌动蛋白丝运输分泌小泡，导致shmoo的生长（步骤3）。shmoo的极性由一个内吞循环强化，该循环不断把扩散开去的极性因子（如Cdc42）沿肌动蛋白丝送回信号位点（步骤4）。(b)正在形成shmoo的酵母细胞的DIC光学显微镜图像。[Part (b) from Gehrun, S. and Snyder, M., “The SPA2 gene of Saccharomyces cerevisiae is important for pheromone-induced morphogenesis and efficient mating,” J. Cell Biol., 1990, 111(4):1451–64 doi: 10.1083/jcb.111.4.1451.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Localized signal transduction</td><td class="gl-zh">局部信号转导</td></tr>
+  <tr><td class="gl-en">Higher pheromone concentration</td><td class="gl-zh">更高的信息素浓度</td></tr>
+  <tr><td class="gl-en">Localization of Cdc42-GTP</td><td class="gl-zh">Cdc42-GTP的定位</td></tr>
+  <tr><td class="gl-en">Activation of formin to nucleate actin assembly</td><td class="gl-zh">激活formin以成核组装肌动蛋白</td></tr>
+  <tr><td class="gl-en">Actin cables with their (+) ends at the cell cortex</td><td class="gl-zh">(+)端位于细胞皮层的肌动蛋白束</td></tr>
+  <tr><td class="gl-en">Directed secretion by myosin V</td><td class="gl-zh">由肌球蛋白V进行的定向分泌</td></tr>
+  <tr><td class="gl-en">Polarity reinforcement by endocytic recycling</td><td class="gl-zh">通过内吞回收强化极性</td></tr>
+  </table>
+</figure>
+<p>未受精卵是对称的，那么是什么打破了这种对称性、产生极化的合子呢？结果表明，受精后精子的位置决定了后端。在精子进入之前，整个卵皮层处于张力之下，这种张力由含有活性肌球蛋白II的肌动蛋白网提供。正如我们在第17章看到的，肌球蛋白II可以形成双极纤丝，牵拉肌动蛋白丝以产生张力，这在肌肉和收缩环中也可以看到。肌球蛋白II的活性由一条涉及小GTP酶Rho的信号转导途径调控（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter17/index.html#fig-17-43">图17-43</a>）。在未受精卵中，Rho通过其激活因子的均匀分布而维持在活性的Rho⋅GTP状态，即鸟嘌呤核苷酸交换因子Rho-GEF。Rho⋅GTP激活Rho激酶，后者磷酸化肌球蛋白II的肌球蛋白轻链从而激活它（<a class="xref xref-fig" href="#fig-21-27">图21-27</a>a）。受精后不久，一个来自精子中心体的未知信号导致维持活性Rho所必需的Rho-GEF发生局部耗竭。因此，精子中心体的不对称位置通过耗竭Rho-GEF来确定后端区域，从而降低肌球蛋白II的活性。随着收缩活性在局部降低，肌动蛋白-肌球蛋白网向前部收缩（<a class="xref xref-fig" href="#fig-21-27">图21-27</a>b），在此过程中，它（以某种未知方式）把含有Par3、Par6和aPKC的前部复合物拖向那一端（<a class="xref xref-fig" href="#fig-21-27">图21-27</a>c）。随着前部复合物被移走，Par2现在可以占据后部皮层，细胞不对称性由此建立。</p>
+<figure class="fig" id="fig-21-25">
+  <img class="zoomable" src="figures/fig_21-25_1.png" alt="图 21-25" onclick="lightbox(this.src)">
+  <figcaption>图21-25 线虫秀丽隐杆线虫（C. elegans）的细胞谱系。(a)最初几次分裂的模式，从P0（合子）开始，最终形成六个奠基细胞（黄色高亮）。第一次分裂是不对称的，产生AB和P1细胞。EMS细胞之所以如此命名，是因为它产生大部分内胚层和中胚层。P4谱系产生生殖系的细胞。(b)两细胞、四细胞和八细胞胚胎的显微照片，DNA染成蓝色，核膜染成红色，P颗粒染成绿色。图中标出了将产生生殖系的P1、P2和P3细胞。(c)线虫整个身体的完整谱系，显示所形成的部分组织。在此图中，细胞分裂由线的分叉表示，细胞分裂的时间由垂直方向表示。(d)新孵化的幼虫。在这张通过微分干涉相差（DIC）显微镜获得的显微照片中，可以看到成体雌雄同体形式中959个体细胞核的一部分。[Part (b) courtesy of Susan Strome and Dustin Updike; part (d) republished with permission of Elsevier, from Sulston, J. E. and Horvitz, H. R., “Post-embryonic cell lineages of the nematode, Caenorhabditis elegans,” Dev. Biol., 1977, 56(1):110–56; permission conveyed through Copyright Clearance Center, Inc.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Zygote</td><td class="gl-zh">合子</td></tr>
+  <tr><td class="gl-en">Germ line</td><td class="gl-zh">生殖系</td></tr>
+  <tr><td class="gl-en">Germ cells</td><td class="gl-zh">生殖细胞</td></tr>
+  <tr><td class="gl-en">Body muscle</td><td class="gl-zh">体肌</td></tr>
+  <tr><td class="gl-en">Pharyngeal muscle</td><td class="gl-zh">咽肌</td></tr>
+  <tr><td class="gl-en">Neurons</td><td class="gl-zh">神经元</td></tr>
+  <tr><td class="gl-en">Hypodermis</td><td class="gl-zh">皮下组织</td></tr>
+  <tr><td class="gl-en">Intestine</td><td class="gl-zh">肠</td></tr>
+  <tr><td class="gl-en">Intestinal lumen</td><td class="gl-zh">肠腔</td></tr>
+  <tr><td class="gl-en">Pharynx</td><td class="gl-zh">咽</td></tr>
+  <tr><td class="gl-en">Epidermis</td><td class="gl-zh">表皮</td></tr>
+  <tr><td class="gl-en">Somatic gonad</td><td class="gl-zh">体细胞性腺</td></tr>
+  <tr><td class="gl-en">Dorsal nerve cord</td><td class="gl-zh">背神经索</td></tr>
+  <tr><td class="gl-en">Ventral nerve cord</td><td class="gl-zh">腹神经索</td></tr>
+  <tr><td class="gl-en">Excretory cell</td><td class="gl-zh">排泄细胞</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-26">
+  <img class="zoomable" src="figures/fig_21-26_1.png" alt="图 21-26" onclick="lightbox(this.src)">
+  <figcaption>实验图21-26 Par蛋白在单细胞线虫胚胎中不对称定位。(a)野生型和par3突变体胚胎的DIC图像。请注意，在野生型细胞中，AB细胞比P1细胞大，而在par3突变体中它们大小相同。par3突变体在纺锤体取向（由绿色的微管染色可见）和P颗粒（红色）分离方面也有缺陷。DNA染成蓝色。(b)单细胞胚胎中前部Par复合物（Cdc42-Par3-Par6-aPKC）（红色）与后部决定因子（绿色）的互补定位。[Parts (a) and (b) courtesy of Diane Morton and Kenneth Kemphues.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Wild type</td><td class="gl-zh">野生型</td></tr>
+  <tr><td class="gl-en">par3 mutant</td><td class="gl-zh">par3突变体</td></tr>
+  <tr><td class="gl-en">Tubulin</td><td class="gl-zh">微管蛋白</td></tr>
+  <tr><td class="gl-en">P granules</td><td class="gl-zh">P颗粒</td></tr>
+  <tr><td class="gl-en">Anterior complex (Cdc42, Par3, Par6, aPKC)</td><td class="gl-zh">前部复合物（Cdc42、Par3、Par6、aPKC）</td></tr>
+  <tr><td class="gl-en">Posterior factors (e.g., Par1, Par2)</td><td class="gl-zh">后部因子（如Par1、Par2）</td></tr>
+  <tr><td class="gl-en">DIC</td><td class="gl-zh">DIC（微分干涉相差）</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-27">
+  <img class="zoomable" src="figures/fig_21-27_1.png" alt="图 21-27" onclick="lightbox(this.src)">
+  <figcaption>图21-27 单细胞线虫胚胎中前部Par复合物分离的机制。(a)受精前，细胞皮层处于张力之下，这种张力源于小GTP酶Rho的鸟嘌呤核苷酸交换因子Rho-GEF的活性。Rho⋅GTP激活Rho激酶，后者磷酸化肌球蛋白II的调节轻链从而激活它。有活性的肌球蛋白II与肌动蛋白丝一起维持细胞皮层中的张力。(b)受精前（上图）和受精后（下图）肌球蛋白II的定位。星号标出精子进入的区域。(c)受精前，Rho-GEF均匀活跃，皮层处于有活性肌球蛋白II产生的张力之下，前部Par复合物（Cdc42-Par3-Par6-aPKC）均匀分布在皮层周围。受精后，Rho-GEF在局部减少，导致肌球蛋白II在局部失活。这种失活产生不均衡的张力，于是肌动蛋白-肌球蛋白网朝未来的前端收缩，并带动前部Par复合物一起移动。一旦前部复合物完成定位，Par2等因子便与后部细胞皮层结合。见D. St. Johnston and J. Ahringer, 2010, Cell 141:757. [Part (b) republished with permission of Elsevier, from Munro, E. et al., “Cortical flows powered by asymmetrical contraction transport PAR proteins to establish and maintain anterior-posterior polarity in the early C. elegans embryo,” Dev. Cell, 2004, 7:3, 413–424; permission conveyed through the Copyright Clearance Center, Inc.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Rho-GEF</td><td class="gl-zh">Rho-GEF</td></tr>
+  <tr><td class="gl-en">Rho-GTP</td><td class="gl-zh">Rho-GTP</td></tr>
+  <tr><td class="gl-en">Rho kinase</td><td class="gl-zh">Rho激酶</td></tr>
+  <tr><td class="gl-en">Active myosin II</td><td class="gl-zh">有活性的肌球蛋白II</td></tr>
+  <tr><td class="gl-en">Cortical tension</td><td class="gl-zh">皮层张力</td></tr>
+  <tr><td class="gl-en">Fertilization</td><td class="gl-zh">受精</td></tr>
+  <tr><td class="gl-en">Maternal pronucleus</td><td class="gl-zh">雌原核</td></tr>
+  <tr><td class="gl-en">Paternal pronucleus</td><td class="gl-zh">雄原核</td></tr>
+  <tr><td class="gl-en">Anterior Par complex (Cdc42, Par3, Par6, aPKC)</td><td class="gl-zh">前部Par复合物（Cdc42、Par3、Par6、aPKC）</td></tr>
+  <tr><td class="gl-en">Gradient of Rho-GEF activity</td><td class="gl-zh">Rho-GEF活性的梯度</td></tr>
+  <tr><td class="gl-en">Uniform Rho-GEF activity</td><td class="gl-zh">均匀的Rho-GEF活性</td></tr>
+  <tr><td class="gl-en">Site of sperm entry</td><td class="gl-zh">精子进入位点</td></tr>
+  <tr><td class="gl-en">Actin-myosin network</td><td class="gl-zh">肌动蛋白-肌球蛋白网</td></tr>
+  <tr><td class="gl-en">Par2</td><td class="gl-zh">Par2</td></tr>
+  </table>
+</figure>
+<p>结果表明，肌动蛋白-肌球蛋白网收缩所诱导的初始不对称并不需要主调控因子Cdc42。然而，有活性的Cdc42⋅GTP结合Par6，并且对于把前部复合物维持在前端是必需的，尽管这一定位的机制尚不清楚。最近的工作还提示，存在一个内吞强化循环（正如我们讨论过的酵母shmoo形成那样）来维持极性。因此，响应空间线索、建立不对称性以及维持不对称性这几个步骤，是两个系统共有的保守特征。</p>
+<h3 class="subhead">Par蛋白和其他极性复合物参与上皮细胞极性</h3>
+<p>在脊椎动物中，极化的上皮细胞利用来自相邻细胞和细胞外基质的线索来定向其极化轴。脊椎动物上皮细胞的极化过程与黑腹果蝇（Drosophila melanogaster）中的过程非常相似。我们的知识大多来自果蝇系统，因为在那里突变体很容易被分离和分析。</p>
+<p>在果蝇中进行的遗传筛选发现了多个产生上皮细胞极性所必需的基因。对这些基因所编码的蛋白质以及突变体表型的分析，鉴定出三大类蛋白：由Cdc42、Par3、Par6和aPKC组成的复合物（在该系统中称为顶端Par复合物，或简称为Par复合物）、Crumbs复合物和Scribble复合物。通过广泛分析当个别组分缺失时这些复合物彼此之间的影响，人们已经对它们在上皮细胞极化中的贡献有了一般的了解，尽管详细的分子层面认识仍在不断涌现（<a class="xref xref-fig" href="#fig-21-28">图21-28</a>a）。</p>
+<p>上皮细胞极化中已知的第一步是相邻细胞之间的相互作用；在脊椎动物细胞中，这种相互作用通过nectin（Ig超家族的一种细胞黏附分子）和一种称为JAM-A的连接蛋白发生。这些相互作用向细胞发出信号，使其招募Par复合物并组装黏着连接和紧密连接（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter20/index.html#fig-20-1">图20-1</a>）。Crumbs复合物的招募位置比Par复合物更靠顶端，而Scribble复合物界定了基底外侧表面。在缺乏Par复合物时，细胞无法极化；正如在线虫胚胎中一样，Par复合物是细胞极性的主调控因子。在缺乏Scribble复合物时，顶端结构域大大扩展；而在缺乏Crumbs时，顶端结构域大大缩小。这些观察使人们认识到，这些复合物之间存在相互拮抗的关系，例如，顶端Par复合物的激酶aPKC通过磷酸化拮抗基底外侧的Scribble复合物（见<a class="xref xref-fig" href="#fig-21-28">图21-28</a>a）。因此，正如在线虫胚胎中的情况一样，不对称性是由彼此拮抗的复合物介导的。</p>
+<figure class="fig" id="fig-21-28">
+  <img class="zoomable" src="figures/fig_21-28_1.png" alt="图 21-28" onclick="lightbox(this.src)">
+  <figcaption>图21-28 上皮细胞极性的建立。(a)与线虫胚胎中一样，上皮细胞中的极性决定由顶端的Par复合物驱动。细胞-细胞黏附复合物的形成诱导Par复合物的招募。随后，Par复合物与基底外侧Scribble复合物以及顶端Crumbs复合物之间复杂而拮抗的相互作用，导致上皮细胞极性的建立和维持。不同复合物在膜结构域上的定位由彩色条标示：Scribble复合物与侧面膜结合，Par复合物与细胞连接处的区域结合，而Crumbs复合物紧邻Par复合物的顶端。(b)极化的细胞骨架和(c)膜运输途径共同维持功能性的上皮极性。在生物合成途径中，指定送往顶端结构域和基底外侧结构域的蛋白质和脂质在高尔基复合体中被分选，并被运送到各自相应的表面（红色箭头）。内吞途径（蓝色箭头）调节每个表面上蛋白质和脂质的丰度，并通过转胞吞作用在表面之间对它们进行分选。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Apical domain</td><td class="gl-zh">顶端结构域</td></tr>
+  <tr><td class="gl-en">Basolateral domain</td><td class="gl-zh">基底外侧结构域</td></tr>
+  <tr><td class="gl-en">Apical Par complex</td><td class="gl-zh">顶端Par复合物</td></tr>
+  <tr><td class="gl-en">Crumbs complex</td><td class="gl-zh">Crumbs复合物</td></tr>
+  <tr><td class="gl-en">Scribble complex</td><td class="gl-zh">Scribble复合物</td></tr>
+  <tr><td class="gl-en">Adhesion complex</td><td class="gl-zh">黏附复合物</td></tr>
+  <tr><td class="gl-en">Cell junctions (tight and adherens)</td><td class="gl-zh">细胞连接（紧密连接和黏着连接）</td></tr>
+  <tr><td class="gl-en">Extracellular matrix</td><td class="gl-zh">细胞外基质</td></tr>
+  <tr><td class="gl-en">Microvilli</td><td class="gl-zh">微绒毛</td></tr>
+  <tr><td class="gl-en">Golgi</td><td class="gl-zh">高尔基体</td></tr>
+  <tr><td class="gl-en">Apical endosome</td><td class="gl-zh">顶端内体</td></tr>
+  <tr><td class="gl-en">Basal endosome</td><td class="gl-zh">基底内体</td></tr>
+  <tr><td class="gl-en">Transcytosis pathways</td><td class="gl-zh">转胞吞途径</td></tr>
+  </table>
+</figure>
+<p>人们对这种极性蛋白的排布方式只有部分了解，它重塑细胞骨架，使微丝形成不同的排布，与顶端膜和基底外侧膜相关联。上皮细胞中微管的分布颇为不寻常，因为它们并非都与中心体相连；相反，侧面微管把其(−)端朝向顶端结构域，而其他微管在微绒毛下方垂直于侧面微管走行，也沿着细胞的基底部走行（<a class="xref xref-fig" href="#fig-21-28">图21-28</a>b）；这些排布是如何建立的尚不清楚。膜运输也是极化的（<a class="xref xref-fig" href="#fig-21-28">图21-28</a>c）。新合成的、指定送往顶端膜和基底外侧膜的膜蛋白在反面高尔基体网络中被分选并包装进不同的运输小泡，然后被运送到适当的表面。此外，来自顶端表面和基底外侧表面的内吞途径调节膜蛋白的丰度，并利用一套复杂的分选内体在称为转胞吞作用的过程中运输错误分选的蛋白。</p>
+<p>在果蝇中寻找更多对上皮细胞极性重要的组分的遗传筛选中，人们发现了内吞运输的组分。例如，一个这样的突变体影响顶端跨膜蛋白Crumbs的运输，因此当内吞作用受损时，表面的Crumbs水平升高，顶端结构域扩展。因此，上皮细胞极性涉及对空间线索的响应以及细胞骨架的重组，后者为分泌性和内吞性膜运输途径提供了框架，以建立并维持极化状态。</p>
+<h3 class="subhead">平面细胞极性途径使上皮内的细胞定向</h3>
+<p>到目前为止，我们只讨论了一个维度上的不对称，但在许多情况下，多细胞生物中的细胞至少在两个维度上极化——从上到下以及沿身体轴。只要看看我们周围动物的特征，比如鱼的鳞片、鸟的羽毛或你手臂上的毛发，就能清楚地看出，产生这些结构的细胞群不仅必须以从上到下（顶端/基底）的方式组织，还必须以从头到尾、即近端/远端的方式组织。这种类型的极性称为平面细胞极性（PCP）。来自果蝇的一个研究得很透彻的例子是翅膀每个细胞上向后指的单根毛发（<a class="xref xref-fig" href="#fig-21-29">图21-29</a>a）。正如我们已经看到的，果蝇是一个特别适合遗传解剖的模型系统。遗传分析表明，每个翅膀细胞都会响应其邻居的平面方向，并且人们已经鉴定出特异影响PCP的组分（<a class="xref xref-fig" href="#fig-21-29">图21-29</a>b）。上皮的整体平面极性可能由某种配体或机械张力在整个组织中的梯度决定。这一梯度以相同的方式使上皮中的所有细胞极化，导致Frizzled和Dishevelled基因编码的蛋白定位于每个细胞的一侧，而Strabismus基因编码的蛋白定位于另一侧（<a class="xref xref-fig" href="#fig-21-29">图21-29</a>c）。PCP蛋白的这种不对称分布导致毛发以适当的取向生长。我们在Wnt途径的背景下已经遇到过Frizzled（一种跨膜受体）和Dishevelled（一种衔接蛋白）（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-30">图16-30</a>），它们在平面细胞极性中的作用可能涉及某种形式的Wnt以及另一些配体。当PCP途径的组分被破坏时——例如在Dishevelled突变体中——上皮完全完整，但毛发方向错乱（见<a class="xref xref-fig" href="#fig-21-29">图21-29</a>b）。</p>
+<p>PCP组分的互补排布意味着，一个细胞一侧的膜蛋白Strabismus将与相邻细胞上的Frizzled蛋白相邻；确实，这两种蛋白相互作用，而这种相互作用对于在整个上皮中协调PCP很重要。与线虫和果蝇中的极性复合物一样，这些蛋白表现出细胞内的相互拮抗（<a class="xref xref-fig" href="#fig-21-29">图21-29</a>c）。因此，当一个细胞上的Frizzled与相邻细胞上的Strabismus结合时，那个相邻细胞将在其相反的一侧富集Frizzled，在那里它将与下一个细胞上的Strabismus结合，这一模式将在整个组织中重复。因此，细胞之间Frizzled与Strabismus的互补相互作用，以及细胞内它们的相互拮抗，把PCP传播到整个组织。</p>
+<p>平面细胞极性的另一个清楚例子是内耳的毛感觉细胞，它们使脊椎动物能够感知声音。这些细胞中的每一个都有一列排列成V形图案的有序静纤毛，而且每个细胞的取向都与其邻居精确一致。在PCP基因Celsr1有缺陷的小鼠中，任一给定细胞内静纤毛的有序排列得以保留，但细胞彼此的相对取向被打乱（<a class="xref xref-fig" href="#fig-21-29">图21-29</a>d）。这类缺陷可导致耳聋。</p>
+<h3 class="subhead">Par蛋白参与干细胞的不对称分裂</h3>
+<p>我们已经看到，干细胞常常产生一个子代干细胞和一个分化的子代细胞（见<a class="xref xref-fig" href="#fig-21-11">图21-11</a>）。建立这些不对称细胞分裂的线索是什么？已发现两类机制（<a class="xref xref-fig" href="#fig-21-30">图21-30</a>）。在一种机制中，细胞命运决定因子响应外部线索而在细胞分裂之前被分配到细胞的一端。这一机制涉及Par蛋白；正如我们已经看到的，Par蛋白在线虫胚胎的第一次不对称分裂以及在上皮细胞极性的建立中起着关键作用。在第二种机制中，干细胞以一个可重现的取向分裂，从而保持与干细胞龛的联系，而子代细胞则被移离龛，随后可以分化。这就是我们在果蝇卵巢中已经遇到的情形，其中帽细胞为生殖系干细胞形成龛（见<a class="xref xref-fig" href="#fig-21-12">图21-12</a>）。</p>
+<p>干细胞不对称分裂的一个理解得特别透彻的例子是果蝇中枢神经系统中神经元和胶质细胞的形成（<a class="xref xref-fig" href="#fig-21-31">图21-31</a>）。在这个模型系统中，神经母细胞干细胞起源于神经性外胚层，后者是一层具有顶端面和基底面的典型上皮。神经母细胞增大（步骤1）并向基底方向移入胚胎内部，但仍与神经性外胚层上皮保持接触（步骤2）。随后它进行不对称分裂（步骤3），产生一个新的神经母细胞和一个神经节母细胞（GMC）（步骤4）。神经节母细胞只能分裂一次，产生两个细胞，即神经元或胶质细胞。神经母细胞通过与神经性外胚层龛保持联系而维持干细胞身份，它可以反复分裂，产生许多神经节母细胞，进而产生神经元和胶质细胞（步骤5），从而充实中枢神经系统。因此，关键事件是神经母细胞进行不对称分裂的能力（<a class="xref xref-fig" href="#fig-21-31">图21-31</a>b）。这一过程同样涉及Par复合物——Par3-Par6-aPKC——的不对称积累，以及它定位在细胞最靠近上皮的顶端侧，并与Scribble形成拮抗关系（<a class="xref xref-fig" href="#fig-21-31">图21-31</a>c）。其他决定极性的因子随后被定位在细胞的基底侧，有丝分裂纺锤体的组建方式使得细胞分裂时这些因子被分离。这些基底定位的决定因子之一称为Miranda，它是一种与调控增殖和分化的因子相结合的蛋白（见<a class="xref xref-fig" href="#fig-21-31">图21-31</a>c）。因此，在不对称细胞分裂中，Miranda及其结合的因子被从神经母细胞分离出来，进入神经节母细胞。</p>
+<figure class="fig" id="fig-21-29">
+  <img class="zoomable" src="figures/fig_21-29_1.png" alt="图 21-29" onclick="lightbox(this.src)">
+  <figcaption>实验图21-29 平面细胞极性（PCP）决定细胞的取向。(a)在野生型果蝇中，翅膀每个细胞上的毛发都指向同一方向。(b)在PCP有缺陷的果蝇中，如这个Dishevelled突变体所示，毛发的取向变得紊乱，尽管上皮中的细胞仍然组织良好。(c)毛发的方向性由PCP途径组分的不对称定位决定，图中标出了Frizzled、Dishevelled和Strabismus，它们都是使毛发正确定向所必需的。平面细胞极性通过两种机制在整个组织中传播。第一，一个细胞上的Frizzled与相邻细胞上的Strabismus结合。第二，在每个细胞内，由于它们相互拮抗，Frizzled和Strabismus的分布是互斥的。(d)脊椎动物内耳的感觉毛细胞在其表面具有V形排列的静纤毛。在成体和18.5天胚胎中（上图和中间图），所有细胞的取向完全相同。在PCP有缺陷的小鼠Celsr1突变体（Flamingo的脊椎动物同源物）中，18.5天胚胎中的细胞看起来正常，但它们的相对取向被打乱（下图中箭头所示）。[Parts (a) and (b) reprinted by permission of John Wiley & Sons, Inc., from Axelrod, J. D, and Tomlin, C. J., “Modeling the control of planar cell polarity,” Wiley Interdisc. Revs., Systems Biology and Medicine, 2011, 3:5, 588-605; permission conveyed through Copyright Clearance Center, Inc. Part (d) republished with permission of The Company of Biologists Ltd., from Fanto, M. and McNeill, H. “Planar polarity from flies to vertebrates,” J. Cell Sci. 2004; 117(Pt4):527-33; permission conveyed through Copyright Clearance Center, Inc.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Wild-type</td><td class="gl-zh">野生型</td></tr>
+  <tr><td class="gl-en">Wild-type adult</td><td class="gl-zh">野生型成体</td></tr>
+  <tr><td class="gl-en">Wild-type 18.5d embryo</td><td class="gl-zh">野生型18.5天胚胎</td></tr>
+  <tr><td class="gl-en">Celsr1 mutant 18.5d embryo</td><td class="gl-zh">Celsr1突变体18.5天胚胎</td></tr>
+  <tr><td class="gl-en">Dishevelled mutant</td><td class="gl-zh">Dishevelled突变体</td></tr>
+  <tr><td class="gl-en">Frizzled and Dishevelled</td><td class="gl-zh">Frizzled和Dishevelled</td></tr>
+  <tr><td class="gl-en">Strabismus</td><td class="gl-zh">Strabismus</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-30">
+  <img class="zoomable" src="figures/fig_21-30_1.png" alt="图 21-30" onclick="lightbox(this.src)">
+  <figcaption>图21-30 诱导干细胞不对称分裂的两种方式。(a)响应外部线索，细胞在分裂之前发生极化，命运决定因子（红点）被分离。随后分裂产生一个干细胞和一个正在分化的细胞。(b)与干细胞龛（红色弯曲物）相互作用的干细胞定向其有丝分裂纺锤体，从而产生一个与龛相连的干细胞和一个被移离龛的正在分化的细胞。见S. J. Morrison and J. Kimble, 2006, Nature 441:1068.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Stem-cell niche</td><td class="gl-zh">干细胞龛</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-31">
+  <img class="zoomable" src="figures/fig_21-31_1.png" alt="图 21-31" onclick="lightbox(this.src)">
+  <figcaption>图21-31 神经母细胞不对称分裂，在中枢神经系统中产生神经元和胶质细胞。(a)神经母细胞是干细胞，它通过诱导其增大的信号从神经性外胚层产生（步骤1）。随后它们向基底方向移出外胚层，但仍与它保持接触（步骤2）。然后神经母细胞进行不对称分裂（步骤3），产生一个神经母细胞和一个神经节母细胞（GMC）（步骤4）。GMC随后分裂一次，产生两个神经元或胶质细胞（步骤5）。与此同时，神经母细胞可以分裂很多次，产生更多的GMC，从而充实神经组织。(b)神经母细胞的不对称分裂需要有丝分裂纺锤体的正确取向，以产生一个较大的神经母细胞和一个较小的GMC。(c)处于分裂后期的神经母细胞，显示顶端Par蛋白（蓝色）和基底Miranda蛋白（红色）的分离。[Part (c) Chris Doe.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Neurogenic ectoderm</td><td class="gl-zh">神经性外胚层</td></tr>
+  <tr><td class="gl-en">Neuroblast</td><td class="gl-zh">神经母细胞</td></tr>
+  <tr><td class="gl-en">Ganglion mother cell</td><td class="gl-zh">神经节母细胞</td></tr>
+  <tr><td class="gl-en">Neuron</td><td class="gl-zh">神经元</td></tr>
+  <tr><td class="gl-en">Glial cell</td><td class="gl-zh">胶质细胞</td></tr>
+  <tr><td class="gl-en">Asymmetric cell division</td><td class="gl-zh">不对称细胞分裂</td></tr>
+  <tr><td class="gl-en">Interphase</td><td class="gl-zh">分裂间期</td></tr>
+  <tr><td class="gl-en">Anaphase</td><td class="gl-zh">分裂后期</td></tr>
+  <tr><td class="gl-en">Chromosome</td><td class="gl-zh">染色体</td></tr>
+  <tr><td class="gl-en">Centrosome</td><td class="gl-zh">中心体</td></tr>
+  <tr><td class="gl-en">Astral microtubules</td><td class="gl-zh">星体微管</td></tr>
+  <tr><td class="gl-en">Mitotic spindle</td><td class="gl-zh">有丝分裂纺锤体</td></tr>
+  <tr><td class="gl-en">Apical Par complex</td><td class="gl-zh">顶端Par复合物</td></tr>
+  <tr><td class="gl-en">Miranda</td><td class="gl-zh">Miranda</td></tr>
+  </table>
+</figure>
+<div class="key-concepts" id="kc-21-4"><div class="kc-head">第 21.4 节 · 关键概念</div><div class="kc-title">细胞极性机制与不对称细胞分裂</div><ul><li>细胞极性涉及蛋白质、脂质和其他大分子在细胞中的不对称分布。</li><li>细胞具有一个利用反馈环产生极性的内在程序。</li><li>在许多系统中，极性程序的一个关键调节因子是小GTP结合蛋白Cdc42。</li><li>当酵母细胞出芽时，内在极性程序利用反馈环把Cdc42⋅GTP浓集在单个位点。</li><li>不对称性要求细胞感受线索，通过组装极化的细胞骨架来响应线索，然后利用这种极性把极性因子适当地分配。</li><li>单倍体酵母的交配涉及：把细胞骨架朝交配信息素浓度最高的方向极化以组装交配突起（shmoo），并把细胞组分的分泌靶向到那里以进行细胞扩增。</li><li>秀丽隐杆线虫（C. elegans）胚胎第一次分裂中的前/后不对称涉及：肌动蛋白-肌球蛋白网的不对称收缩，把前部Par3-Par6-aPKC复合物定位到前部皮层，随后使Par2等后部因子与后部皮层结合。前部和后部复合物的不对称由相互拮抗的途径维持。</li><li>顶端/基底上皮细胞极性也由顶端的Par3-Par6-aPKC复合物驱动，它与顶端Crumbs复合物和基底Scribble复合物以拮抗关系发挥作用。</li><li>平面细胞极性利用一组不同的拮抗关系来调控上皮片层中细胞的取向。</li><li>不对称细胞分裂要求细胞先极化，然后以不对称分离命运决定因子的方式分裂。</li><li>干细胞的不对称分裂常常涉及干细胞与龛的联系，在这种情况下，干细胞产生另一个干细胞和一个正在分化的细胞。</li><li>干细胞的不对称分裂还涉及Par复合物的不对称分布：分裂期间Par复合物保留在干细胞中，而命运决定因子则定位在远离Par复合物之处，最终进入正在分化的细胞。</li></ul></div>
+<h2 id="sec-21.5">21.5 细胞死亡及其调控</h2>
+<p>受调控的细胞死亡在后生动物中是一个反直觉但不可或缺的过程。在胚胎发生过程中，特定细胞的程序性死亡使鸡爪以及我们的手不至于长成蹼状（<a class="xref xref-fig" href="#fig-21-32">图21-32</a>）；它还能阻止我们的胚胎尾持续存在，并防止我们的大脑被无用的神经连接填满。事实上，脑发育过程中产生的大多数细胞随后都会死亡。我们将在第23章看到，对正常机体蛋白发生反应或产生无功能抗体的免疫系统细胞是如何被选择性杀死的。许多种肌肉细胞、上皮细胞和白细胞不断损耗，需要被清除并替换。</p>
+<figure class="fig" id="fig-21-32">
+  <img class="zoomable" src="figures/fig_21-32_1.png" alt="图 21-32" onclick="lightbox(this.src)">
+  <figcaption>实验图21-32 一只蹼足鸡。在许多脊椎动物肢体的发育过程中，胚胎趾之间软组织中的细胞发生程序性细胞死亡。在鸡足中，这一过程导致形成四个分开的趾（左）。在鸡足发育过程中，骨形态发生蛋白（BMP）（TGF-β激素超家族的成员；见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-3">图16-3</a>）由趾间细胞表达并诱导凋亡。在本实验中，一种显性负性I型BMP受体在发育中的鸡足中被表达，阻断了BMP信号传导，也阻止了通常发生的程序性细胞死亡。这一操作使细胞得以存活，这些细胞随后分裂并分化成蹼（右）。这种蹼与鸭蹼的相似性促使研究发现，BMP在鸭的趾间细胞中并不表达。这些结果表明，BMP信号主动介导胚胎肢体中的细胞死亡。[Republished with permission of AAAS, from Zou, H. and Niswander, L., “Requirement for BMP signaling in interdigital apoptosis and scale formation,” Science, 1996, 3;272(5262):738–41; permission conveyed through Copyright Clearance Center Inc.]</figcaption>
+</figure>
+<p>细胞间相互作用以两种根本不同的方式调控细胞死亡。第一，多细胞生物中大多数（即便不是全部）细胞都需要特定的蛋白激素信号才能存活。缺乏这类通常称为营养因子的存活信号时，细胞会启动一套"自杀"程序。第二，在某些发育情境中（包括免疫系统），另一些特定的激素信号会诱导一套杀死细胞的"谋杀"程序。无论细胞是因缺乏存活信号而自杀，还是被来自其他细胞的杀伤信号所谋杀，细胞死亡最常由一条共同的分子通路介导，这条通路称为细胞凋亡（apoptosis），它在无脊椎动物和脊椎动物中高度保守。细胞尸体被邻近细胞摄入，其内容物被分解成小分子，再被用于构建其他细胞。</p>
+<p>另一种形式的细胞死亡——坏死，发生在细胞遭受损伤或过度应激（如高温、缺氧或病原体感染）时。坏死会在质膜上打出孔洞，导致胞内内容物渗漏。也许令人意外的是，坏死的一种形式——坏死性凋亡，常由细胞外激素触发，如肿瘤坏死因子α（TNFα；见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-35">图16-35</a>）。这条细胞死亡通路的激活常常引起炎症，并促成许多人类疾病的发生，包括神经退行性变和动脉粥样硬化。</p>
+<p>在本节中，我们首先区分程序性细胞死亡与坏死所致的死亡，然后描述秀丽隐杆线虫（C. elegans）的遗传学研究如何阐明了一条进化上保守的、导致细胞自杀的效应通路。随后我们转向脊椎动物：在那里，细胞死亡既受营养因子调控（例如它们在神经元发育的程序性细胞死亡中的重要性），也受DNA损伤等细胞应激的调控。我们还将说明线粒体在启动脊椎动物细胞死亡通路中的关键作用。最后，我们讨论坏死性凋亡，以及我们对这一过程的认识如何为治疗某些人类疾病铺平了道路。</p>
+<h3 class="subhead">大多数程序性细胞死亡通过凋亡发生</h3>
+<p>程序性细胞死亡导致的细胞消亡以一系列界限分明的形态学变化为标志，这些变化统称凋亡，这是一个希腊词，意为"掉落"或"落下"，就像树叶从树上落下。垂死的细胞皱缩、凝集，然后碎裂，释放出小的膜包被的凋亡小体，随后被其他细胞吞噬（<a class="xref xref-fig" href="#fig-21-33">图21-33</a>）。在这些凋亡细胞内部，细胞核凝集，DNA被片段化。重要的是，胞内成分不会被释放到细胞外环境中（在那里它们可能对邻近细胞产生有害影响），而是被邻近细胞吞噬。凋亡过程中出现的这些刻板变化——例如细胞核凝集和被周围细胞吞噬——使早期科学家认为，这种细胞死亡受一套严格程序的调控。这套程序在胚胎期和成年期对于维持正常的细胞数量和组成都至关重要。</p>
+<p>参与控制细胞死亡的基因编码具有三种不同功能的蛋白：</p>
+<p>● "杀手"蛋白是细胞启动凋亡过程所必需的。</p>
+<figure class="fig" id="fig-21-33">
+  <img class="zoomable" src="figures/fig_21-33_1.png" alt="图 21-33" onclick="lightbox(this.src)">
+  <figcaption>图21-33 细胞凋亡性死亡的超微结构特征。(a)示意图，说明在凋亡细胞中所观察到的形态学变化的进程。凋亡早期，致密的染色体沿核周缘发生凝集。细胞体也随之皱缩，尽管大多数细胞器仍保持完整。之后，细胞核和细胞质都发生碎裂，形成凋亡小体，随后被周围细胞吞噬。(b)比较正常细胞与凋亡细胞的显微照片。在后者中可以清楚地看到致密的压缩染色质球，此时细胞核开始碎裂。[Part (b) from Piva, T. J. et al., “Increased activity of cell surface peptidases in HeLa cells undergoing UV-induced apoptosis is not mediated by Caspase 3,” Int. J. Mol. Sci., 2012, 13(3):2650–2675, photo courtesy of Terrence Piva.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">mild convolution</td><td class="gl-zh">轻度卷曲</td></tr>
+  <tr><td class="gl-en">chromatin compaction and margination</td><td class="gl-zh">染色质凝集与边缘化</td></tr>
+  <tr><td class="gl-en">condensation of cytoplasm</td><td class="gl-zh">胞质浓缩</td></tr>
+  <tr><td class="gl-en">breakup of nuclear envelope</td><td class="gl-zh">核被膜破裂</td></tr>
+  <tr><td class="gl-en">nuclear fragmentation</td><td class="gl-zh">核碎裂</td></tr>
+  <tr><td class="gl-en">blebbing</td><td class="gl-zh">膜泡化（blebbing）</td></tr>
+  <tr><td class="gl-en">cell fragmentation</td><td class="gl-zh">细胞碎裂</td></tr>
+  <tr><td class="gl-en">phagocytosis</td><td class="gl-zh">吞噬作用</td></tr>
+  <tr><td class="gl-en">apoptotic body</td><td class="gl-zh">凋亡小体</td></tr>
+  <tr><td class="gl-en">phagocytic cell</td><td class="gl-zh">吞噬细胞</td></tr>
+  <tr><td class="gl-en">normal cell</td><td class="gl-zh">正常细胞</td></tr>
+  <tr><td class="gl-en">apoptotic cell</td><td class="gl-zh">凋亡细胞</td></tr>
+  </table>
+</figure>
+<p>● "破坏"蛋白执行诸如消化垂死细胞中蛋白质和DNA等功能。</p>
+<p>● "吞噬"蛋白是另一个细胞吞噬垂死细胞所必需的。</p>
+<p>乍看之下，吞噬似乎只是一个死后的清理过程，但有证据表明它属于死亡过程的最后一步。例如，杀手基因的突变总能阻止细胞启动凋亡，而阻断吞噬基因的突变有时会让细胞在死亡之前多存活一段时间。吞噬涉及吞噬细胞在垂死细胞周围组装一圈肌动蛋白晕，这由Rac的激活所触发；Rac是一种帮助调控肌动蛋白聚合的单体G蛋白（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter17/index.html#fig-17-44">图17-44</a>）。</p>
+<p>与凋亡相反，因坏死或坏死性凋亡而死亡的细胞表现出非常不同的形态学变化。通常，经历这一过程的细胞会肿胀并破裂，释放出胞内内容物，这些内容物可以损伤周围细胞并常常引起炎症。</p>
+<h3 class="subhead">进化上保守的蛋白参与凋亡通路</h3>
+<p>C. elegans的遗传学研究与人类癌细胞研究的交汇提示，存在一条进化上保守的通路介导凋亡。在C. elegans中，细胞谱系受严格的遗传控制，并且在该物种的所有个体中都完全相同。大约10轮或更少的细胞分裂就能形成成虫，成虫长约1 mm、直径约70 μm。成虫可以是雌雄同体（同时具有雄性和雌性器官的虫体），也可以是雄虫。雌雄同体形式有959个体细胞核，而雄虫有1031个（见<a class="xref xref-fig" href="#fig-21-25">图21-25</a>d）。科学家利用DIC显微镜追踪活体虫的发育，已经追溯出C. elegans中每个体细胞从受精卵到成熟虫体的谱系（见<a class="xref xref-fig" href="#fig-21-25">图21-25</a>c）。</p>
+<p>在成虫雌雄同体发育过程中产生的947个非性腺细胞中，有131个发生程序性细胞死亡。特定的突变揭示了四个基因，其编码蛋白在控制C. elegans发育过程中的程序性细胞死亡方面发挥关键作用：ced-3、ced-4、ced-9和egl-1。例如在ced-3或ced-4突变体中，这131个"注定死亡"的细胞存活下来（<a class="xref xref-fig" href="#fig-21-34">图21-34</a>）。这些突变体构成了凋亡受遗传程序控制的最早证据，并为Robert Horvitz赢得了诺贝尔奖。与线虫CED-3、CED-4、CED-9和EGL-1蛋白对应最密切的哺乳动物蛋白示于<a class="xref xref-fig" href="#fig-21-35">图21-35</a>。在讨论线虫蛋白时，我们会不时在括号中给出哺乳动物中的名称，以便更清楚地理解它们之间的关系。</p>
+<p>第一个被克隆的哺乳动物凋亡基因bcl-2，是从人滤泡性淋巴瘤——免疫系统中产生抗体的B细胞所生的肿瘤——中分离出来的。该基因的一种突变形式形成于一名患者的淋巴瘤细胞中；一次染色体重排把bcl-2基因的蛋白编码区与一个免疫球蛋白基因增强子连接在一起。这种组合导致Bcl-2蛋白过量产生，使这些癌细胞在本应程序性死亡时仍能存活。人Bcl-2蛋白与线虫CED-9蛋白同源；尽管这两种蛋白的序列只有23%相同，表达bcl-2转基因仍能阻断ced-9突变虫体中观察到的广泛细胞死亡。因此这两种蛋白都作为抑制凋亡通路的调控因子发挥作用（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>）。此外，这两种蛋白都含有一个跨膜结构域，主要定位于线粒体外膜，在那里作为感受器，响应外部刺激来控制凋亡通路。正如我们接下来要讨论的，其他调控因子则促进凋亡。</p>
+<figure class="fig" id="fig-21-34">
+  <img class="zoomable" src="figures/fig_21-34_1.png" alt="图 21-34" onclick="lightbox(this.src)">
+  <figcaption>实验图21-34 ced-3基因的突变阻断C. elegans中的程序性细胞死亡。(a)携带ced-1基因突变的新孵化突变体幼虫。由于该基因的突变阻止死细胞的吞噬，高度折光的（因而易于观察的）死细胞发生积累（箭头）。(b)同时带有ced-1和ced-3两个基因突变的新孵化幼虫。这些双突变体中缺乏折光死细胞，表明没有发生细胞死亡。因此，CED-3蛋白是程序性细胞死亡所必需的。[Republished with permission of Elsevier, from Ellis, H. M. and Horvitz, H. R., “Genetic control of programmed cell death in the nematode C. elegans,” Cell, 1986, 44(6):817–829; permission conveyed through Copyright Clearance Center, Inc.]</figcaption>
+</figure>
+<p>在线虫的凋亡通路中，CED-3（哺乳动物中为caspase-9）是一种蛋白酶，是凋亡过程中破坏细胞组分所必需的。CED-4（Apaf-1）是一种蛋白酶激活因子，它引起CED-3的无活性前体（一种酶原）发生自蛋白水解切割（并由其催化），产生有活性的CED-3蛋白酶，从而启动细胞死亡（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>和<a class="xref xref-fig" href="#fig-21-36">图21-36</a>）。在ced-3和ced-4单突变体以及ced-9/ced-3双突变体中不发生细胞死亡。相反，在ced-9突变体中，所有细胞在胚胎期都通过凋亡死亡，因此成虫形式永远无法发育。这些遗传学研究表明，CED-3和CED-4是细胞死亡所必需的杀手蛋白，而CED-9（Bcl-2）抑制凋亡。ced-9突变体中所有细胞都死亡这一观察结果表明，凋亡通路存在于所有体细胞中并且可以在其中被激活。此外，ced-9/ced-3双突变体中不发生细胞死亡，提示CED-9作用于CED-3的上游以抑制凋亡通路。</p>
+<p>CED-9（Bcl-2）在线虫中控制CED-3（caspase-9）的机制已经清楚，它与后面将要讨论的（见下文<a class="xref xref-fig" href="#fig-21-41">图21-41</a>）哺乳动物细胞中的机制有所不同。线虫CED-9蛋白与CED-4（Apaf-1）蛋白的二聚体形成复合物，从而阻止CED-4激活CED-3（<a class="xref xref-fig" href="#fig-21-36">图21-36</a>）。结果，细胞得以存活。这一机制与遗传学结果相符：如果CED-3也缺失，CED-9的缺失就不产生任何影响（ced-3/ced-9双突变体没有细胞死亡）。三聚体CED-4/CED-9复合物的三维结构显示，两个CED-4分子各自与单个CED-9分子之间存在巨大的接触面；大的接触面使这种结合具有高度特异性，但其方式又使得复合物的解离可以被调控。</p>
+<figure class="fig" id="fig-21-35">
+  <img class="zoomable" src="figures/fig_21-35_1.png" alt="图 21-35" onclick="lightbox(this.src)">
+  <figcaption>图21-35 凋亡通路的进化保守性。以相同颜色显示的相似蛋白在线虫和哺乳动物中发挥相应作用。(a)在线虫中，称为EGL-1的BH3-only蛋白与线粒体外膜上的CED-9结合；这种相互作用使CED-4从CED-4/CED-9复合物中释放出来。游离的CED-4随后与胱天蛋白酶CED-3结合，并通过自蛋白水解切割将其激活，CED-3则破坏细胞蛋白以驱动凋亡。这些关系以遗传通路的形式表示：EGL-1抑制CED-9，CED-9又抑制CED-4。有活性的CED-4激活CED-3。(b)在哺乳动物中，线虫蛋白的同源物以及许多线虫中不存在的其他蛋白共同调控凋亡。Bcl-2蛋白在促进细胞存活方面与CED-9相似。它部分通过阻止与CED-4相似的Apaf-1的激活，部分通过<a class="xref xref-fig" href="#fig-21-40">图21-40</a>中描绘的其他机制来实现这一点。<a class="xref xref-fig" href="#fig-21-39">图21-39</a>和<a class="xref xref-fig" href="#fig-21-40">图21-40</a>中详述的若干种BH3-only蛋白抑制Bcl-2，从而使凋亡得以进行。许多凋亡刺激导致线粒体外膜损伤，使若干刺激凋亡的蛋白释放到胞质中。特别是，从线粒体释放的细胞色素c激活Apaf-1，后者又激活caspase-9。这种起始胱天蛋白酶随后激活效应胱天蛋白酶-3和-7，最终导致凋亡。关于其他没有线虫同源物的哺乳动物蛋白（SMAC/DIABLO和XIAP）的讨论见正文。见 S. J. Riedl and Y. Shi, 2004, Nat. Rev. Mol. Cell Biol. 5:897.</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">EGL-1</td><td class="gl-zh">EGL-1</td></tr>
+  <tr><td class="gl-en">CED-9</td><td class="gl-zh">CED-9</td></tr>
+  <tr><td class="gl-en">CED-4</td><td class="gl-zh">CED-4</td></tr>
+  <tr><td class="gl-en">CED-3</td><td class="gl-zh">CED-3</td></tr>
+  <tr><td class="gl-en">Bcl-2</td><td class="gl-zh">Bcl-2</td></tr>
+  <tr><td class="gl-en">Bax</td><td class="gl-zh">Bax</td></tr>
+  <tr><td class="gl-en">Bak</td><td class="gl-zh">Bak</td></tr>
+  <tr><td class="gl-en">Apaf-1</td><td class="gl-zh">Apaf-1</td></tr>
+  <tr><td class="gl-en">caspase-9</td><td class="gl-zh">caspase-9</td></tr>
+  <tr><td class="gl-en">caspase-3, -7</td><td class="gl-zh">caspase-3、caspase-7</td></tr>
+  <tr><td class="gl-en">XIAP</td><td class="gl-zh">XIAP</td></tr>
+  <tr><td class="gl-en">SMAC/DIABLO</td><td class="gl-zh">SMAC/DIABLO</td></tr>
+  <tr><td class="gl-en">cytochrome c</td><td class="gl-zh">细胞色素c</td></tr>
+  <tr><td class="gl-en">BH3-only protein</td><td class="gl-zh">BH3-only蛋白</td></tr>
+  <tr><td class="gl-en">dATP</td><td class="gl-zh">dATP</td></tr>
+  </table>
+</figure>
+<p>第四个经遗传学确定的凋亡调控基因egl-1的转录，在程序化死亡的C. elegans细胞中被激活。新产生的EGL-1蛋白与CED-9结合，改变其构象，并催化CED-4从CED-9上释放（见<a class="xref xref-fig" href="#fig-21-36">图21-36</a>）。EGL-1和CED-9都含有一个12个氨基酸的BH3结构域。由于EGL-1缺少CED-9的大多数其他结构域，它被称为BH3-only蛋白。序列和功能与EGL-1最接近的哺乳动物BH3-only蛋白是促凋亡蛋白Bid和Bim，将在后面讨论。</p>
+<p>对EGL-1如何破坏CED-4/CED-9复合物的认识，来自EGL-1（哺乳动物Bid/Bim）与CED-9（Bcl-2）结合的分子结构。在该复合物中，BH3结构域构成两种蛋白之间接触面的关键部分。CED-9在被EGL-1结合时的构象与在被CED-4结合时不同。这一发现提示，EGL-1的结合使CED-9发生形变，从而使其与CED-4的相互作用变得不稳定。一旦EGL-1引起CED-4/CED-9复合物解离，释放出的CED-4二聚体就与另外三个CED-4二聚体结合形成八聚体，随后通过我们即将讨论的机制激活CED-3。细胞死亡随即发生（见<a class="xref xref-fig" href="#fig-21-36">图21-36</a>）。</p>
+<p>此处描述的步骤足以诱导凋亡的证据，来自用纯化蛋白在体外重建这些步骤的实验。CED-3、CED-4、缺少线粒体膜锚定区段的CED-9蛋白片段以及EGL-1都被纯化，同样被纯化的还有CED-4/CED-9复合物。纯化的CED-4（Apaf-1）能够加速纯化CED-3（caspase-9）的自蛋白水解切割和激活，但向反应混合物中加入CED-9（Bcl-2）则抑制这种自切割。当CED-4/CED-9复合物与CED-3混合时，不发生自切割；但向反应混合物中加入EGL-1可通过把CED-4从其与CED-9的复合物中释放出来而恢复CED-3的自切割。</p>
+<figure class="fig" id="fig-21-36">
+  <img class="zoomable" src="figures/fig_21-36_1.png" alt="图 21-36" onclick="lightbox(this.src)">
+  <figcaption>图21-36 C. elegans中CED-3蛋白酶的激活。EGL-1蛋白响应触发细胞死亡的发育信号而产生，它把不对称的CED-4二聚体从与CED-9的结合中置换出来（第1步）。游离的CED-4二聚体与另外三个结合形成八聚体（第2步），该八聚体结合两分子CED-3酶原（一种酶学上无活性的胱天蛋白酶前体）并触发CED-3酶原转变为有活性的CED-3蛋白酶（第3步）。这种效应胱天蛋白酶随后开始破坏细胞组分，导致细胞死亡（第4步）。见 N. Yan et al., 2005, Nature 437:831，以及 S. Qi et al., 2010, Cell 141:446。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">EGL-1</td><td class="gl-zh">EGL-1</td></tr>
+  <tr><td class="gl-en">CED-9</td><td class="gl-zh">CED-9</td></tr>
+  <tr><td class="gl-en">CED-9/EGL-1</td><td class="gl-zh">CED-9/EGL-1</td></tr>
+  <tr><td class="gl-en">CED-4 dimer</td><td class="gl-zh">CED-4二聚体</td></tr>
+  <tr><td class="gl-en">CED-4 octamer</td><td class="gl-zh">CED-4八聚体</td></tr>
+  <tr><td class="gl-en">CED-4/CED-3 caspase holoenzyme</td><td class="gl-zh">CED-4/CED-3胱天蛋白酶全酶</td></tr>
+  <tr><td class="gl-en">CED-3</td><td class="gl-zh">CED-3</td></tr>
+  <tr><td class="gl-en">CED-3 zymogen</td><td class="gl-zh">CED-3酶原</td></tr>
+  <tr><td class="gl-en">active caspase</td><td class="gl-zh">有活性的胱天蛋白酶</td></tr>
+  <tr><td class="gl-en">mitochondrion</td><td class="gl-zh">线粒体</td></tr>
+  <tr><td class="gl-en">cell death</td><td class="gl-zh">细胞死亡</td></tr>
+  <tr><td class="gl-en">top view</td><td class="gl-zh">俯视图</td></tr>
+  </table>
+</figure>
+<p>要看EGL-1表达受调控在凋亡中的重要性，可以考察C. elegans中一类只见于雌雄同体而不见于雄虫的神经元。这些雌雄同体特异性神经元在雌雄同体和雄虫中都于胚胎期产生，但在雄虫中发生程序性细胞死亡。在雌雄同体中，这些神经元内egl-1基因的表达被转录因子TRA-1A所抑制，而雌雄同体中TRA-1A的缺失会使这些神经元发生凋亡。这一发现强化了前面提出的一个观点：所有后生动物细胞都有可能发生凋亡，因此这一过程必须受到精细调控！</p>
+<h3 class="subhead">胱天蛋白酶放大最初的凋亡信号并破坏关键细胞蛋白</h3>
+<p>凋亡通路中的效应蛋白酶——胱天蛋白酶（caspase）——之所以如此命名，是因为它们在催化位点含有一个关键的半胱氨酸残基，并选择性地在紧靠天冬氨酸残基C端一侧的位点切割蛋白质。胱天蛋白酶以同源二聚体形式工作，每个单体的一个结构域稳定另一单体的活性位点。C. elegans中的主要胱天蛋白酶是CED-3，而人类有14种不同的胱天蛋白酶。所有胱天蛋白酶最初都以酶原（procaspase）形式产生；大多数需要经蛋白水解切割才能变为有活性形式。在脊椎动物中，起始胱天蛋白酶（如caspase-9）通过与另一类蛋白（如Apaf-1）结合所诱导的二聚化而被激活，这类蛋白有助于起始胱天蛋白酶聚集。被激活的起始胱天蛋白酶切割效应胱天蛋白酶（如caspase-3）使其激活；这样，少数被激活的起始胱天蛋白酶的蛋白水解活性，就通过效应胱天蛋白酶的激活而迅速且极大地增强，导致细胞内总胱天蛋白酶活性水平大幅升高（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>）并引起细胞死亡。酶原预先以足够多的数量存在，当被构成起始信号的少量分子激活时，就足以消化细胞中的大部分蛋白质。各种效应胱天蛋白酶识别并切割许多不同靶蛋白中的短氨基酸序列。它们偏好的靶序列各不相同。它们在细胞内的特异靶标包括核纤层蛋白和细胞骨架蛋白，切割这些蛋白会导致细胞死亡。</p>
+<p>正如我们在第7章所学的（见第282页），磷脂酰丝氨酸这种磷脂正常情况下存在于质膜朝向胞质的内层。在凋亡过程中，越来越多的磷脂酰丝氨酸出现在外层，在那里充当"吃我"信号：它与邻近细胞表面的一种受体样蛋白结合，从而启动吞噬。C. elegans中普遍表达的多重跨膜质膜蛋白CED-8及其哺乳动物同源物Xkr-8，是把磷脂酰丝氨酸暴露到细胞表面所必需的。这些磷脂翻转酶（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter11/index.html#fig-11-16">图11-16</a>）通常无活性，但在凋亡过程中可被caspase-3或caspase-7催化的特异性切割所激活（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>）。</p>
+<h3 class="subhead">神经营养因子促进神经元的存活</h3>
+<p>在哺乳动物（而非线虫）中，凋亡受来自许多分泌性蛋白激素和细胞表面蛋白激素的胞内信号调控，也受许多环境应激（如紫外线照射和DNA损伤）的调控。C. elegans的"核心"凋亡机器在哺乳动物中是保守的，但许多其他胞内蛋白也调控凋亡（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>右）。</p>
+<p>但在深入这些分子细节之前，我们先通过对发育中神经系统的简要分析，来说明营养因子在凋亡中的重要性。</p>
+<p>当神经元生长以与其他神经元或肌肉建立连接时（有时要跨越相当长的距离），长出的神经元数量多于最终存活的神经元数量。许多感觉神经元和运动神经元的胞体位于脊髓及其邻近的神经节中，而它们的长轴突则延伸到这些区域之外的远处。那些与预定靶细胞形成称为突触的信号连接的神经元（见图22-3）胜出并存活；未能建立连接的神经元则会死亡。</p>
+<p>20世纪初人们证明，支配外周细胞的神经元数量取决于它们所连接组织的体积，即所谓的靶场。例如，从发育中的鸡胚上切除肢芽，会导致支配该芽内肌肉的感觉神经元和运动神经元数量都减少（<a class="xref xref-fig" href="#fig-21-37">图21-37</a>）。反之，向肢芽移植额外的肢体组织，会使脊髓和感觉神经节相应区域中的神经元数量增加。事实上，靶场体积的逐步增大伴随着支配该靶场的神经元数量成比例地逐步增加。人们发现这种关系源于神经元的选择性存活，而不是其分化或增殖的改变。许多感觉神经元和运动神经元在到达其外周靶场后死亡，这一观察提示这些神经元竞争由靶组织产生的存活因子。</p>
+<p>在这些早期观察之后，科学家发现把小鼠肉瘤（一种肌肉肿瘤）移植到鸡体内，会使局部某些类型神经元的数量显著增加。这一发现提示该肿瘤是某种推定的营养因子的丰富来源。为了分离和纯化这种简称为神经生长因子（NGF）的因子，科学家使用了测量感觉神经节神经突向外生长的细胞培养实验。神经突是神经元胞质的延伸物，可以生长成为神经系统的长突起，即轴突和树突（见图22-1）。后来发现小鼠的下颌下腺也能大量产生NGF，这使Rita Levi-Montalcini得以将其纯化并测序；她因此获得了诺贝尔奖。NGF是由两条118个残基的多肽组成的同源二聚体，属于一个在结构和功能上相关的营养因子家族，统称为神经营养因子。脑源性神经营养因子（BDNF）和神经营养因子-3（NT-3）也是该蛋白家族的成员。</p>
+<p>神经营养因子结合并激活一个称为Trk（读作"tracks"）的受体酪氨酸激酶家族。（受体酪氨酸激酶的一般结构及其激活的胞内信号通路见第16章。）每种神经营养因子都以高亲和力结合一种Trk受体：NGF结合TrkA；BDNF结合TrkB；NT-3结合TrkC。NT-3还能以较低亲和力结合TrkA和TrkB。所有神经营养因子也都以较低亲和力结合一种称为p75NTR（又称NTR，神经营养因子受体）的不同类型受体；p75NTR与不同的Trk受体形成异聚复合物。营养因子与其受体之间的这些结合关系为不同类别的神经元提供存活信号。当神经轴突从脊髓向外延伸到外周时，靶组织产生的神经营养因子与延伸中轴突末端生长锥（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter18/index.html#fig-18-54">图18-54</a>）上的Trk受体结合，促进那些成功到达靶标的神经元的存活。</p>
+<figure class="fig" id="fig-21-37">
+  <img class="zoomable" src="figures/fig_21-37_1.png" alt="图 21-37" onclick="lightbox(this.src)">
+  <figcaption>实验图21-37 在脊椎动物中，运动神经元的存活取决于它们所支配的肌肉靶场的体积。(a)在约2.5天时从鸡胚一侧切除肢芽，会导致受影响一侧运动神经元数量显著减少。在截肢的胚胎中（上），两侧都产生正常数量的运动神经元（中）。然而在发育后期，缺少肢体的那一侧脊髓中存留的运动神经元远少于正常一侧（下）。注意，正常情况下产生的运动神经元中只有约50%存活。(b)把额外的肢芽移植到早期鸡胚中会产生相反的效果：有额外靶组织一侧的运动神经元多于正常一侧。见 D. Purves, 1988, Body and Brain: A Trophic Theory of Neural Connections, Harvard University Press，以及 E. R. Kandel, J. H. Schwartz, and T. M. Jessell, 2000, Principles of Neural Science, 4th ed., McGraw-Hill, p. 1054, Figure 53-11。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">amputation of developing limb bud</td><td class="gl-zh">切除发育中的肢芽</td></tr>
+  <tr><td class="gl-en">transplantation of extra limb bud</td><td class="gl-zh">移植额外的肢芽</td></tr>
+  <tr><td class="gl-en">motor neuron</td><td class="gl-zh">运动神经元</td></tr>
+  <tr><td class="gl-en">motor neuron apoptosis</td><td class="gl-zh">运动神经元凋亡</td></tr>
+  <tr><td class="gl-en">motor neuron survival</td><td class="gl-zh">运动神经元存活</td></tr>
+  <tr><td class="gl-en">motor neuron generation</td><td class="gl-zh">运动神经元发生</td></tr>
+  <tr><td class="gl-en">missing limb</td><td class="gl-zh">缺失的肢体</td></tr>
+  <tr><td class="gl-en">extra limb</td><td class="gl-zh">额外的肢体</td></tr>
+  <tr><td class="gl-en">chick embryo</td><td class="gl-zh">鸡胚</td></tr>
+  <tr><td class="gl-en">spinal cord</td><td class="gl-zh">脊髓</td></tr>
+  <tr><td class="gl-en">limb bud</td><td class="gl-zh">肢芽</td></tr>
+  <tr><td class="gl-en">optic cup and lens</td><td class="gl-zh">视杯和晶状体</td></tr>
+  <tr><td class="gl-en">heart</td><td class="gl-zh">心脏</td></tr>
+  <tr><td class="gl-en">normal</td><td class="gl-zh">正常</td></tr>
+  </table>
+</figure>
+<p>为研究神经营养因子在发育中的作用，科学家制备了在每一种神经营养因子或其受体上带有敲除突变的小鼠。这些研究揭示，不同的神经营养因子及其相应的受体是不同类别感觉神经元存活所必需的（<a class="xref xref-fig" href="#fig-21-38">图21-38</a>）。例如，表达TrkA的痛觉敏感（伤害感受性）神经元在缺乏NGF或TrkA的敲除小鼠背根神经节中选择性丢失，而表达TrkB和TrkC的神经元在这类敲除小鼠中不受影响。相反，表达TrkC、能检测肢体位置的本体感受神经元在TrkC和NT-3突变体的背根神经节中缺失。</p>
+<h3 class="subhead">线粒体在脊椎动物细胞凋亡调控中发挥核心作用</h3>
+<p>如前所述，C. elegans的CED-9及其哺乳动物同源物Bcl-2在抑制凋亡中发挥核心作用。在线虫中，CED-9通过与CED-4结合并阻断其激活来实现这一点。在脊椎动物中，Bcl-2位于线粒体外膜，其主要功能是维持该膜的低通透性，防止细胞色素c以及定位于膜间隙的其他蛋白（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter12/index.html#fig-12-22">图12-22</a>）扩散进入胞质并激活凋亡胱天蛋白酶。</p>
+<figure class="fig" id="fig-21-38">
+  <img class="zoomable" src="figures/fig_21-38_1.png" alt="图 21-38" onclick="lightbox(this.src)">
+  <figcaption>实验图21-38 缺乏不同营养因子或其受体的敲除小鼠中会丢失不同类别的感觉神经元。在缺乏神经生长因子（NGF）或其受体TrkA的动物中，支配皮肤的小型伤害感受性（痛觉）神经元（浅蓝色）缺失。这些神经元表达TrkA受体，并支配产生NGF的靶组织。在缺乏神经营养因子-3（NT-3）或其受体TrkC的动物中，支配肌梭的大型本体感受神经元（红色）缺失。肌肉组织产生NT-3，而本体感受神经元表达TrkC。机械感受器（橙色；见图22-32）是背根神经节中另一类感觉神经元，在这些突变体中不受影响。见 W. D. Snider, 1994, Cell 77:627。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">mechanoreceptor</td><td class="gl-zh">机械感受器</td></tr>
+  <tr><td class="gl-en">proprioceptive neuron</td><td class="gl-zh">本体感受神经元</td></tr>
+  <tr><td class="gl-en">nociceptive neuron</td><td class="gl-zh">伤害感受性神经元</td></tr>
+  <tr><td class="gl-en">motor neuron</td><td class="gl-zh">运动神经元</td></tr>
+  <tr><td class="gl-en">dorsal root ganglion</td><td class="gl-zh">背根神经节</td></tr>
+  <tr><td class="gl-en">spinal cord</td><td class="gl-zh">脊髓</td></tr>
+  <tr><td class="gl-en">skin</td><td class="gl-zh">皮肤</td></tr>
+  <tr><td class="gl-en">muscle</td><td class="gl-zh">肌肉</td></tr>
+  <tr><td class="gl-en">wild type</td><td class="gl-zh">野生型</td></tr>
+  <tr><td class="gl-en">mutant</td><td class="gl-zh">突变体</td></tr>
+  </table>
+</figure>
+<p>为了解释Bcl-2如何执行这一功能，以及Bcl-2的活性如何受营养因子和许多环境刺激的调控，我们需要介绍Bcl-2蛋白家族的另外几个重要成员。Bcl-2家族的所有成员在至多四个特征性区域上具有高度同源性，这些区域称为Bcl-2同源结构域（BH1–4；<a class="xref xref-fig" href="#fig-21-39">图21-39</a>）。这些蛋白各自具有抗凋亡或促凋亡的功能。该家族的所有成员都参与寡聚化相互作用；许多成员的C端带有疏水序列，可以将蛋白锚定在线粒体外膜上。</p>
+<figure class="fig" id="fig-21-39">
+  <img class="zoomable" src="figures/fig_21-39_1.png" alt="图 21-39" onclick="lightbox(this.src)">
+  <figcaption>图21-39 Bcl-2蛋白家族成员的结构。Bcl-2家族由含有功能性Bcl-2同源结构域（BH1–4）的蛋白组成，可分为三类。所有促凋亡蛋白和抗凋亡蛋白，但只有部分BH3-only蛋白，含有一个疏水的、推定为跨膜（TM）的结构域，其作用可能是把蛋白锚定在线粒体外膜上。见 M. Giam et al., 2009, Oncogene 27:S128。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">Bcl-2</td><td class="gl-zh">Bcl-2</td></tr>
+  <tr><td class="gl-en">Bcl-xL</td><td class="gl-zh">Bcl-xL</td></tr>
+  <tr><td class="gl-en">Bcl-w</td><td class="gl-zh">Bcl-w</td></tr>
+  <tr><td class="gl-en">Mcl-1</td><td class="gl-zh">Mcl-1</td></tr>
+  <tr><td class="gl-en">A1</td><td class="gl-zh">A1</td></tr>
+  <tr><td class="gl-en">BH3-only protein</td><td class="gl-zh">BH3-only蛋白</td></tr>
+  <tr><td class="gl-en">Bax</td><td class="gl-zh">Bax</td></tr>
+  <tr><td class="gl-en">Bak</td><td class="gl-zh">Bak</td></tr>
+  <tr><td class="gl-en">Bim</td><td class="gl-zh">Bim</td></tr>
+  <tr><td class="gl-en">Puma</td><td class="gl-zh">Puma</td></tr>
+  <tr><td class="gl-en">Noxa</td><td class="gl-zh">Noxa</td></tr>
+  <tr><td class="gl-en">Bad</td><td class="gl-zh">Bad</td></tr>
+  <tr><td class="gl-en">Bid</td><td class="gl-zh">Bid</td></tr>
+  <tr><td class="gl-en">TM domain</td><td class="gl-zh">跨膜（TM）结构域</td></tr>
+  <tr><td class="gl-en">pro-apoptotic member</td><td class="gl-zh">促凋亡成员</td></tr>
+  <tr><td class="gl-en">pro-survival member</td><td class="gl-zh">促存活成员</td></tr>
+  </table>
+</figure>
+<h3 class="subhead">促凋亡蛋白Bax和Bak在线粒体外膜上形成孔和洞</h3>
+<p>在脊椎动物细胞中，线粒体损伤和凋亡的诱导需要Bax或Bak。这两种相似的促凋亡蛋白含有BH1–4结构域中的三个（见<a class="xref xref-fig" href="#fig-21-39">图21-39</a>），其三维结构与该家族抗凋亡成员的结构非常相似。作为这些蛋白促进凋亡作用的证据，大多数同时缺少Bax和Bak的小鼠在子宫内死亡，而存活下来的小鼠表现出显著的发育缺陷，包括趾间蹼持续存在以及中枢神经系统和造血系统中多余细胞的积聚。从这些小鼠中分离的细胞对几乎所有的凋亡刺激都具有抗性。反之，在培养细胞中过量产生Bax会诱导凋亡性死亡。</p>
+<p>Bak存在于线粒体外膜中，通常与Bcl-2或相关蛋白Bcl-xL紧密结合（<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）。当Bak从Bcl-2上释放出来时——无论是由于自身过量存在、被某些BH3-only蛋白与Bcl-2的结合所取代，还是由于直接与其他BH3-only蛋白结合——它就会形成寡聚体，在线粒体外膜上产生孔。Bax主要位于胞质中，只有一小部分附着在线粒体上；后面将讨论的某些促凋亡蛋白的结合会使Bax像Bak一样寡聚化并插入线粒体外膜，形成孔。</p>
+<p>回忆第12章的内容：线粒体不断进行融合和分裂（后者指两个子代线粒体彼此分开）。Bak和Bax在寡聚化后都会在线粒体分裂位点积聚，使外膜在这些位点形成洞。线粒体外膜上的孔和洞都允许线粒体蛋白（如细胞色素c）释放到胞质中，而在正常健康细胞中，这些蛋白定位于膜间隙。</p>
+<p>如<a class="xref xref-fig" href="#fig-21-35">图21-35</a>所示，释放出的细胞色素c激活caspase-9——部分是通过结合并激活Apaf-1，部分则是通过迄今未知的机制。作为该调控通路的证据，在培养细胞中过量产生Bcl-2会阻断细胞色素c的释放并阻断凋亡；反之，过量产生Bax会促进细胞色素c释放到胞质并促进凋亡。此外，将细胞色素c直接注射到细胞胞质中会诱导凋亡。</p>
+<h3 class="subhead">细胞色素c和SMAC/DIABLO蛋白从线粒体释放导致凋亡体形成和胱天蛋白酶激活</h3>
+<p>胞质中的细胞色素c激活凋亡的主要方式是结合Apaf-1，即CED-4的哺乳动物同源物（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>右）。在没有细胞色素c时，单体Apaf-1与dATP结合。结合细胞色素c后，Apaf-1将其结合的dATP切割为dADP和Pi，并发生剧烈的组装，形成一个盘状七聚体，即一个被称为凋亡体的1.4-MDa的死亡之轮（<a class="xref xref-fig" href="#fig-21-41">图21-41</a>）。凋亡体充当起始胱天蛋白酶caspase-9的激活机器，后者在无活性状态下是单体。起始胱天蛋白酶必须对激活信号敏感，但又不应以不可逆的方式被激活，因为意外激活会导致不良的滚雪球效应和快速细胞死亡。值得注意的是，caspase-9不需要经切割就能被激活，而是在与凋亡体结合后通过二聚化被激活。随后caspase-9切割多个效应胱天蛋白酶分子，如caspase-3（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>和<a class="xref xref-fig" href="#fig-21-40">图21-40</a>），导致它们被激活，继而破坏细胞蛋白并引起细胞死亡。相应线虫CED-4凋亡体的三维结构（<a class="xref xref-fig" href="#fig-21-41">图21-41</a>c）显示，两个CED-3酶原如何在漏斗形八聚体内部彼此相邻地结合；随后这些分子通过二聚化和蛋白水解转换互相激活。CED-4凋亡体的结构也为相应哺乳动物凋亡体迄今未知的三维结构提供了一个模型（<a class="xref xref-fig" href="#fig-21-41">图21-41</a>b右）。</p>
+<p>在哺乳动物和果蝇中（而非线虫中），凋亡受其他若干蛋白的调控（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>右）。XIAP是凋亡抑制蛋白（IAP）家族的一个成员，它提供了另一种制约起始胱天蛋白酶和效应胱天蛋白酶的方式。XIAP有三个N端BIR结构域；其中称为BIR2的结构域结合并抑制两种效应胱天蛋白酶caspase-3和caspase-7，而BIR3结合并抑制起始胱天蛋白酶caspase-9。（IAP家族的其他成员抑制由TNFα诱导的凋亡；见下文<a class="xref xref-fig" href="#fig-21-42">图21-42</a>。）然而，当细胞需要发生凋亡时，IAP对胱天蛋白酶的抑制就造成了问题。线粒体再次登场，因为它们是一个称为SMAC/DIABLO的蛋白家族的来源，这些蛋白能抑制IAP。Bax或Bak寡聚体的组装（见<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）导致SMAC/DIABLO以及细胞色素c从线粒体释放。随后SMAC/DIABLO在胞质中与XIAP结合，从而阻断XIAP与胱天蛋白酶的结合。通过解除XIAP介导的抑制，SMAC/DIABLO促进胱天蛋白酶活性和细胞死亡。</p>
+<h3 class="subhead">营养因子诱导促凋亡BH3-only蛋白Bad失活</h3>
+<p>我们前面看到，NGF等神经营养因子保护神经元免于细胞死亡；这一效应是通过使一种称为Bad的促凋亡BH3-only蛋白失活来介导的。在缺乏营养因子时，Bad不被磷酸化，并在线粒体外膜与Bcl-2或密切相关的抗凋亡蛋白Bcl-xL结合（见<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）。这种结合抑制了Bcl-2和Bcl-xL结合Bax和Bak的能力，从而使Bak和Bax能够寡聚化并在线粒体外膜上形成孔和洞。</p>
+<p>包括NGF在内的若干营养因子诱导PI-3激酶信号通路，导致蛋白激酶B的激活（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-29">图16-29</a>）。被激活的蛋白激酶B使Bad磷酸化；磷酸化的Bad不能与Bcl-2或Bcl-xL结合，而是以与磷酸丝氨酸结合蛋白14-3-3形成复合物的形式存在于胞质中（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-24">图16-24</a>）。作为该通路的证据，一种组成型活化的蛋白激酶B可以拯救培养的缺乏神经营养因子的神经元，否则这些神经元会发生凋亡并死亡。这些发现支持<a class="xref xref-fig" href="#fig-21-40">图21-40</a>所描绘的营养因子存活作用机制。在其他细胞类型中，不同的营养因子可能通过对细胞死亡机器的其他组分进行翻译后修饰来促进细胞存活。</p>
+<figure class="fig" id="fig-21-40">
+  <img class="zoomable" src="figures/fig_21-40_1.png" alt="图 21-40" onclick="lightbox(this.src)">
+  <figcaption>图21-40 调控线粒体外膜通透性和凋亡的多种信号通路在脊椎动物细胞中的整合。在健康细胞中，抗凋亡蛋白Bcl-2或其同源物Bcl-xL与促凋亡蛋白Bak或Bax结合，阻断Bak或Bax寡聚化并在线粒体外膜上形成孔的能力。若干BH3-only蛋白（包括Bad、Bim和Puma）中任何一个与Bcl-2结合，或直接与Bak或Bax结合，都会导致Bak或Bax从Bcl-2上解离，并在线粒体外膜上形成寡聚化的孔和洞。这些洞使细胞色素c得以进入胞质，在那里它与接头蛋白Apaf-1结合，促进胱天蛋白酶激活，从而启动凋亡级联并导致细胞死亡。若干刺激触发或抑制这条凋亡通路。第1步：特定营养因子（如NGF）的存在导致其同源受体酪氨酸激酶（如TrkA）的激活以及PI-3激酶–PKB（蛋白激酶B）通路的激活（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-29">图16-29</a>）。PKB使Bad磷酸化，磷酸化的Bad随后与胞质中的14-3-3蛋白形成复合物。被隔离的Bad不能与Bcl-2结合。在缺乏营养因子时，未磷酸化的Bad与Bcl-2结合，释放Bax和Bak，使它们得以形成寡聚化的膜孔和洞。第2步：DNA损伤或紫外线照射诱导BH3-only蛋白Puma的合成。Puma与Bak和Bax以及Bcl-2结合，使Bak和Bax得以形成寡聚化的孔。第3步：细胞从其基质上脱离会破坏整联蛋白信号，导致BH3-only蛋白Bim从细胞骨架上释放。Bim也与Bak和Bax结合以促进孔的形成。见 D. Ren et al., 2010, Science 330:1390 以及 Czabootar et al., 2014, Nat. Rev. Mol. Cell. Biol. 15:49。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">outer mitochondrial membrane</td><td class="gl-zh">线粒体外膜</td></tr>
+  <tr><td class="gl-en">intermembrane space</td><td class="gl-zh">膜间隙</td></tr>
+  <tr><td class="gl-en">microtubule cytoskeleton</td><td class="gl-zh">微管细胞骨架</td></tr>
+  <tr><td class="gl-en">Apaf-1</td><td class="gl-zh">Apaf-1</td></tr>
+  <tr><td class="gl-en">caspase-9</td><td class="gl-zh">caspase-9</td></tr>
+  <tr><td class="gl-en">caspase-3</td><td class="gl-zh">caspase-3</td></tr>
+  <tr><td class="gl-en">procaspase-9</td><td class="gl-zh">procaspase-9</td></tr>
+  <tr><td class="gl-en">Bad</td><td class="gl-zh">Bad</td></tr>
+  <tr><td class="gl-en">Bim</td><td class="gl-zh">Bim</td></tr>
+  <tr><td class="gl-en">Puma</td><td class="gl-zh">Puma</td></tr>
+  <tr><td class="gl-en">PKB</td><td class="gl-zh">PKB</td></tr>
+  <tr><td class="gl-en">PI-3 kinase</td><td class="gl-zh">PI-3激酶</td></tr>
+  <tr><td class="gl-en">trophic factor</td><td class="gl-zh">营养因子</td></tr>
+  <tr><td class="gl-en">Bcl-2 or Bcl-xL</td><td class="gl-zh">Bcl-2或Bcl-xL</td></tr>
+  <tr><td class="gl-en">Bak or Bax oligomer</td><td class="gl-zh">Bak或Bax寡聚体</td></tr>
+  </table>
+</figure>
+<h3 class="subhead">脊椎动物凋亡受环境应激激活的BH3-only促凋亡蛋白调控</h3>
+<p>线虫只含一种BH3-only蛋白EGL-1，而哺乳动物至少表达八种，包括Bad，并且具有细胞类型和应激特异性。这些蛋白的促凋亡活性受到多种转录和转录后机制的严密调控。两种BH3-only蛋白Puma和Noxa（见<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）由p53蛋白在转录水平诱导（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter19/index.html#fig-19-29">图19-29</a>）。这种相互作用是检查点通路的一部分，未修复的DNA损伤可通过该通路诱导凋亡；因此，许多癌症中可见的p53缺失使细胞能够带着严重的DNA损伤存活（见图24-27）。另一种BH3-only蛋白Bim通常通过与动力蛋白轻链结合而被微管细胞骨架隔离（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter18/index.html#fig-18-24">图18-24</a>）。细胞与其基质脱离会破坏整联蛋白信号、重排细胞骨架，并导致Bim释放。Puma和Bim都能直接结合Bak和Bax以及Bcl-2，使Bak和Bax从Bcl-2上释放出来并允许在线粒体外膜上形成孔和洞（见<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）。因此，哺乳动物细胞的凋亡受Bcl-2和Bcl-xL等抗凋亡蛋白与多种促凋亡BH3-only蛋白之间活性的精细平衡所调控。</p>
+<figure class="fig" id="fig-21-41">
+  <img class="zoomable" src="figures/fig_21-41_1.png" alt="图 21-41" onclick="lightbox(this.src)">
+  <figcaption>图21-41 线虫凋亡体的结构以及哺乳动物Apaf-1凋亡体结构的模型。(a)CED-4蛋白的结构域及相应的哺乳动物Apaf-1；CARD代表N端胱天蛋白酶招募结构域。在寡聚化的凋亡体中，这些CARD结构域与胱天蛋白酶中的CARD结构域结合。(b)CED-4凋亡体的示意图（左）以及相应哺乳动物凋亡体的模型（右）。(c)线虫八聚体CED-4凋亡体的三维结构，显示两个CED-3酶原的结合。凋亡体与CED-3的相互作用刺激CED-3二聚化，而这是其激活所必需的。[Data from S. Qi et al., 2010, Cell 141:446, PDB ID 3lqr.]</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">CED-4 apoptosome</td><td class="gl-zh">CED-4凋亡体</td></tr>
+  <tr><td class="gl-en">Apaf-1 apoptosome</td><td class="gl-zh">Apaf-1凋亡体</td></tr>
+  <tr><td class="gl-en">CED-3 caspase</td><td class="gl-zh">CED-3胱天蛋白酶</td></tr>
+  <tr><td class="gl-en">activated caspase-9 dimer</td><td class="gl-zh">活化的caspase-9二聚体</td></tr>
+  <tr><td class="gl-en">CARD domain</td><td class="gl-zh">CARD结构域</td></tr>
+  <tr><td class="gl-en">HD1/HD2 domain</td><td class="gl-zh">HD1/HD2结构域</td></tr>
+  <tr><td class="gl-en">WHD domain</td><td class="gl-zh">WHD结构域</td></tr>
+  <tr><td class="gl-en">β-propeller domain</td><td class="gl-zh">β-螺旋桨结构域</td></tr>
+  <tr><td class="gl-en">α/β domain</td><td class="gl-zh">α/β结构域</td></tr>
+  <tr><td class="gl-en">CED-4</td><td class="gl-zh">CED-4</td></tr>
+  <tr><td class="gl-en">CED-3</td><td class="gl-zh">CED-3</td></tr>
+  <tr><td class="gl-en">Apaf-1</td><td class="gl-zh">Apaf-1</td></tr>
+  <tr><td class="gl-en">top view</td><td class="gl-zh">俯视图</td></tr>
+  <tr><td class="gl-en">side view</td><td class="gl-zh">侧视图</td></tr>
+  </table>
+</figure>
+<figure class="fig" id="fig-21-42">
+  <img class="zoomable" src="figures/fig_21-42_1.png" alt="图 21-42" onclick="lightbox(this.src)">
+  <figcaption>图21-42 细胞谋杀：外源性凋亡通路。外源性（或死亡受体调控的）凋亡通路存在于许多类型的细胞中。在本例中，一个细胞表面的TNFα与相邻细胞上的TNFα死亡受体结合，导致接头蛋白TRADD（TNF受体相关死亡结构域蛋白）和FADD（Fas相关死亡结构域蛋白）的招募，以及起始胱天蛋白酶caspase-8的二聚化和激活。有活性的caspase-8随后切割并激活效应胱天蛋白酶-3、-6和-7，这些酶切割重要的细胞蛋白并诱导细胞死亡。caspase-8对BH3-only蛋白Bid（BH3相互作用结构域死亡激动剂）的切割产生一个tBid片段，该片段与线粒体外膜上的Bcl-2结合，导致细胞色素c释放到胞质中，并同样激活内源性凋亡通路（见<a class="xref xref-fig" href="#fig-21-39">图21-39</a>）。见 P. Bouillet and L. O’Reilly, 2009, Nat. Rev. Immunol. 9:514，以及 A. Ashkenazi and G. Salvesen, 2014, Annu. Rev. Cell Dev. Biol. 30:20。</figcaption>
+  <table class="glossary"><caption>图内标签对照</caption>
+  <tr><td class="gl-en">FADD</td><td class="gl-zh">FADD</td></tr>
+  <tr><td class="gl-en">TRADD</td><td class="gl-zh">TRADD</td></tr>
+  <tr><td class="gl-en">death receptor</td><td class="gl-zh">死亡受体</td></tr>
+  <tr><td class="gl-en">Bid</td><td class="gl-zh">Bid</td></tr>
+  <tr><td class="gl-en">tBid</td><td class="gl-zh">tBid</td></tr>
+  <tr><td class="gl-en">BH3-only protein</td><td class="gl-zh">BH3-only蛋白</td></tr>
+  <tr><td class="gl-en">caspase-8</td><td class="gl-zh">caspase-8</td></tr>
+  <tr><td class="gl-en">procaspase-8</td><td class="gl-zh">procaspase-8</td></tr>
+  <tr><td class="gl-en">caspase-3</td><td class="gl-zh">caspase-3</td></tr>
+  <tr><td class="gl-en">caspase-6</td><td class="gl-zh">caspase-6</td></tr>
+  <tr><td class="gl-en">caspase-7</td><td class="gl-zh">caspase-7</td></tr>
+  <tr><td class="gl-en">caspase-9</td><td class="gl-zh">caspase-9</td></tr>
+  <tr><td class="gl-en">cytochrome c</td><td class="gl-zh">细胞色素c</td></tr>
+  <tr><td class="gl-en">Bcl-2 or Bcl-xL</td><td class="gl-zh">Bcl-2或Bcl-xL</td></tr>
+  <tr><td class="gl-en">signaling cell</td><td class="gl-zh">信号细胞</td></tr>
+  </table>
+</figure>
+<h3 class="subhead">两种细胞谋杀由肿瘤坏死因子、Fas配体和相关死亡信号触发</h3>
+<p>尽管在缺乏存活因子时细胞死亡可以作为默认结局出现，凋亡也可以被正向作用的死亡信号所刺激。例如，由巨噬细胞释放的肿瘤坏死因子α（TNFα）触发了某些慢性炎症性疾病中所见的细胞死亡和组织破坏（见第23章）。另一个重要的死亡诱导信号是Fas配体，它是由活化的自然杀伤细胞和细胞毒性T淋巴细胞产生的一种细胞表面蛋白。该信号可以触发病毒感染细胞、某些肿瘤细胞以及外来移植细胞的死亡。根据细胞类型的不同，死亡可以通过凋亡或坏死性凋亡发生。</p>
+<p><a class="xref xref-fig" href="#fig-21-42">图21-42</a>所示的TNFα和Fas配体（又称CD95配体）都是存在于一个细胞表面的三聚体蛋白，它们与相邻细胞上的"死亡受体"结合。这些死亡受体具有一个跨膜结构域，当三聚体配体的结合使三个受体分子彼此靠近时，它们就被激活。被激活的三聚体死亡受体复合物随后结合胞质蛋白Fas相关死亡结构域蛋白（FADD）和TNF受体相关死亡结构域蛋白（TRADD），形成一个还含有其他信号蛋白的大型寡聚复合物。（某些死亡受体（如TNFα的受体）诱导凋亡需要TRADD，而另一些则不需要。）随后FADD作为接头蛋白招募并激活起始胱天蛋白酶caspase-8。与另一种起始胱天蛋白酶caspase-9一样，caspase-8也是在两个分子与招募到活性死亡受体三聚体上的FADD蛋白结合后通过二聚化被激活。一旦被激活，caspase-8就激活若干效应胱天蛋白酶，放大级联随即开始。</p>
+<p>caspase-8还切割BH3-only蛋白BH3相互作用结构域死亡激动剂（Bid）。由此产生的tBid片段随后与线粒体外膜上的Bcl-2结合，导致Bak/Bax孔和洞的形成、细胞色素c释放到胞质中，以及内源性凋亡通路的激活（见<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）。</p>
+<p>为了检验Fas配体的死亡受体诱导细胞死亡的能力，研究人员将细胞与针对该受体的抗体共同孵育。结果发现，这些能结合并交联其同源受体的抗体可以刺激细胞死亡，表明通过寡聚化激活该受体就足以触发凋亡。</p>
+<p>令许多研究人员意外的是，在缺乏起始胱天蛋白酶caspase-8的细胞中，加入TNFα触发的是坏死性凋亡而不是凋亡。该通路由同一个蛋白复合物启动——TNFα、TNFα受体以及TRADD——如<a class="xref xref-fig" href="#fig-21-42">图21-42</a>所示，但不涉及FADD或caspase-8。该通路涉及若干信号转导蛋白；其中一个必需的蛋白是激酶RIP1（Requiescat in pace 1）。被激活后，RIP1使第二个激酶RIP3磷酸化，RIP3再使另一个称为MLKL的必需蛋白磷酸化。磷酸化使MLKL形成寡聚体，插入质膜并形成一个孔，允许Ca2+进入。Ca2+的内流使细胞及其细胞器肿胀并破裂，将其内容物释放到细胞外空间。其中一些释放出来的胞内蛋白会触发免疫系统细胞的激活，并引起组织炎症和损伤。坏死性凋亡引起的炎症被认为参与了若干人类疾病，包括神经退行性变和进行性动脉粥样硬化病变。正如我们在第16章所讨论的，TNFα的蛋白抑制剂是许多炎症性疾病最广泛使用的治疗药物之一；抑制RIP1激酶则是治疗以坏死和炎症为特征的人类疾病的另一条有前景的途径。</p>
+<p>但这样一条有害的信号通路当初为什么会进化出来呢？一种流行的理论基于以下发现：若干病毒和其他病原体编码能使caspase-8失活的蛋白，从而阻止被感染细胞发生凋亡性死亡——否则这种死亡会阻止病毒复制并防止感染扩散到邻近细胞。坏死性凋亡只在缺乏caspase-8时发生，它提供了一条替代的细胞死亡通路，同样能阻止病原体扩散，但代价是宿主机体的炎症。</p>
+<p>回忆一下，TNFα激活多条信号转导通路：一条导致转录因子NF-κB的激活（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter16/index.html#fig-16-35">图16-35</a>），第二条导致凋亡（见<a class="xref xref-fig" href="#fig-21-42">图21-42</a>），第三条导致坏死性凋亡。要理解这些通路各自的调控及其相互作用，还需要做大量工作，因为这种激素与许多炎症性疾病有关。</p>
+<div class="key-concepts" id="kc-21-5"><div class="kc-head">第 21.5 节 · 关键概念</div><div class="kc-title">细胞死亡及其调控</div><ul><li>所有细胞都需要营养因子才能存活。缺乏这些因子时，细胞会自杀。</li><li>C. elegans的遗传学研究确定了一条进化上保守的凋亡通路，它有三个主要组分：膜结合调控蛋白、胞质调控蛋白和凋亡蛋白酶（在脊椎动物中称为胱天蛋白酶）（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>）。</li><li>一旦被激活，称为胱天蛋白酶的凋亡蛋白酶就切割特定的胞内底物，导致细胞死亡。其他结合调控蛋白和胱天蛋白酶的蛋白（如CED-4、Apaf-1）是胱天蛋白酶激活所必需的（见<a class="xref xref-fig" href="#fig-21-35">图21-35</a>、<a class="xref xref-fig" href="#fig-21-36">图21-36</a>和<a class="xref xref-fig" href="#fig-21-41">图21-41</a>）。</li><li>发育过程中运动神经元和感觉神经元的存活由靶组织释放的神经营养因子介导，这些因子与神经元生长锥上的Trk受体酪氨酸激酶结合（见<a class="xref xref-fig" href="#fig-21-38">图21-38</a>），并通过PI-3激酶通路激活抗凋亡反应（见<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）。</li><li>Bcl-2家族既包含促凋亡蛋白也包含抗凋亡蛋白；其中大多数是跨膜蛋白，并参与蛋白-蛋白相互作用。</li><li>在哺乳动物中，凋亡可由Bax或Bak蛋白在线粒体外膜上的寡聚化所触发，导致细胞色素c和SMAC/DIABLO蛋白外流进入胞质；这些蛋白随后促进胱天蛋白酶激活和细胞死亡。</li><li>Bcl-2蛋白能够制约Bax和Bak的寡聚化，从而抑制细胞死亡。</li><li>促凋亡BH3-only蛋白（如Puma、Bad）被环境应激激活，并刺激Bax和Bak寡聚化，使细胞色素c得以逃逸到胞质中、与Apaf-1结合，从而激活胱天蛋白酶。</li><li>促凋亡蛋白与抗凋亡蛋白之间的直接相互作用在缺乏营养因子时导致细胞死亡。细胞外营养因子的结合可以触发这些相互作用的变化，从而带来细胞存活（见<a class="xref xref-fig" href="#fig-21-40">图21-40</a>）。</li><li>细胞外死亡信号（如肿瘤坏死因子和Fas配体）与其受体结合，使一种相关蛋白（FADD）寡聚化，进而触发胱天蛋白酶级联，导致细胞被凋亡谋杀。</li><li>在缺乏caspase-8时，肿瘤坏死因子诱导坏死性凋亡。由此释放到周围环境中的胞内蛋白可以引起炎症和组织损伤。</li></ul></div>
+<p class="launchpad">访问LaunchPad可获取学习工具并进一步了解本章内容：展望未来，以及包括视频、动画和测验在内的附加学习工具。</p>
+<div class="endmatter">
+<h2 class="em-title" id="key-terms">关键术语</h2><div class="kt-grid"><div class="kt-item"><span class="kt-term">细胞凋亡</span><span class="kt-page">1011</span></div><div class="kt-item"><span class="kt-term">凋亡体</span><span class="kt-page">1018</span></div><div class="kt-item"><span class="kt-term">不对称细胞分裂</span><span class="kt-page">975</span></div><div class="kt-item"><span class="kt-term">Bcl-2家族</span><span class="kt-page">1017</span></div><div class="kt-item"><span class="kt-term">BH3-only蛋白</span><span class="kt-page">1014</span></div><div class="kt-item"><span class="kt-term">胱天蛋白酶</span><span class="kt-page">1015</span></div><div class="kt-item"><span class="kt-term">细胞谱系</span><span class="kt-page">975</span></div><div class="kt-item"><span class="kt-term">胚胎干细胞（ES细胞）</span><span class="kt-page">977</span></div><div class="kt-item"><span class="kt-term">生殖系</span><span class="kt-page">990</span></div><div class="kt-item"><span class="kt-term">诱导多能干细胞（iPS细胞）</span><span class="kt-page">977</span></div><div class="kt-item"><span class="kt-term">分生组织</span><span class="kt-page">997</span></div><div class="kt-item"><span class="kt-term">多潜能性</span><span class="kt-page">977</span></div><div class="kt-item"><span class="kt-term">平面细胞极性（PCP）</span><span class="kt-page">1008</span></div><div class="kt-item"><span class="kt-term">多能性</span><span class="kt-page">976</span></div><div class="kt-item"><span class="kt-term">极性</span><span class="kt-page">1000</span></div><div class="kt-item"><span class="kt-term">祖细胞（前体细胞）</span><span class="kt-page">988</span></div><div class="kt-item"><span class="kt-term">程序性细胞死亡</span><span class="kt-page">977</span></div><div class="kt-item"><span class="kt-term">体细胞</span><span class="kt-page">977</span></div><div class="kt-item"><span class="kt-term">干细胞</span><span class="kt-page">976</span></div><div class="kt-item"><span class="kt-term">干细胞龛</span><span class="kt-page">989</span></div><div class="kt-item"><span class="kt-term">对称细胞分裂</span><span class="kt-page">975</span></div><div class="kt-item"><span class="kt-term">全能性</span><span class="kt-page">976</span></div><div class="kt-item"><span class="kt-term">营养因子</span><span class="kt-page">1011</span></div></div>
+<h2 class="em-title" id="review-concepts">复习题</h2><ol class="review-list"><li><span class="rv-num">1.</span>定义干细胞的两个性质是什么？请区分全能性干细胞、多能性干细胞和祖细胞（前体细胞）。</li><li><span class="rv-num">2.</span>干细胞在植物中位于何处？在成年动物中又位于何处？干细胞这一概念在动物与植物系统中有什么差异？</li><li><span class="rv-num">3.</span>多利羊于1997年通过一种称为体细胞核移植（或称核移植克隆）的技术被克隆出来。研究人员把一只成年乳腺细胞的细胞核移入一个已去除细胞核的卵中。该卵在培养中分裂数次后，胚胎被移植到一只代孕母羊体内，后者产下了多利。多利在2003年死亡，此前它曾交配并自己产下可存活的后代。多利的诞生告诉我们，来自完全分化的成年细胞的核物质具有怎样的潜能？多利的诞生是否也告诉我们完整、完全分化的成年细胞具有什么潜能？</li><li><span class="rv-num">4.</span>判断下列结构中所含的是全能性、多能性还是多潜能性细胞：（a）内细胞团，（b）桑椹胚，（c）八细胞胚胎，（d）滋养外胚层。</li><li><span class="rv-num">5.</span>判断正误：已分化的体细胞具有被重编程而成为其他类型细胞的能力。请举出本章讨论的一条证据来支持你的判断。</li><li><span class="rv-num">6.</span>请解释肠道干细胞最初是如何被鉴定的，以及随后如何在实验上被证明是多潜能干细胞。</li><li><span class="rv-num">7.</span>请解释造血干细胞如何在实验上被证明既具有多潜能性，又能够自我更新。</li><li><span class="rv-num">8.</span>秀丽隐杆线虫（C. elegans）已被证明是研究细胞诞生、细胞不对称性和细胞死亡的宝贵模式生物。该线虫的哪些特性使它如此适合这些研究？为什么来自C. elegans实验的大量信息对研究哺乳动物发育的研究者有用？</li><li><span class="rv-num">9.</span>不对称细胞分裂常常依赖细胞骨架成分来产生或维持细胞内因子的不对称分布。在酿酒酵母（S. cerevisiae）中，哪种因子被肌球蛋白马达定位到芽体？在果蝇神经母细胞中，哪些因子被微管定位到顶端？</li><li><span class="rv-num">10.</span>请讨论par基因在C. elegans胚胎中产生前/后极性方面的作用。</li><li><span class="rv-num">11.</span>对敲除小鼠脑发育的研究如何支持"凋亡是神经元细胞中的默认途径"这一论断？</li><li><span class="rv-num">12.</span>请比较并对照凋亡与坏死这两种细胞死亡方式。</li><li><span class="rv-num">13.</span>请指出控制细胞死亡的三类主要蛋白质，并列出它们各自的功能。</li><li><span class="rv-num">14.</span>基于你对细胞死亡过程的理解，预测下列情况对细胞发生凋亡能力的影响：（a）有功能的CED-9、无功能的CED-3；（b）有活性的Bax和细胞色素c、无功能的caspase-9；（c）无活性的PI-3激酶、有活性的Bad。</li><li><span class="rv-num">15.</span>肿瘤坏死因子（TNF）和Fas配体与细胞表面受体结合以触发细胞死亡。尽管死亡信号是在细胞外产生的，我们为什么认为这些分子诱导的死亡是凋亡而不是坏死？</li><li><span class="rv-num">16.</span>预测下列突变对细胞发生凋亡能力的影响：（a）Bad发生突变，使其不能被蛋白激酶B（PKB）磷酸化；（b）Bcl-2过表达；（c）Bax发生突变，使其不能形成同二聚体。癌细胞的一个常见特征是凋亡通路功能丧失。你认为上述哪些突变可能出现在某些癌细胞中？</li><li><span class="rv-num">17.</span>凋亡抑制蛋白（IAP）如何与胱天蛋白酶相互作用以阻止凋亡？线粒体蛋白又如何与IAP相互作用以阻止对凋亡的抑制？</li></ol>
+<div class="references"><h2 class="em-title" id="references">参考文献</h2><h3 class="ref-sec">早期哺乳动物发育与胚胎干细胞</h3><div class="ref-list"><p class="ref-item">Ben-David, U., J. Nissenbaum, and N. Benvenisty. 2013. New balance in pluripotency: reprogramming with lineage specifiers. Cell 153:939–940.</p><p class="ref-item">Graf, T., and T. Enver. 2009. Forcing cells to change lineages. Nature462:587–594.</p><p class="ref-item">Hanna, J., K. Saha, and R. Jaenisch. 2010. Pluripotency and cellular reprogramming: facts, hypotheses, unresolved issues. Cell 143:508–525.</p><p class="ref-item">Mallanna, S., and A. Rizzino. 2010. Emerging roles of microR- NAs in the control of embryonic stem cells and the generation of induced pluripotent stem cells. Dev. Biol.344:16–25.</p><p class="ref-item">McNeish, J., et al. 2015. From dish to bedside: lessons learned while translating findings from a stem cell model of disease to a clinical trial. Cell Stem Cell17:8–10.</p><p class="ref-item">Orkin, S., and K. Hochedlinger. 2011. Chromatin connections to pluripotency and cellular reprogramming. Cell145:835–850.</p><p class="ref-item">Pagliuca, F., et al. 2014. Generation of functional human pancreatic β cells in vitro. Cell159:428–439.</p><p class="ref-item">Robinton, D., and G. Daley. 2014. The promise of in- duced pluripotent stem cells in research and therapy. Nature 481:295–305.</p><p class="ref-item">Surface, L., S. Thornton, and L. Boyer. 2010. Polycomb group proteins set the stage for early lineage commitment. Cell Stem Cell 7:288–298.</p><p class="ref-item">Theunissen, T., and R. Jaenisch. 2014. Molecular control of induced pluripotency. Cell Stem Cell14:720–734.</p><p class="ref-item">Young, R. 2011. Control of the embryonic stem cell state. Cell 144:940–954.</p></div><h3 class="ref-sec">多细胞生物中的干细胞与龛</h3><div class="ref-list"><p class="ref-item">Aichinger, E., et al. 2012. Plant stem cell niches. Annu. Rev. Plant Biol.63:615–636.</p><p class="ref-item">Blanpain, C., and E. Fuchs. 2014. Plasticity of epithelial stem cells in tissue regeneration. Science344:1243.</p><p class="ref-item">Clevers, H., et al. 2014. An integral program for tissue renewal and regeneration: Wnt signaling and stem cell control. Science 346:1248012.</p><p class="ref-item">Goodell, M., H. Nguyen, and N. Shroyer. 2015. Somatic stem cell heterogeneity: diversity in the blood, skin and intestinal stem cell compartments. Nat. Rev. Mol. Cell Biol.16:299–309.</p><p class="ref-item">He, S., D. Nakada, and S. Morrison. 2009. Mechanisms of stem cell self-renewal. Annu. Rev. Cell Dev. Biol. 25:377–406.</p><p class="ref-item">Heidstra, R., and S. Sabatini. 2014. Plant and animal stem cells: similar yet different. Nat. Rev. Mol. Cell Biol.15:301–312.</p><p class="ref-item">Morrison, S. J., and J. Kimble. 2006. Asymmetric and symmetric stem-cell divisions in development and cancer. Nature 441:1068–1074.</p><p class="ref-item">Suh, H., W. Deng, and P. Gage. 2009. Signaling in adult neurogenesis. Annu. Rev. Cell Dev. Biol. 25:253–275.</p><p class="ref-item">Tanaka, E., and P. Reddien. 2011. The cellular basis for animal regeneration. Dev. Cell21:172–185.</p><p class="ref-item">Zhang, C., and H. Lodish. 2008. Cytokine regulation of hematopoietic stem cell function. Curr. Opin. Hematol. 15:307–311.</p></div><h3 class="ref-sec">细胞极性机制与不对称细胞分裂</h3><div class="ref-list"><p class="ref-item">Cabernard, C., and C. Q. Doe. 2009. Apical/basal spindle orientation is required for neuroblast homeostasis and neuronal differentiation in Drosophila. Dev. Cell 17:134–141.</p><p class="ref-item">Devenport, D. 2014. The cell biology of planar cell polarity. J. Cell Biol.207:171–179.</p><p class="ref-item">Knoblich, J. A. 2008. Mechanisms of asymmetric stem cell division. Cell132:583–597.</p><p class="ref-item">Li, R., and B. Bowerman, eds. 2010. Symmetry Breaking in Biology. Cold Spring Harbor Laboratory Press.</p><p class="ref-item">Mellman, I., and W. J. Nelson. 2008. Coordinated protein sorting, targeting and distribution in polarized cells. Nat. Rev. Mol. Cell Biol.9:833–845.</p><p class="ref-item">Nelson, W. J. 2003. Adaption of core mechanisms to generate cell polarity. Nature422:766–774.</p><p class="ref-item">Ragkousi, K., and M. C. Gibson. 2014. Cell division and the maintenance of epithelial order. J. Cell Biol. 207:181–188.</p><p class="ref-item">Shivas, J. M., et al. 2010. Polarity and endocytosis: reciprocal regulation. Trends Cell Biol.20:445–452.</p><p class="ref-item">Siller, K. H., and C. Q. Doe. 2009. Spindle orientation during asymmetric cell division. Nat. Cell Biol.11:365–374.</p><p class="ref-item">St.</p><p class="ref-item">Johnston, D., and J. Ahringer. 2010. Cell polarity in eggs and epithelia: parallels and diversity. Cell141:757–774.</p><p class="ref-item">Zallen, J. A. 2007. Planar polarity and tissue morphogenesis. Cell129:1051–1063.</p></div><h3 class="ref-sec">细胞死亡及其调控</h3><div class="ref-list"><p class="ref-item">Adams, J. M., and S. Cory. 2007. Bcl-2-regulated apoptosis: mechanism and therapeutic potential. Curr. Opin. Immunol. 19:488–496.</p><p class="ref-item">Ashkenazi, A., and G. Salvesen. 2014. Regulated cell death: signaling and mechanisms. Annu. Rev. Cell Dev. Biol.30:337–356.</p><p class="ref-item">Bouillet, P., and L. A. O’Reilly. 2009. CD95, BIM and T cell homeostasis. Nat. Rev. Immunol.9:514–519.</p><p class="ref-item">Christofferson, D., Y. Li, and J. Yuan. 2014 Control of life-or-death decisions by RIP1 kinase. Annu. Rev. Physiol. 76:129–50.</p><p class="ref-item">Giam, M., D. C. Huang, and P. Bouillet. 2008. BH3-only proteins and their roles in programmed cell death. Oncogene 27(suppl. 1):S128–S136.</p><p class="ref-item">Hay, B. A., and M. Guo. 2006. Caspase-dependent cell death in Drosophila. Annu. Rev. Cell Dev. Biol.22:623–650.</p><p class="ref-item">Riedl, S. J., and G. Salvesen. 2007. The apoptosome: signalling platform of cell death. Nat. Rev. Mol. Cell Biol.8:405–413.</p><p class="ref-item">Ryoo, H. D., and E. H. Baehrecke. 2010. Distinct death mechanisms in Drosophila development. Curr. Opin. Cell Biol. 22:889–895.</p><p class="ref-item">Teng, X., and J. Hardwick. 2010. The apoptosome at high resolution. Cell141:402–404.</p></div></div>
+</div>
+<div class="footer">分子细胞生物学（第8版）中文翻译 · 非营利学习用途</div>
+</article>
+<nav id="chapnav" aria-label="章节导航"><a class="nav-btn" href="../chapter20/index.html" title="第20章 将细胞整合到组织">← 上一章</a><a class="nav-btn" href="../index.html" title="返回章节目录">回到首页</a><span class="nav-btn disabled" title="下一章尚未翻译">下一章 →</span></nav>
+<div id="lightbox" onclick="this.style.display='none'"><span class="close">&times;</span><img src=""></div>
+<script>
+function lightbox(src){var lb=document.getElementById('lightbox');lb.querySelector('img').src=src;lb.style.display='flex';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lightbox').style.display='none';});
+(function(){
+  var handles=document.querySelectorAll('.data-table .resize-handle');
+  var startX,startW,col,table;
+  handles.forEach(function(h){
+    h.addEventListener('mousedown',function(e){
+      e.preventDefault();e.stopPropagation();
+      col=h.parentNode;table=col.closest('table');
+      startX=e.clientX;startW=col.offsetWidth;
+      document.body.classList.add('resizing');
+      document.addEventListener('mousemove',onMove);
+      document.addEventListener('mouseup',onUp);
+    });
+  });
+  function onMove(e){
+    var dx=e.clientX-startX;
+    var newW=Math.max(40,startW+dx);
+    var idx=Array.from(table.querySelectorAll('thead th')).indexOf(col);
+    var cg=table.querySelector('colgroup');
+    if(cg&&cg.children[idx])cg.children[idx].style.width=newW+'px';
+    table.style.tableLayout='auto';
+  }
+  function onUp(){
+    document.body.classList.remove('resizing');
+    document.removeEventListener('mousemove',onMove);
+    document.removeEventListener('mouseup',onUp);
+  }
+})();
+/* 阅读索引：折叠切换 + 滚动监视 */
+(function(){
+  var toc=document.getElementById('toc');
+  var toggle=document.getElementById('toc-toggle');
+  if(toggle){
+    toggle.addEventListener('click',function(){
+      if(window.innerWidth<=1050){
+        toc.classList.toggle('open');
+        toggle.textContent=toc.classList.contains('open')?'◀':'▶';
+      }else{
+        toc.classList.toggle('hidden');
+        toggle.textContent=toc.classList.contains('hidden')?'▶':'◀';
+      }
+    });
+  }
+
+  var tocLinks=document.querySelectorAll('#toc a');
+  var targets=[];
+  tocLinks.forEach(function(a){
+    var id=a.getAttribute('href');
+    if(!id)return;
+    var el=document.getElementById(id.replace('#',''));
+    if(el)targets.push({el:el,link:a});
+  });
+  function onScroll(){
+    var scrollY=window.scrollY+120;
+    var active=null;
+    for(var i=targets.length-1;i>=0;i--){
+      if(targets[i].el.offsetTop<=scrollY){active=targets[i].link;break;}
+    }
+    tocLinks.forEach(function(a){a.classList.remove('active');});
+    if(active)active.classList.add('active');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  tocLinks.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').replace('#','');
+      var el=document.getElementById(id);
+      if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+      if(window.innerWidth<=1050)toc.classList.remove('open');
+    });
+  });
+  /* 移动端点击正文关闭侧栏 */
+  document.addEventListener('click',function(e){
+    if(!toc.classList.contains('open'))return;
+    if(!toc.contains(e.target)&&e.target!==toggle)toc.classList.remove('open');
+  });
+})();
+</script>
+</body></html>
