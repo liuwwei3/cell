@@ -584,6 +584,9 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Partial digestion</td><td class="gl-zh">部分消化</td></tr>
   <tr><td class="gl-en">Sau3A</td><td class="gl-zh">Sau3A（限制酶）</td></tr>
   <tr><td class="gl-en">BamHI</td><td class="gl-zh">BamHI（限制酶）</td></tr>
+  <tr><td class="gl-en">ORI</td><td class="gl-zh">复制起点</td></tr>
+  <tr><td class="gl-en">CEN</td><td class="gl-zh">着丝粒序列</td></tr>
+  <tr><td class="gl-en">ARS</td><td class="gl-zh">自主复制序列</td></tr>
   </table>
 </figure>
 <h3 class="subhead">cDNA文库代表蛋白质编码基因的序列</h3>
@@ -600,6 +603,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Replica-plating</td><td class="gl-zh">影印接种</td></tr>
   <tr><td class="gl-en">Lithium acetate</td><td class="gl-zh">醋酸锂</td></tr>
   <tr><td class="gl-en">Polyethylene glycol</td><td class="gl-zh">聚乙二醇（PEG）</td></tr>
+  <tr><td class="gl-en">URA3</td><td class="gl-zh">URA3（选择标记）</td></tr>
   </table>
 </figure>
 <p>为了准备双链cDNA进行克隆，使用来自噬菌体T4的DNA连接酶将含有特定限制酶识别位点的短双链DNA分子（称为接头）连接到cDNA的两端（<a class="xref xref-fig" href="#fig-6-17">图6-17</a>，步骤7）。如前所述，这种连接酶可以连接缺乏粘性末端的"平末端"双链DNA分子。然后用特定于所连接接头的限制酶处理产生的分子，产生具有粘性末端的cDNA分子（步骤8a）。在单独的程序中，用相同的限制酶处理质粒DNA以产生适当的粘性末端（步骤8b）。</p>
@@ -625,7 +629,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <figcaption>图 6-18 聚合酶链式反应（PCR）广泛用于扩增具有已知侧翼序列的 DNA 区域。为了扩增特定的 DNA 区域，研究者化学合成两个不同的寡核苷酸引物，它们与目标区域两侧约 18 个碱基的序列互补（此处显示为浅蓝色和深蓝色条）。完整的反应由以下成分组成：双链 DNA（通常是含有目标序列的基因组 DNA）、化学计量过量的两种引物、四种 dNTP 和一种称为 Taq 聚合酶的耐热 DNA 聚合酶。在每个 PCR 循环中，首先加热反应混合物以分离 DNA 链，然后冷却以允许引物与待扩增区域两侧的互补序列结合。然后 Taq 聚合酶从每个引物的 3' 端延伸，产生新合成的链，这些链从 3' 方向延伸到模板链的 5' 端。在第三个循环中，产生两个双链 DNA 分子，其长度等于待扩增区域的序列。在每个连续循环中，与引物退火的目标序列被复制，因此它最终在数量上远远超过反应混合物中的所有其他 DNA 序列。连续的 PCR 循环可以通过在定时间隔内在高温（DNA 解链）和较低温度（循环的退火和延伸部分）之间循环反应来自动化。循环 20 次的反应将把特定目标序列扩增 100 万倍。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">Polymerase chain reaction</td><td class="gl-zh">聚合酶链式反应（PCR）</td></tr>
-  <tr><td class="gl-en">PCR</td><td class="gl-zh">PCR</td></tr>
+  <tr><td class="gl-en">PCR</td><td class="gl-zh">PCR（聚合酶链式反应）</td></tr>
   <tr><td class="gl-en">Oligonucleotide primers</td><td class="gl-zh">寡核苷酸引物</td></tr>
   <tr><td class="gl-en">dNTPs</td><td class="gl-zh">dNTPs（脱氧核苷三磷酸）</td></tr>
   <tr><td class="gl-en">Taq polymerase</td><td class="gl-zh">Taq聚合酶</td></tr>
@@ -641,7 +645,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <img class="zoomable" src="figures/fig_6-19_1.png" alt="图 6-19" onclick="lightbox(this.src)">
   <figcaption>实验图 6-19 基因组 DNA 中的特定目标序列可以通过 PCR 扩增用于克隆。每个 PCR 引物与目标序列的一端互补，并包含一个限制性内切酶的识别位点，该酶在目标区域内没有识别位点。在此示例中，引物 1 包含 BamHI 识别序列，而引物 2 包含 HindIII 识别序列。（注意，为清晰起见，在任何一轮中，仅显示两条链中一条链的扩增——括号中的那条链。）扩增后，用适当的限制性内切酶处理目标片段，产生具有粘性末端的片段。这些片段可以按常规程序（见<a class="xref xref-fig" href="#fig-6-14">图 6-14</a>）掺入互补的质粒载体中并在大肠杆菌中克隆。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">PCR</td><td class="gl-zh">PCR</td></tr>
+  <tr><td class="gl-en">PCR</td><td class="gl-zh">PCR（聚合酶链式反应）</td></tr>
   <tr><td class="gl-en">Target sequence</td><td class="gl-zh">靶序列</td></tr>
   <tr><td class="gl-en">Primer</td><td class="gl-zh">引物</td></tr>
   <tr><td class="gl-en">Restriction enzyme</td><td class="gl-zh">限制性内切酶</td></tr>
@@ -679,7 +683,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <img class="zoomable" src="figures/fig_6-21_1.png" alt="图 6-21" onclick="lightbox(this.src)">
   <figcaption>实验图 6-21 在固相支持物上生成附着于其上的相同 DNA 片段簇。将大量待测序的 DNA 片段连接到双链接头上，接头附着到每个片段的两端。然后使用与共价附着在固相基质上的接头序列匹配的引物通过 PCR 扩增 DNA。十轮扩增产生约一千个每个 DNA 片段的相同拷贝，定位在一个小簇中，两端附着在固相基质上。这些反应被优化以产生多达 3 × 10^9 个离散的、不重叠的簇，准备进行测序。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">PCR</td><td class="gl-zh">PCR</td></tr>
+  <tr><td class="gl-en">PCR</td><td class="gl-zh">PCR（聚合酶链式反应）</td></tr>
   <tr><td class="gl-en">DNA clusters</td><td class="gl-zh">DNA簇</td></tr>
   <tr><td class="gl-en">Solid support</td><td class="gl-zh">固相支持物</td></tr>
   <tr><td class="gl-en">Linkers</td><td class="gl-zh">接头</td></tr>
@@ -751,6 +755,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Reporter enzyme</td><td class="gl-zh">报告酶</td></tr>
   <tr><td class="gl-en">Horseradish peroxidase</td><td class="gl-zh">辣根过氧化物酶</td></tr>
   <tr><td class="gl-en">Alkaline phosphatase</td><td class="gl-zh">碱性磷酸酶</td></tr>
+  <tr><td class="gl-en">NT</td><td class="gl-zh">神经管</td></tr>
   </table>
 </figure>
 <p>Preparation of DNA Microarrays 在制备微阵列的一种方法中，对应于每个待分析基因编码区部分的长约1 kb的DNA片段通过PCR单独扩增。使用机器人装置将每个扩增的DNA样品点到玻璃显微镜载玻片的表面，然后通过化学处理将DNA序列永久附着在玻璃表面上并使其变性。一个典型的阵列可以在2×2 cm的网格中包含约6000个DNA点。</p>
@@ -766,7 +771,6 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">DNA microarray</td><td class="gl-zh">DNA微阵列</td></tr>
   <tr><td class="gl-en">Gene expression</td><td class="gl-zh">基因表达</td></tr>
   <tr><td class="gl-en">Fluorescent dye</td><td class="gl-zh">荧光染料</td></tr>
-  <tr><td class="gl-en">cDNA</td><td class="gl-zh">cDNA</td></tr>
   <tr><td class="gl-en">Hybridization</td><td class="gl-zh">杂交</td></tr>
   <tr><td class="gl-en">Serum starvation</td><td class="gl-zh">血清饥饿</td></tr>
   <tr><td class="gl-en">Confocal laser microscope</td><td class="gl-zh">共聚焦激光显微镜</td></tr>
@@ -868,6 +872,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Huntington's disease</td><td class="gl-zh">亨廷顿病</td></tr>
   <tr><td class="gl-en">Duchenne muscular dystrophy</td><td class="gl-zh">杜氏肌营养不良症</td></tr>
   <tr><td class="gl-en">Monogenic disease</td><td class="gl-zh">单基因病</td></tr>
+  <tr><td class="gl-en">Tay-Sachs disease</td><td class="gl-zh">泰-萨克斯病</td></tr>
   </table>
 </figure>
 <p>破译任何遗传性疾病根本原因的典型第一步是识别受影响的基因及其编码的蛋白质。将疾病基因及其产物的序列与已知序列和功能的基因和蛋白质序列进行比较，可以为疾病的分子和细胞原因提供线索。历史上，研究人员曾利用任何可能相关的表型线索来推测遗传性疾病的分子基础。早期成功推测的一个例子是镰状细胞病——已知是一种血细胞疾病——可能由缺陷性血红蛋白引起的假说。这一想法导致在血红蛋白中鉴定出一个特定的氨基酸替换，该替换导致缺陷性血红蛋白分子聚合，从而在遗传了两个拷贝的镰状细胞血红蛋白Hbs等位基因的个体中引起红细胞的镰刀状变形。</p>
@@ -909,7 +914,6 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <figcaption>实验图 6-33 单核苷酸多态性（SNP）可以像遗传标记一样被追踪。基于染色体某区域 DNA 的 SNP 分析的假设家系图。在此家族中，SNP 存在为 A、T 或 C 核苷酸。每个个体有两个等位基因：一些在两条染色体上都含有 A，而另一些在此位点是杂合的。圆圈表示女性；方块表示男性。蓝色表示未患病个体；橙色表示具有目标性状的个体。分析揭示该性状与 SNP 处的 C 共分离。</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">Single-nucleotide polymorphisms</td><td class="gl-zh">单核苷酸多态性</td></tr>
-  <tr><td class="gl-en">SNPs</td><td class="gl-zh">SNPs</td></tr>
   <tr><td class="gl-en">Genetic markers</td><td class="gl-zh">遗传标记</td></tr>
   <tr><td class="gl-en">Pedigree</td><td class="gl-zh">系谱</td></tr>
   <tr><td class="gl-en">Heterozygous</td><td class="gl-zh">杂合</td></tr>
@@ -977,6 +981,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">Diploid</td><td class="gl-zh">二倍体</td></tr>
   <tr><td class="gl-en">Sporulation</td><td class="gl-zh">孢子形成</td></tr>
   <tr><td class="gl-en">Essential gene</td><td class="gl-zh">必需基因</td></tr>
+  <tr><td class="gl-en">PCR</td><td class="gl-zh">聚合酶链式反应</td></tr>
   </table>
 </figure>
 <p>用于此目的的一个有用启动子是酵母GAL1启动子，它在半乳糖上生长的细胞中活跃，但在葡萄糖上生长的细胞中完全无活性。在这种方法中，必需基因（基因X）的编码序列连接到GAL1启动子，并插入酵母穿梭载体中（见<a class="xref xref-fig" href="#fig-6-15">图6-15</a>a）。然后将重组载体引入基因X已被破坏的单倍体酵母细胞中。转化的单倍体细胞将在半乳糖培养基上生长，因为载体上基因X的正常拷贝在半乳糖存在下表达。然而，当细胞转移到含葡萄糖的培养基中时，基因X不再转录；随着细胞分裂，编码的蛋白质X的量下降，最终达到一种模拟功能丧失突变的耗竭状态。在转移到葡萄糖培养基后这些细胞表型的观察变化可能提示哪些细胞过程依赖于必需基因X编码的蛋白质。</p>
@@ -1006,6 +1011,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">G-418</td><td class="gl-zh">G-418（抗生素）</td></tr>
   <tr><td class="gl-en">Negative selection</td><td class="gl-zh">负筛选</td></tr>
   <tr><td class="gl-en">Positive selection</td><td class="gl-zh">正筛选</td></tr>
+  <tr><td class="gl-en">ES</td><td class="gl-zh">胚胎干细胞</td></tr>
   </table>
 </figure>
 <p>这种技术的早期应用提供了强有力的证据，表明特定的神经递质受体对学习和记忆很重要。先前的药理学和生理学研究表明，正常学习需要海马体（大脑的一个区域）中的NMDA类谷氨酸受体。但编码NMDA受体亚基的基因被敲除的小鼠在新生期死亡，排除了分析该受体在学习中的作用。按照<a class="xref xref-fig" href="#fig-6-39">图6-39</a>的方案，研究人员产生了在海马体中受体亚基基因被失活但在其他组织中表达的小鼠。这些小鼠存活到成年并表现出学习和记忆缺陷，证实了这些受体在小鼠将经验编码为记忆的能力中的作用。</p>
@@ -1085,9 +1091,9 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <figcaption>实验图 6-42 RNA 干扰（RNAi）可以在秀丽隐杆线虫（C. elegans）和其他生物中抑制基因功能。（a）体外生产双链 RNA（dsRNA）以干扰特定靶基因。基因的编码序列（来自 cDNA 克隆或基因组 DNA 片段）以两种方向放置在质粒载体中，邻近一个强启动子。使用 RNA 聚合酶和核糖核苷三磷酸体外转录两种构建体，产生正义方向（与 mRNA 序列相同）和互补反义方向的大量 RNA 拷贝。在合适条件下，这些互补 RNA 分子杂交形成 dsRNA。当 dsRNA 被注射到细胞中时，它被 Dicer 切割成 siRNA。（b）通过 RNAi 抑制秀丽隐杆线虫胚胎中 mex3 RNA 的表达（机制见正文）。通过原位杂交检测胚胎中 mex3 RNA 的表达，使用与产生有色（紫色）产物的酶连接的对此 mRNA 特异性的探针。（左）野生型胚胎。（右）来自注射了 mex3 双链 RNA 的蠕虫的胚胎。每个四细胞阶段胚胎长度约 50 mm。（c）通过直接引入细胞的工程化质粒在体内生产双链 RNA。合成基因构建体是靶基因的正义和反义序列的串联排列。当其被转录时，形成双链小发夹 RNA（shRNA）。shRNA 被 Dicer 切割形成 siRNA。[部分（b）经 Macmillan Publishers Ltd 许可转载，来自 Fire, A., 「Potent and specific genetic interference by double-stranded RNA in Caenorhabditis elegans,」 Nature, 1998, 391(6669):806-811；通过 Copyright Clearance Center, Inc. 获得许可。]</figcaption>
   <table class="glossary"><caption>图内标签对照</caption>
   <tr><td class="gl-en">RNA interference</td><td class="gl-zh">RNA干扰</td></tr>
-  <tr><td class="gl-en">RNAi</td><td class="gl-zh">RNAi</td></tr>
+  <tr><td class="gl-en">RNAi</td><td class="gl-zh">RNAi（RNA干扰）</td></tr>
   <tr><td class="gl-en">siRNA</td><td class="gl-zh">siRNA（小干扰RNA）</td></tr>
-  <tr><td class="gl-en">Dicer</td><td class="gl-zh">Dicer</td></tr>
+  <tr><td class="gl-en">Dicer</td><td class="gl-zh">Dicer（核酸内切酶）</td></tr>
   <tr><td class="gl-en">shRNA</td><td class="gl-zh">shRNA（短发夹RNA）</td></tr>
   <tr><td class="gl-en">Sense transcript</td><td class="gl-zh">正义转录本</td></tr>
   <tr><td class="gl-en">Antisense</td><td class="gl-zh">反义</td></tr>
@@ -1097,6 +1103,7 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">In situ hybridization</td><td class="gl-zh">原位杂交</td></tr>
   <tr><td class="gl-en">Noninjected</td><td class="gl-zh">未注射</td></tr>
   <tr><td class="gl-en">Injected</td><td class="gl-zh">已注射</td></tr>
+  <tr><td class="gl-en">dsRNA</td><td class="gl-zh">双链RNA</td></tr>
   </table>
 </figure>
 <p>第二种方法是在体内产生特定的双链RNA。一种有效的方法是表达一个合成基因，该基因被设计为含有对应于目标基因的正义和反义序列的串联片段（<a class="xref xref-fig" href="#fig-6-42">图6-42</a>c）。当该基因被转录时，形成双链RNA"发夹"结构，称为小发夹RNA（shRNA）。然后shRNA将被Dicer切割形成siRNA分子。慢病毒表达载体对于将表达shRNA构建体的合成基因引入动物细胞特别有用。</p>
@@ -1118,12 +1125,13 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <tr><td class="gl-en">DNA cleavage sites</td><td class="gl-zh">DNA切割位点</td></tr>
   <tr><td class="gl-en">Double-strand break</td><td class="gl-zh">双链断裂</td></tr>
   <tr><td class="gl-en">Nonhomologous end joining</td><td class="gl-zh">非同源末端连接</td></tr>
-  <tr><td class="gl-en">NHEJ</td><td class="gl-zh">NHEJ</td></tr>
   <tr><td class="gl-en">Homology-directed repair</td><td class="gl-zh">同源定向修复</td></tr>
-  <tr><td class="gl-en">HDR</td><td class="gl-zh">HDR</td></tr>
   <tr><td class="gl-en">Frameshift mutation</td><td class="gl-zh">移码突变</td></tr>
   <tr><td class="gl-en">Single-nucleotide mutation</td><td class="gl-zh">单核苷酸突变</td></tr>
   <tr><td class="gl-en">Genome editing</td><td class="gl-zh">基因组编辑</td></tr>
+  <tr><td class="gl-en">tracrRNA</td><td class="gl-zh">反式激活CRISPR RNA</td></tr>
+  <tr><td class="gl-en">gRNA</td><td class="gl-zh">向导RNA</td></tr>
+  <tr><td class="gl-en">NLS</td><td class="gl-zh">核定位信号</td></tr>
   </table>
 </figure>
 <p>在第6.4节中，我们看到人类遗传定位和关联研究已经鉴定出大量遗传变异，其中许多代表使人们易患某种遗传病的单核苷酸多态性。使用CRISPR-Cas9系统在哺乳动物生殖系中产生特定单碱基改变的能力，现在开启了在良好控制的实验生物体（如小鼠）中创建等效等位基因的可能性。</p>
