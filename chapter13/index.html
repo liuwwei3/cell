@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -739,25 +756,26 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>除由两层膜包被之外，线粒体和叶绿体还具有相似类型的电子传递蛋白，并使用F类ATP酶来合成ATP（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter12/index.html#fig-12-30">图12-30</a>）。值得注意的是，革兰氏阴性菌也具备这些特征。此外，与细菌细胞一样，线粒体和叶绿体含有自己的DNA，它编码细胞器的rRNA、tRNA和某些蛋白质（见第8章）。而且，线粒体和叶绿体的生长与分裂并不与核分裂相偶联。相反，这些细胞器通过掺入细胞内的蛋白质和脂质而生长，新的细胞器由已有的细胞器分裂形成。这些与自由生活的细菌细胞之间的大量相似性，使人们认识到线粒体和叶绿体起源于细菌被并入祖先真核细胞之时，形成内共生细胞器（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter12/index.html#fig-12-7">图12-7</a>）。线粒体、叶绿体和细菌所共有的大量膜转位蛋白在序列上的相似性，为这一古老的进化关系提供了最有力的证据。在本节中，我们详细考察这些膜转位蛋白。</p>
 <p>由线粒体DNA或叶绿体DNA编码的蛋白质在细胞器内的核糖体上合成，并在合成后立即被导向亲本细胞器内正确的亚区室。然而，位于线粒体和叶绿体中的大多数蛋白质由细胞核中的基因编码，在胞质溶胶中合成之后被输入细胞器。显然，随着真核细胞在十亿多年间不断进化，这些内共生细胞器中祖先细菌DNA的大部分遗传信息，通过某种未知机制转移到了细胞核中。在胞质溶胶中合成、目的地为线粒体基质或叶绿体中与之相当的空间（即基质）的那些前体蛋白，通常含有特异的N端靶向序列，这些序列决定其与细胞器表面受体蛋白的结合。一般来说，蛋白质一旦到达线粒体基质或叶绿体基质，这些序列就会被切除。显然，这些靶向序列在位置和一般功能上都与那些引导新生蛋白进入内质网腔的信号序列相似。尽管这三类信号共有某些序列特征，但它们的具体序列差异相当大，如<a class="xref xref-tab" href="#tab-T13-1">表13-1</a>所总结。</p>
 <figure class="table" id="tab-T13-1">
-  <img class="zoomable" src="figures/tab_T13-1_1.png" alt="表 T13-1" onclick="lightbox(this.src)">
-  <figcaption>表13-1 把蛋白质从胞质溶胶导向细胞器的靶向序列*</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Target Organelle</td><td class="gl-zh">靶向细胞器</td></tr>
-  <tr><td class="gl-en">Location of Sequence</td><td class="gl-zh">序列位置</td></tr>
-  <tr><td class="gl-en">Removal of Sequence</td><td class="gl-zh">序列的切除</td></tr>
-  <tr><td class="gl-en">Nature of Sequence</td><td class="gl-zh">序列的性质</td></tr>
-  <tr><td class="gl-en">Endoplasmic reticulum (lumen)</td><td class="gl-zh">内质网（腔）</td></tr>
-  <tr><td class="gl-en">Mitochondrion</td><td class="gl-zh">线粒体</td></tr>
-  <tr><td class="gl-en">Chloroplast</td><td class="gl-zh">叶绿体</td></tr>
-  <tr><td class="gl-en">Peroxisome</td><td class="gl-zh">过氧化物酶体</td></tr>
-  <tr><td class="gl-en">Nucleus</td><td class="gl-zh">细胞核</td></tr>
-  <tr><td class="gl-en">N-terminus</td><td class="gl-zh">N端</td></tr>
-  <tr><td class="gl-en">C-terminus</td><td class="gl-zh">C端</td></tr>
-  <tr><td class="gl-en">Amphipathic helix</td><td class="gl-zh">两亲性螺旋</td></tr>
-  <tr><td class="gl-en">PTS1 signal</td><td class="gl-zh">PTS1信号</td></tr>
-  <tr><td class="gl-en">PTS2 signal</td><td class="gl-zh">PTS2信号</td></tr>
-  <tr><td class="gl-en">Varies</td><td class="gl-zh">不定</td></tr>
+  <figcaption>表13-1 · 指导蛋白质从胞质溶胶到细胞器的靶向序列*</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:19.5%">
+      <col style="width:24.5%">
+      <col style="width:12.5%">
+      <col style="width:43.5%">
+    </colgroup>
+    <thead>
+      <tr><th>靶向的细胞器</th><th>序列在蛋白质中的位置</th><th>序列是否被切除</th><th>序列的性质</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>内质网（腔）</td><td>N端</td><td>是</td><td>由6–12个疏水性氨基酸组成的核心，通常前面带有一个或多个碱性氨基酸，如精氨酸（Arg）和赖氨酸（Lys）</td></tr>
+      <tr><td>线粒体（基质）</td><td>N端</td><td>是</td><td>长20–50个残基的两亲性螺旋，一侧为精氨酸（Arg）和赖氨酸（Lys）残基，另一侧为疏水性残基</td></tr>
+      <tr><td>叶绿体（基质）</td><td>N端</td><td>是</td><td>无共同基序；通常富含丝氨酸（Ser）、苏氨酸（Thr）和小分子疏水性残基，而缺乏谷氨酸（Glu）和天冬氨酸（Asp）</td></tr>
+      <tr><td>过氧化物酶体（基质）</td><td>C端（大多数蛋白质）；N端（少数蛋白质）</td><td>否</td><td>位于最C端的PTS1信号（Ser-Lys-Leu）；位于N端的PTS2信号</td></tr>
+      <tr><td>细胞核（核质）</td><td>各异</td><td>否</td><td>有多种不同类型；一种常见基序含有一段富含赖氨酸（Lys）和精氨酸（Arg）残基的短序列</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>带 * 者：不同的或额外的序列可将蛋白质靶向到细胞器膜和亚区室。</p>
 </figure>
 <p>在线粒体和叶绿体中，蛋白质输入都需要能量，并且发生在细胞器外膜与内膜直接接触的部位。由于线粒体和叶绿体含有多层膜以及由膜界定的多个空间，把许多蛋白质分选到其正确位置需要两个靶向序列和两个膜结合转位系统的依次作用：一个把蛋白质导入细胞器，另一个把它导入正确的细胞器亚区室或膜。正如我们将看到的，把各种蛋白质分选到线粒体和叶绿体的机制，与前面讨论过的某些机制相关。</p>
 <h3 class="subhead">两亲性N端靶向序列把蛋白质导向线粒体基质</h3>

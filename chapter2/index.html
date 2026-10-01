@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -690,35 +707,30 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </div>
 <p>生物体的细胞和胞外液体含低浓度的核苷--碱基与糖的组合（不含磷酸）。核苷酸是 5' 羟基上酯化有一个、两个或三个磷酸基的核苷。酯化（酯的形成）涉及酸（如羧酸或磷酸）与醇的共价连接，伴随酸释放羟基（−OH）和另一分子羟基释放 H，共同形成水分子。此处磷酸与核糖的 5' 羟基酯化。核苷一磷酸有单个酯化磷酸（见<a class="xref xref-fig" href="#fig-2-16">图 2-16</a>a）；核苷二磷酸含焦磷酸基：核苷三磷酸有第三个磷酸。<a class="xref xref-tab" href="#tab-T2-3">表 2-3</a> 列出核酸中核苷和核苷酸的名称及各种核苷磷酸形式。核苷三磷酸用于核酸合成（第 5 章）。GTP 参与胞内信号传导并作为能量储库（特别是蛋白质合成），ATP（本章稍后讨论）是使用最广泛的生物能量载体。</p>
 <figure class="table" id="tab-T2-3">
-  <img class="zoomable" src="figures/tab_T2-3_1.png" alt="表 T2-3" onclick="lightbox(this.src)">
-  <figcaption>表2-3 · 核苷和核苷酸术语。列出碱基、RNA/DNA 中核苷、核苷一/二/三磷酸、脱氧核苷一/二/三磷酸的命名对照。嘌呤（腺嘌呤 A、鸟嘌呤 G），嘧啶（胞嘧啶 C、胸腺嘧啶 T、尿嘧啶 U）。核苷 = 碱基 + 糖；核苷酸 = 核苷 + 磷酸。ATP/GTP/CTP/UTP 用于 RNA 合成，dATP/dGTP/dCTP/dTTP 用于 DNA 合成。</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">bases</td><td class="gl-zh">碱基</td></tr>
-  <tr><td class="gl-en">purines</td><td class="gl-zh">嘌呤</td></tr>
-  <tr><td class="gl-en">pyrimidines</td><td class="gl-zh">嘧啶</td></tr>
-  <tr><td class="gl-en">nucleosides</td><td class="gl-zh">核苷</td></tr>
-  <tr><td class="gl-en">nucleotides</td><td class="gl-zh">核苷酸</td></tr>
-  <tr><td class="gl-en">nucleoside monophosphates</td><td class="gl-zh">核苷一磷酸</td></tr>
-  <tr><td class="gl-en">nucleoside diphosphates</td><td class="gl-zh">核苷二磷酸</td></tr>
-  <tr><td class="gl-en">nucleoside triphosphates</td><td class="gl-zh">核苷三磷酸</td></tr>
-  <tr><td class="gl-en">deoxynucleoside</td><td class="gl-zh">脱氧核苷</td></tr>
-  <tr><td class="gl-en">adenosine</td><td class="gl-zh">腺苷</td></tr>
-  <tr><td class="gl-en">guanosine</td><td class="gl-zh">鸟苷</td></tr>
-  <tr><td class="gl-en">cytidine</td><td class="gl-zh">胞苷</td></tr>
-  <tr><td class="gl-en">uridine</td><td class="gl-zh">尿苷</td></tr>
-  <tr><td class="gl-en">deoxyadenosine</td><td class="gl-zh">脱氧腺苷</td></tr>
-  <tr><td class="gl-en">deoxyguanosine</td><td class="gl-zh">脱氧鸟苷</td></tr>
-  <tr><td class="gl-en">deoxycytidine</td><td class="gl-zh">脱氧胞苷</td></tr>
-  <tr><td class="gl-en">deoxythymidine</td><td class="gl-zh">脱氧胸苷</td></tr>
-  <tr><td class="gl-en">adenylate</td><td class="gl-zh">腺苷酸</td></tr>
-  <tr><td class="gl-en">guanylate</td><td class="gl-zh">鸟苷酸</td></tr>
-  <tr><td class="gl-en">cytidylate</td><td class="gl-zh">胞苷酸</td></tr>
-  <tr><td class="gl-en">uridylate</td><td class="gl-zh">尿苷酸</td></tr>
-  <tr><td class="gl-en">adenine (A)</td><td class="gl-zh">腺嘌呤</td></tr>
-  <tr><td class="gl-en">guanine (G)</td><td class="gl-zh">鸟嘌呤</td></tr>
-  <tr><td class="gl-en">cytosine (C)</td><td class="gl-zh">胞嘧啶</td></tr>
-  <tr><td class="gl-en">uracil (U)</td><td class="gl-zh">尿嘧啶</td></tr>
-  <tr><td class="gl-en">thymine (T)</td><td class="gl-zh">胸腺嘧啶</td></tr>
+  <figcaption>表2-3 · 核苷与核苷酸的命名</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:14.6%">
+      <col style="width:11.4%">
+      <col style="width:18.5%">
+      <col style="width:18.5%">
+      <col style="width:18.5%">
+      <col style="width:18.5%">
+    </colgroup>
+    <thead>
+      <tr><th class="cat" colspan="2" rowspan="2">碱基</th><th class="ctr" colspan="2">嘌呤</th><th class="ctr" colspan="2">嘧啶</th></tr>
+      <tr><th class="mid">腺嘌呤（A）</th><th class="mid">鸟嘌呤（G）</th><th class="mid">胞嘧啶（C）</th><th class="mid">尿嘧啶（U）／胸腺嘧啶（T）</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="cat" rowspan="2">核苷</td><td>RNA 中</td><td>腺苷</td><td>鸟苷</td><td>胞苷</td><td>尿苷</td></tr>
+      <tr><td>DNA 中</td><td>脱氧腺苷</td><td>脱氧鸟苷</td><td>脱氧胞苷</td><td>脱氧胸苷</td></tr>
+      <tr><td class="cat" rowspan="2">核苷酸</td><td>RNA 中</td><td>腺苷酸</td><td>鸟苷酸</td><td>胞苷酸</td><td>尿苷酸</td></tr>
+      <tr><td>DNA 中</td><td>脱氧腺苷酸</td><td>脱氧鸟苷酸</td><td>脱氧胞苷酸</td><td>脱氧胸苷酸</td></tr>
+      <tr><td colspan="2">核苷一磷酸</td><td class="ctr">AMP</td><td class="ctr">GMP</td><td class="ctr">CMP</td><td class="ctr">UMP</td></tr>
+      <tr><td colspan="2">核苷二磷酸</td><td class="ctr">ADP</td><td class="ctr">GDP</td><td class="ctr">CDP</td><td class="ctr">UDP</td></tr>
+      <tr><td colspan="2">核苷三磷酸</td><td class="ctr">ATP</td><td class="ctr">GTP</td><td class="ctr">CTP</td><td class="ctr">UTP</td></tr>
+      <tr><td colspan="2">脱氧核苷一磷酸、二磷酸和三磷酸</td><td class="ctr">dAMP 等</td><td class="ctr">dGMP 等</td><td class="ctr">dCMP 等</td><td class="ctr">dTMP 等</td></tr>
+    </tbody>
   </table>
 </figure>
 <h3 class="subhead">单糖共价组装成线性和分枝多糖</h3>
@@ -803,21 +815,26 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <img class="zoomable" src="figures/box_G2-11_1.png" alt="G2-11" onclick="lightbox(this.src)">
 </div>
 <figure class="table" id="tab-T2-4">
-  <img class="zoomable" src="figures/tab_T2-4_1.png" alt="表 T2-4" onclick="lightbox(this.src)">
-  <figcaption>表2-4 · 磷脂中主要脂肪酸。列出饱和（豆蔻酸 C14:0、棕榈酸 C16:0、硬脂酸 C18:0）和不饱和（油酸 C18:1、亚油酸 C18:2、花生四烯酸 C20:4）脂肪酸的常用名、离子化形式、缩写（Cx:y）、碳数和双键数。亚油酸和亚麻酸是必需脂肪酸（哺乳动物不能合成）。Cx:y 中 x 为碳数，y 为双键数。</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">fatty acids</td><td class="gl-zh">脂肪酸</td></tr>
-  <tr><td class="gl-en">saturated</td><td class="gl-zh">饱和</td></tr>
-  <tr><td class="gl-en">unsaturated</td><td class="gl-zh">不饱和</td></tr>
-  <tr><td class="gl-en">myristic/myristate</td><td class="gl-zh">豆蔻酸/豆蔻酸根</td></tr>
-  <tr><td class="gl-en">palmitic/palmitate</td><td class="gl-zh">棕榈酸/棕榈酸根</td></tr>
-  <tr><td class="gl-en">stearic/stearate</td><td class="gl-zh">硬脂酸/硬脂酸根</td></tr>
-  <tr><td class="gl-en">oleic/oleate</td><td class="gl-zh">油酸/油酸根</td></tr>
-  <tr><td class="gl-en">linoleic/linoleate</td><td class="gl-zh">亚油酸/亚油酸根</td></tr>
-  <tr><td class="gl-en">arachidonic/arachidonate</td><td class="gl-zh">花生四烯酸/花生四烯酸根</td></tr>
-  <tr><td class="gl-en">ionized form</td><td class="gl-zh">离子化形式</td></tr>
-  <tr><td class="gl-en">chemical formula</td><td class="gl-zh">化学式</td></tr>
-  <tr><td class="gl-en">phospholipids</td><td class="gl-zh">磷脂</td></tr>
+  <figcaption>表2-4 · 磷脂中含量最多的脂肪酸</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:43.4%">
+      <col style="width:15.3%">
+      <col style="width:41.3%">
+    </colgroup>
+    <thead>
+      <tr><th>酸的常用名（括号内为离子化形式）</th><th>缩写</th><th>化学式</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="3">饱和脂肪酸</td></tr>
+      <tr><td>豆蔻酸（豆蔻酸根）</td><td class="ctr">C14:0</td><td>CH₃(CH₂)₁₂COOH</td></tr>
+      <tr><td>棕榈酸（棕榈酸根）</td><td class="ctr">C16:0</td><td>CH₃(CH₂)₁₄COOH</td></tr>
+      <tr><td>硬脂酸（硬脂酸根）</td><td class="ctr">C18:0</td><td>CH₃(CH₂)₁₆COOH</td></tr>
+      <tr><td class="sect" colspan="3">不饱和脂肪酸</td></tr>
+      <tr><td>油酸（油酸根）</td><td class="ctr">C18:1</td><td>CH₃(CH₂)₇CH=CH(CH₂)₇COOH</td></tr>
+      <tr><td>亚油酸（亚油酸根）</td><td class="ctr">C18:2</td><td>CH₃(CH₂)₄CH=CHCH₂CH=CH(CH₂)₇COOH</td></tr>
+      <tr><td>花生四烯酸（花生四烯酸根）</td><td class="ctr">C20:4</td><td>CH₃(CH₂)₄(CH=CHCH₂)₃CH=CH(CH₂)₃COOH</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>脂肪酰基也可共价连接到其他脂肪分子，包括三酰甘油（含三个酯化到甘油的酰基）：它们也可共价连接到强疏水分子胆固醇（一种醇）形成胆固醇酯：三酰甘油和胆固醇酯是极不溶于水的分子，脂肪酸和胆固醇在其中储存或运输。三酰甘油是脂肪细胞中脂肪酸的储存形式，是膳食脂肪的主要成分。胆固醇酯和三酰甘油通过血流在专门载体（脂蛋白）中在组织间运输（见第 14 章）。</p>

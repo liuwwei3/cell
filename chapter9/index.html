@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
 <title>分子细胞生物学 · 第9章 基因表达的转录调控</title>
-<style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
+<link rel="stylesheet" href="../katex/katex.min.css"><style>@page { size: A4; margin: 2cm 2.2cm 2.5cm 2.2cm; @bottom-center { content: counter(page); font-family: "Times New Roman", serif; font-size: 9pt; color: #888; } }
 @media print { body { background: white; } .pagebreak { page-break-before: always; } figure { page-break-inside: avoid; } h2 { page-break-before: always; } h3 { page-break-after: avoid; } #lightbox { display: none !important; } }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: "Times New Roman", "Songti SC", "Noto Serif CJK SC", serif; font-size: 13pt; line-height: 2.0; color: #1a1a1a; background: #f5f0eb; }
@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -388,34 +405,30 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">某些启动子的转录起始需要替代σ因子</h3>
 <p>大多数大肠杆菌启动子与σ70-RNA聚合酶（细菌酶的主要起始形式）相互作用。然而，某些类群基因的转录由含若干替代σ因子之一的大肠杆菌RNA聚合酶起始，这些σ因子识别与σ70不同的共有启动子序列（<a class="xref xref-tab" href="#tab-T9-1">表9-1</a>）。</p>
 <figure class="table" id="tab-T9-1">
-  <img class="zoomable" src="figures/tab_T9-1_1.png" alt="表 T9-1" onclick="lightbox(this.src)">
-  <figcaption>表9-1 大肠杆菌的σ因子</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Promoter consensus</td><td class="gl-zh">启动子共有序列</td></tr>
-  <tr><td class="gl-en">Sigma factor</td><td class="gl-zh">σ因子</td></tr>
-  <tr><td class="gl-en">σ70</td><td class="gl-zh">σ70（管家基因）</td></tr>
-  <tr><td class="gl-en">σ38</td><td class="gl-zh">σ38（稳定期）</td></tr>
-  <tr><td class="gl-en">σ32</td><td class="gl-zh">σ32（胞质未折叠蛋白应答）</td></tr>
-  <tr><td class="gl-en">σE</td><td class="gl-zh">σE（被膜应激）</td></tr>
-  <tr><td class="gl-en">σF</td><td class="gl-zh">σF（鞭毛组装）</td></tr>
-  <tr><td class="gl-en">σN</td><td class="gl-zh">σN（氮代谢）</td></tr>
-  <tr><td class="gl-en">−35 region</td><td class="gl-zh">−35区</td></tr>
-  <tr><td class="gl-en">−10 region</td><td class="gl-zh">−10区</td></tr>
-  <tr><td class="gl-en">−24 region</td><td class="gl-zh">−24区</td></tr>
-  <tr><td class="gl-en">−12 region</td><td class="gl-zh">−12区</td></tr>
-  <tr><td class="gl-en">Housekeeping genes</td><td class="gl-zh">管家基因</td></tr>
-  <tr><td class="gl-en">Exponentially replicating cells</td><td class="gl-zh">指数增殖细胞</td></tr>
-  <tr><td class="gl-en">Stationary phase</td><td class="gl-zh">稳定期</td></tr>
-  <tr><td class="gl-en">General stress response</td><td class="gl-zh">通用应激反应</td></tr>
-  <tr><td class="gl-en">Unfolded proteins</td><td class="gl-zh">未折叠蛋白</td></tr>
-  <tr><td class="gl-en">Chaperones</td><td class="gl-zh">分子伴侣</td></tr>
-  <tr><td class="gl-en">Protease systems</td><td class="gl-zh">蛋白酶系统</td></tr>
-  <tr><td class="gl-en">Periplasmic space</td><td class="gl-zh">周质空间</td></tr>
-  <tr><td class="gl-en">Cellular envelope</td><td class="gl-zh">细胞被膜</td></tr>
-  <tr><td class="gl-en">Flagellum assembly</td><td class="gl-zh">鞭毛组装</td></tr>
-  <tr><td class="gl-en">Iron uptake</td><td class="gl-zh">铁摄取</td></tr>
-  <tr><td class="gl-en">Nitrogen metabolism</td><td class="gl-zh">氮代谢</td></tr>
+  <figcaption>表9-1 · 大肠杆菌（E. coli）的σ因子</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:20%">
+      <col style="width:37%">
+      <col style="width:26%">
+      <col style="width:17%">
+    </colgroup>
+    <thead>
+      <tr><th class="cat" rowspan="2">σ因子</th><th class="cat" rowspan="2">识别的启动子</th><th class="ctr" colspan="2">启动子共有序列</th></tr>
+      <tr><th class="ctr">−35区</th><th class="ctr">−10区</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="cat"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>70</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{70}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">70</span></span></span></span></span></span></span></span></span></span></span></span>（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mi mathvariant="normal">D</mi></msup></mrow><annotation encoding="application/x-tex">\sigma^{\mathrm{D}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">D</span></span></span></span></span></span></span></span></span></span></span></span>）</td><td>管家基因，即指数生长细胞中的大多数基因</td><td>TTGACA</td><td>TATAAT</td></tr>
+      <tr><td class="cat"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mi mathvariant="normal">S</mi></msup></mrow><annotation encoding="application/x-tex">\sigma^{\mathrm{S}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">S</span></span></span></span></span></span></span></span></span></span></span></span>（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>38</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{38}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">38</span></span></span></span></span></span></span></span></span></span></span></span>）</td><td>稳定期基因和一般应激应答</td><td>TTGACA</td><td>TATAAT</td></tr>
+      <tr><td class="cat"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>32</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{32}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span></span></span></span>（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mi mathvariant="normal">H</mi></msup></mrow><annotation encoding="application/x-tex">\sigma^{\mathrm{H}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">H</span></span></span></span></span></span></span></span></span></span></span></span>）</td><td>由细胞质中的未折叠蛋白诱导；包括编码使未折叠蛋白重新折叠的分子伴侣的基因，以及导致细胞质中未折叠蛋白降解的蛋白酶系统的基因</td><td>TCTCNCCCTTGAA</td><td>CCCCATNTA</td></tr>
+      <tr><td class="cat"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mi mathvariant="normal">E</mi></msup></mrow><annotation encoding="application/x-tex">\sigma^{\mathrm{E}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">E</span></span></span></span></span></span></span></span></span></span></span></span>（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>24</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{24}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">24</span></span></span></span></span></span></span></span></span></span></span></span>）</td><td>由周质空间和细胞膜中的未折叠蛋白激活；包括编码恢复细胞被膜完整性的蛋白质的基因</td><td>GAACTT</td><td>TCTGA</td></tr>
+      <tr><td class="cat"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mi mathvariant="normal">F</mi></msup></mrow><annotation encoding="application/x-tex">\sigma^{\mathrm{F}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">F</span></span></span></span></span></span></span></span></span></span></span></span>（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>28</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{28}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">28</span></span></span></span></span></span></span></span></span></span></span></span>）</td><td>参与鞭毛组装的基因</td><td>CTAAA</td><td>CCGATAT</td></tr>
+      <tr><td class="cat">FecI（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">18</span></span></span></span></span></span></span></span></span></span></span></span>）</td><td>铁摄取所需的基因</td><td>TTGGAAA</td><td>GTAATG</td></tr>
+      <tr><td class="sect"></td><td class="sect"></td><td class="ctr sect">−24区</td><td class="ctr sect">−12区</td></tr>
+      <tr><td class="cat"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>54</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{54}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">54</span></span></span></span></span></span></span></span></span></span></span></span>（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mi mathvariant="normal">N</mi></msup></mrow><annotation encoding="application/x-tex">\sigma^{\mathrm{N}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">N</span></span></span></span></span></span></span></span></span></span></span></span>）</td><td>氮代谢及其他功能的基因</td><td>CTGGNA</td><td>TTGCA</td></tr>
+    </tbody>
   </table>
+  <p class="table-note src">数据来源：T. M. Gruber 与 C. A. Gross，2003，Annu. Rev. Microbiol. 57:441；以及 B. K. Cho 等，2014，BMC Biol. 12:4。</p>
 </figure>
 <p>这些替代σ因子是将功能相关的一组组基因转录所必需的，例如参与热激或营养缺乏应答、运动性，或在革兰氏阳性真细菌中参与芽孢形成的基因。在大肠杆菌中，除主要的「持家」σ因子σ70外，还有6种替代σ因子。根据对数百个真细菌基因组的序列分析，革兰氏阳性、可形成芽孢的细菌天蓝色链霉菌（Streptomyces coelicolor）基因组编码63种σ因子，是目前已知最多的。其中大多数在结构和功能上与σ70相关。由含σ70样因子的RNA聚合酶进行的转录起始，受结合在聚合酶结合区域附近DNA上的阻遏蛋白和激活蛋白调控。但有一类因子与σ70无关、作用方式也不同，在大肠杆菌中以σ54为代表。</p>
 <h3 class="subhead">σ54-RNA聚合酶的转录由结合在远离启动子处的激活蛋白控制</h3>
@@ -573,30 +586,28 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <figure class="table" id="tab-T9-2">
-  <img class="zoomable" src="figures/tab_T9-2_1.png" alt="表 T9-2" onclick="lightbox(this.src)">
-  <figcaption>表9-2 三种真核细胞核RNA聚合酶所转录的RNA类别及其功能</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Polymerase</td><td class="gl-zh">聚合酶</td></tr>
-  <tr><td class="gl-en">RNA Transcribed</td><td class="gl-zh">转录的RNA</td></tr>
-  <tr><td class="gl-en">RNA Function</td><td class="gl-zh">RNA功能</td></tr>
-  <tr><td class="gl-en">RNA polymerase I</td><td class="gl-zh">RNA聚合酶I（Pol I）</td></tr>
-  <tr><td class="gl-en">Pre-rRNA (28S, 18S, 5.8S rRNAs)</td><td class="gl-zh">前体rRNA（28S、18S、5.8S rRNA）</td></tr>
-  <tr><td class="gl-en">Ribosome components, protein synthesis</td><td class="gl-zh">核糖体组分、蛋白质合成</td></tr>
-  <tr><td class="gl-en">RNA polymerase II</td><td class="gl-zh">RNA聚合酶II（Pol II）</td></tr>
-  <tr><td class="gl-en">snRNAs</td><td class="gl-zh">snRNA</td></tr>
-  <tr><td class="gl-en">siRNAs</td><td class="gl-zh">siRNA</td></tr>
-  <tr><td class="gl-en">miRNAs</td><td class="gl-zh">miRNA</td></tr>
-  <tr><td class="gl-en">Encodes protein</td><td class="gl-zh">编码蛋白质</td></tr>
-  <tr><td class="gl-en">RNA splicing</td><td class="gl-zh">RNA剪接</td></tr>
-  <tr><td class="gl-en">Chromatin-mediated repression, translation control</td><td class="gl-zh">染色质介导的阻遏、翻译控制</td></tr>
-  <tr><td class="gl-en">Translation control</td><td class="gl-zh">翻译控制</td></tr>
-  <tr><td class="gl-en">RNA polymerase III</td><td class="gl-zh">RNA聚合酶III（Pol III）</td></tr>
-  <tr><td class="gl-en">tRNAs</td><td class="gl-zh">tRNA</td></tr>
-  <tr><td class="gl-en">Other small stable RNAs</td><td class="gl-zh">其他小分子稳定RNA</td></tr>
-  <tr><td class="gl-en">Protein synthesis</td><td class="gl-zh">蛋白质合成</td></tr>
-  <tr><td class="gl-en">Ribosome component, protein synthesis</td><td class="gl-zh">核糖体组分、蛋白质合成</td></tr>
-  <tr><td class="gl-en">Signal recognition particle for insertion of polypeptides into the endoplasmic reticulum</td><td class="gl-zh">用于将多肽插入内质网的信号识别颗粒</td></tr>
-  <tr><td class="gl-en">Various functions, unknown for many</td><td class="gl-zh">功能多样，多数未知</td></tr>
+  <figcaption>表9-2 · 三种真核细胞核RNA聚合酶所转录的RNA类别及其功能</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:28%">
+      <col style="width:28%">
+      <col style="width:44%">
+    </colgroup>
+    <thead>
+      <tr><th>聚合酶</th><th>所转录的RNA</th><th>RNA功能</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="cat">RNA聚合酶I</td><td>前体rRNA（pre-rRNA）：28S、18S、5.8S rRNA</td><td>核糖体组分，蛋白质合成</td></tr>
+      <tr><td class="cat" rowspan="4">RNA聚合酶II</td><td>信使RNA（mRNA）</td><td>编码蛋白质</td></tr>
+      <tr><td>小核RNA（snRNA）</td><td>RNA剪接</td></tr>
+      <tr><td>小干扰RNA（siRNA）</td><td>染色质介导的阻遏，翻译控制</td></tr>
+      <tr><td>微RNA（miRNA）</td><td>翻译控制</td></tr>
+      <tr><td class="cat" rowspan="5">RNA聚合酶III</td><td>转运RNA（tRNA）</td><td>蛋白质合成</td></tr>
+      <tr><td>5S rRNA</td><td>核糖体组分，蛋白质合成</td></tr>
+      <tr><td>小核RNA U6（snRNA U6）</td><td>RNA剪接</td></tr>
+      <tr><td>7S RNA</td><td>用于将多肽插入内质网的信号识别颗粒</td></tr>
+      <tr><td>其他小的稳定RNA</td><td>功能多样，其中许多尚不清楚</td></tr>
+    </tbody>
   </table>
 </figure>
 <figure class="fig" id="fig-9-12">
@@ -1240,28 +1251,35 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>异染色质中组蛋白H3第9位赖氨酸的甲基化 在大多数真核生物中，一些辅阻遏物复合物含有组蛋白甲基转移酶亚基，它们使组蛋白H3第9位赖氨酸甲基化，生成二甲基化和三甲基化赖氨酸。这些甲基化赖氨酸是HP1蛋白各种同种型的结合位点，HP1在异染色质的压缩中发挥作用，如第8章所述（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter8/index.html#fig-8-29">图8-29</a>）。例如，KAP1辅阻遏物复合物与人类基因组所编码的200多种锌指转录因子中的一类共同发挥作用。该辅阻遏物复合物含有一个H3第9位赖氨酸甲基转移酶，它使被抑制基因启动子区上方的核小体甲基化，导致HP1结合和转录抑制。在培养的小鼠成纤维细胞中，一个通过KAP1辅阻遏物作用而被抑制的整合转基因在大多数细胞中与异染色质相关联，而同一转基因的活跃形式则与常染色质相关联（<a class="xref xref-fig" href="#fig-9-46">图9-46</a>）。染色质免疫沉淀分析（见<a class="xref xref-fig" href="#fig-9-18">图9-18</a>）表明，被抑制的基因与第9位赖氨酸甲基化的组蛋白H3以及与HP1相关联，而活跃的基因则不是。</p>
 <p>重要的是，H3第9位赖氨酸甲基化通过<a class="xref xref-fig" href="#fig-9-47">图9-47</a>所示的机制在染色体复制后得以维持。当DNA的甲基化区域在S期复制时，与亲代DNA相关联的组蛋白八聚体被随机分配到子代DNA分子中。在第9位赖氨酸上未被甲基化的新组蛋白八聚体也随机地与新的子代染色体结合，但由于亲代组蛋白八聚体同时与两条子代染色体结合，大约一半的子代染色体核小体在第9位赖氨酸上是甲基化的。组蛋白H3赖氨酸甲基转移酶（直接或间接地）与亲代甲基化核小体结合，导致新装配的组蛋白八聚体被甲基化。每次细胞分裂都重复这一过程，从而维持染色体该区域H3第9位赖氨酸的甲基化。</p>
 <figure class="table" id="tab-T9-3">
-  <img class="zoomable" src="figures/tab_T9-3_1.png" alt="表 T9-3" onclick="lightbox(this.src)">
-  <figcaption>表9-3 与活跃基因和被阻遏基因相关的组蛋白翻译后修饰</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Modification</td><td class="gl-zh">修饰</td></tr>
-  <tr><td class="gl-en">Sites of Modification</td><td class="gl-zh">修饰位点</td></tr>
-  <tr><td class="gl-en">Effect on Transcription</td><td class="gl-zh">对转录的影响</td></tr>
-  <tr><td class="gl-en">Acetylated lysine</td><td class="gl-zh">乙酰化赖氨酸</td></tr>
-  <tr><td class="gl-en">Activation</td><td class="gl-zh">激活</td></tr>
-  <tr><td class="gl-en">Hypoacetylated lysine</td><td class="gl-zh">低乙酰化赖氨酸</td></tr>
-  <tr><td class="gl-en">Repression</td><td class="gl-zh">阻遏</td></tr>
-  <tr><td class="gl-en">Phosphorylated serine/threonine</td><td class="gl-zh">磷酸化丝氨酸/苏氨酸</td></tr>
-  <tr><td class="gl-en">Methylated arginine</td><td class="gl-zh">甲基化精氨酸</td></tr>
-  <tr><td class="gl-en">Methylated lysine</td><td class="gl-zh">甲基化赖氨酸</td></tr>
-  <tr><td class="gl-en">H3 (K4) Me3 in promoter region</td><td class="gl-zh">H3（K4）Me3（启动子区）</td></tr>
-  <tr><td class="gl-en">H3 (K4) Me1 in enhancers</td><td class="gl-zh">H3（K4）Me1（增强子）</td></tr>
-  <tr><td class="gl-en">H3 (K36, K79) in transcribed region</td><td class="gl-zh">H3（K36、K79）（转录区）</td></tr>
-  <tr><td class="gl-en">Elongation</td><td class="gl-zh">延伸</td></tr>
-  <tr><td class="gl-en">Ubiquitinylated lysine</td><td class="gl-zh">泛素化赖氨酸</td></tr>
-  <tr><td class="gl-en">H2B (K120 in mammals, K123 in S. cerevisiae)</td><td class="gl-zh">H2B（哺乳动物K120、酿酒酵母K123）</td></tr>
-  <tr><td class="gl-en">H2A (K119 in mammals)</td><td class="gl-zh">H2A（哺乳动物K119）</td></tr>
-  <tr><td class="gl-en">S. cerevisiae</td><td class="gl-zh">酿酒酵母</td></tr>
-  <tr><td class="gl-en">Histone modification</td><td class="gl-zh">组蛋白修饰</td></tr>
+  <figcaption>表9-3 · 与活跃基因和被阻遏基因相关的组蛋白翻译后修饰</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:28%">
+      <col style="width:37%">
+      <col style="width:35%">
+    </colgroup>
+    <thead>
+      <tr><th>修饰</th><th>修饰位点</th><th>对转录的影响</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="cat" rowspan="4">乙酰化赖氨酸</td><td>H3（K9、K14、K18、K27、K56）</td><td>激活</td></tr>
+      <tr><td>H4（K5、K8、K13、K16）</td><td>激活</td></tr>
+      <tr><td>H2A（K5、K9、K13）</td><td>激活</td></tr>
+      <tr><td>H2B（K5、K12、K15、K20）</td><td>激活</td></tr>
+      <tr><td>低乙酰化赖氨酸</td><td></td><td>阻遏</td></tr>
+      <tr><td class="cat" rowspan="3">磷酸化丝氨酸/苏氨酸</td><td>H3（T3、S10、S28）</td><td>激活</td></tr>
+      <tr><td>H2A（S1、T120）</td><td>激活</td></tr>
+      <tr><td>H2B（S14）</td><td>激活</td></tr>
+      <tr><td class="cat" rowspan="2">甲基化精氨酸</td><td>H3（R17、R23）</td><td>激活</td></tr>
+      <tr><td>H4（R3）</td><td>激活</td></tr>
+      <tr><td class="cat" rowspan="5">甲基化赖氨酸</td><td>H3（K4）Me3，位于启动子区</td><td></td></tr>
+      <tr><td>H3（K4）Me1，位于增强子</td><td>激活</td></tr>
+      <tr><td>H3（K36、K79），位于转录区</td><td>延伸</td></tr>
+      <tr><td>H3（K9、K27）</td><td>阻遏</td></tr>
+      <tr><td>H4（K20）</td><td>阻遏</td></tr>
+      <tr><td class="cat" rowspan="2">泛素化赖氨酸</td><td>H2B（哺乳动物为 K120，酿酒酵母 S. cerevisiae 为 K123）</td><td>激活</td></tr>
+      <tr><td>H2A（哺乳动物为 K119）</td><td>阻遏</td></tr>
+    </tbody>
   </table>
 </figure>
 <figure class="fig" id="fig-9-46">

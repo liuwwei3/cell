@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -1317,18 +1334,22 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">放射性同位素是检测生物分子不可或缺的工具</h3>
 <p>追踪分子的灵敏方法是检测放射标记发出的放射性。生物研究中有用的放射性同位素包括磷-32（半衰期 14.3 天）、碘-125（60.4 天）、硫-35（87.5 天）、氚（12.4 年）、碳-14（5730.4 年）（<a class="xref xref-tab" href="#tab-T3-1">表 3-1</a>）。半衰期越短，比活越高。</p>
 <figure class="table" id="tab-T3-1">
-  <img class="zoomable" src="figures/tab_T3-1_1.png" alt="表 T3-1" onclick="lightbox(this.src)">
-  <figcaption>表T3-1 · 生物研究中常用的放射性同位素。同位素 半衰期：磷-32 14.3 天；碘-125 60.4 天；硫-35 87.5 天；氚（氢-3）12.4 年；碳-14 5730.4 年。</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">radioisotope</td><td class="gl-zh">放射性同位素</td></tr>
-  <tr><td class="gl-en">isotope</td><td class="gl-zh">同位素</td></tr>
-  <tr><td class="gl-en">half-life</td><td class="gl-zh">半衰期</td></tr>
-  <tr><td class="gl-en">phosphorus-32</td><td class="gl-zh">磷-32</td></tr>
-  <tr><td class="gl-en">iodine-125</td><td class="gl-zh">碘-125</td></tr>
-  <tr><td class="gl-en">sulfur-35</td><td class="gl-zh">硫-35</td></tr>
-  <tr><td class="gl-en">tritium (hydrogen-3)</td><td class="gl-zh">氚（氢-3）</td></tr>
-  <tr><td class="gl-en">carbon-14</td><td class="gl-zh">碳-14</td></tr>
-  <tr><td class="gl-en">biological research</td><td class="gl-zh">生物研究</td></tr>
+  <figcaption>表3-1 · 生物研究中常用的放射性同位素</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:48%">
+      <col style="width:52%">
+    </colgroup>
+    <thead>
+      <tr><th>同位素</th><th>半衰期</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>磷-32</td><td>14.3 天</td></tr>
+      <tr><td>碘-125</td><td>60.4 天</td></tr>
+      <tr><td>硫-35</td><td>87.5 天</td></tr>
+      <tr><td>氚（氢-3）</td><td>12.4 年</td></tr>
+      <tr><td>碳-14</td><td>5730.4 年</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>放射标记大分子的常见方法是向培养基加放射标记前体（如 [³⁵S]甲硫氨酸/半胱氨酸标记蛋白质、³²P-磷酸标记 ATP/磷蛋白、³H-核苷酸前体标记核酸）。用硫-35 标记的甲硫氨酸和半胱氨酸广泛用于标记蛋白质（高比活 >10¹⁵ dpm/mmol）。放射性同位素替换正常原子的标记化合物化学性质几乎不变（如 [³H]亮氨酸）；而 ¹²⁵I 需共价加到不含碘的分子上（如 ¹²⁵I-胰蛋白酶），可能改变生物活性。</p>

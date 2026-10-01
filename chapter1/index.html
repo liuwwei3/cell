@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -306,61 +323,33 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>例如，在某生物中，一个基因可能随机重复，之后该基因的一个拷贝及其编码蛋白保留原功能，而随时间第二个拷贝突变使其蛋白采取略有不同甚至全新功能。在一些生物的演化中，整个基因组重复，使许多基因的第二个拷贝经历突变并获得新功能。生物的细胞组织在此过程中起根本作用，因为它允许这些改变通过先前演化细胞的小改变而发生，赋予新能力。结果是亲缘相近的生物有非常相似的基因和蛋白质，以及相似的细胞和组织组织。</p>
 <p>多细胞生物（包括人体）由如此密切相关的元素组成，以至于任何单一元素都不能脱离其他而被充分理解。生物体含器官，器官由组织组成，组织由细胞构成，细胞由分子形成（<a class="xref xref-fig" href="#fig-1-4">图 1-4</a>）。生命系统的统一性由许多层次的相互关系协调：分子在器官间和细胞间传递信息，组织由细胞分泌的分子界定并与其他组织整合。一般而言，我们将生物系统划分的所有层次都相互联系。</p>
 <figure class="table" id="tab-T1-1">
-  <img class="zoomable" src="figures/tab_T1-1_1.png" alt="表 T1-1" onclick="lightbox(this.src)">
-  <figcaption>表T1-1 · 根据化石记录确定的地球生命进化时间表
-46 亿年前：地球由围绕年轻太阳旋转的物质形成。
-约 39 亿–25 亿年前：出现类似原核生物的细胞。这些最早生物是化能自养生物（chemoautotrophs）：它们以二氧化碳（CO₂）作为碳源，氧化无机物质以获取能量。
-35 亿年前：最后共同祖先的生存时期；真细菌（Eubacteria）与古菌（Archaea）发生分化。
-30 亿年前：进化出能进行光合作用的蓝细菌（cyanobacteria）；它们以水作为还原剂，从而产生氧气作为废物。
-18.5 亿年前：单细胞真核生物出现。
-12 亿年前：进化出简单的多细胞生物，大多由复杂度有限的细胞群体组成。
-5.8 亿–5 亿年前：现代动物的大多数门在寒武纪大爆发（Cambrian explosion）期间开始在化石记录中出现。
-5.35 亿年前：海洋生物的大规模多样化：脊索动物、节肢动物（如三叶虫、甲壳类）、棘皮动物、软体动物、腕足动物、有孔虫、放射虫等。
-4.85 亿年前：进化出最早的具真正骨骼的脊椎动物（无颌鱼类）。
-4.34 亿年前：最早的原生植物在陆地上出现。
-2.25 亿年前：最早的恐龙（原蜥脚类）和真骨鱼类出现。
-2.20 亿年前：裸子植物森林统治陆地；食草动物体型变得巨大。
-2.15 亿年前：最早的哺乳动物进化出现。
-6550 万年前：白垩纪-第三纪灭绝事件使约一半动物物种灭绝，包括所有恐龙。
-650 万年前：最早的人科动物（hominids）进化出现。
-200 万年前：人属（Homo）的最早成员在化石记录中出现。
-35 万年前：尼安德特人出现。
-20 万年前：解剖学意义上的现代人在非洲出现。
-3 万年前：尼安德特人灭绝。</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">prokaryotes</td><td class="gl-zh">原核生物</td></tr>
-  <tr><td class="gl-en">chemoautotrophs</td><td class="gl-zh">化能自养生物</td></tr>
-  <tr><td class="gl-en">carbon dioxide</td><td class="gl-zh">二氧化碳</td></tr>
-  <tr><td class="gl-en">Eubacteria</td><td class="gl-zh">真细菌</td></tr>
-  <tr><td class="gl-en">Archaea</td><td class="gl-zh">古菌</td></tr>
-  <tr><td class="gl-en">cyanobacteria</td><td class="gl-zh">蓝细菌</td></tr>
-  <tr><td class="gl-en">reducing agent</td><td class="gl-zh">还原剂</td></tr>
-  <tr><td class="gl-en">eukaryotes</td><td class="gl-zh">真核生物</td></tr>
-  <tr><td class="gl-en">unicellular</td><td class="gl-zh">单细胞</td></tr>
-  <tr><td class="gl-en">multicellular</td><td class="gl-zh">多细胞</td></tr>
-  <tr><td class="gl-en">Cambrian explosion</td><td class="gl-zh">寒武纪大爆发</td></tr>
-  <tr><td class="gl-en">chordates</td><td class="gl-zh">脊索动物</td></tr>
-  <tr><td class="gl-en">arthropods</td><td class="gl-zh">节肢动物</td></tr>
-  <tr><td class="gl-en">trilobites</td><td class="gl-zh">三叶虫</td></tr>
-  <tr><td class="gl-en">crustaceans</td><td class="gl-zh">甲壳类</td></tr>
-  <tr><td class="gl-en">echinoderms</td><td class="gl-zh">棘皮动物</td></tr>
-  <tr><td class="gl-en">mollusks</td><td class="gl-zh">软体动物</td></tr>
-  <tr><td class="gl-en">brachiopods</td><td class="gl-zh">腕足动物</td></tr>
-  <tr><td class="gl-en">foraminifers</td><td class="gl-zh">有孔虫</td></tr>
-  <tr><td class="gl-en">radiolarians</td><td class="gl-zh">放射虫</td></tr>
-  <tr><td class="gl-en">vertebrates</td><td class="gl-zh">脊椎动物</td></tr>
-  <tr><td class="gl-en">jawless fishes</td><td class="gl-zh">无颌鱼类</td></tr>
-  <tr><td class="gl-en">dinosaurs</td><td class="gl-zh">恐龙</td></tr>
-  <tr><td class="gl-en">prosauropods</td><td class="gl-zh">原蜥脚类</td></tr>
-  <tr><td class="gl-en">teleost fishes</td><td class="gl-zh">真骨鱼类</td></tr>
-  <tr><td class="gl-en">gymnosperm</td><td class="gl-zh">裸子植物</td></tr>
-  <tr><td class="gl-en">herbivores</td><td class="gl-zh">食草动物</td></tr>
-  <tr><td class="gl-en">mammals</td><td class="gl-zh">哺乳动物</td></tr>
-  <tr><td class="gl-en">Cretaceous-Tertiary extinction</td><td class="gl-zh">白垩纪-第三纪灭绝</td></tr>
-  <tr><td class="gl-en">hominids</td><td class="gl-zh">人科动物</td></tr>
-  <tr><td class="gl-en">Homo</td><td class="gl-zh">人属</td></tr>
-  <tr><td class="gl-en">Neanderthals</td><td class="gl-zh">尼安德特人</td></tr>
-  <tr><td class="gl-en">fossil record</td><td class="gl-zh">化石记录</td></tr>
+  <figcaption>表1-1 · 根据化石记录确定的地球生命进化时间表</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:26%">
+      <col style="width:74%">
+    </colgroup>
+    <tbody>
+      <tr><td>46 亿年前</td><td>地球由围绕年轻太阳旋转的物质形成。</td></tr>
+      <tr><td>约 39 亿–25 亿年前</td><td>出现类似原核生物的细胞。这些最早生物是化能自养生物（chemoautotrophs）：它们以二氧化碳（CO₂）作为碳源，氧化无机物质以获取能量。</td></tr>
+      <tr><td>35 亿年前</td><td>最后共同祖先的生存时期；真细菌（Eubacteria）与古菌（Archaea）发生分化。</td></tr>
+      <tr><td>30 亿年前</td><td>进化出能进行光合作用的蓝细菌（cyanobacteria）；它们以水作为还原剂，从而产生氧气作为废物。</td></tr>
+      <tr><td>18.5 亿年前</td><td>单细胞真核生物出现。</td></tr>
+      <tr><td>12 亿年前</td><td>进化出简单的多细胞生物，大多由复杂度有限的细胞群体组成。</td></tr>
+      <tr><td>5.8 亿–5 亿年前</td><td>现代动物的大多数门在寒武纪大爆发（Cambrian explosion）期间开始在化石记录中出现。</td></tr>
+      <tr><td>5.35 亿年前</td><td>海洋生物的大规模多样化：脊索动物、节肢动物（如三叶虫、甲壳类）、棘皮动物、软体动物、腕足动物、有孔虫、放射虫等。</td></tr>
+      <tr><td>4.85 亿年前</td><td>进化出最早的具真正骨骼的脊椎动物（无颌鱼类）。</td></tr>
+      <tr><td>4.34 亿年前</td><td>最早的原生植物在陆地上出现。</td></tr>
+      <tr><td>2.25 亿年前</td><td>最早的恐龙（原蜥脚类）和真骨鱼类出现。</td></tr>
+      <tr><td>2.20 亿年前</td><td>裸子植物森林统治陆地；食草动物体型变得巨大。</td></tr>
+      <tr><td>2.15 亿年前</td><td>最早的哺乳动物进化出现。</td></tr>
+      <tr><td>6550 万年前</td><td>白垩纪-第三纪灭绝事件使约一半动物物种灭绝，包括所有恐龙。</td></tr>
+      <tr><td>650 万年前</td><td>最早的人科动物（hominids）进化出现。</td></tr>
+      <tr><td>200 万年前</td><td>人属（Homo）的最早成员在化石记录中出现。</td></tr>
+      <tr><td>35 万年前</td><td>尼安德特人出现。</td></tr>
+      <tr><td>20 万年前</td><td>解剖学意义上的现代人在非洲出现。</td></tr>
+      <tr><td>3 万年前</td><td>尼安德特人灭绝。</td></tr>
+    </tbody>
   </table>
 </figure>
 <figure class="fig" id="fig-1-2">
@@ -614,64 +603,45 @@ ATP ⇌ ADP + Pᵢ + 能量。</figcaption>
 <h3 class="subhead">大肠杆菌广泛用于生物学研究</h3>
 <p>细菌谱系包括大肠杆菌，一种受喜爱的实验生物，自然中常见于土壤和动物肠道。大肠杆菌和其他几种细菌作为实验生物有诸多优势。它们在含葡萄糖和盐的简单廉价培养基中快速生长，能合成所有必需氨基酸、脂质、维生素和其他必需小分子。像所有细菌，大肠杆菌有控制基因活动的精细机制，现已充分理解（见第 9 章）。随时间推移，研究者开发了该生物遗传分析的强大系统。这些系统得益于细菌基因组小、易获突变体、可向细菌转移基因的技术、对细菌基因控制和蛋白质功能的丰富知识，以及细菌基因组中基因相对映射的简单性。第 6 章见大肠杆菌如何用于重组 DNA 研究。</p>
 <figure class="table" id="tab-T1-2">
-  <img class="zoomable" src="figures/tab_T1-2_1.png" alt="表 T1-2" onclick="lightbox(this.src)">
-  <figcaption>表T1-2 · 分子细胞生物学研究中使用的已完全测序生物的基因组大小
-列说明：碱基对（百万）/ Base Pairs (Millions)；编码蛋白质近似数* / Approximate Number of Encoded Proteins；染色体** / Chromosomes；参考文献 / Reference
-
-真细菌（Eubacteria）：
-- 生殖支原体（Mycoplasma genitalum）：0.58 Mb，约 500 蛋白质，1 条染色体，参考 a
-- 幽门螺杆菌（Helicobacter pylori）：1.67 Mb，约 1,500，1，a
-- 流感嗜血杆菌（Haemophilus influenza）：1.83 Mb，约 1,600，1，a
-- 大肠杆菌（Escherichia coli）：4.64 Mb，约 4,100，1，a
-- 枯草芽孢杆菌（Bacillus subtilis）：4.22 Mb，约 4,200，1，a
-
-古菌（Archaea）：
-- 詹氏甲烷球菌（Methanococcus jannaschii）：1.74 Mb，约 1,800，1，a
-- 嗜酸热硫化叶菌（Sulfolobus solfataricus）：2.99 Mb，约 3,000，1，a
-
-单细胞真核生物（Single-Celled Eukaryotes）：
-- 酿酒酵母（Saccharomyces cerevisiae）：12.16 Mb，约 6,700，16，b
-- 莱茵衣藻（Chlamydomonas reinhardtii）：120.4 Mb，约 14,400，17，b
-- 恶性疟原虫（Plasmodium falciparum）：23.26 Mb，约 5,400，14，b
-
-多细胞真核生物/后生动物（Multicellular Eukaryotes, Metazoans）：
-- 黑腹果蝇（Drosophila melanogaster）：168.74 Mb，约 13,900，6，b
-- 秀丽隐杆线虫（Caenorhabditis elegans）：100.29 Mb，约 20,500，6，b
-- 地中海涡虫（Schmidtea mediterranea，涡虫 planarian）：480 Mb，>20,000***，4，c
-- 斑马鱼（Danio rerio）：1412.46 Mb，约 26,500，25，b
-- 原鸡（Gallus gallus，鸡 chicken）：1072.54 Mb，约 15,500，33，b
-- 小鼠（Mus musculus）：3480.96 Mb，约 23,100，21，b
-- 人（Homo sapiens）：3326.74 Mb，约 20,800，24，b
-- 拟南芥（Arabidopsis thaliana）：135.67 Mb，约 27,400，5，b</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">genome</td><td class="gl-zh">基因组</td></tr>
-  <tr><td class="gl-en">base pairs</td><td class="gl-zh">碱基对</td></tr>
-  <tr><td class="gl-en">encoded proteins</td><td class="gl-zh">编码蛋白质</td></tr>
-  <tr><td class="gl-en">chromosomes</td><td class="gl-zh">染色体</td></tr>
-  <tr><td class="gl-en">Eubacteria</td><td class="gl-zh">真细菌</td></tr>
-  <tr><td class="gl-en">Archaea</td><td class="gl-zh">古菌</td></tr>
-  <tr><td class="gl-en">Mycoplasma genitalum</td><td class="gl-zh">生殖支原体</td></tr>
-  <tr><td class="gl-en">Helicobacter pylori</td><td class="gl-zh">幽门螺杆菌</td></tr>
-  <tr><td class="gl-en">Haemophilus influenza</td><td class="gl-zh">流感嗜血杆菌</td></tr>
-  <tr><td class="gl-en">Escherichia coli</td><td class="gl-zh">大肠杆菌</td></tr>
-  <tr><td class="gl-en">Bacillus subtilis</td><td class="gl-zh">枯草芽孢杆菌</td></tr>
-  <tr><td class="gl-en">Methanococcus jannaschii</td><td class="gl-zh">詹氏甲烷球菌</td></tr>
-  <tr><td class="gl-en">Sulfolobus solfataricus</td><td class="gl-zh">嗜酸热硫化叶菌</td></tr>
-  <tr><td class="gl-en">Saccharomyces cerevisiae</td><td class="gl-zh">酿酒酵母</td></tr>
-  <tr><td class="gl-en">Chlamydomonas reinhardtii</td><td class="gl-zh">莱茵衣藻</td></tr>
-  <tr><td class="gl-en">Plasmodium falciparum</td><td class="gl-zh">恶性疟原虫</td></tr>
-  <tr><td class="gl-en">Drosophila melanogaster</td><td class="gl-zh">黑腹果蝇</td></tr>
-  <tr><td class="gl-en">Caenorhabditis elegans</td><td class="gl-zh">秀丽隐杆线虫</td></tr>
-  <tr><td class="gl-en">Schmidtea mediterranea</td><td class="gl-zh">地中海涡虫</td></tr>
-  <tr><td class="gl-en">Danio rerio</td><td class="gl-zh">斑马鱼</td></tr>
-  <tr><td class="gl-en">Gallus gallus</td><td class="gl-zh">原鸡</td></tr>
-  <tr><td class="gl-en">Mus musculus</td><td class="gl-zh">小鼠</td></tr>
-  <tr><td class="gl-en">Homo sapiens</td><td class="gl-zh">人</td></tr>
-  <tr><td class="gl-en">Arabidopsis thaliana</td><td class="gl-zh">拟南芥</td></tr>
-  <tr><td class="gl-en">metazoans</td><td class="gl-zh">后生动物</td></tr>
-  <tr><td class="gl-en">Single-Celled Eukaryotes</td><td class="gl-zh">单细胞真核生物</td></tr>
-  <tr><td class="gl-en">Multicellular Eukaryotes</td><td class="gl-zh">多细胞真核生物</td></tr>
+  <figcaption>表1-2 · 分子细胞生物学研究中使用的已完全测序生物的基因组大小</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:34%">
+      <col style="width:14%">
+      <col style="width:22%">
+      <col style="width:18%">
+      <col style="width:12%">
+    </colgroup>
+    <thead>
+      <tr><th></th><th>碱基对数（百万）</th><th>编码蛋白近似数*</th><th>染色体数**</th><th>参考文献</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="5">真细菌（Eubacteria）</td></tr>
+      <tr><td>生殖支原体（Mycoplasma genitalum）</td><td>0.58</td><td>500</td><td>1</td><td class="ctr">a</td></tr>
+      <tr><td>幽门螺杆菌（Helicobacter pylori）</td><td>1.67</td><td>1,500</td><td>1</td><td class="ctr">a</td></tr>
+      <tr><td>流感嗜血杆菌（Haemophilus influenza）</td><td>1.83</td><td>1,600</td><td>1</td><td class="ctr">a</td></tr>
+      <tr><td>大肠杆菌（Escherichia coli）</td><td>4.64</td><td>4,100</td><td>1</td><td class="ctr">a</td></tr>
+      <tr><td>枯草芽孢杆菌（Bacillus subtilis）</td><td>4.22</td><td>4,200</td><td>1</td><td class="ctr">a</td></tr>
+      <tr><td class="sect" colspan="5">古菌（Archaea）</td></tr>
+      <tr><td>詹氏甲烷球菌（Methanococcus jannaschii）</td><td>1.74</td><td>1,800</td><td>1</td><td class="ctr">a</td></tr>
+      <tr><td>嗜酸热硫化叶菌（Sulfolobus solfataricus）</td><td>2.99</td><td>3,000</td><td>1</td><td class="ctr">a</td></tr>
+      <tr><td class="sect" colspan="5">单细胞真核生物（Single-Celled Eukaryotes）</td></tr>
+      <tr><td>酿酒酵母（Saccharomyces cerevisiae）</td><td>12.16</td><td>6,700</td><td>16</td><td class="ctr">b</td></tr>
+      <tr><td>莱茵衣藻（Chlamydomonas reinhardtii）</td><td>120.4</td><td>14,400</td><td>17</td><td class="ctr">b</td></tr>
+      <tr><td>恶性疟原虫（Plasmodium falciparum）</td><td>23.26</td><td>5,400</td><td>14</td><td class="ctr">b</td></tr>
+      <tr><td class="sect" colspan="5">多细胞真核生物/后生动物（Multicellular Eukaryotes, Metazoans）</td></tr>
+      <tr><td>黑腹果蝇（Drosophila melanogaster）</td><td>168.74</td><td>13,900</td><td>6</td><td class="ctr">b</td></tr>
+      <tr><td>秀丽隐杆线虫（Caenorhabditis elegans）</td><td>100.29</td><td>20,500</td><td>6</td><td class="ctr">b</td></tr>
+      <tr><td>地中海涡虫（Schmidtea mediterranea）</td><td>480</td><td>&gt;20,000***</td><td>4</td><td class="ctr">c</td></tr>
+      <tr><td>斑马鱼（Danio rerio）</td><td>1412.46</td><td>26,500</td><td>25</td><td class="ctr">b</td></tr>
+      <tr><td>原鸡（Gallus gallus）</td><td>1072.54</td><td>15,500</td><td>33</td><td class="ctr">b</td></tr>
+      <tr><td>小鼠（Mus musculus）</td><td>3480.96</td><td>23,100</td><td>21</td><td class="ctr">b</td></tr>
+      <tr><td>人（Homo sapiens）</td><td>3326.74</td><td>20,800</td><td>24</td><td class="ctr">b</td></tr>
+      <tr><td>拟南芥（Arabidopsis thaliana）</td><td>135.67</td><td>27,400</td><td>5</td><td class="ctr">b</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>* 编码蛋白数为当前估计值，依据基因组 DNA 序列四舍五入到百位。细菌和古菌的数字可能略有变化，因为会新发现编码极小蛋白的基因；真核生物的数字也可能小幅变化，因为会新发现小基因，以及存在不表达的假基因。 ** 真核生物只统计核染色体，包括后生动物中不同的性染色体。 *** 预测值。</p>
+  <p class="table-note src">数据来源：表格由 Juan Alvarez-Dominguez 博士提供。参考文献：a，http://www.ncbi.nlm.nih.gov/genome/；b，http://ensemblgenomes.org/；c，http://www.genome.gov/12512286。</p>
 </figure>
 <p>大肠杆菌等生长在土壤和人肠道等多种环境的细菌约 4000 个基因，编码约相同数量蛋白质（<a class="xref xref-tab" href="#tab-T1-2">表 1-2</a>）。</p>
 <p>支原体等寄生菌从其宿主细胞获取氨基酸和其他营养物，缺乏催化氨基酸和某些脂质合成反应的酶基因。许多编码 DNA、RNA、蛋白质合成和膜功能必需蛋白质的细菌基因在所有生物中保守，我们对这些重要细胞过程的大部分知识首先来自大肠杆菌和其他细菌的研究。例如，某些大肠杆菌膜蛋白跨质膜输入氨基酸，在序列、结构和功能上与某些哺乳动物脑细胞输入称为神经递质的神经间信号小分子的膜蛋白密切相关（见第 11、22 章）。</p>

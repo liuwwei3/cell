@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -345,13 +362,23 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">5′帽在转录起始后不久加到新生RNA上</h3>
 <p>当新生真核RNA转录本从RNA聚合酶II的RNA出口通道露出（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter9/index.html#fig-9-12">图9-12</a>）并达到约25个核苷酸的长度时，一个由7-甲基鸟苷和甲基化核糖组成的保护性帽被加到mRNA的5′端（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter5/index.html#fig-5-14">图5-14</a>）。</p>
 <figure class="table" id="tab-T10-1">
-  <img class="zoomable" src="figures/tab_T10-1_1.png" alt="表 T10-1" onclick="lightbox(this.src)">
-  <figcaption>表 10-1 第10章讨论的RNA</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">pre-mRNA</td><td class="gl-zh">前体mRNA</td></tr>
-  <tr><td class="gl-en">pre-tRNA</td><td class="gl-zh">前体tRNA</td></tr>
-  <tr><td class="gl-en">pre-rRNA</td><td class="gl-zh">前体rRNA</td></tr>
-  <tr><td class="gl-en">siRNA</td><td class="gl-zh">siRNA（小干扰RNA）</td></tr>
+  <figcaption>表10-1 · 第10章讨论的RNA</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:15%">
+      <col style="width:85%">
+    </colgroup>
+    <tbody>
+      <tr><td>信使RNA（mRNA）</td><td>完全加工好的信使RNA，具有5′帽，内含子已通过RNA剪接去除，并带有一段poly(A)尾。</td></tr>
+      <tr><td>前体信使RNA（pre-mRNA）</td><td>含有内含子、且尚未在多聚腺苷酸化位点切割的mRNA前体。</td></tr>
+      <tr><td>不均一核RNA（hnRNA）</td><td>不均一核RNA。这些RNA包括前体mRNA以及含有一个或多个内含子的RNA加工中间产物。</td></tr>
+      <tr><td>小核RNA（snRNA）</td><td>五种小核RNA通过RNA剪接参与从前体mRNA中切除内含子；另有两种小核RNA可在罕见内含子处替代前两种。</td></tr>
+      <tr><td>前体转运RNA（pre-tRNA）</td><td>一种转运RNA前体，与成熟tRNA相比，其5′端和3′端额外转录出一些碱基。有些前体tRNA在反密码子环中还含有一个内含子。</td></tr>
+      <tr><td>前体核糖体RNA（pre-rRNA）</td><td>成熟18S、5.8S和28S核糖体RNA的前体。成熟rRNA由这条长前体RNA分子经切割、去除切割产物的末端碱基以及修饰特定碱基加工而成。</td></tr>
+      <tr><td>小核仁RNA（snoRNA）</td><td>小核仁RNA。这些RNA与前体rRNA分子的互补区域碱基配对，在rRNA成熟过程中指导RNA链的切割和碱基修饰。</td></tr>
+      <tr><td>短干扰RNA（siRNA）</td><td>短干扰RNA，长约22个碱基，各自与mRNA中的某个序列完全互补。siRNA与相关蛋白一起，导致「靶」RNA被切割，从而使其迅速降解。</td></tr>
+      <tr><td>微小RNA（miRNA）</td><td>微小RNA，长约22个碱基，与mRNA广泛但不完全碱基配对，尤其是在miRNA 5′端第2至第7位碱基（「种子」序列）上。这种配对抑制「靶」mRNA的翻译，并使其被降解。</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>这个5′帽把RNA分子标记为mRNA前体，并保护它们免受细胞核和细胞质中降解RNA的酶（5′外切核糖核酸酶）的攻击。RNA加工的这一起始步骤由一个二聚体加帽酶催化，该酶与RNA聚合酶II磷酸化的羧基末端结构域（CTD）结合。回想一下，TFIIH通用转录因子在转录起始过程中使CTD七肽重复序列中的丝氨酸5多次磷酸化（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter19/index.html#fig-19-20">图19-20</a>）。</p>
@@ -638,31 +665,38 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>其他研究表明，在大鼠中，当神经元因与之相互作用的神经元传来突触活动而发生去极化、从而激活某种特定的蛋白激酶时，Ca2+激活的K+通道pre-mRNA中某个可变剪接位点的剪接会受到抑制。这一观察引出一个可能性：针对该剪接位点的剪接抑制因子在被这种蛋白激酶磷酸化时被激活，而该激酶的活性又受突触活动调控。由于hnRNP和SR蛋白会被磷酸化及其他翻译后修饰广泛修饰。因此，通过剪接因子的翻译后修饰对可变RNA剪接进行复杂调控，很可能在调节神经元功能中起重要作用。</p>
 <p>在脊椎动物神经元中已观察到许多与编码耳蜗K+通道的基因类似的基因；在这些情况下，某一类型神经元中由特定基因共表达的各种可变剪接mRNA，在中枢神经系统不同区域以不同的相对浓度存在。神经元中所表达基因转录区内微卫星重复数目的扩增，可以改变由多个基因转录的可变剪接mRNA的相对浓度。第8章我们讨论过DNA复制过程中的倒退滑移如何导致微卫星重复扩增（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter8/index.html#fig-8-5">图8-5</a>）。至少有14种不同类型的神经疾病是由神经元中表达的转录单位内微卫星区域扩增所致。由此在这些神经元的核内pre-mRNA中产生的长重复简单序列区域，会导致可变剪接mRNA相对浓度的异常。例如，这类疾病中最常见的强直性肌营养不良，在部分患者中源于某一转录本中CUG重复拷贝数增加，在另一些患者中则源于另一转录本中CCUG重复拷贝数增加。当这些重复的数目增至正常重复数的10倍或更多时，可观察到两种结合这些重复序列的hnRNP蛋白功能异常。造成异常的原因可能是：在这些患者神经元的核内，异常高浓度的重复序列结合并占据了这些hnRNP，使它们无法与其他pre-mRNA结合。这些hnRNP被隔绝，导致多种原本受这些hnRNP蛋白调控的pre-mRNA中不同可变剪接位点的剪接速率发生改变。由于可变剪接的正确调控对神经元的正常功能至关重要，多种人类神经疾病都与核内RNA结合蛋白的功能异常，以及产生剪接因子结合位点的微卫星重复扩增有关（<a class="xref xref-tab" href="#tab-T10-2">表10-2</a>）。■</p>
 <figure class="table" id="tab-T10-2">
-  <img class="zoomable" src="figures/tab_T10-2_1.png" alt="表 T10-2" onclick="lightbox(this.src)">
-  <img class="zoomable" src="figures/tab_T10-2_2.png" alt="表 T10-2" onclick="lightbox(this.src)">
-  <figcaption>表 10-2 与可变RNA剪接异常相关的神经系统疾病</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Disease</td><td class="gl-zh">疾病</td></tr>
-  <tr><td class="gl-en">Link to Alternative Splicing</td><td class="gl-zh">与可变剪接的关联</td></tr>
-  <tr><td class="gl-en">Ataxia telangiectasia</td><td class="gl-zh">共济失调毛细血管扩张症</td></tr>
-  <tr><td class="gl-en">Fascioscapulohumoral dystrophy (FSHD)</td><td class="gl-zh">面肩肱型肌营养不良（FSHD）</td></tr>
-  <tr><td class="gl-en">Fragile-X-associated tremor/ataxia syndrome (FXTAS)</td><td class="gl-zh">脆性X相关震颤/共济失调综合征（FXTAS）</td></tr>
-  <tr><td class="gl-en">Frontotemporal dementia with Parkinsonism linked to chromosome 17 (FTDP-17)</td><td class="gl-zh">与17号染色体连锁的帕金森综合征型额颞叶痴呆（FTDP-17）</td></tr>
-  <tr><td class="gl-en">Duchenne muscular dystrophy; Becker’s muscular dystrophy</td><td class="gl-zh">杜兴肌营养不良；贝克肌营养不良</td></tr>
-  <tr><td class="gl-en">MYOTONIC DYSTROPHY (DM)</td><td class="gl-zh">强直性肌营养不良（DM）</td></tr>
-  <tr><td class="gl-en">Neurofibromatosis type 1 (NF1)</td><td class="gl-zh">1型神经纤维瘤病（NF1）</td></tr>
-  <tr><td class="gl-en">PARANEOPLASTIC NEUROLOGIC DISORDERS (PND)</td><td class="gl-zh">副肿瘤性神经系统疾病（PND）</td></tr>
-  <tr><td class="gl-en">Paraneoplastic opsoclonus-myoclonus-ataxia (POMA)</td><td class="gl-zh">副肿瘤性眼阵挛-肌阵挛-共济失调（POMA）</td></tr>
-  <tr><td class="gl-en">Hu syndrome (PEM/SN; paraneoplastic encephalomyelitis/sensory neuronopathy)</td><td class="gl-zh">Hu综合征（PEM/SN；副肿瘤性脑脊髓炎/感觉神经元病）</td></tr>
-  <tr><td class="gl-en">Prader-Willi syndrome</td><td class="gl-zh">Prader-Willi综合征</td></tr>
-  <tr><td class="gl-en">Psychiatric disorders</td><td class="gl-zh">精神疾病</td></tr>
-  <tr><td class="gl-en">Retinitis pigmentosa</td><td class="gl-zh">视网膜色素变性</td></tr>
-  <tr><td class="gl-en">Rett syndrome</td><td class="gl-zh">Rett综合征</td></tr>
-  <tr><td class="gl-en">Spinal muscular atrophy</td><td class="gl-zh">脊髓性肌萎缩</td></tr>
-  <tr><td class="gl-en">SPINOCEREBELLAR ATAXIAS</td><td class="gl-zh">脊髓小脑性共济失调</td></tr>
-  <tr><td class="gl-en">SCA2, SCA8, SCA10, and SCA12</td><td class="gl-zh">SCA2、SCA8、SCA10和SCA12</td></tr>
-  <tr><td class="gl-en">pre-mRNAs</td><td class="gl-zh">前体mRNA</td></tr>
+  <figcaption>表10-2 · 与可变RNA剪接异常有关的神经系统疾病</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:50%">
+      <col style="width:50%">
+    </colgroup>
+    <thead>
+      <tr><th>疾病</th><th>与可变剪接的联系</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>共济失调毛细血管扩张症</td><td>ATM基因内的点突变导致ATM转录本发生异常剪接。</td></tr>
+      <tr><td>面肩肱型肌营养不良（FSHD）</td><td>核RNA结合蛋白FRG1缺失，导致许多前体mRNA的剪接发生改变。</td></tr>
+      <tr><td>脆性X相关震颤/共济失调综合征（FXTAS）</td><td>FMR1基因中的前突变CGG重复扩增，导致RNA结合剪接因子被隔绝。</td></tr>
+      <tr><td>17号染色体连锁的伴帕金森综合征额颞叶痴呆（FTDP-17）</td><td>MAPT基因内的点突变，导致含可变剪接外显子10的MAPT转录本水平改变。</td></tr>
+      <tr><td>杜氏肌营养不良；贝克肌营养不良</td><td>抗肌萎缩蛋白（dystrophin）基因的缺失和突变导致其转录本的剪接发生改变。</td></tr>
+      <tr><td class="sect" colspan="2">强直性肌营养不良（DM）</td></tr>
+      <tr><td>DM1</td><td>DMPK基因3′ UTR中的CUG扩增，导致MBNL剪接因子调控异常，进而使MBNL靶前体mRNA发生错误剪接。</td></tr>
+      <tr><td>DM2</td><td>ZNF9内含子中的CCUG扩增，导致CUG-BP1剪接因子调控异常，并使CUG-BP1靶前体mRNA发生错误剪接。</td></tr>
+      <tr><td>神经纤维瘤病1型（NF1）</td><td>NF1基因中的众多突变，其中包括导致异常剪接的突变。</td></tr>
+      <tr><td class="sect" colspan="2">副肿瘤性神经系统疾病（PND）</td></tr>
+      <tr><td>副肿瘤性眼阵挛-肌阵挛-共济失调（POMA）</td><td>自身免疫抗体可识别Nova家族的神经元特异性RNA结合剪接因子；Nova敲除小鼠可复制出POMA的表型。</td></tr>
+      <tr><td>Hu综合征（PEM/SN；副肿瘤性脑脊髓炎/感觉神经元病）</td><td>自身免疫抗体识别Hu家族的RNA结合因子，这些因子与果蝇剪接因子ELAV相关。</td></tr>
+      <tr><td>普拉德-威利综合征</td><td>一种调控剪接的snoRNA缺失；该snoRNA与一个剪接沉默子元件互补，后者参与调控5-羟色胺受体5-HT₂c R转录本的可变剪接。</td></tr>
+      <tr><td>精神疾病</td><td>精神分裂症患者中异常剪接转录本的蓄积。</td></tr>
+      <tr><td>视网膜色素变性</td><td>编码U snRNP相关蛋白的基因发生突变。</td></tr>
+      <tr><td>雷特综合征</td><td>编码MeCP2的基因发生突变，MeCP2与YB-1 RNA结合蛋白相互作用；雷特综合征小鼠模型表现出前体mRNA剪接异常。</td></tr>
+      <tr><td>脊髓性肌萎缩</td><td>SMN1基因的缺失/突变，以及SMN2中一个剪接调控元件的丢失，导致SMN水平不足，而SMN参与snRNP的生物发生。</td></tr>
+      <tr><td class="sect" colspan="2">脊髓小脑共济失调</td></tr>
+      <tr><td>SCA2、SCA8、SCA10和SCA12</td><td>可能因三联体重复扩增而获得RNA功能；与RNA结合剪接因子发生直接和间接相互作用。</td></tr>
+    </tbody>
   </table>
+  <p class="table-note src">数据来源：经 Elsevier 许可转载，引自 Licatalosi, D. 与 Darnel, R.，「Splicing regulation in neurologic disease」，Neuron，2006，52:1，93–101。许可经 Copyright Clearance Center, Inc. 转授。</p>
 </figure>
 <p>（续）</p>
 <p>果蝇视网膜神经元中Dscam同种型的表达 迄今发现的最极端的受调控可变RNA加工例子，出现在果蝇Dscam基因的表达中。该基因的突变会干扰果蝇发育过程中视网膜轴突与树突之间形成的正常突触连接。对Dscam基因的分析表明，它含有四组外显子，最终成熟mRNA在每一组中只包含若干可能外显子中的一个。该基因总共含95个外显子（<a class="xref xref-fig" href="#fig-10-21">图10-21</a>），可产生38,016种可能的可变剪接同种型！带有只能以约22,000种不同方式剪接的该基因版本的果蝇突变体，在神经元之间的连接性上表现出特定的缺陷。这些结果表明，通过受调控的RNA剪接表达大多数可能的Dscam同种型，有助于确定果蝇脑中神经元之间数以千万计的不同特异性突触连接。换言之，脑中神经元的正确连线需要受调控的RNA剪接。</p>

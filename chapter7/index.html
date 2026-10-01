@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -426,20 +443,35 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>双层的脂质组成还影响其厚度，进而可能影响其他膜成分（如蛋白质）在特定膜中的分布。有人提出，某些驻留高尔基体的酶（糖基转移酶）相对较短的跨膜区段是对高尔基体膜脂质组成的一种适应，并有助于这些酶滞留在高尔基体中。对人工膜的生物物理研究结果表明，鞘磷脂缔合成比磷酸甘油酯更类凝胶、更厚的双层（<a class="xref xref-fig" href="#fig-7-11">图7-11</a>a）。胆固醇和其他降低膜流动性的分子也会增加膜双层厚度。由于鞘磷脂尾部已经处于最佳稳定状态，添加胆固醇对鞘磷脂双层的厚度没有影响。</p>
 <p>另一个取决于双层脂质组成的性质是其曲率，这取决于其组成磷脂中极性头基与非极性尾部的相对大小。具有长尾和大头基的脂质呈圆柱形；头基小的则呈锥形（<a class="xref xref-fig" href="#fig-7-11">图7-11</a>b）。因此，由圆柱形脂质组成的双层相对平坦，而含有大量锥形脂质的双层则形成弯曲的双层（<a class="xref xref-fig" href="#fig-7-11">图7-11</a>c）。脂质组成对双层曲率的这种影响可能在高度弯曲的膜的形成中发挥作用，例如病毒出芽位点（见<a class="xref xref-fig" href="#fig-7-2">图7-2</a>）</p>
 <figure class="table" id="tab-T7-1">
-  <img class="zoomable" src="figures/tab_T7-1_1.png" alt="表 T7-1" onclick="lightbox(this.src)">
-  <figcaption>表 7-1 所选生物膜的主要脂质成分</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Phosphatidylcholine (PC)</td><td class="gl-zh">磷脂酰胆碱</td></tr>
-  <tr><td class="gl-en">Phosphatidylethanolamine (PE)</td><td class="gl-zh">磷脂酰乙醇胺</td></tr>
-  <tr><td class="gl-en">Phosphatidylserine (PS)</td><td class="gl-zh">磷脂酰丝氨酸</td></tr>
-  <tr><td class="gl-en">Sphingomyelin (SM)</td><td class="gl-zh">鞘磷脂</td></tr>
-  <tr><td class="gl-en">Cholesterol</td><td class="gl-zh">胆固醇</td></tr>
-  <tr><td class="gl-en">Exoplasmic leaflet</td><td class="gl-zh">外质单层</td></tr>
-  <tr><td class="gl-en">Cytosolic leaflet</td><td class="gl-zh">胞质单层</td></tr>
-  <tr><td class="gl-en">Myelin membrane</td><td class="gl-zh">髓鞘膜</td></tr>
-  <tr><td class="gl-en">Inner mitochondrial membrane</td><td class="gl-zh">线粒体内膜</td></tr>
-  <tr><td class="gl-en">Outer mitochondrial membrane</td><td class="gl-zh">线粒体外膜</td></tr>
+  <figcaption>表7-1 · 所选生物膜的主要脂质成分</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:30%">
+      <col style="width:14%">
+      <col style="width:24%">
+      <col style="width:14%">
+      <col style="width:18%">
+    </colgroup>
+    <thead>
+      <tr><th></th><th class="ctr" colspan="4">组成（摩尔百分比）</th></tr>
+      <tr><th>来源/位置</th><th class="ctr">磷脂酰胆碱（PC）</th><th class="ctr">磷脂酰乙醇胺（PE）+ 磷脂酰丝氨酸（PS）</th><th class="ctr">鞘磷脂（SM）</th><th class="ctr">胆固醇</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>质膜（人红细胞）</td><td class="num">21</td><td class="num">29</td><td class="num">21</td><td class="num">26</td></tr>
+      <tr><td>髓鞘膜（人神经元）</td><td class="num">16</td><td class="num">37</td><td class="num">13</td><td class="num">34</td></tr>
+      <tr><td>质膜（绿豆）</td><td class="num">47</td><td class="num">43</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td>线粒体内膜（花椰菜）</td><td class="num">42</td><td class="num">38</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td>线粒体外膜（花椰菜）</td><td class="num">47</td><td class="num">27</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td>质膜（大肠杆菌）</td><td class="num">0</td><td class="num">85</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td>内质网膜（大鼠）</td><td class="num">60</td><td class="num">25</td><td class="num">3</td><td class="num">7</td></tr>
+      <tr><td>高尔基体膜（大鼠）</td><td class="num">51</td><td class="num">26</td><td class="num">8</td><td class="num">13</td></tr>
+      <tr><td>线粒体内膜（大鼠）</td><td class="num">40</td><td class="num">37</td><td class="num">2</td><td class="num">7</td></tr>
+      <tr><td>线粒体外膜（大鼠）</td><td class="num">54</td><td class="num">31</td><td class="num">2</td><td class="num">11</td></tr>
+      <tr><td>主要所在的单层</td><td class="ctr">外质单层</td><td class="ctr">胞质单层</td><td class="ctr">外质单层</td><td class="ctr">两者均有</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>PC = 磷脂酰胆碱；PE = 磷脂酰乙醇胺；PS = 磷脂酰丝氨酸；SM = 鞘磷脂。</p>
+  <p class="table-note src">数据来源：S. E. Horvath 与 G. Daum，2013，Lipids of mitochondria，Progress in Lipid Research 52:590–614。</p>
 </figure>
 <figure class="fig" id="fig-7-11">
   <img class="zoomable" src="figures/fig_7-11_1.png" alt="图 7-11" onclick="lightbox(this.src)">
@@ -614,16 +646,25 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>红细胞表面缺乏A抗原、B抗原或两者兼有的人，其血清中通常含有针对所缺抗原的抗体。因此，如果A型或O型的人接受B型血输血，针对B抗原的抗体将结合到输入的红细胞上并触发其破坏。为防止这类有害反应，所有输血都必须进行血型鉴定并对供血者和受血者进行适当配型（<a class="xref xref-tab" href="#tab-T7-2">表7-2</a>）。■</p>
 <figure class="table" id="tab-T7-2">
-  <img class="zoomable" src="figures/tab_T7-2_1.png" alt="表 T7-2" onclick="lightbox(this.src)">
-  <figcaption>表 7-2 ABO 血型</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">ABO blood group</td><td class="gl-zh">ABO血型</td></tr>
-  <tr><td class="gl-en">Antigen</td><td class="gl-zh">抗原</td></tr>
-  <tr><td class="gl-en">Serum antibody</td><td class="gl-zh">血清抗体</td></tr>
-  <tr><td class="gl-en">Anti-A</td><td class="gl-zh">抗A抗体</td></tr>
-  <tr><td class="gl-en">Anti-B</td><td class="gl-zh">抗B抗体</td></tr>
-  <tr><td class="gl-en">Red blood cell</td><td class="gl-zh">红细胞</td></tr>
+  <figcaption>表7-2 · ABO 血型</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:14%">
+      <col style="width:28%">
+      <col style="width:30%">
+      <col style="width:28%">
+    </colgroup>
+    <thead>
+      <tr><th>血型</th><th>红细胞（RBC）上的抗原*</th><th>血清抗体</th><th>可接受的血型</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>A</td><td>抗 B 抗体</td><td>A 型和 O 型</td></tr>
+      <tr><td>B</td><td>B</td><td>抗 A 抗体</td><td>B 型和 O 型</td></tr>
+      <tr><td>AB</td><td>A 和 B</td><td>无</td><td>所有血型</td></tr>
+      <tr><td>O</td><td>O</td><td>抗 A 和抗 B 抗体</td><td>O 型</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>带 * 者：抗原结构参见图 7-20。</p>
 </figure>
 <h3 class="subhead">脂质结合基序帮助将周边蛋白靶向到膜上</h3>
 <p>许多以磷脂为底物的水溶性酶必须结合到膜表面。例如，磷脂酶水解磷脂头基中的各种键（见<a class="xref xref-fig" href="#fig-7-12">图7-12</a>），从而在细胞中发挥多种作用——帮助降解受损或老化的细胞膜、产生信号分子的前体，甚至作为许多蛇毒的活性成分。许多周边蛋白（包括磷脂酶）最初结合到膜磷脂的极性头基上以执行其催化功能。磷脂酶A2的作用机制说明了这类酶如何可逆地与膜相互作用，并在水溶液与脂质表面的界面处催化反应。当这种酶处于水溶液中时，其含Ca²⁺的活性位点埋藏在由疏水氨基酸衬里的通道中。该酶对由带负电荷的磷脂（如磷脂酰丝氨酸）组成的双层亲和力最大。这一观察提示，催化通道入口周围由带正电荷的赖氨酸和精氨酸残基构成的边缘在结合中特别重要（<a class="xref xref-fig" href="#fig-7-21">图7-21</a>a），并构成一个脂质结合基序。结合诱导磷脂酶A2发生构象变化，增强其与磷脂头基的结合并打开疏水通道。当一个磷脂分子从双层进入通道时，酶结合的Ca²⁺与头基中的磷酸结合，从而将待切割的酯键定位在催化位点（<a class="xref xref-fig" href="#fig-7-21">图7-21</a>b），释放出酰基链。</p>

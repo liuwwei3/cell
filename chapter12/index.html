@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -478,24 +495,44 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <figure class="table" id="tab-T12-1">
-  <img class="zoomable" src="figures/tab_T12-1_1.png" alt="表 T12-1" onclick="lightbox(this.src)">
-  <figcaption>表12-1 线粒体的多种功能</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Fatty acids</td><td class="gl-zh">脂肪酸</td></tr>
-  <tr><td class="gl-en">Steroid hormones</td><td class="gl-zh">类固醇激素</td></tr>
-  <tr><td class="gl-en">Pyrimidines</td><td class="gl-zh">嘧啶</td></tr>
-  <tr><td class="gl-en">Iron-sulfur clusters</td><td class="gl-zh">铁硫簇</td></tr>
-  <tr><td class="gl-en">Heme</td><td class="gl-zh">血红素</td></tr>
-  <tr><td class="gl-en">Phospholipids</td><td class="gl-zh">磷脂</td></tr>
-  <tr><td class="gl-en">Ubiquinone</td><td class="gl-zh">泛醌</td></tr>
-  <tr><td class="gl-en">Amino acids</td><td class="gl-zh">氨基酸</td></tr>
-  <tr><td class="gl-en">Oxidative phosphorylation and ATP synthesis</td><td class="gl-zh">氧化磷酸化与ATP合成</td></tr>
-  <tr><td class="gl-en">Reactive oxygen species (ROS) homeostasis</td><td class="gl-zh">活性氧（ROS）稳态</td></tr>
-  <tr><td class="gl-en">Ammonia detoxification</td><td class="gl-zh">氨解毒</td></tr>
-  <tr><td class="gl-en">Fatty acid oxidation</td><td class="gl-zh">脂肪酸氧化</td></tr>
-  <tr><td class="gl-en">Thermogenesis (heat generation) in brown fat</td><td class="gl-zh">棕色脂肪中的产热（生热）</td></tr>
-  <tr><td class="gl-en">Regulated cell death pathways (e.g., apoptosis)</td><td class="gl-zh">受调控的细胞死亡途径（如细胞凋亡）</td></tr>
-  <tr><td class="gl-en">Mitochondrial shape and dynamics</td><td class="gl-zh">线粒体形态与动态变化</td></tr>
+  <figcaption>表12-1 · 线粒体的多种功能</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:100%">
+    </colgroup>
+    <tbody>
+      <tr><td class="sect">小分子的生物合成或加工</td></tr>
+      <tr><td>脂肪酸</td></tr>
+      <tr><td>类固醇激素</td></tr>
+      <tr><td>嘧啶</td></tr>
+      <tr><td>铁硫簇</td></tr>
+      <tr><td>血红素</td></tr>
+      <tr><td>磷脂（磷脂酰乙醇胺、磷脂酰甘油、心磷脂）</td></tr>
+      <tr><td>泛醌</td></tr>
+      <tr><td>氨基酸（合成、相互转化与分解代谢）</td></tr>
+      <tr><td class="sect">线粒体的其他功能</td></tr>
+      <tr><td>氧化磷酸化与ATP合成</td></tr>
+      <tr><td>活性氧（ROS）稳态</td></tr>
+      <tr><td>离子稳态（如钙）</td></tr>
+      <tr><td>氨解毒</td></tr>
+      <tr><td>脂肪酸氧化</td></tr>
+      <tr><td>棕色脂肪中的产热（生热）</td></tr>
+      <tr><td>对固有免疫和炎症的贡献</td></tr>
+      <tr><td>受调控的细胞死亡途径（如细胞凋亡）</td></tr>
+      <tr><td class="sect">受线粒体相关膜（MAM）影响的细胞过程</td></tr>
+      <tr><td>线粒体形态与动态变化</td></tr>
+      <tr><td>PINK1/Parkin依赖的线粒体自噬（起始于MAM）</td></tr>
+      <tr><td>钙向线粒体内的转运</td></tr>
+      <tr><td>钙稳态与钙介导的信号转导</td></tr>
+      <tr><td>葡萄糖与能量代谢</td></tr>
+      <tr><td>从内质网向线粒体输入的脂质，包括磷脂酰丝氨酸，可能还有胆固醇</td></tr>
+      <tr><td>线粒体内脂质的生物合成，包括磷脂酰乙醇胺和类固醇激素</td></tr>
+      <tr><td>应激反应</td></tr>
+      <tr><td>通过受调控的细胞死亡实现的细胞存活（见第21章）</td></tr>
+      <tr><td>经炎症小体产生的炎症反应与固有免疫反应（见第23章）</td></tr>
+      <tr><td>与病毒感染有关的途径（巨细胞病毒、丙型肝炎病毒）</td></tr>
+      <tr><td>神经退行性病理（阿尔茨海默病和帕金森病）</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>每个线粒体都有两层截然不同、同心排列的膜：线粒体内膜和外膜。线粒体外膜构成线粒体光滑的外围边界。线粒体内膜紧贴在外膜下方。线粒体内膜是一层单一的连续膜，它本身可被视为具有三个在组成和结构上不同的结构域。边界膜是与外膜紧邻并位于其内侧的平坦内膜。嵴是众多从周边的边界膜向线粒体中心延伸的内陷结构。内膜边界膜与一个嵴之间的连接称为嵴连接（<a class="xref xref-fig" href="#fig-12-6">图12-6</a>a和c）。</p>
@@ -583,22 +620,31 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">线粒体起源于一次涉及类立克次体细菌的单一内共生事件</h3>
 <p>对各种真核生物（包括在进化早期就与其他真核生物分化的单细胞原生生物）mtDNA序列的分析，有力地支持了线粒体只有单一起源的观点。线粒体最可能起源于一种细菌共生体，其现存的最近亲属于立克次体科（Rickettsiaceae）类群。该类群的细菌是专性胞内寄生生物。因此，线粒体的祖先很可能也过着胞内生活，这使它处于有利地位，得以进化成胞内共生体。迄今发现的编码基因数目最多的mtDNA来自原生生物物种Reclinomonas americana。所有其他线粒体基因组都只含有R. americana基因的一个子集，这有力地表明，它们是从与R. americana共有的一个共同祖先进化而来，并随时间推移通过缺失或转移到细胞核（或两者兼有）而丢失了不同的线粒体基因群。</p>
 <figure class="table" id="tab-T12-2">
-  <img class="zoomable" src="figures/tab_T12-2_1.png" alt="表 T12-2" onclick="lightbox(this.src)">
-  <figcaption>表12-2 线粒体中标准遗传密码的改变</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Codon</td><td class="gl-zh">密码子</td></tr>
-  <tr><td class="gl-en">Standard Code</td><td class="gl-zh">标准密码</td></tr>
-  <tr><td class="gl-en">Mammals</td><td class="gl-zh">哺乳动物</td></tr>
-  <tr><td class="gl-en">Drosophila</td><td class="gl-zh">果蝇</td></tr>
-  <tr><td class="gl-en">Neurospora</td><td class="gl-zh">脉孢菌</td></tr>
-  <tr><td class="gl-en">Yeasts</td><td class="gl-zh">酵母</td></tr>
-  <tr><td class="gl-en">Plants</td><td class="gl-zh">植物</td></tr>
-  <tr><td class="gl-en">Stop</td><td class="gl-zh">终止</td></tr>
-  <tr><td class="gl-en">Trp</td><td class="gl-zh">色氨酸</td></tr>
-  <tr><td class="gl-en">Arg</td><td class="gl-zh">精氨酸</td></tr>
-  <tr><td class="gl-en">Ser</td><td class="gl-zh">丝氨酸</td></tr>
-  <tr><td class="gl-en">Met</td><td class="gl-zh">甲硫氨酸</td></tr>
+  <figcaption>表12-2 · 线粒体中标准遗传密码的改变</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:20%">
+      <col style="width:18%">
+      <col style="width:12.5%">
+      <col style="width:12.5%">
+      <col style="width:12.5%">
+      <col style="width:12.5%">
+      <col style="width:12%">
+    </colgroup>
+    <thead>
+      <tr><th class="cat" rowspan="2">密码子</th><th class="cat" rowspan="2">标准密码*</th><th class="ctr" colspan="5">线粒体</th></tr>
+      <tr><th class="ctr">哺乳动物</th><th class="ctr">果蝇</th><th class="ctr">脉孢菌</th><th class="ctr">酵母</th><th class="ctr">植物</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>UGA</td><td>终止</td><td>色氨酸（Trp）</td><td>色氨酸（Trp）</td><td>色氨酸（Trp）</td><td>色氨酸（Trp）</td><td>终止</td></tr>
+      <tr><td>AGA、AGG</td><td>精氨酸（Arg）</td><td>终止</td><td>丝氨酸（Ser）</td><td>精氨酸（Arg）</td><td>精氨酸（Arg）</td><td>精氨酸（Arg）</td></tr>
+      <tr><td>AUA</td><td>异亮氨酸（Ile）</td><td>甲硫氨酸（Met）</td><td>甲硫氨酸（Met）</td><td>异亮氨酸（Ile）</td><td>甲硫氨酸（Met）</td><td>异亮氨酸（Ile）</td></tr>
+      <tr><td>AUU</td><td>异亮氨酸（Ile）</td><td>甲硫氨酸（Met）</td><td>甲硫氨酸（Met）</td><td>甲硫氨酸（Met）</td><td>甲硫氨酸（Met）</td><td>异亮氨酸（Ile）</td></tr>
+      <tr><td>CUU、CUC、CUA、CUG</td><td>亮氨酸（Leu）</td><td>亮氨酸（Leu）</td><td>亮氨酸（Leu）</td><td>亮氨酸（Leu）</td><td>苏氨酸（Thr）</td><td>亮氨酸（Leu）</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>* 适用于由核基因编码的蛋白质。</p>
+  <p class="table-note src">数据来源：S. Anderson 等，1981，Nature 290:457；P. Borst，载 International Cell Biology 1980–1981，H. G. Schweiger 编，Springer-Verlag，第239页；C. Breitenberger 与 U. L. Raj Bhandary，1985，Trends Biochem. Sci. 10:478；V. K. Eckenrode 与 C. S. Levings，1986，In Vitro Cell. Dev. B. 22:169；以及 J. M. Gualber 等，1989，Nature 341:660。</p>
 </figure>
 <p>在mtDNA只包含有限数目基因的生物中，无论这些生物属于哪个门，保留下来的都是同一组线粒体基因（见<a class="xref xref-fig" href="#fig-12-10">图12-10</a>，橙色蛋白质）。对于这些基因为何从未成功转移到核基因组，一种假说是：它们所编码的多肽过于疏水，无法穿过线粒体外膜，因此如果在细胞质中合成，就无法被重新输入线粒体。类似地，rRNA的大尺寸可能妨碍它们从细胞核经细胞质运入线粒体。另一种可能是，这些基因在进化过程中之所以没有被转移到细胞核，是因为它们响应各个线粒体内部条件来调控表达可能是有利的。如果这些基因位于细胞核中，那么每个线粒体内部的条件就无法影响该线粒体中所含蛋白质的表达。</p>
 <h3 class="subhead">线粒体遗传密码与标准的核密码不同</h3>
@@ -744,15 +790,24 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>由于一分子葡萄糖的糖酵解产生两分子丙酮酸，因而产生两分子乙酰辅酶A，所以糖酵解途径和柠檬酸循环中的反应每分子葡萄糖产生六分子CO2、十分子NADH和两分子FADH2（<a class="xref xref-tab" href="#tab-T12-3">表12-3</a>）。尽管这些反应还以两分子ATP和两分子GTP的形式生成四个高能磷酸酐键，但这只占葡萄糖完全有氧氧化所释放的可用能量的一小部分。剩余的能量以高能电子的形式储存在还原型辅酶NADH和FADH2中，它们可以被视为高能电子载体。阶段III和阶段IV的目标就是以ATP的形式回收这部分能量。</p>
 <figure class="table" id="tab-T12-3">
-  <img class="zoomable" src="figures/tab_T12-3_1.png" alt="表 T12-3" onclick="lightbox(this.src)">
-  <figcaption>表12-3 糖酵解途径与柠檬酸循环的净结果</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Reaction</td><td class="gl-zh">反应</td></tr>
-  <tr><td class="gl-en">CO2 Molecules Produced</td><td class="gl-zh">产生的CO2分子数</td></tr>
-  <tr><td class="gl-en">NAD+ Molecules Reduced to NADH</td><td class="gl-zh">还原为NADH的NAD+分子数</td></tr>
-  <tr><td class="gl-en">FAD Molecules Reduced to FADH2</td><td class="gl-zh">还原为FADH2的FAD分子数</td></tr>
-  <tr><td class="gl-en">ATP (or GTP)</td><td class="gl-zh">ATP（或GTP）</td></tr>
-  <tr><td class="gl-en">Total</td><td class="gl-zh">总计</td></tr>
+  <figcaption>表12-3 · 糖酵解途径与柠檬酸循环的净结果</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:32%">
+      <col style="width:15%">
+      <col style="width:20%">
+      <col style="width:18%">
+      <col style="width:15%">
+    </colgroup>
+    <thead>
+      <tr><th>反应</th><th>产生的CO₂分子</th><th>被还原为NADH的NAD⁺分子</th><th>被还原为FADH₂的FAD分子</th><th>ATP（或GTP）</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1分子葡萄糖转变为2分子丙酮酸</td><td class="ctr">0</td><td class="ctr">2</td><td class="ctr">0</td><td class="ctr">2</td></tr>
+      <tr><td>2分子丙酮酸转变为2分子乙酰辅酶A</td><td class="ctr">2</td><td class="ctr">2</td><td class="ctr">0</td><td class="ctr">0</td></tr>
+      <tr><td>2分子乙酰辅酶A转变为4分子CO₂</td><td class="ctr">4</td><td class="ctr">6</td><td class="ctr">2</td><td class="ctr">2</td></tr>
+      <tr><td>总计</td><td class="ctr">6</td><td class="ctr">10</td><td class="ctr">2</td><td class="ctr">4</td></tr>
+    </tbody>
   </table>
 </figure>
 <h3 class="subhead">线粒体内膜中的转运蛋白有助于维持胞质与基质中NAD+和NADH的适当浓度</h3>
@@ -854,24 +909,33 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>四个大型多蛋白复合体（复合体I–IV）构成了线粒体内膜中负责产生质子动力势的电子传递链（见<a class="xref xref-fig" href="#fig-12-14">图12-14</a>，阶段III）。每个复合体都含有若干辅基，它们在偶联的氧化还原反应中参与把电子从供体分子转移到受体分子（见第2章）。这些小分子非肽类有机分子或金属离子，与多蛋白复合体紧密结合且特异结合（<a class="xref xref-tab" href="#tab-T12-4">表12-4</a>）。</p>
 <p>血红素与细胞色素 血红素是一种含铁的辅基，与血红蛋白和肌红蛋白中的血红素类似（<a class="xref xref-fig" href="#fig-12-20">图12-20</a>a）；有若干类型的血红素以共价或非共价方式与一组称为细胞色素的线粒体蛋白紧密结合。每种细胞色素都用一个字母来标示，如a、b、c或c1。电子在细胞色素间的流动，是通过血红素分子中心Fe原子的氧化和还原实现的：</p>
 <figure class="table" id="tab-T12-4">
-  <img class="zoomable" src="figures/tab_T12-4_1.png" alt="表 T12-4" onclick="lightbox(this.src)">
-  <figcaption>表12-4 电子传递链中携带电子的辅基</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Electron-Transport Chain</td><td class="gl-zh">电子传递链</td></tr>
-  <tr><td class="gl-en">Protein Component</td><td class="gl-zh">蛋白组分</td></tr>
-  <tr><td class="gl-en">Prosthetic Groups</td><td class="gl-zh">辅基</td></tr>
-  <tr><td class="gl-en">NADH-CoQ reductase (complex I)</td><td class="gl-zh">NADH-CoQ还原酶（复合体I）</td></tr>
-  <tr><td class="gl-en">Fe-S</td><td class="gl-zh">铁硫簇</td></tr>
-  <tr><td class="gl-en">Succinate-CoQ reductase (complex II)</td><td class="gl-zh">琥珀酸-CoQ还原酶（复合体II）</td></tr>
-  <tr><td class="gl-en">CoQH2–cytochrome c reductase (complex III)</td><td class="gl-zh">CoQH2–细胞色素c还原酶（复合体III）</td></tr>
-  <tr><td class="gl-en">Heme bL</td><td class="gl-zh">血红素bL</td></tr>
-  <tr><td class="gl-en">Heme bH</td><td class="gl-zh">血红素bH</td></tr>
-  <tr><td class="gl-en">Heme c1</td><td class="gl-zh">血红素c1</td></tr>
-  <tr><td class="gl-en">Cytochrome c</td><td class="gl-zh">细胞色素c</td></tr>
-  <tr><td class="gl-en">Cytochrome c oxidase (complex IV)</td><td class="gl-zh">细胞色素c氧化酶（复合体IV）</td></tr>
-  <tr><td class="gl-en">Heme a</td><td class="gl-zh">血红素a</td></tr>
-  <tr><td class="gl-en">Heme a3</td><td class="gl-zh">血红素a3</td></tr>
+  <figcaption>表12-4 · 电子传递链中携带电子的辅基</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:64%">
+      <col style="width:36%">
+    </colgroup>
+    <thead>
+      <tr><th>蛋白质组分</th><th>辅基*</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="cat" rowspan="2">NADH-CoQ还原酶（复合体I）</td><td>FMN</td></tr>
+      <tr><td>铁硫簇</td></tr>
+      <tr><td class="cat" rowspan="2">琥珀酸-CoQ还原酶（复合体II）</td><td>FAD</td></tr>
+      <tr><td>铁硫簇</td></tr>
+      <tr><td class="cat" rowspan="4">CoQH₂–细胞色素c还原酶（复合体III）</td><td>血红素bₗ</td></tr>
+      <tr><td>血红素bₕ</td></tr>
+      <tr><td>铁硫簇</td></tr>
+      <tr><td>血红素c₁</td></tr>
+      <tr><td>细胞色素c</td><td>血红素c</td></tr>
+      <tr><td class="cat" rowspan="4">细胞色素c氧化酶（复合体IV）</td><td>Cuₐ²⁺</td></tr>
+      <tr><td>血红素a</td></tr>
+      <tr><td>Cub²⁺</td></tr>
+      <tr><td>血红素a₃</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>* 本表未列入辅酶Q，它是一种不永久结合于某个蛋白质复合体的电子载体。</p>
+  <p class="table-note src">数据来源：J. W. De Pierre 与 L. Ernster，1977，Annu. Rev. Biochem. 46:201。</p>
 </figure>
 <div class="eq"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">F</mi><msup><mi mathvariant="normal">e</mi><mrow><mn>3</mn><mo>+</mo></mrow></msup></mrow><mo>+</mo><msup><mi>e</mi><mo lspace="0em" rspace="0em">−</mo></msup><mo>⇌</mo><mrow><mi mathvariant="normal">F</mi><msup><mi mathvariant="normal">e</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow></mrow><annotation encoding="application/x-tex">\mathrm{Fe^{3+}} + e^{-} \rightleftharpoons \mathrm{Fe^{2+}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathrm">F</span><span class="mord"><span class="mord mathrm">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">3</span><span class="mord mtight">+</span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8323em;vertical-align:-0.011em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8213em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⇌</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathrm">F</span><span class="mord"><span class="mord mathrm">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">2</span><span class="mord mtight">+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></div>
 <p>由于细胞色素中的血红素环由交替的双键和单键原子构成，因此存在大量共振杂化形式。这些形式使传递给细胞色素的那个额外电子，得以分散到整个血红素环的碳原子、氮原子以及Fe离子上。</p>

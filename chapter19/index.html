@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -494,21 +511,23 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">细胞周期蛋白依赖性激酶是小型蛋白激酶，其活性需要调节性细胞周期蛋白亚基</h3>
 <p>细胞周期蛋白依赖性激酶是一个小型（30–40 kD）丝氨酸/苏氨酸激酶家族。它们以单体形式存在时没有活性，需要结合一个激活亚基才能作为蛋白激酶发挥活性。在芽殖酵母和裂殖酵母中，单一的CDK控制细胞周期的进程，其活性由细胞周期阶段特异性的细胞周期蛋白亚基决定。哺乳动物细胞含有多达9种CDK，其中CDK1、CDK2、CDK4和CDK6这四种已被明确证明可调控细胞周期进程。它们与不同类型的细胞周期蛋白结合，并与这些细胞周期蛋白一起促进不同的细胞周期转换。CDK4和CDK6是促进进入细胞周期的G1期CDK，CDK2作为G1/S期和S期CDK发挥作用，CDK1则是有丝分裂CDK。由于历史原因，来自酵母和脊椎动物的各种细胞周期蛋白依赖性激酶名称各不相同。在可能的情况下，我们将使用G1、G1/S期、S期和有丝分裂CDK这些通用术语来描述CDK，而不使用物种特异性命名。<a class="xref xref-tab" href="#tab-T19-1">表19-1</a>列出了各种CDK的不同名称，并标明它们在细胞周期中的哪个阶段具有活性。</p>
 <figure class="table" id="tab-T19-1">
-  <img class="zoomable" src="figures/tab_T19-1_1.png" alt="表 T19-1" onclick="lightbox(this.src)">
-  <figcaption>表19-1 细胞周期蛋白与CDK：命名及其在哺乳动物细胞周期中的作用</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">General Name</td><td class="gl-zh">通用名称</td></tr>
-  <tr><td class="gl-en">Cyclin</td><td class="gl-zh">细胞周期蛋白</td></tr>
-  <tr><td class="gl-en">Function</td><td class="gl-zh">功能</td></tr>
-  <tr><td class="gl-en">Cyclin A</td><td class="gl-zh">细胞周期蛋白A</td></tr>
-  <tr><td class="gl-en">Cyclin B</td><td class="gl-zh">细胞周期蛋白B</td></tr>
-  <tr><td class="gl-en">Mitotic CDKs</td><td class="gl-zh">有丝分裂CDK</td></tr>
-  <tr><td class="gl-en">Cyclin E</td><td class="gl-zh">细胞周期蛋白E</td></tr>
-  <tr><td class="gl-en">Entry into the cell cycle</td><td class="gl-zh">进入细胞周期</td></tr>
-  <tr><td class="gl-en">G1/S phase CDKs</td><td class="gl-zh">G1/S期CDK</td></tr>
-  <tr><td class="gl-en">S phase CDKs</td><td class="gl-zh">S期CDK</td></tr>
-  <tr><td class="gl-en">Cyclin D</td><td class="gl-zh">细胞周期蛋白D</td></tr>
-  <tr><td class="gl-en">G1 CDKs</td><td class="gl-zh">G1期CDK</td></tr>
+  <figcaption>表19-1 · 细胞周期蛋白与CDK：命名法及其在哺乳动物细胞周期中的作用</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:12%">
+      <col style="width:24%">
+      <col style="width:29%">
+      <col style="width:35%">
+    </colgroup>
+    <thead>
+      <tr><th>CDK</th><th>细胞周期蛋白（cyclin）</th><th>功能</th><th>通用名称</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>CDK1</td><td>细胞周期蛋白A、细胞周期蛋白B</td><td>有丝分裂</td><td>有丝分裂CDK</td></tr>
+      <tr><td>CDK2</td><td>细胞周期蛋白E、细胞周期蛋白A</td><td>进入细胞周期；S期</td><td>G₁/S期CDK；S期CDK</td></tr>
+      <tr><td>CDK4</td><td>细胞周期蛋白D</td><td>G₁期；进入细胞周期</td><td>G₁期CDK</td></tr>
+      <tr><td>CDK6</td><td>细胞周期蛋白D</td><td>G₁期；进入细胞周期</td><td>G₁期CDK</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>CDK不仅受细胞周期蛋白结合的调控，还受激活性磷酸化和抑制性磷酸化的调控。这些调控事件共同确保CDK只在适当的细胞周期阶段才有活性。CDK的三维结构为理解这些蛋白激酶的活性如何被调控提供了线索。未磷酸化的无活性CDK含有一个柔性区域，称为T环或激活环，它在蛋白激酶中高度保守，第16章对此有详细讨论。该环阻碍蛋白质底物接近结合着ATP的活性位点（<a class="xref xref-fig" href="#fig-19-11">图19-11</a>a），这就解释了为什么未结合细胞周期蛋白的游离CDK几乎不具有蛋白激酶活性。与某个细胞周期蛋白配体结合的未磷酸化CDK在体外具有极低但可检测的蛋白激酶活性，不过在体内它可能基本没有活性。细胞周期蛋白与T环之间广泛的相互作用使T环的位置发生剧烈移动，从而暴露出CDK的活性位点（<a class="xref xref-fig" href="#fig-19-11">图19-11</a>b）。正如我们稍后将看到的，细胞周期蛋白-CDK复合物的高活性需要T环中激活性苏氨酸被磷酸化，这会引起细胞周期蛋白-CDK复合物发生进一步的构象变化，大大增强其对蛋白质底物的亲和力（<a class="xref xref-fig" href="#fig-19-11">图19-11</a>c）。因此，磷酸化复合物的激酶活性比未磷酸化复合物高100倍。</p>
@@ -536,21 +555,33 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>有丝分裂细胞周期蛋白与CDK1结合，促进进入有丝分裂并推动其进程。后生动物的有丝分裂细胞周期蛋白是细胞周期蛋白A和细胞周期蛋白B（注意，细胞周期蛋白A也可以在与CDK2结合时触发S期）。有丝分裂细胞周期蛋白-CDK复合物在S期和G2期合成，但正如我们稍后将看到的，在DNA合成完成之前它们的活性一直受到抑制。在19.5节中我们将看到，有丝分裂CDK一旦被激活，便通过磷酸化并激活数百种蛋白质来促进进入有丝分裂，从而推动染色体凝缩、核膜解体、有丝分裂纺锤体形成以及有丝分裂的其他方面。它们在后期被失活会促使细胞退出有丝分裂，这一过程包括有丝分裂纺锤体解体、染色体解凝缩、核膜重新形成，最终进行胞质分裂。</p>
 <p>有丝分裂细胞周期蛋白是最早被发现的细胞周期蛋白，正是对它们的研究揭示了驱动细胞周期进程的活性具有振荡特性（见经典实验19-1和19-2）。随后的研究表明，G1/S期细胞周期蛋白具有类似的性质。它们的表达足以促进进入细胞周期，因此细胞周期进入所需的其他所有蛋白质都以不受限制的量存在。由此可见，细胞周期蛋白水平的调控是真核细胞周期的一个基本方面。正如我们将在下一节看到的，细胞使用多种机制把细胞周期蛋白限制在适当的细胞周期阶段，并使其保持在正确的浓度。</p>
 <figure class="table" id="tab-T19-2">
-  <img class="zoomable" src="figures/tab_T19-2_1.png" alt="表 T19-2" onclick="lightbox(this.src)">
-  <figcaption>表19-2 细胞周期蛋白-CDK活性的调控因子</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Type of Regulator</td><td class="gl-zh">调控因子类型</td></tr>
-  <tr><td class="gl-en">Function</td><td class="gl-zh">功能</td></tr>
-  <tr><td class="gl-en">Kinases and Phosphatases</td><td class="gl-zh">激酶与磷酸酶</td></tr>
-  <tr><td class="gl-en">CAK kinase</td><td class="gl-zh">CAK激酶</td></tr>
-  <tr><td class="gl-en">Wee1 kinase</td><td class="gl-zh">Wee1激酶</td></tr>
-  <tr><td class="gl-en">Cdc25 phosphatase</td><td class="gl-zh">Cdc25磷酸酶</td></tr>
-  <tr><td class="gl-en">Cdc14 phosphatase</td><td class="gl-zh">Cdc14磷酸酶</td></tr>
-  <tr><td class="gl-en">Cdc25A phosphatase</td><td class="gl-zh">Cdc25A磷酸酶</td></tr>
-  <tr><td class="gl-en">Cdc25C phosphatase</td><td class="gl-zh">Cdc25C磷酸酶</td></tr>
-  <tr><td class="gl-en">Inhibitory Proteins</td><td class="gl-zh">抑制蛋白</td></tr>
-  <tr><td class="gl-en">CKIs</td><td class="gl-zh">CDK抑制蛋白（CKI）</td></tr>
-  <tr><td class="gl-en">Ubiquitin-Protein Ligases</td><td class="gl-zh">泛素连接酶</td></tr>
+  <figcaption>表19-2 · 细胞周期蛋白-CDK活性的调控因子</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:30%">
+      <col style="width:70%">
+    </colgroup>
+    <thead>
+      <tr><th>调控因子类型</th><th>功能</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="2">激酶与磷酸酶</td></tr>
+      <tr><td>CAK激酶</td><td>激活CDK</td></tr>
+      <tr><td>Wee1激酶</td><td>抑制CDK</td></tr>
+      <tr><td>Cdc25磷酸酶</td><td>激活CDK</td></tr>
+      <tr><td>Cdc14磷酸酶</td><td>激活Cdh1，以降解有丝分裂细胞周期蛋白</td></tr>
+      <tr><td>Cdc25A磷酸酶</td><td>激活脊椎动物S期CDK</td></tr>
+      <tr><td>Cdc25C磷酸酶</td><td>激活脊椎动物有丝分裂CDK</td></tr>
+      <tr><td class="sect" colspan="2">抑制蛋白</td></tr>
+      <tr><td>Sic1</td><td>结合并抑制S期CDK</td></tr>
+      <tr><td>CKI：p27ᴷᴵᴾ¹、p57ᴷᴵᴾ²和p21ᶜᴵᴾ</td><td>结合并抑制CDK</td></tr>
+      <tr><td>INK4</td><td>结合并抑制G₁期CDK</td></tr>
+      <tr><td>视网膜母细胞瘤蛋白（Rb）</td><td>结合E2F，阻止多个细胞周期基因的转录</td></tr>
+      <tr><td class="sect" colspan="2">泛素-蛋白连接酶</td></tr>
+      <tr><td>SCF</td><td>降解磷酸化的Sic1或p27ᴷᴵᴾ¹，以激活S期CDK</td></tr>
+      <tr><td>APC/Cᶜᵈᶜ²⁰</td><td>降解后期抑制蛋白（securin）以启动后期；并诱导B型细胞周期蛋白的降解</td></tr>
+      <tr><td>APC/Cᶜᵈʰ¹</td><td>在G₁期降解B型细胞周期蛋白，在后生动物中降解geminin，从而允许复制解旋酶装载到DNA复制起点上</td></tr>
+    </tbody>
   </table>
 </figure>
 <h3 class="subhead">细胞周期蛋白水平主要通过蛋白质降解来调控</h3>

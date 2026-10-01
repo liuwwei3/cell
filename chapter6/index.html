@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -860,19 +877,29 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h2 id="sec-6.4">6.4 人类疾病基因的定位与鉴定</h2>
 <p>遗传性人类疾病是缺陷性人类基因的表型结果。<a class="xref xref-tab" href="#tab-T6-2">表6-2</a>列出了几种最常见的遗传性疾病。虽然"疾病"基因可能源于上一代产生的新突变，但大多数遗传性疾病病例是由预先存在的突变等位基因引起的，这些等位基因已经代代相传了许多代。■</p>
 <figure class="table" id="tab-T6-2">
-  <img class="zoomable" src="figures/tab_T6-2_1.png" alt="表 T6-2" onclick="lightbox(this.src)">
-  <figcaption>表 6-2 常见遗传性人类疾病</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Inherited human diseases</td><td class="gl-zh">人类遗传病</td></tr>
-  <tr><td class="gl-en">Mutant alleles</td><td class="gl-zh">突变等位基因</td></tr>
-  <tr><td class="gl-en">Sickle-cell disease</td><td class="gl-zh">镰刀型细胞贫血病</td></tr>
-  <tr><td class="gl-en">Hemoglobin</td><td class="gl-zh">血红蛋白</td></tr>
-  <tr><td class="gl-en">Amino acid substitution</td><td class="gl-zh">氨基酸替换</td></tr>
-  <tr><td class="gl-en">Cystic fibrosis</td><td class="gl-zh">囊性纤维化</td></tr>
-  <tr><td class="gl-en">Huntington's disease</td><td class="gl-zh">亨廷顿病</td></tr>
-  <tr><td class="gl-en">Duchenne muscular dystrophy</td><td class="gl-zh">杜氏肌营养不良症</td></tr>
-  <tr><td class="gl-en">Monogenic disease</td><td class="gl-zh">单基因病</td></tr>
-  <tr><td class="gl-en">Tay-Sachs disease</td><td class="gl-zh">泰-萨克斯病</td></tr>
+  <figcaption>表6-2 · 常见的人类遗传病</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:23.4%">
+      <col style="width:46.6%">
+      <col style="width:30.0%">
+    </colgroup>
+    <thead>
+      <tr><th>疾病</th><th>分子与细胞缺陷</th><th>发病率</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="3">常染色体隐性</td></tr>
+      <tr><td>镰状细胞病</td><td>异常血红蛋白引起红细胞变形，变形细胞可滞留于毛细血管中；同时还赋予对疟疾的抗性。</td><td>撒哈拉以南非洲裔中 1/625</td></tr>
+      <tr><td>囊性纤维化</td><td>上皮细胞中氯离子通道（CFTR）缺陷，导致肺部黏液过多。</td><td>欧洲裔中 1/2500</td></tr>
+      <tr><td>苯丙酮尿症（PKU）</td><td>苯丙氨酸代谢的酶（酪氨酸羟化酶）缺陷导致苯丙氨酸过量，若不限制饮食则引起智力低下。</td><td>欧洲裔中 1/10,000</td></tr>
+      <tr><td>泰-萨克斯病</td><td>己糖胺酶缺陷导致神经元的溶酶体中鞘脂过量积累，损害神经发育。</td><td>东欧犹太人中 1/1000</td></tr>
+      <tr><td class="sect" colspan="3">常染色体显性</td></tr>
+      <tr><td>亨廷顿病</td><td>缺陷的神经蛋白（亨廷顿蛋白）可能组装成聚集体，损害神经组织。</td><td>欧洲裔中 1/10,000</td></tr>
+      <tr><td>高胆固醇血症</td><td>缺陷的 LDL 受体导致血液中胆固醇过量及早发心脏病。</td><td>法裔加拿大人中 1/122</td></tr>
+      <tr><td class="sect" colspan="3">X 连锁隐性</td></tr>
+      <tr><td>杜氏肌营养不良症（DMD）</td><td>缺陷的细胞骨架蛋白（肌营养不良蛋白）导致肌肉功能受损。</td><td>男性中 1/3500</td></tr>
+      <tr><td>血友病 A</td><td>缺陷的凝血因子 VIII 导致出血失控。</td><td>男性中 1–2/10,000</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>破译任何遗传性疾病根本原因的典型第一步是识别受影响的基因及其编码的蛋白质。将疾病基因及其产物的序列与已知序列和功能的基因和蛋白质序列进行比较，可以为疾病的分子和细胞原因提供线索。历史上，研究人员曾利用任何可能相关的表型线索来推测遗传性疾病的分子基础。早期成功推测的一个例子是镰状细胞病——已知是一种血细胞疾病——可能由缺陷性血红蛋白引起的假说。这一想法导致在血红蛋白中鉴定出一个特定的氨基酸替换，该替换导致缺陷性血红蛋白分子聚合，从而在遗传了两个拷贝的镰状细胞血红蛋白Hbs等位基因的个体中引起红细胞的镰刀状变形。</p>

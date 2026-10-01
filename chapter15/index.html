@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -539,26 +556,30 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>所有G蛋白偶联受体在膜中都有相同的取向，并含有七个跨膜α螺旋区（H1–H7）、四个细胞外区段和四个胞质溶胶区段（<a class="xref xref-fig" href="#fig-15-12">图15-12</a>）。其N端总是位于质膜的外质面，C端位于质膜的胞质溶胶面。人类基因组编码约800种功能性GPCR，它们被分为若干亚家族；这些亚家族的成员在氨基酸序列和结构上特别相似。</p>
 <p>G蛋白偶联受体通过七个跨膜区段外表面上的许多疏水氨基酸，稳定地锚定在质膜的疏水核心中。有一组其结构已在分子水平上已知的G蛋白偶联受体，就是β肾上腺素能受体，它们结合肾上腺素和去甲肾上腺素等激素（<a class="xref xref-fig" href="#fig-15-13">图15-13</a>a）。在这些受体以及许多其他受体中，若干膜内嵌α螺旋的区段与细胞外环共同形成配体结合位点，该位点朝向外质面开放。<a class="xref xref-fig" href="#fig-15-13">图15-13</a>b所示的拮抗剂氰基吲哚洛尔与β肾上腺素能受体的亲和力远高于大多数激动剂，由此形成的受体-配体复合物已被结晶并测定了结构。位于四个跨膜α螺旋和细胞外环E2中的15个氨基酸的侧链与配体形成非共价接触。</p>
 <figure class="table" id="tab-T15-1">
-  <img class="zoomable" src="figures/tab_T15-1_1.png" alt="表 T15-1" onclick="lightbox(this.src)">
-  <figcaption>表15-1 具有药学重要性的人类G蛋白偶联受体</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Receptor</td><td class="gl-zh">受体</td></tr>
-  <tr><td class="gl-en">Natural Ligand</td><td class="gl-zh">天然配体</td></tr>
-  <tr><td class="gl-en">Location</td><td class="gl-zh">位置</td></tr>
-  <tr><td class="gl-en">Physiological Function</td><td class="gl-zh">生理功能</td></tr>
-  <tr><td class="gl-en">Drug</td><td class="gl-zh">药物</td></tr>
-  <tr><td class="gl-en">Medical Use</td><td class="gl-zh">医学用途</td></tr>
-  <tr><td class="gl-en">Histamine</td><td class="gl-zh">组胺</td></tr>
-  <tr><td class="gl-en">H2 receptor</td><td class="gl-zh">H2受体</td></tr>
-  <tr><td class="gl-en">H1 receptor</td><td class="gl-zh">H1受体</td></tr>
-  <tr><td class="gl-en">Central nervous system</td><td class="gl-zh">中枢神经系统</td></tr>
-  <tr><td class="gl-en">Angiotensin II</td><td class="gl-zh">血管紧张素II</td></tr>
-  <tr><td class="gl-en">AT1</td><td class="gl-zh">AT1受体</td></tr>
-  <tr><td class="gl-en">Epinephrine</td><td class="gl-zh">肾上腺素</td></tr>
-  <tr><td class="gl-en">β2-adrenergic receptor</td><td class="gl-zh">β2肾上腺素能受体</td></tr>
-  <tr><td class="gl-en">Leukotrienes</td><td class="gl-zh">白三烯</td></tr>
-  <tr><td class="gl-en">CysLT1</td><td class="gl-zh">半胱氨酰白三烯受体1</td></tr>
+  <figcaption>表15-1 · 具有药学重要性的人G蛋白偶联受体</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:12%">
+      <col style="width:13%">
+      <col style="width:16%">
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:19%">
+    </colgroup>
+    <thead>
+      <tr><th>受体</th><th>天然配体</th><th>位置</th><th>生理功能</th><th>药物</th><th>医学用途</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>组胺H₂受体</td><td>组胺</td><td>胃的泌酸细胞</td><td>刺激胃酸分泌</td><td>西咪替丁（cimetidine，Tagamet）、雷尼替丁（ranitidine，Zantac）（拮抗剂）</td><td>预防胃酸过多；治疗消化性溃疡</td></tr>
+      <tr><td>组胺H₁受体</td><td>组胺</td><td>血管平滑肌、血管内皮细胞</td><td>增加血管通透性并引起过敏症状</td><td>非索非那定（fexofenadine，Allegra）、氯雷他定（loratadine，Claritin）（拮抗剂）</td><td>减轻过敏症状</td></tr>
+      <tr><td>5-羟色胺5HT₂A受体</td><td>5-羟色胺</td><td>中枢神经系统</td><td>神经元之间的突触传递</td><td>氯氮平（clozapine）、利培酮（risperidone）（拮抗剂）</td><td>治疗精神分裂症</td></tr>
+      <tr><td>5-羟色胺5HT₁ₐ受体</td><td>5-羟色胺</td><td>中枢神经系统</td><td>神经元之间的突触传递</td><td>丁螺环酮（buspirone，BuSpar）（激动剂）</td><td>治疗抑郁症、广泛性焦虑障碍</td></tr>
+      <tr><td>血管紧张素AT₁受体</td><td>血管紧张素II</td><td>血管平滑肌细胞</td><td>收缩血管并升高血压</td><td>氯沙坦（losartan，Cozarr）（拮抗剂）</td><td>降低高血压</td></tr>
+      <tr><td>β₂-肾上腺素能受体</td><td>肾上腺素</td><td>呼吸道内衬的平滑肌细胞</td><td>促进呼吸</td><td>沙美特罗（salmeterol，Severent）（激动剂）</td><td>治疗哮喘、慢性阻塞性肺疾病</td></tr>
+      <tr><td>半胱氨酰白三烯受体1（CysLT₁）</td><td>白三烯</td><td>肺、支气管、肥大细胞</td><td>收缩平滑肌</td><td>孟鲁司特（montelukast，Singulair）（拮抗剂）</td><td>治疗哮喘、季节性过敏</td></tr>
+    </tbody>
   </table>
+  <p class="table-note src">数据来源：A. Wise 等，2002，Drug Discovery Today 7:235–246。</p>
 </figure>
 <p>胰高血糖素是由胰岛α细胞分泌的一种29个氨基酸的肽类激素；正如我们将在本章后面看到的，它作用于肝脏，触发糖原分解以及葡萄糖向血液中的分泌。胰高血糖素受体属于与β肾上腺素能受体不同的GPCR亚家族；它虽然具有标准的七次跨膜α螺旋，但还有一个大的外质结构域，与第一个跨膜α螺旋的延伸部分相连。该外质结构域与胰高血糖素的C端紧密结合，使N端定位以结合到由若干跨膜螺旋的残基形成的口袋中，正如β肾上腺素能受体和其他GPCR那样（<a class="xref xref-fig" href="#fig-15-13">图15-13</a>c）。构成不同GPCR内部的氨基酸是多种多样的，这使不同的受体能结合非常不同的小分子，无论它们是亲水的（如肾上腺素和胰高血糖素）还是疏水的（如许多气味分子）。但在所有情况下，配体的结合都会引起受体的构象变化，使其能够激活异三聚体G蛋白的GTP结合Gα亚基。</p>
 <figure class="fig" id="fig-15-12">
@@ -650,20 +671,28 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>GPCR信号转导通路中的所有效应蛋白要么是膜结合离子通道，要么是催化<a class="xref xref-fig" href="#fig-15-6">图15-6</a>所示一种或多种第二信使形成的膜结合酶。我们在15.4至15.6节中考察的GPCR信号传导的各种变奏之所以出现，是因为真核生物基因组编码了多种活性不同的G蛋白。人类有16个基因编码的21种不同的Gα亚基（其中若干发生可变剪接）、6种Gβ亚基和12种Gγ亚基。就目前所知，不同的Gβγ亚基在功能上可以互换，而不同的Gα亚基赋予各种G蛋白特异性。因此，我们可以用其α亚基的名称来指代整个三亚基G蛋白。</p>
 <p><a class="xref xref-tab" href="#tab-T15-2">表15-2</a>总结了具有不同Gα亚基的主要G蛋白类别的功能。为说明这些蛋白的多才多艺，我们将考察在哺乳动物不同类型细胞中发现的肾上腺素G蛋白偶联受体集合。肾上腺素这种激素在介导机体对压力的应答（也称为"战斗或逃跑"反应）中特别重要。正如我们将在15.5节详述的，在恐惧或剧烈运动时，组织对分解代谢葡萄糖和脂肪酸的需求可能增加，以产生ATP，肾上腺素便发出信号，使肝细胞（肝脏）中的糖原迅速分解为葡萄糖，并使脂肪细胞中的三酰甘油迅速分解为脂肪酸；几秒之内，这些主要代谢燃料就被供应到血液中。在哺乳动物中，葡萄糖和脂肪酸的释放是由肾上腺素（或其衍生物去甲肾上腺素）与肝细胞和脂肪细胞表面的β2肾上腺素能受体结合所触发的。β肾上腺素能受体的两种亚型β1和β2都与一种刺激性G蛋白（Gs）偶联，其α亚基（Gαs）激活一种称为腺苷酸环化酶的膜结合效应酶。该酶一旦被激活，就催化第二信使cAMP的合成。</p>
 <figure class="table" id="tab-T15-2">
-  <img class="zoomable" src="figures/tab_T15-2_1.png" alt="表 T15-2" onclick="lightbox(this.src)">
-  <figcaption>表15-2 哺乳动物主要异三聚体G蛋白类别及其效应器*</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Gα Class</td><td class="gl-zh">Gα类别</td></tr>
-  <tr><td class="gl-en">Associated Effector</td><td class="gl-zh">相关效应器</td></tr>
-  <tr><td class="gl-en">Second Messenger</td><td class="gl-zh">第二信使</td></tr>
-  <tr><td class="gl-en">Receptor Examples</td><td class="gl-zh">受体实例</td></tr>
-  <tr><td class="gl-en">Adenylyl cyclase</td><td class="gl-zh">腺苷酸环化酶</td></tr>
-  <tr><td class="gl-en">Phospholipase C</td><td class="gl-zh">磷脂酶C</td></tr>
-  <tr><td class="gl-en">cGMP phosphodiesterase</td><td class="gl-zh">cGMP磷酸二酯酶</td></tr>
-  <tr><td class="gl-en">Muscarinic acetylcholine receptor</td><td class="gl-zh">毒蕈碱型乙酰胆碱受体</td></tr>
-  <tr><td class="gl-en">Rhodopsin (light receptor) in rod cells</td><td class="gl-zh">视杆细胞中的视紫红质（光受体）</td></tr>
-  <tr><td class="gl-en">β-Adrenergic (epinephrine) receptor</td><td class="gl-zh">β肾上腺素能（肾上腺素）受体</td></tr>
+  <figcaption>表15-2 · 哺乳动物异三聚体G蛋白的主要类别及其效应器*</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:8%">
+      <col style="width:23%">
+      <col style="width:22%">
+      <col style="width:47%">
+    </colgroup>
+    <thead>
+      <tr><th>Gα类别</th><th>相关效应器</th><th>第二信使</th><th>受体实例</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Gαs</td><td>腺苷酸环化酶</td><td>cAMP（升高）</td><td>β-肾上腺素能（肾上腺素）受体；胰高血糖素、5-羟色胺、血管升压素的受体</td></tr>
+      <tr><td>Gαi</td><td>腺苷酸环化酶、K⁺通道（Gβγ激活效应器）</td><td>cAMP（降低）；膜电位改变</td><td>α₂-肾上腺素能受体；毒蕈碱型乙酰胆碱受体</td></tr>
+      <tr><td>Gαolf</td><td>腺苷酸环化酶</td><td>cAMP（升高）</td><td>鼻中的气味受体</td></tr>
+      <tr><td>Gαq</td><td>磷脂酶C</td><td>IP₃、DAG（升高）</td><td>α₁-肾上腺素能受体</td></tr>
+      <tr><td>Gαo</td><td>磷脂酶C</td><td>IP₃、DAG（升高）</td><td>内皮细胞中的乙酰胆碱受体</td></tr>
+      <tr><td>Gαt</td><td>cGMP磷酸二酯酶</td><td>cGMP（降低）</td><td>视杆细胞中的视紫红质（光受体）</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>某一Gα亚类可与不止一种效应器蛋白相关联。迄今为止，只鉴定出一种主要的Gαs，但已描述出多种Gαi和Gαq G蛋白。效应器蛋白通常由Gα调控，但在某些情况下由Gβγ或Gα与Gβγ的共同作用调控。IP₃ = 肌醇1,4,5-三磷酸；DAG = 1,2-二酰甘油。</p>
+  <p class="table-note src">数据来源：见 L. Birnbaumer，1992，Cell 71:1069；Z. Farfel 等，1999，New Engl. J. Med. 340:1012；以及 K. Pierce 等，2002，Nat. Rev. Mol. Cell Biol. 3:639。</p>
 </figure>
 <p>肾上腺素还有其他生理效应。例如，结合到心肌细胞上β1肾上腺素能受体的肾上腺素会提高收缩频率，从而增加组织的血液供应。还有另一种肾上腺素GPCR，即α1肾上腺素能受体，存在于肠道、皮肤和肾脏中血管内衬的平滑肌细胞上。肾上腺素与这些受体结合使动脉收缩，切断通往这些器官的血流。与α1肾上腺素能受体偶联的Gαq亚基激活另一种效应酶——磷脂酶C，它产生另外两种第二信使，即二酰甘油（DAG）和肌醇1,4,5-三磷酸（IP3）（见<a class="xref xref-fig" href="#fig-15-6">图15-6</a>）。还有一种肾上腺素受体，即α2肾上腺素能受体，存在于许多机体细胞上并与Gαi亚基偶联，后者引起这些靶细胞中腺苷酸环化酶的抑制。肾上腺素的这些多样效应有助于协调全身的整合性应答，所有这些都指向一个共同目的：为主要运动肌提供能量，同时将能量从在执行身体应激应答中不那么关键的其他器官转移开。</p>
 <p>有些细菌毒素含有一个亚基，它能穿透靶哺乳动物细胞的质膜，一旦进入胞质溶胶，就催化Gα蛋白的化学修饰，阻止所结合的GTP水解为GDP。例如，由霍乱弧菌（Vibrio cholerae）产生的毒素，即引起霍乱的那种细菌，或某些大肠杆菌（E. coli）菌株，会进入肠道上皮细胞并催化这些细胞中Gαs蛋白的共价修饰。结果，Gαs保持活性状态，在没有激素刺激的情况下持续激活效应器腺苷酸环化酶。由此导致的细胞内cAMP过度升高使电解质和水流失到肠腔中，产生这些细菌感染特征性的水样腹泻。百日咳博德特菌（Bordetella pertussis）是一种常感染呼吸道细胞并引起百日咳的细菌，其产生的毒素催化Gαi的一种修饰，阻止所结合GDP的释放。结果，Gαi被锁定在非活性状态，减弱了对腺苷酸环化酶的抑制。由此导致的气道上皮细胞内cAMP升高促进了液体和电解质的流失以及黏液分泌。■</p>
@@ -907,25 +936,32 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">cAMP介导的PKA激活在不同细胞类型中产生多样的应答</h3>
 <p>在脂肪细胞中，肾上腺素诱导的PKA激活促进脂肪酶的磷酸化与激活，该酶水解储存的甘油三酯，产生游离脂肪酸和甘油。这些脂肪酸被释放到血液中，并被其他组织（如肾、心脏和肌肉）的细胞作为能源摄取（见第12章）。因此，肾上腺素在肝细胞和脂肪细胞这两种不同细胞类型中激活PKA，产生不同的效应。事实上，cAMP和PKA在多种组织中介导了大量由激素诱导的细胞应答（<a class="xref xref-tab" href="#tab-T15-3">表15-3</a>）。</p>
 <figure class="table" id="tab-T15-3">
-  <img class="zoomable" src="figures/tab_T15-3_1.png" alt="表 T15-3" onclick="lightbox(this.src)">
-  <figcaption>表15-3 多种组织中激素诱导的cAMP升高所引起的细胞应答*</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Tissue</td><td class="gl-zh">组织</td></tr>
-  <tr><td class="gl-en">Hormone Inducing Rise in cAMP</td><td class="gl-zh">诱导cAMP升高的激素</td></tr>
-  <tr><td class="gl-en">Cellular Response</td><td class="gl-zh">细胞应答</td></tr>
-  <tr><td class="gl-en">Adipose</td><td class="gl-zh">脂肪</td></tr>
-  <tr><td class="gl-en">Liver</td><td class="gl-zh">肝脏</td></tr>
-  <tr><td class="gl-en">Ovarian follicle</td><td class="gl-zh">卵巢卵泡</td></tr>
-  <tr><td class="gl-en">Adrenal cortex</td><td class="gl-zh">肾上腺皮质</td></tr>
-  <tr><td class="gl-en">Cardiac muscle</td><td class="gl-zh">心肌</td></tr>
-  <tr><td class="gl-en">Thyroid gland</td><td class="gl-zh">甲状腺</td></tr>
-  <tr><td class="gl-en">Bone</td><td class="gl-zh">骨</td></tr>
-  <tr><td class="gl-en">Skeletal muscle</td><td class="gl-zh">骨骼肌</td></tr>
-  <tr><td class="gl-en">Intestine</td><td class="gl-zh">肠</td></tr>
-  <tr><td class="gl-en">Kidney</td><td class="gl-zh">肾</td></tr>
-  <tr><td class="gl-en">Blood platelets</td><td class="gl-zh">血小板</td></tr>
-  <tr><td class="gl-en">TSH</td><td class="gl-zh">促甲状腺激素</td></tr>
+  <figcaption>表15-3 · 多种组织中激素诱导的cAMP升高所引起的细胞应答*</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:15%">
+      <col style="width:27%">
+      <col style="width:58%">
+    </colgroup>
+    <thead>
+      <tr><th>组织</th><th>诱导cAMP升高的激素</th><th>细胞应答</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>脂肪</td><td>肾上腺素；促肾上腺皮质激素（ACTH）；胰高血糖素</td><td>甘油三酯水解增加；氨基酸摄取减少</td></tr>
+      <tr><td>肝脏</td><td>肾上腺素；去甲肾上腺素；胰高血糖素</td><td>糖原转化为葡萄糖增加；糖原合成受抑制；氨基酸摄取增加；糖异生增加（由氨基酸合成葡萄糖）</td></tr>
+      <tr><td>卵巢卵泡</td><td>卵泡刺激素（FSH）；黄体生成素（LH）</td><td>雌激素、孕激素合成增加</td></tr>
+      <tr><td>肾上腺皮质</td><td>促肾上腺皮质激素（ACTH）</td><td>醛固酮、皮质醇合成增加</td></tr>
+      <tr><td>心肌</td><td>肾上腺素</td><td>收缩速率增加</td></tr>
+      <tr><td>甲状腺</td><td>促甲状腺激素（TSH）</td><td>甲状腺素分泌</td></tr>
+      <tr><td>骨</td><td>甲状旁腺激素</td><td>钙从骨中的再吸收增加</td></tr>
+      <tr><td>骨骼肌</td><td>肾上腺素</td><td>糖原转化为葡糖-1-磷酸</td></tr>
+      <tr><td>肠</td><td>肾上腺素</td><td>液体分泌</td></tr>
+      <tr><td>肾</td><td>血管升压素</td><td>水的重吸收</td></tr>
+      <tr><td>血小板</td><td>前列腺素I₂</td><td>聚集和分泌受抑制</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>cAMP的几乎所有效应都通过蛋白激酶A（PKA）介导，而PKA通过与cAMP结合而被激活。</p>
+  <p class="table-note src">数据来源：E. W. Sutherland，1972，Science 177:401。</p>
 </figure>
 <p>尽管PKA在不同类型的细胞中作用于不同的底物，它总是磷酸化出现在同一序列基序中的丝氨酸或苏氨酸残基：X-Arg-(Arg/Lys)-X-(Ser/Thr)-Φ，其中X表示任意氨基酸，Φ表示疏水性氨基酸。其他丝氨酸/苏氨酸激酶则磷酸化位于其他序列基序中的靶残基。</p>
 <h3 class="subhead">cAMP-PKA通路中存在信号放大</h3>
@@ -1018,32 +1054,28 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>我们在第12章了解到，线粒体基质中游离Ca2+浓度的升高会加速丙酮酸氧化和ATP生成。因此，在肌肉中，Ca2+浓度的升高既用于诱导收缩，又协同性地增加线粒体ATP合成，为这些收缩提供能量。</p>
 <p>本节中，我们首先讨论科学家用于测量细胞器（如内质网和线粒体）中游离Ca2+离子——即未与蛋白质紧密结合的Ca2+离子——浓度的实验工具。我们的主要关注点是一种导致胞质溶胶Ca2+离子浓度升高的重要信号转导机制：GPCR刺激磷脂酶C（PLC）的激活。PLC是一个酶家族，可水解某些磷脂中的磷酸酯键，产生两种第二信使，它们既参与升高胞质溶胶和线粒体基质的Ca2+水平，又参与激活一个称为蛋白激酶C（PKC）的胞质溶胶激酶家族；PKC反过来影响许多重要的细胞过程，如生长和分化，并改变许多蛋白质的活性。</p>
 <figure class="table" id="tab-T15-4">
-  <img class="zoomable" src="figures/tab_T15-4_1.png" alt="表 T15-4" onclick="lightbox(this.src)">
-  <figcaption>表15-4 各种组织中激素诱导的胞质溶胶Ca2+升高所引发的细胞应答*</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Tissue</td><td class="gl-zh">组织</td></tr>
-  <tr><td class="gl-en">Hormone Inducing Rise in Ca2+</td><td class="gl-zh">诱导Ca2+升高的激素</td></tr>
-  <tr><td class="gl-en">Cellular Response</td><td class="gl-zh">细胞应答</td></tr>
-  <tr><td class="gl-en">Pancreas (acinar cells)</td><td class="gl-zh">胰腺（腺泡细胞）</td></tr>
-  <tr><td class="gl-en">Parotid (salivary) gland</td><td class="gl-zh">腮腺（唾液腺）</td></tr>
-  <tr><td class="gl-en">Acetylcholine</td><td class="gl-zh">乙酰胆碱</td></tr>
-  <tr><td class="gl-en">Vascular or stomach smooth muscle</td><td class="gl-zh">血管或胃平滑肌</td></tr>
-  <tr><td class="gl-en">Liver</td><td class="gl-zh">肝</td></tr>
-  <tr><td class="gl-en">Vasopressin</td><td class="gl-zh">血管升压素</td></tr>
-  <tr><td class="gl-en">Blood platelets</td><td class="gl-zh">血小板</td></tr>
-  <tr><td class="gl-en">Thrombin</td><td class="gl-zh">凝血酶</td></tr>
-  <tr><td class="gl-en">Mast cells</td><td class="gl-zh">肥大细胞</td></tr>
-  <tr><td class="gl-en">Antigen</td><td class="gl-zh">抗原</td></tr>
-  <tr><td class="gl-en">Fibroblasts</td><td class="gl-zh">成纤维细胞</td></tr>
-  <tr><td class="gl-en">Peptide growth factors</td><td class="gl-zh">肽类生长因子</td></tr>
-  <tr><td class="gl-en">DNA synthesis, cell division</td><td class="gl-zh">DNA合成、细胞分裂</td></tr>
-  <tr><td class="gl-en">bombesin</td><td class="gl-zh">铃蟾肽</td></tr>
-  <tr><td class="gl-en">PDGF</td><td class="gl-zh">血小板衍生生长因子（PDGF）</td></tr>
-  <tr><td class="gl-en">Aggregation, shape change, secretion of hormones</td><td class="gl-zh">聚集、形态改变、激素分泌</td></tr>
-  <tr><td class="gl-en">Conversion of glycogen to glucose</td><td class="gl-zh">糖原转化为葡萄糖</td></tr>
-  <tr><td class="gl-en">Histamine secretion</td><td class="gl-zh">组胺分泌</td></tr>
-  <tr><td class="gl-en">Contraction</td><td class="gl-zh">收缩</td></tr>
+  <figcaption>表15-4 · 多种组织中激素诱导的胞质溶胶Ca²⁺升高所引起的细胞应答*</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:28%">
+      <col style="width:32%">
+      <col style="width:40%">
+    </colgroup>
+    <thead>
+      <tr><th>组织</th><th>诱导Ca²⁺升高的激素</th><th>细胞应答</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>胰腺（腺泡细胞）</td><td>乙酰胆碱</td><td>分泌消化酶，如淀粉酶和胰蛋白酶原</td></tr>
+      <tr><td>腮腺（唾液腺）</td><td>乙酰胆碱</td><td>分泌淀粉酶</td></tr>
+      <tr><td>血管或胃平滑肌</td><td>乙酰胆碱</td><td>收缩</td></tr>
+      <tr><td>肝</td><td>血管升压素</td><td>糖原转化为葡萄糖</td></tr>
+      <tr><td>血小板</td><td>凝血酶</td><td>聚集、形态改变、激素分泌</td></tr>
+      <tr><td>肥大细胞</td><td>抗原</td><td>组胺分泌</td></tr>
+      <tr><td>成纤维细胞</td><td>肽类生长因子</td><td>DNA合成、细胞分裂（例如铃蟾肽和PDGF）</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>激素刺激导致肌醇1,4,5-三磷酸（IP₃）生成，IP₃是一种第二信使，可促进储存在内质网中的Ca²⁺释放。</p>
+  <p class="table-note src">数据来源：M. J. Berridge，1987，Annu. Rev. Biochem. 56:159；以及 M. J. Berridge 与 R. F. Irvine，1984，Nature 312:315。</p>
 </figure>
 <p>有些PLC由GPCR激活，正如我们此处所述；另一些则由其他类型的受体激活，将在下一章中介绍。磷脂酶C还产生一些第二信使，它们对肌动蛋白细胞骨架的重塑（见第17章）以及对内吞和囊泡融合所必需的蛋白质的结合（见第14章）十分重要。本节稍后我们将看到，诸如Ca2+这样的第二信使如何帮助细胞整合其对一种以上细胞外信号的应答。在本节的最后部分，我们将看到一个PLC通路如何导致一种气体——一氧化氮（NO）的合成，NO从细胞扩散出去进入相邻细胞，在那里可诱导一种激酶的激活，进而改变若干细胞活动。</p>
 <h3 class="subhead">线粒体基质、内质网和胞质溶胶中的钙浓度可用靶向荧光蛋白测量</h3>

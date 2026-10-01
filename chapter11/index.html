@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -345,21 +362,27 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <figure class="table" id="tab-T11-1">
-  <img class="zoomable" src="figures/tab_T11-1_1.png" alt="表 T11-1" onclick="lightbox(this.src)">
-  <figcaption>表11-1 离子和小分子跨细胞膜转运的机制</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Property</td><td class="gl-zh">性质</td></tr>
-  <tr><td class="gl-en">Simple Diffusion</td><td class="gl-zh">简单扩散</td></tr>
-  <tr><td class="gl-en">Facilitated Transport</td><td class="gl-zh">易化转运</td></tr>
-  <tr><td class="gl-en">Active Transport</td><td class="gl-zh">主动转运</td></tr>
-  <tr><td class="gl-en">Cotransport</td><td class="gl-zh">协同转运</td></tr>
-  <tr><td class="gl-en">Requires specific protein</td><td class="gl-zh">需要特定蛋白</td></tr>
-  <tr><td class="gl-en">Solute transported against its gradient</td><td class="gl-zh">溶质逆其梯度转运</td></tr>
-  <tr><td class="gl-en">Coupled to ATP hydrolysis</td><td class="gl-zh">与ATP水解偶联</td></tr>
-  <tr><td class="gl-en">Driven by movement of a cotransported ion down its gradient</td><td class="gl-zh">由协同转运的离子顺其梯度移动所驱动</td></tr>
-  <tr><td class="gl-en">Examples of molecules transported</td><td class="gl-zh">所转运分子的例子</td></tr>
-  <tr><td class="gl-en">Also called secondary active transport</td><td class="gl-zh">又称继发性主动转运</td></tr>
+  <figcaption>表11-1 · 离子和小分子跨细胞膜转运的机制</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:21.5%">
+      <col style="width:15%">
+      <col style="width:21.5%">
+      <col style="width:20.5%">
+      <col style="width:21.5%">
+    </colgroup>
+    <thead>
+      <tr><th>性质</th><th>简单扩散</th><th>易化转运</th><th>主动转运</th><th>协同转运*</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>需要特异性蛋白质</td><td class="ctr">−</td><td class="ctr">+</td><td class="ctr">+</td><td class="ctr">+</td></tr>
+      <tr><td>溶质逆其梯度转运</td><td class="ctr">−</td><td class="ctr">−</td><td class="ctr">+</td><td class="ctr">+</td></tr>
+      <tr><td>与ATP水解偶联</td><td class="ctr">−</td><td class="ctr">−</td><td class="ctr">+</td><td class="ctr">−</td></tr>
+      <tr><td>由协同转运的离子顺其梯度移动所驱动</td><td class="ctr">−</td><td class="ctr">−</td><td class="ctr">−</td><td class="ctr">+</td></tr>
+      <tr><td>被转运分子的示例</td><td>O₂、CO₂、类固醇激素、许多药物</td><td>葡萄糖和氨基酸（单向转运体）；离子和水（通道）</td><td>离子、小的亲水性分子、脂质（ATP驱动泵）</td><td>葡萄糖和氨基酸（同向转运体）；各种离子和蔗糖（反向转运体）</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>带 * 的协同转运又称次级主动转运。</p>
 </figure>
 <p><a class="xref xref-tab" href="#tab-T11-1">表11-1</a>总结了小分子和离子跨细胞膜转运的四种机制。下一节我们讨论一些最简单的膜转运蛋白，即负责转运葡萄糖和水的那些。</p>
 <div class="key-concepts" id="kc-11-1"><div class="kc-head">第 11.1 节 · 关键概念</div><div class="kc-title">跨膜转运概述</div><ul><li>细胞膜调控分子和离子进出细胞及其细胞器的流量。物质跨膜简单扩散的速率与其浓度梯度和疏水性成正比。</li><li>除气体（如O2和CO2）以及小型不带电的水溶性分子之外，大多数分子以简单扩散穿过纯磷脂双分子层的速率不足以满足细胞的需要。</li><li>膜转运蛋白为分子和离子穿过膜的疏水内部提供了一条亲水性通路。</li><li>三类跨膜蛋白介导离子、糖类、氨基酸和其他代谢物跨细胞膜的转运：通道、转运体和ATP驱动的泵（见<a class="xref xref-fig" href="#fig-11-2">图11-2</a>）。</li><li>通道形成一条亲水性"管道"，水或离子顺浓度梯度从中通过，这一过程称为易化转运。</li><li>转运体分为三组。单向转运体把分子顺其浓度梯度转运（易化转运）；同向转运体和反向转运体把底物逆其浓度梯度的移动与第二种底物顺其浓度梯度的移动偶联起来，这一过程称为次级主动转运或协同转运（见<a class="xref xref-tab" href="#tab-T11-1">表11-1</a>）。</li><li>ATP驱动的泵把底物逆其浓度梯度的移动与ATP水解偶联起来，这一过程称为主动转运。</li><li>构象变化对所有膜转运蛋白的功能都必不可少；转运速度取决于单位时间内能通过一个蛋白质的底物分子或离子数目。</li></ul></div>
@@ -496,15 +519,34 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">ATP驱动的离子泵产生并维持跨细胞膜的离子梯度</h3>
 <p>细胞质特有的离子组成通常与周围细胞外液相差很大。在几乎所有细胞中——包括微生物、植物和动物细胞——无论细胞外pH如何，细胞质pH都保持在7.2左右。在最极端的例子中，衬在胃内的上皮细胞的细胞质与餐后胃内容物之间的H+浓度相差100万倍。</p>
 <figure class="table" id="tab-T11-2">
-  <img class="zoomable" src="figures/tab_T11-2_1.png" alt="表 T11-2" onclick="lightbox(this.src)">
-  <figcaption>表11-2 典型的细胞内和细胞外离子浓度</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Ion</td><td class="gl-zh">离子</td></tr>
-  <tr><td class="gl-en">Cell (mM)</td><td class="gl-zh">细胞（mM）</td></tr>
-  <tr><td class="gl-en">Blood (mM)</td><td class="gl-zh">血液（mM）</td></tr>
-  <tr><td class="gl-en">Squid Giant Axon (marine invertebrate)</td><td class="gl-zh">枪乌贼巨轴突（海洋无脊椎动物）</td></tr>
-  <tr><td class="gl-en">Mammalian Cell (vertebrate)</td><td class="gl-zh">哺乳动物细胞（脊椎动物）</td></tr>
+  <figcaption>表11-2 · 典型的细胞内和细胞外离子浓度</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:46%">
+      <col style="width:28%">
+      <col style="width:26%">
+    </colgroup>
+    <thead>
+      <tr><th>离子</th><th>细胞内（mM）</th><th>血液（mM）</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="3">鱿鱼巨大轴突（海洋无脊椎动物）*</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>K</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">K^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">400</td><td class="ctr">20</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msup><mi>a</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">Na^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">50</td><td class="ctr">440</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>l</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">Cl^-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">40–150</td><td class="ctr">560</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">+</span></span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">0.0003</td><td class="ctr">10</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">X^-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span>†</td><td class="ctr">300–400</td><td class="ctr">5–10</td></tr>
+      <tr><td class="sect" colspan="3">哺乳动物细胞（脊椎动物）</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>K</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">K^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">139</td><td class="ctr">4</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msup><mi>a</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">Na^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">12</td><td class="ctr">145</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>l</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">Cl^-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">4</td><td class="ctr">116</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>C</mi><msubsup><mi>O</mi><mn>3</mn><mo>−</mo></msubsup></mrow><annotation encoding="application/x-tex">HCO_3^-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0778em;vertical-align:-0.2663em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8115em;"><span style="top:-2.4337em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span><span style="top:-3.1031em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2663em;"><span></span></span></span></span></span></span></span></span></span></td><td class="ctr">12</td><td class="ctr">29</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">X^-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">138</td><td class="ctr">9</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><msup><mi>g</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Mg^{2+}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">+</span></span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">0.8</td><td class="ctr">1.5</td></tr>
+      <tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>a</mi><mrow><mn>2</mn><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Ca^{2+}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">+</span></span></span></span></span></span></span></span></span></span></span></span></td><td class="ctr">&lt;0.0002</td><td class="ctr">1.8</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>带 * 的鱿鱼巨大神经轴突长期以来被广泛用于研究电脉冲传导的机制。带 † 的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mo>−</mo></msup></mrow><annotation encoding="application/x-tex">X^-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span> 代表蛋白质，它们在血液和细胞的中性 pH 下带净负电荷。</p>
 </figure>
 <p>此外，细胞质中K+浓度远高于Na+。在无脊椎动物和脊椎动物中，细胞质K+浓度比血液中高20～40倍，而细胞质Na+浓度比血液中低8～12倍（<a class="xref xref-tab" href="#tab-T11-2">表11-2</a>）。</p>
 <p>细胞质中的一部分Ca2+与ATP以及蛋白质和其他分子上的带负电基团结合，但对其在信号通路和肌肉收缩中的功能起关键作用的，是未结合（即"游离"）Ca2+的浓度。细胞质中游离Ca2+的浓度一般低于0.2微摩尔（2 × 10⁻⁷ M），比血液中低一千倍以上。植物细胞和许多微生物即使在盐浓度极低的溶液中培养，也维持着同样高的细胞质K+浓度以及低Ca2+、低Na+浓度。</p>
@@ -633,27 +675,27 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>此外，蛋白质上的一个缺口可直接从膜双分子层内层小叶的疏水核心接近；这使疏水分子能直接从内层小叶进入结合位点（见<a class="xref xref-fig" href="#fig-11-15">图11-15</a>b）。在ATP驱动的向朝外构象转变之后，分子可以从结合位点进入膜的外层小叶，或直接进入细胞外介质（见<a class="xref xref-fig" href="#fig-11-15">图11-15</a>c）。</p>
 <p>目前已认识约50种不同的哺乳动物ABC蛋白（<a class="xref xref-tab" href="#tab-T11-3">表11-3</a>）。在真核细胞中，ABC蛋白不仅定位在质膜上，也定位在许多细胞器膜上。有几种在肝、肠和肾中大量表达——这些部位负责把天然的毒性产物和废物排出体外。</p>
 <figure class="table" id="tab-T11-3">
-  <img class="zoomable" src="figures/tab_T11-3_1.png" alt="表 T11-3" onclick="lightbox(this.src)">
-  <figcaption>表11-3 部分人类ABC蛋白</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Protein</td><td class="gl-zh">蛋白质</td></tr>
-  <tr><td class="gl-en">Tissue Expression</td><td class="gl-zh">组织表达</td></tr>
-  <tr><td class="gl-en">Function</td><td class="gl-zh">功能</td></tr>
-  <tr><td class="gl-en">Disease Caused by Defective Protein</td><td class="gl-zh">蛋白缺陷引起的疾病</td></tr>
-  <tr><td class="gl-en">Adrenal, kidney, brain</td><td class="gl-zh">肾上腺、肾、脑</td></tr>
-  <tr><td class="gl-en">Exports lipophilic drugs</td><td class="gl-zh">输出脂溶性药物</td></tr>
-  <tr><td class="gl-en">Liver</td><td class="gl-zh">肝</td></tr>
-  <tr><td class="gl-en">Exports phosphatidylcholine into bile</td><td class="gl-zh">把磷脂酰胆碱输出进胆汁</td></tr>
-  <tr><td class="gl-en">Exports bile salts into bile</td><td class="gl-zh">把胆盐输出进胆汁</td></tr>
-  <tr><td class="gl-en">CFTR</td><td class="gl-zh">CFTR（囊性纤维化跨膜传导调节因子）</td></tr>
-  <tr><td class="gl-en">Exocrine tissue</td><td class="gl-zh">外分泌组织</td></tr>
-  <tr><td class="gl-en">Transports Cl− ions</td><td class="gl-zh">转运Cl−离子</td></tr>
-  <tr><td class="gl-en">Cystic fibrosis</td><td class="gl-zh">囊性纤维化</td></tr>
-  <tr><td class="gl-en">Ubiquitous</td><td class="gl-zh">普遍存在</td></tr>
-  <tr><td class="gl-en">Exports cholesterol and phospholipid for uptake into high-density lipoprotein (HDL)</td><td class="gl-zh">输出胆固醇和磷脂供高密度脂蛋白（HDL）摄取</td></tr>
-  <tr><td class="gl-en">Tangier's disease</td><td class="gl-zh">丹吉尔病</td></tr>
-  <tr><td class="gl-en">Retina</td><td class="gl-zh">视网膜</td></tr>
-  <tr><td class="gl-en">Stargardt's disease in photoreceptor cells (juvenile macular degeneration)</td><td class="gl-zh">光感受器细胞的斯塔加特病（青少年黄斑变性）</td></tr>
+  <figcaption>表11-3 · 部分人类ABC蛋白</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:16%">
+      <col style="width:18.5%">
+      <col style="width:34.5%">
+      <col style="width:31%">
+    </colgroup>
+    <thead>
+      <tr><th>蛋白质</th><th>组织表达</th><th>功能</th><th>蛋白质缺陷所致的疾病</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ABCB1（MDR1）</td><td>肾上腺、肾、脑</td><td>外排脂溶性药物</td><td></td></tr>
+      <tr><td>ABCB4（MDR2）</td><td>肝</td><td>把磷脂酰胆碱外排进入胆汁</td><td></td></tr>
+      <tr><td>ABCB11</td><td>肝</td><td>把胆盐外排进入胆汁</td><td></td></tr>
+      <tr><td>CFTR</td><td>外分泌组织</td><td>转运Cl⁻离子</td><td>囊性纤维化</td></tr>
+      <tr><td>ABCDI</td><td>普遍存在于过氧化物酶体</td><td>影响过氧化物酶体中氧化极长链脂肪酸的酶的活性</td><td>肾上腺脑白质营养不良（ADL）</td></tr>
+      <tr><td>ABCG5/8</td><td>肝、肠</td><td>外排胆固醇和其他固醇</td><td>β-谷固醇血症</td></tr>
+      <tr><td>ABCA1</td><td>普遍存在</td><td>外排胆固醇和磷脂，以供摄取进入高密度脂蛋白（HDL）</td><td>丹吉尔病</td></tr>
+      <tr><td>ABCA4</td><td>视网膜</td><td>转运N-视黄基磷脂酰乙醇胺</td><td>光感受器细胞中的Stargardt病（青少年黄斑变性）</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>这些ABC蛋白的底物包括糖类、氨基酸、胆固醇、胆汁酸、磷脂、肽、蛋白质、毒素和外来物质。ABCB1的正常功能很可能是把各种天然毒素和代谢毒素转运进胆汁或肠腔以便排出，或转运进肾脏正在形成的尿液中。在其演化过程中，ABCB1似乎获得了转运那些结构与这些内源毒素相似的药物的能力。来源于表达MDR的细胞类型的肿瘤，如肝细胞瘤（肝癌），往往对几乎所有化疗药物都耐药，因而难以治疗，推测是因为这些肿瘤中ABCB1或相关ABC蛋白的表达增高。</p>

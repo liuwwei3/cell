@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -505,22 +522,24 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">功能获得性突变将原癌基因转变为癌基因</h3>
 <p>任何编码能够在培养中转化细胞的蛋白质的基因，通常还需要与其他细胞改变相配合，或在动物中诱发癌症，这种基因就被认为是癌基因。在许多已知的癌基因中，除少数外，都源自正常细胞基因（即原癌基因），其野生型产物促进细胞增殖或具有其他对癌症重要的特征。例如，前面讨论过的RAS基因是一种原癌基因，编码一种促进细胞分裂的细胞内信号转导蛋白；而源自RAS的突变型rasD基因是一种癌基因，其蛋白质产物提供过度或不受控制的促增殖信号。其他原癌基因编码促生长的信号分子及其受体、抗凋亡（细胞存活）蛋白和转录因子。</p>
 <figure class="table" id="tab-T24-1">
-  <img class="zoomable" src="figures/tab_T24-1_1.png" alt="表 T24-1" onclick="lightbox(this.src)">
-  <figcaption>表24-1 癌症发生中涉及的基因类别</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Proto-oncogenes</td><td class="gl-zh">原癌基因</td></tr>
-  <tr><td class="gl-en">Tumor-suppressor genes</td><td class="gl-zh">抑癌基因</td></tr>
-  <tr><td class="gl-en">Genome maintenance genes</td><td class="gl-zh">基因组维护基因</td></tr>
-  <tr><td class="gl-en">Gain-of-function mutations</td><td class="gl-zh">功能获得性突变</td></tr>
-  <tr><td class="gl-en">Loss-of-function mutations</td><td class="gl-zh">功能丧失性突变</td></tr>
-  <tr><td class="gl-en">genetically dominant</td><td class="gl-zh">遗传上显性</td></tr>
-  <tr><td class="gl-en">genetically recessive</td><td class="gl-zh">遗传上隐性</td></tr>
-  <tr><td class="gl-en">chromosomal translocation</td><td class="gl-zh">染色体易位</td></tr>
-  <tr><td class="gl-en">gene amplification</td><td class="gl-zh">基因扩增</td></tr>
-  <tr><td class="gl-en">point mutation</td><td class="gl-zh">点突变</td></tr>
-  <tr><td class="gl-en">deletion</td><td class="gl-zh">缺失</td></tr>
-  <tr><td class="gl-en">DNA-repair enzymes</td><td class="gl-zh">DNA修复酶</td></tr>
-  <tr><td class="gl-en">transcription factors</td><td class="gl-zh">转录因子</td></tr>
+  <figcaption>表24-1 · 癌症发生中涉及的基因类别</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:16%">
+      <col style="width:17%">
+      <col style="width:24%">
+      <col style="width:15%">
+      <col style="width:14%">
+      <col style="width:14%">
+    </colgroup>
+    <thead>
+      <tr><th></th><th>基因的正常功能</th><th>基因产物示例</th><th>突变的效应</th><th>突变基因的遗传特性</th><th>突变的来源</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>原癌基因</td><td>促进细胞存活或增殖</td><td>抗凋亡蛋白、导致增殖的信号通路与信号转导通路组分、转录因子</td><td>功能获得性突变使细胞不受调控地增殖和存活</td><td>突变在遗传上为显性</td><td>由点突变、染色体易位、扩增产生</td></tr>
+      <tr><td>抑癌基因</td><td>抑制细胞存活或增殖</td><td>促凋亡蛋白、细胞周期推进的抑制因子、评估DNA/染色体损伤的检查点通路蛋白、抑制细胞增殖的信号通路组分</td><td>功能丧失性突变使细胞不受调控地增殖和存活</td><td>突变在遗传上为隐性</td><td>由缺失、点突变、甲基化产生</td></tr>
+      <tr><td>基因组维护基因</td><td>修复或防止DNA损伤</td><td>DNA修复酶</td><td>功能丧失性突变使突变得以累积</td><td>突变在遗传上为隐性</td><td>由缺失、点突变、甲基化产生</td></tr>
+    </tbody>
   </table>
 </figure>
 <figure class="fig" id="fig-24-15">
@@ -795,25 +814,29 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>正常分裂的细胞通常采用若干机制来防止可能致癌的有害突变积累。干细胞防止突变的一种保护形式是其相对较低的分裂速率，这减少了DNA复制和有丝分裂过程中发生DNA损伤的可能性。此外，干细胞的后代不具备无限分裂的能力。经过若干轮分裂后，它们退出细胞周期，从而减少了突变诱导的细胞分裂失调与危险肿瘤相关的可能性。此外，如果肿瘤要生长、吸引血液供应、侵袭邻近组织并转移需要多个突变，那么低复制速率加上正常的低突变率（10−9）就提供了进一步抵御癌症的屏障。然而，如果有强力的诱变剂到达细胞，或者DNA修复受损而突变率升高，这些保障就可能被突破。当具有干细胞样生长特性的细胞被环境毒物诱变，且无法有效修复损伤时，癌症就可能发生。</p>
 <p>即使不接触任何外源性致癌物或诱变剂，正常的生物学过程也会产生大量DNA损伤。这种损伤源于脱嘌呤反应、烷基化反应，以及氧自由基等活性物质的产生，这些都会改变DNA。据估计，每个细胞中每天有超过20,000处DNA改变由活性氧物质和脱嘌呤造成。因此，DNA修复是抵御遗传改变、进而抵御癌症的关键防御系统。</p>
 <figure class="table" id="tab-T24-2">
-  <img class="zoomable" src="figures/tab_T24-2_1.png" alt="表 T24-2" onclick="lightbox(this.src)">
-  <figcaption>表24-2 一些与DNA修复缺陷相关的人类遗传病与癌症</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Hereditary nonpolyposis colorectal cancer</td><td class="gl-zh">遗传性非息肉性结直肠癌</td></tr>
-  <tr><td class="gl-en">DNA mismatch repair</td><td class="gl-zh">DNA错配修复</td></tr>
-  <tr><td class="gl-en">Xeroderma pigmentosum</td><td class="gl-zh">着色性干皮病</td></tr>
-  <tr><td class="gl-en">Nucleotide excision repair</td><td class="gl-zh">核苷酸切除修复</td></tr>
-  <tr><td class="gl-en">Bloom's syndrome</td><td class="gl-zh">Bloom综合征</td></tr>
-  <tr><td class="gl-en">Repair of double-strand breaks by homologous recombination</td><td class="gl-zh">通过同源重组修复双链断裂</td></tr>
-  <tr><td class="gl-en">Fanconi anemia</td><td class="gl-zh">Fanconi贫血</td></tr>
-  <tr><td class="gl-en">Hereditary breast cancer, BRCA1 and BRCA2 deficiency</td><td class="gl-zh">遗传性乳腺癌、BRCA1和BRCA2缺陷</td></tr>
-  <tr><td class="gl-en">Breast and ovarian cancer</td><td class="gl-zh">乳腺癌和卵巢癌</td></tr>
-  <tr><td class="gl-en">Acute myeloid leukemia, squamous-cell carcinomas</td><td class="gl-zh">急性髓系白血病、鳞状细胞癌</td></tr>
-  <tr><td class="gl-en">Carcinomas, leukemias, lymphomas</td><td class="gl-zh">癌、白血病、淋巴瘤</td></tr>
-  <tr><td class="gl-en">Skin carcinomas, melanomas</td><td class="gl-zh">皮肤癌、黑色素瘤</td></tr>
-  <tr><td class="gl-en">PREVENTION OF POINT MUTATIONS, INSERTIONS, AND DELETIONS</td><td class="gl-zh">点突变、插入和缺失的预防</td></tr>
-  <tr><td class="gl-en">REPAIR OF DOUBLE-STRAND BREAKS</td><td class="gl-zh">双链断裂的修复</td></tr>
-  <tr><td class="gl-en">DNA-Repair</td><td class="gl-zh">DNA修复</td></tr>
+  <figcaption>表24-2 · 一些与DNA修复缺陷相关的人类遗传病与癌症</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:20%">
+    </colgroup>
+    <thead>
+      <tr><th>疾病</th><th>受累的DNA修复系统</th><th>敏感性</th><th>癌症易感性</th><th>症状</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="5">预防点突变、插入和缺失</td></tr>
+      <tr><td>遗传性非息肉性结直肠癌</td><td>DNA错配修复</td><td>紫外线照射、化学诱变剂</td><td>结肠、卵巢</td><td>肿瘤的早期发生</td></tr>
+      <tr><td>着色性干皮病</td><td>核苷酸切除修复</td><td>紫外线照射、点突变</td><td>皮肤癌、黑色素瘤</td><td>皮肤和眼睛的光敏性、角化病</td></tr>
+      <tr><td class="sect" colspan="5">双链断裂的修复</td></tr>
+      <tr><td>Bloom综合征</td><td>通过同源重组修复双链断裂</td><td>温和的烷化剂</td><td>癌、白血病、淋巴瘤</td><td>光敏性、面部毛细血管扩张、染色体改变</td></tr>
+      <tr><td>Fanconi贫血</td><td>通过同源重组修复双链断裂</td><td>DNA交联剂、活性氧化剂</td><td>急性髓系白血病、鳞状细胞癌</td><td>发育异常，包括不育和骨骼畸形；贫血</td></tr>
+      <tr><td>遗传性乳腺癌、BRCA1和BRCA2缺陷</td><td>通过同源重组修复双链断裂</td><td></td><td>乳腺癌和卵巢癌</td><td>乳腺癌和卵巢癌</td></tr>
+    </tbody>
   </table>
+  <p class="table-note src">数据来源：改编自 A. Kornberg 与 T. Baker，1992，DNA Replication，第2版，W. H. Freeman and Company，第788页；J. Hoeijmakers，2001，Nature 411:366；以及 L. Thompson 与 D. Schild，2002，Mutat. Res. 509:49。</p>
 </figure>
 <p>基因组维护基因的正常作用是防止或修复DNA损伤。第5章所述高保真DNA修复系统的丧失与癌症风险增加相关。例如，遗传了编码关键错配修复或切除修复蛋白的基因突变的人，罹患某些癌症的可能性大大增加（<a class="xref xref-tab" href="#tab-T24-2">表24-2</a>）。没有适当的DNA修复，着色性干皮病（XP）或遗传性非息肉性结直肠癌（HNPCC，又称Lynch综合征）患者倾向于在许多其他基因中积累突变，包括那些对控制细胞生长和增殖至关重要的基因。XP使患者发生皮肤癌的几率约为正常人的一千倍。已知的八个XP基因中有七个编码切除修复机器的组分；在缺乏这种修复机制的情况下，控制细胞周期或以其他方式调控细胞生长和死亡的基因会发生突变。HNPCC基因编码错配修复系统的组分，这些基因的突变见于20%的散发性结肠癌中。这类癌症从良性息肉发展为成熟肿瘤的速度比通常快得多，推测是因为最初的癌细胞在没有修复的情况下持续发生错配诱变。</p>
 <p>由于缺乏错配修复而在结肠癌中频繁突变的一个基因，编码TGF-β的II型受体（见<a class="xref xref-fig" href="#fig-24-24">图24-24</a>）。编码该受体的基因含有一串连续10个腺嘌呤的序列。由于复制过程中DNA聚合酶的"滑移"，该序列常常突变为含9个或11个腺嘌呤的序列。如果该突变未被错配修复系统修正，蛋白编码序列中随之产生的移码就会废除正常受体蛋白的产生。如前所述，这类失活突变使细胞对TGF-β的生长抑制产生抗性，从而促成这些肿瘤特有的不受调控的生长。这一发现证明了错配修复在纠正否则可能导致细胞增殖失控的遗传损伤方面的重要性。</p>

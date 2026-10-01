@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -419,19 +436,27 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   </table>
 </figure>
 <figure class="table" id="tab-T14-1">
-  <img class="zoomable" src="figures/tab_T14-1_1.png" alt="表 T14-1" onclick="lightbox(this.src)">
-  <figcaption>表14-1 参与蛋白质运输的包被囊泡</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Vesicle Type</td><td class="gl-zh">囊泡类型</td></tr>
-  <tr><td class="gl-en">Transport Step Mediated</td><td class="gl-zh">所介导的运输步骤</td></tr>
-  <tr><td class="gl-en">Coat Proteins</td><td class="gl-zh">包被蛋白</td></tr>
-  <tr><td class="gl-en">Associated GTPase</td><td class="gl-zh">相关GTP酶</td></tr>
-  <tr><td class="gl-en">Clathrin</td><td class="gl-zh">网格蛋白</td></tr>
-  <tr><td class="gl-en">Coatomer</td><td class="gl-zh">包被体</td></tr>
-  <tr><td class="gl-en">AP1 complexes</td><td class="gl-zh">AP1复合体</td></tr>
-  <tr><td class="gl-en">AP2 complexes</td><td class="gl-zh">AP2复合体</td></tr>
-  <tr><td class="gl-en">AP3 complexes</td><td class="gl-zh">AP3复合体</td></tr>
+  <figcaption>表14-1 · 参与蛋白质运输的包被囊泡</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:27%">
+      <col style="width:29%">
+      <col style="width:27%">
+      <col style="width:17%">
+    </colgroup>
+    <thead>
+      <tr><th>囊泡类型</th><th>介导的运输步骤</th><th>包被蛋白</th><th>相关GTP酶</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>COPII</td><td>内质网（ER）到顺面高尔基体</td><td>Sec23/Sec24与Sec13/Sec31复合体、Sec16</td><td>Sar1</td></tr>
+      <tr><td>COPI</td><td>顺面高尔基体到内质网（ER）；较晚的高尔基体潴泡到较早的高尔基体潴泡</td><td>由七种不同COP亚基组成的包被体</td><td>ARF</td></tr>
+      <tr><td>网格蛋白与衔接蛋白*</td><td>反面高尔基体到内体</td><td>网格蛋白+AP1复合体</td><td>ARF</td></tr>
+      <tr><td></td><td>反面高尔基体到内体</td><td>网格蛋白+GGA</td><td>ARF</td></tr>
+      <tr><td></td><td>质膜到内体</td><td>网格蛋白+AP2复合体</td><td>ARF</td></tr>
+      <tr><td></td><td>高尔基体到溶酶体、黑素体或血小板囊泡</td><td>AP3复合体</td><td>ARF</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>每种AP复合体都由四个不同的亚基组成。目前尚不清楚AP3囊泡的包被是否含有网格蛋白。</p>
 </figure>
 <p>例如，在组成型分泌或调节型分泌过程中把蛋白质从反式高尔基体运往质膜的囊泡，其大小和形态都很均一，这提示它们的形成是由某种规则包被结构的组装所驱动的，然而研究人员尚未鉴定出包围这些囊泡的特定包被蛋白。</p>
 <p><a class="xref xref-fig" href="#fig-14-6">图14-6</a>a所示的囊泡出芽一般方案适用于已知的全部三类包被囊泡。用分离的膜或人工膜以及纯化的包被蛋白所做的实验表明，包被蛋白在亲代膜的胞质溶胶面上聚合，是产生运输囊泡所特有的那种高度膜弯曲（直径约50 nm）所必需的。体外出芽反应的电子显微照片常常显示出这样的结构：亲代膜上出现离散的区域，上面覆盖着致密的包被，并伴有已完成囊泡所特有的弯曲（<a class="xref xref-fig" href="#fig-14-7">图14-7</a>）。这类结构通常称为囊泡芽，似乎是包被开始聚合之后、但在已完成的囊泡从亲代膜上缢断之前可见的中间体。据认为，聚合的包被蛋白黏附在膜的胞质溶胶面上，形成一个弯曲的晶格，从而驱动囊泡芽的形成。</p>
@@ -468,29 +493,33 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">Rab GTP酶控制囊泡在靶膜上的停靠</h3>
 <p>第二组小GTP结合蛋白称为Rab蛋白，它们与运输囊泡结合，是把囊泡运送到适当靶膜并与之融合的关键调节因子。像Sar1和ARF一样，Rab蛋白也属于GTP酶超家族的开关蛋白。Rab蛋白还含有一个类异戊二烯锚，使它们能够被系连在囊泡膜上。活化的Rab蛋白与特定类型囊泡的结合通常分两步。第一步，胞质溶胶中的Rab·GDP被靶向到适当的囊泡，通过把其类异戊二烯锚插入囊泡膜而附着在那里。这一步附着常常由一种能与Rab·GDP及其类异戊二烯锚结合的蛋白质所促进，该蛋白通常称为鸟嘌呤核苷酸解离抑制因子（GDI）。第二步，位于囊泡膜中的一种特异性GEF把膜结合的Rab·GDP转变成Rab·GTP。一旦以这种方式被定位并激活，Rab·GTP就能够与多种不同的蛋白结合，这些蛋白称为Rab效应器。Rab·GTP与Rab效应器的结合最终可导致囊泡停靠在适当的靶膜上（<a class="xref xref-fig" href="#fig-14-10">图14-10</a>a，步骤1）。囊泡融合发生后，与Rab蛋白结合的GTP被水解为GDP，触发Rab·GDP释放，随后它可以再经历一轮GDP-GTP交换、结合与水解的循环。</p>
 <figure class="table" id="tab-T14-2">
-  <img class="zoomable" src="figures/tab_T14-2_1.png" alt="表 T14-2" onclick="lightbox(this.src)">
-  <figcaption>表14-2 已知的、把蛋白质导向特定运输囊泡的分选信号</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">LUMINAL SORTING SIGNALS</td><td class="gl-zh">腔侧分选信号</td></tr>
-  <tr><td class="gl-en">CYTOPLASMIC SORTING SIGNALS</td><td class="gl-zh">胞质溶胶分选信号</td></tr>
-  <tr><td class="gl-en">Signal Sequence</td><td class="gl-zh">信号序列</td></tr>
-  <tr><td class="gl-en">Signal-Bearing Protein</td><td class="gl-zh">携带信号的蛋白</td></tr>
-  <tr><td class="gl-en">Signal Receptor</td><td class="gl-zh">信号受体</td></tr>
-  <tr><td class="gl-en">Vesicles That Incorporate Signal</td><td class="gl-zh">掺入信号的囊泡</td></tr>
-  <tr><td class="gl-en">KDEL receptor in cis-Golgi membrane</td><td class="gl-zh">顺面高尔基体膜中的KDEL受体</td></tr>
-  <tr><td class="gl-en">Mannose 6-phosphate (M6P)</td><td class="gl-zh">甘露糖6-磷酸（M6P）</td></tr>
-  <tr><td class="gl-en">M6P receptor in trans-Golgi membrane</td><td class="gl-zh">反式高尔基体膜中的M6P受体</td></tr>
-  <tr><td class="gl-en">M6P receptor in plasma membrane</td><td class="gl-zh">质膜中的M6P受体</td></tr>
-  <tr><td class="gl-en">LDL receptor in plasma membrane</td><td class="gl-zh">质膜中的LDL受体</td></tr>
-  <tr><td class="gl-en">Di-arginine (X-Arg-Arg-X)</td><td class="gl-zh">双精氨酸（X-Arg-Arg-X）</td></tr>
-  <tr><td class="gl-en">Di-acidic (e.g., Asp-X-Glu)</td><td class="gl-zh">双酸性（如Asp-X-Glu）</td></tr>
-  <tr><td class="gl-en">Clathrin/AP1</td><td class="gl-zh">网格蛋白/AP1</td></tr>
-  <tr><td class="gl-en">Clathrin/AP2</td><td class="gl-zh">网格蛋白/AP2</td></tr>
-  <tr><td class="gl-en">AP2 complexes</td><td class="gl-zh">AP2复合体</td></tr>
-  <tr><td class="gl-en">AP1 (μ1 subunit)</td><td class="gl-zh">AP1（μ1亚基）</td></tr>
-  <tr><td class="gl-en">AP2 (μ2 subunit)</td><td class="gl-zh">AP2（μ2亚基）</td></tr>
-  <tr><td class="gl-en">α and β subunits</td><td class="gl-zh">α和β亚基</td></tr>
+  <figcaption>表14-2 · 已知的、把蛋白质导向特定运输囊泡的分选信号</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:23%">
+      <col style="width:29%">
+      <col style="width:26%">
+      <col style="width:22%">
+    </colgroup>
+    <thead>
+      <tr><th>信号序列*</th><th>携带信号的蛋白质</th><th>含信号受体的蛋白质</th><th>掺入信号的囊泡</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="4">腔内分选信号</td></tr>
+      <tr><td>赖氨酸-天冬氨酸-谷氨酸-亮氨酸（KDEL）</td><td>内质网（ER）驻留的可溶性蛋白</td><td>顺面高尔基体膜上的KDEL受体</td><td>COPI</td></tr>
+      <tr><td>甘露糖6-磷酸（M6P）</td><td>在顺面高尔基体中加工后的可溶性溶酶体酶</td><td>反面高尔基体膜上的M6P受体</td><td>网格蛋白/AP1</td></tr>
+      <tr><td></td><td>分泌型溶酶体酶</td><td>质膜上的M6P受体</td><td>网格蛋白/AP2</td></tr>
+      <tr><td class="sect" colspan="4">胞质溶胶分选信号</td></tr>
+      <tr><td>赖氨酸-赖氨酸-X-X（KKXX）</td><td>ER驻留的膜蛋白</td><td>COPI的α和β亚基</td><td>COPI</td></tr>
+      <tr><td>双精氨酸（X-Arg-Arg-X）</td><td>ER驻留的膜蛋白</td><td>COPI的α和β亚基</td><td>COPI</td></tr>
+      <tr><td>双酸性（如Asp-X-Glu）</td><td>内质网中的货物膜蛋白</td><td>COPII的Sec24亚基</td><td>COPII</td></tr>
+      <tr><td>天冬酰胺-脯氨酸-X-酪氨酸（NPXY）</td><td>质膜上的LDL受体</td><td>AP2复合体</td><td>网格蛋白/AP2</td></tr>
+      <tr><td>酪氨酸-X-X-Φ（YXXΦ）</td><td>反面高尔基体中的膜蛋白</td><td>AP1（μ1亚基）</td><td>网格蛋白/AP1</td></tr>
+      <tr><td></td><td>质膜蛋白</td><td>AP2（μ2亚基）</td><td>网格蛋白/AP2</td></tr>
+      <tr><td>亮氨酸-亮氨酸（LL）</td><td>质膜蛋白</td><td>AP2复合体</td><td>网格蛋白/AP2</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>X = 任意氨基酸；Φ = 疏水性氨基酸。单字母氨基酸缩写列于括号中。</p>
 </figure>
 <p>关于Rab蛋白使囊泡与正确靶膜融合的一个了解得很清楚的例子，是酵母的Sec4蛋白，它专门标记分泌囊泡，使这些囊泡能够与质膜融合。相应地，表达突变型Sec4蛋白的酵母细胞会积累无法与质膜融合的分泌囊泡（<a class="xref xref-fig" href="#fig-14-4">图14-4</a>中的E类突变体）。Sec4·GDP结合到分泌囊泡上，在那里被其同源GEF（它本身也位于分泌囊泡上）激活为Sec4·GTP。Sec4·GTP则与其效应器结合，后者是一个由八个亚基组成的大型系连复合体，称为胞吐复合体。Sec4·GTP的结合把分泌囊泡系连到胞吐复合体上，最终导致囊泡与质膜融合。</p>
 <p>在哺乳动物细胞中，Rab5蛋白定位于内吞囊泡，即早期内体。这些无包被囊泡是在内吞过程中网格蛋白包被囊泡刚从质膜上出芽之后由它们形成的（见<a class="xref xref-fig" href="#fig-14-1">图14-1</a>，步骤9）。在无细胞体系中，早期内体彼此的融合需要Rab5的存在，而向无细胞提取物中加入Rab5和GTP会加快这些囊泡彼此融合的速率。一种称为EEA1（早期内体抗原1）的长卷曲蛋白驻留在早期内体的膜上，充当Rab5的效应器。在这种情况下，据认为一个内吞囊泡上的Rab5·GTP会与另一个内吞囊泡膜上的EEA1特异性结合，为两个囊泡的融合创造条件。</p>

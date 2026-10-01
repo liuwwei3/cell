@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -392,8 +409,20 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
   <figcaption>实验图20-5 机械分离的海洋海绵通过物种特异性的同型细胞黏附重新聚集。(a) 在野生环境中生长的两种完整海绵：Microciona prolifera（橙色）和Halichondria panicea（黄色）。(b) 将这两个海绵物种的单个细胞机械解离并混合后，让它们温和搅拌约30分钟以重新缔合。细胞以物种特异性的同型黏附聚集，形成M. prolifera细胞团块（橙色）和H. panicea细胞团块（黄色）。(c) 和(d) 用来自M. prolifera（MAF）或H. panicea（HAF）ECM的蛋白聚糖聚集因子（AF）包被红色或绿色荧光标记的珠子。(c) 当两种颜色的珠子都用MAF包被时，它们全部聚集在一起，形成黄色聚集体（红色与绿色的组合）。(d) 包被MAF（红色）和HAF（绿色）的珠子不易形成混合聚集体，而是装配成由同型黏附维系在一起的独立团块。（放大40×。）[Parts (a) and (b) republished with permission of Springer, from Fernandez-Busquets, X. & Burger, M. M., “Circular proteoglycans from sponges: first members of the spongican family,” Cell Mol. Life Sci. 2003, 60(1):88–112; permission conveyed through the Copyright Clearance Center, Inc. Parts (c) and (d) from Jarchow, J. and Burger, M., “Species-specific association of the cell-aggregation molecule mediates recognition in marine sponges,” Cell Commun. Adhes. 1998, 6:5, 405–414, ©Taylor and Francis, www.tandfonline.com.]</figcaption>
 </figure>
 <figure class="table" id="tab-T20-2">
-  <img class="zoomable" src="figures/tab_T20-2_1.png" alt="表 T20-2" onclick="lightbox(this.src)">
-  <figcaption>表20-2 细胞外基质的功能</figcaption>
+  <figcaption>表20-2 · 细胞外基质的功能</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:100%">
+    </colgroup>
+    <tbody>
+      <tr><td>1. 锚定并包裹细胞，维持实体组织的三维结构并界定组织边界</td></tr>
+      <tr><td>2. 决定细胞外环境的生物力学特性（硬度/弹性、孔隙度、形状）</td></tr>
+      <tr><td>3. 控制细胞的极性、存活、增殖、分化和命运（例如干细胞的非对称分裂；见第21章），因而控制胚胎期和新生期的发育以及成体的功能及其对环境和疾病的反应</td></tr>
+      <tr><td>4. 抑制或促进细胞迁移（例如作为运动的屏障，或者相反，作为细胞——或细胞的一部分——可以沿其移动的「轨道」）</td></tr>
+      <tr><td>5. 结合生长因子并充当其储库；在某些情况下，ECM (a) 有助于生成生长因子的胞外浓度梯度，(b) 充当生长因子的共受体，或 (c) 协助生长因子与其受体的正确结合（ECM 组分与生长因子共同充当受体的联合配体）</td></tr>
+      <tr><td>6. 直接地或在蛋白水解切割之后充当信号受体的配体</td></tr>
+    </tbody>
+  </table>
 </figure>
 <figure class="fig" id="fig-20-6">
   <img class="zoomable" src="figures/fig_20-6_1.png" alt="图 20-6" onclick="lightbox(this.src)">
@@ -495,21 +524,29 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 </figure>
 <p>第三类连接——缝隙连接，允许小的水溶性分子在相邻细胞的细胞质之间快速扩散。与锚定连接和紧密连接一样，缝隙连接帮助细胞与其环境通讯。然而，它们在结构上与锚定连接和紧密连接非常不同，并且不在增强细胞-细胞和细胞-ECM黏附中起关键作用。缝隙连接在上皮细胞和非上皮细胞中都有，它们类似于植物中称为胞间连丝的独特细胞连接，我们将在20.6节讨论。</p>
 <figure class="table" id="tab-T20-3">
-  <img class="zoomable" src="figures/tab_T20-3_1.png" alt="表 T20-3" onclick="lightbox(this.src)">
-  <figcaption>表20-3 细胞连接</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">adherens junction</td><td class="gl-zh">黏着连接</td></tr>
-  <tr><td class="gl-en">desmosome</td><td class="gl-zh">桥粒</td></tr>
-  <tr><td class="gl-en">hemidesmosome</td><td class="gl-zh">半桥粒</td></tr>
-  <tr><td class="gl-en">focal adhesion</td><td class="gl-zh">黏着斑</td></tr>
-  <tr><td class="gl-en">tight junction</td><td class="gl-zh">紧密连接</td></tr>
-  <tr><td class="gl-en">gap junction</td><td class="gl-zh">缝隙连接</td></tr>
-  <tr><td class="gl-en">cadherin</td><td class="gl-zh">钙黏蛋白</td></tr>
-  <tr><td class="gl-en">desmosomal cadherin</td><td class="gl-zh">桥粒钙黏蛋白</td></tr>
-  <tr><td class="gl-en">integrin</td><td class="gl-zh">整合素</td></tr>
-  <tr><td class="gl-en">JAM (junctional adhesion molecule)</td><td class="gl-zh">连接黏附分子（JAM）</td></tr>
-  <tr><td class="gl-en">connexin</td><td class="gl-zh">连接蛋白</td></tr>
-  <tr><td class="gl-en">plasmodesmata</td><td class="gl-zh">胞间连丝</td></tr>
+  <figcaption>表20-3 · 细胞连接</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:17%">
+      <col style="width:11%">
+      <col style="width:19%">
+      <col style="width:15%">
+      <col style="width:19%">
+      <col style="width:19%">
+    </colgroup>
+    <thead>
+      <tr><th>连接</th><th>黏附类型</th><th>主要 CAM 或黏附受体</th><th>细胞骨架附着</th><th>胞内衔接蛋白</th><th>功能</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="6">锚定连接</td></tr>
+      <tr><td>1. 黏着连接</td><td>细胞-细胞</td><td>钙黏蛋白</td><td>肌动蛋白丝</td><td>联蛋白、vinculin</td><td>形状、张力、信号传导、力的传递</td></tr>
+      <tr><td>2. 桥粒</td><td>细胞-细胞</td><td>桥粒钙黏蛋白</td><td>中间丝</td><td>plakoglobin、plakophilin、桥粒斑蛋白</td><td>强度、耐久性、信号传导</td></tr>
+      <tr><td>3. 半桥粒</td><td>细胞-基质</td><td>整合素（α6β4）</td><td>中间丝</td><td>plectin、dystonin/BPAG1</td><td>形状、刚性、信号传导</td></tr>
+      <tr><td>4. 黏着斑、原纤维性黏着和三维黏着</td><td>细胞-基质</td><td>整合素（integrin）</td><td>肌动蛋白丝</td><td>talin、kindlin、paxillin、vinculin kinase</td><td>形状、信号传导、力的传递、细胞运动</td></tr>
+      <tr><td>紧密连接</td><td>细胞-细胞</td><td>occludin、claudin、JAM</td><td>肌动蛋白丝</td><td>ZO-1、ZO-2、ZO-3、PAR3、cingulin</td><td>控制溶质流动、信号传导</td></tr>
+      <tr><td>缝隙连接</td><td>细胞-细胞</td><td>连接蛋白（connexin）、innexin、pannexin</td><td>通过衔接蛋白与其他连接相连</td><td>ZO-1、ZO-2、ZO-3</td><td>细胞间通讯、小分子运输</td></tr>
+      <tr><td>胞间连丝（仅植物）</td><td>细胞-细胞</td><td>未确定</td><td>肌动蛋白丝</td><td>NET1A</td><td>细胞间通讯、分子运输</td></tr>
+    </tbody>
   </table>
 </figure>
 <p>细胞中存在四类锚定连接。两类参与细胞-细胞黏附，两类参与细胞-基质黏附。黏着连接连接相邻上皮细胞的侧面膜，通常位于顶端表面附近、紧挨紧密连接下方（见<a class="xref xref-fig" href="#fig-20-11">图20-11</a>）。一条由肌动蛋白和肌球蛋白丝与黏着连接形成复合物的环周束带，起张力缆的作用，可从内部支撑细胞，从而控制其形状。上皮细胞和某些其他类型的细胞（如平滑肌细胞和心肌细胞）还通过桥粒（一种有时称为点状桥粒的纽扣状接触点）紧密地结合在一起。半桥粒主要见于上皮细胞的基底面，与黏着接触（也称黏着斑）一起将上皮锚定到下方ECM的组分上，很像把地毯钉住的钉子。黏着连接、桥粒和黏着斑存在于许多不同类型的细胞中；半桥粒似乎仅限于上皮细胞。</p>
@@ -586,22 +623,31 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>为了稳定地锚定到实体组织和器官上，单层柱状上皮片层必须通过其基底面牢固地附着到下方的ECM（基板）上。这种附着通过称为整合素的黏附受体实现（见<a class="xref xref-fig" href="#fig-20-2">图20-2</a>），整合素既位于称为半桥粒的锚定连接内部，也位于其外部（见<a class="xref xref-fig" href="#fig-20-11">图20-11</a>a）。半桥粒由整合膜蛋白组成，这些蛋白通过胞质衔接蛋白（如plakin）连接到角蛋白类中间丝。上皮半桥粒中的主要ECM黏附受体是整合素α6β4。</p>
 <p>整合素在多种上皮细胞和非上皮细胞中充当黏附受体和CAM，介导许多细胞-基质和细胞-细胞相互作用（<a class="xref xref-tab" href="#tab-T20-4">表20-4</a>）。在脊椎动物中，已知至少有24种整合素异二聚体，它们由18种α亚基和8种β亚基以各种αβ异二聚体组合构成。一种β链可与几种不同类型α链中的任意一种相互作用，形成结合不同配体的不同整合素。这种组合多样性的现象使得相对较少的组分数目能够服务于大量不同的功能。尽管大多数细胞表达几种结合相同或不同配体的不同整合素，但许多整合素主要在某些类型的细胞中表达。许多整合素不仅能结合一种以上的配体，而且有些配体可结合几种不同整合素中的任意一种。</p>
 <figure class="table" id="tab-T20-4">
-  <img class="zoomable" src="figures/tab_T20-4_1.png" alt="表 T20-4" onclick="lightbox(this.src)">
-  <figcaption>表20-4 选定的脊椎动物整合素</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">integrin</td><td class="gl-zh">整合素</td></tr>
-  <tr><td class="gl-en">α subunit</td><td class="gl-zh">α亚基</td></tr>
-  <tr><td class="gl-en">β subunit</td><td class="gl-zh">β亚基</td></tr>
-  <tr><td class="gl-en">fibronectin</td><td class="gl-zh">纤连蛋白</td></tr>
-  <tr><td class="gl-en">laminin</td><td class="gl-zh">层粘连蛋白</td></tr>
-  <tr><td class="gl-en">collagen</td><td class="gl-zh">胶原蛋白</td></tr>
-  <tr><td class="gl-en">fibrinogen</td><td class="gl-zh">纤维蛋白原</td></tr>
-  <tr><td class="gl-en">von Willebrand factor</td><td class="gl-zh">冯·维勒布兰德因子</td></tr>
-  <tr><td class="gl-en">vitronectin</td><td class="gl-zh">玻连蛋白</td></tr>
-  <tr><td class="gl-en">hematopoietic cells</td><td class="gl-zh">造血细胞</td></tr>
-  <tr><td class="gl-en">platelets</td><td class="gl-zh">血小板</td></tr>
-  <tr><td class="gl-en">fibroblasts</td><td class="gl-zh">成纤维细胞</td></tr>
+  <figcaption>表20-4 · 选定的脊椎动物整合素</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:24%">
+      <col style="width:31%">
+      <col style="width:45%">
+    </colgroup>
+    <thead>
+      <tr><th>亚基组成</th><th>主要细胞分布</th><th>配体</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>α1β1</td><td>多种类型</td><td>主要是胶原蛋白</td></tr>
+      <tr><td>α2β1</td><td>多种类型</td><td>主要是胶原蛋白；也有层粘连蛋白（laminin）</td></tr>
+      <tr><td>α3β1</td><td>多种类型</td><td>层粘连蛋白（laminin）</td></tr>
+      <tr><td>α4β1</td><td>造血细胞</td><td>纤连蛋白（fibronectin）；VCAM-1</td></tr>
+      <tr><td>α5β1</td><td>成纤维细胞</td><td>纤连蛋白（fibronectin）</td></tr>
+      <tr><td>α6β1</td><td>多种类型</td><td>层粘连蛋白（laminin）</td></tr>
+      <tr><td>αLβ2</td><td>T 淋巴细胞</td><td>ICAM-1、ICAM-2</td></tr>
+      <tr><td>αMβ2</td><td>单核细胞</td><td>血清蛋白（例如 C3b、纤维蛋白原、因子 X）；ICAM-1</td></tr>
+      <tr><td>αIIbβ3</td><td>血小板</td><td>血清蛋白（例如纤维蛋白原、von Willebrand 因子、玻连蛋白）；纤连蛋白（fibronectin）</td></tr>
+      <tr><td>α6β4</td><td>上皮细胞</td><td>层粘连蛋白（laminin）</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>整合素按共有的 β 亚基归入不同亚家族。以红色显示的配体是 CAM；其余均为 ECM 或血清蛋白。有些亚基可具有多种剪接异构体，其胞质结构域各不相同。</p>
+  <p class="table-note src">数据来源：R. O. Hynes，1992，Cell 69:11。</p>
 </figure>
 <p>所有整合素似乎都从两个古老的通用亚群进化而来：结合含有三肽序列Arg-Gly-Asp（通常称为RGD基序）的蛋白质的那些（纤连蛋白就是这样的蛋白质），以及结合层粘连蛋白的那些。几种整合素α亚基含有一个独特的插入结构域，即I结构域，它可介导某些整合素与ECM中各种胶原蛋白的结合。一些带有I结构域的整合素仅表达于白细胞（白血细胞）以及红、白血细胞前体（造血）细胞上。I结构域还识别其他细胞上的CAM，包括Ig超家族成员（如ICAM、VCAM），因此参与细胞-细胞黏附。</p>
 <p>整合素通常对其配体表现出低亲和力，解离常数（Kd）在10−6与10−7 mol/L之间。然而，数百或数千个整合素分子与细胞上或ECM中配体结合所产生的多个弱相互作用，使细胞能够牢固地锚定于表达配体的靶标。</p>
@@ -749,19 +795,40 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <h3 class="subhead">片层形成的IV型胶原蛋白是基板的主要结构组分</h3>
 <p>IV型胶原蛋白与层粘连蛋白一起，是所有基板的主要结构组分，并能结合黏附受体，包括某些整合素。胶原蛋白IV是人体中至少28种参与各种组织不同ECM形成的胶原蛋白之一（<a class="xref xref-tab" href="#tab-T20-5">表20-5</a>）。人类蛋白质组中还有至少20种额外的胶原样蛋白（如宿主防御胶原蛋白）。尽管胶原蛋白同工型在某些结构特征和组织分布上有所不同，但所有胶原蛋白都是由三条多肽构成的三聚体蛋白，每条多肽由人类至少43个基因之一编码，通常称为胶原蛋白α链。一个胶原蛋白分子中的三条α链可以相同（形成同源三聚体）或不同（形成异源三聚体）。三股胶原蛋白分子的全部或部分可以相互缠绕，形成一种特殊的三股螺旋称为胶原三股螺旋。当存在一个以上三股螺旋区段时，这些区段由蛋白质的非螺旋区连接，我们很快就会在IV型胶原蛋白中看到这一点。在一个螺旋区段内，三条α链各自扭成左手螺旋，然后三条链相互缠绕，形成右手三股螺旋（<a class="xref xref-fig" href="#fig-20-25">图20-25</a>）。</p>
 <figure class="table" id="tab-T20-5">
-  <img class="zoomable" src="figures/tab_T20-5_1.png" alt="表 T20-5" onclick="lightbox(this.src)">
-  <figcaption>表20-5 选定的胶原蛋白</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">FIBRILLAR COLLAGENS</td><td class="gl-zh">纤维状胶原蛋白</td></tr>
-  <tr><td class="gl-en">FIBRIL-ASSOCIATED COLLAGENS</td><td class="gl-zh">纤维相关胶原蛋白</td></tr>
-  <tr><td class="gl-en">SHEET-FORMING AND ANCHORING COLLAGENS</td><td class="gl-zh">片层形成型与锚定型胶原蛋白</td></tr>
-  <tr><td class="gl-en">TRANSMEMBRANE COLLAGENS</td><td class="gl-zh">跨膜胶原蛋白</td></tr>
-  <tr><td class="gl-en">HOST DEFENSE COLLAGENS</td><td class="gl-zh">宿主防御胶原蛋白</td></tr>
-  <tr><td class="gl-en">Collectins</td><td class="gl-zh">胶原凝集素</td></tr>
-  <tr><td class="gl-en">Class A scavenger receptors</td><td class="gl-zh">A类清道夫受体</td></tr>
-  <tr><td class="gl-en">Hemidesmosomes in skin</td><td class="gl-zh">皮肤中的半桥粒</td></tr>
-  <tr><td class="gl-en">Integral membrane protein</td><td class="gl-zh">整合膜蛋白</td></tr>
+  <figcaption>表20-5 · 选定的胶原蛋白</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:18%">
+      <col style="width:21.5%">
+      <col style="width:34.5%">
+      <col style="width:26%">
+    </colgroup>
+    <thead>
+      <tr><th>类型</th><th>分子组成</th><th>结构特征</th><th>代表组织</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="sect" colspan="4">原纤维形成胶原蛋白</td></tr>
+      <tr><td>I</td><td>[α₁(I)]₂[α₂(I)]</td><td>长 300 nm 的原纤维</td><td>皮肤、肌腱、骨、韧带、牙本质、间质组织</td></tr>
+      <tr><td>II</td><td>[α₁(II)]₃</td><td>长 300 nm 的原纤维</td><td>软骨、玻璃体</td></tr>
+      <tr><td>III</td><td>[α₁(III)]₃</td><td>长 300 nm 的原纤维；常与 I 型共存</td><td>皮肤、肌肉、血管</td></tr>
+      <tr><td>V</td><td>[α₁(V)]₂[α₂(V)]，[α₁(V)]₃</td><td>长 390 nm 的原纤维，带球状 N 端延伸段；常与 I 型共存</td><td>角膜、牙齿、骨、胎盘、皮肤、平滑肌</td></tr>
+      <tr><td class="sect" colspan="4">纤维相关胶原蛋白</td></tr>
+      <tr><td>VI</td><td>[α₁(VI)][α₂(VI)][α₃(VI)]</td><td>与 I 型侧向结合；有周期性球状结构域</td><td>大多数间质组织</td></tr>
+      <tr><td>IX</td><td>[α₁(IX)][α₂(IX)][α₃(IX)]</td><td>与 II 型侧向结合；N 端球状结构域；结合 GAG（糖胺聚糖）</td><td>软骨、玻璃体</td></tr>
+      <tr><td class="sect" colspan="4">片层形成与锚定胶原蛋白</td></tr>
+      <tr><td>IV</td><td>[α₁(IV)]₂[α₂(IV)]</td><td>二维网络</td><td>所有基板</td></tr>
+      <tr><td>VII</td><td>[α₁(VII)]₃</td><td>长原纤维</td><td>皮肤基板下方</td></tr>
+      <tr><td>XV</td><td>[α₁(XV)]₃</td><td>硫酸软骨素蛋白聚糖的核心蛋白</td><td>分布广泛；肌肉中基板附近</td></tr>
+      <tr><td class="sect" colspan="4">跨膜胶原蛋白</td></tr>
+      <tr><td>XIII</td><td>[α₁(XIII)]₃</td><td>整合膜蛋白</td><td>皮肤半桥粒</td></tr>
+      <tr><td>XVII</td><td>[α₁(XVII)]₃</td><td>整合膜蛋白</td><td>皮肤半桥粒</td></tr>
+      <tr><td class="sect" colspan="4">宿主防御胶原蛋白</td></tr>
+      <tr><td>Collectins</td><td></td><td>三股螺旋的寡聚体；含凝集素结构域</td><td>血液、肺泡腔</td></tr>
+      <tr><td>C1q</td><td></td><td>三股螺旋寡聚体</td><td>血液（补体）</td></tr>
+      <tr><td>Class A scavenger receptors</td><td></td><td>同源三聚体膜蛋白</td><td>巨噬细胞</td></tr>
+    </tbody>
   </table>
+  <p class="table-note src">数据来源：K. Kuhn，1987，载 R. Mayne 与 R. Burgeson 编《Structure and Function of Collagen Types》，Academic Press，p. 2；以及 M. van der Rest 与 R. Garrone，1991，FASEB J. 5:2814。</p>
 </figure>
 <p>胶原三股螺旋之所以能够形成，是因为α链中三种氨基酸异常丰富：甘氨酸、脯氨酸以及脯氨酸的一种修饰形式——羟脯氨酸（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter2/index.html#fig-2-15">图2-15</a>）。它们构成特征性的重复序列基序Gly-X-Y，其中X和Y可以是任何氨基酸，但X位常常是脯氨酸，Y位常常是羟脯氨酸，较少情况下是赖氨酸和羟赖氨酸。甘氨酸必不可少，因为其小的侧链（一个氢原子）是唯一能容纳进三股螺旋拥挤中心的侧链（见<a class="xref xref-fig" href="#fig-20-25">图20-25</a>b）。氢键有助于将三条链维系在一起。虽然刚性的肽酰-脯氨酸和肽酰-羟脯氨酸连接与经典单链α螺旋的形成不相容，但它们能稳定独特的胶原三股螺旋。位于Y位的羟脯氨酸中的羟基有助于使其环保持一种能稳定三股螺旋的构象。</p>
 <p>针对胶原蛋白IV和其他类型胶原蛋白（其他胶原蛋白将在下一节讨论）存在几种不同的细胞表面受体。这些细胞表面受体包括某些整合素、discoidin结构域受体1和2（它们是酪氨酸激酶受体）、糖蛋白VI（位于血小板上）、白细胞相关免疫球蛋白样受体-1、甘露糖受体家族成员，以及蛋白质CD44的一种修饰形式。它们在帮助组装ECM以及将细胞活动与ECM整合方面可发挥关键作用。</p>

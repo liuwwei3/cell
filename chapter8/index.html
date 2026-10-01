@@ -78,7 +78,24 @@ table.data-table .cat-subtitle { font-weight: normal; font-size: 0.85em; color: 
 table.data-table .en-name { font-family: "Times New Roman", serif; color: #555; font-style: italic; word-break: break-word; }
 table.data-table .zh-name { color: #1a1a1a; }
 table.data-table .mechanism { color: #777; font-size: 0.92em; }
-table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* ⚠️ 选择器必须是裸 `.table-note`：那段 p 是表格元素的**兄弟**（同在 figure 里），
+   写成 `table.data-table .table-note` 是死规则（ch4 上线时就这样，表注一直没生效）。
+   注意：本注释里不要写尖括号——qa_check 是数原始文本里的标签数的。 */
+.table-note { font-size: 0.82em; color: #888; margin-top: 0.6em; text-align: justify; text-indent: 0; line-height: 1.5; }
+/* 通用 schema 的单元格类（见 generic_table 注释） */
+table.data-table td.sect, table.data-table th.sect { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: left; }
+table.data-table td.cat, table.data-table th.cat { background: #eff6ff; color: #1e40af; font-weight: bold; text-align: center; vertical-align: middle; }
+table.data-table td.ind  { padding-left: 1.6em; }
+table.data-table td.ind1 { padding-left: 2.6em; }
+table.data-table td.ind2 { padding-left: 3.6em; }
+table.data-table td.num  { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-table td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: 0.02em; }
+table.data-table td.ctr, table.data-table th.ctr { text-align: center; }
+table.data-table td.mid, table.data-table th.mid { vertical-align: middle; }
+/* 通用表（tables.json 的 head/body schema）没有可拖拽列宽，去掉给把手留的 24px 右内边距 */
+table.data-table.generic thead th { padding: 7px 10px; }
+table.data-table tfoot td { padding: 5px 10px; border-top: 1px solid #e8ecf0; font-size: 0.92em; color: #555; }
+.table-note.src { margin-top: 0.15em; color: #aaa; }
 @media (max-width: 700px) { table.data-table { font-size: 0.7em; } table.data-table thead th, table.data-table tbody td { padding: 4px 6px; } }
 /* 小节末 KEY CONCEPTS 方框（仿原书灰底框：玫红标题 + 蓝副标题/项目符号） */
 .key-concepts { margin: 1.7em 0 1.9em 0; padding: 1.1em 1.5em 1.2em 1.5em;
@@ -353,27 +370,37 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>在多细胞生物中，约25–50%的蛋白编码基因在单倍体基因组中只出现一次，因而被称为孤立基因。一个研究得很透彻的孤立蛋白编码基因例子是鸡的溶菌酶基因。溶菌酶是一种切割细菌细胞壁多糖的酶，是鸡蛋清蛋白的丰富组分，也存在于人类泪液中，其活性有助于保持鸡蛋与眼表的无菌状态。编码鸡溶菌酶的15 kb DNA序列构成一个简单转录单位，含四个外显子和三个内含子。从该转录单位向上游和下游各延伸约20 kb的旁侧区域不编码任何可检出的mRNA，因而是基因间区的例子。</p>
 <p>重复基因构成蛋白编码基因的第二组。这些基因具有相近但不相同的序列，且常常彼此相距5–50 kb以内。</p>
 <figure class="table" id="tab-T8-1">
-  <img class="zoomable" src="figures/tab_T8-1_1.png" alt="表 T8-1" onclick="lightbox(this.src)">
-  <figcaption>表 8-1 核真核DNA的主要类别及其在人类基因组中所占比例</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Class</td><td class="gl-zh">类别</td></tr>
-  <tr><td class="gl-en">Length</td><td class="gl-zh">长度</td></tr>
-  <tr><td class="gl-en">Copy Number in Human Genome</td><td class="gl-zh">人类基因组中的拷贝数</td></tr>
-  <tr><td class="gl-en">Fraction of Human Genome (%)</td><td class="gl-zh">占人类基因组的比例（%）</td></tr>
-  <tr><td class="gl-en">Protein-coding genes</td><td class="gl-zh">蛋白质编码基因</td></tr>
-  <tr><td class="gl-en">Long noncoding RNA genes</td><td class="gl-zh">长非编码RNA基因</td></tr>
-  <tr><td class="gl-en">Tandemly repeated genes</td><td class="gl-zh">串联重复基因</td></tr>
-  <tr><td class="gl-en">Repetitious DNA</td><td class="gl-zh">重复DNA</td></tr>
-  <tr><td class="gl-en">Simple-sequence DNA</td><td class="gl-zh">简单序列DNA</td></tr>
-  <tr><td class="gl-en">Interspersed repeats (mobile DNA elements)</td><td class="gl-zh">散在重复（移动DNA元件）</td></tr>
-  <tr><td class="gl-en">DNA transposons</td><td class="gl-zh">DNA转座子</td></tr>
-  <tr><td class="gl-en">LTR retrotransposons</td><td class="gl-zh">LTR逆转座子</td></tr>
-  <tr><td class="gl-en">Non-LTR retrotransposons</td><td class="gl-zh">非LTR逆转座子</td></tr>
-  <tr><td class="gl-en">LINEs</td><td class="gl-zh">LINE</td></tr>
-  <tr><td class="gl-en">SINEs</td><td class="gl-zh">SINE</td></tr>
-  <tr><td class="gl-en">Processed pseudogenes</td><td class="gl-zh">加工假基因</td></tr>
-  <tr><td class="gl-en">Intergenic regions</td><td class="gl-zh">基因间区</td></tr>
+  <figcaption>表8-1 · 核真核DNA的主要类别及其在人类基因组中所占比例</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:32%">
+      <col style="width:16%">
+      <col style="width:26%">
+      <col style="width:26%">
+    </colgroup>
+    <thead>
+      <tr><th>类别</th><th>长度</th><th>人类基因组中的拷贝数</th><th>占人类基因组的比例（%）*</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>蛋白编码基因</td><td>0.5–2200 kb</td><td>∼21,000</td><td>∼40**（2.0†）</td></tr>
+      <tr><td>长非编码RNA基因</td><td>0.2–50 kb</td><td>∼10,000</td><td>∼15（0.9†）</td></tr>
+      <tr><td>串联重复基因</td><td></td><td></td><td></td></tr>
+      <tr><td class="ind">U2 snRNA</td><td>6.1 kb‡</td><td>∼20</td><td>&lt;0.0001</td></tr>
+      <tr><td class="ind">核糖体RNA（rRNA）</td><td>43 kb‡</td><td>∼300</td><td>0.4</td></tr>
+      <tr><td>重复DNA</td><td></td><td></td><td></td></tr>
+      <tr><td class="ind">简单序列（卫星）DNA</td><td>1–500 bp</td><td>可变</td><td>∼6</td></tr>
+      <tr><td class="ind">散在重复（移动DNA元件）</td><td></td><td></td><td></td></tr>
+      <tr><td class="ind1">DNA转座子</td><td>2–3 kb</td><td>300,000</td><td>3</td></tr>
+      <tr><td class="ind1">LTR逆转座子</td><td>6–11 kb</td><td>440,000</td><td>8</td></tr>
+      <tr><td class="ind1">非LTR逆转座子</td><td></td><td></td><td></td></tr>
+      <tr><td class="ind2">长散在元件（LINE）</td><td>6–8 kb</td><td>860,000</td><td>21</td></tr>
+      <tr><td class="ind2">短散在元件（SINE）</td><td>100–400 bp</td><td>1,600,000</td><td>13</td></tr>
+      <tr><td class="ind1">加工假基因</td><td>可变</td><td>∼12,500</td><td>∼0.4</td></tr>
+      <tr><td>基因间区</td><td>可变</td><td>不适用</td><td>∼25</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>* 「占人类基因组的比例（%）」一列合计超过 100%，是因为移动DNA元件被计算了两次：一次用于显示人类移动DNA元件的各个不同类别；第二次则作为基因间区和蛋白编码基因的一部分——这些元件位于后者的内含子和末端外显子的 3′非翻译区中。** 完整的转录单位，包括外显子和内含子。† 所有外显子的总长度。蛋白编码区合计占基因组的 1.2%。‡ 串联重复序列中每个重复的长度。</p>
+  <p class="table-note src">数据来源：International Human Genome Sequencing Consortium，2001，Nature 409:860；2004，Nature 431:931。</p>
 </figure>
 <p>一组编码相似但不相同氨基酸序列蛋白质的重复基因称为基因家族；其所编码的、密切相关的同源蛋白质构成一个蛋白质家族。少数蛋白质家族，如蛋白激酶、脊椎动物免疫球蛋白和嗅觉受体，包含数百个成员。然而大多数蛋白质家族只含几个到30个左右成员；常见的例子有细胞骨架蛋白、肌球蛋白重链，以及脊椎动物中的α类珠蛋白和β类珠蛋白。</p>
 <p>编码β类珠蛋白的基因是基因家族的一个很好例子。如<a class="xref xref-fig" href="#fig-8-4">图8-4</a>a所示，β类珠蛋白基因家族包含五个功能性基因，分别命名为HBB（编码最丰富的成人β-珠蛋白）、HBD（一种次要的成人β-珠蛋白）、HBG1和HBG2（胎儿β-珠蛋白）以及HBE1（胚胎β-珠蛋白）。两个相同的β类珠蛋白多肽与两个相同的α类珠蛋白多肽（由另一个在胚胎、胎儿和成人发育阶段表达的基因家族编码）以及四个血红素辅基结合，形成血红蛋白分子（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter3/index.html#fig-3-14">图3-14</a>和12-20）。由不同α类和β类珠蛋白形成的所有血红蛋白都能在血液中携带氧，但它们表现出一些略有差异的性质，以适应其在人体生理中的特定功能。</p>
@@ -399,27 +426,36 @@ table.data-table .table-note { font-size: 0.82em; color: #888; margin-top: 0.6em
 <p>这些串联重复的rRNA基因已经进化出来，以满足细胞对其转录本的巨大需求。要理解其中原因，可以设想：当单个基因上满载RNA聚合酶分子时，在一个细胞世代中它能产生的rRNA分子数有一个固定的最大值。如果所需的RNA多于单个基因所能转录的量，就必须有该基因的多个拷贝。例如在人类早期胚胎发育期间，许多胚胎细胞的倍增时间约为24小时，并含有500万–1000万个核糖体。要产生足以形成这么多核糖体的rRNA，一个人类胚胎细胞至少需要100个编码大小rRNA亚基的基因拷贝，而且其中大多数基因必须接近最大活性，细胞才能每24小时分裂一次；也就是说，必须有多个RNA聚合酶同时转录每个rRNA基因（见<a class="xref xref-fig xref-ext" target="_blank" rel="noopener" href="../chapter10/index.html#fig-10-39">图10-39</a>）。事实上，包括酵母在内的所有真核生物，都含有100个或更多拷贝的5S rRNA基因和编码其他rRNA的基因。</p>
 <p>编码tRNA的基因和编码组蛋白的基因也以多个拷贝存在。正如我们将在本章后面看到的，组蛋白结合并组织核DNA。正如细胞需要多个rRNA和tRNA基因来产生足够数量的核糖体和tRNA一样，也需要组蛋白基因的多个拷贝来产生足够的组蛋白，以结合每一轮细胞复制中产生的大量核DNA。虽然tRNA和组蛋白基因常常成簇出现，但它们在人类基因组中一般不以串联阵列的形式出现。</p>
 <figure class="table" id="tab-T8-2">
-  <img class="zoomable" src="figures/tab_T8-2_1.png" alt="表 T8-2" onclick="lightbox(this.src)">
-  <figcaption>表 8-2 已知的非蛋白质编码RNA及其功能</figcaption>
-  <table class="glossary"><caption>图内标签对照</caption>
-  <tr><td class="gl-en">Number of Genes in Human Genome</td><td class="gl-zh">人类基因组中的基因数</td></tr>
-  <tr><td class="gl-en">Function</td><td class="gl-zh">功能</td></tr>
-  <tr><td class="gl-en">rRNAs</td><td class="gl-zh">rRNA</td></tr>
-  <tr><td class="gl-en">tRNAs</td><td class="gl-zh">tRNA</td></tr>
-  <tr><td class="gl-en">snRNAs</td><td class="gl-zh">snRNA</td></tr>
-  <tr><td class="gl-en">snoRNAs</td><td class="gl-zh">snoRNA</td></tr>
-  <tr><td class="gl-en">miRNAs</td><td class="gl-zh">miRNA</td></tr>
-  <tr><td class="gl-en">Protein synthesis</td><td class="gl-zh">蛋白质合成</td></tr>
-  <tr><td class="gl-en">mRNA splicing</td><td class="gl-zh">mRNA剪接</td></tr>
-  <tr><td class="gl-en">Pre-rRNA processing and rRNA modification</td><td class="gl-zh">前体rRNA加工与rRNA修饰</td></tr>
-  <tr><td class="gl-en">Regulation of gene expression</td><td class="gl-zh">基因表达调控</td></tr>
-  <tr><td class="gl-en">X-chromosome inactivation</td><td class="gl-zh">X染色体失活</td></tr>
-  <tr><td class="gl-en">Transcription control</td><td class="gl-zh">转录控制</td></tr>
-  <tr><td class="gl-en">Telomerase RNA</td><td class="gl-zh">端粒酶RNA</td></tr>
-  <tr><td class="gl-en">Template for addition of telomeres</td><td class="gl-zh">添加端粒的模板</td></tr>
-  <tr><td class="gl-en">Vault RNAs</td><td class="gl-zh">穹窿RNA</td></tr>
-  <tr><td class="gl-en">Unknown</td><td class="gl-zh">未知</td></tr>
+  <figcaption>表8-2 · 已知的非蛋白质编码RNA及其功能</figcaption>
+  <table class="data-table generic">
+    <colgroup>
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:60%">
+    </colgroup>
+    <thead>
+      <tr><th>RNA</th><th class="ctr">人类基因组中的基因数</th><th>功能</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>核糖体RNA（rRNA）</td><td class="num">∼300</td><td>蛋白质合成</td></tr>
+      <tr><td>转运RNA（tRNA）</td><td class="num">∼500</td><td>蛋白质合成</td></tr>
+      <tr><td>小核RNA（snRNA）</td><td class="num">∼40</td><td>mRNA剪接</td></tr>
+      <tr><td>U7 snRNA</td><td class="num">1</td><td>组蛋白mRNA的3′端加工</td></tr>
+      <tr><td>小核仁RNA（snoRNA）</td><td class="num">∼85</td><td>前体rRNA加工与rRNA修饰</td></tr>
+      <tr><td>微RNA（miRNA）</td><td class="num">∼2000</td><td>基因表达调控</td></tr>
+      <tr><td>Xist</td><td class="num">1</td><td>X染色体失活</td></tr>
+      <tr><td>7SK</td><td class="num">1</td><td>转录调控</td></tr>
+      <tr><td>RNase P RNA</td><td class="num">1</td><td>tRNA的5′端加工</td></tr>
+      <tr><td>7SL RNA</td><td class="num">3</td><td>蛋白质分泌（信号识别颗粒（SRP）的组分）</td></tr>
+      <tr><td>RNase MRP RNA</td><td class="num">1</td><td>rRNA加工、mtDNA*复制</td></tr>
+      <tr><td>端粒酶RNA</td><td class="num">1</td><td>向端粒添加序列的模板</td></tr>
+      <tr><td>穹窿RNA（vault RNA）</td><td class="num">3</td><td>穹窿核糖核蛋白（RNP）的组分，功能未知</td></tr>
+      <tr><td>hY1, hY3, hY4, hY5</td><td class="num">∼30</td><td>核糖核蛋白（RNP）的组分，功能未知</td></tr>
+      <tr><td>H19</td><td class="num">1</td><td>未知</td></tr>
+    </tbody>
   </table>
+  <p class="table-note"><strong>注意：</strong>带 * 者：mtDNA 即线粒体DNA。</p>
+  <p class="table-note src">数据来源：International Human Genome Sequencing Consortium，2001，Nature 409:860；P. D. Zamore 与 B. Haley，2005，Science 309:1519。</p>
 </figure>
 <h3 class="subhead">非蛋白编码基因编码功能性RNA</h3>
 <p>除rRNA和tRNA基因外，还有数千个其他被转录成非蛋白编码RNA的基因，其中一些具有已知的各种功能，许多功能尚不清楚。例如，小核RNA（snRNA）在RNA剪接中发挥作用，小核仁RNA（snoRNA）在核仁中参与rRNA加工和碱基修饰。RNase P RNA在tRNA加工中发挥作用，而一个庞大的家族（人类约2000个）——短微RNA（miRNA）——调控特定mRNA的翻译和稳定性。这些非蛋白编码RNA的功能将在第10章讨论。端粒酶中发现的一种RNA（见下文<a class="xref xref-fig" href="#fig-8-44">图8-44</a>）在维持染色体末端序列方面发挥作用，而7SL RNA则参与分泌蛋白和大多数膜蛋白向内质网的转运（见第13章）。人类基因组中编码的这些及其他非蛋白编码RNA，以及已知其功能者，列于<a class="xref xref-tab" href="#tab-T8-2">表8-2</a>。DNA测序的最新进展已导致在哺乳动物细胞核中发现约10,000种长非编码RNA（lncRNA）。其中一些已被发现在调控特定蛋白编码基因的表达中发挥作用。</p>
